@@ -1,0 +1,28 @@
+{
+    "component": "EC197 DME Synthesis Reactor",
+    "fidelity": "F1a",
+    "description": "Single-step DME synthesis over bifunctional catalyst (methanol synthesis + dehydration). Equilibrium conversion and DME selectivity as functions of T, P.",
+    "unit": {
+        "name": "Generic CuO-ZnO-Al2O3/NaHZSM-5 bifunctional catalyst, 250-280 degC, 30-50 bar",
+        "source": "Ereña et al. (2005) Catal. Today 107-108:467; García-Trenco et al. (2018) ACS Catal. 8:4660; Naik et al. (2011) Fuel 90:3266.",
+        "T_opt":          {"value": 260.0,  "unit": "degC",   "note": "Optimal conversion temperature (equilibrium optimum for direct DME, Ereña 2005)"},
+        "X_max":          {"value": 0.85,   "unit": "-",      "note": "Maximum CO conversion fraction (single-pass, bifunctional catalyst at 30-50 bar)"},
+        "k_T":            {"value": 5.0,    "unit": "-",      "note": "Gaussian temperature width (wider than FT: DME synthesis tolerates broader T range)"},
+        "P_ref":          {"value": 40.0,   "unit": "bar",    "note": "Reference operating pressure (Ereña 2005: 40 bar optimal)"},
+        "P_exp":          {"value": 0.45,   "unit": "-",      "note": "Pressure exponent for conversion (Le Chatelier favors DME at high P)"},
+        "S_DME_max":      {"value": 0.90,   "unit": "-",      "note": "Maximum DME selectivity (vs MeOH by-product; 85-95% in single-step, Naik 2011)"},
+        "k_S":            {"value": 3.0,    "unit": "-",      "note": "Gaussian width for selectivity vs T"},
+        "T_S_opt":        {"value": 265.0,  "unit": "degC",   "note": "Temperature for maximum DME selectivity (dehydration favored at 250-280 degC)"},
+        "n_CO_in":        {"value": 1.0,    "unit": "mol/s",  "note": "Default CO feed rate"},
+        "H2_CO_ratio":    {"value": 2.0,    "unit": "mol/mol","note": "Feed H2/CO ratio (stoichiometric for direct DME: 2CO + 4H2 → DME + H2O)"},
+        "LHV_DME":        {"value": 1460.0, "unit": "kJ/mol", "note": "LHV of DME (CH3OCH3), 28.7 MJ/kg × 46.07 g/mol = 1322 kJ/mol; HHV ~1460 kJ/mol"},
+        "LHV_H2":         {"value": 241.8,  "unit": "kJ/mol", "note": "LHV of H2"},
+        "DH_reaction":    {"value": -102.4, "unit": "kJ/mol_CO","note": "Exotherm per mol CO: combined reaction ΔH = -204.8 kJ/mol DME / 2 CO = -102.4 kJ/mol CO"}
+    },
+    "valid_ranges": {
+        "temperature_C":  {"min": 200.0, "max": 350.0, "unit": "degC"},
+        "pressure_bar":   {"min": 10.0,  "max": 80.0,  "unit": "bar"},
+        "H2_CO_ratio":    {"min": 1.5,   "max": 3.0,   "unit": "mol/mol"},
+        "n_CO_in":        {"min": 0.01,  "max": 100.0, "unit": "mol/s"}
+    }
+}

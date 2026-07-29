@@ -1,0 +1,20 @@
+{
+    "component": "EC037 Zinc-Bromine Flow Battery (ZBFB)",
+    "fidelity": "F1a",
+    "description": "Cell/stack voltage using Nernst equation + ohmic resistance for Zn/Zn2+ || Br2/Br- couple",
+    "unit": {
+        "name": "Generic 60-cell ZBFB stack, 1000 cm2 electrode area",
+        "source": "Lim, H. S., Lackner, A. M., Knechtli, R. C. (1977). 'Zinc-Bromine Secondary Battery.' J. Electrochem. Soc. 124, 1154; Skyllas-Kazacos et al. (2011), J. Electrochem. Soc. 158, R55",
+        "N_cells": {"value": 60, "unit": "dimensionless"},
+        "electrode_area_cm2": {"value": 1000.0, "unit": "cm2"},
+        "E0": {"value": 1.85, "unit": "V", "note": "Standard cell potential E0(Br2/Br-) - E0(Zn2+/Zn) ~= 1.087 - (-0.763) V"},
+        "R_cell_ohm_cm2": {"value": 1.5, "unit": "Ohm.cm2", "note": "Area-specific resistance; ZBFB typically higher than VRFB due to membrane and Br2 complexing agent"},
+        "T_K": {"value": 298.0, "unit": "K"},
+        "n": {"value": 2, "unit": "dimensionless", "note": "electrons transferred per reaction (Zn->Zn2+ + 2e-; Br2 + 2e- -> 2Br-)"},
+        "electrolyte_conc_M": {"value": 3.0, "unit": "mol/L", "note": "Typical ZnBr2 concentration"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.05, "max": 0.95, "unit": "dimensionless", "note": "Internally clamped to [0.01, 0.99] to avoid Nernst log singularity"},
+        "current": {"min": -150.0, "max": 150.0, "unit": "A", "note": "positive=discharge"}
+    }
+}

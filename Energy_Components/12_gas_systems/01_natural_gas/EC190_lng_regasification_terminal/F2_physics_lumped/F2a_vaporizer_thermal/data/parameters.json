@@ -1,0 +1,48 @@
+{
+    "component_id": "EC190",
+    "component_name": "LNG Regasification Terminal",
+    "fidelity": "F2a — Physics-Lumped Vaporizer Thermal Transient (ODE)",
+    "source": "Mokhatab et al. (2014) Handbook of Liquefied Natural Gas, Elsevier (ch. 9 send-out & vaporization); Pospíšil et al. (2019) Renewable & Sustainable Energy Reviews 99, 1-15 (LNG cold-energy utilization); Egashira (2013) Mitsubishi Heavy Industries Tech. Rev. 50(1) (ORV/SCV).",
+    "vaporizer": {
+        "name": "Open-Rack Vaporizer (ORV) seawater-heated, generic onshore terminal",
+        "type": {"value": "ORV", "unit": "-", "note": "ORV=open-rack seawater, SCV=submerged combustion, AAV=ambient air"},
+        "UA": {"value": 4.0e6, "unit": "W/K",
+               "note": "Overall conductance heat-source side -> vaporizer metal. ORV seawater UA is large (panel arrays); sized so a 500 t/h ORV transfers ~100 MW at ~25 K LMTD."},
+        "UA_process": {"value": 6.0e6, "unit": "W/K",
+                       "note": "Conductance vaporizer metal -> LNG/gas process stream."},
+        "m_metal": {"value": 8.0e4, "unit": "kg",
+                    "note": "Lumped thermal mass of vaporizer panels/tubes (aluminium ORV racks)."},
+        "cp_metal": {"value": 900.0, "unit": "J/(kg.K)",
+                     "note": "Specific heat of aluminium vaporizer structure."},
+        "T_heat_source": {"value": 288.15, "unit": "K",
+                          "note": "Seawater supply temperature (15 C). For SCV this is the hot flue-gas/water-bath temperature."},
+        "eta_combustion": {"value": 0.0, "unit": "-",
+                           "note": "Fuel-gas fraction burned for SCV self-heating (0 for seawater ORV; ~0.015-0.02 of throughput LHV for SCV)."}
+    },
+    "pump": {
+        "P_discharge": {"value": 8.0e6, "unit": "Pa", "note": "HP pump send-out pressure (~80 bar pipeline)."},
+        "P_tank": {"value": 1.15e5, "unit": "Pa", "note": "LNG storage tank pressure (~1.15 bar abs)."},
+        "eta_pump": {"value": 0.75, "unit": "-", "note": "Cryogenic HP pump isentropic-to-shaft efficiency."}
+    },
+    "lng": {
+        "rho_LNG": {"value": 450.0, "unit": "kg/m3", "note": "LNG liquid density at storage (Mokhatab 2014, ~430-470)."},
+        "h_fg": {"value": 511.0e3, "unit": "J/kg",
+                 "note": "Latent heat of vaporization of methane at 1 atm boiling point (Younglove & Ely 1987, NIST)."},
+        "cp_liquid": {"value": 3450.0, "unit": "J/(kg.K)",
+                      "note": "Liquid methane specific heat near boiling point (NIST/Younglove 1987)."},
+        "cp_gas": {"value": 2220.0, "unit": "J/(kg.K)",
+                   "note": "Methane gas cp at near-ambient send-out conditions (NIST, ~2.2 kJ/kg.K)."},
+        "T_storage": {"value": 111.15, "unit": "K", "note": "LNG saturated storage temperature (-162 C) at 1 atm."},
+        "T_boil": {"value": 111.66, "unit": "K", "note": "Methane normal boiling point (NIST)."},
+        "T_sendout": {"value": 278.15, "unit": "K", "note": "Pipeline send-out gas temperature (5 C)."},
+        "LHV": {"value": 50.0e6, "unit": "J/kg", "note": "Methane lower heating value."},
+        "molar_mass": {"value": 0.01604, "unit": "kg/mol", "note": "Methane molar mass."}
+    },
+    "valid_ranges": {
+        "sendout_rate_ton_per_h": {"min": 10.0, "max": 5000.0, "unit": "ton/h"},
+        "T_heat_source_K": {"min": 275.0, "max": 350.0, "unit": "K"},
+        "T_ambient_K": {"min": 250.0, "max": 320.0, "unit": "K"},
+        "dt": {"min": 0.5, "max": 60.0, "unit": "s"},
+        "duration_s": {"min": 10.0, "max": 36000.0, "unit": "s"}
+    }
+}

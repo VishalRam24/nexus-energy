@@ -1,0 +1,35 @@
+{
+    "component_id": "EC174",
+    "component_name": "Instrument Transformer (CT / PT)",
+    "fidelity": "F2a — Magnetizing-Branch Equivalent Circuit with Nonlinear-Flux ODE (CT saturation)",
+    "source": "IEEE Std C57.13-2016 (Instrument Transformers); IEC 61869-1/-2/-3 (2007-2011); Slemon & Straughen (1980) Electric Machines; IEEE PSRC, CT SAT Calculator / IEEE C37.110 Guide for CTs in Protective Relaying; Hoblit (1980) Current Transformers, IEEE Trans. Ind. Appl.",
+    "unit": {
+        "name": "Generic Current Transformer (CT), 200/5A, Class 0.5, 15 VA, 50 Hz",
+        "type": {"value": "CT", "unit": "string", "note": "CT (current transformer) or PT (inductive voltage transformer)"},
+        "turns_ratio": {"value": 40.0, "unit": "dimensionless", "note": "n = N1/N2 = 200/5 = 40 for CT; N_primary/N_secondary for PT"},
+        "N2": {"value": 100.0, "unit": "turns", "note": "Secondary turns (200/5 CT -> 40 primary turns of 1, 100 sec turns approx; sets flux per amp)"},
+        "I_rated": {"value": 200.0, "unit": "A", "note": "Primary rated current (CT)"},
+        "V_rated": {"value": 11000.0, "unit": "V", "note": "Primary rated voltage (PT) — not used for CT"},
+        "f": {"value": 50.0, "unit": "Hz", "note": "System frequency"},
+        "S_burden_VA": {"value": 15.0, "unit": "VA", "note": "Rated VA burden at rated secondary current"},
+        "pf_burden": {"value": 0.8, "unit": "dimensionless", "note": "Burden power factor (standard 0.8 lag per IEEE C57.13 B-0.5)"},
+        "R2": {"value": 0.1, "unit": "Ohm", "note": "Secondary winding resistance (referred to secondary)"},
+        "X2": {"value": 0.05, "unit": "Ohm", "note": "Secondary leakage reactance (referred to secondary)"},
+        "Rc": {"value": 5000.0, "unit": "Ohm", "note": "Core-loss (eddy+hysteresis) resistance, referred to secondary"},
+        "Xm": {"value": 3000.0, "unit": "Ohm", "note": "Unsaturated magnetizing reactance, referred to secondary"},
+        "V_knee": {"value": 100.0, "unit": "V", "note": "Knee-point EMF (IEC: secondary EMF where 10% V rise -> 50% I rise). Above this the core saturates"},
+        "A_core": {"value": 0.0015, "unit": "m2", "note": "Core cross-sectional area"},
+        "B_sat": {"value": 1.7, "unit": "T", "note": "Saturation flux density of grain-oriented silicon steel (CRGO ~1.7-2.0 T)"},
+        "mu_r_unsat": {"value": 4000.0, "unit": "dimensionless", "note": "Unsaturated relative permeability of core"},
+        "l_core": {"value": 0.4, "unit": "m", "note": "Mean magnetic path length"},
+        "accuracy_class": {"value": 0.5, "unit": "percent", "note": "IEC/IEEE accuracy class (0.5 = ±0.5% ratio error at rated burden)"},
+        "phase_class_min": {"value": 30.0, "unit": "minutes", "note": "Permitted phase displacement at class 0.5 (IEC 61869: 30 min = 0.5 deg)"}
+    },
+    "valid_ranges": {
+        "i_primary_A": {"min": 0.0, "max": 4000.0, "unit": "A", "note": "For CT; up to 20x rated for fault/saturation studies"},
+        "v_primary_V": {"min": 0.0, "max": 15000.0, "unit": "V", "note": "For PT"},
+        "burden_fraction": {"min": 0.0, "max": 4.0, "unit": "dimensionless", "note": "Burden as multiple of rated VA"},
+        "f": {"min": 16.0, "max": 400.0, "unit": "Hz"},
+        "duration_s": {"min": 0.001, "max": 1.0, "unit": "s"}
+    }
+}

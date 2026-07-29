@@ -1,0 +1,46 @@
+{
+  "component_id": "EC006",
+  "component_name": "Direct Methanol Fuel Cell (DMFC)",
+  "fidelity": "F1b — Polarization-Thermal (crossover current, Nafion conductivity, Arrhenius anode kinetics)",
+  "source": "Scott et al. (1999); Kulikovsky (2002); Nordlund & Lindbergh (2002); Larminie & Dicks (2003)",
+  "default_parameters": {
+    "T_ref": 353.15,
+    "N_cells": 20,
+    "A_cell": 25.0,
+    "c_MeOH": 1.0,
+    "pO2": 0.21,
+    "j_L": 0.4,
+    "i0_ref": 5e-5,
+    "E_act": 60000.0,
+    "alpha": 0.5,
+    "B_conc": 0.020,
+    "j_cross_ref": 0.05,
+    "E_act_cross": 25000.0,
+    "lambda_mem": 12.0,
+    "membrane_thickness": 0.0183,
+    "dEdT_MeOH": -1.4e-4,
+    "E_ref_std": 1.214
+  },
+  "parameter_metadata": {
+    "T_ref":              {"description": "Reference temperature (80C)", "unit": "K", "default": 353.15},
+    "N_cells":            {"description": "Number of cells in stack", "unit": "-", "default": 20},
+    "A_cell":             {"description": "Active cell area", "unit": "cm2", "default": 25.0},
+    "c_MeOH":             {"description": "Methanol feed concentration", "unit": "mol/L", "default": 1.0, "notes": "Typical DMFC: 0.5-2 mol/L"},
+    "pO2":                {"description": "Oxygen partial pressure (air)", "unit": "atm", "default": 0.21},
+    "j_L":                {"description": "Limiting current density (methanol transport limited)", "unit": "A/cm2", "default": 0.4},
+    "i0_ref":             {"description": "Anode exchange current density at T_ref (MeOH oxidation slow)", "unit": "A/cm2", "default": 5e-5},
+    "E_act":              {"description": "Activation energy for methanol oxidation at Pt-Ru", "unit": "J/mol", "default": 60000.0},
+    "alpha":              {"description": "Anodic charge transfer coefficient", "unit": "-", "default": 0.5},
+    "B_conc":             {"description": "Concentration loss coefficient (larger for DMFC)", "unit": "V", "default": 0.020},
+    "j_cross_ref":        {"description": "Methanol crossover current at T_ref", "unit": "A/cm2", "default": 0.05, "notes": "Nafion 117 at 80C"},
+    "E_act_cross":        {"description": "Activation energy for MeOH crossover diffusion", "unit": "J/mol", "default": 25000.0},
+    "lambda_mem":         {"description": "Nafion membrane water content", "unit": "-", "default": 12.0},
+    "membrane_thickness": {"description": "Nafion membrane thickness (117)", "unit": "cm", "default": 0.0183},
+    "dEdT_MeOH":          {"description": "dE/dT for methanol oxidation standard potential", "unit": "V/K", "default": -1.4e-4},
+    "E_ref_std":          {"description": "Standard potential for methanol oxidation at 298K", "unit": "V", "default": 1.214}
+  },
+  "valid_ranges": {
+    "current_density": {"min": 0.0, "max": 0.4, "unit": "A/cm2"},
+    "temperature":     {"min": 333.0, "max": 383.0, "unit": "K"}
+  }
+}

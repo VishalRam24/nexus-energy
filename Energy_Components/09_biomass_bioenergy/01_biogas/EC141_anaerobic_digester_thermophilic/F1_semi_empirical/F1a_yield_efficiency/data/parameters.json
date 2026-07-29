@@ -1,0 +1,19 @@
+{
+    "component": "EC141 Anaerobic Digester (Thermophilic)",
+    "fidelity": "F1a",
+    "description": "Simple yield model: biogas = feedstock_VS * biogas_yield; CH4 = biogas * CH4_fraction. Thermophilic conditions (55 degC), HRT=15 days.",
+    "unit": {
+        "name": "Generic Thermophilic Anaerobic Digester",
+        "source": "Angelidaki et al. (2009) Water Sci. Technol. 59(5):927; Mata-Alvarez et al. (2014) Renew. Sustain. Energy Rev. 36:412",
+        "biogas_yield_m3_per_kgVS": {"value": 0.50,  "unit": "m3/kgVS",        "note": "Biogas yield per kg volatile solids destroyed"},
+        "CH4_fraction":             {"value": 0.60,  "unit": "dimensionless",  "note": "Methane fraction in biogas"},
+        "HRT_days":                 {"value": 15.0,  "unit": "days",           "note": "Hydraulic retention time"},
+        "VS_destruction":           {"value": 0.65,  "unit": "dimensionless",  "note": "Fraction of VS destroyed"},
+        "T_operating_degC":         {"value": 55.0,  "unit": "degC",           "note": "Operating temperature (thermophilic)"},
+        "LHV_methane_MJ_m3":        {"value": 35.8,  "unit": "MJ/m3",          "note": "Lower heating value of methane"},
+        "LHV_methane_kWh_m3":       {"value": 9.94,  "unit": "kWh/m3",         "note": "LHV methane in kWh"}
+    },
+    "valid_ranges": {
+        "feedstock_VS_kg_per_day": {"min": 0.0, "max": 1e6, "unit": "kgVS/day"}
+    }
+}

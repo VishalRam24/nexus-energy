@@ -1,0 +1,44 @@
+{
+  "component_id": "EC197",
+  "component_name": "DME Synthesis Reactor",
+  "fidelity": "F0a \u2014 empirical lookup",
+  "version": "1.0.0",
+  "source": "Erena et al. (2005) Catal. Today 107:467; Naik et al. (2011) Fuel 90:3266 (F1a params reused)",
+  "metric": "conversion_vs_temperature",
+  "note": "Single-step DME (CuO-ZnO-Al2O3/HZSM-5) per-pass CO conversion vs temperature (rising branch). X_max 0.85 at T_opt 260 degC, 40 bar, H2/CO=2.0.",
+  "lookup": {
+    "temperature_C": {
+      "value": [
+        210.0,
+        235.0,
+        250.0,
+        257.0,
+        260.0
+      ],
+      "unit": "degC",
+      "note": "Reactor temperature"
+    },
+    "conversion": {
+      "value": [
+        0.3127,
+        0.662,
+        0.8167,
+        0.8469,
+        0.85
+      ],
+      "unit": "-",
+      "note": "Per-pass CO conversion"
+    }
+  },
+  "rated": {
+    "temperature_C": {
+      "value": 260.0,
+      "unit": "degC"
+    },
+    "conversion": {
+      "value": 0.85,
+      "unit": "-",
+      "note": "Rated point"
+    }
+  }
+}

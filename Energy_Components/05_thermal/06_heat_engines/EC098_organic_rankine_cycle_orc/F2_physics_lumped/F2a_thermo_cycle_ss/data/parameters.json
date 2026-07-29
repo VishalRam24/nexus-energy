@@ -1,0 +1,30 @@
+{
+    "component_id": "EC098",
+    "component_name": "Organic Rankine Cycle (ORC)",
+    "fidelity": "F2a — Thermodynamic Cycle Steady-State with Part-Load",
+    "source": "Quoilin et al. (2013), Renewable and Sustainable Energy Reviews; Lemort et al. (2009), Applied Thermal Engineering",
+    "unit": {
+        "name": "Generic 100 kW ORC with R245fa",
+        "W_net_design": {"value": 100000.0, "unit": "W", "note": "Design net power output"},
+        "T_evap": {"value": 393.15, "unit": "K", "note": "Evaporator temperature (120C)"},
+        "T_cond": {"value": 308.15, "unit": "K", "note": "Condenser temperature (35C)"},
+        "P_evap": {"value": 1800000.0, "unit": "Pa", "note": "Evaporator pressure (~18 bar, T_sat~120C)"},
+        "P_cond": {"value": 150000.0, "unit": "Pa", "note": "Condenser pressure (~1.5 bar, T_sat~27C)"},
+        "eta_pump": {"value": 0.75, "unit": "-", "note": "Isentropic pump efficiency"},
+        "eta_expander": {"value": 0.80, "unit": "-", "note": "Isentropic expander efficiency"},
+        "T_source_in": {"value": 423.15, "unit": "K", "note": "Heat source inlet temperature (150C)"},
+        "T_source_out": {"value": 383.15, "unit": "K", "note": "Heat source outlet temperature"},
+        "T_sink_in": {"value": 293.15, "unit": "K", "note": "Heat sink inlet temperature (20C)"},
+        "superheat": {"value": 10.0, "unit": "K", "note": "Superheating at expander inlet"},
+        "subcool": {"value": 5.0, "unit": "K", "note": "Subcooling at pump inlet"},
+        "m_thermal": {"value": 500.0, "unit": "kg", "note": "Thermal mass of ORC system"},
+        "cp_system": {"value": 1200.0, "unit": "J/(kg.K)", "note": "Effective specific heat"},
+        "hA_loss": {"value": 20.0, "unit": "W/K", "note": "Heat loss coefficient to ambient"}
+    },
+    "valid_ranges": {
+        "T_evap": {"min": 340.0, "max": 420.0, "unit": "K"},
+        "T_cond": {"min": 290.0, "max": 330.0, "unit": "K"},
+        "load_fraction": {"min": 0.1, "max": 1.0, "unit": "-"},
+        "T_source_in": {"min": 370.0, "max": 500.0, "unit": "K"}
+    }
+}

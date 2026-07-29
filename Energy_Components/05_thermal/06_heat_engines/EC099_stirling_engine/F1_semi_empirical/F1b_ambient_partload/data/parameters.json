@@ -1,0 +1,23 @@
+{
+    "component": "EC099 Stirling Engine",
+    "fidelity": "F1b",
+    "description": "T_h/T_c range effects + ambient T_c dependence + part-load efficiency curve",
+    "engine": {
+        "name": "Generic kinematic alpha-type Stirling engine (micro-CHP scale)",
+        "source": "Kongtragool & Wongwises (2003) Ren. Sustain. Energy Rev. 7, 131-154; Cinar et al. (2005) Appl. Therm. Eng. 25, 1845-1854; Thombare & Verma (2008) Ren. Sustain. Energy Rev. 12, 1-38.",
+        "P_rated_w":     {"value": 9000.0, "unit": "W",    "note": "Rated electrical output (~9 kW micro-CHP, e.g. WhisperGen/Stirling Solutions)"},
+        "f_carnot":      {"value": 0.50,   "unit": "-",    "note": "Fraction of Carnot achieved (real Stirling 0.4-0.6, Kongtragool 2003)"},
+        "a_partload":    {"value": 0.20,   "unit": "-",    "note": "Part-load loss coefficient"},
+        "T_h_design_c":  {"value": 650.0,  "unit": "degC", "note": "Hot-side (heater head) design temperature"},
+        "T_c_design_c":  {"value": 50.0,   "unit": "degC", "note": "Cold-side (cooler) design temperature"},
+        "T_c_ambient_offset_c": {"value": 15.0, "unit": "degC", "note": "Cooler temperature = T_ambient + offset (heat exchanger approach)"},
+        "PLR_min":       {"value": 0.20,   "unit": "-",    "note": "Minimum stable PLR"},
+        "aux_fraction":  {"value": 0.05,   "unit": "-",    "note": "Auxiliary/parasitic fraction (fans, controls)"}
+    },
+    "valid_ranges": {
+        "PLR":       {"min": 0.20, "max": 1.0,   "unit": "-"},
+        "T_h_c":     {"min": 400.0,"max": 800.0, "unit": "degC"},
+        "T_c_c":     {"min": 5.0,  "max": 80.0,  "unit": "degC"},
+        "T_ambient_c": {"min": -20.0, "max": 45.0, "unit": "degC"}
+    }
+}

@@ -1,0 +1,37 @@
+{
+  "component": "EC206 CO2 Mineralization",
+  "fidelity": "F0a -- empirical lookup",
+  "source": "Sanna et al. (2014) Prog. Energy Combust. Sci.; IPCC (2005) CCS report.",
+  "unit": {
+    "source": "Sanna et al. (2014) Prog. Energy Combust. Sci.; IPCC (2005) CCS report.",
+    "conversion": {
+      "value": 0.8,
+      "unit": "-"
+    },
+    "SEC_GJ_tCO2": {
+      "value": 0.5,
+      "unit": "GJ/tCO2"
+    },
+    "carbonate_yield_kg_kg": {
+      "value": 2.09,
+      "unit": "kg carbonate/kg CO2"
+    }
+  },
+  "conversion_curve": {
+    "T_C": [
+      25,
+      60,
+      100,
+      150,
+      200
+    ],
+    "conversion": [
+      0.55,
+      0.7,
+      0.8,
+      0.83,
+      0.8
+    ],
+    "note": "Carbonation conversion improves with T to ~150 C optimum."
+  }
+}

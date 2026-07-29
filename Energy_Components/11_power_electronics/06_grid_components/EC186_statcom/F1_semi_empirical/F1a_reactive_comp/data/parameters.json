@@ -1,0 +1,19 @@
+{
+    "component": "EC186 STATCOM",
+    "fidelity": "F1a",
+    "description": "VSC-based STATCOM: Q independent of V (unlike SVC); symmetric +/-Q_max; losses ~1.5%.",
+    "unit": {
+        "name": "Generic ±100 MVAR STATCOM",
+        "source": "Hingorani & Gyugyi (2000), Understanding FACTS. IEEE Press. Ch. 6.",
+        "Q_max_MVAR": {"value": 100.0, "unit": "MVAR", "note": "Max capacitive output"},
+        "Q_min_MVAR": {"value": -100.0, "unit": "MVAR", "note": "Max inductive output (symmetric for VSC)"},
+        "V_rated_kV": {"value": 132.0, "unit": "kV"},
+        "loss_factor": {"value": 0.015, "unit": "dimensionless", "note": "1.5% losses of |Q_out| (VSC switching + transformer)"},
+        "response_time_ms": {"value": 5.0, "unit": "ms", "note": "Sub-cycle response (faster than SVC)"},
+        "P_standby_MW": {"value": 0.5, "unit": "MW", "note": "No-load auxiliary/cooling losses"}
+    },
+    "valid_ranges": {
+        "Q_demand_MVAR": {"min": -100.0, "max": 100.0, "unit": "MVAR"},
+        "V_pu": {"min": 0.8, "max": 1.2, "unit": "pu"}
+    }
+}

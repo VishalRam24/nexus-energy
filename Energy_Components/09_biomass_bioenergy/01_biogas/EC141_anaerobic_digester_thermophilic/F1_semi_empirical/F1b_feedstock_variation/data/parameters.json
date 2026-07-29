@@ -1,0 +1,77 @@
+{
+  "component": "EC141 Anaerobic Digester (Thermophilic)",
+  "fidelity": "F1b",
+  "description": "Feedstock-specific BMP model with co-digestion synergy and C/N ratio effects at thermophilic conditions (55 degC)",
+  "unit": {
+    "name": "Thermophilic anaerobic digester with feedstock variation",
+    "source": "Angelidaki et al. (2009); Mata-Alvarez et al. (2014); Labatut et al. (2011)",
+    "digester_volume_m3":    {"value": 2000.0, "unit": "m3"},
+    "methane_content_base":  {"value": 0.62,   "unit": "dimensionless"},
+    "k_hydrolysis_per_day":  {"value": 0.22,   "unit": "1/day", "note": "thermophilic k ~1.5x mesophilic"},
+    "T_ref_degC":            {"value": 55.0,   "unit": "degC"},
+    "E_a_jmol":              {"value": 65000.0,"unit": "J/mol"},
+    "R_jmolk":               {"value": 8.314,  "unit": "J/(mol*K)"},
+    "LHV_methane_kwh_m3":    {"value": 9.97,   "unit": "kWh/m3"},
+    "T_optimum_degC":        {"value": 55.0,   "unit": "degC"},
+    "T_inhibit_low_degC":    {"value": 45.0,   "unit": "degC"},
+    "T_inhibit_high_degC":   {"value": 65.0,   "unit": "degC"}
+  },
+  "feedstock_db": {
+    "cattle_manure": {
+      "BMP_L_CH4_kgVS": 265,
+      "VS_fraction": 0.80,
+      "TS_fraction": 0.10,
+      "C_pct": 35.0,
+      "N_pct": 2.5,
+      "methane_content": 0.62,
+      "k_hydrolysis": 0.15
+    },
+    "food_waste": {
+      "BMP_L_CH4_kgVS": 420,
+      "VS_fraction": 0.90,
+      "TS_fraction": 0.25,
+      "C_pct": 48.0,
+      "N_pct": 3.2,
+      "methane_content": 0.64,
+      "k_hydrolysis": 0.35
+    },
+    "grass_silage": {
+      "BMP_L_CH4_kgVS": 360,
+      "VS_fraction": 0.92,
+      "TS_fraction": 0.30,
+      "C_pct": 46.0,
+      "N_pct": 2.0,
+      "methane_content": 0.56,
+      "k_hydrolysis": 0.18
+    },
+    "sewage_sludge": {
+      "BMP_L_CH4_kgVS": 220,
+      "VS_fraction": 0.75,
+      "TS_fraction": 0.05,
+      "C_pct": 30.0,
+      "N_pct": 4.5,
+      "methane_content": 0.67,
+      "k_hydrolysis": 0.12
+    },
+    "corn_silage": {
+      "BMP_L_CH4_kgVS": 355,
+      "VS_fraction": 0.95,
+      "TS_fraction": 0.33,
+      "C_pct": 45.0,
+      "N_pct": 1.3,
+      "methane_content": 0.54,
+      "k_hydrolysis": 0.20
+    }
+  },
+  "cn_ratio": {
+    "optimal_min": 20.0,
+    "optimal_max": 30.0,
+    "penalty_factor": 0.02,
+    "note": "Yield penalty = penalty_factor * abs(CN - 25) for CN outside [20,30]"
+  },
+  "valid_ranges": {
+    "vs_loading_kg_m3_day": {"min": 0.5, "max": 12.0, "unit": "kgVS/(m3*day)"},
+    "temperature_degC":     {"min": 45.0,"max": 65.0, "unit": "degC"},
+    "hrt_days":             {"min": 5.0, "max": 30.0, "unit": "days"}
+  }
+}

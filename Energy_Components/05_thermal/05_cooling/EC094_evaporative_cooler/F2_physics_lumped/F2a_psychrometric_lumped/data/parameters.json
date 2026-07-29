@@ -1,0 +1,30 @@
+{
+    "component_id": "EC094",
+    "component_name": "Evaporative Cooler",
+    "fidelity": "F2a — Psychrometric Heat-Mass Transfer with Lumped Transient ODE",
+    "source": "ASHRAE Handbook of Fundamentals (2021) ch.1 Psychrometrics; Camargo, Ebinuma & Silveira (2005) 'Experimental performance of a direct evaporative cooler', Int. J. Thermal Sciences 44(3); Stull (2011) wet-bulb approximation, J. Appl. Meteorol. Climatol. 50(11)",
+    "unit": {
+        "name": "Generic Direct (Rigid Media Pad) Evaporative Cooler — Physics-Lumped",
+        "type": "direct",
+        "epsilon_sat_design": {"value": 0.85, "unit": "-", "note": "Design saturation effectiveness of cellulose rigid-media pad (Camargo 2005, 100-300mm pads: 0.7-0.95)"},
+        "ntu_design": {"value": 1.897, "unit": "-", "note": "Transfer units NTU = -ln(1-eps); eps=0.85 -> NTU=1.897. eps_sat = 1 - exp(-NTU)"},
+        "P_fan_W": {"value": 200.0, "unit": "W", "note": "Fan electrical power for 1 kg/s air (typical residential cooler)"},
+        "Cp_air_J_kgK": {"value": 1006.0, "unit": "J/(kg.K)", "note": "Specific heat dry air at ~300K (ASHRAE Fundamentals)"},
+        "Cp_vapor_J_kgK": {"value": 1860.0, "unit": "J/(kg.K)", "note": "Specific heat water vapor (ASHRAE Fundamentals)"},
+        "Cp_water_J_kgK": {"value": 4186.0, "unit": "J/(kg.K)", "note": "Specific heat liquid water"},
+        "rho_air_kg_m3": {"value": 1.16, "unit": "kg/m3", "note": "Moist air density at ~303K, 1 atm"},
+        "h_fg_J_kg": {"value": 2450000.0, "unit": "J/kg", "note": "Latent heat of vaporization of water at ~20C (ASHRAE: 2.45 MJ/kg)"},
+        "P_atm_Pa": {"value": 101325.0, "unit": "Pa", "note": "Standard atmospheric pressure"},
+        "pad_mass_kg": {"value": 3.0, "unit": "kg", "note": "Wetted thermal mass of pad + retained water (lumped)"},
+        "pad_cp_J_kgK": {"value": 4186.0, "unit": "J/(kg.K)", "note": "Effective specific heat of wetted pad (water-dominated)"},
+        "NTU_air_pad": {"value": 1.897, "unit": "-", "note": "Air-to-pad transfer units governing transient time constant"}
+    },
+    "valid_ranges": {
+        "T_db_C": {"min": 10.0, "max": 50.0, "unit": "degC"},
+        "RH": {"min": 0.0, "max": 1.0, "unit": "-"},
+        "m_dot_air_kg_s": {"min": 0.05, "max": 10.0, "unit": "kg/s"},
+        "epsilon_sat": {"min": 0.0, "max": 1.0, "unit": "-"},
+        "dt": {"min": 0.1, "max": 10.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 3600.0, "unit": "s"}
+    }
+}

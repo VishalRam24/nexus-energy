@@ -1,0 +1,42 @@
+{
+    "component": "EC080 Phase-Change Material (PCM) Thermal Energy Storage",
+    "fidelity": "F1a",
+    "description": "Latent heat PCM storage model — three-region: solid, mushy (phase change), liquid",
+    "pcm": {
+        "name": "Paraffin RT42 (commercial grade)",
+        "source": "Mehling & Cabeza (2008), Heat and Cold Storage with PCM, Springer; Rubitherm Technologies RT42 datasheet",
+        "material": "Paraffin RT42",
+        "T_melt_C": {"value": 42.0, "unit": "degC", "note": "Phase change (melting) temperature"},
+        "T_melt_range_C": {"value": 2.0, "unit": "degC", "note": "Mushy zone half-width: T in [41, 43] = mushy zone"},
+        "latent_heat_kJ_kg": {"value": 174.0, "unit": "kJ/kg", "note": "L = 174 kJ/kg for RT42"},
+        "cp_solid_kJ_kgK": {"value": 2.0, "unit": "kJ/(kg·K)"},
+        "cp_liquid_kJ_kgK": {"value": 2.0, "unit": "kJ/(kg·K)"},
+        "mass_kg": {"value": 500.0, "unit": "kg"},
+        "UA_W_K": {"value": 5.0, "unit": "W/K", "note": "Heat transfer from HTF to PCM"},
+        "T_ref_C": {"value": 0.0, "unit": "degC", "note": "Reference temperature for energy calculation"},
+        "T_ambient_ref_C": {"value": 25.0, "unit": "degC"}
+    },
+    "derived": {
+        "E_sensible_solid_kWh": {
+            "value": 11.67,
+            "unit": "kWh",
+            "note": "m*cp_s*(Tm-T_ref) = 500*2*(42-0)/3600 kWh"
+        },
+        "E_latent_kWh": {
+            "value": 24.17,
+            "unit": "kWh",
+            "note": "m*L = 500*174/3600 kWh"
+        },
+        "E_capacity_total_kWh": {
+            "value": 35.83,
+            "unit": "kWh",
+            "note": "Sensible (solid) + latent at Tm. Usable range: T_ref to Tm + sensible liquid buffer"
+        }
+    },
+    "valid_ranges": {
+        "temperature": {"min": 0.0, "max": 80.0, "unit": "degC"},
+        "liquid_fraction": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "q_charge": {"min": 0.0, "max": 10000.0, "unit": "W"},
+        "q_discharge": {"min": 0.0, "max": 10000.0, "unit": "W"}
+    }
+}

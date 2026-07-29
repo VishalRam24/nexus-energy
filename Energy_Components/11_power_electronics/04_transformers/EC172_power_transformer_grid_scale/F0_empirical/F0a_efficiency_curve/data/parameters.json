@@ -1,0 +1,66 @@
+{
+  "component": "EC172 Power Transformer (Grid-Scale)",
+  "fidelity": "F0a",
+  "description": "Empirical efficiency-vs-load lookup curve from core (no-load) + copper (load) loss split.",
+  "model": {
+    "type": "efficiency_vs_load_lookup",
+    "load_fraction": {
+      "value": [
+        0.0,
+        0.05,
+        0.1,
+        0.2,
+        0.3,
+        0.4,
+        0.5,
+        0.6,
+        0.7,
+        0.8,
+        0.9,
+        1.0,
+        1.2
+      ],
+      "unit": "dimensionless",
+      "note": "Fraction of rated apparent power S_rated"
+    },
+    "efficiency": {
+      "value": [
+        0.0,
+        0.98995,
+        0.99473,
+        0.99691,
+        0.99744,
+        0.99756,
+        0.99751,
+        0.99737,
+        0.99719,
+        0.99698,
+        0.99676,
+        0.99651,
+        0.996
+      ],
+      "unit": "dimensionless",
+      "note": "Power efficiency P_out/(P_out+losses)"
+    },
+    "rated_efficiency": {
+      "value": 0.99651,
+      "unit": "dimensionless",
+      "note": "Efficiency at 100% load"
+    },
+    "core_loss": {
+      "value": 50000.0,
+      "unit": "W",
+      "note": "No-load (core) loss, constant"
+    },
+    "copper_loss_rated": {
+      "value": 300000.0,
+      "unit": "W",
+      "note": "Load (copper) loss at rated current"
+    },
+    "p_rated": {
+      "value": 100000000.0,
+      "unit": "VA"
+    },
+    "source": "IEC 60076-1:2011; Kulkarni & Khaparde (2004), Transformer Engineering"
+  }
+}

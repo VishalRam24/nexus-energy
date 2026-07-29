@@ -1,0 +1,17 @@
+{
+    "component": "EC057 Stirling Dish CSP",
+    "fidelity": "F1a",
+    "description": "P = eta_opt * eta_engine * DNI * A_dish * cos(theta)",
+    "unit": {
+        "name": "25kWe Stirling Dish System",
+        "source": "Mancini et al. (2003). Dish-Stirling systems: An overview of development and status. ASME J. Sol. Energy Eng.",
+        "eta_opt": {"value": 0.85, "unit": "dimensionless", "note": "High optical efficiency due to point-focus"},
+        "eta_engine": {"value": 0.35, "unit": "dimensionless", "note": "Stirling engine thermal-to-electric efficiency"},
+        "A_dish": {"value": 88.0, "unit": "m2", "note": "Dish aperture area (~10.5m diameter)"},
+        "concentration_ratio": {"value": 3000.0, "unit": "dimensionless", "note": "Typical concentration ratio"}
+    },
+    "valid_ranges": {
+        "DNI": {"min": 0.0, "max": 1100.0, "unit": "W/m2"},
+        "theta": {"min": 0.0, "max": 45.0, "unit": "deg"}
+    }
+}

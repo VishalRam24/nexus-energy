@@ -1,0 +1,24 @@
+{
+    "component": "EC198 Post-Combustion Capture (Amine Scrubbing)",
+    "fidelity": "F1a",
+    "description": "Capture rate and specific energy consumption for MEA-based post-combustion CO2 capture",
+    "unit": {
+        "name": "30 wt% MEA Amine Scrubbing System",
+        "source": "Abu-Zahra, M.R.M. et al. (2007). Int. J. Greenhouse Gas Control, 1(1), 37-46.",
+        "MEA_concentration": {"value": 30.0, "unit": "wt%"},
+        "capture_rate_design": {"value": 0.90, "unit": "dimensionless"},
+        "q_base": {"value": 3.2, "unit": "GJ/tCO2", "note": "Reboiler duty at optimal L/G ratio"},
+        "LG_optimal": {"value": 2.5, "unit": "L/G", "note": "Optimal liquid-to-gas ratio (mol/mol)"},
+        "LG_min": {"value": 1.5, "unit": "L/G", "note": "Minimum feasible L/G ratio"},
+        "k_LG": {"value": 1.2, "unit": "per_LG", "note": "L/G sensitivity coefficient"},
+        "electricity_specific": {"value": 0.25, "unit": "GJ/tCO2", "note": "Fans, pumps, compressors (base)"},
+        "CO2_fraction_design": {"value": 0.12, "unit": "mol/mol", "note": "Coal flue gas CO2 fraction"},
+        "MW_CO2": {"value": 44.01, "unit": "g/mol"},
+        "MW_air": {"value": 28.97, "unit": "g/mol"}
+    },
+    "valid_ranges": {
+        "flue_gas_rate": {"min": 100.0, "max": 1000.0, "unit": "kg/s"},
+        "co2_fraction": {"min": 0.04, "max": 0.15, "unit": "mol/mol"},
+        "capture_rate": {"min": 0.80, "max": 0.95, "unit": "dimensionless"}
+    }
+}

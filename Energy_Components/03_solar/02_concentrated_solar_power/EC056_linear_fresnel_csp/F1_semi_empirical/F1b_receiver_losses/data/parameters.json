@@ -1,0 +1,30 @@
+{
+    "component": "EC056 Linear Fresnel CSP",
+    "fidelity": "F1b",
+    "description": "Linear Fresnel collector with two-axis IAM (longitudinal + transversal), end-loss, and physics-based receiver heat loss (convection + radiation). Cavity receiver geometry.",
+    "unit": {
+        "name": "Linear Fresnel collector representative (Häberle 2002 Solarmundo-type)",
+        "source": "Zhu et al. (2014) Solar Energy 103; Häberle et al. (2002) Eurosun; Forristall (2003) NREL TP-550-34169",
+        "total_mirror_width": {"value": 16.0, "unit": "m", "note": "Total width of all parallel mirror rows"},
+        "L_collector": {"value": 100.0, "unit": "m", "note": "Collector length"},
+        "D_abs": {"value": 0.07, "unit": "m", "note": "Absorber tube outer diameter"},
+        "eps_abs": {"value": 0.14, "unit": "dimensionless", "note": "Absorber selective coating emissivity (evacuated receiver)"},
+        "h_conv": {"value": 5.0, "unit": "W/m2K", "note": "Cavity convective heat transfer coefficient (lower than exposed PT receiver due to cavity)"},
+        "T_sky_offset": {"value": 20.0, "unit": "K", "note": "T_sky = T_amb - 20K typical"},
+        "focal_length": {"value": 4.5, "unit": "m", "note": "Height of absorber above mirror rows"},
+        "rho_mirror": {"value": 0.94, "unit": "dimensionless", "note": "Mirror reflectance (flat glass mirrors, slightly lower than parabolic)"},
+        "intercept_factor": {"value": 0.90, "unit": "dimensionless", "note": "Fraction of reflected DNI reaching absorber"},
+        "tau_secondary": {"value": 0.92, "unit": "dimensionless", "note": "Secondary reflector transmittance/reflectance to absorber"},
+        "abs_absorptance": {"value": 0.96, "unit": "dimensionless", "note": "Absorber absorptance for selective coating"}
+    },
+    "iam_coefficients": {
+        "source": "Häberle et al. (2002); Zhu et al. (2014)",
+        "b_T": {"value": 0.000125, "unit": "1/deg2", "note": "Transversal IAM polynomial: IAM_T = 1 - b_T * theta_T^2"}
+    },
+    "valid_ranges": {
+        "dni": {"min": 0.0, "max": 1200.0, "unit": "W/m2"},
+        "T_htf": {"min": 150.0, "max": 400.0, "unit": "degC"},
+        "theta_L": {"min": 0.0, "max": 80.0, "unit": "deg"},
+        "theta_T": {"min": 0.0, "max": 60.0, "unit": "deg"}
+    }
+}

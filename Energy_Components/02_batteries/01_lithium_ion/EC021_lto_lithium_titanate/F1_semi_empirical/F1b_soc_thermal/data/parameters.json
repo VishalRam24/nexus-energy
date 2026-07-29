@@ -1,0 +1,39 @@
+{
+    "component": "EC021 LTO Battery (Lithium Titanate Oxide)",
+    "fidelity": "F1b",
+    "description": "SOC-thermal voltage model: V = OCV(SOC) - I*R(T), with Arrhenius resistance and capacity correction",
+    "cell": {
+        "name": "Generic LTO 18650-class cell (Li4Ti5O12 anode vs LMO/NMC cathode)",
+        "source": "Takami et al. (2011), J. Power Sources 196, 6989; Toshiba SCiB datasheet",
+        "nominal_voltage": {"value": 2.4, "unit": "V"},
+        "capacity_ref": {"value": 2.9, "unit": "Ah", "note": "Nominal capacity at T_ref (298.15 K)"},
+        "voltage_max": {"value": 2.7, "unit": "V"},
+        "voltage_min": {"value": 1.5, "unit": "V"},
+        "R_ref": {"value": 0.020, "unit": "Ohm", "note": "Internal resistance at T_ref (298.15 K), very low for LTO"}
+    },
+    "ocv_coefficients": {
+        "description": "OCV(SOC) = a0 + a1*SOC + a2*SOC^2 + a3*SOC^3 + a4*SOC^4 + a5*SOC^5",
+        "source": "Polynomial fit to representative LTO discharge curve (flat ~2.4 V plateau); Takami et al. (2011)",
+        "a0": 1.50020979020979,
+        "a1": 7.686375291375377,
+        "a2": -25.73280885780935,
+        "a3": 42.47086247086359,
+        "a4": -34.76107226107335,
+        "a5": 11.5384615384619
+    },
+    "thermal": {
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 degC)"},
+        "E_a": {"value": 15000, "unit": "J/mol", "note": "Activation energy for LTO internal resistance; LTO has lower E_a due to faster Li+ insertion kinetics in spinel structure",
+                "source": "He et al. (2013), J. Power Sources 239, 269-276; Keil & Jossen (2016), J. Electrochem. Soc. 163(9), A1872"},
+        "alpha_c": {"value": 0.003, "unit": "1/K", "note": "Linear capacity temperature coefficient; LTO less sensitive than NMC",
+                    "source": "Bernardi et al. (1985), J. Electrochem. Soc. 132, 5"},
+        "dOCV_dT": {"value": -0.0002, "unit": "V/K", "note": "Entropic coefficient for LTO; smaller than NMC due to flat OCV plateau",
+                    "source": "Kobayashi et al. (2013), J. Power Sources 244, 727-734"},
+        "R_gas": {"value": 8.314, "unit": "J/(mol*K)", "note": "Universal gas constant"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "current": {"min": -30.0, "max": 30.0, "unit": "A", "note": "Negative=charge, Positive=discharge; LTO supports very high C-rates"},
+        "temperature": {"min": 243.15, "max": 333.15, "unit": "K", "note": "-30 to 60 degC; LTO operates well at low temperatures"}
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "component": "EC162 Resonant LLC Converter",
+    "fidelity": "F1a",
+    "description": "Ideal gain V_out = N*V_in*M(fn); M ~ 1 near resonance; fixed efficiency eta",
+    "unit": {
+        "name": "Generic 100W LLC Resonant Converter",
+        "source": "Yang, B. et al. (2002), APEC; Liu, J. et al. (2012), IEEE Trans. Power Electron.",
+        "n_turns": {"value": 0.5, "unit": "dimensionless", "note": "Turns ratio N2/N1"},
+        "eta": {"value": 0.97, "unit": "dimensionless", "note": "Fixed efficiency (LLC achieves high eta via ZVS)"},
+        "p_rated": {"value": 100.0, "unit": "W"},
+        "f_res": {"value": 100000.0, "unit": "Hz", "note": "Resonant frequency"},
+        "f_sw_nominal": {"value": 100000.0, "unit": "Hz", "note": "Nominal switching frequency (= f_res)"},
+        "m_gain_nominal": {"value": 1.0, "unit": "dimensionless", "note": "Voltage gain M at resonance"},
+        "v_in_nominal": {"value": 400.0, "unit": "V"},
+        "v_out_nominal": {"value": 20.0, "unit": "V"}
+    },
+    "valid_ranges": {
+        "v_in": {"min": 200.0, "max": 600.0, "unit": "V"},
+        "fn": {"min": 0.5, "max": 2.0, "unit": "dimensionless", "note": "Normalized freq fn = f_sw/f_res"},
+        "p_in": {"min": 0.0, "max": 120.0, "unit": "W"}
+    }
+}

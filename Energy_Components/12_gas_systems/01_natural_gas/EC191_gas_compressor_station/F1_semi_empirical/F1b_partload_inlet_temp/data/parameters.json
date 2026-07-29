@@ -1,0 +1,31 @@
+{
+    "component": "EC191 Gas Compressor Station",
+    "fidelity": "F1b",
+    "description": "Polytropic compressor with part-load efficiency degradation and inlet temperature dependence",
+    "compressor": {
+        "n_stages": {"value": 3, "unit": "dimensionless"},
+        "polytropic_index": {"value": 1.31, "unit": "dimensionless"},
+        "eta_polytropic": {"value": 0.82, "unit": "dimensionless"},
+        "eta_mech": {"value": 0.97, "unit": "dimensionless"},
+        "T_inlet": {"value": 288.15, "unit": "K"},
+        "P_inlet": {"value": 40.0, "unit": "bar"},
+        "P_outlet_max": {"value": 80.0, "unit": "bar"},
+        "PLR_eta_coeffs": {"value": [0.85, 0.30, -0.15], "unit": "dimensionless",
+                            "note": "Polytropic eta(PLR) = a0 + a1*PLR + a2*PLR^2, normalized at PLR=1"},
+        "T_inlet_ref": {"value": 288.15, "unit": "K", "note": "Reference inlet temperature"},
+        "T_inlet_correction": {"value": 0.003, "unit": "1/K",
+                                "note": "Fractional work increase per K above T_ref: dW/W = T_corr*(T-T_ref)/T_ref"}
+    },
+    "gas": {
+        "molar_mass": {"value": 17.4, "unit": "g/mol"},
+        "R_specific": {"value": 477.9, "unit": "J/(kg.K)"},
+        "gamma": {"value": 1.31, "unit": "dimensionless"},
+        "LHV": {"value": 47.1, "unit": "MJ/kg"},
+        "cp": {"value": 2300.0, "unit": "J/(kg.K)"}
+    },
+    "valid_ranges": {
+        "PLR": {"min": 0.3, "max": 1.0, "unit": "dimensionless"},
+        "T_inlet": {"min": 250.0, "max": 330.0, "unit": "K"},
+        "pressure_ratio": {"min": 1.1, "max": 3.0, "unit": "dimensionless"}
+    }
+}

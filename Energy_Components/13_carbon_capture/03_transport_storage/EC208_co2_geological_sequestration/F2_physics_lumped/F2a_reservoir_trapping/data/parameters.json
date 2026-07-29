@@ -1,0 +1,52 @@
+{
+    "component_id": "EC208",
+    "component_name": "CO2 Geological Sequestration",
+    "fidelity": "F2a — Physics-Lumped Reservoir Pressure + Saturation + Trapping ODE",
+    "description": "Supercritical CO2 injected into a deep saline aquifer. Lumped (0D) reservoir tank: coupled ODEs for reservoir pressure build-up, mobile CO2 saturation (plume), and the four IPCC trapping mechanisms (structural, residual, solubility, mineral) evolving over time. Injectivity from radial Darcy flow; bottomhole pressure constrained below fracture pressure.",
+    "source": "IPCC (2005) SRCCS Ch.5; Bachu (2003) Environ. Geol. 44, 277; Nordbotten & Celia (2006) JFM 561, 307; Nordbotten, Celia & Bachu (2005) Transp. Porous Media 58, 339; Pruess & Spycher (2007) Energy Convers. Mgmt 48, 1761",
+    "reservoir": {
+        "name": "Deep saline aquifer (Sleipner-class), 2000 m depth",
+        "depth_m": {"value": 2000.0, "unit": "m", "note": "Top of injection interval", "source": "IPCC 2005 typical 1000-3000 m"},
+        "thickness_m": {"value": 100.0, "unit": "m", "note": "Aquifer net thickness"},
+        "area_km2": {"value": 100.0, "unit": "km2", "note": "Areal extent of closed/semi-closed compartment"},
+        "porosity": {"value": 0.15, "unit": "-", "note": "Effective porosity of sandstone"},
+        "permeability_mD": {"value": 50.0, "unit": "mD", "note": "Intrinsic permeability (50 mD typical sandstone)", "source": "Bachu 2003"},
+        "P_reservoir_initial_bar": {"value": 200.0, "unit": "bar", "note": "Initial pore pressure ~hydrostatic at 2000 m"},
+        "T_reservoir_K": {"value": 333.15, "unit": "K", "note": "Reservoir temperature 60 C (geothermal grad ~30 K/km)"},
+        "fracture_gradient_bar_per_m": {"value": 0.150, "unit": "bar/m", "note": "Fracture pressure gradient ~0.15 bar/m (15-18 kPa/m); P_frac = grad*depth", "source": "Bachu 2003; IPCC 2005"},
+        "compressibility_total_per_Pa": {"value": 1.0e-9, "unit": "1/Pa", "note": "Total (rock+brine) compressibility ct ~ 1e-9 1/Pa"},
+        "skin_factor": {"value": 0.0, "unit": "-", "note": "Wellbore skin (0 = undamaged)"},
+        "wellbore_radius_m": {"value": 0.15, "unit": "m"},
+        "drainage_radius_m": {"value": 1000.0, "unit": "m", "note": "Effective outer radius of pressure influence"},
+        "storage_efficiency": {"value": 0.04, "unit": "-", "note": "Volumetric sweep/storage efficiency E (1-4% saline aquifer)", "source": "IPCC 2005 Ch.5"},
+        "residual_gas_saturation": {"value": 0.30, "unit": "-", "note": "Sgr: residual (trapped) CO2 saturation after imbibition", "source": "Nordbotten & Celia 2006"},
+        "irreducible_water_saturation": {"value": 0.20, "unit": "-", "note": "Swi: connate water saturation"}
+    },
+    "co2": {
+        "rho_injection": {"value": 700.0, "unit": "kg/m3", "note": "Supercritical CO2 density at reservoir T,P (~200 bar, 60 C)", "source": "Span & Wagner 1996 EoS, used by Pruess 2007"},
+        "viscosity_injection": {"value": 5.5e-5, "unit": "Pa.s", "note": "Supercritical CO2 viscosity at reservoir conditions", "source": "Fenghour et al. 1998"},
+        "molar_mass_kg_mol": {"value": 0.04401, "unit": "kg/mol", "note": "CO2 molar mass"}
+    },
+    "brine": {
+        "rho_brine": {"value": 1050.0, "unit": "kg/m3", "note": "Formation brine density (saline)"},
+        "viscosity_brine": {"value": 5.0e-4, "unit": "Pa.s", "note": "Brine viscosity at reservoir T"},
+        "co2_solubility_kg_per_m3": {"value": 50.0, "unit": "kg/m3", "note": "Max dissolved CO2 per m3 brine at reservoir T,P,salinity (~1.1 mol/kg)", "source": "Pruess & Spycher 2007; Duan & Sun 2003"}
+    },
+    "trapping": {
+        "k_solubility_per_year": {"value": 0.02, "unit": "1/yr", "note": "Rate constant for convective dissolution of mobile CO2 into brine", "source": "Nordbotten & Celia 2006 (mixing/convection timescale)"},
+        "k_mineral_per_year": {"value": 0.001, "unit": "1/yr", "note": "Rate constant for mineral carbonation of dissolved CO2 (centuries timescale)", "source": "IPCC 2005 Ch.5; Gunter et al. 1997"}
+    },
+    "injection": {
+        "P_wellhead_bar": {"value": 80.0, "unit": "bar", "note": "Surface wellhead injection pressure"},
+        "target_rate_Mt_per_year": {"value": 1.0, "unit": "Mt/yr", "note": "Target annual injection (Sleipner ~1 Mt/yr)", "source": "IPCC 2005"},
+        "injection_years": {"value": 30.0, "unit": "yr", "note": "Active injection duration"}
+    },
+    "valid_ranges": {
+        "P_wellhead_bar": {"min": 40.0, "max": 200.0, "unit": "bar"},
+        "target_rate_Mt_per_year": {"min": 0.05, "max": 5.0, "unit": "Mt/yr"},
+        "injection_years": {"min": 1.0, "max": 100.0, "unit": "yr"},
+        "sim_years": {"min": 1.0, "max": 2000.0, "unit": "yr"},
+        "porosity": {"min": 0.05, "max": 0.35, "unit": "-"},
+        "permeability_mD": {"min": 1.0, "max": 1000.0, "unit": "mD"}
+    }
+}

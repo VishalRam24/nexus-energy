@@ -1,0 +1,26 @@
+{
+    "component": "EC185 Static VAR Compensator (SVC)",
+    "fidelity": "F1b",
+    "description": "Detailed conduction + switching loss model: TCR thyristor losses + reactor copper losses + TSC capacitor ESR losses, separated by operating mode (capacitive/inductive); voltage-dependent Q output.",
+    "unit": {
+        "name": "Generic 100 MVAR SVC (TCR+TSC), 132 kV",
+        "source": "Hingorani & Gyugyi (2000), Understanding FACTS. IEEE Press; Cigre TB 25 (1986), Static VAR Compensators; ABB SVC Application Guide (2018); IEEE Std 1031-2011.",
+        "Q_max_MVAR": {"value": 100.0, "unit": "MVAR", "note": "Max capacitive output (TSC full, TCR off)"},
+        "Q_min_MVAR": {"value": -50.0, "unit": "MVAR", "note": "Max inductive output (TCR full, TSC off)"},
+        "V_rated_kV": {"value": 132.0, "unit": "kV"},
+        "V_ref_pu": {"value": 1.0, "unit": "pu", "note": "Reference voltage for Q(V) scaling"},
+        "response_time_ms": {"value": 30.0, "unit": "ms"},
+        "thyristor_V_T0": {"value": 2.0, "unit": "V", "note": "Thyristor threshold voltage V_T0 (TCR path)"},
+        "thyristor_r_T": {"value": 0.002, "unit": "Ohm", "note": "Thyristor on-state resistance per device (TCR)"},
+        "n_thyristors_series": {"value": 80, "unit": "dimensionless", "note": "Series thyristors per valve (approx for 132 kV)"},
+        "reactor_R_ohm": {"value": 0.15, "unit": "Ohm", "note": "TCR reactor copper resistance (total, both phases)"},
+        "tsc_ESR_ohm": {"value": 0.01, "unit": "Ohm", "note": "TSC capacitor equivalent series resistance"},
+        "cooling_loss_MW": {"value": 0.2, "unit": "MW", "note": "Thyristor cooling (oil/water) always-on parasitic"},
+        "Q_rated_MVAR": {"value": 100.0, "unit": "MVAR", "note": "Nominal rated MVAR for normalisation"},
+        "f_system_Hz": {"value": 50.0, "unit": "Hz"}
+    },
+    "valid_ranges": {
+        "Q_demand_MVAR": {"min": -50.0, "max": 100.0, "unit": "MVAR"},
+        "V_pu": {"min": 0.85, "max": 1.15, "unit": "pu"}
+    }
+}

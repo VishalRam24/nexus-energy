@@ -1,0 +1,12 @@
+{
+    "component": "EC123 Compressed Air Energy Storage (CAES)",
+    "fidelity": "F0a",
+    "description": "Empirical round-trip-efficiency curve vs part-load + self-discharge lookup",
+    "source": "Budt et al. (2016), Applied Energy, 170, 250-268; Luo et al. (2015), Applied Energy, 137, 511-536 (reused from F1a)",
+    "rte_rated": {"value": 0.5363, "unit": "dimensionless", "note": "rated round-trip efficiency from F1 datasheet efficiencies"},
+    "power_fraction_breakpoints": {"value": [0.1, 0.25, 0.5, 0.75, 1.0], "unit": "fraction_of_rated"},
+    "rte_breakpoints": {"value": [0.402, 0.469, 0.51, 0.531, 0.5363], "unit": "dimensionless", "note": "Part-load RTE; declines below best-efficiency point"},
+    "self_discharge_per_hr": {"value": 0.0, "unit": "1/h"},
+    "heat_rate_kj_per_kwh_e": {"value": 4200.0, "unit": "kJ/kWh_e", "note": "Supplemental natural-gas fuel on discharge (diabatic)"},
+    "energy_capacity_mwh": {"value": 642.0, "unit": "MWh", "note": "Huntorf-class ~580-642 MWh electrical"}
+}

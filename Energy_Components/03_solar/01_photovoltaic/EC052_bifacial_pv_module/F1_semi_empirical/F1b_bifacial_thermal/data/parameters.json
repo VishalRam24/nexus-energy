@@ -1,0 +1,38 @@
+{
+    "component": "EC052 Bifacial PV Module",
+    "fidelity": "F1b",
+    "description": "Bifacial single-diode model with front+rear thermal model. Rear cell runs slightly cooler than front due to lower irradiance absorption. F1b adds temperature model absent from F1a.",
+    "module": {
+        "name": "LG NeON 2 BiFacial 400W (n-type mono-Si bifacial)",
+        "source": "LG NeON 2 BiFacial 400W datasheet; Deline et al. (2017) IEEE PVSC; Marion et al. (2017) IEEE JPV",
+        "technology": "Mono-c-Si bifacial",
+        "p_mp_stc": {"value": 400.0, "unit": "W"},
+        "alpha_sc": {"value": 0.0050, "unit": "A/K"},
+        "gamma_pmp": {"value": -0.0037, "unit": "1/K", "note": "Power tempco -0.37%/K for n-type mono-Si bifacial"},
+        "cells_in_series": {"value": 60, "unit": "cells"},
+        "area": {"value": 2.0, "unit": "m2"},
+        "bifaciality_factor": {"value": 0.80, "unit": "dimensionless", "note": "Rear/front nameplate ratio (typical 0.7-0.85 for n-type)"},
+        "rear_view_factor": {"value": 0.45, "unit": "dimensionless", "note": "Geometric fraction of albedo reaching rear"},
+        "NOCT_front": {"value": 44.0, "unit": "degC", "note": "NOCT for front-only illumination (800 W/m2, T_amb=20C)"},
+        "T_NOCT_amb": {"value": 20.0, "unit": "degC"},
+        "G_NOCT": {"value": 800.0, "unit": "W/m2"},
+        "rear_thermal_factor": {"value": 0.85, "unit": "dimensionless", "note": "Rear cell temperature rise is 85% of front rise. Rear receives less irradiance (albedo fraction) so heats less. Based on field measurements: Cvetkovska et al. (2021) IEEE JPV."}
+    },
+    "desoto_params": {
+        "description": "De Soto 5-parameter single-diode model at STC (front-side equivalent)",
+        "source": "Fitted from LG NeON 2 BiFacial 400W datasheet",
+        "I_L_ref": {"value": 12.40, "unit": "A"},
+        "I_o_ref": {"value": 2.5e-11, "unit": "A"},
+        "R_s": {"value": 0.30, "unit": "Ohm"},
+        "R_sh_ref": {"value": 450.0, "unit": "Ohm"},
+        "a_ref": {"value": 1.55, "unit": "V"},
+        "EgRef": {"value": 1.121, "unit": "eV"},
+        "dEgdT": {"value": -0.0002677, "unit": "eV/K"}
+    },
+    "valid_ranges": {
+        "irradiance_front": {"min": 0.0, "max": 1200.0, "unit": "W/m2"},
+        "irradiance_rear": {"min": 0.0, "max": 600.0, "unit": "W/m2"},
+        "albedo": {"min": 0.0, "max": 0.9, "unit": "dimensionless"},
+        "T_ambient": {"min": -10.0, "max": 50.0, "unit": "degC"}
+    }
+}

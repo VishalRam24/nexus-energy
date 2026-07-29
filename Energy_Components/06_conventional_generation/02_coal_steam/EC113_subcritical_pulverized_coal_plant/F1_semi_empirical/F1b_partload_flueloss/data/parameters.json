@@ -1,0 +1,34 @@
+{
+    "component": "EC113 Subcritical Pulverized Coal Plant",
+    "fidelity": "F1b",
+    "description": "Part-load efficiency with flue gas enthalpy loss, auxiliary power curve, and stack temperature model. Extends F1a by explicit flue-gas and auxiliary energy balance.",
+    "unit": {
+        "name": "Generic 500 MW Subcritical PC Plant (540 C / 160 bar)",
+        "source": "Booras & Holt (2004), EPRI; IEA CCC/168 (2010); Borgnakke & Sonntag (2009), Fundamentals of Thermodynamics, 7th ed.; Barroso, J. et al. (2006). Fuel, 85(3), 248-258.",
+        "rated_power_mw": {"value": 500.0, "unit": "MW_e"},
+        "eta_iso": {"value": 0.37, "unit": "dimensionless", "note": "Net LHV efficiency at rated ISO (PLR=1, T_amb=15C)"},
+        "T_amb_ref": {"value": 15.0, "unit": "degC"},
+        "k_amb": {"value": 0.0003, "unit": "1/K", "note": "Condenser back-pressure derating per K"},
+        "plr_coeffs": {
+            "a0": {"value": 0.10},
+            "a1": {"value": 0.90},
+            "a2": {"value": 0.0}
+        },
+        "LHV_coal": {"value": 25.0, "unit": "MJ/kg"},
+        "CO2_per_kg_coal": {"value": 2.57, "unit": "kg_CO2/kg_coal"},
+        "min_plr": {"value": 0.30, "unit": "dimensionless"},
+        "max_plr": {"value": 1.0, "unit": "dimensionless"},
+        "T_stack_rated_c": {"value": 130.0, "unit": "degC", "note": "Flue gas stack temperature at rated load (above acid dew point ~120C)"},
+        "T_stack_partload_offset_c": {"value": 25.0, "unit": "degC", "note": "Stack temperature rise at minimum load (PLR=0.3): less heat absorption"},
+        "cp_flue_kj_kgK": {"value": 1.05, "unit": "kJ/(kg.K)", "note": "Specific heat of flue gas"},
+        "T_amb_standard_c": {"value": 15.0, "unit": "degC", "note": "Ambient for flue gas loss calculation baseline"},
+        "stoich_air_kg_per_kg_coal": {"value": 10.5, "unit": "kg_air/kg_coal", "note": "Stoichiometric air requirement (bituminous coal); excess air ~20%"},
+        "excess_air_fraction": {"value": 0.20, "unit": "-", "note": "Fraction above stoichiometric (20% typical)"},
+        "aux_power_rated_pct": {"value": 7.0, "unit": "%", "note": "Auxiliary power at rated load (fans, pumps, mills): ~6-8% of gross"},
+        "aux_power_partload_extra_pct": {"value": 2.0, "unit": "%", "note": "Extra auxiliary power fraction at minimum PLR (fans inefficiency at turndown)"}
+    },
+    "valid_ranges": {
+        "part_load_ratio": {"min": 0.30, "max": 1.0, "unit": "dimensionless"},
+        "ambient_temp": {"min": -10.0, "max": 45.0, "unit": "degC"}
+    }
+}

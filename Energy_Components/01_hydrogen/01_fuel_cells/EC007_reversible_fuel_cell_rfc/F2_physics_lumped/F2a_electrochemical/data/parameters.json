@@ -1,0 +1,35 @@
+{
+    "component_id": "EC007",
+    "component_name": "Reversible Fuel Cell (RFC)",
+    "fidelity": "F2a — Bidirectional Electrochemical Model with Thermal ODE",
+    "source": "Springer et al. (1991) J. Electrochem. Soc. 138(8) 2334; Amphlett et al. (1995) J. Electrochem. Soc. 142(1) 1; Marangio et al. (2009) Int. J. Hydrogen Energy 34 1143; Barbir (2005) PEM Fuel Cells: Theory and Practice; Doddathimmaiah & Andrews (2009) Int. J. Hydrogen Energy 34 8157 (URFC unitised regenerative model)",
+    "note": "Unitised regenerative PEM fuel cell. Convention: j > 0 = discharge (fuel-cell mode, V = E - eta); j < 0 = charge (electrolysis mode, V = E + eta). Same membrane-electrode assembly used in both modes; separate exchange-current densities and limiting currents per mode reflect the asymmetry of the bifunctional catalyst (Doddathimmaiah & Andrews 2009).",
+    "unit": {
+        "name": "Generic URFC Stack — Physics-Lumped Bidirectional Electrochemical",
+        "N_cells": {"value": 20, "unit": "-", "note": "Number of cells in stack"},
+        "A_cell": {"value": 100.0, "unit": "cm2", "note": "Active cell area (typical URFC lab stack)"},
+        "t_mem": {"value": 0.0178, "unit": "cm", "note": "Nafion 117 membrane thickness (178 um)"},
+        "lambda_mem": {"value": 14.0, "unit": "-", "note": "Membrane water content (fully humidified)"},
+        "j_L_fc": {"value": 1.5, "unit": "A/cm2", "note": "Limiting current density, fuel-cell (discharge) mode — O2 mass transport"},
+        "j_L_el": {"value": 3.0, "unit": "A/cm2", "note": "Limiting current density, electrolysis (charge) mode — water/bubble transport"},
+        "alpha_fc": {"value": 0.5, "unit": "-", "note": "Charge-transfer coefficient, oxygen-reduction (FC mode)"},
+        "alpha_el": {"value": 0.6, "unit": "-", "note": "Charge-transfer coefficient, oxygen-evolution (EL mode)"},
+        "j0_fc_ref": {"value": 1e-6, "unit": "A/cm2", "note": "Exchange current density, ORR cathode (FC), at T_ref"},
+        "j0_el_ref": {"value": 1e-7, "unit": "A/cm2", "note": "Exchange current density, OER anode (EL), at T_ref — slower kinetics"},
+        "E_act_fc": {"value": 66000.0, "unit": "J/mol", "note": "Activation energy, ORR kinetics (FC mode)"},
+        "E_act_el": {"value": 53000.0, "unit": "J/mol", "note": "Activation energy, OER kinetics (EL mode)"},
+        "T_ref": {"value": 353.15, "unit": "K", "note": "Reference temperature (80C)"},
+        "m_stack": {"value": 5.0, "unit": "kg", "note": "Stack thermal mass"},
+        "cp_stack": {"value": 1000.0, "unit": "J/(kg.K)", "note": "Stack specific heat"},
+        "hA_cool": {"value": 25.0, "unit": "W/K", "note": "Coolant heat transfer coefficient * area"},
+        "T_coolant": {"value": 333.15, "unit": "K", "note": "Coolant inlet temperature (60C)"}
+    },
+    "valid_ranges": {
+        "current_density": {"min": -3.0, "max": 1.5, "unit": "A/cm2", "note": "negative = charge (EL), positive = discharge (FC)"},
+        "temperature": {"min": 300.0, "max": 373.15, "unit": "K"},
+        "P_h2": {"min": 0.5, "max": 30.0, "unit": "atm"},
+        "P_o2": {"min": 0.1, "max": 30.0, "unit": "atm"},
+        "dt": {"min": 0.01, "max": 1.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 3600.0, "unit": "s"}
+    }
+}

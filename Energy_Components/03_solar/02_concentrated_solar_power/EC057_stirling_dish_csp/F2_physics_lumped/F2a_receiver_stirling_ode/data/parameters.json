@@ -1,0 +1,40 @@
+{
+    "component": "EC057 Stirling Dish CSP",
+    "fidelity": "F2a",
+    "description": "Physics-lumped transient: cavity-receiver thermal ODE (absorbed - convection - radiation^4 - conduction) coupled to a Carnot-limited Stirling engine (Beale/internal-loss model) giving net electrical power.",
+    "unit": {
+        "name": "25 kWe Stirling Dish Unit (SES SunCatcher / EuroDish class)",
+        "source": "Stine & Diver (1994), SAND93-7026 'A Compendium of Solar Dish/Stirling Technology'; Mancini et al. (2003), J. Sol. Energy Eng. 125(2), 135-151; Nepveu et al. (2009), Sol. Energy 83(1), 81-89.",
+
+        "A_dish": {"value": 91.0, "unit": "m2", "note": "Dish reflective aperture area (~11 m rim diameter), EuroDish/SunCatcher class"},
+        "eta_optical": {"value": 0.88, "unit": "-", "note": "Peak optical efficiency = reflectance * intercept * shading * cleanliness (Stine & Diver 1994)"},
+
+        "A_rec": {"value": 0.50, "unit": "m2", "note": "Cavity receiver aperture/wall area exposed to losses"},
+        "eps_rec": {"value": 0.85, "unit": "-", "note": "Receiver cavity effective emissivity for re-radiation"},
+        "alpha_rec": {"value": 0.90, "unit": "-", "note": "Cavity absorptance of concentrated flux"},
+        "h_cav": {"value": 10.0, "unit": "W/m2K", "note": "Natural/forced convection coefficient at receiver cavity (Nepveu 2009)"},
+        "U_cond": {"value": 2.0, "unit": "W/m2K", "note": "Conduction loss coefficient through receiver insulation"},
+        "T_sky_offset": {"value": 20.0, "unit": "K", "note": "Sky temperature = T_amb - offset for radiative sink"},
+
+        "m_rec": {"value": 15.0, "unit": "kg", "note": "Lumped thermal mass of receiver tube/cavity assembly"},
+        "cp_rec": {"value": 500.0, "unit": "J/kgK", "note": "Effective specific heat of receiver metal (Inconel/SS, ~460-540 J/kgK)"},
+
+        "T_rec_design": {"value": 720.0, "unit": "degC", "note": "Design heater-head/receiver temperature"},
+        "dT_receiver": {"value": 20.0, "unit": "K", "note": "Temperature drop from receiver wall to Stirling working-gas hot end"},
+        "T_approach": {"value": 15.0, "unit": "K", "note": "Stirling cold-end (cooler) approach above ambient via radiator"},
+
+        "eta_internal": {"value": 0.55, "unit": "-", "note": "Stirling 2nd-law / regenerator+mechanical effectiveness vs ideal Carnot (relative Carnot efficiency, Stine & Diver 1994)"},
+        "eta_alt": {"value": 0.92, "unit": "-", "note": "Alternator/generator electrical efficiency"},
+        "P_parasitic_kw": {"value": 0.8, "unit": "kW", "note": "Cooling fan + tracking + controls parasitic draw while running"},
+
+        "Q_engine_min_kw": {"value": 2.0, "unit": "kW", "note": "Minimum net thermal input to receiver gas for engine to run (de-stroke threshold)"},
+        "T_engine_on_c": {"value": 350.0, "unit": "degC", "note": "Heater-head startup temperature: engine de-stroked (Q_engine=0) below this so the receiver can warm up; real dish-Stirling units only engage once the head is hot (Stine & Diver 1994)"},
+        "P_rated_kw": {"value": 25.0, "unit": "kW", "note": "Rated net electrical output per dish"}
+    },
+    "valid_ranges": {
+        "DNI": {"min": 0.0, "max": 1100.0, "unit": "W/m2"},
+        "theta": {"min": 0.0, "max": 10.0, "unit": "deg", "note": "Residual two-axis tracking error angle"},
+        "T_rec_init": {"min": 20.0, "max": 850.0, "unit": "degC"},
+        "T_amb": {"min": -10.0, "max": 45.0, "unit": "degC"}
+    }
+}

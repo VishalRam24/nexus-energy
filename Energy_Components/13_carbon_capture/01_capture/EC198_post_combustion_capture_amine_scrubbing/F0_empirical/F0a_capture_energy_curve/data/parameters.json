@@ -1,0 +1,50 @@
+{
+  "component": "EC198 Post-Combustion Capture (Amine Scrubbing)",
+  "fidelity": "F0a -- empirical lookup",
+  "source": "Abu-Zahra et al. (2007), Int. J. Greenhouse Gas Control 1(1) 37-46.",
+  "unit": {
+    "source": "Abu-Zahra et al. (2007), Int. J. Greenhouse Gas Control 1(1) 37-46.",
+    "q_base": {
+      "value": 3.2,
+      "unit": "GJ/tCO2",
+      "note": "Reboiler duty at 90% capture, 30 wt% MEA"
+    },
+    "capture_rate_design": {
+      "value": 0.9,
+      "unit": "-"
+    },
+    "electricity_specific": {
+      "value": 0.25,
+      "unit": "GJ/tCO2"
+    },
+    "CO2_fraction_design": {
+      "value": 0.12,
+      "unit": "mol/mol"
+    },
+    "MW_CO2": {
+      "value": 44.01,
+      "unit": "g/mol"
+    },
+    "MW_air": {
+      "value": 28.97,
+      "unit": "g/mol"
+    }
+  },
+  "reboiler_curve": {
+    "capture_rate": [
+      0.8,
+      0.85,
+      0.9,
+      0.93,
+      0.95
+    ],
+    "reboiler_GJ_tCO2": [
+      2.95,
+      3.05,
+      3.2,
+      3.45,
+      3.8
+    ],
+    "note": "Empirical reboiler-duty rise with capture rate (mass-transfer pinch near 95%)."
+  }
+}

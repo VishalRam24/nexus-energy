@@ -1,0 +1,25 @@
+{
+    "component": "EC131 Tidal Barrage",
+    "fidelity": "F1b",
+    "description": "Extends F1a with efficiency vs tidal amplitude (hill chart), seawater density correction for temperature and salinity, and sluicing/pumping gain option.",
+    "unit": {
+        "name": "Generic Estuary Tidal Barrage (Severn-class reference)",
+        "source": "Prandle (1984) Phys Chem Earth 9:217; Baker (1991) Tidal Power; Aggidis & Feather (2012) Ocean Eng 40:10",
+        "A_basin": {"value": 5.0e8, "unit": "m2", "note": "Severn estuary ~500 km2"},
+        "h_tidal": {"value": 4.0, "unit": "m", "note": "Design tidal amplitude (half range = 8m range)"},
+        "T_tide": {"value": 44640.0, "unit": "s", "note": "M2 semi-diurnal period 12.42 h"},
+        "eta_peak": {"value": 0.28, "unit": "dimensionless", "note": "Plant efficiency at design head (0.22-0.33 range)"},
+        "h_min_operation": {"value": 1.0, "unit": "m", "note": "Min amplitude for generation"},
+        "rho_ref": {"value": 1025.0, "unit": "kg/m3", "note": "Design seawater density"},
+        "g": {"value": 9.81, "unit": "m/s2"},
+        "k_head_efficiency": {"value": 0.30, "unit": "dimensionless", "note": "Head curvature for eta(h_ratio)"},
+        "S_ref": {"value": 35.0, "unit": "psu", "note": "Design salinity"},
+        "T_ref": {"value": 12.0, "unit": "degC", "note": "Design water temperature"},
+        "pumping_gain_fraction": {"value": 0.05, "unit": "dimensionless", "note": "~5% gain from ebb-flood pumping optimization"}
+    },
+    "valid_ranges": {
+        "tidal_range_m": {"min": 2.0, "max": 14.0, "unit": "m"},
+        "T_C": {"min": 5.0, "max": 20.0, "unit": "degC"},
+        "S_psu": {"min": 25.0, "max": 40.0, "unit": "psu"}
+    }
+}

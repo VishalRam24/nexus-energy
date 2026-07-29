@@ -1,0 +1,18 @@
+{
+    "component": "EC206 CO2 Mineralization",
+    "fidelity": "F1a",
+    "description": "Permanent CO2 storage via mineral carbonation: MgO/CaO + CO2 -> carbonates. conversion=0.80, SEC=0.5 GJ/tCO2.",
+    "unit": {
+        "name": "Generic mineral carbonation unit (MgO/CaO + CO2)",
+        "source": "Sanna et al. (2014) Prog. Energy Combust. Sci.; IPCC (2005) CCS report",
+        "conversion": {"value": 0.80, "unit": "dimensionless", "note": "Fraction of CO2 permanently mineralized"},
+        "SEC_GJ_tCO2": {"value": 0.5, "unit": "GJ/tCO2", "note": "Electrical energy for grinding, mixing, pumping"},
+        "sorbent": {"value": "MgO/CaO", "unit": "string"},
+        "reaction": {"value": "MgO + CO2 -> MgCO3 (magnesite)", "unit": "string"},
+        "carbonate_yield_kg_kg": {"value": 2.09, "unit": "kg carbonate/kg CO2",
+                                  "note": "MgCO3: M=84.3, CO2 M=44 -> 84.3/44=1.92; using mean 2.09 for MgO/CaO mix"}
+    },
+    "valid_ranges": {
+        "capacity_fraction": {"min": 0.1, "max": 1.0, "unit": "dimensionless"}
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "component": "EC130 Small/Micro Hydropower",
+    "fidelity": "F0a",
+    "description": "Empirical power-rating lookup: tabulated overall efficiency vs flow ratio q=Q/Q_design at design net head; P = eta(q)*rho*g*Q*H_net/1000 kW (Francis design point)",
+    "rated": {
+        "H_design": {"value": 40.0, "unit": "m", "note": "Design net head (Francis range 20-300 m)"},
+        "Q_design": {"value": 1.5, "unit": "m3/s", "note": "Design flow rate"},
+        "P_rated": {"value": 497.7, "unit": "kW", "note": "Rated power = eta*rho*g*Q*H/1000 at design point (F1 lists ~450 kW nominal)"},
+        "eta_overall_rated": {"value": 0.8455, "unit": "dimensionless", "note": "Francis eta_peak*eta_gen = 0.89*0.95 at q=1"},
+        "head_loss_fraction": {"value": 0.08, "unit": "dimensionless", "note": "Penstock/intake head loss (already in H_design)"},
+        "rho": {"value": 1000.0, "unit": "kg/m3", "note": "Water density"},
+        "g": {"value": 9.81, "unit": "m/s2", "note": "Gravitational acceleration"}
+    },
+    "efficiency_curve": {
+        "q_ratio": {"value": [0.30, 0.45, 0.60, 0.75, 0.90, 1.00, 1.10], "unit": "dimensionless", "note": "Flow ratio Q/Q_design (Francis turbine)"},
+        "eta_overall": {"value": [0.660, 0.745, 0.800, 0.832, 0.844, 0.8455, 0.840], "unit": "dimensionless", "note": "Overall efficiency at each flow ratio"}
+    },
+    "valid_ranges": {
+        "flow_rate_m3s": {"min": 0.0, "max": 1.65, "unit": "m3/s"},
+        "head_m": {"min": 2.0, "max": 1800.0, "unit": "m"}
+    },
+    "source": "Penche (1998), Layman's Guidebook; Harvey et al. (1993) Micro-Hydro Design Manual; IEC 60041; reuses EC130 F1a parameters"
+}

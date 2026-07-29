@@ -1,0 +1,33 @@
+{
+    "component": "EC129 Run-of-River Hydropower",
+    "fidelity": "F1b",
+    "description": "Variable head, 2D hill chart eta(Q/Q_design, H/H_design), cavitation derate, Q^2 penstock losses, water temperature density correction, ecological flow constraint",
+    "unit": {
+        "name": "Generic Run-of-River Kaplan Turbine (5 MW)",
+        "source": "Penche (1998) EC Layman Guide; Gordon (2001) Can J Civ Eng 28:238; IEC 60041:1991",
+        "H_design": {"value": 8.0, "unit": "m", "note": "Net design head (low-head RoR)"},
+        "Q_design": {"value": 75.0, "unit": "m3/s"},
+        "P_rated": {"value": 5000.0, "unit": "kW"},
+        "eta_peak": {"value": 0.88, "unit": "dimensionless", "note": "Kaplan peak turbine efficiency"},
+        "eta_generator": {"value": 0.96, "unit": "dimensionless"},
+        "k_efficiency_q": {"value": 0.22, "unit": "dimensionless", "note": "Flow curvature (Kaplan flatter than Francis)"},
+        "k_efficiency_h": {"value": 0.20, "unit": "dimensionless"},
+        "q_min": {"value": 0.25, "unit": "dimensionless", "note": "Min flow ratio for operation"},
+        "q_max": {"value": 1.25, "unit": "dimensionless"},
+        "h_min": {"value": 0.50, "unit": "dimensionless"},
+        "h_max": {"value": 1.30, "unit": "dimensionless"},
+        "head_loss_fraction": {"value": 0.04, "unit": "dimensionless", "note": "At Q_design; varies as Q^2"},
+        "rho_ref": {"value": 999.7, "unit": "kg/m3", "note": "At T_ref=15°C"},
+        "T_water_ref": {"value": 15.0, "unit": "degC"},
+        "g": {"value": 9.81, "unit": "m/s2"},
+        "Q_eco": {"value": 7.5, "unit": "m3/s", "note": "Min ecological flow = 10% Q_design"},
+        "sigma_critical": {"value": 0.5, "unit": "dimensionless", "note": "Thoma cavitation number limit for Kaplan"},
+        "H_draft": {"value": 2.0, "unit": "m", "note": "Draft tube submerged head"},
+        "k_cavitation": {"value": 0.3, "unit": "dimensionless", "note": "Efficiency derate coefficient when sigma < sigma_c"}
+    },
+    "valid_ranges": {
+        "Q_m3s": {"min": 0.0, "max": 200.0, "unit": "m3/s"},
+        "gross_head_m": {"min": 1.0, "max": 25.0, "unit": "m"},
+        "T_water_C": {"min": 1.0, "max": 25.0, "unit": "degC"}
+    }
+}

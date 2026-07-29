@@ -1,0 +1,39 @@
+{
+    "component_id": "EC145",
+    "component_name": "Pyrolysis Reactor",
+    "fidelity": "F2a — Lumped Arrhenius Kinetics + Reactor Energy Balance",
+    "description": "0D physics-lumped pyrolysis: Broido-Shafizadeh / competing-reaction Arrhenius kinetics (Biomass -> Gas/Tar/Char + secondary tar cracking) coupled to a reactor energy balance solved with scipy.solve_ivp.",
+    "source": "Di Blasi (2008) Prog. Energy Combust. Sci. 34:47; Bridgwater (2012) Biomass Bioenergy 38:68; Thurner & Mann (1981) IEC PDD 20:482; Shafizadeh & Chin (1977)",
+    "kinetics": {
+        "note": "Three competing first-order primary reactions of virgin biomass plus one secondary tar-cracking reaction. A in 1/s, E in J/mol. Values are representative of the Thurner-Mann / Di Blasi wood-pyrolysis competing scheme; tar (bio-oil) pathway has the largest pre-exponential so bio-oil is maximised near 700-800 K (fast pyrolysis), while secondary cracking shifts product toward gas at higher T.",
+        "A_gas":   {"value": 1.43e4,  "unit": "1/s",   "note": "Pre-exponential, Biomass->Gas (Thurner & Mann 1981)"},
+        "E_gas":   {"value": 88600.0, "unit": "J/mol", "note": "Activation energy, Biomass->Gas"},
+        "A_tar":   {"value": 4.13e6,  "unit": "1/s",   "note": "Pre-exponential, Biomass->Tar/bio-oil (dominant pathway)"},
+        "E_tar":   {"value": 112700.0,"unit": "J/mol", "note": "Activation energy, Biomass->Tar"},
+        "A_char":  {"value": 3.05e3,  "unit": "1/s",   "note": "Pre-exponential, Biomass->Char"},
+        "E_char":  {"value": 73000.0, "unit": "J/mol", "note": "Activation energy, Biomass->Char (lowest E -> char-forming pathway dominates at low temperature / slow heating, Di Blasi 2008)"},
+        "A_crack": {"value": 4.28e6,  "unit": "1/s",   "note": "Pre-exponential, secondary Tar->Gas cracking (Di Blasi 2008)"},
+        "E_crack": {"value": 108000.0,"unit": "J/mol", "note": "Activation energy, Tar->Gas cracking"}
+    },
+    "unit": {
+        "name": "Generic Bubbling Fluidised-Bed Fast Pyrolysis Reactor",
+        "source": "Di Blasi (2008); Bridgwater (2012)",
+        "vapour_residence_s": {"value": 1.5,    "unit": "s", "note": "Hot-vapour residence time; short for fast pyrolysis (<2 s) so tar is quenched to bio-oil before secondary cracking (Bridgwater 2012)"},
+        "dH_pyrolysis_J_kg": {"value": 4.34e5,  "unit": "J/kg", "note": "Endothermic heat of pyrolysis per kg biomass decomposed (~150-550 kJ/kg, Di Blasi 2008)"},
+        "cp_biomass_J_kgK":  {"value": 1500.0,  "unit": "J/(kg.K)", "note": "Specific heat of biomass/char solid"},
+        "feed_mass_kg":      {"value": 1.0,     "unit": "kg", "note": "Batch charge basis (per-kg-feed normalisation)"},
+        "hA_loss_W_K":       {"value": 2.0,     "unit": "W/K", "note": "Reactor heat-loss coefficient x area"},
+        "T_ambient_K":       {"value": 298.15,  "unit": "K", "note": "Surroundings temperature"},
+        "LHV_bio_oil_MJ_kg": {"value": 17.0,    "unit": "MJ/kg", "note": "Lower heating value of bio-oil"},
+        "LHV_char_MJ_kg":    {"value": 30.0,    "unit": "MJ/kg", "note": "LHV of biochar"},
+        "LHV_gas_MJ_kg":     {"value": 7.5,     "unit": "MJ/kg", "note": "LHV of pyrolysis gas"},
+        "LHV_feed_MJ_kg":    {"value": 18.0,    "unit": "MJ/kg", "note": "LHV of dry biomass feed"}
+    },
+    "valid_ranges": {
+        "Q_ext_W":      {"min": 0.0,    "max": 1.0e5,  "unit": "W"},
+        "T0_K":         {"min": 290.0,  "max": 1300.0, "unit": "K"},
+        "T_isothermal": {"min": 525.0,  "max": 1200.0, "unit": "K"},
+        "dt":           {"min": 0.01,   "max": 5.0,    "unit": "s"},
+        "duration_s":   {"min": 1.0,    "max": 7200.0, "unit": "s"}
+    }
+}

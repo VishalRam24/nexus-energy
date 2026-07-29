@@ -1,0 +1,29 @@
+{
+    "component_id": "EC134",
+    "component_name": "Oscillating Water Column (OWC)",
+    "fidelity": "F2a — Physics-Lumped Water-Column + Air-Chamber Dynamics with Wells Turbine",
+    "source": "Falcao & Henriques (2016), Renewable Energy 85, 1391-1424 (OWC review); Evans (1978), J. Fluid Mech. 77, 1-25; Sarmento & Falcao (1985), J. Fluid Mech. 150, 467-485",
+    "unit": {
+        "name": "Generic shoreline/fixed OWC chamber with Wells air turbine (~ Pico/LIMPET scale)",
+        "S_wc": {"value": 80.0, "unit": "m2", "note": "Internal water-column free-surface plan area (chamber cross-section)"},
+        "b_owc": {"value": 10.0, "unit": "m", "note": "Width of OWC front opening facing the incident wave crest"},
+        "depth_lip": {"value": 6.0, "unit": "m", "note": "Submergence / effective water-column length scale for inertia"},
+        "rho_water": {"value": 1025.0, "unit": "kg/m3", "note": "Seawater density (Falcao & Henriques 2016)"},
+        "rho_air": {"value": 1.25, "unit": "kg/m3", "note": "Air density at sea level"},
+        "gamma_air": {"value": 1.4, "unit": "-", "note": "Air heat capacity ratio (adiabatic chamber)"},
+        "p_atm": {"value": 101325.0, "unit": "Pa", "note": "Atmospheric reference pressure"},
+        "V_chamber": {"value": 600.0, "unit": "m3", "note": "Mean air-chamber volume above water column (compressibility)"},
+        "B_rad": {"value": 8000.0, "unit": "N.s/m", "note": "Hydrodynamic radiation damping coeff. of the OWC piston mode (Evans 1978)"},
+        "C_turb": {"value": 0.45, "unit": "kg/(s.Pa)", "note": "Wells turbine pneumatic admittance: flow per unit chamber pressure (linear damping)"},
+        "K_wells": {"value": 0.7, "unit": "-", "note": "Wells turbine non-dimensional power coefficient (peak before stall)"},
+        "phi_stall": {"value": 0.3, "unit": "-", "note": "Wells turbine flow coefficient at aerodynamic stall"},
+        "eta_turb_peak": {"value": 0.65, "unit": "-", "note": "Peak Wells turbine aerodynamic efficiency (Falcao & Henriques 2016)"},
+        "eta_generator": {"value": 0.92, "unit": "-", "note": "Electrical generator + power-electronics efficiency"}
+    },
+    "valid_ranges": {
+        "H_s": {"min": 0.25, "max": 8.0, "unit": "m"},
+        "T_e": {"min": 5.0, "max": 20.0, "unit": "s"},
+        "dt": {"min": 0.01, "max": 0.5, "unit": "s"},
+        "duration_s": {"min": 10.0, "max": 1200.0, "unit": "s"}
+    }
+}

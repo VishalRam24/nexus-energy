@@ -1,0 +1,29 @@
+{
+    "component_id": "EC133",
+    "component_name": "Tidal Lagoon",
+    "fidelity": "F2a — Physics-Lumped Lagoon Water-Level ODE (0D)",
+    "source": "Baker (1991) Tidal Power, IEE; Aggidis & Feather (2012) Ocean Engineering 40:10-17; Tidal Lagoon Power / Swansea Bay (2015) Scoping Report; Xia, Falconer & Lin (2010) Renewable Energy 35:1455-1468",
+    "unit": {
+        "name": "Generic Tidal Lagoon (Swansea-Bay-class, bidirectional bulb turbines)",
+        "A_lagoon": {"value": 11.5e6, "unit": "m2", "note": "Lagoon impounded plan area (Swansea Bay ~11.5 km2). Treated as level-independent (vertical walls)."},
+        "tidal_amplitude": {"value": 4.5, "unit": "m", "note": "Sea tide amplitude a (half of peak-to-trough range); sea level z_sea = a*sin(2*pi*t/T). Swansea Bay mean spring half-range ~4.5 m.", "source": "Tidal Lagoon Power (2015) Swansea Bay Scoping Report"},
+        "T_tide": {"value": 44712.0, "unit": "s", "note": "Semidiurnal M2 tidal period = 12.42 h = 44712 s", "source": "Baker (1991)"},
+        "N_turbines": {"value": 16, "unit": "-", "note": "Number of low-head bulb turbines (Swansea Bay design = 16)", "source": "Tidal Lagoon Power (2015)"},
+        "D_runner": {"value": 7.35, "unit": "m", "note": "Bulb turbine runner diameter (Swansea Bay 7.35 m, 20 MW units)", "source": "Tidal Lagoon Power (2015)"},
+        "Cd_turbine": {"value": 1.38, "unit": "-", "note": "Discharge coefficient for turbine flow Q=Cd*A_t*sqrt(2 g H). Calibrated to give ~rated flow at design head.", "source": "Xia, Falconer & Lin (2010) hydrodynamic lagoon model"},
+        "Cd_sluice": {"value": 1.0, "unit": "-", "note": "Discharge coefficient for open sluice gates Q=Cd*A_s*sqrt(2 g H)", "source": "Baker (1991)"},
+        "A_sluice": {"value": 800.0, "unit": "m2", "note": "Total open sluice-gate cross-sectional area (used during sluicing/filling phase)"},
+        "eta_turbine": {"value": 0.83, "unit": "-", "note": "Hydraulic+generator efficiency of bulb turbine at design head; P=eta*rho*g*Q*H", "source": "Aggidis & Feather (2012)"},
+        "H_min_gen": {"value": 1.0, "unit": "m", "note": "Minimum head for generation (below this turbines idle to avoid sub-optimal low-head losses)", "source": "Baker (1991)"},
+        "H_start_hold": {"value": 3.0, "unit": "m", "note": "Target head to build before opening turbines (holding strategy). Higher = more head, fewer hours.", "source": "Aggidis & Feather (2012)"},
+        "P_rated_unit": {"value": 20.0e6, "unit": "W", "note": "Rated power per bulb turbine unit (Swansea Bay = 20 MW)", "source": "Tidal Lagoon Power (2015)"},
+        "rho": {"value": 1025.0, "unit": "kg/m3", "note": "Seawater density (15 C, salinity 35 PSU)", "source": "Standard oceanographic value; UNESCO (1981) EOS-80"},
+        "g": {"value": 9.81, "unit": "m/s2", "note": "Gravitational acceleration (sea level, mid-latitude)", "source": "CODATA / WGS-84 standard gravity 9.80665, rounded to 9.81"}
+    },
+    "valid_ranges": {
+        "tidal_amplitude_m": {"min": 0.5, "max": 8.0, "unit": "m", "note": "Half peak-to-trough sea tide amplitude"},
+        "T_tide_s": {"min": 21600.0, "max": 90000.0, "unit": "s", "note": "Tidal period (semidiurnal to diurnal)"},
+        "H_start_hold_m": {"min": 1.0, "max": 6.0, "unit": "m", "note": "Holding head before generation"},
+        "n_cycles": {"min": 1, "max": 10, "unit": "-", "note": "Number of tidal cycles to simulate"}
+    }
+}

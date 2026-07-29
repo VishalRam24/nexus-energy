@@ -1,0 +1,42 @@
+{
+    "component_id": "EC045",
+    "component_name": "Polycrystalline Silicon PV",
+    "fidelity": "F2a — Physics-Lumped Single-Diode (De Soto) + Lumped Thermal ODE + Partial Shading",
+    "source": "De Soto, Klein & Beckman (2006) Solar Energy 80(1):78-88; Duffie & Beckman (2013) Solar Engineering of Thermal Processes, 4th ed., Wiley (Ch. 23 PV); Faiman (2008) Prog. Photovolt. 16:307-315 (cell-temperature/NOCT)",
+    "unit": {
+        "name": "Generic 60-cell Poly-Si Module (~290 W), 5-param De Soto + lumped thermal",
+        "technology": "Poly-c-Si",
+        "cells_in_series": {"value": 60, "unit": "cells", "note": "Ns — cells in series in the module"},
+        "alpha_sc": {"value": 0.0045, "unit": "A/K", "note": "Short-circuit current temperature coefficient"},
+        "area": {"value": 1.638, "unit": "m2", "note": "Module aperture area"},
+
+        "I_L_ref": {"value": 8.5, "unit": "A", "note": "Light (photo) current at STC (De Soto)"},
+        "I_o_ref": {"value": 3.5e-10, "unit": "A", "note": "Diode saturation current at STC (De Soto)"},
+        "R_s": {"value": 0.42, "unit": "Ohm", "note": "Series resistance (assumed T,G-independent)"},
+        "R_sh_ref": {"value": 280.0, "unit": "Ohm", "note": "Shunt resistance at STC (scales as G_ref/G)"},
+        "a_ref": {"value": 1.65, "unit": "V", "note": "Modified ideality factor a = n*Ns*k*T/q at STC"},
+        "EgRef": {"value": 1.121, "unit": "eV", "note": "Silicon bandgap at T_ref (De Soto)"},
+        "dEgdT": {"value": -0.0002677, "unit": "1/K", "note": "Bandgap temperature gradient (De Soto)"},
+
+        "NOCT": {"value": 46.0, "unit": "degC", "note": "Nominal operating cell temperature (800 W/m2, 20C, 1 m/s)"},
+        "T_NOCT_amb": {"value": 20.0, "unit": "degC", "note": "Ambient temperature at NOCT conditions"},
+        "G_NOCT": {"value": 800.0, "unit": "W/m2", "note": "Irradiance at NOCT conditions"},
+        "tau_alpha": {"value": 0.9, "unit": "-", "note": "Transmittance-absorptance product (Duffie & Beckman)"},
+
+        "C_thermal": {"value": 25000.0, "unit": "J/(m2.K)", "note": "Lumped areal heat capacity of module (glass+EVA+cells+backsheet), Jones & Underwood 2001"},
+        "U0": {"value": 25.0, "unit": "W/(m2.K)", "note": "Faiman constant heat-loss coefficient"},
+        "U1": {"value": 6.84, "unit": "W.s/(m3.K)", "note": "Faiman wind-dependent heat-loss coefficient"},
+
+        "n_substrings": {"value": 3, "unit": "-", "note": "Number of bypass-diode protected substrings (typical 60-cell module)"},
+        "V_bypass": {"value": 0.5, "unit": "V", "note": "Bypass-diode forward drop when active"}
+    },
+    "valid_ranges": {
+        "irradiance": {"min": 0.0, "max": 1200.0, "unit": "W/m2"},
+        "T_ambient": {"min": -20.0, "max": 50.0, "unit": "degC"},
+        "cell_temperature": {"min": -20.0, "max": 90.0, "unit": "degC"},
+        "wind_speed": {"min": 0.0, "max": 25.0, "unit": "m/s"},
+        "shade_fraction": {"min": 0.0, "max": 1.0, "unit": "-"},
+        "dt": {"min": 1.0, "max": 600.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 86400.0, "unit": "s"}
+    }
+}

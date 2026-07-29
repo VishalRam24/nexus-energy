@@ -1,0 +1,22 @@
+{
+    "component": "EC214 Mechanical Vapor Compression (MVC)",
+    "fidelity": "F0a",
+    "description": "Empirical SEC-vs-compression-ratio curve for all-electric MVC. Higher compression ratio -> larger temperature lift -> higher SEC. Rated SEC=10 kWh/m3 at CR=1.2. Reused from EC214 F1a.",
+    "unit": {
+        "name": "Generic MVC desalination unit",
+        "source": "Mistry et al. (2011) Entropy; GWI DesalData",
+        "cr_breakpoints": {"value": [1.05, 1.2, 1.35, 1.5], "unit": "dimensionless", "note": "Vapor compression ratio"},
+        "sec_breakpoints": {"value": [8.0, 10.0, 11.0, 12.0], "unit": "kWh/m3", "note": "SEC vs compression ratio (8-12 band)"},
+        "cr_rated": {"value": 1.2, "unit": "dimensionless"},
+        "sec_rated_kWh_m3": {"value": 10.0, "unit": "kWh/m3", "note": "Design SEC, midpoint of 8-12"},
+        "sec_min_kWh_m3": {"value": 8.0, "unit": "kWh/m3"},
+        "sec_max_kWh_m3": {"value": 12.0, "unit": "kWh/m3"},
+        "recovery": {"value": 0.50, "unit": "dimensionless"},
+        "compressor_efficiency": {"value": 0.75, "unit": "dimensionless"},
+        "capacity_m3_h": {"value": 100.0, "unit": "m3/h"}
+    },
+    "valid_ranges": {
+        "compression_ratio": {"min": 1.05, "max": 1.5, "unit": "dimensionless"},
+        "capacity_fraction": {"min": 0.1, "max": 1.0, "unit": "dimensionless"}
+    }
+}

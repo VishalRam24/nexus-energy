@@ -1,0 +1,35 @@
+{
+  "component": "EC203 Membrane-Based CO2 Separation",
+  "fidelity": "F0a -- empirical lookup",
+  "source": "Baker (2002) Ind. Eng. Chem. Res.; Merkel et al. (2010).",
+  "unit": {
+    "source": "Baker (2002) Ind. Eng. Chem. Res.; Merkel et al. (2010).",
+    "CO2_recovery": {
+      "value": 0.8,
+      "unit": "-"
+    },
+    "CO2_purity": {
+      "value": 0.95,
+      "unit": "-"
+    },
+    "SEC_ref_MJ_kgCO2": {
+      "value": 0.75,
+      "unit": "MJ/kgCO2"
+    }
+  },
+  "sec_curve": {
+    "pressure_ratio": [
+      5.0,
+      10.0,
+      15.0,
+      20.0
+    ],
+    "SEC_MJ_kgCO2": [
+      0.55,
+      0.75,
+      0.9,
+      1.0
+    ],
+    "note": "SEC rises with feed/permeate pressure ratio (0.5-1.0 MJ/kgCO2)."
+  }
+}

@@ -1,0 +1,55 @@
+{
+    "component_id": "EC039",
+    "component_name": "Organic Flow Battery (OFB)",
+    "fidelity": "F2a — Physics-Lumped Stack Model (electrochemical + SOC + fade/crossover + thermal ODE)",
+    "description": "0D/1D physics-lumped aqueous organic redox flow battery (AORFB) stack. Nernst (organic redox couple + SOC) with Butler-Volmer activation, ohmic ASR, and SOC/flow-limited concentration overpotentials; Coulomb-counting SOC ODE; first-order capacity-fade/crossover (organic decomposition, CE<1); lumped thermal ODE via scipy.solve_ivp. Representative chemistry: AQDS/ferricyanide (Aziz group).",
+    "source": "Huskinson et al. (2014) Nature 505, 195 (Aziz group); Lin et al. (2015) Science 349, 1529; Kwabi, Ji & Aziz (2020) Chem. Rev. 120, 6467; Bard & Faulkner (2001) Electrochemical Methods; Newman & Thomas-Alyea (2004) Electrochemical Systems; Tang et al. (2014) J. Power Sources 248",
+    "unit": {
+        "name": "Generic 20-cell organic RFB stack, 100 cm2 electrode area, 1 L tanks",
+        "N_cells": {"value": 20, "unit": "-", "note": "Cells in series in the stack"},
+        "electrode_area_cm2": {"value": 100.0, "unit": "cm2", "note": "Active electrode area per cell"},
+        "E0": {"value": 0.70, "unit": "V", "note": "Standard cell potential for AQDS/ferricyanide couple (~0.7 V); alkaline quinone variants reach 1.0-1.2 V. Huskinson 2014; Lin 2015."},
+        "R_cell_ohm_cm2_ref": {"value": 1.0, "unit": "Ohm.cm2", "note": "Area-specific resistance (ASR) at T_ref. High-performance alkaline quinone cell ~0.88 Ohm.cm2 (Lin 2015 Science); engineered AORFB cells 0.5-1.5 Ohm.cm2. (F1 used a conservative 6 Ohm.cm2; the F2 operating model uses a realistic low-ASR stack.)"},
+        "n": {"value": 2, "unit": "-", "note": "2-electron quinone reduction: AQDS + 2H+ + 2e- <-> H2AQDS"},
+        "j0_A_cm2": {"value": 0.002, "unit": "A/cm2", "note": "Exchange current density at T_ref for the quinone couple (fast, reversible organic kinetics). Representative; Bard & Faulkner Butler-Volmer."},
+        "j_L_A_cm2": {"value": 2.0, "unit": "A/cm2", "note": "Mass-transport limiting current density at full SOC and reference flow; comfortably above the rated operating envelope (peak ~0.5 A/cm2). Scales with reactant availability (SOC) and flow_factor. Lin 2015 peak power demos; Newman & Thomas-Alyea 2004."},
+        "electrolyte_conc_M": {"value": 0.5, "unit": "mol/L", "note": "Active-species molarity; organic RFBs are solubility-limited vs vanadium. Lin 2015 ran ~0.5-1.0 M."},
+        "tank_volume_L": {"value": 1.0, "unit": "L", "note": "Electrolyte tank volume per side; sets stored capacity Q_cap = n*F*C*V."},
+        "pump_loss_coefficient": {"value": 0.015, "unit": "W/(A^2)", "note": "Parasitic pump power P = k_pump*I^2 (Tang 2014 flow/pressure scaling)."}
+    },
+    "soc": {
+        "coulombic_efficiency": {"value": 0.985, "unit": "-",
+            "note": "CE<1: organic active species decompose (anthrone formation, Michael addition, dimerisation) and cross over the membrane; reported CE ~0.97-0.995 for AQDS/DHAQ systems. Kwabi, Ji & Aziz (2020) Chem. Rev. 120, 6467.",
+            "source": "Kwabi, Ji & Aziz (2020); Huskinson et al. (2014)"},
+        "flow_factor": {"value": 1.0, "unit": "-",
+            "note": "Electrolyte flow multiplier on limiting current j_L; >1 for higher flow rate, improving mass transport. Tang et al. (2014)."}
+    },
+    "thermal": {
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 degC)"},
+        "E_a": {"value": 16000, "unit": "J/mol",
+            "note": "Activation energy governing exchange current density and ASR temperature dependence (Arrhenius). Representative for organic RFB.",
+            "source": "Huskinson et al. (2014); Kwabi et al. (2020)"},
+        "dOCV_dT": {"value": -0.0003, "unit": "V/K per cell",
+            "note": "Entropic temperature coefficient of standard potential for the quinone/ferricyanide couple (~-0.2 to -0.4 mV/K), dominated by proton-coupled electron transfer entropy.",
+            "source": "Kwabi et al. (2020); Yang et al. (2011) ChemSusChem 4, 1338"},
+        "m_cp": {"value": 8000.0, "unit": "J/K",
+            "note": "Lumped heat capacity of stack + circulating electrolyte (~2 L aqueous, cp~4180 J/kg/K, plus stack hardware)."},
+        "hA": {"value": 5.0, "unit": "W/K",
+            "note": "Overall heat-loss coefficient (h*A) from stack/tanks to ambient (natural convection)."},
+        "T_amb": {"value": 298.15, "unit": "K", "note": "Ambient temperature (25 degC)"},
+        "k_fade_ref": {"value": 1.16e-8, "unit": "1/s",
+            "note": "First-order capacity fade rate at T_ref ~ 0.1 %/day, characteristic of AQDS. Engineered molecules (DHAQ, BTMAP-Vi) reach <0.01 %/day.",
+            "source": "Kwabi, Ji & Aziz (2020) Chem. Rev. 120, 6467"},
+        "Ea_fade": {"value": 50000, "unit": "J/mol",
+            "note": "Activation energy of organic decomposition; fade accelerates strongly with temperature (upper limit ~40 degC). Kwabi et al. (2020)."},
+        "T_min": {"value": 283.15, "unit": "K", "note": "10 degC lower limit (electrolyte viscosity, kinetics)"},
+        "T_max": {"value": 313.15, "unit": "K", "note": "40 degC upper limit (organic molecule degradation)"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.05, "max": 0.95, "unit": "-"},
+        "current": {"min": -50.0, "max": 50.0, "unit": "A", "note": "positive=discharge, negative=charge; small stack"},
+        "temperature": {"min": 283.15, "max": 313.15, "unit": "K", "note": "10 to 40 degC"},
+        "dt": {"min": 0.1, "max": 60.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 360000.0, "unit": "s"}
+    }
+}

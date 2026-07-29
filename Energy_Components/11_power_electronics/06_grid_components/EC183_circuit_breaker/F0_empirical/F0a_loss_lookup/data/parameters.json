@@ -1,0 +1,55 @@
+{
+    "component": "EC183 Circuit Breaker",
+    "fidelity": "F0a",
+    "description": "Empirical loss-fraction lookup vs loading (np.interp); power_out = power_in*(1-loss)",
+    "source": "ABB Circuit Breaker Application Guide (2021); IEC 62271-100 (reused from F1a)",
+    "load_fraction_breakpoints": {
+        "value": [
+            0.1,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+        ],
+        "unit": "fraction_of_rating",
+        "note": "S_actual / S_rated (or P/P_rated)"
+    },
+    "loss_fraction_breakpoints": {
+        "value": [
+            0.0,
+            0.0,
+            1e-06,
+            2e-06,
+            3e-06
+        ],
+        "unit": "dimensionless",
+        "note": "loss / throughput at each loading point"
+    },
+    "p_rated": {
+        "value": 12.0,
+        "unit": "MVA",
+        "note": "rated throughput from F1a"
+    },
+    "loss_fraction_rated": {
+        "value": 3e-06,
+        "unit": "dimensionless",
+        "note": "loss fraction at full load (reused from F1a)"
+    },
+    "R_cb_ohm": {
+        "value": 0.0001,
+        "unit": "Ohm",
+        "note": "closed-state contact resistance (reused from F1a)"
+    },
+    "I_rated_A": {
+        "value": 630.0,
+        "unit": "A"
+    },
+    "V_rated_kV": {
+        "value": 11.0,
+        "unit": "kV"
+    },
+    "I_interrupt_kA": {
+        "value": 25.0,
+        "unit": "kA"
+    }
+}

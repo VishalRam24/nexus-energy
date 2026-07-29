@@ -1,0 +1,76 @@
+{
+    "component": "EC017 Hydrogen Purifier (PSA)",
+    "fidelity": "F1a",
+    "description": "Pressure Swing Adsorption simplified semi-empirical model: recovery, purity, and specific energy",
+    "source": "Sircar & Golden (2000) Sep. Sci. Technol.; Yang (1987) Gas Separation by Adsorption Processes; DOE Hydrogen Program",
+
+    "psa_unit": {
+        "note": "Representative industrial PSA unit for H2 purification",
+        "feed_pressure_ref_bar": {
+            "value": 20.0,
+            "unit": "bar",
+            "note": "Reference feed pressure for nominal performance"
+        },
+        "product_pressure_bar": {
+            "value": 20.0,
+            "unit": "bar",
+            "note": "Product (H2-rich) side pressure; PSA operates near feed pressure"
+        },
+        "purge_pressure_bar": {
+            "value": 1.5,
+            "unit": "bar",
+            "note": "Purge/regeneration pressure (low pressure step)"
+        },
+        "adsorbent": "Activated carbon + zeolite 5A",
+        "feed_h2_fraction_nominal": {
+            "value": 0.75,
+            "unit": "mol fraction",
+            "note": "Typical H2 fraction in SMR reformate feed. Sircar & Golden 2000"
+        }
+    },
+
+    "performance": {
+        "recovery_nominal": {
+            "value": 0.85,
+            "unit": "dimensionless",
+            "note": "Nominal H2 recovery (fraction of feed H2 recovered as product). Sircar & Golden 2000: 70-90%"
+        },
+        "purity_nominal": {
+            "value": 0.9999,
+            "unit": "mol fraction",
+            "note": "Nominal product purity (99.99%). DOE H2 fuel quality standard"
+        },
+        "specific_energy_kWh_per_kg_H2": {
+            "value": 1.5,
+            "unit": "kWh/kg_H2",
+            "note": "Specific electric energy consumption at nominal conditions. DOE: 1-3 kWh/kg H2"
+        },
+        "recovery_pressure_exponent": {
+            "value": 0.15,
+            "unit": "dimensionless",
+            "note": "Recovery scales as (P_feed/P_ref)^exponent. Higher pressure improves recovery."
+        },
+        "recovery_feed_h2_coefficient": {
+            "value": 0.25,
+            "unit": "dimensionless",
+            "note": "Recovery linear dependence on feed H2 fraction: eta_rec = eta_nom * (1 + coeff*(y_H2 - y_nom))"
+        },
+        "energy_pressure_factor": {
+            "value": 0.15,
+            "unit": "dimensionless",
+            "note": "Pressure exponent for W = W_nom * (P_ref/P)^gamma. Higher P => lower W. Fitted to Sircar & Golden (2000) operating curves."
+        }
+    },
+
+    "thermodynamics": {
+        "M_H2": {"value": 0.002016, "unit": "kg/mol"},
+        "T_operating_K": {"value": 298.15, "unit": "K", "note": "Near-ambient operation (room temperature PSA)"}
+    },
+
+    "valid_ranges": {
+        "feed_flow_kg_per_s": {"min": 1e-6, "max": 100.0, "unit": "kg/s"},
+        "feed_h2_fraction": {"min": 0.3, "max": 0.999, "unit": "mol_fraction"},
+        "feed_pressure_bar": {"min": 5.0, "max": 80.0, "unit": "bar"},
+        "target_purity": {"min": 0.99, "max": 0.99999, "unit": "mol_fraction"}
+    }
+}

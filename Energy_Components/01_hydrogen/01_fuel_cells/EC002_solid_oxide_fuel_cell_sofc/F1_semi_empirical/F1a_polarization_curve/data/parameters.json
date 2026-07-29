@@ -1,0 +1,28 @@
+{
+    "component": "EC002 Solid Oxide Fuel Cell (SOFC)",
+    "fidelity": "F1a",
+    "description": "Polarization curve: V_cell = E_Nernst - V_act - V_ohm - V_conc",
+    "unit": {
+        "name": "Generic anode-supported SOFC stack (YSZ electrolyte, H2 fuel)",
+        "source": "Chan et al. (2001), J. Power Sources, 93, 130-140",
+        "T_op": {"value": 1073.0, "unit": "K", "note": "Operating temperature (800°C)"},
+        "N_cells": {"value": 40, "unit": "dimensionless", "note": "Number of cells in stack"},
+        "ASR": {"value": 0.3, "unit": "Ohm.cm2", "note": "Area-specific resistance of YSZ electrolyte"},
+        "j0": {"value": 0.4, "unit": "A/cm2", "note": "Exchange current density"},
+        "j_L": {"value": 2.0, "unit": "A/cm2", "note": "Limiting current density"},
+        "alpha": {"value": 0.5, "unit": "dimensionless", "note": "Charge transfer coefficient"},
+        "pH2": {"value": 0.97, "unit": "atm", "note": "Partial pressure of H2 at anode"},
+        "pO2": {"value": 0.21, "unit": "atm", "note": "Partial pressure of O2 at cathode (air)"},
+        "pH2O": {"value": 0.03, "unit": "atm", "note": "Partial pressure of H2O at anode"},
+        "E0": {"value": 1.0, "unit": "V", "note": "Standard potential at 1073K for H2/O2"},
+        "A_cell": {"value": 100.0, "unit": "cm2", "note": "Active cell area"},
+        "LHV_H2": {"value": 241800.0, "unit": "J/mol", "note": "Lower heating value of H2"},
+        "F": {"value": 96485.0, "unit": "C/mol", "note": "Faraday constant"},
+        "R": {"value": 8.314, "unit": "J/molK", "note": "Universal gas constant"},
+        "n": {"value": 2, "unit": "dimensionless", "note": "Electrons transferred per H2 molecule"}
+    },
+    "valid_ranges": {
+        "current_density": {"min": 0.0, "max": 1.8, "unit": "A/cm2"},
+        "temperature":     {"min": 600.0, "max": 1000.0, "unit": "degC"}
+    }
+}

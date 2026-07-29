@@ -1,0 +1,20 @@
+{
+    "component": "EC149 Biodiesel Transesterification",
+    "fidelity": "F1a",
+    "description": "Simple yield model: FAME = vegetable_oil * yield. Methanol:oil molar ratio 6:1, T=60 degC alkali-catalyzed.",
+    "unit": {
+        "name": "Generic Alkali-Catalyzed Transesterification Unit",
+        "source": "Freedman et al. (1984) JAOCS 61:1638; Ma & Hanna (1999) Bioresour. Technol. 70:1; Gerpen (2005) Fuel Process. Technol. 86:1097",
+        "FAME_yield_kg_per_kg_oil":   {"value": 0.95,  "unit": "kg_FAME/kg_oil",  "note": "FAME (biodiesel) yield from vegetable oil"},
+        "methanol_ratio_mol_mol":     {"value": 6.0,   "unit": "mol_MeOH/mol_oil","note": "Methanol to oil molar ratio (excess for complete conversion)"},
+        "T_reaction_degC":            {"value": 60.0,  "unit": "degC",            "note": "Reaction temperature"},
+        "reaction_time_min":          {"value": 60.0,  "unit": "minutes",         "note": "Typical batch reaction time"},
+        "glycerol_yield_kg_per_kg_oil":{"value": 0.10, "unit": "kg_glycerol/kg_oil","note": "Glycerol co-product yield (~10 wt% of oil)"},
+        "methanol_consumed_kg_per_kg_oil":{"value": 0.114,"unit": "kg_MeOH/kg_oil","note": "Methanol consumption (stoichiometric + excess)"},
+        "LHV_FAME_MJ_kg":             {"value": 37.5,  "unit": "MJ/kg",           "note": "LHV of FAME (biodiesel)"},
+        "density_FAME_kg_per_L":      {"value": 0.875, "unit": "kg/L",            "note": "FAME density at 15 degC"}
+    },
+    "valid_ranges": {
+        "oil_input_kg_per_h": {"min": 0.0, "max": 1e5, "unit": "kg/h"}
+    }
+}

@@ -1,0 +1,40 @@
+{
+    "component": "EC031 Sodium-Ion Battery",
+    "fidelity": "F1b",
+    "description": "SOC-thermal voltage model: V = OCV(SOC) - I*R(T), with Arrhenius resistance and capacity correction",
+    "cell": {
+        "name": "CATL-inspired Na-ion Prismatic Cell",
+        "source": "Tremblay & Dessaint (2009) framework; CATL first-gen Na-ion; Slater et al. (2013), Adv. Funct. Mater.",
+        "chemistry": "Na-ion (layered oxide cathode / hard carbon anode)",
+        "nominal_voltage": {"value": 3.1, "unit": "V"},
+        "capacity_ref": {"value": 3.0, "unit": "Ah", "note": "Nominal capacity at T_ref"},
+        "voltage_max": {"value": 3.9, "unit": "V"},
+        "voltage_min": {"value": 1.5, "unit": "V"},
+        "R_ref": {"value": 0.030, "unit": "Ohm", "note": "Internal resistance at T_ref (298.15 K)"}
+    },
+    "ocv_coefficients": {
+        "description": "OCV(SOC) = a0 + a1*SOC + a2*SOC^2 + a3*SOC^3 + a4*SOC^4 + a5*SOC^5",
+        "source": "Adapted from Tremblay & Dessaint (2009); CATL Na-ion press release data",
+        "a0": 2.2,
+        "a1": 3.0,
+        "a2": -9.0,
+        "a3": 18.0,
+        "a4": -16.0,
+        "a5": 5.6
+    },
+    "thermal": {
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 degC)"},
+        "E_a": {"value": 24000, "unit": "J/mol", "note": "Activation energy for internal resistance",
+                "source": "Estimated from Na-ion impedance data; Hwang et al. (2017), Chem. Soc. Rev., 46, 3529"},
+        "alpha_c": {"value": 0.006, "unit": "1/K", "note": "Capacity temperature coefficient (Na-ion slightly more temp-sensitive)",
+                    "source": "Estimated; Rudola et al. (2021), J. Mater. Chem. A, 9, 8279"},
+        "dOCV_dT": {"value": -0.0003, "unit": "V/K", "note": "Entropic coefficient (estimated from Na-ion literature)",
+                    "source": "Estimated from Hwang et al. (2017)"},
+        "R_gas": {"value": 8.314, "unit": "J/(mol*K)", "note": "Universal gas constant"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "current": {"min": -30.0, "max": 30.0, "unit": "A", "note": "positive=discharge, negative=charge"},
+        "temperature": {"min": 253.15, "max": 333.15, "unit": "K", "note": "-20 to 60 degC"}
+    }
+}

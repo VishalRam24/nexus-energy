@@ -1,0 +1,32 @@
+{
+    "component": "EC042 Pseudocapacitor",
+    "fidelity": "F1b",
+    "description": "RC thermal model for pseudocapacitor (e.g. RuO2 or MnO2). Extends F1a with Arrhenius ESR(T), temperature-dependent capacitance, leakage current, and heat generation. Pseudocapacitance from faradaic surface reactions adds a battery-like entropic heat term absent in EDLC.",
+    "cell": {
+        "name": "Generic RuO2 pseudocapacitor cell, 1 V class",
+        "source": "Conway, B. E. (1999). Electrochemical Supercapacitors. Kluwer/Plenum; Trasatti, S., Buzzanca, G. (1971). J. Electroanal. Chem. 29, A1; Zheng, J. P. et al. (1995). J. Electrochem. Soc. 142, 2699",
+        "capacitance_ref": {"value": 200.0, "unit": "F", "note": "Pseudocapacitance at T_ref (298.15 K). RuO2 cells: 100-1000 F depending on mass loading; 200 F typical for small module."},
+        "esr_ref": {"value": 0.005, "unit": "Ohm", "note": "ESR at T_ref; pseudocapacitors have slightly higher ESR than EDLC due to charge-transfer resistance at electrode-electrolyte interface (~5 mOhm typical)"},
+        "v_max": {"value": 1.0, "unit": "V", "note": "Rated voltage for RuO2 in H2SO4 electrolyte (voltage window ~1 V; MnO2 in neutral electrolyte also ~1 V)"},
+        "v_min": {"value": 0.0, "unit": "V"},
+        "leakage_resistance": {"value": 2000.0, "unit": "Ohm", "note": "Self-discharge resistance; pseudocapacitors have higher leakage than EDLC due to faradaic side reactions and parasitic redox. Ref: Simon & Gogotsi (2008) Nature Materials 7, 845."}
+    },
+    "thermal": {
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 degC)"},
+        "E_a_esr": {"value": 12000, "unit": "J/mol",
+                    "note": "Activation energy for ESR in pseudocapacitor. Higher than EDLC (8 kJ/mol) due to faradaic charge-transfer activation energy at RuO2 surface. Literature values: 10-15 kJ/mol.",
+                    "source": "Sugimoto, W. et al. (2006). Electrochim. Acta 52, 1742; Zheng et al. (1995) J. Electrochem. Soc. 142, 2699"},
+        "alpha_C": {"value": 0.004, "unit": "1/K",
+                    "note": "Capacitance temperature coefficient; pseudocapacitance increases with T due to improved ion/proton kinetics at electrode surface. ~0.4%/K, slightly higher than EDLC due to activated surface reactions.",
+                    "source": "Conway (1999); Sugimoto et al. (2006) Electrochim. Acta 52, 1742"},
+        "dOCV_dT_specific": {"value": -0.0002, "unit": "V/K",
+                              "note": "Entropic coefficient for pseudocapacitor charge-transfer reactions. RuO2 proton insertion: RuO2 + H+ + e- -> RuO(OH). dE0/dT for proton insertion ~ -0.2 mV/K (smaller than full battery reactions). Contributes to reversible heat.",
+                              "source": "Conway (1999) Electrochemical Supercapacitors; Trasatti & Buzzanca (1971)"},
+        "R_gas": {"value": 8.314, "unit": "J/(mol*K)"}
+    },
+    "valid_ranges": {
+        "v_cap": {"min": 0.0, "max": 1.0, "unit": "V"},
+        "current": {"min": -100.0, "max": 100.0, "unit": "A", "note": "Negative=charge, Positive=discharge"},
+        "temperature": {"min": 243.15, "max": 333.15, "unit": "K", "note": "-30 to 60 degC; narrower than EDLC due to aqueous electrolyte constraints"}
+    }
+}

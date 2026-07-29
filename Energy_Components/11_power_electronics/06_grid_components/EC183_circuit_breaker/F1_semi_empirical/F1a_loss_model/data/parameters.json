@@ -1,0 +1,19 @@
+{
+    "component": "EC183 Circuit Breaker",
+    "fidelity": "F1a",
+    "description": "Closed-state conduction loss model: P_loss = I^2 * R_cb. Interrupting rating check and fault-clearing time.",
+    "unit": {
+        "name": "Generic 11kV Vacuum Circuit Breaker",
+        "source": "ABB Circuit Breaker Application Guide (2021); IEC 62271-100",
+        "R_cb_ohm": {"value": 0.0001, "unit": "Ohm", "note": "Closed-state contact resistance (100 uOhm typical for MV VCB)"},
+        "I_rated_A": {"value": 630.0, "unit": "A", "note": "Continuous current rating"},
+        "I_interrupt_kA": {"value": 25.0, "unit": "kA", "note": "Short-circuit interrupting rating (symmetrical RMS)"},
+        "t_clear_ms": {"value": 60.0, "unit": "ms", "note": "Fault-clearing time (protection relay + breaker operation)"},
+        "V_rated_kV": {"value": 11.0, "unit": "kV"},
+        "state": {"value": "closed", "note": "closed or open"}
+    },
+    "valid_ranges": {
+        "I_A": {"min": 0.0, "max": 630.0, "unit": "A"},
+        "I_fault_kA": {"min": 0.0, "max": 25.0, "unit": "kA"}
+    }
+}

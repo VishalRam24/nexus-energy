@@ -1,0 +1,28 @@
+{
+    "component": "EC217 Thermoelectric Cooler (TEC)",
+    "fidelity": "F1b",
+    "description": "TEC with temperature-dependent Bi2Te3 material properties: alpha(T), k(T), sigma(T), contact resistance, Peltier/Thomson effects",
+    "unit": {
+        "name": "Bi2Te3 TEC Module (40x40mm, 127 couples) — Temp-Dependent Properties",
+        "source": "Rowe (2006) Thermoelectrics Handbook; Goldsmid (1986) Electronic Refrigeration; Snyder & Toberer (2008) Nature Materials",
+        "alpha0": {"value": 200e-6, "unit": "V/K", "note": "Seebeck coefficient at T0 (Bi2Te3 ~200 uV/K)"},
+        "k0": {"value": 1.5, "unit": "W/(m*K)", "note": "Thermal conductivity at T0"},
+        "sigma_e0": {"value": 1e5, "unit": "S/m", "note": "Electrical conductivity at T0"},
+        "T0_K": {"value": 300.0, "unit": "K", "note": "Reference temperature"},
+        "a1": {"value": -2e-4, "unit": "1/K", "note": "Linear Seebeck temp coefficient"},
+        "a2": {"value": 0.0, "unit": "1/K2", "note": "Quadratic Seebeck term"},
+        "b1": {"value": 3e-4, "unit": "1/K", "note": "Linear thermal conductivity temp coefficient"},
+        "c1": {"value": -5e-4, "unit": "1/K", "note": "Linear electrical conductivity temp coefficient"},
+        "n_couples": {"value": 127, "unit": "-"},
+        "A_element_m2": {"value": 1.4e-6, "unit": "m2"},
+        "L_element_m": {"value": 1.6e-3, "unit": "m"},
+        "module_area": {"value": 0.0016, "unit": "m2"},
+        "contact_resistance_fraction": {"value": 0.05, "unit": "-", "note": "Electrical contact resistance as fraction of element resistance"},
+        "thomson_coeff_factor": {"value": 1e-7, "unit": "V/K2", "note": "Thomson coefficient tau = dalpha/dT * T (approx)"}
+    },
+    "valid_ranges": {
+        "T_cold_K": {"min": 200.0, "max": 320.0, "unit": "K"},
+        "T_hot_K": {"min": 280.0, "max": 400.0, "unit": "K"},
+        "I_A": {"min": 0.01, "max": 20.0, "unit": "A"}
+    }
+}

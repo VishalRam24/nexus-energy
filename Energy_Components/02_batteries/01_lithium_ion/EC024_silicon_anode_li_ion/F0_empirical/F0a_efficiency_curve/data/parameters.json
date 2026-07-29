@@ -1,0 +1,59 @@
+{
+  "component": "EC024 Silicon-Anode Li-ion Battery",
+  "fidelity": "F0a",
+  "description": "Empirical round-trip-efficiency curve vs C-rate (1-D lookup). Derived from the cell ohmic loss fraction I*R/V_nom; numbers reused from F1a.",
+  "source": "Silicon-anode Li-ion F1a defaults (Q_nom=4.0 Ah, R_int=50 mOhm, V 2.8-4.2 V; Si ~3590 mAh/g)",
+  "cell": {
+    "name": "Silicon-Anode Li-ion Battery",
+    "nominal_voltage": {
+      "value": 3.5,
+      "unit": "V",
+      "note": "reused from F1a"
+    },
+    "capacity": {
+      "value": 4.0,
+      "unit": "Ah",
+      "note": "reused from F1a"
+    },
+    "internal_resistance": {
+      "value": 0.05,
+      "unit": "Ohm",
+      "note": "DC resistance at 25C, reused from F1a"
+    }
+  },
+  "efficiency_curve": {
+    "description": "Round-trip efficiency tabulated over C-rate breakpoints; eta = (1-f)/(1+f), f = C*capacity*R/V_nom.",
+    "c_rate": {
+      "value": [
+        0.0,
+        0.05,
+        0.1,
+        0.2,
+        0.5,
+        1.0,
+        2.0
+      ],
+      "unit": "dimensionless"
+    },
+    "round_trip_efficiency": {
+      "value": [
+        1.0,
+        0.9943,
+        0.98864,
+        0.9774,
+        0.94444,
+        0.89189,
+        0.79487
+      ],
+      "unit": "fraction (0-1)"
+    }
+  },
+  "valid_ranges": {
+    "c_rate": {
+      "min": 0.0,
+      "max": 2.0,
+      "unit": "dimensionless",
+      "note": "max continuous C-rate for this chemistry"
+    }
+  }
+}

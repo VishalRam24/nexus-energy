@@ -1,0 +1,27 @@
+{
+    "component": "EC044 Monocrystalline Silicon PV",
+    "fidelity": "F1b",
+    "description": "Two-diode model: I = I_ph - I_01*(exp(V/(n1*Vt))-1) - I_02*(exp(V/(n2*Vt))-1) - (V+I*Rs)/Rsh. Better low-irradiance accuracy than single-diode.",
+    "module": {
+        "name": "Canadian Solar CS6K-280M (Two-Diode Parametrisation)",
+        "source": "Ishaque et al. (2011), Solar Energy 85(9); De Soto et al. (2006); CEC database",
+        "technology": "Mono-c-Si",
+        "cells_in_series": {"value": 60, "unit": "cells"},
+        "area": {"value": 1.638, "unit": "m2", "note": "Module area for efficiency calculation"},
+        "I_ph_ref": {"value": 9.5, "unit": "A", "note": "Photocurrent at STC"},
+        "I_01": {"value": 1.0e-12, "unit": "A", "note": "Diffusion saturation current (diode 1)"},
+        "I_02": {"value": 1.0e-7, "unit": "A", "note": "Recombination saturation current (diode 2)"},
+        "n1": {"value": 1.0, "unit": "dimensionless", "note": "Ideality factor diode 1 (diffusion)"},
+        "n2": {"value": 2.0, "unit": "dimensionless", "note": "Ideality factor diode 2 (recombination)"},
+        "Rs": {"value": 0.3, "unit": "Ohm", "note": "Series resistance"},
+        "Rsh": {"value": 300.0, "unit": "Ohm", "note": "Shunt resistance at STC"},
+        "T_ref": {"value": 25.0, "unit": "degC", "note": "Reference temperature (STC)"},
+        "alpha_sc": {"value": 0.004694, "unit": "A/K", "note": "Short-circuit current temperature coefficient"},
+        "Eg": {"value": 1.121, "unit": "eV", "note": "Silicon bandgap energy"}
+    },
+    "valid_ranges": {
+        "irradiance": {"min": 0.0, "max": 1200.0, "unit": "W/m2"},
+        "cell_temperature": {"min": -10.0, "max": 80.0, "unit": "degC"},
+        "note": "STC = 1000 W/m2, 25C cell temperature"
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "component": "EC109 Simple Cycle Gas Turbine",
+    "fidelity": "F1a",
+    "description": "Efficiency curve: eta(PLR, T_amb) = eta_rated * f_PLR * f_amb",
+    "unit": {
+        "name": "GE LM6000-class simple-cycle gas turbine (~43 MW)",
+        "source": "Walsh & Fletcher (2004), Gas Turbine Performance, 2nd ed., Blackwell",
+        "P_rated": {"value": 43.0, "unit": "MW", "note": "Rated electrical output"},
+        "eta_rated": {"value": 0.41, "unit": "dimensionless", "note": "LHV net electrical efficiency at ISO conditions"},
+        "T_amb_ref": {"value": 15.0, "unit": "degC", "note": "ISO ambient temperature reference"},
+        "b0": {"value": 0.1, "unit": "dimensionless", "note": "PLR curve constant term"},
+        "b1": {"value": 1.1, "unit": "dimensionless", "note": "PLR curve linear term"},
+        "b2": {"value": -0.2, "unit": "dimensionless", "note": "PLR curve quadratic term"},
+        "f_amb_coeff": {"value": 0.007, "unit": "1/degC", "note": "Ambient temperature derating coefficient"},
+        "LHV_fuel": {"value": 50000.0, "unit": "kJ/kg", "note": "Lower heating value of natural gas"},
+        "PLR_min": {"value": 0.3, "unit": "dimensionless", "note": "Minimum stable operating part-load ratio"}
+    },
+    "valid_ranges": {
+        "part_load_ratio": {"min": 0.3, "max": 1.0, "unit": "dimensionless"},
+        "ambient_temp_c":  {"min": -20.0, "max": 50.0, "unit": "degC"}
+    }
+}

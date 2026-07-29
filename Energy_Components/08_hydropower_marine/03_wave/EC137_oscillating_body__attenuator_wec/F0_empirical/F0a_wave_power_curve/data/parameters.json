@@ -1,0 +1,23 @@
+{
+    "component": "EC137 Oscillating Body / Attenuator WEC",
+    "fidelity": "F0a",
+    "description": "Empirical power lookup vs significant wave height Hs (Pelamis-type attenuator). P = J(Hs,Te)*capture_width*CWR*eta_pto*eta_electrical, J=(rho*g^2/64pi)*Hs^2*Te. Capped at rated power (~Pelamis P2 750 kW).",
+    "rated": {
+        "length_m": {"value": 150.0, "unit": "m", "note": "Total device length (Pelamis ~150 m)"},
+        "capture_width_m": {"value": 30.0, "unit": "m", "note": "Representative hydrodynamic capture width"},
+        "cwr": {"value": 0.25, "unit": "dimensionless", "note": "Capture width ratio (0.20-0.35 for attenuators)"},
+        "eta_pto": {"value": 0.80, "unit": "dimensionless", "note": "Hydraulic PTO efficiency"},
+        "eta_electrical": {"value": 0.95, "unit": "dimensionless", "note": "Electrical generator efficiency"},
+        "Te_ref_s": {"value": 9.0, "unit": "s", "note": "Representative energy period for the lookup"},
+        "P_rated_kw": {"value": 750.0, "unit": "kW", "note": "Rated electrical power (Pelamis P2), curve clipped at rating"},
+        "rho_water": {"value": 1025.0, "unit": "kg/m3", "note": "Seawater density"}
+    },
+    "power_curve": {
+        "Hs_m": {"value": [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 4.0, 5.0, 5.45, 8.0], "unit": "m", "note": "Significant wave height breakpoints"},
+        "power_kw": {"value": [0.0, 6.29, 25.17, 56.63, 100.67, 157.30, 226.51, 402.69, 629.20, 750.0, 750.0], "unit": "kW", "note": "Electrical power at Te=9 s, clipped at 750 kW rated"}
+    },
+    "valid_ranges": {
+        "Hs_m": {"min": 0.0, "max": 8.0, "unit": "m"}
+    },
+    "source": "Henderson (2006) Appl. Ocean Res. 28:297-307; Yemm et al. (2012) Phil. Trans. R. Soc. A 370:365-380 (Pelamis P2); reuses EC137 F1a parameters"
+}

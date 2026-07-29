@@ -1,0 +1,48 @@
+{
+    "component_id": "EC017",
+    "component_name": "Hydrogen Purifier (Pressure Swing Adsorption, PSA)",
+    "fidelity": "F2a — Lumped Adsorption Column with Langmuir Isotherm + LDF Kinetics",
+    "source": "Ruthven (1984) Principles of Adsorption and Adsorption Processes, Wiley; Yang (1987) Gas Separation by Adsorption Processes, Butterworths; Sircar & Golden (2000) Sep. Sci. Technol. 35(5), 667-687; Glueckauf (1955) Trans. Faraday Soc. 51, 1540 (LDF)",
+    "unit": {
+        "name": "Single-bed industrial H2 PSA (activated carbon + zeolite 5A), reformate feed",
+
+        "bed_length_m": {"value": 3.0, "unit": "m", "note": "Adsorption column length. Yang (1987) industrial H2 PSA"},
+        "bed_diameter_m": {"value": 1.0, "unit": "m", "note": "Column internal diameter"},
+        "void_fraction": {"value": 0.40, "unit": "-", "note": "Total bed voidage (interparticle + intraparticle). Ruthven (1984)"},
+        "bulk_density_kg_m3": {"value": 700.0, "unit": "kg/m3", "note": "Adsorbent bulk (bed) density. Activated carbon ~480, zeolite 5A ~750; blended"},
+
+        "q_sat_mol_kg": {"value": 3.0, "unit": "mol/kg", "note": "Langmuir saturation loading of impurity (CO/CH4/CO2/N2 lumped) on adsorbent. Yang (1987) Table 3.x"},
+        "b_langmuir_ref_per_bar": {"value": 0.85, "unit": "1/bar", "note": "Langmuir affinity constant b at T_ref for the lumped impurity. Sircar & Golden (2000)"},
+        "isosteric_heat_J_mol": {"value": 25000.0, "unit": "J/mol", "note": "Isosteric heat of adsorption of impurity; sets b(T)=b_ref*exp(Q/R(1/T-1/Tref)). Ruthven (1984)"},
+        "T_ref_K": {"value": 298.15, "unit": "K", "note": "Reference temperature for Langmuir b"},
+
+        "k_ldf_1_s": {"value": 3.0, "unit": "1/s", "note": "Linear Driving Force lumped mass-transfer coefficient (macropore-diffusion controlled, H2 PSA). Glueckauf (1955); Ruthven (1984) ch.6; typical 1-15 1/s"},
+
+        "feed_h2_fraction": {"value": 0.75, "unit": "mol fraction", "note": "H2 fraction in SMR reformate; balance is adsorbable impurity. Sircar & Golden (2000)"},
+
+        "feed_pressure_bar": {"value": 20.0, "unit": "bar", "note": "High (adsorption) pressure"},
+        "purge_pressure_bar": {"value": 1.5, "unit": "bar", "note": "Low (blowdown/purge) pressure"},
+        "T_operating_K": {"value": 298.15, "unit": "K", "note": "Near-ambient isothermal PSA operation. Sircar & Golden (2000)"},
+
+        "u_feed_m_s": {"value": 0.20, "unit": "m/s", "note": "Interstitial feed gas velocity during adsorption step"},
+
+        "t_adsorption_s": {"value": 120.0, "unit": "s", "note": "Adsorption (production) half-cycle duration"},
+        "t_blowdown_s": {"value": 30.0, "unit": "s", "note": "Counter-current blowdown duration"},
+        "t_purge_s": {"value": 60.0, "unit": "s", "note": "Low-pressure H2 purge (regeneration) duration"},
+        "purge_to_feed_ratio": {"value": 0.18, "unit": "-", "note": "Fraction of product H2 used to purge/regenerate the bed. Sircar & Golden (2000): 0.1-0.25"}
+    },
+
+    "thermodynamics": {
+        "R": {"value": 8.314, "unit": "J/(mol.K)", "note": "Universal gas constant"},
+        "M_H2": {"value": 0.002016, "unit": "kg/mol", "note": "H2 molar mass"}
+    },
+
+    "valid_ranges": {
+        "feed_h2_fraction": {"min": 0.30, "max": 0.999, "unit": "mol_fraction"},
+        "feed_pressure_bar": {"min": 5.0, "max": 80.0, "unit": "bar"},
+        "purge_pressure_bar": {"min": 1.0, "max": 5.0, "unit": "bar"},
+        "T_operating_K": {"min": 273.15, "max": 423.15, "unit": "K"},
+        "t_adsorption_s": {"min": 10.0, "max": 600.0, "unit": "s"},
+        "purge_to_feed_ratio": {"min": 0.05, "max": 0.40, "unit": "-"}
+    }
+}

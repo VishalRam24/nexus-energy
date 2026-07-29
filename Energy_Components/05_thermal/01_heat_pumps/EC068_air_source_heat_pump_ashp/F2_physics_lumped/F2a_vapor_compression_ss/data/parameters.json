@@ -1,0 +1,21 @@
+{
+    "component": "EC068 Air-Source Heat Pump (ASHP)",
+    "fidelity": "F2a",
+    "model": "Steady-state vapor compression cycle with CoolProp",
+    "refrigerant": "R410A",
+    "unit": {
+        "name": "Generic 10kW ASHP (R410A)",
+        "source": "ASHRAE Handbook — HVAC Systems and Equipment (2020)",
+        "capacity_nominal_kw": {"value": 10.0, "unit": "kW_th"},
+        "eta_isentropic": {"value": 0.75, "unit": "dimensionless", "note": "Compressor isentropic efficiency"},
+        "eta_motor": {"value": 0.95, "unit": "dimensionless", "note": "Compressor motor efficiency"},
+        "superheat_K": {"value": 5.0, "unit": "K", "note": "Evaporator outlet superheat"},
+        "subcool_K": {"value": 3.0, "unit": "K", "note": "Condenser outlet subcooling"},
+        "dp_evap_kPa": {"value": 20.0, "unit": "kPa", "note": "Evaporator pressure drop"},
+        "dp_cond_kPa": {"value": 15.0, "unit": "kPa", "note": "Condenser pressure drop"}
+    },
+    "valid_ranges": {
+        "T_evap_degC": {"min": -25.0, "max": 20.0, "unit": "degC"},
+        "T_cond_degC": {"min": 25.0, "max": 65.0, "unit": "degC"}
+    }
+}

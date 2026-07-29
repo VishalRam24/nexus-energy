@@ -1,0 +1,33 @@
+{
+    "component": "EC092 Absorption Chiller",
+    "fidelity": "F1b",
+    "description": "Part-load COP with driving heat temperature effect and crystallization limit",
+    "unit": {
+        "name": "Generic 500kW Single-Effect LiBr-H2O Absorption Chiller",
+        "source": "Herold, Radermacher & Klein (2016); Gordon & Ng (2000); ASHRAE Handbook (2020) Ch.2",
+        "Q_cool_rated": {"value": 500.0, "unit": "kW"},
+        "COP_rated": {"value": 0.70, "unit": "dimensionless"},
+        "T_hot_rated": {"value": 90.0, "unit": "degC"},
+        "T_cw_rated": {"value": 30.0, "unit": "degC"},
+        "T_chw_rated": {"value": 7.0, "unit": "degC"},
+        "plr_curve": {
+            "note": "COP_PL/COP_ref = f1 + f2*PLR + f3*PLR^2. COP improves slightly at part-load until PLR~0.3",
+            "f1": {"value": 0.10, "unit": "-"},
+            "f2": {"value": 1.20, "unit": "-"},
+            "f3": {"value": -0.30, "unit": "-"}
+        },
+        "temp_curve": {
+            "note": "COP correction for driving heat temperature: f_Thot = g1 + g2*(T_hot - T_hot_rated)",
+            "g1": {"value": 1.0, "unit": "-"},
+            "g2": {"value": 0.005, "unit": "1/K", "note": "COP improves 0.5% per K above rated T_hot"}
+        },
+        "PLR_min": {"value": 0.15, "unit": "-", "note": "Below 0.15, crystallization risk in LiBr solution"},
+        "crystallization_limit_PLR": {"value": 0.10, "unit": "-", "note": "Absolute minimum before forced shutdown"}
+    },
+    "valid_ranges": {
+        "T_hot": {"min": 70.0, "max": 120.0, "unit": "degC"},
+        "T_cw": {"min": 25.0, "max": 45.0, "unit": "degC"},
+        "T_chw": {"min": 4.0, "max": 15.0, "unit": "degC"},
+        "PLR": {"min": 0.0, "max": 1.0, "unit": "-"}
+    }
+}

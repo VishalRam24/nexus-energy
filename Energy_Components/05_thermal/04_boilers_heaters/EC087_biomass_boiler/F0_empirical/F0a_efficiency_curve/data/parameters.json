@@ -1,0 +1,36 @@
+{
+  "component_id": "EC087",
+  "component_name": "Biomass Boiler (Wood Pellet)",
+  "fidelity": "F0a \u2014 empirical lookup",
+  "source": "EN 303-5:2012; IEA Bioenergy Task 32; Carvalho et al. (2013) Energy 58, 290-301",
+  "Q_rated": {
+    "value": 50.0,
+    "unit": "kW",
+    "note": "Rated thermal output"
+  },
+  "eta_nom": {
+    "value": 0.88,
+    "unit": "-",
+    "note": "Full-load efficiency"
+  },
+  "PLR_min": {
+    "value": 0.3,
+    "unit": "-",
+    "note": "Min part-load ratio (clamped)"
+  },
+  "table": {
+    "plr": [
+      0.3,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "eta": [
+      0.8,
+      0.86,
+      0.89,
+      0.88
+    ],
+    "note": "Part-load efficiency breakpoints; eta at PLR=1.0 = eta_nom"
+  }
+}

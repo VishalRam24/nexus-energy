@@ -1,0 +1,26 @@
+{
+  "component": "EC143 Biomass Gasifier",
+  "fidelity": "F0a",
+  "description": "Empirical cold-gas-efficiency (CGE) curve vs equivalence ratio (ER), plus per-feedstock CGE scaling from HHV. Numbers reused from EC143 F1b.",
+  "source": "Basu (2010) Biomass Gasification; reused from EC143 F1b feedstock_db",
+  "rated": {
+    "ER_design": {"value": 0.25, "unit": "-", "note": "Design equivalence ratio (peak CGE)"},
+    "CGE_design": {"value": 0.75, "unit": "-", "note": "Cold gas efficiency at design ER, dry wood"},
+    "T_gasification_degC": {"value": 800.0, "unit": "degC"},
+    "LHV_syngas_MJ_Nm3_design": {"value": 5.5, "unit": "MJ/Nm3", "note": "Typical air-blown producer-gas LHV"}
+  },
+  "er_curve": {
+    "comment": "Cold gas efficiency vs equivalence ratio. Peaks near ER=0.25, falls at low ER (tar/char) and high ER (combustion).",
+    "ER": [0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45],
+    "CGE": [0.55, 0.70, 0.75, 0.72, 0.65, 0.55, 0.45]
+  },
+  "feedstock_hhv": {
+    "comment": "HHV (MJ/kg dry) per feedstock, reused from EC143 F1b. CGE scales mildly with fuel quality (HHV/20).",
+    "feedstocks": ["sewage_sludge", "rice_husk", "corn_stover", "wood", "pine"],
+    "HHV_MJ_kg": [12.0, 15.0, 17.5, 20.0, 21.0]
+  },
+  "valid_ranges": {
+    "equivalence_ratio": {"min": 0.15, "max": 0.45},
+    "moisture_content": {"min": 0.0, "max": 0.5}
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "component_id": "EC006",
+  "component_name": "Direct Methanol Fuel Cell (DMFC)",
+  "fidelity": "F0a \u2014 empirical lookup",
+  "version": "1.0.0",
+  "source": "DMFC F1a params reused (OCV~0.6 V, methanol crossover, n=6)",
+  "metric": "electrical_efficiency_LHV",
+  "note": "DMFC low efficiency (~20-30%) due to methanol crossover (low OCV ~0.6 V).",
+  "lookup": {
+    "load_fraction": {
+      "value": [
+        0.0,
+        0.1,
+        0.2,
+        0.3,
+        0.5,
+        0.8,
+        1.0
+      ],
+      "unit": "-",
+      "note": "Breakpoints: fraction of rated power"
+    },
+    "efficiency": {
+      "value": [
+        0.0,
+        0.3,
+        0.29,
+        0.27,
+        0.25,
+        0.2,
+        0.16
+      ],
+      "unit": "-",
+      "note": "Empirical efficiency at each load (LHV basis)"
+    }
+  },
+  "rated": {
+    "load_fraction": {
+      "value": 0.5,
+      "unit": "-"
+    },
+    "efficiency": {
+      "value": 0.25,
+      "unit": "-",
+      "note": "Datasheet rated efficiency"
+    },
+    "P_rated": {
+      "value": 1000.0,
+      "unit": "W"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+    "component": "EC028 Lead-Acid Battery",
+    "fidelity": "F1b",
+    "description": "SOC-thermal voltage model: V = OCV(SOC) - I*R(T), with Arrhenius resistance, Peukert correction, and capacity temperature dependence",
+    "unit": {
+        "name": "Generic 12V/100Ah flooded lead-acid battery (6 cells in series)",
+        "source": "Copetti et al. (1993), J. Power Sources 47(1):109-118; Manwell & McGowan (1993), Sol. Energy 50(5):399-405",
+        "n_cells": {"value": 6, "unit": "dimensionless"},
+        "V_nom": {"value": 12.0, "unit": "V"},
+        "capacity_ref": {"value": 100.0, "unit": "Ah", "note": "C20 capacity at T_ref"},
+        "voltage_max": {"value": 14.4, "unit": "V"},
+        "voltage_min": {"value": 10.5, "unit": "V"},
+        "R_ref": {"value": 0.008, "unit": "Ohm", "note": "Internal resistance at T_ref (298.15 K)"},
+        "ocv_coeffs": {
+            "note": "OCV(SOC) = a0 + a1*SOC + a2*SOC^2 + a3*SOC^3",
+            "a0": {"value": 11.5, "unit": "V"},
+            "a1": {"value": 1.5, "unit": "V"},
+            "a2": {"value": -0.5, "unit": "V"},
+            "a3": {"value": 0.3, "unit": "V"}
+        },
+        "peukert_n": {"value": 1.2, "unit": "dimensionless", "note": "Peukert exponent for rate-dependent capacity",
+                      "source": "Manwell & McGowan (1993)"}
+    },
+    "thermal": {
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 degC)"},
+        "E_a": {"value": 15000, "unit": "J/mol", "note": "Activation energy for internal resistance (lead-acid lower than Li-ion)",
+                "source": "Bode (1977), Lead-Acid Batteries, Wiley; Schiffer et al. (2007), J. Power Sources, 168, 66-78"},
+        "alpha_c": {"value": 0.01, "unit": "1/K", "note": "Capacity temperature coefficient (lead-acid strongly temp-dependent)",
+                    "source": "IEEE Std 485-2010; Bode (1977)"},
+        "dOCV_dT": {"value": -0.0002, "unit": "V/K", "note": "Entropic coefficient for full 12V battery",
+                    "source": "Berndt (2003), Maintenance-Free Batteries, Elsevier"},
+        "R_gas": {"value": 8.314, "unit": "J/(mol*K)", "note": "Universal gas constant"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "current": {"min": -50.0, "max": 50.0, "unit": "A", "note": "positive=discharge"},
+        "temperature": {"min": 253.15, "max": 333.15, "unit": "K", "note": "-20 to 60 degC"}
+    }
+}

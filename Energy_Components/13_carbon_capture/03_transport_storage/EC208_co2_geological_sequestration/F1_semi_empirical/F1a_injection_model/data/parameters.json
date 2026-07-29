@@ -1,0 +1,35 @@
+{
+    "component": "EC208 CO2 Geological Sequestration",
+    "fidelity": "F1a",
+    "description": "Injection rate vs reservoir pressure model + storage capacity from pore volume",
+    "source": "van der Meer (1993); IPCC (2005) CCS Special Report Ch.5; Benson & Cole (2008) Elements",
+    "reservoir": {
+        "name": "Typical deep saline aquifer (1500-2500 m depth)",
+        "depth_m": {"value": 2000.0, "unit": "m"},
+        "thickness_m": {"value": 100.0, "unit": "m"},
+        "area_km2": {"value": 100.0, "unit": "km²"},
+        "porosity": {"value": 0.15, "unit": "dimensionless", "note": "Total porosity"},
+        "permeability_mD": {"value": 50.0, "unit": "mD", "note": "50 mD = typical sandstone"},
+        "P_reservoir_bar": {"value": 200.0, "unit": "bar", "note": "Initial reservoir pressure at 2000 m depth"},
+        "T_reservoir_K": {"value": 333.15, "unit": "K", "note": "Reservoir temperature (60°C)"},
+        "storage_efficiency": {"value": 0.02, "unit": "dimensionless",
+                                "note": "Fraction of pore volume effectively used for CO2; 1-4% typical (IPCC 2005)"},
+        "skin_factor": {"value": 0.0, "unit": "dimensionless", "note": "Wellbore skin (0 = undamaged)"},
+        "wellbore_radius_m": {"value": 0.15, "unit": "m", "note": "Wellbore radius"},
+        "drainage_radius_m": {"value": 500.0, "unit": "m", "note": "Effective drainage radius"}
+    },
+    "co2": {
+        "rho_injection": {"value": 700.0, "unit": "kg/m3",
+                          "note": "Dense-phase CO2 density at injection conditions (~150 bar, 40°C)"},
+        "viscosity_injection": {"value": 6.0e-5, "unit": "Pa.s",
+                                 "note": "CO2 viscosity in dense phase at injection T,P"},
+        "P_injection_wellhead": {"value": 150.0, "unit": "bar",
+                                  "note": "Wellhead injection pressure"}
+    },
+    "valid_ranges": {
+        "P_wellhead_bar": {"min": 80.0, "max": 300.0, "unit": "bar"},
+        "area_km2": {"min": 1.0, "max": 10000.0, "unit": "km²"},
+        "porosity": {"min": 0.05, "max": 0.35, "unit": "-"},
+        "storage_efficiency": {"min": 0.005, "max": 0.10, "unit": "-"}
+    }
+}

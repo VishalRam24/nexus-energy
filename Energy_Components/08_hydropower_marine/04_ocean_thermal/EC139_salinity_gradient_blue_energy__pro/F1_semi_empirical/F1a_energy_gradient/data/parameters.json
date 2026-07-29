@@ -1,0 +1,22 @@
+{
+  "system": {
+    "C_seawater_g_per_L":   {"value": 35.0,  "unit": "g/L",   "description": "Seawater concentration (high salinity feed)"},
+    "C_freshwater_g_per_L": {"value": 0.5,   "unit": "g/L",   "description": "River water concentration (low salinity feed)"},
+    "T_K":                  {"value": 298.15,"unit": "K",      "description": "Operating temperature"},
+    "eta_membrane":         {"value": 0.45,  "unit": "-",      "description": "Membrane PRO efficiency (fraction of osmotic pressure extracted)"},
+    "eta_turbine":          {"value": 0.85,  "unit": "-",      "description": "Hydro-turbine efficiency on pressurized permeate side"},
+    "eta_pressure_exchanger": {"value": 0.95,"unit": "-",      "description": "Pressure exchanger efficiency (energy recovery)"},
+    "M_NaCl_g_per_mol":     {"value": 58.44, "unit": "g/mol", "description": "Molar mass of NaCl"},
+    "nu_NaCl":              {"value": 2,     "unit": "-",      "description": "van't Hoff factor for NaCl (dissociates into 2 ions)"},
+    "R_J_per_mol_K":        {"value": 8.314, "unit": "J/(mol*K)", "description": "Universal gas constant"},
+    "Q_feed_m3_per_s":      {"value": 1.0,   "unit": "m^3/s", "description": "Total feed volumetric flow (seawater + freshwater, equal split)"},
+    "recovery_ratio":       {"value": 0.40,  "unit": "-",      "description": "Fraction of freshwater feed permeated through membrane"}
+  },
+  "limits": {
+    "C_sw_min": 25.0,
+    "C_sw_max": 40.0,
+    "C_fw_min": 0.1,
+    "C_fw_max": 2.0
+  },
+  "source": "Yip & Elimelech (2012) Environ. Sci. Technol. 46:5230; Straub et al. (2016) Nature Energy 1:16090; REDstack BV data."
+}

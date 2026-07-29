@@ -1,0 +1,12 @@
+{
+  "default_parameters": {
+    "eta_e_rated": 0.55,
+    "eta_th_rated": 0.30,
+    "P_e_rated_kW": 5.0,
+    "f_e_a": 0.3,
+    "f_e_b": 0.7,
+    "f_th_a": 0.2,
+    "f_th_b": 0.8
+  },
+  "description": "SOFC CHP F1a: eta_e=0.55*f_e(load), eta_th=0.30*f_th(load), P_e_rated=5kW. Part-load factors: f_e=0.3+0.7*load, f_th=0.2+0.8*load."
+}

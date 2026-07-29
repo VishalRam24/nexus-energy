@@ -1,0 +1,21 @@
+{
+    "component": "EC067 Airborne Wind Energy (AWE)",
+    "fidelity": "F1a",
+    "description": "Simplified power curve: P = 0.5*rho*Cp_eff*A_wing*v^3 with cut-in/rated/cut-out",
+    "unit": {
+        "name": "100kW AWE Crosswind Kite System",
+        "source": "Loyd (1980). Crosswind kite power. J. Energy. Diehl (2013). Airborne wind energy. Springer.",
+        "A_wing": {"value": 30.0, "unit": "m2", "note": "Kite wing area"},
+        "CL_CD": {"value": 10.0, "unit": "dimensionless", "note": "Aerodynamic performance ratio"},
+        "P_rated": {"value": 100000.0, "unit": "W", "note": "Rated power"},
+        "v_cut_in": {"value": 4.0, "unit": "m/s", "note": "Cut-in wind speed"},
+        "v_rated": {"value": 15.0, "unit": "m/s", "note": "Rated wind speed"},
+        "v_cut_out": {"value": 30.0, "unit": "m/s", "note": "Cut-out wind speed"},
+        "rho": {"value": 1.225, "unit": "kg/m3", "note": "Air density"},
+        "eta_gen": {"value": 0.85, "unit": "dimensionless", "note": "Generator/tether efficiency"},
+        "Cp_eff": {"value": 0.25, "unit": "dimensionless", "note": "Effective power coefficient (Loyd limit scaled)"}
+    },
+    "valid_ranges": {
+        "v": {"min": 0.0, "max": 50.0, "unit": "m/s"}
+    }
+}

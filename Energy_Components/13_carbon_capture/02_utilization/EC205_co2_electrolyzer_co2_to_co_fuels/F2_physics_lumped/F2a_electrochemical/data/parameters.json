@@ -1,0 +1,37 @@
+{
+    "component_id": "EC205",
+    "component_name": "CO2 Electrolyzer (CO2 to CO/Fuels)",
+    "fidelity": "F2a — Full Electrochemical Model with Thermal ODE",
+    "description": "Gas-diffusion-electrode CO2 reduction cell. Cathodic CO2RR to CO competes with parasitic H2 evolution; anodic OER. Cell voltage = E_rev + cathode/anode Tafel + ohmic + concentration overpotentials. Driven cell (V > E_rev). FE_CO peaks ~0.90 and rolls off toward H2 as j approaches the CO2 mass-transport limit.",
+    "source": "Endrodi et al. (2017) Prog. Energy Combust. Sci.; Burdyny & Smith (2019) Energy Environ. Sci.; Weng et al. (2018) PCCP; Jouny et al. (2018) Ind. Eng. Chem. Res.",
+    "unit": {
+        "name": "Generic CO2RR-to-CO MEA Stack — Physics-Lumped Electrochemical",
+        "N_cells": {"value": 20, "unit": "-", "note": "Number of cells in series in the stack"},
+        "A_cell": {"value": 100.0, "unit": "cm2", "note": "Active geometric electrode area (lab/pilot GDE cell)"},
+        "n_electrons": {"value": 2, "unit": "-", "note": "Electrons per CO2 reduced to CO (2 e- per molecule)"},
+        "E_rev": {"value": 1.34, "unit": "V", "note": "Reversible cell voltage for CO2->CO + 1/2 O2 (E_anode 1.23 - E_cathode -0.11 vs SHE)"},
+        "E_tn": {"value": 1.47, "unit": "V", "note": "Thermoneutral voltage (E_rev + T*dS term); above this the cell self-heats"},
+        "alpha_cathode": {"value": 0.35, "unit": "-", "note": "Cathode (CO2RR) charge-transfer coefficient; sluggish kinetics"},
+        "j0_cathode_ref": {"value": 1.0e-5, "unit": "A/cm2", "note": "CO2RR exchange current density at T_ref (Ag/Au-type catalyst)"},
+        "E_act_cathode": {"value": 50000.0, "unit": "J/mol", "note": "Activation energy for CO2RR kinetics"},
+        "alpha_anode": {"value": 0.5, "unit": "-", "note": "Anode (OER) charge-transfer coefficient"},
+        "j0_anode_ref": {"value": 1.0e-7, "unit": "A/cm2", "note": "OER exchange current density at T_ref (IrO2/NiFe-type catalyst)"},
+        "E_act_anode": {"value": 60000.0, "unit": "J/mol", "note": "Activation energy for OER kinetics"},
+        "T_ref": {"value": 333.15, "unit": "K", "note": "Reference temperature (60C)"},
+        "R_area_ohm_cm2": {"value": 1.0, "unit": "ohm.cm2", "note": "Area-specific resistance (membrane + electrolyte + contacts)"},
+        "j_L": {"value": 0.6, "unit": "A/cm2", "note": "CO2 mass-transport limiting current density at the GDE"},
+        "FE_max": {"value": 0.90, "unit": "-", "note": "Peak Faradaic efficiency toward CO at low/moderate j"},
+        "FE_rolloff_k": {"value": 8.0, "unit": "-", "note": "Logistic steepness of FE_CO roll-off vs (j/j_L)"},
+        "FE_rolloff_x0": {"value": 0.85, "unit": "-", "note": "Logistic midpoint (j/j_L) where FE_CO has dropped to FE_max/2"},
+        "m_stack": {"value": 8.0, "unit": "kg", "note": "Stack thermal mass"},
+        "cp_stack": {"value": 900.0, "unit": "J/(kg.K)", "note": "Stack effective specific heat"},
+        "hA_cool": {"value": 30.0, "unit": "W/K", "note": "Coolant heat-transfer coefficient * area"},
+        "T_coolant": {"value": 313.15, "unit": "K", "note": "Coolant inlet temperature (40C)"}
+    },
+    "valid_ranges": {
+        "current_density": {"min": 0.0, "max": 0.6, "unit": "A/cm2"},
+        "temperature": {"min": 293.15, "max": 363.15, "unit": "K"},
+        "dt": {"min": 0.01, "max": 1.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 3600.0, "unit": "s"}
+    }
+}

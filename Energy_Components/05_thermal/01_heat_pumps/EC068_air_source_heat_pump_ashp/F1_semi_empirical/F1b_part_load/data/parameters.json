@@ -1,0 +1,22 @@
+{
+    "component": "EC068 Air-Source Heat Pump (ASHP)",
+    "fidelity": "F1b",
+    "description": "Part-load COP correction with PLF method (EN 14825) and cycling losses",
+    "unit": {
+        "name": "Generic 10kW ASHP (R410A)",
+        "source": "Staffell et al. (2012); EN 14825:2016; AHRI 210/240",
+        "rated_capacity": {"value": 10.0, "unit": "kW_th"},
+        "rated_cop": {"value": 3.5, "unit": "dimensionless", "note": "At A7/W35 (EN 14511)"},
+        "carnot_fraction": {"value": 0.45, "unit": "dimensionless"},
+        "auxiliary_power": {"value": 0.05, "unit": "kW"},
+        "C_d": {"value": 0.25, "unit": "dimensionless", "note": "Degradation coefficient per EN 14825; typical 0.20-0.25"},
+        "PLR_min": {"value": 0.10, "unit": "dimensionless", "note": "Minimum modulation ratio before on/off cycling"},
+        "cycling_loss_factor": {"value": 0.02, "unit": "dimensionless", "note": "Additional loss per on/off cycle as fraction of capacity"},
+        "startup_penalty_kw": {"value": 0.15, "unit": "kW", "note": "Transient startup energy penalty averaged over cycle"}
+    },
+    "valid_ranges": {
+        "T_source": {"min": -20.0, "max": 40.0, "unit": "degC"},
+        "T_sink": {"min": 25.0, "max": 65.0, "unit": "degC"},
+        "part_load_ratio": {"min": 0.0, "max": 1.0, "unit": "dimensionless"}
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "component": "EC128 Conventional Hydroelectric Dam",
+    "fidelity": "F0a",
+    "description": "Empirical power-rating lookup: tabulated overall efficiency vs flow ratio q=Q/Q_design at design head; P = eta(q)*rho*g*Q*H/1000 kW",
+    "rated": {
+        "H_design": {"value": 100.0, "unit": "m", "note": "Design head"},
+        "Q_design": {"value": 30.0, "unit": "m3/s", "note": "Design flow rate"},
+        "P_rated": {"value": 27000.0, "unit": "kW", "note": "Rated power output at design point"},
+        "eta_overall_rated": {"value": 0.9114, "unit": "dimensionless", "note": "eta_peak*eta_gen = 0.93*0.98 at q=1"},
+        "rho": {"value": 1000.0, "unit": "kg/m3", "note": "Water density"},
+        "g": {"value": 9.81, "unit": "m/s2", "note": "Gravitational acceleration"}
+    },
+    "efficiency_curve": {
+        "q_ratio": {"value": [0.30, 0.40, 0.50, 0.60, 0.70, 0.80, 0.90, 1.00, 1.10], "unit": "dimensionless", "note": "Flow ratio Q/Q_design"},
+        "eta_overall": {"value": [0.700, 0.770, 0.825, 0.865, 0.890, 0.905, 0.911, 0.9114, 0.905], "unit": "dimensionless", "note": "Overall (turbine*generator) efficiency at each flow ratio"}
+    },
+    "valid_ranges": {
+        "flow_rate_m3s": {"min": 0.0, "max": 33.0, "unit": "m3/s"},
+        "head_m": {"min": 50.0, "max": 150.0, "unit": "m"}
+    },
+    "source": "Dixon & Hall (2014), Fluid Mechanics and Thermodynamics of Turbomachinery; reuses EC128 F1a parameters"
+}

@@ -1,0 +1,95 @@
+{
+  "component": "EC075 Finned-Tube Heat Exchanger",
+  "fidelity": "F0a \u2014 empirical effectiveness curve",
+  "description": "Tabulated heat-exchanger effectiveness vs NTU at the rated capacity ratio Cr. Q = eps * Cmin * (T_h_in - T_c_in). eps looked up via np.interp on NTU.",
+  "lookup": {
+    "NTU_breakpoints": {
+      "value": [
+        0.0,
+        0.5,
+        1.0,
+        1.5,
+        2.0,
+        2.5,
+        3.0,
+        3.5,
+        4.0,
+        4.5,
+        5.0,
+        5.5,
+        6.0,
+        6.5,
+        7.0,
+        7.5,
+        8.0
+      ],
+      "unit": "dimensionless",
+      "note": "Number of transfer units = UA/Cmin"
+    },
+    "effectiveness_table": {
+      "value": [
+        0.0,
+        0.37329,
+        0.58112,
+        0.7008,
+        0.77115,
+        0.81301,
+        0.83811,
+        0.85323,
+        0.86236,
+        0.86788,
+        0.87122,
+        0.87325,
+        0.87448,
+        0.87522,
+        0.87568,
+        0.87595,
+        0.87612
+      ],
+      "unit": "dimensionless",
+      "note": "eps-NTU for crossflow_cmax_mixed at Cr=0.27"
+    }
+  },
+  "rated": {
+    "flow_config": {
+      "value": "crossflow_cmax_mixed",
+      "unit": "-"
+    },
+    "UA": {
+      "value": 1125.0,
+      "unit": "W/K"
+    },
+    "Cmin": {
+      "value": 1006.0,
+      "unit": "W/K"
+    },
+    "Cr": {
+      "value": 0.27,
+      "unit": "dimensionless",
+      "note": "Cmin/Cmax"
+    },
+    "NTU_rated": {
+      "value": 1.1183,
+      "unit": "dimensionless"
+    },
+    "effectiveness_rated": {
+      "value": 0.60943,
+      "unit": "dimensionless",
+      "note": "Design-point effectiveness"
+    }
+  },
+  "valid_ranges": {
+    "NTU": {
+      "min": 0.0,
+      "max": 8.0,
+      "unit": "dimensionless"
+    },
+    "Cr": {
+      "min": 0.0,
+      "max": 1.0,
+      "unit": "dimensionless"
+    }
+  },
+  "source": "Incropera & DeWitt (2006) ch.11; Kays & London (1984)",
+  "note": "U=45 W/m2K, A=25 m2 -> UA=1125 W/K; air-water cross-flow"
+}

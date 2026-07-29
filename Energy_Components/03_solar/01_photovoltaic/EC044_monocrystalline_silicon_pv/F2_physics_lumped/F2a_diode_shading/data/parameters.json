@@ -1,0 +1,24 @@
+{
+    "component_id": "EC044",
+    "component_name": "Monocrystalline Silicon PV",
+    "fidelity": "F2a -- Single-Diode Cell-Level + Bypass Diode + Partial Shading",
+    "source": "De Soto et al. (2006), Solar Energy 80; Bishop (1988) Solar Cells 25",
+    "module": {
+        "name": "Canadian Solar CS6K-280M (60-cell mono-Si)",
+        "N_s": {"value": 60, "unit": "cells", "note": "Cells in series"},
+        "I_L_ref": {"value": 9.39, "unit": "A", "note": "Photo-current at STC"},
+        "I_o_ref": {"value": 3.0e-11, "unit": "A", "note": "Diode saturation current at STC"},
+        "R_s_cell": {"value": 0.006, "unit": "Ohm", "note": "Series resistance per cell"},
+        "R_sh_cell": {"value": 6.67, "unit": "Ohm", "note": "Shunt resistance per cell (400/60)"},
+        "n_diode": {"value": 1.0, "unit": "-", "note": "Ideality factor"},
+        "E_g": {"value": 1.121, "unit": "eV", "note": "Bandgap energy Si"},
+        "alpha_sc": {"value": 0.004694, "unit": "A/K", "note": "Isc temp coeff"},
+        "V_bypass": {"value": -0.7, "unit": "V", "note": "Bypass diode forward voltage"},
+        "T_ref": {"value": 298.15, "unit": "K"},
+        "G_ref": {"value": 1000.0, "unit": "W/m2"}
+    },
+    "valid_ranges": {
+        "irradiance": {"min": 0.0, "max": 1200.0, "unit": "W/m2"},
+        "temperature": {"min": -20.0, "max": 80.0, "unit": "degC"}
+    }
+}

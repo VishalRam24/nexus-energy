@@ -1,0 +1,38 @@
+{
+    "component": "EC155 Geothermal District Heating",
+    "fidelity": "F1b",
+    "description": "Aquifer temperature decline + seasonal part-load + network T sensitivity + distribution loss T-dependence",
+    "unit": {
+        "name": "Generic Geothermal District Heating System",
+        "source": "Lund & Toth (2021); Rybach & Mongillo (2006); Rybach (2003)",
+        "T_source_design":          {"value": 80.0, "unit": "degC"},
+        "T_return_design":          {"value": 40.0, "unit": "degC"},
+        "T_net_supply_design":      {"value": 70.0, "unit": "degC",
+                                     "note": "District heating network supply temperature"},
+        "m_dot_geo_design":         {"value": 50.0, "unit": "kg/s"},
+        "cp_geo":                   {"value": 4100.0, "unit": "J/(kg*K)"},
+        "heat_transfer_efficiency": {"value": 0.90, "unit": "dimensionless",
+                                     "note": "HX effectiveness geo->network; 0.85-0.95"},
+        "distribution_losses_base": {"value": 0.08, "unit": "dimensionless",
+                                     "note": "Base pipe distribution loss at 70 degC; 5-12% typical"},
+        "dist_loss_T_coeff":        {"value": 0.002, "unit": "1/degC",
+                                     "note": "Extra distribution loss per degC above 60 degC supply"},
+        "pump_power_fraction":      {"value": 0.02, "unit": "dimensionless",
+                                     "note": "Pump power as fraction of Q_extracted; ~2% for geothermal DH"},
+        "decline_rate_degC_per_yr": {"value": 0.3, "unit": "degC/yr",
+                                     "note": "Aquifer T decline; 0.1-0.5 degC/yr for managed fields (Rybach & Mongillo 2006)"},
+        "k_standby":                {"value": 0.10, "unit": "dimensionless",
+                                     "note": "Fractional extra standby/HX penalty at part load"},
+        "k_pressure_backpressure":  {"value": 0.15, "unit": "dimensionless",
+                                     "note": "Flow reduction per unit excess flow above design"},
+        "PLR_min":                  {"value": 0.1, "unit": "dimensionless"}
+    },
+    "valid_ranges": {
+        "T_source_degC":      {"min": 50.0,  "max": 150.0, "unit": "degC"},
+        "m_dot_geo_kg_s":     {"min": 5.0,   "max": 200.0, "unit": "kg/s"},
+        "T_return_degC":      {"min": 20.0,  "max": 60.0,  "unit": "degC"},
+        "T_net_supply_degC":  {"min": 40.0,  "max": 90.0,  "unit": "degC"},
+        "PLR":                {"min": 0.1,   "max": 1.0},
+        "years_operation":    {"min": 0.0,   "max": 50.0,  "unit": "years"}
+    }
+}

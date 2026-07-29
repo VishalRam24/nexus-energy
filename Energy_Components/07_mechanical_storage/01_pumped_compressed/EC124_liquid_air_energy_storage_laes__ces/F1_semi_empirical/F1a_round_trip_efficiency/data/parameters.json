@@ -1,0 +1,25 @@
+{
+    "component": "EC124 Liquid Air Energy Storage (LAES / CES)",
+    "fidelity": "F1a",
+    "description": "Round-trip efficiency model: liquefaction (charge) and pump-evaporate-expand (discharge), cryogenic SOC by liquid mass",
+    "unit": {
+        "name": "Generic Stand-alone LAES (Highview-class)",
+        "source": "Morgan et al. (2015), Applied Energy, 137, 845-853; Sciacovelli et al. (2017), Applied Energy, 190, 84-98",
+        "specific_liquefaction_kwh_per_kg": {"value": 0.40, "unit": "kWh/kg", "note": "Electrical work for liquefaction (~0.36-0.50 kWh/kg)"},
+        "specific_discharge_kwh_per_kg": {"value": 0.36, "unit": "kWh/kg", "note": "Specific energy from expander train (incl. cold recycle); net electrical = w_disch * eta_p * eta_e * eta_g"},
+        "eta_liquefier": {"value": 0.95, "unit": "dimensionless", "note": "Pump+motor mechanical efficiency on charge"},
+        "eta_pump": {"value": 0.85, "unit": "dimensionless"},
+        "eta_expander": {"value": 0.85, "unit": "dimensionless"},
+        "eta_generator": {"value": 0.97, "unit": "dimensionless"},
+        "tank_capacity_kg": {"value": 1.5e6, "unit": "kg", "note": "Liquid air tank (~1500 t)"},
+        "T_storage": {"value": 77.0, "unit": "K", "note": "Cryogenic storage at -196 C"},
+        "boil_off_per_day": {"value": 0.005, "unit": "fraction/day", "note": "Boil-off ~0.5%/day"},
+        "rho_liquid_air": {"value": 870.0, "unit": "kg/m3"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "-"},
+        "m_dot_liquid_kgs": {"min": 0.0, "max": 200.0, "unit": "kg/s"},
+        "duration_hours": {"min": 0.0, "max": 168.0, "unit": "h"},
+        "mode": {"values": ["charge", "discharge", "idle"]}
+    }
+}

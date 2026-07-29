@@ -1,0 +1,23 @@
+{
+    "component": "EC181 Transmission Line",
+    "fidelity": "F1a",
+    "description": "Lumped pi-model: R, X (series), B (shunt susceptance). Calculates voltage drop, current, losses, and receiving-end power.",
+    "unit": {
+        "name": "Generic 230kV Overhead Transmission Line",
+        "source": "Glover, Sarma, Overbye (2012), Power Systems Analysis and Design, 5th ed., Cengage",
+        "V_base_kV": {"value": 230.0, "unit": "kV", "note": "Base voltage (line-to-line)"},
+        "S_base_MVA": {"value": 100.0, "unit": "MVA", "note": "Base apparent power"},
+        "R_pu_per_km": {"value": 0.0001, "unit": "pu/km", "note": "Series resistance per km (230kV, ACSR conductor)"},
+        "X_pu_per_km": {"value": 0.0004, "unit": "pu/km", "note": "Series reactance per km"},
+        "B_pu_per_km": {"value": 0.00003, "unit": "pu/km", "note": "Shunt susceptance per km (line charging)"},
+        "length_km": {"value": 200.0, "unit": "km", "note": "Default line length"},
+        "I_rated_pu": {"value": 1.0, "unit": "pu", "note": "Thermal rating (1 pu = S_base/V_base)"}
+    },
+    "valid_ranges": {
+        "V_s_pu": {"min": 0.8, "max": 1.2, "unit": "pu"},
+        "delta_rad": {"min": -0.5236, "max": 0.5236, "unit": "rad", "note": "+/-30 degrees"},
+        "length_km": {"min": 10.0, "max": 1000.0, "unit": "km"},
+        "P_load_pu": {"min": 0.0, "max": 2.0, "unit": "pu"},
+        "Q_load_pu": {"min": -1.0, "max": 1.0, "unit": "pu"}
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "component": "EC036 Vanadium Redox Flow Battery (VRFB)",
+    "fidelity": "F1a",
+    "description": "Cell/stack voltage using Nernst equation + ohmic resistance; V2+/V3+ negative and VO2+/VO2+ positive couple",
+    "unit": {
+        "name": "Generic 40-cell VRFB stack, 600 cm2 electrode area",
+        "source": "Blanc, C., Rufer, A. (2010). Multiphysics and Energetic Modeling of a Vanadium Redox Flow Battery. Paths to Sustainable Energy, InTech.",
+        "N_cells": {"value": 40, "unit": "dimensionless"},
+        "electrode_area_cm2": {"value": 600.0, "unit": "cm2"},
+        "E0": {"value": 1.26, "unit": "V", "note": "Standard cell potential for V2+/V3+ || VO2+/VO2+"},
+        "R_cell_ohm_cm2": {"value": 0.8, "unit": "Ohm.cm2", "note": "Area-specific resistance"},
+        "T_K": {"value": 298.0, "unit": "K", "note": "Operating temperature"},
+        "n": {"value": 1, "unit": "dimensionless", "note": "electrons transferred per reaction"},
+        "electrolyte_conc_M": {"value": 1.6, "unit": "mol/L"}
+    },
+    "valid_ranges": {
+        "soc":     {"min": 0.1, "max": 0.9, "unit": "dimensionless", "note": "Avoid 0 and 1 (Nernst singularity)"},
+        "current": {"min": -100.0, "max": 100.0, "unit": "A", "note": "positive=discharge"}
+    }
+}

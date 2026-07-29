@@ -1,0 +1,27 @@
+{
+    "component": "EC122 Pumped Hydro Storage (PHS)",
+    "fidelity": "F1b",
+    "description": "Head-variation model: variable head with SOC, penstock friction (Darcy-Weisbach), charge/discharge modes",
+    "unit": {
+        "name": "Generic Large-Scale PHS with Variable Head",
+        "source": "Rehman et al. (2015), RSER 44:586-598; Mosonyi (1991) Water Power Development",
+        "H_max": {"value": 500.0, "unit": "m", "note": "Maximum head at SOC=1 (upper reservoir full)"},
+        "H_min": {"value": 480.0, "unit": "m", "note": "Minimum head at SOC=0 (upper reservoir empty)"},
+        "penstock_length": {"value": 1000.0, "unit": "m", "note": "Penstock length"},
+        "penstock_diameter": {"value": 3.0, "unit": "m", "note": "Penstock inner diameter"},
+        "friction_factor": {"value": 0.015, "unit": "dimensionless", "note": "Darcy friction factor (steel penstock)"},
+        "eta_turbine": {"value": 0.90, "unit": "dimensionless", "note": "Turbine efficiency"},
+        "eta_pump": {"value": 0.88, "unit": "dimensionless", "note": "Pump efficiency"},
+        "eta_generator": {"value": 0.97, "unit": "dimensionless", "note": "Generator efficiency"},
+        "eta_motor": {"value": 0.97, "unit": "dimensionless", "note": "Motor efficiency"},
+        "rho": {"value": 1000.0, "unit": "kg/m3"},
+        "g": {"value": 9.81, "unit": "m/s2"},
+        "Q_design": {"value": 50.0, "unit": "m3/s", "note": "Design flow rate"},
+        "reservoir_volume": {"value": 5000000.0, "unit": "m3"}
+    },
+    "valid_ranges": {
+        "SOC": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "flow_rate_m3s": {"min": 0.0, "max": 100.0, "unit": "m3/s"},
+        "mode": {"values": ["charge", "discharge"]}
+    }
+}

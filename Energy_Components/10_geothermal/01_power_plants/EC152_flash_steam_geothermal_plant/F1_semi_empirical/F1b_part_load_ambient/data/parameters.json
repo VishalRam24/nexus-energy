@@ -1,0 +1,46 @@
+{
+    "component": "EC152 Flash Steam Geothermal Plant",
+    "fidelity": "F1b",
+    "description": "Part-load + ambient derating + brine chemistry scaling + resource decline + double-flash option",
+    "unit": {
+        "name": "Generic Single/Double-Flash Geothermal Plant",
+        "source": "DiPippo (2015) Chapters 5-6; Zarrouk & Moon (2014); Vaca-Mier et al. (2003)",
+        "T_brine_design_degC":        {"value": 240.0, "unit": "degC"},
+        "T_reject_design_degC":       {"value": 30.0,  "unit": "degC"},
+        "m_dot_brine_design_kg_s":    {"value": 100.0, "unit": "kg/s"},
+        "cp_brine_J_kgK":             {"value": 4100.0, "unit": "J/(kg*K)"},
+        "eta_utilization":            {"value": 0.45, "unit": "dimensionless",
+                                       "note": "Flash plant utilisation; 0.40-0.55 typical"},
+        "T_condenser_offset":         {"value": 5.0,  "unit": "degC"},
+        "P_rated_kw":                 {"value": 20000.0, "unit": "kW"},
+        "decline_rate_per_yr":        {"value": 0.015, "unit": "1/yr",
+                                       "note": "Brine temperature/flow decline ~1.5%/yr; Lukawski et al. (2014)"},
+        "ambient_derating_coeff":     {"value": 0.005, "unit": "1/degC"},
+        "cooling_mode":               {"value": "wet", "unit": "text",
+                                       "note": "wet=cooling tower (0.5 coupling), dry=air-cooled (1.0)"},
+        "scale_penalty_per_lsi":      {"value": 0.06, "unit": "1/LSI_unit",
+                                       "note": "6% output loss per LSI unit above reference; Vaca-Mier (2003) 5-15%"},
+        "LSI_reference":              {"value": 1.0, "unit": "dimensionless",
+                                       "note": "LSI proxy at design conditions (TDS_base, T_brine_design)"},
+        "TDS_base_g_L":               {"value": 10.0, "unit": "g/L",
+                                       "note": "Baseline TDS (moderate brine, 5-30 g/L typical)"},
+        "T_double_flash_min_degC":    {"value": 200.0, "unit": "degC",
+                                       "note": "Minimum brine T for double flash to be beneficial; DiPippo (2015) p.157"},
+        "double_flash_bonus":         {"value": 0.20, "unit": "dimensionless",
+                                       "note": "~20% power increase for double vs single flash at 240 degC (DiPippo 2015)"},
+        "PLR_min":                    {"value": 0.3, "unit": "dimensionless"}
+    },
+    "part_load_curve": {
+        "PLR_points": [0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+        "eta_ratio":  [0.75, 0.82, 0.87, 0.91, 0.95, 0.97, 0.99, 1.00],
+        "note": "Flash steam turbine part-load: slightly worse than dry steam due to separator losses (DiPippo 2015)"
+    },
+    "valid_ranges": {
+        "T_brine_degC":       {"min": 150.0, "max": 350.0, "unit": "degC"},
+        "m_dot_brine_kg_s":   {"min": 10.0,  "max": 500.0, "unit": "kg/s"},
+        "T_reject_degC":      {"min": 5.0,   "max": 50.0,  "unit": "degC"},
+        "PLR":                {"min": 0.3,   "max": 1.0},
+        "years_operation":    {"min": 0.0,   "max": 50.0,  "unit": "years"},
+        "TDS_g_L":            {"min": 0.5,   "max": 100.0, "unit": "g/L"}
+    }
+}

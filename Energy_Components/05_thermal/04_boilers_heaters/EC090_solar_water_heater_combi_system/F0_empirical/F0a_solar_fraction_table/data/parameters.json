@@ -1,0 +1,35 @@
+{
+  "component_id": "EC090",
+  "component_name": "Solar Water Heater Combi System",
+  "fidelity": "F0a \u2014 empirical lookup",
+  "source": "EC090 F1a solar combi params; Duffie & Beckman (2013) Solar Engineering of Thermal Processes",
+  "eta_boiler": {
+    "value": 0.9,
+    "unit": "-",
+    "note": "Auxiliary boiler efficiency"
+  },
+  "Q_demand_W": {
+    "value": 10000.0,
+    "unit": "W",
+    "note": "Nominal heat demand"
+  },
+  "table": {
+    "G": [
+      0.0,
+      200.0,
+      400.0,
+      600.0,
+      800.0,
+      1000.0
+    ],
+    "f_solar": [
+      0.0,
+      0.12,
+      0.24,
+      0.36,
+      0.48,
+      0.6
+    ],
+    "note": "Solar fraction vs irradiance (eta_coll=0.5, A=6 m2)"
+  }
+}

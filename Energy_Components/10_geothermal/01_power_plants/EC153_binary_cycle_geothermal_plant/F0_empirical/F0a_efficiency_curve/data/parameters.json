@@ -1,0 +1,23 @@
+{
+    "component": "EC153 Binary Cycle Geothermal Plant",
+    "fidelity": "F0a",
+    "description": "Empirical net-plant-efficiency curve vs resource temperature. eta_net(T) tabulated from eta = eta_utilization * eta_Carnot at the F1a design rejection temperature. 1-D np.interp lookup.",
+    "source": "DiPippo, R. (2015). Geothermal Power Plants, 4th ed. Butterworth-Heinemann. Breakpoints reuse EC153 F1a exergy-model design numbers (eta_utilization=0.45, T_reject=25 degC).",
+    "T_reject_ref": {"value": 25.0, "unit": "degC", "note": "Rejection temperature at which the efficiency curve was tabulated (F1a design)"},
+    "eta_utilization": {"value": 0.45, "unit": "dimensionless", "note": "ORC binary utilization efficiency reused from F1a (HX irreversibilities, pump work, parasitics)"},
+    "rated": {
+        "T_geo_design": {"value": 150.0, "unit": "degC"},
+        "P_rated": {"value": 5000.0, "unit": "kW"},
+        "eta_net_rated": {"value": 0.1329, "unit": "dimensionless", "note": "Net plant efficiency at T_geo=150 degC, T_reject=25 degC"}
+    },
+    "curve": {
+        "note": "Net plant efficiency vs resource temperature (degC) at T_reject=25 degC. eta = 0.45*(1 - (Trej+273.15)/(Tgeo+273.15)).",
+        "T_geo_degC": [80.0, 100.0, 120.0, 150.0, 170.0, 200.0],
+        "eta_net": [0.0701, 0.0904, 0.1087, 0.1329, 0.1472, 0.1664]
+    },
+    "valid_ranges": {
+        "T_geothermal": {"min": 80.0, "max": 200.0, "unit": "degC"},
+        "flow_rate_kgs": {"min": 10.0, "max": 100.0, "unit": "kg/s"},
+        "cp_steam": {"value": 4186.0, "unit": "J/kgK", "note": "Brine specific heat (approx. water)"}
+    }
+}

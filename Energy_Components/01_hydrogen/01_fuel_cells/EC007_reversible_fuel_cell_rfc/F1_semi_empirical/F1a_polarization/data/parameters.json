@@ -1,0 +1,14 @@
+{
+  "default_parameters": {
+    "T": 353.15,
+    "E_rev": 1.23,
+    "i0": 1e-3,
+    "R_ohm": 0.3,
+    "j_L_fc": 1.0,
+    "j_L_el": 2.0,
+    "alpha": 0.5,
+    "n_cells": 1,
+    "area": 100.0
+  },
+  "description": "RFC parameters. j > 0 = fuel cell mode (V decreases). j < 0 = electrolyzer mode (V increases above E_rev). j_L_fc: FC limiting current (A/cm^2). j_L_el: EL limiting current (A/cm^2)."
+}

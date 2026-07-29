@@ -1,0 +1,30 @@
+{
+    "component_id": "EC162",
+    "component_name": "Resonant LLC Converter",
+    "fidelity": "F2a — FHA Resonant Tank (DC gain M(fn,Q,k), ZVS, lumped output-filter ODE)",
+    "source": "Steigerwald, R.L. (1988) IEEE Trans. Power Electronics 3(2):174-182; Yang, B. (2003) LLC resonant converter Ph.D. dissertation, Virginia Tech; Yang et al. (2002) IEEE APEC.",
+    "unit": {
+        "name": "Generic 400V/12V 2kW Half-Bridge LLC Resonant Converter — Physics-Lumped FHA",
+        "v_in_nominal": {"value": 400.0, "unit": "V", "note": "Nominal DC bus input"},
+        "v_out_nominal": {"value": 12.0, "unit": "V", "note": "Nominal regulated output"},
+        "n_turns": {"value": 16.0, "unit": "-", "note": "Transformer turns ratio N_p/N_s", "source": "Yang (2003)"},
+        "L_r": {"value": 5.0e-6, "unit": "H", "note": "Series resonant inductance (5 uH)"},
+        "C_r": {"value": 5.066e-7, "unit": "F", "note": "Resonant capacitance (~507 nF) — sets f_r=100kHz with L_r=5uH"},
+        "L_m": {"value": 25.0e-6, "unit": "H", "note": "Magnetizing inductance (25 uH); k = L_m/L_r = 5"},
+        "f_r": {"value": 100000.0, "unit": "Hz", "note": "Series resonant frequency 1/(2*pi*sqrt(Lr*Cr))"},
+        "C_out": {"value": 470.0e-6, "unit": "F", "note": "Output filter capacitance (470 uF)"},
+        "R_ds_on": {"value": 0.020, "unit": "Ohm", "note": "Primary MOSFET on-resistance at T_ref (20 mohm)"},
+        "V_f": {"value": 0.5, "unit": "V", "note": "Secondary rectifier diode forward voltage"},
+        "R_Lr": {"value": 0.020, "unit": "Ohm", "note": "Resonant inductor + primary winding ESR (20 mohm)"},
+        "R_sec": {"value": 0.003, "unit": "Ohm", "note": "Secondary winding ESR (3 mohm)"},
+        "K_core": {"value": 0.6, "unit": "W", "note": "Lumped core loss coefficient at f_r (Steinmetz-lumped)"},
+        "P_rated": {"value": 2000.0, "unit": "W", "note": "Rated output power 2 kW"}
+    },
+    "valid_ranges": {
+        "v_in": {"min": 200.0, "max": 600.0, "unit": "V"},
+        "f_sw": {"min": 50000.0, "max": 300000.0, "unit": "Hz"},
+        "r_load": {"min": 0.05, "max": 20.0, "unit": "Ohm"},
+        "duration_s": {"min": 1.0e-4, "max": 1.0e-1, "unit": "s"},
+        "dt": {"min": 1.0e-7, "max": 1.0e-4, "unit": "s"}
+    }
+}

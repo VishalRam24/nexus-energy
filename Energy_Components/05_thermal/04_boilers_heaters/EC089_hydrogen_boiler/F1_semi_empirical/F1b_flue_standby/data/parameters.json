@@ -1,0 +1,43 @@
+{
+    "component_id": "EC089",
+    "component_name": "Hydrogen Boiler (100% H2 Combustion)",
+    "fidelity": "F1b — Flue Loss (H2O-rich exhaust) + Condensing/Non-Condensing + Standby",
+    "source": "Hy4Heat WP6 (2021); BEIS UK Hydrogen Heating Trials (2022); Cellek & Pinarbasi (2018) Int. J. Hydrogen Energy 43, 1194-1207; Gas Quality Harmonisation (ACER 2021); Woolley et al. (2022) Appl. Energy.",
+    "default_parameters": {
+        "Q_rated": 30.0,
+        "a0": 0.72,
+        "a1": 0.40,
+        "a2": -0.15,
+        "PLR_min": 0.10,
+        "LHV_H2_MJ_kg": 120.0,
+        "HHV_H2_MJ_kg": 141.8,
+        "excess_air_ratio": 1.25,
+        "T_flue_noncond": 70.0,
+        "T_flue_cond": 45.0,
+        "T_ambient": 20.0,
+        "flue_gas_cp": 1.90,
+        "condensing": true,
+        "standby_loss_fraction": 0.006
+    },
+    "parameter_metadata": {
+        "Q_rated": {"description": "Rated thermal output", "unit": "kW", "default": 30.0},
+        "a0": {"description": "Part-load polynomial constant", "unit": "-", "default": 0.72},
+        "a1": {"description": "Part-load polynomial linear", "unit": "-", "default": 0.40},
+        "a2": {"description": "Part-load polynomial quadratic", "unit": "-", "default": -0.15},
+        "PLR_min": {"description": "Minimum stable PLR", "unit": "-", "default": 0.10},
+        "LHV_H2_MJ_kg": {"description": "Lower heating value of hydrogen", "unit": "MJ/kg", "default": 120.0},
+        "HHV_H2_MJ_kg": {"description": "Higher heating value of hydrogen", "unit": "MJ/kg", "default": 141.8,
+                          "notes": "Difference = latent heat of H2O in products"},
+        "excess_air_ratio": {"description": "Excess air ratio lambda for H2 combustion", "unit": "-", "default": 1.25,
+                              "notes": "H2 burns cleanly; slightly richer than NG for NOx control"},
+        "T_flue_noncond": {"description": "Flue gas temperature — non-condensing mode", "unit": "degC", "default": 70.0,
+                            "notes": "Above dew point (~55-58 degC for H2; H2O partial pressure higher than NG)"},
+        "T_flue_cond": {"description": "Flue gas temperature — condensing mode", "unit": "degC", "default": 45.0,
+                         "notes": "Below dew point; condensate formed; latent heat partially recovered"},
+        "T_ambient": {"description": "Combustion air / ambient temperature", "unit": "degC", "default": 20.0},
+        "flue_gas_cp": {"description": "Specific heat of H2O-rich flue gas", "unit": "kJ/kgK", "default": 1.90,
+                         "notes": "Higher than NG flue (~1.05) because H2 combustion products are ~100% H2O"},
+        "condensing": {"description": "True = condensing operation (latent recovery active)", "unit": "bool", "default": true},
+        "standby_loss_fraction": {"description": "Standby heat loss fraction of Q_rated", "unit": "-", "default": 0.006}
+    }
+}

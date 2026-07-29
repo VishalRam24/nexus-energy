@@ -1,0 +1,24 @@
+{
+    "component": "EC116 Pressurized Water Reactor (PWR)",
+    "fidelity": "F1a",
+    "description": "Steady-state power map: P_electric = P_thermal * eta_cycle * eta_gen * f_PLR",
+    "unit": {
+        "name": "Generic 3000 MWth / 1000 MWe PWR (4-loop Westinghouse type)",
+        "source": "Todreas & Kazimi (2012), Nuclear Systems, 2nd ed., CRC Press",
+        "P_thermal_mw": {"value": 3000.0, "unit": "MW_th", "note": "Reactor core thermal power at full load"},
+        "P_electric_mw": {"value": 1000.0, "unit": "MW_e", "note": "Net electrical output at full load"},
+        "eta_cycle": {"value": 0.33, "unit": "dimensionless", "note": "Rankine steam cycle efficiency"},
+        "eta_gen": {"value": 0.99, "unit": "dimensionless", "note": "Turbogenerator electrical efficiency"},
+        "T_inlet_c": {"value": 292.0, "unit": "degC", "note": "Coolant inlet temperature (cold leg)"},
+        "T_outlet_c": {"value": 326.0, "unit": "degC", "note": "Coolant outlet temperature (hot leg) at full power"},
+        "P_pressure_bar": {"value": 155.0, "unit": "bar", "note": "Primary circuit pressure"},
+        "PLR_min": {"value": 0.5, "unit": "dimensionless", "note": "Minimum part-load ratio for stable operation"},
+        "cp_coolant_kjkgk": {"value": 5.2, "unit": "kJ/(kg·K)", "note": "Specific heat of pressurized water at ~310 degC, 155 bar"},
+        "m_dot_nominal_kgs": {"value": 18000.0, "unit": "kg/s", "note": "Total primary coolant flow (4 loops)"},
+        "PLR_linear_derate_below": {"value": 0.5, "unit": "dimensionless", "note": "Below this PLR, efficiency linearly derated to 0 at PLR=0"}
+    },
+    "valid_ranges": {
+        "part_load_ratio": {"min": 0.5, "max": 1.0, "unit": "dimensionless"},
+        "coolant_flow_kgs": {"min": 9000.0, "max": 18000.0, "unit": "kg/s"}
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "component": "EC072 CO2 Transcritical Heat Pump",
+    "fidelity": "F1b",
+    "description": "Transcritical R744 HP. Extends F1a with: (1) part-load COP degradation via PLF; (2) T_water_in dependence on optimum high-side pressure and gas-cooler effectiveness; (3) cycling losses below PLR_min.",
+    "unit": {
+        "name": "Generic 50 kW_th transcritical CO2 heat pump for high-temperature water heating",
+        "source": "Lorentzen (1994), Int. J. Refrigeration 17, 292-301; Sarkar et al. (2004), Int. J. Refrigeration 27, 830-838; Liao et al. (2000), Appl. Thermal Eng. 20, 831-841; Kim et al. (2004), Int. J. Refrigeration 27, 830-838.",
+        "rated_heating_capacity": {"value": 50.0,  "unit": "kW_th"},
+        "rated_cop":              {"value": 3.5,   "unit": "dimensionless"},
+        "carnot_fraction_base":   {"value": 0.42,  "unit": "dimensionless"},
+        "P_high_opt_a": {"value": 2.778, "unit": "bar/K"},
+        "P_high_opt_b": {"value": 0.0157,"unit": "bar/K2"},
+        "P_high_opt_c": {"value": 32.0,  "unit": "bar"},
+        "T_gc_out_pinch":  {"value": 3.0, "unit": "K"},
+        "auxiliary_power": {"value": 0.1, "unit": "kW"},
+        "C_d":    {"value": 0.20, "unit": "dimensionless", "note": "Part-load degradation coefficient; CO2 compressor cycling is more efficient than reciprocating, so C_d=0.20 < ASHP 0.25 — Kim et al. (2004) CO2 inverter data"},
+        "PLR_min":{"value": 0.15, "unit": "dimensionless", "note": "Minimum modulation before on/off cycling; CO2 inverter drives allow ~15% — Liao et al. (2000)"},
+        "cycling_loss_factor": {"value": 0.025, "unit": "dimensionless"},
+        "startup_penalty_kw":  {"value": 0.2,   "unit": "kW"},
+        "gamma_T_w_in": {"value": 0.008, "unit": "1/K", "note": "COP penalty per K increase of T_water_in above T_w_in_design: higher inlet T means smaller gas-cooler dT, worse heat extraction — Sarkar et al. (2004) Fig.4"},
+        "T_w_in_design": {"value": 15.0, "unit": "degC", "note": "Design water inlet temperature"}
+    },
+    "valid_ranges": {
+        "T_evap":      {"min": -20.0, "max": 20.0, "unit": "degC"},
+        "T_water_in":  {"min": 5.0,   "max": 50.0, "unit": "degC"},
+        "T_water_out": {"min": 40.0,  "max": 90.0, "unit": "degC"},
+        "part_load_ratio": {"min": 0.0, "max": 1.0, "unit": "dimensionless"}
+    }
+}

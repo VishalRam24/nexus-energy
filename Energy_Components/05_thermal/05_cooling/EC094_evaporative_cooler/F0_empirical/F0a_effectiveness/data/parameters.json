@@ -1,0 +1,26 @@
+{
+  "component_id": "EC094",
+  "component_name": "Evaporative Cooler (Direct)",
+  "fidelity": "F0a \u2014 empirical lookup",
+  "source": "EC094 F1a effectiveness params; ASHRAE Handbook Fundamentals (2021) Ch.41 Evaporative Cooling",
+  "epsilon": {
+    "value": 0.85,
+    "unit": "-",
+    "note": "Saturation (wet-bulb) effectiveness"
+  },
+  "Cp_air_J_kgK": {
+    "value": 1005.0,
+    "unit": "J/kgK",
+    "note": "Air specific heat"
+  },
+  "rho_air_kg_m3": {
+    "value": 1.2,
+    "unit": "kg/m3",
+    "note": "Air density"
+  },
+  "P_fan_W": {
+    "value": 200.0,
+    "unit": "W",
+    "note": "Fan electrical power"
+  }
+}

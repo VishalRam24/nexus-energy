@@ -1,0 +1,36 @@
+{
+    "component": "EC047 Thin-Film CIGS PV",
+    "fidelity": "F1a",
+    "description": "Single-diode model (De Soto 5-parameter) for CIGS thin-film, pure NumPy",
+    "module": {
+        "name": "Solar Frontier SF170-S (CIGS, ~170W)",
+        "source": "Solar Frontier SF170-S datasheet (CIS/CIGS thin-film module)",
+        "technology": "CIGS",
+        "p_mp_stc": {"value": 170.0, "unit": "W"},
+        "v_oc_stc": {"value": 112.0, "unit": "V"},
+        "i_sc_stc": {"value": 2.20, "unit": "A"},
+        "v_mp_stc": {"value": 87.5, "unit": "V"},
+        "i_mp_stc": {"value": 1.95, "unit": "A"},
+        "alpha_sc": {"value": 0.0002, "unit": "A/K", "note": "Short-circuit current temp coeff"},
+        "beta_voc": {"value": -0.336, "unit": "V/K", "note": "Voc temp coeff (~-0.30 %/K)"},
+        "gamma_pmp": {"value": -0.0031, "unit": "1/K", "note": "Power temp coeff (~-0.31 %/K)"},
+        "cells_in_series": {"value": 144, "unit": "cells"},
+        "area": {"value": 1.232, "unit": "m2"}
+    },
+    "desoto_params": {
+        "description": "De Soto 5-parameter single-diode model coefficients at STC",
+        "source": "Fitted from Solar Frontier SF170-S datasheet specs",
+        "I_L_ref": {"value": 1.85, "unit": "A", "note": "Light-generated current at STC"},
+        "I_o_ref": {"value": 5.0e-12, "unit": "A", "note": "Diode saturation current at STC"},
+        "R_s": {"value": 2.5, "unit": "Ohm", "note": "Series resistance"},
+        "R_sh_ref": {"value": 1000.0, "unit": "Ohm", "note": "Shunt resistance at STC"},
+        "a_ref": {"value": 4.5, "unit": "V", "note": "Modified ideality factor n*Ns*Vt at STC"},
+        "EgRef": {"value": 1.15, "unit": "eV", "note": "Bandgap energy at STC (CIGS, near-optimal for AM1.5)"},
+        "dEgdT": {"value": -0.00011, "unit": "eV/K", "note": "Bandgap temperature coefficient"}
+    },
+    "valid_ranges": {
+        "irradiance": {"min": 0.0, "max": 1200.0, "unit": "W/m2"},
+        "cell_temperature": {"min": -10.0, "max": 80.0, "unit": "degC"},
+        "note": "STC = 1000 W/m2, 25C cell temperature"
+    }
+}

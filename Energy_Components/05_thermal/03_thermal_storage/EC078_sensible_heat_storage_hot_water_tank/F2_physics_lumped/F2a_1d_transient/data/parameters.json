@@ -1,0 +1,32 @@
+{
+    "component_id": "EC078",
+    "component_name": "Hot Water Tank TES",
+    "fidelity": "F2a — 1D Transient Stratified Tank Model (20-node)",
+    "source": "Duffie & Beckman (2013) Solar Engineering of Thermal Processes; Kleinbach et al. (1993) Solar Energy 50(2)",
+    "unit": {
+        "name": "Generic 2000L Stratified Hot Water Tank",
+        "n_nodes": {"value": 20, "unit": "-", "note": "Number of vertical discretization nodes"},
+        "V_tank": {"value": 2.0, "unit": "m3", "note": "Total tank volume"},
+        "H_tank": {"value": 2.0, "unit": "m", "note": "Tank height"},
+        "D_tank": {"value": 1.128, "unit": "m", "note": "Tank diameter (for 2m3 cylinder)"},
+        "rho_water": {"value": 985.0, "unit": "kg/m3", "note": "Water density (avg ~60C)"},
+        "cp_water": {"value": 4186.0, "unit": "J/(kg.K)", "note": "Water specific heat"},
+        "k_water": {"value": 0.65, "unit": "W/(m.K)", "note": "Water thermal conductivity"},
+        "k_eff_multiplier": {"value": 3.0, "unit": "-", "note": "Effective conductivity multiplier (accounts for mixing)"},
+        "U_loss": {"value": 0.5, "unit": "W/(m2.K)", "note": "Overall tank wall heat loss coefficient"},
+        "T_ambient": {"value": 293.15, "unit": "K", "note": "Ambient temperature (20 C)"},
+        "T_init_top": {"value": 333.15, "unit": "K", "note": "Initial top temperature (60 C)"},
+        "T_init_bottom": {"value": 293.15, "unit": "K", "note": "Initial bottom temperature (20 C)"},
+        "charge_node_top": {"value": 0, "unit": "-", "note": "Node index for hot water injection (top)"},
+        "charge_node_bottom": {"value": 19, "unit": "-", "note": "Node index for cold return (bottom)"},
+        "discharge_node_top": {"value": 0, "unit": "-", "note": "Node index for hot water extraction (top)"},
+        "discharge_node_bottom": {"value": 19, "unit": "-", "note": "Node index for cold water supply (bottom)"}
+    },
+    "valid_ranges": {
+        "m_dot_charge": {"min": 0.0, "max": 2.0, "unit": "kg/s"},
+        "m_dot_discharge": {"min": 0.0, "max": 2.0, "unit": "kg/s"},
+        "T_charge_in": {"min": 313.15, "max": 373.15, "unit": "K"},
+        "T_discharge_in": {"min": 278.15, "max": 313.15, "unit": "K"},
+        "duration_s": {"min": 1.0, "max": 86400.0, "unit": "s"}
+    }
+}

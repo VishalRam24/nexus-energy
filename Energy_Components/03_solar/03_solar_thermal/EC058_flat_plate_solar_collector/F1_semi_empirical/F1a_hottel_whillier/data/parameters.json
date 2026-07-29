@@ -1,0 +1,19 @@
+{
+    "component": "EC058 Flat Plate Solar Collector",
+    "fidelity": "F1a",
+    "description": "Useful heat gain using Hottel-Whillier-Bliss equation",
+    "unit": {
+        "name": "Generic 2m2 Flat-Plate Collector (e.g. Viessmann Vitosol 200-F)",
+        "source": "Duffie & Beckman (2013), 'Solar Engineering of Thermal Processes', 4th ed., Wiley, Ch.6",
+        "area": {"value": 2.0, "unit": "m2", "note": "Gross aperture area"},
+        "F_R_tau_alpha": {"value": 0.75, "unit": "dimensionless", "note": "Heat removal factor * optical efficiency product F_R*(tau*alpha)"},
+        "F_R_U_L": {"value": 4.5, "unit": "W/m2K", "note": "Heat removal factor * overall loss coefficient F_R*U_L"},
+        "m_dot": {"value": 0.04, "unit": "kg/s", "note": "Mass flow rate of heat transfer fluid (water) per m2 ~ 0.02 kg/s/m2"},
+        "cp_fluid": {"value": 4182.0, "unit": "J/kgK", "note": "Specific heat capacity of water"}
+    },
+    "valid_ranges": {
+        "irradiance": {"min": 0.0, "max": 1200.0, "unit": "W/m2"},
+        "T_inlet": {"min": 10.0, "max": 90.0, "unit": "degC"},
+        "T_ambient": {"min": -10.0, "max": 45.0, "unit": "degC"}
+    }
+}

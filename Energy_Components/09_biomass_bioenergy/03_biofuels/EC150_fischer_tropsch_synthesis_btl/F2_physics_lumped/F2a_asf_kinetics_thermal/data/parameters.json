@@ -1,0 +1,31 @@
+{
+    "component_id": "EC150",
+    "component_name": "Fischer-Tropsch Synthesis (BTL)",
+    "fidelity": "F2a — ASF Kinetics + Lumped Exothermic Thermal ODE",
+    "source": "Dry, M.E. (2002) Catal. Today 71:227; Anderson, R.B. (1984) The Fischer-Tropsch Synthesis, Academic Press (ASF distribution); Yates & Satterfield (1991) Energy Fuels 5:168 (LHHW CO rate, cobalt); Steynberg & Dry (2004) Fischer-Tropsch Technology, Elsevier",
+    "unit": {
+        "name": "Generic Low-Temperature Fischer-Tropsch Reactor (Cobalt catalyst, slurry/fixed-bed)",
+        "alpha_ASF":        {"value": 0.85,   "unit": "-",        "note": "ASF chain-growth probability (LTFT cobalt); set by T,P,H2/CO"},
+        "k0_FT":            {"value": 2.64e8, "unit": "mol/(kg_cat.s.bar)", "note": "LHHW pre-exponential, Yates-Satterfield form (cobalt), calibrated so single-pass CO conversion ~0.5-0.7 at 220degC matches Dry (2002)/F1a"},
+        "Ea_FT":            {"value": 92000.0,"unit": "J/mol",    "note": "Apparent activation energy for CO consumption (cobalt LTFT)"},
+        "K_ads":            {"value": 3.3,    "unit": "1/bar",    "note": "LHHW CO adsorption equilibrium constant (lumped)"},
+        "dH_rxn_per_CO":    {"value": 165000.0,"unit": "J/mol",   "note": "Exothermic heat released per mol CO converted (-CH2- + H2O), Dry 2002"},
+        "T_operating_degC": {"value": 220.0,  "unit": "degC",     "note": "Nominal reactor temperature (LTFT cobalt)"},
+        "P_operating_bar":  {"value": 25.0,   "unit": "bar",      "note": "Reactor pressure"},
+        "H2_CO_ratio":      {"value": 2.0,    "unit": "mol/mol",  "note": "Syngas H2:CO molar feed ratio (FT stoichiometry CO+2H2)"},
+        "LHV_FT_liquid_MJ_kg":{"value": 44.0, "unit": "MJ/kg",    "note": "LHV of FT C5+ liquid product (diesel-equivalent)"},
+        "W_cat":            {"value": 2000.0, "unit": "kg",       "note": "Catalyst loading in reactor"},
+        "m_reactor":        {"value": 8000.0, "unit": "kg",       "note": "Lumped thermal mass (catalyst + slurry/tubes + metal)"},
+        "cp_reactor":       {"value": 1900.0, "unit": "J/(kg.K)", "note": "Lumped specific heat (slurry-dominated)"},
+        "UA_cool":          {"value": 3.0e5,  "unit": "W/K",      "note": "Overall cooling duty coefficient * area (boiling-water jacket). FT is strongly exothermic (~MW scale); sized so steady T~500K with Q_gen=Q_cool. Heat removal is the critical design constraint (Dry 2002)"},
+        "T_coolant_degC":   {"value": 215.0,  "unit": "degC",     "note": "Boiling-water coolant / saturated steam temperature"}
+    },
+    "valid_ranges": {
+        "syngas_flow_mol_per_s": {"min": 0.0,   "max": 1000.0, "unit": "mol/s"},
+        "CO_fraction_in":        {"min": 0.2,   "max": 0.6,    "unit": "-"},
+        "T_reactor":             {"min": 460.0, "max": 560.0,  "unit": "K"},
+        "P_reactor":             {"min": 10.0,  "max": 40.0,   "unit": "bar"},
+        "dt":                    {"min": 1.0,   "max": 60.0,   "unit": "s"},
+        "duration_s":            {"min": 60.0,  "max": 36000.0,"unit": "s"}
+    }
+}

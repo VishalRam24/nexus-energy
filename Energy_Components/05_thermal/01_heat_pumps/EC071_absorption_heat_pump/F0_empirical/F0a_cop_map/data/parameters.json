@@ -1,0 +1,133 @@
+{
+  "component": "EC071 Absorption Heat Pump",
+  "fidelity": "F0a \u2014 empirical COP lookup map",
+  "description": "Tabulated COP map vs (T_source, T_sink); bilinear np.interp. Map generated from Carnot-fraction relation COP = eta_c * Th/(Th-Tc).",
+  "lookup": {
+    "T_source_breakpoints": {
+      "value": [
+        0.0,
+        4.17,
+        8.33,
+        12.5,
+        16.67,
+        20.83,
+        25.0
+      ],
+      "unit": "degC",
+      "note": "Evaporator-side source temperature axis"
+    },
+    "T_sink_breakpoints": {
+      "value": [
+        25.0,
+        31.25,
+        37.5,
+        43.75,
+        50.0
+      ],
+      "unit": "degC",
+      "note": "Condenser-side sink (delivery) temperature axis"
+    },
+    "COP_table": {
+      "value": [
+        [
+          1.645,
+          1.974,
+          2.467,
+          3.29,
+          4.934,
+          9.869,
+          10.0
+        ],
+        [
+          1.343,
+          1.55,
+          1.832,
+          2.239,
+          2.879,
+          4.03,
+          6.717
+        ],
+        [
+          1.143,
+          1.285,
+          1.469,
+          1.714,
+          2.057,
+          2.571,
+          3.428
+        ],
+        [
+          1.05,
+          1.104,
+          1.234,
+          1.399,
+          1.614,
+          1.907,
+          2.331
+        ],
+        [
+          1.05,
+          1.05,
+          1.07,
+          1.189,
+          1.337,
+          1.528,
+          1.783
+        ]
+      ],
+      "unit": "dimensionless",
+      "note": "rows index T_sink, cols index T_source"
+    }
+  },
+  "rated": {
+    "rated_cop": {
+      "value": 1.7,
+      "unit": "dimensionless",
+      "note": "Single-effect LiBr-H2O, T_gen=90C, T_evap=10C, T_abs/cond=35C"
+    },
+    "rated_T_source": {
+      "value": 10.0,
+      "unit": "degC"
+    },
+    "rated_T_sink": {
+      "value": 35.0,
+      "unit": "degC"
+    },
+    "carnot_fraction": {
+      "value": 0.1379,
+      "unit": "dimensionless",
+      "note": "Effective fraction anchored to datasheet rated COP"
+    },
+    "rated_capacity": {
+      "value": 100.0,
+      "unit": "kW_th"
+    },
+    "auxiliary_power": {
+      "value": 0.5,
+      "unit": "kW"
+    },
+    "cop_at_rated_point_from_map": {
+      "value": 1.7,
+      "unit": "dimensionless",
+      "note": "Carnot-fraction COP at rated point; matches rated_cop within tolerance"
+    }
+  },
+  "valid_ranges": {
+    "T_source": {
+      "min": 0.0,
+      "max": 25.0,
+      "unit": "degC"
+    },
+    "T_sink": {
+      "min": 25.0,
+      "max": 50.0,
+      "unit": "degC"
+    },
+    "part_load_ratio": {
+      "min": 0.0,
+      "max": 1.0,
+      "unit": "dimensionless"
+    }
+  },
+  "source": "Hellmann & Ziegler (1999); Herold, Radermacher & Klein (2016)"
+}

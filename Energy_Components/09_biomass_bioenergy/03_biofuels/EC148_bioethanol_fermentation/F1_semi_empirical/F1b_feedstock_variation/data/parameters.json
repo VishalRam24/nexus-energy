@@ -1,0 +1,63 @@
+{
+    "component": "EC148 Bioethanol Fermentation",
+    "fidelity": "F1b",
+    "description": "Feedstock-specific bioethanol model with sugar composition, moisture-LHV coupling, temperature kinetics, pretreatment efficiency",
+    "feedstock_db": {
+        "sugarcane": {
+            "LHV_dry_MJ_kg": 17.0,
+            "sucrose_frac": 0.14,
+            "starch_frac": 0.0,
+            "cellulose_frac": 0.40,
+            "pretreatment_efficiency": 0.80,
+            "note": "Sugarcane — direct sucrose fermentation + bagasse cellulose"
+        },
+        "corn": {
+            "LHV_dry_MJ_kg": 18.0,
+            "sucrose_frac": 0.02,
+            "starch_frac": 0.65,
+            "cellulose_frac": 0.03,
+            "pretreatment_efficiency": 0.92,
+            "note": "Corn grain — starch fermentation (US ethanol standard)"
+        },
+        "wheat_straw": {
+            "LHV_dry_MJ_kg": 16.5,
+            "sucrose_frac": 0.0,
+            "starch_frac": 0.0,
+            "cellulose_frac": 0.38,
+            "pretreatment_efficiency": 0.68,
+            "note": "Lignocellulosic — requires pretreatment (Chandel 2011)"
+        },
+        "switchgrass": {
+            "LHV_dry_MJ_kg": 17.8,
+            "sucrose_frac": 0.0,
+            "starch_frac": 0.0,
+            "cellulose_frac": 0.36,
+            "pretreatment_efficiency": 0.72,
+            "note": "Energy grass — cellulosic ethanol feedstock"
+        },
+        "sweet_sorghum": {
+            "LHV_dry_MJ_kg": 16.5,
+            "sucrose_frac": 0.12,
+            "starch_frac": 0.05,
+            "cellulose_frac": 0.20,
+            "pretreatment_efficiency": 0.78,
+            "note": "Combined sucrose + starch + cellulosic fractions"
+        }
+    },
+    "unit": {
+        "PLR_min":          {"value": 0.20,  "unit": "dimensionless"},
+        "a0":               {"value": 0.55,  "unit": "dimensionless"},
+        "a1":               {"value": 0.35,  "unit": "dimensionless"},
+        "a2":               {"value": -0.10, "unit": "dimensionless"},
+        "yeast_efficiency": {"value": 0.90,  "unit": "dimensionless", "note": "Fraction of theoretical Gay-Lussac yield achieved"},
+        "k_inhibition":     {"value": 0.05,  "unit": "1/(%v/v)",      "note": "Product inhibition rate constant"},
+        "C_inhibit_50_pct": {"value": 12.0,  "unit": "%v/v",          "note": "EtOH concentration at 50% yield inhibition (~12% for S. cerevisiae)"}
+    },
+    "valid_ranges": {
+        "temperature_degC":  {"min": 20.0, "max": 45.0,  "unit": "degC"},
+        "moisture_fraction": {"min": 0.0,  "max": 0.85,  "unit": "dimensionless"},
+        "ethanol_conc_pct":  {"min": 2.0,  "max": 20.0,  "unit": "%v/v"},
+        "PLR":               {"min": 0.20, "max": 1.0,   "unit": "dimensionless"},
+        "feed_rate_kg_h":    {"min": 10.0, "max": 5000.0,"unit": "kg/h"}
+    }
+}

@@ -1,0 +1,24 @@
+{
+    "component": "EC212 Multi-Stage Flash Distillation (MSF)",
+    "fidelity": "F1b",
+    "description": "MSF model with GOR curve vs TBT, scaling limits, and pumping SEC",
+    "unit": {
+        "name": "Large-scale MSF plant (Gulf region, 24-stage)",
+        "source": "El-Dessouky & Ettouney (2002) Fundamentals of Salt Water Desalination Ch.5; Darwish & Alsairafi (2004)",
+        "N_stages": {"value": 24, "unit": "count", "note": "Number of flash stages (Gulf MSF: 18-40)"},
+        "TBT_ref": {"value": 110.0, "unit": "degC", "note": "Reference top brine temperature (Gulf MSF: 90-120 degC)"},
+        "T_condenser": {"value": 40.0, "unit": "degC", "note": "Last-stage condenser temperature"},
+        "T_scale_limit": {"value": 90.0, "unit": "degC", "note": "Carbonate scale onset temperature (90 degC, El-Dessouky 2002)"},
+        "k_scale": {"value": 0.01, "unit": "1/degC", "note": "SEC penalty per degC above scale limit (1% per degC)"},
+        "eta_HX": {"value": 0.85, "unit": "dimensionless", "note": "Heat recovery section effectiveness"},
+        "PR_ref": {"value": 8.0, "unit": "kg/kg", "note": "Performance ratio at design (typical MSF: 6-10)"},
+        "m_ratio": {"value": 8.5, "unit": "dimensionless", "note": "Recycle brine to distillate mass ratio"},
+        "pump_SEC_ref": {"value": 4.0, "unit": "kWh_e/m3", "note": "Pumping SEC at design (El-Dessouky: 3-5 kWh/m3)"},
+        "eta_pump": {"value": 0.80, "unit": "dimensionless"}
+    },
+    "valid_ranges": {
+        "TBT_degC": {"min": 70.0, "max": 120.0, "unit": "degC"},
+        "plr": {"min": 0.3, "max": 1.0, "unit": "dimensionless"},
+        "steam_temperature_degC": {"min": 80.0, "max": 135.0, "unit": "degC"}
+    }
+}

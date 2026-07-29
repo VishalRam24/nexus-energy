@@ -1,0 +1,30 @@
+{
+    "component": "EC138 Ocean Thermal Energy Conversion (OTEC)",
+    "fidelity": "F1b",
+    "description": "Extends F1a efficiency curve with seawater density/salinity effects on pump work, seasonal surface temperature variation, and detailed parasitic load breakdown (warm pump, cold pump, working fluid pump).",
+    "cycle": {
+        "T_warm_design_c":  {"value": 26.0, "unit": "degC", "description": "Design warm surface water temperature"},
+        "T_cold_design_c":  {"value": 5.0,  "unit": "degC", "description": "Design cold deep water temperature"},
+        "eta_cycle_fraction": {"value": 0.70, "unit": "-",  "description": "Fraction of Carnot achieved by ammonia ORC cycle"},
+        "P_gross_kw":       {"value": 1000.0,"unit": "kW",  "description": "Gross power rating"},
+        "Q_warm_m3_per_s_per_kw": {"value": 0.004, "unit": "m3/(s*kW)", "description": "Warm seawater volume flow per kW gross (typ 3-5 kg/s/kW at rho=1025)"},
+        "Q_cold_m3_per_s_per_kw": {"value": 0.003, "unit": "m3/(s*kW)", "description": "Cold seawater volume flow per kW gross"},
+        "eta_pump_warm":    {"value": 0.82,  "unit": "-",   "description": "Warm seawater pump efficiency"},
+        "eta_pump_cold":    {"value": 0.80,  "unit": "-",   "description": "Cold seawater pump efficiency (longer pipe, lower eta)"},
+        "eta_pump_wf":      {"value": 0.85,  "unit": "-",   "description": "Working fluid (ammonia) pump efficiency"},
+        "head_warm_m":      {"value": 5.0,   "unit": "m",   "description": "Warm water intake head loss (short pipe to surface)"},
+        "head_cold_m":      {"value": 800.0, "unit": "m",   "description": "Cold water pipe static + friction head (1000m deep pipe, ~800m effective head)"},
+        "wf_pump_fraction": {"value": 0.05,  "unit": "-",   "description": "Working fluid pump work as fraction of gross power"},
+        "salinity_warm":    {"value": 35.0,  "unit": "psu", "description": "Warm surface water salinity"},
+        "salinity_cold":    {"value": 34.5,  "unit": "psu", "description": "Cold deep water salinity (slightly fresher in deep ocean)"},
+        "T_seasonal_amplitude_c": {"value": 3.0, "unit": "degC", "description": "Seasonal variation amplitude of warm surface water temperature (±3C around mean)"}
+    },
+    "limits": {
+        "T_warm_min_c": 20.0,
+        "T_warm_max_c": 32.0,
+        "T_cold_min_c": 2.0,
+        "T_cold_max_c": 10.0,
+        "dT_min_c": 10.0
+    },
+    "source": "Vega (2002) OTEC review, Mar. Technol. Soc. J. 36(4); Nihous (2007) J. Energy Resour. Technol. 129:10; Faizal & Ahmed (2011) Int. J. Low-Carbon Tech. 6:215; NREL OTEC resource assessment."
+}

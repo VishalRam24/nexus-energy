@@ -1,0 +1,40 @@
+{
+  "component": "EC207 CO2 Compression & Pipeline",
+  "fidelity": "F0a -- empirical lookup",
+  "source": "IPCC (2005) CCS Special Report Ch.4; McCoy & Rubin (2008) Energy & Env. Sci.",
+  "co2": {
+    "rho_dense_phase": {
+      "value": 800.0,
+      "unit": "kg/m3"
+    },
+    "SEC_ref": {
+      "value": 100.0,
+      "unit": "kWh/tCO2",
+      "note": "1 -> 150 bar full compression"
+    }
+  },
+  "pipeline": {
+    "dp_bar_per_km": {
+      "value": 0.04,
+      "unit": "bar/km",
+      "note": "Dense-phase pressure gradient approx."
+    }
+  },
+  "compression_curve": {
+    "P_outlet_bar": [
+      100,
+      130,
+      150,
+      200,
+      250
+    ],
+    "SEC_kWh_tCO2": [
+      80,
+      92,
+      100,
+      118,
+      132
+    ],
+    "note": "Compression energy rises with target pipeline pressure (IPCC 2005)."
+  }
+}

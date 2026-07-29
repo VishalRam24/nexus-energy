@@ -1,0 +1,29 @@
+{
+    "component": "EC123 Compressed Air Energy Storage (CAES)",
+    "fidelity": "F1a",
+    "description": "Round-trip efficiency model with cavern SOC and supplemental fuel (diabatic) or adiabatic operation",
+    "unit": {
+        "name": "Generic Diabatic CAES (Huntorf-class)",
+        "source": "Budt et al. (2016), Applied Energy, 170, 250-268; Luo et al. (2015), Applied Energy, 137, 511-536",
+        "mode_default": "diabatic",
+        "eta_compressor": {"value": 0.72, "unit": "dimensionless", "note": "Polytropic compressor train"},
+        "eta_motor": {"value": 0.97, "unit": "dimensionless"},
+        "eta_expander": {"value": 0.82, "unit": "dimensionless", "note": "Turbine train"},
+        "eta_generator": {"value": 0.97, "unit": "dimensionless"},
+        "heat_rate": {"value": 4200.0, "unit": "kJ/kWh_e", "note": "Supplemental fuel for diabatic discharge (Huntorf ~4200 kJ/kWh_e)"},
+        "fuel_lhv": {"value": 50000.0, "unit": "kJ/kg", "note": "Natural gas LHV"},
+        "p_max": {"value": 7.0e6, "unit": "Pa", "note": "Cavern max pressure (70 bar)"},
+        "p_min": {"value": 4.3e6, "unit": "Pa", "note": "Cavern min usable pressure (43 bar)"},
+        "cavern_volume": {"value": 310000.0, "unit": "m3", "note": "Huntorf 310,000 m3"},
+        "T_cavern": {"value": 313.15, "unit": "K", "note": "Cavern temperature (~40 C)"},
+        "specific_work": {"value": 280.0, "unit": "kJ/kg", "note": "Compressor specific work per kg air"},
+        "specific_expansion": {"value": 470.0, "unit": "kJ/kg", "note": "Expander specific energy per kg air (with reheat, diabatic)"},
+        "R_air": {"value": 287.0, "unit": "J/(kg.K)"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "-"},
+        "power_command_kw": {"min": -400000.0, "max": 400000.0, "unit": "kW"},
+        "duration_hours": {"min": 0.0, "max": 24.0, "unit": "h"},
+        "mode": {"values": ["charge", "discharge", "idle"]}
+    }
+}

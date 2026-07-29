@@ -1,0 +1,32 @@
+{
+    "component_id": "EC053",
+    "component_name": "Thermophotovoltaic (TPV)",
+    "fidelity": "F2a — Spectral Radiative Model with Single-Diode I-V and Cell Thermal ODE",
+    "source": "Coutts (1999), Renew. Sust. Energy Rev. 3, 77-184; Bauer (2011), Thermophotovoltaics, Springer; LaPotin et al. (2022), Nature 604, 287-291 (TPV >40%)",
+    "unit": {
+        "name": "GaSb TPV Cell with Selective/Blackbody Emitter (1 cm2)",
+        "E_g_eV": {"value": 0.72, "unit": "eV", "note": "GaSb bandgap (Coutts 1999, Table 2). InGaAs alt ~0.74 eV"},
+        "A_cell": {"value": 1.0e-4, "unit": "m2", "note": "Cell active area, 1 cm2"},
+        "T_emitter_ref": {"value": 1500.0, "unit": "K", "note": "Reference emitter temperature"},
+        "emissivity": {"value": 0.9, "unit": "-", "note": "In-band emitter spectral emissivity (selective emitter / SiC)"},
+        "F_view": {"value": 0.9, "unit": "-", "note": "View factor emitter->cell (close-spaced parallel plates)"},
+        "EQE": {"value": 0.85, "unit": "-", "note": "External quantum efficiency for above-bandgap photons (GaSb)"},
+        "sub_bandgap_reflectance": {"value": 0.9, "unit": "-", "note": "Back-surface reflector / front filter sub-gap photon recycling fraction (LaPotin 2022 air-bridge BSR ~93%)"},
+        "J0_ref": {"value": 1.0e-5, "unit": "A/m2", "note": "Diode reverse saturation current density at T_cell_ref (GaSb low-Eg, dark-current dominated)"},
+        "n_ideality": {"value": 1.2, "unit": "-", "note": "Diode ideality factor"},
+        "Rs": {"value": 5.0e-6, "unit": "ohm.m2", "note": "Series resistance, area-specific (0.05 ohm.cm2; TPV runs ~4 A/cm2 so Rs must be small)"},
+        "Rsh": {"value": 5.0e1, "unit": "ohm.m2", "note": "Shunt resistance, area-specific (good GaSb cell, low leakage)"},
+        "T_cell_ref": {"value": 300.0, "unit": "K", "note": "Reference cell temperature for J0"},
+        "m_cell": {"value": 5.0e-4, "unit": "kg", "note": "Lumped cell+heatsink thermal mass"},
+        "cp_cell": {"value": 330.0, "unit": "J/(kg.K)", "note": "GaSb specific heat (~0.26-0.33 kJ/kg/K)"},
+        "hA_cool": {"value": 0.05, "unit": "W/K", "note": "Coolant conductance hA for cell back-side cooling"},
+        "T_coolant": {"value": 300.0, "unit": "K", "note": "Coolant / heat-sink reference temperature"}
+    },
+    "valid_ranges": {
+        "T_emitter_K": {"min": 800.0, "max": 2400.0, "unit": "K"},
+        "F_view": {"min": 0.1, "max": 1.0, "unit": "-"},
+        "T_cell_K": {"min": 280.0, "max": 400.0, "unit": "K"},
+        "dt": {"min": 0.001, "max": 1.0, "unit": "s"},
+        "duration_s": {"min": 0.1, "max": 600.0, "unit": "s"}
+    }
+}

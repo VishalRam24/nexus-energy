@@ -1,0 +1,64 @@
+{
+  "component": "EC082 Ice Thermal Storage",
+  "fidelity": "F0a \u2014 empirical capacity lookup",
+  "description": "Linear capacity lookup: usable stored energy = SOC * E_capacity. Round-trip efficiency and self-discharge are constant empirical ratings.",
+  "lookup": {
+    "SOC_breakpoints": {
+      "value": [
+        0.0,
+        0.1,
+        0.2,
+        0.30000000000000004,
+        0.4,
+        0.5,
+        0.6000000000000001,
+        0.7000000000000001,
+        0.8,
+        0.9,
+        1.0
+      ],
+      "unit": "dimensionless"
+    },
+    "usable_energy_table": {
+      "value": [
+        0.0,
+        50.0,
+        100.0,
+        150.0,
+        200.0,
+        250.0,
+        300.0,
+        350.0,
+        400.0,
+        450.0,
+        500.0
+      ],
+      "unit": "kWh_th",
+      "note": "Stored thermal energy available at each SOC"
+    }
+  },
+  "rated": {
+    "E_capacity": {
+      "value": 500.0,
+      "unit": "kWh_th",
+      "note": "5390 kg * 334 kJ/kg / 3600 = 500 kWh_th latent"
+    },
+    "round_trip_efficiency": {
+      "value": 0.92,
+      "unit": "dimensionless"
+    },
+    "self_discharge_per_day": {
+      "value": 3.0,
+      "unit": "%/day",
+      "note": "Standing thermal loss"
+    }
+  },
+  "valid_ranges": {
+    "soc": {
+      "min": 0.0,
+      "max": 1.0,
+      "unit": "dimensionless"
+    }
+  },
+  "source": "ASHRAE (2020) Handbook ch.51; Dincer & Rosen (2021)"
+}

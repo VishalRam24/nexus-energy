@@ -1,0 +1,22 @@
+{
+    "component": "EC136 Overtopping Device WEC",
+    "fidelity": "F0a",
+    "description": "Empirical power lookup vs significant wave height Hs. Overtopped water drives low-head turbines: P = J(Hs,Te)*ramp_width*eta_ramp*eta_turbine*eta_generator, J=(rho*g^2/64pi)*Hs^2*Te. Capped at rated power.",
+    "rated": {
+        "ramp_width_m": {"value": 20.0, "unit": "m", "note": "Width of overtopping ramp/crest"},
+        "eta_ramp": {"value": 0.20, "unit": "dimensionless", "note": "Fraction of incident wave power captured as overtopping"},
+        "eta_turbine": {"value": 0.80, "unit": "dimensionless", "note": "Low-head (Kaplan) turbine efficiency"},
+        "eta_generator": {"value": 0.92, "unit": "dimensionless", "note": "Generator efficiency"},
+        "Te_ref_s": {"value": 9.0, "unit": "s", "note": "Representative energy period for the lookup"},
+        "P_rated_kw": {"value": 210.0, "unit": "kW", "note": "Rated electrical power (curve clipped at rating)"},
+        "rho_water": {"value": 1025.0, "unit": "kg/m3", "note": "Seawater density"}
+    },
+    "power_curve": {
+        "Hs_m": {"value": [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 4.0, 5.0, 8.0], "unit": "m", "note": "Significant wave height breakpoints"},
+        "power_kw": {"value": [0.0, 3.25, 13.00, 29.25, 52.00, 81.24, 116.99, 207.99, 210.0, 210.0], "unit": "kW", "note": "Electrical power at Te=9 s, clipped at 210 kW rated"}
+    },
+    "valid_ranges": {
+        "Hs_m": {"min": 0.0, "max": 8.0, "unit": "m"}
+    },
+    "source": "Kofoed et al. (2006) Coastal Eng. 53:859-867; Wave Dragon device data; reuses EC136 F1a parameters"
+}

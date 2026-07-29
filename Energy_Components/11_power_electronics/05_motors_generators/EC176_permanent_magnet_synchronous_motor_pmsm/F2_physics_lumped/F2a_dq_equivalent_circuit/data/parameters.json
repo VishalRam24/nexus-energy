@@ -1,0 +1,26 @@
+{
+    "component": "EC176 Permanent Magnet Synchronous Motor (PMSM)",
+    "fidelity": "F2a",
+    "description": "dq-frame dynamic model: 2 electrical ODEs + 1 mechanical ODE.",
+    "unit": {
+        "name": "Generic 5kW Surface-Mount PMSM -- dq-Frame Model",
+        "source": "Gieras, J.F. (2010). Permanent Magnet Motor Technology, 3rd ed. CRC Press.",
+        "Ld": {"value": 5e-3, "unit": "H", "note": "d-axis inductance (5 mH)"},
+        "Lq": {"value": 5e-3, "unit": "H", "note": "q-axis inductance (5 mH, surface mount Ld=Lq)"},
+        "Rs": {"value": 0.2, "unit": "Ohm", "note": "Stator resistance"},
+        "Phi_m": {"value": 0.3, "unit": "Wb", "note": "PM flux linkage"},
+        "P": {"value": 4, "unit": "pole_pairs", "note": "Number of pole pairs"},
+        "J": {"value": 0.05, "unit": "kg.m2", "note": "Rotor inertia"},
+        "B": {"value": 0.001, "unit": "N.m.s/rad", "note": "Viscous friction coefficient"},
+        "V_dc": {"value": 300.0, "unit": "V", "note": "DC bus voltage"},
+        "P_rated": {"value": 5000.0, "unit": "W", "note": "Rated power"},
+        "omega_rated": {"value": 3000.0, "unit": "rpm", "note": "Rated speed"}
+    },
+    "valid_ranges": {
+        "v_d": {"min": -200.0, "max": 200.0, "unit": "V"},
+        "v_q": {"min": -200.0, "max": 200.0, "unit": "V"},
+        "T_load_Nm": {"min": 0.0, "max": 50.0, "unit": "Nm"},
+        "dt": {"min": 1e-5, "max": 1e-3, "unit": "s"},
+        "duration_s": {"min": 0.01, "max": 10.0, "unit": "s"}
+    }
+}

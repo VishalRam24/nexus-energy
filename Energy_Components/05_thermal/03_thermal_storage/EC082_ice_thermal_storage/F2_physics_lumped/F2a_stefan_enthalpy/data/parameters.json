@@ -1,0 +1,33 @@
+{
+    "component_id": "EC082",
+    "component_name": "Ice Thermal Storage",
+    "fidelity": "F2a — Stefan-problem lumped enthalpy method with moving freeze/melt front",
+    "source": "ASHRAE (2020) Handbook — HVAC Systems and Equipment, ch.51 'Thermal Storage'; Dincer & Rosen (2021) Thermal Energy Storage 3rd ed., Wiley; Voller & Cross (1981) Int. J. Heat Mass Transfer 24(3) 545-556 (enthalpy method); Alexiades & Solomon (1993) Mathematical Modeling of Melting and Freezing Processes, Hemisphere.",
+    "unit": {
+        "name": "Generic 500 kWh_th ice-on-coil thermal storage (cylindrical coil bank in water tank)",
+        "capacity_kwh":   {"value": 500.0,  "unit": "kWh_th", "note": "Latent capacity at full ice fraction = m_water*h_fusion", "source": "ASHRAE (2020) ch.51"},
+        "mass_water_kg":  {"value": 5390.0, "unit": "kg",      "note": "Storage water mass = capacity_kwh*3600/h_fusion", "source": "derived"},
+        "T_phase_change": {"value": 0.0,    "unit": "degC",    "note": "Water/ice fusion temperature at 1 atm", "source": "CRC Handbook"},
+        "h_fusion":       {"value": 334.0,  "unit": "kJ/kg",   "note": "Latent heat of fusion of water (333.55 kJ/kg, rounded)", "source": "Alexiades & Solomon (1993)"},
+        "cp_water":       {"value": 4186.0, "unit": "J/(kg.K)","note": "Specific heat of liquid water (0-20 C)", "source": "CRC Handbook"},
+        "cp_ice":         {"value": 2050.0, "unit": "J/(kg.K)","note": "Specific heat of ice near 0 C", "source": "CRC Handbook"},
+        "k_ice":          {"value": 2.22,   "unit": "W/(m.K)", "note": "Thermal conductivity of ice at 0 C", "source": "Alexiades & Solomon (1993)"},
+        "rho_ice":        {"value": 917.0,  "unit": "kg/m3",   "note": "Density of ice at 0 C", "source": "CRC Handbook"},
+        "coil_area_m2":   {"value": 90.0,   "unit": "m2",      "note": "Total heat-transfer surface area of the coil bank", "source": "ASHRAE (2020) ch.51 ice-on-coil sizing"},
+        "coil_radius_m":  {"value": 0.0127, "unit": "m",       "note": "Outer radius of coil tube (1 inch OD nominal)", "source": "ASHRAE (2020) ch.51"},
+        "h_coil_water":   {"value": 600.0,  "unit": "W/(m2.K)","note": "Film coefficient coil-wall to bulk water (natural/forced convection)", "source": "Incropera & DeWitt (2007)"},
+        "h_brine_film":   {"value": 800.0,  "unit": "W/(m2.K)","note": "Internal brine-side film coefficient (charge/discharge fluid)", "source": "Incropera & DeWitt (2007)"},
+        "UA_ambient":     {"value": 25.0,   "unit": "W/K",     "note": "Tank shell heat-loss coefficient to surroundings", "source": "ASHRAE (2020) ch.51"},
+        "T_amb_default":  {"value": 20.0,   "unit": "degC",    "note": "Default ambient/machine-room temperature"},
+        "T_brine_charge": {"value": -6.0,   "unit": "degC",    "note": "Chiller brine supply temperature during ice build", "source": "ASHRAE (2020) ch.51"},
+        "T_brine_discharge": {"value": 10.0,"unit": "degC",    "note": "Warm return fluid during cooling discharge"},
+        "round_trip_efficiency": {"value": 0.92, "unit": "-",  "note": "Lumped parasitic/charge effectiveness factor", "source": "Dincer & Rosen (2021)"}
+    },
+    "valid_ranges": {
+        "ice_fraction":    {"min": 0.0,   "max": 1.0,   "unit": "-"},
+        "T_brine":         {"min": -12.0, "max": 25.0,  "unit": "degC"},
+        "t_ambient":       {"min": -10.0, "max": 40.0,  "unit": "degC"},
+        "dt":              {"min": 1.0,   "max": 600.0, "unit": "s"},
+        "duration_s":      {"min": 60.0,  "max": 172800.0, "unit": "s"}
+    }
+}

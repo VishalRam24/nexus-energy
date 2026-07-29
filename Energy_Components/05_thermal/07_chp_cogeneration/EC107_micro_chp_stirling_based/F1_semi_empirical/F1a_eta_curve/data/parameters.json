@@ -1,0 +1,10 @@
+{
+  "default_parameters": {
+    "eta_e_rated": 0.15,
+    "eta_th_rated": 0.70,
+    "P_e_rated_kW": 1.0,
+    "f_a": 0.2,
+    "f_b": 0.8
+  },
+  "description": "Stirling micro-CHP F1a: eta_e=0.15*f(load), eta_th=0.70*f(load), P_e_rated=1kW. f(load)=0.2+0.8*load (same factor for both)."
+}

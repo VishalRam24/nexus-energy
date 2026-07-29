@@ -1,0 +1,32 @@
+{
+    "component_id": "EC178",
+    "component_name": "Switched Reluctance Motor (SRM)",
+    "fidelity": "F2a — Physics-Lumped Reluctance / Co-energy Model",
+    "source": "Miller (1993) Switched Reluctance Motors and Their Control, Oxford; Krishnan (2001) Switched Reluctance Motor Drives, CRC Press",
+    "unit": {
+        "name": "Generic 5kW 12/8 Switched Reluctance Motor — Physics-Lumped Reluctance Model",
+        "rated_power": {"value": 5.0, "unit": "kW", "note": "Rated mechanical output power"},
+        "omega_rated": {"value": 1500.0, "unit": "rpm", "note": "Rated mechanical speed"},
+        "poles_stator": {"value": 12, "unit": "-", "note": "12/8 SRM (3-phase)"},
+        "poles_rotor": {"value": 8, "unit": "-", "note": "Nr = 8 rotor poles -> electrical period = 360/Nr = 45 deg"},
+        "n_phases": {"value": 3, "unit": "-", "note": "Number of phases (12/8 -> 3-phase)"},
+        "R_phase": {"value": 0.5, "unit": "ohm", "note": "Phase winding resistance (Krishnan 2001 typical small SRM)"},
+        "L_aligned": {"value": 60.0e-3, "unit": "H", "note": "Aligned (max) phase inductance, unsaturated"},
+        "L_unaligned": {"value": 8.0e-3, "unit": "H", "note": "Unaligned (min) phase inductance"},
+        "i_sat": {"value": 10.0, "unit": "A", "note": "Saturation current scale: L_aligned rolls off above this (Miller 1993 magnetisation curve)"},
+        "sat_exponent": {"value": 1.0, "unit": "-", "note": "Sharpness of aligned-inductance saturation roll-off"},
+        "V_dc": {"value": 300.0, "unit": "V", "note": "DC-link bus voltage of asymmetric half-bridge converter"},
+        "theta_on_deg": {"value": 0.0, "unit": "deg", "note": "Turn-on angle (electrical) measured from unaligned position"},
+        "theta_off_deg": {"value": 20.0, "unit": "deg", "note": "Turn-off (commutation) angle (electrical), within rising-inductance region"},
+        "J_inertia": {"value": 0.02, "unit": "kg.m2", "note": "Rotor + load moment of inertia"},
+        "B_friction": {"value": 0.002, "unit": "N.m.s/rad", "note": "Viscous friction coefficient"}
+    },
+    "valid_ranges": {
+        "V_dc": {"min": 50.0, "max": 600.0, "unit": "V"},
+        "T_load": {"min": 0.0, "max": 60.0, "unit": "N.m"},
+        "speed_rpm": {"min": 0.0, "max": 6000.0, "unit": "rpm"},
+        "theta_off_deg": {"min": 5.0, "max": 22.5, "unit": "deg"},
+        "dt": {"min": 1.0e-6, "max": 1.0e-3, "unit": "s"},
+        "duration_s": {"min": 0.001, "max": 5.0, "unit": "s"}
+    }
+}

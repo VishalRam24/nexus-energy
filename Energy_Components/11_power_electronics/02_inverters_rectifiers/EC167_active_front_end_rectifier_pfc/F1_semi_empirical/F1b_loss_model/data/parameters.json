@@ -1,0 +1,29 @@
+{
+    "component": "EC167 Active Front End (AFE) / PFC Rectifier",
+    "fidelity": "F1b",
+    "description": "3-phase AFE (VSC topology in rectifier mode): IGBT conduction+switching + freewheeling diode conduction+recovery",
+    "unit": {
+        "name": "Generic 3-phase AFE Rectifier (30 kW, 400V AC → 700V DC)",
+        "source": "Semikron Application Manual (2015); Mohan, Undeland & Robbins (2003)",
+        "V_dc": {"value": 700.0, "unit": "V", "note": "Nominal DC bus voltage"},
+        "P_rated": {"value": 30000.0, "unit": "W", "note": "Rated power"},
+        "V_ce0": {"value": 1.70, "unit": "V", "note": "IGBT threshold voltage"},
+        "r_ce": {"value": 0.005, "unit": "Ohm", "note": "IGBT on-state slope resistance"},
+        "E_on": {"value": 0.008, "unit": "J", "note": "IGBT turn-on energy at V_ref/I_ref"},
+        "E_off": {"value": 0.007, "unit": "J", "note": "IGBT turn-off energy"},
+        "V_f": {"value": 1.3, "unit": "V", "note": "Freewheeling diode forward voltage"},
+        "r_d": {"value": 0.004, "unit": "Ohm", "note": "Freewheeling diode slope resistance"},
+        "E_rr": {"value": 0.005, "unit": "J", "note": "Freewheeling diode reverse recovery energy"},
+        "f_sw": {"value": 8000.0, "unit": "Hz", "note": "Switching frequency (8 kHz)"},
+        "V_ref": {"value": 600.0, "unit": "V", "note": "Reference voltage for loss scaling"},
+        "I_ref": {"value": 75.0, "unit": "A", "note": "Reference current for loss scaling"},
+        "R_th_ja": {"value": 0.15, "unit": "K/W", "note": "Junction-to-ambient thermal resistance (module)"},
+        "T_a": {"value": 25.0, "unit": "degC", "note": "Ambient temperature"}
+    },
+    "valid_ranges": {
+        "v_ac_ll_rms": {"min": 200.0, "max": 690.0, "unit": "V"},
+        "v_dc": {"min": 400.0, "max": 900.0, "unit": "V"},
+        "p_input": {"min": 0.0, "max": 36000.0, "unit": "W"},
+        "power_factor": {"min": 0.7, "max": 1.0, "unit": "dimensionless"}
+    }
+}

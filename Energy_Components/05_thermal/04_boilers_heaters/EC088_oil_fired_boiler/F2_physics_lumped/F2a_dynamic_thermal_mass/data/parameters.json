@@ -1,0 +1,35 @@
+{
+    "component_id": "EC088",
+    "component_name": "Oil-Fired Boiler",
+    "fidelity": "F2a — Physics-Lumped Dynamic Thermal Mass with Combustion & Stack Loss",
+    "source": "Annamalai & Puri (2007) Combustion Science and Engineering; ASME PTC 4-2013 Fired Steam Generators (heat-loss method); EN 303-1; Babcock & Wilcox 'Steam' (41st ed., 2005)",
+    "unit": {
+        "name": "Generic 50 kW No.2 Fuel Oil Boiler — Physics-Lumped Dynamic",
+        "Q_rated": {"value": 50.0, "unit": "kW", "note": "Rated thermal output (water-side) at full fire"},
+        "LHV_oil": {"value": 42.6, "unit": "MJ/kg", "note": "Lower heating value, No.2 fuel oil / light heating oil (Annamalai & Puri 2007, Table)"},
+        "stoich_afr": {"value": 14.4, "unit": "kg_air/kg_fuel", "note": "Stoichiometric air-fuel ratio for No.2 fuel oil (CnH1.8n, ~14.3-14.5)"},
+        "excess_air_ratio": {"value": 1.20, "unit": "-", "note": "lambda: total air / stoichiometric air (typical oil burner 1.15-1.25)"},
+        "H_fuel": {"value": 12.5, "unit": "%", "note": "Hydrogen mass fraction in No.2 fuel oil (drives latent stack loss via H2O formation)"},
+        "cp_flue": {"value": 1050.0, "unit": "J/(kg.K)", "note": "Mean flue-gas specific heat 20-250C (Babcock & Wilcox Steam; ~1.05 kJ/kgK)"},
+        "cp_water": {"value": 4186.0, "unit": "J/(kg.K)", "note": "Liquid water specific heat at ~50C (NIST/IAPWS, 4.18 kJ/kgK)"},
+        "hfg_water": {"value": 2440000.0, "unit": "J/kg", "note": "Latent heat of vaporization of water ~25C, for latent stack loss (NIST)"},
+        "T_air": {"value": 20.0, "unit": "degC", "note": "Combustion air / reference (datum) temperature"},
+        "T_flue_full": {"value": 220.0, "unit": "degC", "note": "Stack gas temperature at full fire (oil boiler, kept high to avoid sulfur dewpoint)"},
+        "m_water": {"value": 80.0, "unit": "kg", "note": "Lumped water content of boiler shell/jacket"},
+        "m_metal": {"value": 120.0, "unit": "kg", "note": "Boiler metal mass (steel pressure vessel + heat-exchange surface)"},
+        "cp_metal": {"value": 490.0, "unit": "J/(kg.K)", "note": "Carbon steel specific heat (Babcock & Wilcox Steam)"},
+        "UA_loss": {"value": 12.0, "unit": "W/K", "note": "Casing/jacket conductance to ambient (standby/radiation loss)"},
+        "UA_load": {"value": 1800.0, "unit": "W/K", "note": "Water-to-load heat-transfer conductance (heating circuit)"},
+        "T_setpoint": {"value": 80.0, "unit": "degC", "note": "Boiler water control setpoint"},
+        "PLR_min": {"value": 0.15, "unit": "-", "note": "Minimum stable firing rate (turndown limit)"}
+    },
+    "valid_ranges": {
+        "firing_rate": {"min": 0.0, "max": 1.0, "unit": "-"},
+        "T_water_init": {"min": 5.0, "max": 95.0, "unit": "degC"},
+        "T_return": {"min": 5.0, "max": 90.0, "unit": "degC"},
+        "T_ambient": {"min": -20.0, "max": 40.0, "unit": "degC"},
+        "excess_air_ratio": {"min": 1.0, "max": 1.6, "unit": "-"},
+        "dt": {"min": 0.5, "max": 30.0, "unit": "s"},
+        "duration_s": {"min": 10.0, "max": 36000.0, "unit": "s"}
+    }
+}

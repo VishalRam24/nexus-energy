@@ -1,0 +1,30 @@
+{
+    "component": "EC071 Absorption Heat Pump",
+    "fidelity": "F1b",
+    "description": "Single-effect LiBr-H2O Type-I absorption HP. Extends F1a with: (1) part-load COP degradation due to incomplete desorption at reduced generator heat input; (2) COP penalty when T_gen deviates from design point; (3) cycling losses below PLR_min.",
+    "unit": {
+        "name": "Generic 100 kW_th single-effect LiBr-H2O absorption heat pump",
+        "source": "Hellmann & Ziegler (1999), Int. J. Refrigeration 22, 552-560; Herold, Radermacher & Klein (2016), Absorption Chillers and Heat Pumps, 2nd ed., CRC Press; Jakob et al. (2008), IEA Annex 34 absorption heat pump models.",
+        "rated_heating_capacity": {"value": 100.0, "unit": "kW_th"},
+        "rated_cop_heating":      {"value": 1.7,   "unit": "dimensionless", "note": "At T_gen=90C, T_evap=10C, T_cond=35C, PLR=1"},
+        "carnot_fraction": {"value": 0.55, "unit": "dimensionless"},
+        "T_gen_design": {"value": 90.0, "unit": "degC", "note": "Generator design temperature"},
+        "T_gen_min":    {"value": 70.0, "unit": "degC"},
+        "T_gen_max":    {"value": 110.0, "unit": "degC"},
+        "T_evap_min":   {"value": 0.0,  "unit": "degC"},
+        "T_evap_max":   {"value": 25.0, "unit": "degC"},
+        "T_cond_min":   {"value": 25.0, "unit": "degC"},
+        "T_cond_max":   {"value": 50.0, "unit": "degC"},
+        "auxiliary_power": {"value": 0.5, "unit": "kW"},
+        "C_d":    {"value": 0.15, "unit": "dimensionless", "note": "Part-load degradation coeff for driving-heat utilization; lower than ASHP (0.25) because absorption cycling losses are smaller — Herold 2016 sec.6.4"},
+        "PLR_min":{"value": 0.20, "unit": "dimensionless", "note": "Minimum stable load ratio before on/off cycling; absorption machines do not modulate below ~20% (Jakobs 2008 AHP data)"},
+        "cycling_loss_factor": {"value": 0.05, "unit": "dimensionless", "note": "Extra COP penalty fraction per cycling event; thermal mass of generator/absorber dominates start-up loss"},
+        "beta_T_gen": {"value": 0.012, "unit": "1/K", "note": "Generator temperature sensitivity: COP drops ~1.2% per K below T_gen_design due to incomplete desorption — fitted from Hellmann & Ziegler (1999) Fig.5"}
+    },
+    "valid_ranges": {
+        "T_gen":  {"min": 70.0, "max": 110.0, "unit": "degC"},
+        "T_evap": {"min": 0.0,  "max": 25.0,  "unit": "degC"},
+        "T_cond": {"min": 25.0, "max": 50.0,  "unit": "degC"},
+        "part_load_ratio": {"min": 0.0, "max": 1.0, "unit": "dimensionless"}
+    }
+}

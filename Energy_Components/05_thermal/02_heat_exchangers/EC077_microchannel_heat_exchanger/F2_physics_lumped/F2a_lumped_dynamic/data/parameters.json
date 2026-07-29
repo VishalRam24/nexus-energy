@@ -1,0 +1,52 @@
+{
+    "component_id": "EC077",
+    "component_name": "Microchannel Heat Exchanger (MCHX)",
+    "fidelity": "F2a — Lumped Transient (N control volumes, two-stream + wall energy ODEs)",
+    "source": "Kandlikar & Grande (2003) Heat Transfer Eng. 24(1); Incropera & DeWitt (2006) Fundamentals of Heat and Mass Transfer 6th ed.; Shah & London (1978) Laminar Flow Forced Convection in Ducts; Webb & Kim (2005) Principles of Enhanced Heat Transfer.",
+    "unit": {
+        "name": "Aluminum hot-water / air crossflow microchannel core (Dh < 1 mm)",
+        "config": {"value": "counterflow", "unit": "-", "note": "Lumped two-stream counterflow; steady state benchmarked vs e-NTU"},
+        "N_cv": {"value": 40, "unit": "-", "note": "Number of control volumes per stream along flow direction (upwind discretisation; N>=40 keeps numerical diffusion < 1% vs e-NTU)"},
+
+        "L_channel": {"value": 0.30, "unit": "m", "note": "Channel flow length"},
+        "Dh": {"value": 0.0005, "unit": "m", "note": "Hydraulic diameter 0.5 mm — microchannel regime (Kandlikar 10-200 um..3mm)"},
+        "n_channels": {"value": 600, "unit": "-", "note": "Number of parallel microchannels per stream"},
+        "wall_thickness": {"value": 0.0002, "unit": "m", "note": "Channel separating wall thickness (Al)"},
+
+        "k_wall": {"value": 205.0, "unit": "W/(m.K)", "note": "Aluminum thermal conductivity (Incropera Table A.1)"},
+        "rho_wall": {"value": 2702.0, "unit": "kg/m3", "note": "Aluminum density (Incropera)"},
+        "cp_wall": {"value": 903.0, "unit": "J/(kg.K)", "note": "Aluminum specific heat (Incropera)"},
+        "m_wall": {"value": 0.45, "unit": "kg", "note": "Total metal mass of separating wall / fins"},
+
+        "Nu_laminar": {"value": 4.36, "unit": "-", "note": "Fully-developed laminar Nu, constant-q circular duct (Shah & London 1978; Incropera eq. 8.53)"},
+
+        "mdot_h": {"value": 0.10, "unit": "kg/s", "note": "Hot stream (water) mass flow rate"},
+        "mdot_c": {"value": 0.08, "unit": "kg/s", "note": "Cold stream (water) mass flow rate"},
+
+        "cp_h": {"value": 4182.0, "unit": "J/(kg.K)", "note": "Liquid water cp at ~25C, 1 atm (Incropera Table A.6)"},
+        "rho_h": {"value": 997.0, "unit": "kg/m3", "note": "Liquid water density at ~25C (Incropera Table A.6)"},
+        "mu_h": {"value": 8.9e-4, "unit": "Pa.s", "note": "Liquid water dynamic viscosity at ~25C (Incropera Table A.6)"},
+        "k_fluid_h": {"value": 0.607, "unit": "W/(m.K)", "note": "Liquid water thermal conductivity at ~25C (Incropera Table A.6)"},
+
+        "cp_c": {"value": 4182.0, "unit": "J/(kg.K)", "note": "Liquid water cp at ~25C (Incropera Table A.6)"},
+        "rho_c": {"value": 997.0, "unit": "kg/m3", "note": "Liquid water density at ~25C (Incropera Table A.6)"},
+        "mu_c": {"value": 8.9e-4, "unit": "Pa.s", "note": "Liquid water dynamic viscosity at ~25C (Incropera Table A.6)"},
+        "k_fluid_c": {"value": 0.607, "unit": "W/(m.K)", "note": "Liquid water thermal conductivity at ~25C (Incropera Table A.6)"},
+
+        "air_cp": {"value": 1007.0, "unit": "J/(kg.K)", "note": "Dry air cp at ~300K (Incropera Table A.4) — used when stream='air'"},
+        "air_rho": {"value": 1.1614, "unit": "kg/m3", "note": "Dry air density at 300K, 1 atm (Incropera Table A.4)"},
+        "air_mu": {"value": 1.846e-5, "unit": "Pa.s", "note": "Dry air dynamic viscosity at 300K (Incropera Table A.4)"},
+        "air_k": {"value": 0.0263, "unit": "W/(m.K)", "note": "Dry air thermal conductivity at 300K (Incropera Table A.4)"},
+
+        "T_h_in": {"value": 80.0, "unit": "degC", "note": "Hot inlet temperature"},
+        "T_c_in": {"value": 20.0, "unit": "degC", "note": "Cold inlet temperature"}
+    },
+    "valid_ranges": {
+        "T_h_in": {"min": 30.0, "max": 150.0, "unit": "degC"},
+        "T_c_in": {"min": -20.0, "max": 40.0, "unit": "degC"},
+        "mdot_h": {"min": 0.005, "max": 0.5, "unit": "kg/s"},
+        "mdot_c": {"min": 0.005, "max": 0.5, "unit": "kg/s"},
+        "duration_s": {"min": 1.0, "max": 600.0, "unit": "s"},
+        "dt": {"min": 0.01, "max": 5.0, "unit": "s"}
+    }
+}

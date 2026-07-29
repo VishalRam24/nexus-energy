@@ -1,0 +1,28 @@
+{
+    "component": "EC125 Adiabatic Compressed Air Energy Storage (A-CAES)",
+    "fidelity": "F1a",
+    "description": "Round-trip efficiency model for A-CAES. Heat of compression stored in thermal energy storage (TES) and returned on discharge — no supplemental fuel. RTE higher than diabatic CAES due to recovered heat.",
+    "unit": {
+        "name": "Generic Adiabatic CAES (ADELE-class, 360 MW / 2880 MWh)",
+        "source": "Barbour, E., et al. (2015). A review on pumped power storage systems. Renewable and Sustainable Energy Reviews, 45, 598-614; Budt, M. et al. (2016). Applied Energy, 170, 250-268; Wolf, D. & Budt, M. (2014). LTA-CAES: A low-temperature approach to adiabatic CAES. Applied Energy, 125, 158-164.",
+        "eta_compressor": {"value": 0.80, "unit": "dimensionless", "note": "Polytropic compressor train efficiency (higher than diabatic due to multi-stage with intercooling to TES)"},
+        "eta_motor": {"value": 0.97, "unit": "dimensionless"},
+        "eta_expander": {"value": 0.86, "unit": "dimensionless", "note": "Turbine train efficiency (higher than diabatic; pre-heated by TES)"},
+        "eta_generator": {"value": 0.97, "unit": "dimensionless"},
+        "eta_tes": {"value": 0.90, "unit": "dimensionless", "note": "Thermal energy storage round-trip efficiency (ratio of heat returned to heat stored); governs A-CAES vs diabatic gap"},
+        "p_max": {"value": 7.0e6, "unit": "Pa", "note": "Cavern max pressure (70 bar)"},
+        "p_min": {"value": 4.3e6, "unit": "Pa", "note": "Cavern min usable pressure (43 bar)"},
+        "cavern_volume": {"value": 310000.0, "unit": "m3", "note": "Same cavern class as Huntorf for comparison"},
+        "T_cavern": {"value": 313.15, "unit": "K", "note": "Cavern temperature (~40 C)"},
+        "specific_work": {"value": 310.0, "unit": "kJ/kg", "note": "Compressor specific work per kg air (higher than diabatic; no fuel supplement, more compression stages)"},
+        "specific_expansion_adiabatic": {"value": 335.0, "unit": "kJ/kg", "note": "Expander specific energy per kg air using TES-recovered heat; calibrated to RTE~70%: E_out=335*0.86*0.97=279.9 kJ/kg; E_in=310/(0.80*0.97)=399.5 kJ/kg; RTE=279.9/399.5=0.700. Lower than compression work (310 kJ/kg) because TES and duct losses reduce heat returned."},
+        "R_air": {"value": 287.0, "unit": "J/(kg.K)"},
+        "heat_rate": {"value": 0.0, "unit": "kJ/kWh_e", "note": "No supplemental fuel — adiabatic mode; heat comes from TES only"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "-"},
+        "power_command_kw": {"min": -400000.0, "max": 400000.0, "unit": "kW"},
+        "duration_hours": {"min": 0.0, "max": 24.0, "unit": "h"},
+        "mode": {"values": ["charge", "discharge", "idle"]}
+    }
+}

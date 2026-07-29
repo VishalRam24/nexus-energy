@@ -1,0 +1,25 @@
+{
+    "component": "EC205 CO2 Electrolyzer (CO2 to CO/Fuels)",
+    "fidelity": "F1b",
+    "description": "CO2 electrolyzer with part-load performance and electrode degradation",
+    "unit": {
+        "name": "Generic CO2 Reduction Electrolyzer (CO2RR to CO)",
+        "source": "Jouny et al. (2018) Ind. Eng. Chem. Res.; Higgins et al. (2019) Nature Energy",
+        "V_cell_design": {"value": 2.4, "unit": "V", "note": "Cell voltage at design current density"},
+        "j_design": {"value": 200.0, "unit": "mA/cm2", "note": "Design current density"},
+        "faradaic_efficiency_design": {"value": 0.92, "unit": "dimensionless", "note": "CO Faradaic efficiency at design"},
+        "SEC_design": {"value": 400.0, "unit": "kWh/tCO", "note": "Specific energy consumption at design"},
+        "degradation_rate": {"value": 1.0e-5, "unit": "per_hour", "note": "FE loss rate per operating hour (1% per 1000h)"},
+        "V_cell_slope": {"value": 0.005, "unit": "V/(mA/cm2)", "note": "Tafel-like slope for part-load voltage"},
+        "n_electrons_CO": {"value": 2, "unit": "dimensionless", "note": "Electrons transferred per CO2->CO"},
+        "MW_CO": {"value": 28.01, "unit": "g/mol"},
+        "MW_CO2": {"value": 44.01, "unit": "g/mol"},
+        "electrode_area_cm2": {"value": 100.0, "unit": "cm2"},
+        "PLR_voltage_coeffs": {"value": [0.85, 0.15], "unit": "dimensionless", "note": "V_cell(PLR) = V_design * (a + b/PLR)"}
+    },
+    "valid_ranges": {
+        "current_density_mA_cm2": {"min": 50.0, "max": 400.0, "unit": "mA/cm2"},
+        "PLR": {"min": 0.25, "max": 1.0, "unit": "dimensionless"},
+        "operating_hours": {"min": 0.0, "max": 50000.0, "unit": "hours"}
+    }
+}

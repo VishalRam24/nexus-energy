@@ -1,0 +1,39 @@
+{
+    "component": "EC013 Liquid Hydrogen (LH2) Storage",
+    "fidelity": "F1b",
+    "description": "Boil-off with T_amb variation, tank pressurization dynamics, MLI conductivity T-dependence",
+    "source": "Sherif et al. (1997) Int. J. Hydrogen Energy, 22(7), 683; Petitpas (2018) NREL; Johnson (2010) NREL/TP-560-47503 (MLI k(T)); Barron (1999) Cryogenic Systems, Oxford",
+    "tank": {
+        "name": "Generic 1 m3 vacuum-jacketed MLI LH2 dewar",
+        "volume": {"value": 1.0, "unit": "m3"},
+        "surface_area": {"value": 5.0, "unit": "m2"},
+        "mass_empty": {"value": 250.0, "unit": "kg"},
+        "U_ref": {"value": 0.0015, "unit": "W/(m2.K)", "note": "Effective U at T_amb=298 K (vacuum + 30-layer MLI)"},
+        "MLI_layers": {"value": 30, "unit": "dimensionless"},
+        "MLI_thickness": {"value": 0.03, "unit": "m", "note": "Total MLI blanket thickness"},
+        "max_pressure": {"value": 6.0, "unit": "bar"},
+        "vent_pressure": {"value": 5.5, "unit": "bar", "note": "Pressure relief / vent set-point"},
+        "fill_fraction_max": {"value": 0.95, "unit": "dimensionless"}
+    },
+    "hydrogen": {
+        "T_sat_1atm": {"value": 20.28, "unit": "K"},
+        "rho_liquid": {"value": 70.85, "unit": "kg/m3"},
+        "rho_vapor": {"value": 1.34, "unit": "kg/m3"},
+        "h_vap": {"value": 445.6, "unit": "kJ/kg"},
+        "cp_liquid": {"value": 9.69, "unit": "kJ/(kg.K)"},
+        "LHV": {"value": 120.0, "unit": "MJ/kg"},
+        "R_H2": {"value": 4124.2, "unit": "J/(kg.K)", "note": "Specific gas constant"},
+        "Z_vapor": {"value": 1.0, "unit": "dimensionless", "note": "Compressibility factor at low P"},
+        "dTsat_dP": {"value": 0.154, "unit": "K/bar", "note": "Clausius-Clapeyron slope near NBP; Barron (1999)"}
+    },
+    "ambient": {
+        "T_ambient_default": {"value": 298.15, "unit": "K"},
+        "T_ambient_min": {"value": 233.15, "unit": "K"},
+        "T_ambient_max": {"value": 333.15, "unit": "K"}
+    },
+    "valid_ranges": {
+        "fill_fraction": {"min": 0.05, "max": 0.95},
+        "T_ambient": {"min": 233.15, "max": 333.15, "unit": "K"},
+        "P_tank": {"min": 1.0, "max": 6.0, "unit": "bar"}
+    }
+}

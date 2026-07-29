@@ -1,0 +1,25 @@
+{
+    "component": "EC222 Betavoltaic Cell",
+    "fidelity": "F0a",
+    "description": "Empirical output-power vs time lookup for a Ni-63 betavoltaic cell. Power follows isotope decay P(t)=P0*exp(-ln2*t/t_half) with P0 = A0*E_beta*eta_capture*eta_conv. Long, slow exponential decline over decades.",
+    "source": "Blanovsky, A.E. (2012) IEEE AERO; Olsen et al. (1993) Nucl. Instrum. Methods; Sychov et al. (2008) Appl. Radiat. Isot.",
+    "isotope": {"value": "Ni-63", "unit": "-", "note": "Nickel-63 beta emitter (reused from EC222 F1a)"},
+    "A0_Bq": {"value": 3.7e9, "unit": "Bq", "note": "Initial activity 0.1 Ci (reused from F1a)"},
+    "t_half_years": {"value": 100.2, "unit": "years", "note": "Ni-63 half-life (reused from F1a)"},
+    "E_beta_MeV": {"value": 0.017, "unit": "MeV", "note": "Mean beta energy (reused from F1a)"},
+    "eta_capture": {"value": 0.30, "unit": "-", "note": "Capture efficiency (reused from F1a)"},
+    "eta_conv": {"value": 0.06, "unit": "-", "note": "Conversion efficiency (reused from F1a)"},
+    "P0_nW": {"value": 181.3784, "unit": "nW", "note": "Initial electrical power = A0*E_beta*eta_cap*eta_conv"},
+    "lookup": {
+        "note": "Breakpoints: time since manufacture (years) -> output electrical power (nW)",
+        "t_years": {"value": [0.0, 10.0, 25.0, 50.0, 100.0, 200.0, 500.0], "unit": "years"},
+        "power_nW": {"value": [181.3784, 169.2555, 152.5732, 128.3427, 90.8148, 45.4703, 5.7074], "unit": "nW"}
+    },
+    "rated_point": {
+        "t": {"value": 0.0, "unit": "years"},
+        "power_nW": {"value": 181.3784, "unit": "nW", "note": "Beginning-of-life output ~181 nW for 0.1 Ci Ni-63 diamond cell"}
+    },
+    "valid_ranges": {
+        "t_years": {"min": 0.0, "max": 500.0, "unit": "years"}
+    }
+}

@@ -1,0 +1,93 @@
+{
+    "component": "EC065 Offshore Fixed-Bottom Wind Turbine (Siemens SWT-3.6-120)",
+    "fidelity": "F0a -- empirical power-curve lookup",
+    "description": "Tabulated power curve (power vs wind speed) via np.interp with cut-in/rated/cut-out limits",
+    "turbine": {
+        "name": "Offshore Fixed-Bottom Wind Turbine (Siemens SWT-3.6-120)",
+        "rated_power": {
+            "value": 3600.0,
+            "unit": "kW"
+        },
+        "cut_in_speed": {
+            "value": 3.5,
+            "unit": "m/s"
+        },
+        "rated_speed": {
+            "value": 12.5,
+            "unit": "m/s"
+        },
+        "cut_out_speed": {
+            "value": 25.0,
+            "unit": "m/s"
+        }
+    },
+    "power_curve": {
+        "description": "Reference power curve at standard air density (1.225 kg/m3)",
+        "source": "Siemens SWT-3.6-120 datasheet; windpowerlib; IEC 61400-12-1",
+        "wind_speeds_ms": [
+            0,
+            1,
+            2,
+            3,
+            3.5,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25
+        ],
+        "power_kw": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            70,
+            175,
+            390,
+            680,
+            1080,
+            1570,
+            2150,
+            2810,
+            3320,
+            3560,
+            3600,
+            3600,
+            3600,
+            3600,
+            3600,
+            3600,
+            3600,
+            3600,
+            3600,
+            3600,
+            3600,
+            3600
+        ]
+    },
+    "valid_ranges": {
+        "wind_speed": {
+            "min": 0.0,
+            "max": 30.0,
+            "unit": "m/s"
+        }
+    }
+}

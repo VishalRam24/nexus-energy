@@ -1,0 +1,32 @@
+{
+    "component": "EC011 Anion Exchange Membrane Electrolyser (AEM)",
+    "fidelity": "F1a",
+    "description": "Tafel + ohmic V-I polarization model for AEM water electrolysis",
+    "source": "Vincent & Bessarabov (2018) Renewable & Sustainable Energy Reviews, 81, 1690-1704; Henkensmeier et al. (2021) J. Electrochem. Energy Conv. Storage, 18, 024001",
+    "unit": {
+        "name": "Generic 2.5 kW AEM Electrolyser Stack",
+        "N_cells": {"value": 10, "unit": "dimensionless", "note": "Number of cells in series"},
+        "electrode_area": {"value": 0.01, "unit": "m2", "note": "100 cm2 active area per cell"},
+        "T_nominal": {"value": 333.15, "unit": "K", "note": "Nominal operating temperature (60 C)"},
+        "j0_anode": {"value": 1.0e-4, "unit": "A/cm2", "note": "Anode (OER) exchange current density on Ni-based catalyst at T_ref"},
+        "j0_cathode": {"value": 1.0e-2, "unit": "A/cm2", "note": "Cathode (HER) exchange current density at T_ref"},
+        "Ea_anode": {"value": 52000.0, "unit": "J/mol", "note": "Activation energy for OER (Arrhenius)"},
+        "Ea_cathode": {"value": 30000.0, "unit": "J/mol", "note": "Activation energy for HER (Arrhenius)"},
+        "alpha_anode": {"value": 0.5, "unit": "dimensionless", "note": "Anode charge transfer coefficient"},
+        "alpha_cathode": {"value": 0.5, "unit": "dimensionless", "note": "Cathode charge transfer coefficient"},
+        "r_membrane_ref": {"value": 0.25, "unit": "Ohm.cm2", "note": "Area-specific resistance (membrane + electrolyte) at T_ref"},
+        "r_temp_coeff": {"value": -0.003, "unit": "1/K", "note": "Temperature coefficient of ASR (decreases with T)"},
+        "T_ref": {"value": 333.15, "unit": "K"},
+        "eta_F": {"value": 0.97, "unit": "dimensionless", "note": "Faraday efficiency (lower than PEM due to gas crossover)"}
+    },
+    "constants": {
+        "F": {"value": 96485.0, "unit": "C/mol", "note": "Faraday constant"},
+        "R": {"value": 8.314, "unit": "J/(mol.K)", "note": "Universal gas constant"},
+        "E_rev_ref": {"value": 1.229, "unit": "V", "note": "Reversible potential at 25 C"},
+        "E_rev_T_coeff": {"value": 0.0009, "unit": "V/K", "note": "Temperature coefficient of E_rev"}
+    },
+    "valid_ranges": {
+        "current_density": {"min": 0.0, "max": 20000.0, "unit": "A/m2"},
+        "temperature": {"min": 30.0, "max": 80.0, "unit": "degC"}
+    }
+}

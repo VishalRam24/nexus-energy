@@ -1,0 +1,34 @@
+{
+    "component": "EC195 Ammonia Synthesis (Haber-Bosch)",
+    "fidelity": "F1b",
+    "description": "Part-load model with recycle loop, compression energy, and purge fraction",
+    "unit": {
+        "name": "Iron-Catalyzed Haber-Bosch Reactor with Recycle Loop",
+        "source": "Appl, M. (2011). Ammonia. In Ullmann's Encyclopedia of Industrial Chemistry.",
+        "T_design": {"value": 450.0, "unit": "degC"},
+        "P_design": {"value": 200.0, "unit": "bar"},
+        "T_ref": {"value": 450.0, "unit": "degC"},
+        "P_ref": {"value": 200.0, "unit": "bar"},
+        "X_ref": {"value": 0.15, "unit": "dimensionless"},
+        "E_a_R": {"value": 8000.0, "unit": "K"},
+        "P_exp": {"value": 0.5, "unit": "dimensionless"},
+        "E_specific": {"value": 28.0, "unit": "GJ/tNH3"},
+        "recycle_ratio": {"value": 5.0, "unit": "dimensionless"},
+        "MW_NH3": {"value": 17.031, "unit": "g/mol"},
+        "MW_N2": {"value": 28.014, "unit": "g/mol"},
+        "n_N2_in": {"value": 1.0, "unit": "mol/s"},
+        "conversion_design": {"value": 0.15, "unit": "dimensionless"},
+        "compression_stages": {"value": 3, "unit": "-"},
+        "eta_compressor": {"value": 0.85, "unit": "dimensionless"},
+        "purge_fraction_design": {"value": 0.05, "unit": "dimensionless", "note": "Fraction of recycle purged to avoid inert buildup"},
+        "PLR_conversion_coeffs": {"value": [0.15, 1.1, -0.25], "unit": "dimensionless", "note": "PLR effect on conversion: a0 + a1*PLR + a2*PLR^2"},
+        "gamma": {"value": 1.4, "unit": "dimensionless", "note": "Ratio of specific heats for syngas"},
+        "T_inlet_K": {"value": 313.15, "unit": "K", "note": "Compressor inlet temperature (40C)"},
+        "R_gas": {"value": 8.314, "unit": "J/(mol*K)"}
+    },
+    "valid_ranges": {
+        "temperature": {"min": 350.0, "max": 550.0, "unit": "degC"},
+        "pressure": {"min": 100.0, "max": 300.0, "unit": "bar"},
+        "PLR": {"min": 0.3, "max": 1.0, "unit": "dimensionless"}
+    }
+}

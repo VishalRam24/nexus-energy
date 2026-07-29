@@ -1,0 +1,27 @@
+{
+    "component": "EC097 Rankine Cycle (Steam Turbine)",
+    "fidelity": "F1b",
+    "description": "Part-load efficiency + condenser ambient temperature correction + condenser pressure correction",
+    "turbine": {
+        "name": "Generic Subcritical Steam Turbine — Condenser Ambient + Part-Load",
+        "source": "Cotton (1998) Evaluating and Improving Steam Turbine Performance; Moran & Shapiro (2010) Fundamentals of Engineering Thermodynamics; Spencer-Cotton-Cannon (1963) corrections; EPRI Technical Report 107274.",
+        "P_rated_w":     {"value": 100e6,  "unit": "W",    "note": "Rated electrical output (100 MWe)"},
+        "eta_rated":     {"value": 0.38,   "unit": "-",    "note": "Rated cycle efficiency at design point"},
+        "a_partload":    {"value": 0.15,   "unit": "-",    "note": "Part-load loss coefficient (Cotton 1998)"},
+        "T_steam_c":     {"value": 540.0,  "unit": "degC", "note": "Main steam temperature"},
+        "P_steam_bar":   {"value": 170.0,  "unit": "bar",  "note": "Main steam pressure (subcritical)"},
+        "T_cond_design_c": {"value": 33.0, "unit": "degC", "note": "Design condenser hot-well temperature"},
+        "T_cond_min_c":  {"value": 18.0,  "unit": "degC", "note": "Minimum condenser temperature (cold cooling water)"},
+        "T_cond_max_c":  {"value": 50.0,  "unit": "degC", "note": "Maximum condenser temperature (hot ambient / dry cooling)"},
+        "k_cond":        {"value": 0.006,  "unit": "1/K",  "note": "Efficiency derating per K rise in condenser temp (linear, relative)"},
+        "PLR_min":       {"value": 0.20,   "unit": "-",    "note": "Minimum stable part-load ratio"},
+        "T_approach_c":  {"value": 8.0,    "unit": "degC", "note": "Condenser cooling water approach temperature"},
+        "aux_fraction":  {"value": 0.025,  "unit": "-",    "note": "Auxiliary power fraction (BFP, CWP, fans)"}
+    },
+    "valid_ranges": {
+        "PLR":              {"min": 0.20, "max": 1.0,   "unit": "-"},
+        "T_condenser_c":    {"min": 15.0, "max": 55.0,  "unit": "degC"},
+        "T_steam_c":        {"min": 400.0,"max": 620.0, "unit": "degC"},
+        "P_steam_bar":      {"min": 80.0, "max": 250.0, "unit": "bar"}
+    }
+}

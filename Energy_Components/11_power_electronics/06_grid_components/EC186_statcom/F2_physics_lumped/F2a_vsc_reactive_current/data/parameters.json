@@ -1,0 +1,29 @@
+{
+    "component_id": "EC186",
+    "component_name": "STATCOM (Static Synchronous Compensator)",
+    "fidelity": "F2a — VSC Reactive-Current Control with DC-Link ODE (Physics-Lumped)",
+    "source": "Hingorani & Gyugyi (2000) Understanding FACTS, IEEE Press Ch.5; Acha et al. (2002) FACTS: Modelling and Simulation in Power Networks, Wiley Ch.6; Yazdani & Iravani (2010) Voltage-Sourced Converters in Power Systems, Wiley.",
+    "unit": {
+        "name": "Generic ±100 MVAR / 132 kV VSC STATCOM — Physics-Lumped",
+        "Q_max_MVAR": {"value": 100.0, "unit": "MVAR", "note": "Max capacitive (leading) output"},
+        "Q_min_MVAR": {"value": -100.0, "unit": "MVAR", "note": "Max inductive (lagging) output; symmetric for VSC"},
+        "V_rated_kV": {"value": 132.0, "unit": "kV", "note": "Rated line-to-line RMS bus voltage"},
+        "V_base_phase_pk_kV": {"value": 107.78, "unit": "kV", "note": "Peak phase voltage base = V_LL*sqrt(2/3) for dq scaling"},
+        "X_pu": {"value": 0.15, "unit": "pu", "note": "Coupling reactance (transformer + filter) on STATCOM MVA base"},
+        "R_pu": {"value": 0.01, "unit": "pu", "note": "Coupling resistance (copper + conduction loss equivalent)"},
+        "f_grid_Hz": {"value": 50.0, "unit": "Hz", "note": "Grid fundamental frequency"},
+        "Vdc_rated_kV": {"value": 20.0, "unit": "kV", "note": "Rated DC-link voltage"},
+        "C_dc_mF": {"value": 30.0, "unit": "mF", "note": "DC-link capacitance (lumped)"},
+        "tau_i_ms": {"value": 1.5, "unit": "ms", "note": "Closed-loop dq current control time constant (fast inner loop)"},
+        "kp_vdc": {"value": 0.8, "unit": "A/V", "note": "DC-link voltage PI proportional gain (per-unit)"},
+        "ki_vdc": {"value": 20.0, "unit": "A/(V.s)", "note": "DC-link voltage PI integral gain (per-unit)"},
+        "loss_factor": {"value": 0.015, "unit": "dimensionless", "note": "Total VSC+transformer loss fraction of |Q_out| (~1.5%)"},
+        "P_standby_MW": {"value": 0.5, "unit": "MW", "note": "No-load auxiliary/cooling losses"}
+    },
+    "valid_ranges": {
+        "Q_ref_MVAR": {"min": -100.0, "max": 100.0, "unit": "MVAR"},
+        "V_bus_pu": {"min": 0.2, "max": 1.2, "unit": "pu"},
+        "dt": {"min": 1e-5, "max": 1e-3, "unit": "s"},
+        "duration_s": {"min": 0.001, "max": 2.0, "unit": "s"}
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "component": "EC207 CO2 Compression & Pipeline",
+    "fidelity": "F1a",
+    "description": "CO2 compression to supercritical state + pipeline pressure drop; dense-phase pipeline",
+    "source": "IPCC (2005) CCS Special Report, Chapter 4; IEA GHG (2011) CCS Cost Network; McCoy & Rubin (2008) Energy & Environmental Science",
+    "compressor": {
+        "name": "Multi-stage CO2 compressor with intercooling to supercritical",
+        "n_stages": {"value": 4, "unit": "dimensionless",
+                     "note": "Typical: 4-6 stages to reach 150 bar from 1 bar capture stream"},
+        "polytropic_index": {"value": 1.30, "unit": "dimensionless",
+                             "note": "CO2 polytropic exponent (gamma=1.29 near critical, ~1.30 effective)"},
+        "eta_polytropic": {"value": 0.80, "unit": "dimensionless",
+                           "note": "Polytropic stage efficiency for centrifugal CO2 compressor"},
+        "eta_mech": {"value": 0.95, "unit": "dimensionless"},
+        "T_inlet": {"value": 308.15, "unit": "K", "note": "35°C inlet, well above critical T=304.2K to avoid two-phase"},
+        "P_inlet": {"value": 1.5, "unit": "bar", "note": "Typical post-capture pressure"},
+        "P_supercritical": {"value": 150.0, "unit": "bar", "note": "Target pipeline pressure (supercritical)"},
+        "intercooled": {"value": true}
+    },
+    "co2": {
+        "molar_mass": {"value": 0.04401, "unit": "kg/mol"},
+        "R_specific": {"value": 188.9, "unit": "J/(kg.K)", "note": "R_universal / M_CO2"},
+        "gamma": {"value": 1.29, "unit": "dimensionless", "note": "Near critical; use 1.30 for polytropic model"},
+        "T_critical": {"value": 304.2, "unit": "K", "note": "Critical temperature"},
+        "P_critical": {"value": 73.8, "unit": "bar", "note": "Critical pressure"},
+        "rho_dense_phase": {"value": 800.0, "unit": "kg/m3", "note": "Dense-phase CO2 density at ~150 bar, 35°C"},
+        "viscosity_dense": {"value": 8.0e-5, "unit": "Pa.s", "note": "Dense-phase viscosity"},
+        "JT_coefficient_dense": {"value": -1.0e-7, "unit": "K/Pa",
+                                  "note": "JT coeff in dense/supercritical phase: NEGATIVE (warming on expansion above T_inv)"},
+        "SEC_ref": {"value": 100.0, "unit": "kWh/tCO2",
+                    "note": "Literature benchmark: ~80-120 kWh/tCO2 for full compression 1->150 bar (IPCC 2005)"}
+    },
+    "pipeline": {
+        "name": "Dense-phase CO2 pipeline",
+        "roughness": {"value": 4.6e-5, "unit": "m", "note": "Steel pipe roughness"},
+        "G_CO2": {"value": 1.519, "unit": "dimensionless", "note": "Specific gravity vs air"}
+    },
+    "valid_ranges": {
+        "P_inlet": {"min": 0.1, "max": 10.0, "unit": "bar"},
+        "P_outlet": {"min": 100.0, "max": 250.0, "unit": "bar"},
+        "mass_flow": {"min": 0.0, "max": 1000.0, "unit": "kg/s"},
+        "pipeline_length_km": {"min": 0.0, "max": 500.0, "unit": "km"}
+    }
+}

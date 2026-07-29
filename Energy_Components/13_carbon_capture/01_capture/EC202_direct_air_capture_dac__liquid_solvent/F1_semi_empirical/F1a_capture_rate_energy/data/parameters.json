@@ -1,0 +1,19 @@
+{
+    "component": "EC202 Direct Air Capture (DAC) — Liquid Solvent",
+    "fidelity": "F1a",
+    "description": "Simple capture rate and specific energy consumption model for DAC liquid solvent (KOH). Thermal regeneration at 900C.",
+    "unit": {
+        "name": "Generic KOH liquid solvent DAC unit",
+        "source": "Keith et al. (2018) Carbon Engineering; Fasihi et al. (2019)",
+        "capture_rate": {"value": 0.90, "unit": "dimensionless", "note": "Fraction of CO2 captured from inlet air"},
+        "SEC_thermal_GJ_tCO2": {"value": 6.0, "unit": "GJ/tCO2", "note": "Specific thermal energy consumption"},
+        "SEC_elec_GJ_tCO2": {"value": 1.8, "unit": "GJ/tCO2", "note": "0.5 GJ/tCO2 = 0.5*1000/3.6 kWh -> stored as GJ"},
+        "T_regen_C": {"value": 900.0, "unit": "degC", "note": "Calciner regeneration temperature"},
+        "solvent": {"value": "KOH", "unit": "string"},
+        "CO2_concentration_ppm": {"value": 420.0, "unit": "ppm", "note": "Atmospheric CO2 concentration"}
+    },
+    "valid_ranges": {
+        "capacity_fraction": {"min": 0.1, "max": 1.0, "unit": "dimensionless"},
+        "T_ambient_C": {"min": -20.0, "max": 45.0, "unit": "degC"}
+    }
+}

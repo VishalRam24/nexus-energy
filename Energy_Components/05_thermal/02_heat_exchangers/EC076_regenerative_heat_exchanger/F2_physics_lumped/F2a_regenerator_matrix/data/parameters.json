@@ -1,0 +1,29 @@
+{
+    "component": "EC076 Regenerative Heat Exchanger",
+    "fidelity": "F2a — Physics-Lumped Periodic-Flow / Rotary Regenerator Matrix",
+    "description": "Thermal-storage matrix discretized into N nodes, alternately heated by a hot blow and cooled by a cold blow. Per-node energy balances for matrix and gas integrated with scipy.solve_ivp to periodic steady state. Coppage-London / Kays-London reduced ε-NTU_o(Cr*) theory used as closed-form cross-check.",
+    "source": "Kays & London (1984) Compact Heat Exchangers, ch.5 (periodic-flow regenerators); Shah & Sekulic (2003) Fundamentals of Heat Exchanger Design, ch.5; Coppage & London (1953) Trans. ASME 75:779.",
+    "unit": {
+        "name": "Rotary Air-to-Air Regenerator (balanced, symmetric)",
+        "source": "Kays & London (1984) ch.5; Shah & Sekulic (2003) ch.5.",
+        "N_nodes": {"value": 20, "unit": "-", "note": "Number of axial matrix nodes (discretization)"},
+        "C_h": {"value": 2000.0, "unit": "W/K", "note": "Hot-stream heat capacity rate m_dot*cp (hot blow)"},
+        "C_c": {"value": 2000.0, "unit": "W/K", "note": "Cold-stream heat capacity rate m_dot*cp (cold blow)"},
+        "hA_h": {"value": 6000.0, "unit": "W/K", "note": "Convective conductance (h*A) on hot side"},
+        "hA_c": {"value": 6000.0, "unit": "W/K", "note": "Convective conductance (h*A) on cold side"},
+        "M_matrix": {"value": 50.0, "unit": "kg", "note": "Mass of thermal-storage matrix (wheel)"},
+        "cp_matrix": {"value": 500.0, "unit": "J/(kg.K)", "note": "Matrix specific heat (steel/ceramic honeycomb)"},
+        "rpm": {"value": 10.0, "unit": "rev/min", "note": "Rotational speed of wheel; sets blow period P = 30/rpm s per stream"},
+        "air_cp": {"value": 1006.0, "unit": "J/(kg.K)", "note": "Air specific heat at ~300 K, 1 atm (Cengel & Ghajar 2015, Table A-15)"},
+        "air_rho": {"value": 1.184, "unit": "kg/m3", "note": "Air density at 25 C, 1 atm (Cengel & Ghajar 2015, Table A-15)"}
+    },
+    "valid_ranges": {
+        "T_h_in": {"min": 50.0, "max": 600.0, "unit": "degC"},
+        "T_c_in": {"min": -20.0, "max": 100.0, "unit": "degC"},
+        "C_h": {"min": 200.0, "max": 20000.0, "unit": "W/K"},
+        "C_c": {"min": 200.0, "max": 20000.0, "unit": "W/K"},
+        "rpm": {"min": 0.5, "max": 60.0, "unit": "rev/min"},
+        "M_matrix": {"min": 1.0, "max": 1000.0, "unit": "kg"},
+        "N_nodes": {"min": 4, "max": 60, "unit": "-"}
+    }
+}

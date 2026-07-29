@@ -1,0 +1,37 @@
+{
+    "component_id": "EC128",
+    "component_name": "Conventional Hydroelectric Dam",
+    "fidelity": "F2a -- Dynamic ODE Model with Penstock + Turbine-Governor",
+    "source": "Kundur (1994) Power System Stability and Control; IEEE Std 1207; USBR Engineering Monograph No.20",
+    "unit": {
+        "name": "Generic 100 MW Francis Turbine Hydroelectric Dam",
+        "rho_water": {"value": 998.0, "unit": "kg/m3", "note": "Water density"},
+        "g": {"value": 9.81, "unit": "m/s2", "note": "Gravitational acceleration"},
+        "H_rated": {"value": 100.0, "unit": "m", "note": "Rated net head"},
+        "Q_rated": {"value": 120.0, "unit": "m3/s", "note": "Rated turbine flow"},
+        "P_rated": {"value": 100e6, "unit": "W", "note": "Rated power output"},
+        "L_penstock": {"value": 500.0, "unit": "m", "note": "Penstock length"},
+        "A_penstock": {"value": 7.07, "unit": "m2", "note": "Penstock cross-section (D=3m)"},
+        "D_penstock": {"value": 3.0, "unit": "m", "note": "Penstock diameter"},
+        "f_darcy": {"value": 0.012, "unit": "-", "note": "Darcy friction factor"},
+        "A_reservoir": {"value": 1.0e6, "unit": "m2", "note": "Reservoir surface area (1 km2)"},
+        "H_reservoir_init": {"value": 100.0, "unit": "m", "note": "Initial reservoir head"},
+        "H_tailwater": {"value": 5.0, "unit": "m", "note": "Tailwater level"},
+        "tau_gov": {"value": 5.0, "unit": "s", "note": "Governor time constant"},
+        "G_init": {"value": 0.5, "unit": "-", "note": "Initial gate opening (0-1)"},
+        "G_min": {"value": 0.05, "unit": "-", "note": "Minimum gate opening"},
+        "G_max": {"value": 1.0, "unit": "-", "note": "Maximum gate opening"},
+        "G_rate_max": {"value": 0.1, "unit": "1/s", "note": "Maximum gate rate of change"},
+        "eta_rated": {"value": 0.93, "unit": "-", "note": "Rated turbine efficiency (Francis)"},
+        "Q_inflow_base": {"value": 60.0, "unit": "m3/s", "note": "Base natural inflow to reservoir"},
+        "J_gen": {"value": 5.0e5, "unit": "kg.m2", "note": "Generator rotor inertia"},
+        "omega_sync": {"value": 12.57, "unit": "rad/s", "note": "Synchronous speed (120 rpm)"},
+        "D_damping": {"value": 2.0, "unit": "-", "note": "Damping coefficient (pu)"}
+    },
+    "valid_ranges": {
+        "H": {"min": 0.0, "max": 200.0, "unit": "m"},
+        "Q": {"min": 0.0, "max": 200.0, "unit": "m3/s"},
+        "G": {"min": 0.0, "max": 1.0, "unit": "-"},
+        "duration_s": {"min": 1.0, "max": 86400.0, "unit": "s"}
+    }
+}

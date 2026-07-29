@@ -1,0 +1,29 @@
+{
+    "component": "EC120 Fast Breeder Reactor (FBR)",
+    "fidelity": "F1b",
+    "description": "Load-following FBR (sodium-cooled) with Xe-135 dynamics and sodium void reactivity feedback. FBR uses fast neutrons: Xe absorption cross-section is ~3 orders of magnitude smaller than thermal, making xenon poisoning negligible.",
+    "unit": {
+        "name": "Generic 1000 MWe Sodium-Cooled Fast Breeder Reactor (BN-800/ASTRID-class)",
+        "source": "Guidez & Prele (2017) Sodium Cooled Fast Reactors, EDP Sciences; Koch (2008) FAST BREEDER REACTORS: An Engineering Introduction, Elsevier; IAEA (2012) Status of Fast Reactor Technology, IAEA-TECDOC-1689.",
+        "P_thermal_mw": {"value": 2100.0, "unit": "MW_th", "note": "Thermal power at full load (BN-800 class: 2100 MWth nominal)"},
+        "eta_thermal": {"value": 0.39, "unit": "dimensionless", "note": "Net efficiency; sodium fast reactor drives high-pressure steam cycle at ~500C -> ~39%"},
+        "sigma_Xe_cm2": {"value": 2.65e-22, "unit": "cm2", "note": "Xe-135 fast-spectrum cross-section is ~3 orders of magnitude lower than thermal (2.65e-18 cm2 thermal vs ~2.65e-22 cm2 fast); xenon poisoning negligible in FBR"},
+        "lambda_Xe_per_s": {"value": 2.09e-5, "unit": "1/s", "note": "Xe-135 decay constant (unchanged — nuclear property)"},
+        "lambda_I_per_s": {"value": 2.87e-5, "unit": "1/s", "note": "I-135 decay constant (unchanged)"},
+        "gamma_I": {"value": 0.064, "unit": "dimensionless", "note": "I-135 cumulative fission yield"},
+        "gamma_Xe": {"value": 0.003, "unit": "dimensionless", "note": "Direct Xe-135 fission yield"},
+        "ramp_rate_limit_pct_min": {"value": 3.0, "unit": "%/min", "note": "Sodium-cooled FBR ramp rate limited by thermal gradients in large sodium pool and breeding blanket structural integrity; 3%/min typical (BN-800 operational experience)"},
+        "PLR_min": {"value": 0.25, "unit": "dimensionless", "note": "Minimum stable power; sodium natural circulation provides passive safety below ~25% power"},
+        "PLR_max": {"value": 1.0, "unit": "dimensionless"},
+        "total_reactivity_margin_pcm": {"value": 3500.0, "unit": "pcm", "note": "FBR uses control/safety rods with boron carbide; margin sufficient for shutdown and transient control"},
+        "xenon_reactivity_coeff_pcm": {"value": -50.0, "unit": "pcm", "note": "Xe reactivity worth in fast spectrum is negligible (<50 pcm) vs thermal reactor (-3000 pcm); xenon deadtime does not limit FBR load-following"},
+        "sodium_void_coeff_pcm_per_pct": {"value": 10.0, "unit": "pcm/%void", "note": "Sodium void reactivity coefficient [pcm per 1% void]; POSITIVE in large FBR cores (safety concern mitigated by design margins, negative Doppler); typical +5 to +20 pcm/%void"},
+        "doppler_coeff_pcm_per_K": {"value": -0.8, "unit": "pcm/K", "note": "Doppler temperature coefficient; negative in U238 bearing fast fuel, partially offsets positive void coefficient"},
+        "T_sodium_rated_C": {"value": 510.0, "unit": "degC", "note": "Average core outlet sodium temperature at rated power (BN-800: ~510C outlet)"}
+    },
+    "valid_ranges": {
+        "power_fraction": {"min": 0.25, "max": 1.0},
+        "time_at_power_hours": {"min": 0.0, "max": 168.0},
+        "previous_power_fraction": {"min": 0.0, "max": 1.0}
+    }
+}

@@ -1,0 +1,39 @@
+{
+    "component": "EC022 LCO Battery (Lithium Cobalt Oxide)",
+    "fidelity": "F1b",
+    "description": "SOC-thermal voltage model: V = OCV(SOC) - I*R(T), with Arrhenius resistance and capacity correction",
+    "cell": {
+        "name": "Generic LCO 18650 cell (LiCoO2 cathode, graphite anode)",
+        "source": "Reimers & Dahn (1992), J. Electrochem. Soc. 139, 2091; consumer-electronics LCO datasheets",
+        "nominal_voltage": {"value": 3.7, "unit": "V"},
+        "capacity_ref": {"value": 2.6, "unit": "Ah", "note": "Nominal capacity at T_ref (298.15 K)"},
+        "voltage_max": {"value": 4.2, "unit": "V"},
+        "voltage_min": {"value": 3.0, "unit": "V"},
+        "R_ref": {"value": 0.060, "unit": "Ohm", "note": "Internal resistance at T_ref (298.15 K); LCO has higher impedance than NMC due to ordered layered structure"}
+    },
+    "ocv_coefficients": {
+        "description": "OCV(SOC) = a0 + a1*SOC + a2*SOC^2 + a3*SOC^3 + a4*SOC^4 + a5*SOC^5",
+        "source": "Polynomial fit to representative LCO discharge curve; Reimers & Dahn (1992)",
+        "a0": 3.0047027972027953,
+        "a1": 6.030136946387021,
+        "a2": -20.907124125874486,
+        "a3": 38.548222610723336,
+        "a4": -33.53001165501228,
+        "a5": 11.05769230769248
+    },
+    "thermal": {
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 degC)"},
+        "E_a": {"value": 28000, "unit": "J/mol", "note": "Activation energy for LCO internal resistance; LCO has higher E_a than NMC due to less thermally stable layered oxide",
+                "source": "Jalkanen et al. (2015), Applied Energy 154, 160-172; Forgez et al. (2010), J. Power Sources 195, 2961"},
+        "alpha_c": {"value": 0.004, "unit": "1/K", "note": "Linear capacity temperature coefficient for LCO",
+                    "source": "Schmalstieg et al. (2014), J. Power Sources 257, 325-334"},
+        "dOCV_dT": {"value": -0.0005, "unit": "V/K", "note": "Entropic coefficient for LCO graphite cell; slightly larger than NMC due to ordered LiCoO2 phase transitions",
+                    "source": "Thomas & Newman (2003), J. Electrochem. Soc. 150(2), A176-A192"},
+        "R_gas": {"value": 8.314, "unit": "J/(mol*K)", "note": "Universal gas constant"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "current": {"min": -10.0, "max": 10.0, "unit": "A", "note": "Negative=charge, Positive=discharge"},
+        "temperature": {"min": 273.15, "max": 318.15, "unit": "K", "note": "0 to 45 degC; LCO normal Li-ion operating range"}
+    }
+}

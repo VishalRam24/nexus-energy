@@ -1,0 +1,29 @@
+{
+    "component": "EC199 Pre-Combustion Capture (WGS + Separation)",
+    "fidelity": "F1a",
+    "description": "Water-gas shift reactor + physical solvent separation (Selexol/Rectisol) for IGCC pre-combustion CO2 capture.",
+    "unit": {
+        "name": "IGCC-type WGS + Selexol separation unit",
+        "source": "IEAGHG (2014) Report 2012/8; Kunze & Spliethoff (2012) Applied Energy 94:109; DOE/NETL-2010/1397.",
+        "T_WGS_opt":        {"value": 250.0,  "unit": "degC",   "note": "Optimal WGS temperature (low-T shift catalyst: 200-300 degC, achieves X>0.90)"},
+        "X_WGS_max":        {"value": 0.95,   "unit": "-",      "note": "Maximum WGS CO conversion (thermodynamic limit at optimal T, excess steam)"},
+        "k_T_WGS":          {"value": 4.0,    "unit": "-",      "note": "Gaussian width for WGS temperature response"},
+        "P_ref_WGS":        {"value": 30.0,   "unit": "bar",    "note": "Reference WGS operating pressure (IGCC syngas ~20-40 bar)"},
+        "P_exp_WGS":        {"value": 0.05,   "unit": "-",      "note": "Weak pressure dependence of WGS conversion (equilibrium minimally affected)"},
+        "eta_sep_design":   {"value": 0.97,   "unit": "-",      "note": "Selexol/Rectisol separation efficiency (captures ~97% of shifted CO2, IEAGHG 2014)"},
+        "E_sep_base":       {"value": 0.30,   "unit": "GJ/tCO2","note": "Base separation energy (Selexol at high CO2 partial pressure ~15 bar: ~0.3 GJ/tCO2, Kunze 2012)"},
+        "k_sep":            {"value": 0.25,   "unit": "-",      "note": "Separation energy sensitivity to CO2 partial pressure"},
+        "P_ref_sep_bar":    {"value": 15.0,   "unit": "bar",    "note": "Reference CO2 partial pressure for separation (high-P IGCC advantage)"},
+        "E_compression":    {"value": 0.10,   "unit": "GJ/tCO2","note": "CO2 compression to pipeline pressure (110 bar): ~0.10 GJ/tCO2 (Lozza 2002)"},
+        "MW_CO2":           {"value": 44.01,  "unit": "g/mol"},
+        "MW_H2":            {"value": 2.016,  "unit": "g/mol"},
+        "MW_CO":            {"value": 28.01,  "unit": "g/mol"},
+        "DH_WGS":           {"value": -41.1,  "unit": "kJ/mol", "note": "WGS reaction enthalpy (exothermic, -41.1 kJ/mol CO at 250 degC)"}
+    },
+    "valid_ranges": {
+        "T_WGS_C":        {"min": 180.0, "max": 450.0, "unit": "degC"},
+        "P_bar":          {"min": 10.0,  "max": 60.0,  "unit": "bar"},
+        "co_fraction":    {"min": 0.1,   "max": 0.6,   "unit": "mol/mol"},
+        "steam_co_ratio": {"min": 2.0,   "max": 5.0,   "unit": "mol/mol"}
+    }
+}

@@ -1,0 +1,68 @@
+{
+    "component": "EC014 Metal Hydride H2 Storage",
+    "fidelity": "F1a",
+    "description": "van't Hoff equilibrium plateau pressure model for metal hydride H2 storage",
+    "source": "Lototskyy et al. (2014) Prog. Nat. Sci. Mater.; Sakintuna et al. (2007) Int. J. Hydrogen Energy",
+
+    "material": {
+        "name": "LaNi5",
+        "note": "LaNi5 reference intermetallic hydride material",
+        "delta_H": {
+            "value": -30100.0,
+            "unit": "J/mol_H2",
+            "note": "Enthalpy of hydride formation (absorption, exothermic, negative). Sandrock (1999) J. Alloys Compounds: LaNi5 dH = -30.1 kJ/mol"
+        },
+        "delta_S": {
+            "value": -108.0,
+            "unit": "J/mol_H2/K",
+            "note": "Entropy of hydride formation (absorption, negative). Sandrock (1999): LaNi5 dS = -108 J/mol/K. Dominated by H2 gas entropy (~-130 J/mol/K at STP)"
+        },
+        "H_max_wt_pct": {
+            "value": 1.4,
+            "unit": "wt%",
+            "note": "Maximum gravimetric H2 capacity for LaNi5. Sakintuna et al. 2007"
+        },
+        "bed_mass_kg": {
+            "value": 10.0,
+            "unit": "kg",
+            "note": "Reference metal hydride bed mass"
+        },
+        "volumetric_capacity": {
+            "value": 105.0,
+            "unit": "kg_H2/m3",
+            "note": "Volumetric H2 capacity for LaNi5 hydride. DOE targets: 40 g/L = 40 kg/m3"
+        },
+        "bed_volume_m3": {
+            "value": 0.0025,
+            "unit": "m3",
+            "note": "Reference bed volume for 10 kg LaNi5 bed at ~4000 kg/m3 bulk density (powder bed with 50% packing). Gives ~56 kg_H2/m3 volumetric capacity."
+        }
+    },
+
+    "thermodynamics": {
+        "R_universal": {"value": 8.314, "unit": "J/mol/K"},
+        "hysteresis_factor": {
+            "value": 1.2,
+            "unit": "dimensionless",
+            "note": "Absorption plateau pressure = hysteresis_factor * desorption plateau pressure. Lototskyy et al. 2014"
+        },
+        "plateau_slope_factor": {
+            "value": 0.05,
+            "unit": "dimensionless",
+            "note": "Slope factor s in ln(P) = s*(x - 0.5) + ln(P_eq) for sloped plateau. Set 0 for flat."
+        }
+    },
+
+    "heat_transfer": {
+        "cp_hydride": {
+            "value": 419.0,
+            "unit": "J/kg/K",
+            "note": "Heat capacity of LaNi5H6 hydride. Herbst & Hector 2005"
+        }
+    },
+
+    "valid_ranges": {
+        "temperature": {"min": 253.0, "max": 373.0, "unit": "K"},
+        "soc": {"min": 0.0, "max": 1.0, "unit": "dimensionless", "note": "State of charge: 0=empty, 1=full"}
+    }
+}

@@ -1,0 +1,26 @@
+{
+  "component": "EC150 Fischer-Tropsch Synthesis (BtL)",
+  "fidelity": "F0a",
+  "description": "Empirical ASF chain-growth-probability (alpha) curve vs reactor temperature (np.interp; high alpha at low LTFT temperatures) and CO-conversion curve. Diesel-cut selectivity derived from alpha via the Anderson-Schulz-Flory distribution. Numbers reused from EC150 F1b.",
+  "source": "Dry (2002) Catalysis Today; van der Laan & Beenackers (1999) — reused from EC150 F1b",
+  "rated": {
+    "T_ref_degC": {"value": 230.0, "unit": "degC", "note": "LTFT reference T (Co catalyst)"},
+    "alpha_ref": {"value": 0.88, "unit": "-", "note": "ASF chain-growth probability at design (high diesel+wax)"},
+    "CO_conversion_ref": {"value": 0.85, "unit": "-", "note": "Reference CO conversion"},
+    "P_design_MPa": {"value": 2.5, "unit": "MPa"}
+  },
+  "alpha_curve": {
+    "comment": "Chain-growth probability alpha vs temperature (degC). Higher T -> lower alpha (lighter products), per Dry (2002).",
+    "T_degC": [180.0, 210.0, 230.0, 280.0, 350.0],
+    "alpha":  [0.92, 0.90, 0.88, 0.80, 0.70]
+  },
+  "co_conversion_curve": {
+    "comment": "CO conversion vs temperature (degC); rises with T but levels off / methane penalty at high T.",
+    "T_degC": [180.0, 210.0, 230.0, 280.0, 350.0],
+    "CO_conversion": [0.70, 0.80, 0.85, 0.90, 0.88]
+  },
+  "diesel_carbon_range": {"C_min": 10, "C_max": 20, "note": "ASF mass fraction in the C10-C20 diesel cut"},
+  "valid_ranges": {
+    "temperature_degC": {"min": 180.0, "max": 350.0, "unit": "degC"}
+  }
+}

@@ -1,0 +1,21 @@
+{
+    "component": "EC050 Organic Photovoltaic (OPV)",
+    "fidelity": "F1a",
+    "description": "5-parameter single-diode model per unit area, then scaled by cell area",
+    "unit": {
+        "name": "Generic BHJ OPV Cell",
+        "source": "Brabec et al. (2001). Plastic Solar Cells. Adv. Funct. Mater.; De Soto et al. (2006)",
+        "I_L_density": {"value": 8.0e-3, "unit": "A/cm2", "note": "Photocurrent density"},
+        "I0_density": {"value": 1.0e-6, "unit": "A/cm2", "note": "Dark saturation current density"},
+        "n": {"value": 2.0, "unit": "dimensionless", "note": "Ideality factor"},
+        "Rs_area": {"value": 10.0, "unit": "Ohm.cm2", "note": "Series resistance * area"},
+        "Rsh_area": {"value": 500.0, "unit": "Ohm.cm2", "note": "Shunt resistance * area"},
+        "A_cell": {"value": 100.0, "unit": "cm2", "note": "Cell area"},
+        "Vt": {"value": 0.02585, "unit": "V", "note": "Thermal voltage at 300K"},
+        "T_ref": {"value": 25.0, "unit": "degC"}
+    },
+    "valid_ranges": {
+        "V": {"min": 0.0, "max": 1.0, "unit": "V"},
+        "G": {"min": 0.0, "max": 1200.0, "unit": "W/m2"}
+    }
+}

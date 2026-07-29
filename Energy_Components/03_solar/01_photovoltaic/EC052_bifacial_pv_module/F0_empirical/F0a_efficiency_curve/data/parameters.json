@@ -1,0 +1,82 @@
+{
+  "component": "EC052 Bifacial PV Module",
+  "fidelity": "F0a",
+  "model": "Empirical efficiency curve: eta(G,T) lookup -> P = eta * G * A",
+  "source": "LG NeON 2 BiFacial 400W datasheet",
+  "rated": {
+    "p_mp_stc": {
+      "value": 400.0,
+      "unit": "W",
+      "note": "Nameplate power at STC"
+    },
+    "area": {
+      "value": 2.0,
+      "unit": "m2",
+      "note": "Module aperture area"
+    },
+    "eta_stc": {
+      "value": 0.2,
+      "unit": "dimensionless",
+      "note": "Module efficiency at STC = P/(G*A)"
+    },
+    "gamma_pmp": {
+      "value": -0.0037,
+      "unit": "1/K",
+      "note": "Power temperature coefficient"
+    },
+    "stc_irradiance": {
+      "value": 1000.0,
+      "unit": "W/m2"
+    },
+    "stc_temperature": {
+      "value": 25.0,
+      "unit": "degC"
+    },
+    "bifaciality_factor": {
+      "value": 0.8,
+      "unit": "dimensionless",
+      "note": "Rear/front response ratio; P_eff uses G_eff=G_front+bifaciality*G_rear"
+    }
+  },
+  "irradiance_breakpoints": {
+    "value": [
+      0.0,
+      100.0,
+      200.0,
+      400.0,
+      600.0,
+      800.0,
+      1000.0,
+      1100.0,
+      1200.0
+    ],
+    "unit": "W/m2"
+  },
+  "rel_eff_breakpoints": {
+    "value": [
+      0.0,
+      0.93,
+      0.96,
+      0.985,
+      0.995,
+      1.0,
+      1.0,
+      0.998,
+      0.995
+    ],
+    "unit": "dimensionless",
+    "note": "Relative module efficiency vs irradiance (low-light loss), 1.0 at STC"
+  },
+  "valid_ranges": {
+    "irradiance": {
+      "min": 0.0,
+      "max": 1200.0,
+      "unit": "W/m2"
+    },
+    "cell_temperature": {
+      "min": -10.0,
+      "max": 80.0,
+      "unit": "degC"
+    }
+  }
+}

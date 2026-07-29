@@ -1,0 +1,39 @@
+{
+    "component": "EC019 NMC Battery (Nickel Manganese Cobalt)",
+    "fidelity": "F1b",
+    "description": "SOC-thermal voltage model: V = OCV(SOC) - I*R(T), with Arrhenius resistance and capacity correction",
+    "cell": {
+        "name": "Samsung INR21700-50E (NMC811)",
+        "source": "Chen et al. (2020), J. Electrochem. Soc., 167, 080534",
+        "nominal_voltage": {"value": 3.6, "unit": "V"},
+        "capacity_ref": {"value": 5.0, "unit": "Ah", "note": "Nominal capacity at T_ref"},
+        "voltage_max": {"value": 4.2, "unit": "V"},
+        "voltage_min": {"value": 2.5, "unit": "V"},
+        "R_ref": {"value": 0.025, "unit": "Ohm", "note": "Internal resistance at T_ref (298.15 K)"}
+    },
+    "ocv_coefficients": {
+        "description": "OCV(SOC) = a0 + a1*SOC + a2*SOC^2 + a3*SOC^3 + a4*SOC^4 + a5*SOC^5",
+        "source": "Fitted to NMC811 OCV data from Chen et al. (2020)",
+        "a0": 2.8,
+        "a1": 3.3,
+        "a2": -12.0,
+        "a3": 25.0,
+        "a4": -23.0,
+        "a5": 8.1
+    },
+    "thermal": {
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 degC)"},
+        "E_a": {"value": 25000, "unit": "J/mol", "note": "Activation energy for internal resistance",
+                "source": "Ecker et al. (2015), J. Electrochem. Soc., 162(9), A1836-A1848"},
+        "alpha_c": {"value": 0.005, "unit": "1/K", "note": "Linear capacity temperature coefficient",
+                    "source": "Schmalstieg et al. (2014), J. Power Sources, 257, 325-334"},
+        "dOCV_dT": {"value": -0.0004, "unit": "V/K", "note": "Entropic coefficient (avg over SOC range)",
+                    "source": "Forgez et al. (2010), J. Power Sources, 195(9), 2961-2968"},
+        "R_gas": {"value": 8.314, "unit": "J/(mol*K)", "note": "Universal gas constant"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "current": {"min": -25.0, "max": 25.0, "unit": "A", "note": "Negative=charge, Positive=discharge"},
+        "temperature": {"min": 253.15, "max": 333.15, "unit": "K", "note": "-20 to 60 degC"}
+    }
+}

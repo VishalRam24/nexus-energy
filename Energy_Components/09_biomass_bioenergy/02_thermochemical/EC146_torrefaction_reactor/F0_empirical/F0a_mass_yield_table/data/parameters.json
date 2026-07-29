@@ -1,0 +1,20 @@
+{
+  "component": "EC146 Torrefaction Reactor",
+  "fidelity": "F0a",
+  "description": "Empirical solid mass-yield and energy-densification-ratio (EDR) curves vs torrefaction temperature (np.interp). Energy yield = mass yield x EDR. Numbers reused from EC146 F1b (Bach 2017).",
+  "source": "Bach & Skreiberg (2016) Renew. Sustain. Energy Rev.; Bates & Ghoniem (2012) — reused from EC146 F1b",
+  "rated": {
+    "T_ref_degC": {"value": 220.0, "unit": "degC", "note": "Onset of significant degradation"},
+    "LHV_dry_MJ_kg": {"value": 18.5, "unit": "MJ/kg", "note": "Wood-chip raw LHV"}
+  },
+  "yield_curves": {
+    "comment": "Solid mass yield (frac of dry feed) and EDR (energy densification ratio = torrefied LHV / raw LHV) vs temperature.",
+    "T_degC": [200.0, 230.0, 260.0, 280.0, 300.0],
+    "mass_yield": [0.95, 0.88, 0.78, 0.70, 0.62],
+    "EDR":        [1.02, 1.08, 1.16, 1.22, 1.28]
+  },
+  "valid_ranges": {
+    "temperature_degC": {"min": 200.0, "max": 300.0, "unit": "degC"},
+    "residence_time_min": {"min": 5.0, "max": 120.0, "unit": "min"}
+  }
+}

@@ -1,0 +1,29 @@
+{
+    "component_id": "EC151",
+    "component_name": "Dry Steam Geothermal Plant",
+    "fidelity": "F2a — Physics-Lumped Steam-Turbine Expansion with Wellhead Transient ODE",
+    "source": "DiPippo, R. (2015). Geothermal Power Plants, 4th ed., Ch. 7 (Dry Steam Plants), Butterworth-Heinemann. Steam properties from IAPWS-IF97 (Wagner & Kretzschmar, 2008) simplified correlations.",
+    "unit": {
+        "name": "Generic Dry Steam Geothermal Plant — Physics-Lumped (The Geysers / Larderello class)",
+        "P_wh_design": {"value": 0.8, "unit": "MPa", "note": "Wellhead steam pressure design point (typ 0.5-1.0 MPa for dry-steam fields)"},
+        "P_cond": {"value": 0.012, "unit": "MPa", "note": "Condenser pressure (~50 degC saturation, surface/direct-contact condenser)"},
+        "T_superheat": {"value": 0.0, "unit": "K", "note": "Wellhead superheat above saturation; 0 = dry saturated steam"},
+        "m_dot_steam_design": {"value": 50.0, "unit": "kg/s", "note": "Design steam mass flow to turbine"},
+        "eta_isentropic": {"value": 0.80, "unit": "-", "note": "Steam turbine isentropic efficiency (DiPippo 2015, typ 0.78-0.85)"},
+        "eta_mech_gen": {"value": 0.97, "unit": "-", "note": "Combined mechanical + generator efficiency"},
+        "ncg_mass_fraction": {"value": 0.02, "unit": "-", "note": "Non-condensable gas (mainly CO2) mass fraction in steam; 0.5-5% typical"},
+        "w_ncg_extraction": {"value": 35.0, "unit": "kJ/kg_ncg", "note": "Parasitic extraction work per kg NCG (steam-jet ejector / vacuum pump), DiPippo Ch.7"},
+        "tau_wellhead": {"value": 20.0, "unit": "s", "note": "Lumped wellhead/turbine pressure-flow transient time constant"},
+        "tau_thermal": {"value": 120.0, "unit": "s", "note": "Lumped turbine-casing thermal time constant"},
+        "P_rated": {"value": 25000.0, "unit": "kW"}
+    },
+    "valid_ranges": {
+        "P_wh_MPa": {"min": 0.3, "max": 1.5, "unit": "MPa"},
+        "P_cond_MPa": {"min": 0.005, "max": 0.05, "unit": "MPa"},
+        "T_superheat_K": {"min": 0.0, "max": 80.0, "unit": "K"},
+        "m_dot_steam_kgs": {"min": 5.0, "max": 200.0, "unit": "kg/s"},
+        "ncg_mass_fraction": {"min": 0.0, "max": 0.1, "unit": "-"},
+        "dt": {"min": 0.1, "max": 5.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 3600.0, "unit": "s"}
+    }
+}

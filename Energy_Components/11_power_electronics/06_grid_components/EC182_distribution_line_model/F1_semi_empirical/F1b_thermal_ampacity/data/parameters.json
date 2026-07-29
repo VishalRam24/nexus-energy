@@ -1,0 +1,35 @@
+{
+    "component": "EC182 Distribution Line",
+    "fidelity": "F1b",
+    "description": "R+jX series model with temperature-dependent R(T), skin-effect correction, and IEC 60287 / IEEE 738 thermal ampacity.",
+    "unit": {
+        "name": "Generic 11 kV Overhead Aluminium Distribution Feeder, 95 mm^2 ACSR",
+        "source": "Kersting (2012) Distribution System Modeling 3rd ed.; IEC 60287-1-1 (2006); IEEE Std 738-2012.",
+        "V_base_kV":          {"value": 11.0,   "unit": "kV",    "note": "Line-to-line voltage (11 kV MV distribution)"},
+        "R_dc_ohm_per_km":    {"value": 0.306,  "unit": "Ohm/km","note": "DC resistance at 20 degC, 95 mm^2 Al ACSR (IEC 60228 Class 2)"},
+        "X_ohm_per_km":       {"value": 0.36,   "unit": "Ohm/km","note": "Series reactance for typical spacing, 11 kV"},
+        "length_km":          {"value": 5.0,    "unit": "km",    "note": "Default feeder length"},
+        "alpha_R_per_K":      {"value": 0.00403,"unit": "1/K",   "note": "Aluminium temperature coefficient (IEC 60228, 20 degC ref)"},
+        "T_ref_C":            {"value": 20.0,   "unit": "degC",  "note": "Reference temperature"},
+        "skin_factor":        {"value": 1.005,  "unit": "-",     "note": "R_ac/R_dc at 50 Hz for 95mm^2 Al overhead (IEC 60287)"}
+    },
+    "thermal": {
+        "cable_type":              {"value": "overhead",  "note": "overhead or underground"},
+        "D_conductor_m":           {"value": 0.0138,  "unit": "m",      "note": "95 mm^2 ACSR outer diameter ~13.8 mm"},
+        "T_conductor_max_C":       {"value": 75.0,    "unit": "degC",   "note": "Max continuous temperature (ACSR standard)"},
+        "T_conductor_rated_C":     {"value": 75.0,    "unit": "degC",   "note": "Rated operating temperature"},
+        "emissivity":              {"value": 0.5,     "unit": "-",      "note": "Surface emissivity, weathered ACSR"},
+        "absorptivity":            {"value": 0.5,     "unit": "-",      "note": "Solar absorptivity"},
+        "solar_irradiance_W_m2":   {"value": 900.0,   "unit": "W/m^2",  "note": "Typical MV solar irradiance scenario"},
+        "wind_speed_m_s":          {"value": 0.5,     "unit": "m/s",    "note": "Light wind (distribution lines often in sheltered areas)"},
+        "T_ins_thermal_Km_W":      {"value": 3.5,     "unit": "K·m/W",  "note": "XLPE insulation thermal resistance (IEC 60287, underground only)"},
+        "T_soil_thermal_Km_W":     {"value": 1.0,     "unit": "K·m/W",  "note": "Soil thermal resistance (IEC 60287, underground only)"}
+    },
+    "valid_ranges": {
+        "V_s_kV":     {"min": 6.0,  "max": 36.0,  "unit": "kV"},
+        "length_km":  {"min": 0.1,  "max": 50.0,  "unit": "km"},
+        "P_load_kW":  {"min": 0.0,  "max": 5000.0,"unit": "kW"},
+        "T_cond_C":   {"min": -10.0,"max": 90.0,  "unit": "degC"},
+        "T_amb_C":    {"min": -20.0,"max": 50.0,  "unit": "degC"}
+    }
+}

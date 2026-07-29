@@ -1,0 +1,41 @@
+{
+    "component_id": "EC037",
+    "component_name": "Zinc-Bromine Flow Battery (ZBFB)",
+    "fidelity": "F2a -- Physics-Lumped Stack Model (Nernst + overpotentials + SOC/Br2/thermal ODE)",
+    "source": "Lim et al. (1977) J. Electrochem. Soc. 124, 1154; Skyllas-Kazacos et al. (2011) J. Electrochem. Soc. 158, R55; Wu & Zhao et al. (2017) Energy Convers. Manage. 138, 271; Suresh et al. (2018) RSC Adv. 8, 13374; Newman & Thomas-Alyea (2004) Electrochemical Systems",
+    "unit": {
+        "name": "Generic 60-cell ZBFB stack, 1000 cm2 electrode area (hybrid Zn plating)",
+        "N_cells": {"value": 60, "unit": "dimensionless"},
+        "electrode_area_cm2": {"value": 1000.0, "unit": "cm2", "note": "Active electrode area per cell"},
+        "E0": {"value": 1.85, "unit": "V", "note": "Standard cell potential E0(Br2/Br-) - E0(Zn2+/Zn) ~= 1.087 - (-0.763) V", "source": "Lim et al. (1977)"},
+        "c_Br2_max_M": {"value": 1.0, "unit": "mol/L", "note": "Soluble Br2/Br3- (complexed) concentration in the positive electrolyte at SOC=1", "source": "Wang et al. (2018) bromine complexing agent loading"},
+        "areal_capacity_Ah_cm2": {"value": 0.06, "unit": "Ah/cm2", "note": "Plating-limited zinc areal capacity (~60 mAh/cm2). Higher loading promotes dendrites/shorting; usable charge scales with electrode area, not tank volume.", "source": "Suresh et al. (2018) RSC Adv. 8, 13374; Skyllas-Kazacos et al. (2011)"}
+    },
+    "kinetics": {
+        "j0_A_cm2": {"value": 0.002, "unit": "A/cm2", "note": "Lumped exchange current density (Zn deposition + Br2/Br- redox)", "source": "Newman & Thomas-Alyea (2004); Wu & Zhao et al. (2017)"},
+        "alpha": {"value": 0.5, "unit": "dimensionless", "note": "Symmetric charge-transfer coefficient"},
+        "R_cell_ohm_cm2_ref": {"value": 1.5, "unit": "Ohm.cm2", "note": "Area-specific cell resistance at T_ref; ZBFB higher than VRFB due to membrane + Br2 complexing agent", "source": "Skyllas-Kazacos et al. (2011)"},
+        "E_a_R": {"value": 18000.0, "unit": "J/mol", "note": "Arrhenius activation energy for cell resistance", "source": "Islam et al. (2017) J. Power Sources 349, 139"},
+        "jL_ref_A_cm2": {"value": 0.15, "unit": "A/cm2", "note": "Mass-transport limiting current density at reference flow", "source": "Wu & Zhao et al. (2017) Energy Convers. Manage. 138, 271"},
+        "flow_ref_Lpm": {"value": 2.0, "unit": "L/min", "note": "Reference electrolyte volumetric flow rate for jL"}
+    },
+    "thermal": {
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 degC)"},
+        "dOCV_dT": {"value": -0.00015, "unit": "V/K per cell", "note": "Entropic temperature coefficient for Zn(s)+Br2(l)->ZnBr2; dE0/dT = -dS_rxn/(nF), dS ~ -30 J/mol/K -> ~ -1.5e-4 V/K (corrected from Zn/Br2 entropy)", "source": "Lim et al. (1977); Atkins Physical Chemistry (2014) thermodynamic data"},
+        "m_stack": {"value": 80.0, "unit": "kg", "note": "Stack + circulating electrolyte thermal mass"},
+        "cp_stack": {"value": 3000.0, "unit": "J/(kg.K)", "note": "Effective heat capacity (aqueous ZnBr2 electrolyte dominated, ~3-3.5 kJ/kg/K)"},
+        "hA": {"value": 8.0, "unit": "W/K", "note": "Lumped heat-loss coefficient * area to ambient"},
+        "T_amb": {"value": 298.15, "unit": "K", "note": "Ambient temperature"}
+    },
+    "self_discharge": {
+        "k_sd_per_s": {"value": 2.0e-5, "unit": "1/s", "note": "First-order Br2 self-discharge / crossover (shuttle) rate constant. Drives coulombic efficiency below 1 (typical ZBFB CE ~0.85-0.95).", "source": "Wang, Lai et al. (2018) bromine complexing agents and self-discharge; Skyllas-Kazacos et al. (2011)"}
+    },
+    "valid_ranges": {
+        "current": {"min": -300.0, "max": 300.0, "unit": "A", "note": "positive=discharge; |j| up to ~0.3 A/cm2"},
+        "soc": {"min": 0.05, "max": 0.95, "unit": "dimensionless", "note": "Internally clamped to [0.01, 0.99]"},
+        "temperature": {"min": 288.15, "max": 313.15, "unit": "K", "note": "15-40 degC electrolyte stability range"},
+        "flow_Lpm": {"min": 0.2, "max": 8.0, "unit": "L/min"},
+        "dt": {"min": 0.1, "max": 10.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 86400.0, "unit": "s"}
+    }
+}

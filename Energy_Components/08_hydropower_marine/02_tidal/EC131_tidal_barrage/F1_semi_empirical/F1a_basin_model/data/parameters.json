@@ -1,0 +1,20 @@
+{
+    "component": "EC131 Tidal Barrage",
+    "fidelity": "F1a",
+    "description": "Ebb-flow basin model: P_avg = 0.5*rho*g*A*h^2/T_tide (theoretical); practical output with plant efficiency eta",
+    "unit": {
+        "name": "Generic Tidal Barrage (Ebb Generation)",
+        "source": "Charlier (2003), Tidal Energy; Baker (1991), Tidal Power; Prandle (1984), Simple Theory of Tidal Basin Power",
+        "A_basin": {"value": 22.0e6, "unit": "m2", "note": "Basin/estuary plan area (e.g., La Rance ~22 km2)"},
+        "h_tidal": {"value": 8.0, "unit": "m", "note": "Mean tidal range amplitude (half peak-to-trough), 4-12 m typical"},
+        "T_tide": {"value": 44712.0, "unit": "s", "note": "Tidal period (12.42 h = 44712 s for semidiurnal)"},
+        "eta_plant": {"value": 0.28, "unit": "dimensionless", "note": "Overall plant efficiency (turbine+generator+civil); 22-33% typical"},
+        "rho": {"value": 1025.0, "unit": "kg/m3", "note": "Seawater density"},
+        "g": {"value": 9.81, "unit": "m/s2", "note": "Gravitational acceleration"},
+        "h_min_operation": {"value": 1.0, "unit": "m", "note": "Minimum tidal range for power generation"}
+    },
+    "valid_ranges": {
+        "tidal_range_m": {"min": 0.0, "max": 16.0, "unit": "m", "note": "Full peak-to-trough range = 2*h_tidal"},
+        "basin_area_m2": {"min": 1.0e5, "max": 1.0e9, "unit": "m2"}
+    }
+}

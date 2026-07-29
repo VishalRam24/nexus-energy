@@ -1,0 +1,31 @@
+{
+    "component_id": "EC137",
+    "component_name": "Oscillating Body / Attenuator WEC (Pelamis-type)",
+    "fidelity": "F2a — Coupled Hinged-Raft Oscillators with Hydraulic PTO (lumped, frequency-domain hydrodynamics + time-domain ODE)",
+    "source": "Yemm et al. (2012) Phil. Trans. R. Soc. A 370:365-380 (Pelamis P2); Falnes (2002) Ocean Waves and Oscillating Systems, Cambridge UP; Henderson (2006) Appl. Ocean Res. 28:297-307; Newman (1979) Applied Ocean Research 1:189-196 (hinged raft).",
+    "unit": {
+        "name": "Generic Pelamis-class attenuator — 5 tubes / 4 PTO joints, semi-submerged cylinders",
+        "n_segments":      {"value": 5,      "unit": "-",      "note": "Number of rigid floating tube segments (Pelamis P2 = 5 tubes)"},
+        "n_joints":        {"value": 4,      "unit": "-",      "note": "Number of hinge joints with hydraulic PTO rams"},
+        "L_segment":       {"value": 36.0,   "unit": "m",      "note": "Length of each cylindrical segment (Pelamis P2 ~180m / 5)"},
+        "D_segment":       {"value": 4.0,    "unit": "m",      "note": "Tube diameter (Pelamis P2 = 4 m)"},
+        "draft_frac":      {"value": 0.5,    "unit": "-",      "note": "Submerged fraction of diameter (semi-submerged cylinder)"},
+        "rho_water":       {"value": 1025.0, "unit": "kg/m3",  "note": "Seawater density"},
+        "rho_body":        {"value": 500.0,  "unit": "kg/m3",  "note": "Effective mean structural density of segment (buoyant)"},
+        "added_mass_coeff":{"value": 1.0,    "unit": "-",      "note": "Pitch added-inertia coefficient (Newman 1979 hinged raft, O(1))"},
+        "rad_damp_coeff":  {"value": 0.15,   "unit": "-",      "note": "Dimensionless radiation damping for relative pitch mode"},
+        "excite_coeff":    {"value": 0.18,   "unit": "-",      "note": "Per-joint capture-width fraction of point-absorber bound (lambda/2pi); ties excitation to radiation damping via Haskind relation. Calibrated so device CWR ~0.2-0.35 (Babarit 2015)"},
+        "B_pto":           {"value": 1.3e8,  "unit": "N.m.s/rad", "note": "PTO rotational damping per joint (hydraulic ram + accumulator); near impedance-match optimum for mid sea states"},
+        "K_pto":           {"value": 0.0,    "unit": "N.m/rad","note": "PTO reactive stiffness per joint (0 = pure damping / resistive control)"},
+        "eta_hyd":         {"value": 0.85,   "unit": "-",      "note": "Hydraulic PTO efficiency (ram->accumulator->motor)"},
+        "eta_gen":         {"value": 0.95,   "unit": "-",      "note": "Generator + power-electronics efficiency"},
+        "theta_max":       {"value": 0.5236,"unit": "rad",     "note": "Max relative hinge angle (~30 deg) before end-stops"}
+    },
+    "valid_ranges": {
+        "H_s":        {"min": 0.25, "max": 8.0,  "unit": "m"},
+        "T_e":        {"min": 5.0,  "max": 20.0, "unit": "s"},
+        "B_pto":      {"min": 1.0e6,"max": 5.0e8, "unit": "N.m.s/rad"},
+        "dt":         {"min": 0.01, "max": 0.5,  "unit": "s"},
+        "duration_s": {"min": 10.0, "max": 1200.0, "unit": "s"}
+    }
+}

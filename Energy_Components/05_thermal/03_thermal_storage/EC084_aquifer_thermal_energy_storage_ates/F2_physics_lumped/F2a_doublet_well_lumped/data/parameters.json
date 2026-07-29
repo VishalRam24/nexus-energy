@@ -1,0 +1,28 @@
+{
+    "component_id": "EC084",
+    "component_name": "Aquifer Thermal Energy Storage (ATES)",
+    "fidelity": "F2a — Doublet-Well Physics-Lumped (thermal-radius energy balance + seasonal cycling)",
+    "source": "Doughty et al. (1982) Water Resour. Res. 18(3):571-587; Bloemendal & Hartog (2018) Geothermics 71:306-319; Bloemendal et al. (2014) Geothermics 52:206-219; Lopik et al. (2016).",
+    "unit": {
+        "name": "Generic Low-Temperature Doublet ATES — Confined Aquifer",
+        "H_aquifer": {"value": 30.0, "unit": "m", "note": "Confined aquifer thickness (screened interval)"},
+        "porosity": {"value": 0.30, "unit": "-", "note": "Effective porosity of aquifer matrix"},
+        "rho_w": {"value": 1000.0, "unit": "kg/m3", "note": "Water density"},
+        "cp_w": {"value": 4186.0, "unit": "J/(kg.K)", "note": "Water specific heat"},
+        "rho_s": {"value": 2650.0, "unit": "kg/m3", "note": "Sand/grain (solid matrix) density"},
+        "cp_s": {"value": 800.0, "unit": "J/(kg.K)", "note": "Solid matrix specific heat (quartz sand)"},
+        "lambda_aq": {"value": 2.5, "unit": "W/(m.K)", "note": "Bulk aquifer thermal conductivity (saturated sand), Bloemendal & Hartog 2018"},
+        "T_ground": {"value": 12.0, "unit": "degC", "note": "Undisturbed (ambient) aquifer temperature"},
+        "T_inj_warm": {"value": 25.0, "unit": "degC", "note": "Warm-well injection temperature (charge)"},
+        "V_season": {"value": 50000.0, "unit": "m3", "note": "Seasonal injected water volume per half-cycle"},
+        "season_days": {"value": 182.5, "unit": "day", "note": "Half-cycle duration (charge season length)"},
+        "loss_tuning": {"value": 1.0, "unit": "-", "note": "Conductive-loss calibration multiplier (Doughty thermal-radius)"}
+    },
+    "valid_ranges": {
+        "T_inj_warm": {"min": 12.0, "max": 90.0, "unit": "degC"},
+        "T_ground": {"min": 2.0, "max": 25.0, "unit": "degC"},
+        "V_season": {"min": 1000.0, "max": 1000000.0, "unit": "m3"},
+        "season_days": {"min": 30.0, "max": 365.0, "unit": "day"},
+        "n_cycles": {"min": 1, "max": 30, "unit": "-"}
+    }
+}

@@ -1,0 +1,59 @@
+{
+  "component": "EC022 LCO Battery (Lithium Cobalt Oxide)",
+  "fidelity": "F0a",
+  "description": "Empirical round-trip-efficiency curve vs C-rate (1-D lookup). Derived from the cell ohmic loss fraction I*R/V_nom; numbers reused from F1a.",
+  "source": "Reimers & Dahn (1992), J. Electrochem. Soc. 139, 2091; consumer-electronics LCO datasheets",
+  "cell": {
+    "name": "LCO Battery (Lithium Cobalt Oxide)",
+    "nominal_voltage": {
+      "value": 3.7,
+      "unit": "V",
+      "note": "reused from F1a"
+    },
+    "capacity": {
+      "value": 2.6,
+      "unit": "Ah",
+      "note": "reused from F1a"
+    },
+    "internal_resistance": {
+      "value": 0.06,
+      "unit": "Ohm",
+      "note": "DC resistance at 25C, reused from F1a"
+    }
+  },
+  "efficiency_curve": {
+    "description": "Round-trip efficiency tabulated over C-rate breakpoints; eta = (1-f)/(1+f), f = C*capacity*R/V_nom.",
+    "c_rate": {
+      "value": [
+        0.0,
+        0.05,
+        0.1,
+        0.2,
+        0.5,
+        1.0,
+        2.0
+      ],
+      "unit": "dimensionless"
+    },
+    "round_trip_efficiency": {
+      "value": [
+        1.0,
+        0.99579,
+        0.9916,
+        0.98328,
+        0.95871,
+        0.91909,
+        0.84447
+      ],
+      "unit": "fraction (0-1)"
+    }
+  },
+  "valid_ranges": {
+    "c_rate": {
+      "min": 0.0,
+      "max": 2.0,
+      "unit": "dimensionless",
+      "note": "max continuous C-rate for this chemistry"
+    }
+  }
+}

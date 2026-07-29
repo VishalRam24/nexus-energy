@@ -1,0 +1,33 @@
+{
+    "component": "EC043 Hybrid Supercapacitor",
+    "fidelity": "F1b",
+    "description": "RC thermal model for hybrid supercapacitor (battery-type + EDLC electrode): temperature-dependent ESR and capacitance",
+    "source": "Zhang & Zhao (2009) Chem. Soc. Rev.; Naoi et al. (2012) Energy Environ. Sci.; Berrueta et al. (2019) IEEE Trans. Ind. Electron.",
+
+    "cell": {
+        "name": "Hybrid Supercapacitor (lithium-ion capacitor or asymmetric pseudocapacitor)",
+        "note": "Battery-type anode (Li intercalation) + EDLC/pseudocapacitor cathode. Higher energy density than EDLC, higher power than battery.",
+        "capacitance_ref": {"value": 3000.0,  "unit": "F",   "note": "Nominal capacitance at T_ref. Naoi et al. 2012: 2000-10000 F for LIC cells"},
+        "esr_ref":         {"value": 0.001,   "unit": "Ohm", "note": "Equivalent series resistance at T_ref. Low ESR of LIC vs. EDLC. Berrueta 2019"},
+        "v_max":           {"value": 3.8,     "unit": "V",   "note": "Upper voltage limit for LIC (limited by Li intercalation electrode)"},
+        "v_min":           {"value": 1.8,     "unit": "V",   "note": "Lower voltage limit"},
+        "leakage_resistance": {"value": 50000.0, "unit": "Ohm", "note": "Self-discharge leakage resistance. Lower than pure EDLC due to battery-type electrode."}
+    },
+
+    "thermal": {
+        "T_ref":    {"value": 298.15, "unit": "K"},
+        "E_a_esr":  {"value": 8000.0, "unit": "J/mol",
+                     "note": "Activation energy for ESR Arrhenius. Hybrid SC has lower E_a than pure EDLC (~5-10 kJ/mol). Berrueta 2019"},
+        "alpha_C":  {"value": 0.004,  "unit": "1/K",
+                     "note": "Capacitance temperature coefficient. Hybrid shows ~0.4%/K increase. Naoi et al. 2012"},
+        "R_gas":    {"value": 8.314,  "unit": "J/(mol*K)"},
+        "dC_dV":    {"value": 0.0,    "unit": "F/V",
+                     "note": "Voltage-dependent capacitance coefficient (linearized). Set to 0 for simplified model; use F1c for full nonlinear."}
+    },
+
+    "valid_ranges": {
+        "v_cap":     {"min": 1.8, "max": 3.8,    "unit": "V"},
+        "current":   {"min": -500.0, "max": 500.0, "unit": "A", "note": "High power: 100-1000A possible"},
+        "temperature": {"min": 233.15, "max": 333.15, "unit": "K", "note": "-40 to 60 degC; wider than batteries"}
+    }
+}

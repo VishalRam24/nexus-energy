@@ -1,0 +1,40 @@
+{
+    "component_id": "EC023",
+    "component_name": "LMO Battery (Lithium Manganese Oxide)",
+    "fidelity": "F2a — Thevenin Equivalent-Circuit Model (1-RC/2-RC) with Coulomb-counted SOC and Bernardi thermal ODE",
+    "source": "Liaw et al. (2003), J. Power Sources 119-121:874; Hu, Li & Peng (2012), J. Power Sources 198:359 (Thevenin ECM comparison); Bernardi et al. (1985), J. Electrochem. Soc. 132(1):5 (thermal energy balance); Forgez et al. (2010), J. Power Sources 195:2961 (entropic coeff); Vetter et al. (2005), J. Power Sources 147:269 (Mn dissolution aging)",
+    "note": "Spinel LiMn2O4 OCV shows dual plateaus near 4.05 V and 3.95 V (two-stage Li (de)intercalation in the 8a tetrahedral sites). Aging context: Mn(III) disproportionation -> Mn2+ dissolution into electrolyte at high T/SOC drives capacity fade; not modelled dynamically in F2a (see F2c_ecm_aging) but motivates the conservative valid T-range.",
+    "unit": {
+        "name": "Generic LMO 18650 cell — Thevenin ECM (physics-lumped)",
+        "capacity_ref_Ah": {"value": 3.0, "unit": "Ah", "note": "Nominal Coulombic capacity at T_ref", "source": "Liaw et al. (2003)"},
+        "v_max": {"value": 4.2, "unit": "V", "note": "Max terminal (fully charged spinel)"},
+        "v_min": {"value": 3.0, "unit": "V", "note": "Discharge cutoff"},
+        "R0_ref": {"value": 0.025, "unit": "Ohm", "note": "Series ohmic resistance at T_ref", "source": "Hu, Li & Peng (2012)"},
+        "R1_ref": {"value": 0.012, "unit": "Ohm", "note": "1st RC (charge-transfer) resistance at T_ref"},
+        "C1": {"value": 2000.0, "unit": "F", "note": "1st RC capacitance (tau1 = R1*C1 ~ 24 s)"},
+        "R2_ref": {"value": 0.008, "unit": "Ohm", "note": "2nd RC (diffusion) resistance at T_ref"},
+        "C2": {"value": 30000.0, "unit": "F", "note": "2nd RC capacitance (tau2 = R2*C2 ~ 240 s)"},
+        "n_rc": {"value": 2, "unit": "-", "note": "Number of RC pairs (1 or 2); selects 1-RC vs 2-RC Thevenin"},
+        "coulombic_efficiency": {"value": 0.99, "unit": "-", "note": "Charge acceptance eta_c in (0,1); applied to charging current in SOC integration", "source": "Smith & Wang (2006)"},
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 degC)"},
+        "E_a": {"value": 23000.0, "unit": "J/mol", "note": "Arrhenius activation energy for resistances (LMO spinel)", "source": "Ecker et al. (2015), J. Electrochem. Soc. 162(9):A1836"},
+        "dOCV_dT": {"value": -0.00018, "unit": "V/K", "note": "Entropic coefficient; LMO ~ -0.18 mV/K (less negative than NMC)", "source": "Forgez et al. (2010); Thomas & Newman (2003), J. Electrochem. Soc. 150:A176"},
+        "m_cell": {"value": 0.045, "unit": "kg", "note": "18650 cell mass", "source": "Forgez et al. (2010)"},
+        "cp_cell": {"value": 1000.0, "unit": "J/(kg.K)", "note": "Lumped specific heat", "source": "Forgez et al. (2010)"},
+        "hA_cool": {"value": 0.30, "unit": "W/K", "note": "Convective heat-transfer coeff * surface area (natural convection 18650)", "source": "Forgez et al. (2010)"},
+        "T_ambient": {"value": 298.15, "unit": "K", "note": "Ambient/coolant temperature"},
+        "ocv_a0": {"value": 3.0055, "unit": "V", "note": "OCV(SOC)=sum a_i SOC^i, refit for full 3.0->4.2 V span"},
+        "ocv_a1": {"value": 8.74592, "unit": "V"},
+        "ocv_a2": {"value": -33.44067, "unit": "V"},
+        "ocv_a3": {"value": 62.65308, "unit": "V"},
+        "ocv_a4": {"value": -55.34541, "unit": "V"},
+        "ocv_a5": {"value": 18.58608, "unit": "V", "note": "Spinel dual-plateau OCV least-squares fit to Liaw et al. (2003) LMO curve; monotone increasing on [0,1], flat ~4.0 V plateau near mid-SOC"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "-"},
+        "current_A": {"min": -15.0, "max": 15.0, "unit": "A", "note": "Negative = charge, Positive = discharge (~5C max)"},
+        "temperature": {"min": 253.15, "max": 333.15, "unit": "K", "note": "-20 to 60 degC; upper bound conservative due to Mn dissolution at high T"},
+        "dt": {"min": 0.01, "max": 10.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 36000.0, "unit": "s"}
+    }
+}

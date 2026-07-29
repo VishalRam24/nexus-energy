@@ -1,0 +1,51 @@
+{
+    "component": "EC182 Distribution Line",
+    "fidelity": "F0a",
+    "description": "Empirical loss-fraction lookup vs loading (np.interp); power_out = power_in*(1-loss)",
+    "source": "Kersting (2012), Distribution System Modeling and Analysis, 3rd ed. (reused from F1a)",
+    "load_fraction_breakpoints": {
+        "value": [
+            0.1,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+        ],
+        "unit": "fraction_of_rating",
+        "note": "S_actual / S_rated (or P/P_rated)"
+    },
+    "loss_fraction_breakpoints": {
+        "value": [
+            0.00132,
+            0.00825,
+            0.033,
+            0.07425,
+            0.132
+        ],
+        "unit": "dimensionless",
+        "note": "loss / throughput at each loading point"
+    },
+    "p_rated": {
+        "value": 10.0,
+        "unit": "MVA",
+        "note": "rated throughput from F1a"
+    },
+    "loss_fraction_rated": {
+        "value": 0.132,
+        "unit": "dimensionless",
+        "note": "loss fraction at full load (reused from F1a)"
+    },
+    "V_base_kV": {
+        "value": 11.0,
+        "unit": "kV"
+    },
+    "length_km": {
+        "value": 5.0,
+        "unit": "km"
+    },
+    "R_ohm_per_km": {
+        "value": 0.32,
+        "unit": "Ohm/km",
+        "note": "ACSR 100mm2 (reused from F1a)"
+    }
+}

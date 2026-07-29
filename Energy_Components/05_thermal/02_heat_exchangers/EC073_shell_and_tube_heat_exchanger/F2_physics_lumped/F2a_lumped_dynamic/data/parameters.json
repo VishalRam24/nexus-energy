@@ -1,0 +1,28 @@
+{
+    "component": "EC073 Shell-and-Tube Heat Exchanger",
+    "fidelity": "F2a",
+    "description": "Lumped-capacitance transient shell-and-tube HX (TEMA E, 1 shell / 2 tube passes). The flow path is discretised into N control volumes; each CV holds a hot-stream, cold-stream and wall energy-balance ODE integrated with scipy.solve_ivp. The steady-state limit reproduces the ε-NTU heat duty of the F1a model.",
+    "unit": {
+        "name": "Generic 1-shell, 2-tube-pass shell-and-tube HX (water-water, TEMA E)",
+        "source": "Incropera & DeWitt (2006), Fundamentals of Heat and Mass Transfer, 6th ed., ch.11; Kakac & Liu (2002), Heat Exchangers: Selection, Rating, and Thermal Design, 2nd ed., CRC Press; Roetzel & Xuan (1999), Dynamic Behaviour of Heat Exchangers, WIT Press.",
+        "U": {"value": 1500.0, "unit": "W/m2K", "note": "Overall heat-transfer coefficient, water-water shell-and-tube (reused from F1a)"},
+        "A": {"value": 25.0, "unit": "m2", "note": "Total external tube heat-transfer area (reused from F1a)"},
+        "cp_hot":  {"value": 4186.0, "unit": "J/kgK", "note": "Liquid water specific heat at ~25-50 degC. Source: NIST/IAPWS-IF97; Incropera Table A.6 (c_p = 4.179-4.186 kJ/kgK over 25-50 degC)"},
+        "cp_cold": {"value": 4186.0, "unit": "J/kgK", "note": "Liquid water specific heat. Source: NIST/IAPWS-IF97; Incropera Table A.6"},
+        "rho_hot":  {"value": 992.0, "unit": "kg/m3", "note": "Liquid water density at ~40 degC. Source: NIST/IAPWS-IF97; Incropera Table A.6 (rho=992.1 kg/m3 at 313 K)"},
+        "rho_cold": {"value": 998.0, "unit": "kg/m3", "note": "Liquid water density at ~20 degC. Source: NIST/IAPWS-IF97; Incropera Table A.6 (rho=998.0 kg/m3 at 293 K)"},
+        "cp_wall": {"value": 500.0, "unit": "J/kgK", "note": "Specific heat of carbon/stainless steel tube wall. Source: Incropera Table A.1 (AISI 304 ~ 477 J/kgK; carbon steel ~ 434-490 J/kgK), rounded to 500"},
+        "V_hot":  {"value": 0.10, "unit": "m3", "note": "Total hot-stream (shell-side) fluid hold-up volume"},
+        "V_cold": {"value": 0.06, "unit": "m3", "note": "Total cold-stream (tube-side) fluid hold-up volume"},
+        "m_wall": {"value": 350.0, "unit": "kg", "note": "Total metal mass of the tube bundle (thermal mass)"},
+        "n_shell_passes": {"value": 1, "unit": "-"},
+        "n_tube_passes":  {"value": 2, "unit": "-"},
+        "n_cv": {"value": 60, "unit": "-", "note": "Number of control volumes along the flow path. The well-mixed (upwind) cell chain converges first-order to the continuous counter-flow epsilon-NTU limit; N=60 keeps the steady-state duty within ~1.3% of the closed-form value while staying fast (<20 ms for a 300 s transient)."}
+    },
+    "valid_ranges": {
+        "T_h_in":     {"min": 30.0, "max": 200.0, "unit": "degC"},
+        "T_c_in":     {"min": 5.0,  "max": 80.0,  "unit": "degC"},
+        "m_dot_hot":  {"min": 0.1,  "max": 50.0,  "unit": "kg/s"},
+        "m_dot_cold": {"min": 0.1,  "max": 50.0,  "unit": "kg/s"}
+    }
+}

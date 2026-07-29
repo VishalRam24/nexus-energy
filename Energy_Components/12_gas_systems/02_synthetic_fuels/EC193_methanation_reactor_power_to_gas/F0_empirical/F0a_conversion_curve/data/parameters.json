@@ -1,0 +1,44 @@
+{
+  "component_id": "EC193",
+  "component_name": "Methanation Reactor (Power-to-Gas)",
+  "fidelity": "F0a \u2014 empirical lookup",
+  "version": "1.0.0",
+  "source": "Gao et al. (2012) RSC Advances 2:2358 (F1a equilibrium params reused)",
+  "metric": "conversion_vs_temperature",
+  "note": "Sabatier per-pass CO2 conversion vs reactor temperature (rising branch to optimum). X_max 0.98 at T_opt 300 degC, 10 bar, H2/CO2=4.",
+  "lookup": {
+    "temperature_C": {
+      "value": [
+        200.0,
+        240.0,
+        270.0,
+        290.0,
+        300.0
+      ],
+      "unit": "degC",
+      "note": "Reactor temperature"
+    },
+    "conversion": {
+      "value": [
+        0.3605,
+        0.6837,
+        0.8957,
+        0.9702,
+        0.98
+      ],
+      "unit": "-",
+      "note": "Per-pass CO2 conversion"
+    }
+  },
+  "rated": {
+    "temperature_C": {
+      "value": 300.0,
+      "unit": "degC"
+    },
+    "conversion": {
+      "value": 0.98,
+      "unit": "-",
+      "note": "Rated point"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "component": "EC144 Biomass Combustion CHP",
+  "fidelity": "F0a",
+  "description": "Empirical part-load efficiency curve for a biomass CHP plant. Rated electrical/thermal efficiencies x a part-load multiplier (np.interp over PLR breakpoints). Numbers reused from EC144 F1b.",
+  "source": "Obernberger & Thek (2008) Pellet Handbook; EN303-5:2012; Jenkins et al. (1998)",
+  "rated": {
+    "Q_rated_kw": {"value": 5000.0, "unit": "kW_th", "note": "Rated fuel thermal input"},
+    "eta_electrical_ref": {"value": 0.22, "unit": "-", "note": "Electric efficiency at rated, dry fuel"},
+    "eta_thermal_ref": {"value": 0.55, "unit": "-", "note": "Heat recovery efficiency at rated"},
+    "PLR_min": {"value": 0.20, "unit": "-", "note": "Minimum part-load ratio"}
+  },
+  "partload_curve": {
+    "comment": "Part-load multiplier on rated efficiency vs PLR. 1.0 at PLR=1, drops at low load (Obernberger part-load polynomial a0=0.65,a1=0.45,a2=-0.15 tabulated).",
+    "PLR": [0.20, 0.40, 0.60, 0.80, 1.00],
+    "multiplier": [0.734, 0.806, 0.866, 0.914, 0.95]
+  },
+  "valid_ranges": {
+    "PLR": {"min": 0.20, "max": 1.0, "unit": "-"},
+    "moisture_fraction": {"min": 0.0, "max": 0.60, "unit": "wet-basis"}
+  }
+}

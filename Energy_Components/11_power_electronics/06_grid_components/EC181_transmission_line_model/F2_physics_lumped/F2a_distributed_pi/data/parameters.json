@@ -1,0 +1,26 @@
+{
+    "component_id": "EC181",
+    "component_name": "Transmission Line Model",
+    "fidelity": "F2a — Distributed-Parameter / Cascaded-Pi Lumped Dynamic Model",
+    "source": "Glover, Sarma & Overbye (2012) Power System Analysis and Design 5th ed., Cengage; Bergen & Vittal (2000) Power Systems Analysis 2nd ed., Prentice Hall",
+    "unit": {
+        "name": "Generic 230 kV ACSR Overhead Transmission Line — Distributed Parameter",
+        "V_base_kV": {"value": 230.0, "unit": "kV", "note": "Base voltage (line-to-line RMS)"},
+        "S_base_MVA": {"value": 100.0, "unit": "MVA", "note": "Base three-phase apparent power"},
+        "f_Hz": {"value": 60.0, "unit": "Hz", "note": "System frequency"},
+        "r_ohm_per_km": {"value": 0.0529, "unit": "ohm/km", "note": "Series resistance per km (230 kV ACSR, ~50 C)"},
+        "L_mH_per_km": {"value": 0.9337, "unit": "mH/km", "note": "Series inductance per km (x = 0.352 ohm/km @ 60 Hz)"},
+        "C_nF_per_km": {"value": 12.74, "unit": "nF/km", "note": "Shunt capacitance per km (b = 4.8e-6 S/km @ 60 Hz)"},
+        "G_uS_per_km": {"value": 0.0, "unit": "uS/km", "note": "Shunt conductance per km (leakage/corona, ~0 for OH line)"},
+        "length_km": {"value": 300.0, "unit": "km", "note": "Default line length (long-line regime)"}
+    },
+    "valid_ranges": {
+        "V_s_pu": {"min": 0.8, "max": 1.2, "unit": "pu"},
+        "length_km": {"min": 10.0, "max": 1000.0, "unit": "km"},
+        "P_load_pu": {"min": 0.0, "max": 3.0, "unit": "pu"},
+        "Q_load_pu": {"min": -2.0, "max": 2.0, "unit": "pu"},
+        "n_sections": {"min": 1, "max": 50, "unit": "-"},
+        "duration_s": {"min": 0.001, "max": 1.0, "unit": "s"},
+        "f_Hz": {"min": 50.0, "max": 60.0, "unit": "Hz"}
+    }
+}

@@ -1,0 +1,41 @@
+{
+    "component_id": "EC168",
+    "component_name": "MPPT Controller",
+    "fidelity": "F2a -- P&O Algorithm + Buck Converter Dynamics",
+    "source": "Esram & Chapman (2007) Comparison of PV MPPT Techniques, Femia et al. (2005) Optimization of P&O MPPT",
+    "unit": {
+        "name": "Generic MPPT Controller with Buck Converter for 300W PV Panel",
+
+        "I_ph_stc": {"value": 9.0, "unit": "A", "note": "Photocurrent at STC (1000 W/m2, 25C)"},
+        "I_0": {"value": 1.0e-10, "unit": "A", "note": "Diode reverse saturation current"},
+        "n_diode": {"value": 1.2, "unit": "-", "note": "Diode ideality factor"},
+        "N_s": {"value": 60, "unit": "-", "note": "Number of cells in series"},
+        "R_s": {"value": 0.3, "unit": "ohm", "note": "Series resistance"},
+        "R_sh": {"value": 500.0, "unit": "ohm", "note": "Shunt resistance"},
+        "T_cell": {"value": 298.15, "unit": "K", "note": "Cell temperature"},
+        "V_oc_stc": {"value": 37.0, "unit": "V", "note": "Open-circuit voltage at STC"},
+        "V_mpp_stc": {"value": 30.0, "unit": "V", "note": "MPP voltage at STC"},
+        "I_mpp_stc": {"value": 8.5, "unit": "A", "note": "MPP current at STC"},
+
+        "L": {"value": 1.0e-3, "unit": "H", "note": "Buck converter inductance"},
+        "C": {"value": 100.0e-6, "unit": "F", "note": "Output filter capacitance"},
+        "R_L": {"value": 0.05, "unit": "ohm", "note": "Inductor parasitic resistance"},
+        "V_bat": {"value": 24.0, "unit": "V", "note": "Battery / load voltage"},
+        "R_load": {"value": 2.0, "unit": "ohm", "note": "Load resistance"},
+        "f_sw": {"value": 50000.0, "unit": "Hz", "note": "Switching frequency"},
+
+        "dV_mppt": {"value": 0.5, "unit": "V", "note": "P&O voltage step size"},
+        "T_mppt": {"value": 0.02, "unit": "s", "note": "P&O sampling period"},
+        "D_init": {"value": 0.6, "unit": "-", "note": "Initial duty cycle"},
+        "D_min": {"value": 0.1, "unit": "-", "note": "Minimum duty cycle"},
+        "D_max": {"value": 0.95, "unit": "-", "note": "Maximum duty cycle"},
+
+        "Kp_pi": {"value": 0.01, "unit": "-", "note": "PI controller proportional gain"},
+        "Ki_pi": {"value": 5.0, "unit": "-", "note": "PI controller integral gain"}
+    },
+    "valid_ranges": {
+        "irradiance": {"min": 0, "max": 1200, "unit": "W/m2"},
+        "temperature": {"min": 273.15, "max": 348.15, "unit": "K"},
+        "duration_s": {"min": 0.01, "max": 60.0, "unit": "s"}
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "component_id": "EC213",
+    "component_name": "Multi-Effect Distillation (MED)",
+    "fidelity": "F2a — Physics-Lumped Effect Cascade with Transient ODE",
+    "description": "Forward-feed MED: N effects at decreasing T/P; vapor from effect i boils brine in effect i+1 (latent-heat reuse). Stage-by-stage mass/energy balance + lumped effect-temperature transient ODE. GOR ~ N_effects, T_top lower than MSF.",
+    "source": "El-Dessouky & Ettouney (2002) Fundamentals of Salt Water Desalination, Ch.4; Al-Sahali & Ettouney (2007) Desalination 214:227-240",
+    "unit": {
+        "name": "Generic forward-feed MED plant — Physics-Lumped Effect Cascade",
+        "N_effects": {"value": 12, "unit": "-", "note": "Number of evaporator effects (El-Dessouky & Ettouney, typical 8-16)"},
+        "T_top_C": {"value": 70.0, "unit": "degC", "note": "Top brine temperature of first effect; lower than MSF (~110C) to limit scaling"},
+        "T_last_C": {"value": 40.0, "unit": "degC", "note": "Brine temperature of last effect (above condenser/seawater)"},
+        "T_steam_C": {"value": 75.0, "unit": "degC", "note": "Heating steam supplied to first effect"},
+        "M_feed_kg_s": {"value": 250.0, "unit": "kg/s", "note": "Total seawater feed distributed across effects (forward feed)"},
+        "X_feed_ppm": {"value": 42000.0, "unit": "ppm", "note": "Feed seawater salinity (Gulf seawater, El-Dessouky & Ettouney)"},
+        "X_brine_max_ppm": {"value": 70000.0, "unit": "ppm", "note": "Maximum allowable reject brine salinity (scaling limit)"},
+        "UA_per_effect_kW_K": {"value": 2500.0, "unit": "kW/K", "note": "Evaporator overall conductance U*A per effect (U~2.4 kW/m2K, El-Dessouky & Ettouney Ch.4)"},
+        "U_evap_kW_m2_K": {"value": 2.4, "unit": "kW/(m2.K)", "note": "Overall heat-transfer coefficient, falling-film evaporator"},
+        "BPE_C": {"value": 0.8, "unit": "degC", "note": "Boiling point elevation at ~50000 ppm (El-Dessouky correlation, lumped average)"},
+        "m_brine_holdup_kg": {"value": 8000.0, "unit": "kg", "note": "Liquid brine inventory per effect (thermal capacitance for transient ODE)"},
+        "cp_brine_kJ_kg_K": {"value": 4.0, "unit": "kJ/(kg.K)", "note": "Specific heat of seawater brine, El-Dessouky & Ettouney correlation ~4.0"},
+        "hfg_ref_kJ_kg": {"value": 2333.0, "unit": "kJ/kg", "note": "Latent heat of vaporization at ~70C (steam tables)"},
+        "SEC_elec_kWh_m3": {"value": 1.5, "unit": "kWh/m3", "note": "Electrical (pumping/vacuum) specific energy, lower than MSF"}
+    },
+    "valid_ranges": {
+        "N_effects": {"min": 2, "max": 16, "unit": "-"},
+        "T_top_C": {"min": 55.0, "max": 85.0, "unit": "degC"},
+        "T_steam_C": {"min": 60.0, "max": 100.0, "unit": "degC"},
+        "M_feed_kg_s": {"min": 20.0, "max": 600.0, "unit": "kg/s"},
+        "X_feed_ppm": {"min": 30000.0, "max": 50000.0, "unit": "ppm"},
+        "dt": {"min": 1.0, "max": 60.0, "unit": "s"},
+        "duration_s": {"min": 60.0, "max": 20000.0, "unit": "s"}
+    }
+}

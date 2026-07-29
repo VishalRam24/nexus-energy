@@ -1,0 +1,47 @@
+{
+    "component_id": "EC025",
+    "component_name": "Lithium-Sulfur Battery (Li-S)",
+    "fidelity": "F2a — Two-Plateau 0D Electrochemical/Thevenin Hybrid + Polysulfide Shuttle + Thermal ODE",
+    "description": "Physics-lumped 0D Li-S cell. Two-plateau OCV (high ~2.35 V S8->polysulfide, low ~2.1 V ->Li2S) + 1-RC Thevenin overpotential + Mikhaylik-Akridge lumped polysulfide-shuttle parasitic current (reduces coulombic efficiency < 1) + lumped thermal ODE. State = [SOC, V_rc, T]. solve_ivp time integration.",
+    "source": "Mikhaylik & Akridge (2004), J. Electrochem. Soc. 151(11), A1969-A1976 (shuttle model); Wild et al. (2015), Energy Environ. Sci. 8, 3477; Kumaresan et al. (2008), J. Electrochem. Soc. 155(6), A576; Cuisinier et al. (2014), J. Phys. Chem. Lett. 5, 3227",
+    "unit": {
+        "name": "Generic Li-S pouch cell — Physics-Lumped Two-Plateau + Shuttle",
+        "capacity_ref": {"value": 3.0, "unit": "Ah", "note": "Nominal capacity at T_ref (practical ~600 mAh/g sulfur); reused from EC025 F1b"},
+        "voltage_max": {"value": 2.7, "unit": "V", "note": "Charge cut-off"},
+        "voltage_min": {"value": 1.7, "unit": "V", "note": "Discharge cut-off"},
+
+        "ocv_high_plateau": {"value": 2.35, "unit": "V", "note": "Upper plateau: S8 -> long-chain polysulfides (Li2S8/Li2S6/Li2S4), ~2.3-2.4 V vs Li/Li+ (Mikhaylik & Akridge 2004)"},
+        "ocv_low_plateau": {"value": 2.10, "unit": "V", "note": "Lower plateau: short-chain polysulfides -> Li2S2/Li2S, ~2.1 V"},
+        "ocv_high_frac": {"value": 0.25, "unit": "-", "note": "Fraction of capacity in the upper plateau (S8 contributes 1/4 of the 16-electron reaction)"},
+        "ocv_top": {"value": 2.45, "unit": "V", "note": "OCV at SOC=1 (above upper plateau, sloping S8 region)"},
+        "ocv_bottom": {"value": 1.95, "unit": "V", "note": "OCV at SOC=0 (deep Li2S, sloping tail)"},
+        "ocv_sharpness": {"value": 40.0, "unit": "-", "note": "Logistic transition sharpness between the two plateaus"},
+        "ocv_slope": {"value": 0.12, "unit": "V", "note": "Gentle slope within each plateau (sloped-plateau realism)"},
+
+        "R0": {"value": 0.060, "unit": "Ohm", "note": "Series (instantaneous) resistance at T_ref; Li-S higher than Li-ion due to poor S/Li2S conductivity"},
+        "R1": {"value": 0.030, "unit": "Ohm", "note": "1-RC polarization resistance at T_ref"},
+        "C1": {"value": 2000.0, "unit": "F", "note": "1-RC polarization capacitance; tau1 = R1*C1 = 60 s"},
+
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 degC)"},
+        "E_a": {"value": 30000.0, "unit": "J/mol", "note": "Arrhenius activation energy for resistance; polysulfide dissolution kinetics thermally activated (Mikhaylik & Akridge 2004)"},
+        "dOCV_dT": {"value": 0.00035, "unit": "V/K", "note": "POSITIVE entropic coefficient (+0.35 mV/K), unique to Li-S; Li+0.5S->0.5Li2S has positive dS, so discharge is reversibly endothermic (Kumaresan 2008; Cuisinier 2014)"},
+        "R_gas": {"value": 8.314, "unit": "J/(mol.K)", "note": "Universal gas constant"},
+        "F_const": {"value": 96485.0, "unit": "C/mol", "note": "Faraday constant"},
+
+        "k_shuttle": {"value": 0.015, "unit": "1/s", "note": "Mikhaylik-Akridge shuttle constant k_s; governs polysulfide-shuttle parasitic current. Higher k_s -> lower coulombic efficiency"},
+        "f_high": {"value": 1.0, "unit": "-", "note": "Reduced amount of high-order polysulfide species (normalized); sets shuttle severity in the upper plateau"},
+        "shuttle_act_E": {"value": 35000.0, "unit": "J/mol", "note": "Arrhenius activation energy of the shuttle constant; shuttle worsens at high T"},
+
+        "m_cell": {"value": 0.045, "unit": "kg", "note": "Cell mass (pouch)"},
+        "cp_cell": {"value": 1000.0, "unit": "J/(kg.K)", "note": "Lumped specific heat"},
+        "hA_cool": {"value": 0.20, "unit": "W/K", "note": "Heat-transfer coefficient * surface area to ambient"},
+        "T_amb": {"value": 298.15, "unit": "K", "note": "Ambient temperature"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "-"},
+        "current_A": {"min": -6.0, "max": 6.0, "unit": "A", "note": "Negative=charge, Positive=discharge; Li-S limited to ~2C by shuttle"},
+        "temperature": {"min": 258.15, "max": 333.15, "unit": "K", "note": "-15 to 60 degC"},
+        "dt": {"min": 0.1, "max": 60.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 36000.0, "unit": "s"}
+    }
+}

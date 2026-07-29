@@ -1,0 +1,12 @@
+{
+  "default_parameters": {
+    "E0": 1.09,
+    "n": 2,
+    "T": 298.15,
+    "R_int_area": 0.5,
+    "N_cells": 30,
+    "A_cell": 800.0,
+    "Q_nom_Ah": 80.0
+  },
+  "description": "H2-Br flow battery. E0=1.09V (Br2/Br- vs H2). n=2 (two-electron Br2 reaction). R_int_area=0.5 ohm*cm^2. N_cells=30. A_cell=800 cm^2. Nernst OCV: E=E0+RT/(nF)*ln(SOC/(1-SOC))."
+}

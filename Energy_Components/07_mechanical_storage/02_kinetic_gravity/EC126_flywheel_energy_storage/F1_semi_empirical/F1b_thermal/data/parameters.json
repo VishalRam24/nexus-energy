@@ -1,0 +1,25 @@
+{
+    "component": "EC126 Flywheel Energy Storage",
+    "fidelity": "F1b",
+    "description": "Thermal model: speed-dependent windage (cubic) and bearing (linear) losses, temperature effect on air density and bearing viscosity",
+    "unit": {
+        "name": "Generic 100 kW / 100 kWh High-Speed Flywheel (FESS)",
+        "source": "Arani et al. (2017). Energies, 10, 1361; Beacon Power flywheel specs",
+        "J_kgm2": {"value": 100.0, "unit": "kg*m2", "note": "Moment of inertia"},
+        "omega_max_rpm": {"value": 30000.0, "unit": "rpm"},
+        "omega_min_rpm": {"value": 15000.0, "unit": "rpm", "note": "50% speed = 25% energy"},
+        "E_max_kwh": {"value": 100.0, "unit": "kWh", "note": "Maximum stored energy at omega_max"},
+        "P_rated_kw": {"value": 100.0, "unit": "kW"},
+        "k_windage": {"value": 1e-10, "unit": "W/(rad/s)^3", "note": "Windage loss coefficient at T_ref"},
+        "k_bearing": {"value": 0.001, "unit": "W/(rad/s)", "note": "Magnetic bearing loss coefficient"},
+        "T_ref": {"value": 25.0, "unit": "degC", "note": "Reference temperature for windage"},
+        "rho_air_ref": {"value": 1.184, "unit": "kg/m3", "note": "Air density at 25C, 1 atm"},
+        "eta_motor": {"value": 0.95, "unit": "dimensionless"},
+        "eta_gen": {"value": 0.95, "unit": "dimensionless"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "power_command_kw": {"min": -100.0, "max": 100.0, "unit": "kW"},
+        "ambient_temperature": {"min": -20.0, "max": 60.0, "unit": "degC"}
+    }
+}

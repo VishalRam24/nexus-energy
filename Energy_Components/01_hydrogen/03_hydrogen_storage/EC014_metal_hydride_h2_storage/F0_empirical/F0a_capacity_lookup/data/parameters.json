@@ -1,0 +1,52 @@
+{
+  "component_id": "EC014",
+  "component_name": "Metal Hydride H2 Storage (LaNi5)",
+  "fidelity": "F0a \u2014 empirical lookup",
+  "version": "1.0.0",
+  "source": "Sandrock (1999); Sakintuna et al. (2007) IJHE (F1a params reused)",
+  "metric": "plateau_pressure_vs_temperature",
+  "note": "LaNi5 desorption plateau pressure (bar) from van't Hoff (dH=-30.1 kJ/mol, dS=-108 J/mol/K). ~2.3 bar @ 20 C. Bed capacity 0.14 kg H2 (1.4 wt%, 10 kg bed).",
+  "lookup": {
+    "T_K": {
+      "value": [
+        253.0,
+        273.0,
+        293.0,
+        313.0,
+        333.0,
+        353.0,
+        373.0
+      ],
+      "unit": "K",
+      "note": "Independent-variable breakpoints"
+    },
+    "plateau_pressure_bar": {
+      "value": [
+        0.42,
+        1.04,
+        2.3,
+        4.64,
+        8.66,
+        15.1,
+        24.9
+      ],
+      "unit": "bar",
+      "note": "Tabulated empirical value"
+    }
+  },
+  "rated": {
+    "T_K": {
+      "value": 293.0,
+      "unit": "K"
+    },
+    "plateau_pressure_bar": {
+      "value": 2.3,
+      "unit": "bar",
+      "note": "Datasheet/nominal point"
+    },
+    "capacity_kg": {
+      "value": 0.14,
+      "unit": "kg_H2"
+    }
+  }
+}

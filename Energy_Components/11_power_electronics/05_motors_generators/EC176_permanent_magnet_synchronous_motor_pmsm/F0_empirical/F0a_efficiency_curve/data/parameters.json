@@ -1,0 +1,43 @@
+{
+    "component": "EC176 Permanent Magnet Synchronous Motor (PMSM)",
+    "fidelity": "F0a",
+    "description": "Empirical part-load efficiency curve (np.interp lookup) anchored at F1 rated efficiency",
+    "source": "Gieras (2010), Permanent Magnet Motor Technology, 3rd ed. (reused from F1a)",
+    "eta_rated": {
+        "value": 0.96,
+        "unit": "dimensionless",
+        "note": "rated efficiency reused from F1a datasheet"
+    },
+    "p_rated": {
+        "value": 50000.0,
+        "unit": "W",
+        "note": "rated power from F1a"
+    },
+    "load_fraction_breakpoints": {
+        "value": [
+            0.1,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+        ],
+        "unit": "fraction_of_rated"
+    },
+    "efficiency_breakpoints": {
+        "value": [
+            0.87067,
+            0.93888,
+            0.95904,
+            0.96176,
+            0.96
+        ],
+        "unit": "dimensionless",
+        "note": "two-component loss split (c0 constant + c2*load^2) anchored to eta_rated at PLR=1"
+    },
+    "loss_split": {
+        "c0_constant": 0.014583,
+        "c2_variable": 0.027083,
+        "unit": "dimensionless",
+        "note": "eta(lf)=lf/(lf+c0+c2*lf^2)"
+    }
+}

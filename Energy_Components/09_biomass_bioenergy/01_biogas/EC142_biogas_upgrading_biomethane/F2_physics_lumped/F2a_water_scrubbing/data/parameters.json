@@ -1,0 +1,29 @@
+{
+    "component_id": "EC142",
+    "component_name": "Biogas Upgrading to Biomethane",
+    "fidelity": "F2a — Physics-Lumped High-Pressure Water Scrubbing (Henry's-law absorption, transient column ODE)",
+    "source": "Bauer et al. (2013) Bioresour. Technol. 122:145 'Biogas upgrading — Review of commercial technologies'; Sun et al. (2015) Renew. Sustain. Energy Rev. 51:521 'Selection of appropriate biogas upgrading technology'; Sander (2015) Atmos. Chem. Phys. 15:4399 (Henry's-law compilation); Cussler (2009) Diffusion: Mass Transfer in Fluid Systems",
+    "unit": {
+        "name": "High-Pressure Water Scrubber (HPWS) absorption column — lumped",
+        "V_liquid": {"value": 1.5, "unit": "m3", "note": "Liquid hold-up volume in packed absorption column"},
+        "L_water": {"value": 0.050, "unit": "m3/s", "note": "Scrubbing water recirculation flow (~180 m3/h) at design biogas load"},
+        "P_col": {"value": 9.0, "unit": "bar", "note": "Column operating pressure (Bauer 2013: 6-10 bar typical for HPWS)"},
+        "T_col": {"value": 283.15, "unit": "K", "note": "Column temperature (10C; cold water favours CO2 solubility)"},
+        "kLa_CO2": {"value": 0.25, "unit": "1/s", "note": "Volumetric liquid-side mass-transfer coeff for CO2 (random packing); gives NTU~7-8"},
+        "H_cp_CO2": {"value": 3.3e-4, "unit": "mol/(m3.Pa)", "note": "Henry solubility H^cp of CO2 at 298.15K (Sander 2015, =0.034 mol/(L.atm))"},
+        "H_cp_CH4": {"value": 1.4e-5, "unit": "mol/(m3.Pa)", "note": "Henry solubility H^cp of CH4 at 298.15K (Sander 2015, =0.0014 mol/(L.atm))"},
+        "dlnH_CO2": {"value": 2400.0, "unit": "K", "note": "Temperature dependence -d(lnH)/d(1/T) for CO2 (Sander 2015)"},
+        "dlnH_CH4": {"value": 1900.0, "unit": "K", "note": "Temperature dependence -d(lnH)/d(1/T) for CH4 (Sander 2015)"},
+        "selectivity_CH4_CO2": {"value": 0.0025, "unit": "dimensionless", "note": "kLa_CH4/kLa_CO2 ratio; CH4 absorbs far slower (low solubility -> ~1.8% slip)"},
+        "eta_pump": {"value": 0.65, "unit": "dimensionless", "note": "Water recirculation pump overall efficiency"},
+        "T_in_gas": {"value": 283.15, "unit": "K", "note": "Inlet biogas temperature"}
+    },
+    "valid_ranges": {
+        "biogas_flow_Nm3_per_h": {"min": 1.0, "max": 2000.0, "unit": "Nm3/h"},
+        "CH4_fraction_in": {"min": 0.40, "max": 0.75, "unit": "dimensionless"},
+        "P_col_bar": {"min": 4.0, "max": 12.0, "unit": "bar"},
+        "T_col_K": {"min": 278.15, "max": 313.15, "unit": "K"},
+        "dt": {"min": 0.1, "max": 10.0, "unit": "s"},
+        "duration_s": {"min": 10.0, "max": 3600.0, "unit": "s"}
+    }
+}

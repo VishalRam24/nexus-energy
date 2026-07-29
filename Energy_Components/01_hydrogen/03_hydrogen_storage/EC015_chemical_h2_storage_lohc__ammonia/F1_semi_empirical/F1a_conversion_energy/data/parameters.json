@@ -1,0 +1,113 @@
+{
+    "component": "EC015 Chemical H2 Storage (LOHC / Ammonia)",
+    "fidelity": "F1a",
+    "description": "Hydrogenation/dehydrogenation energy balance for LOHC (DBT) and Ammonia carriers",
+    "source": "Niermann et al. (2021) Energy Environ. Sci.; Preuster et al. (2017) Acc. Chem. Res.; Lamb et al. (2019) Int. J. Hydrogen Energy",
+
+    "lohc_dbt": {
+        "name": "Dibenzyltoluene (DBT / H0-DBT ↔ H18-DBT)",
+        "gravimetric_capacity_wt_pct": {
+            "value": 6.2,
+            "unit": "wt%",
+            "note": "H2 content by mass of DBT carrier. Niermann et al. 2021"
+        },
+        "delta_H_hydrogenation": {
+            "value": -65000.0,
+            "unit": "J/mol_H2",
+            "note": "Enthalpy of hydrogenation (exothermic, negative). Preuster et al. 2017: 65 kJ/mol"
+        },
+        "delta_H_dehydrogenation": {
+            "value": 65000.0,
+            "unit": "J/mol_H2",
+            "note": "Enthalpy of dehydrogenation (endothermic, positive). Preuster et al. 2017"
+        },
+        "T_reactor_hydrogenation_K": {
+            "value": 423.0,
+            "unit": "K",
+            "note": "Typical hydrogenation temperature 150°C. Preuster et al. 2017"
+        },
+        "T_reactor_dehydrogenation_K": {
+            "value": 573.0,
+            "unit": "K",
+            "note": "Typical dehydrogenation temperature 300°C. Preuster et al. 2017"
+        },
+        "molar_mass_carrier_kg_per_mol": {
+            "value": 0.2723,
+            "unit": "kg/mol",
+            "note": "Molar mass of H0-DBT (fully dehydrogenated). Bruckner et al. 2014"
+        },
+        "H2_mol_per_mol_carrier": {
+            "value": 9.0,
+            "unit": "mol_H2/mol_carrier",
+            "note": "9 H2 molecules per DBT molecule (H18-DBT). Preuster et al. 2017"
+        },
+        "catalyst": {
+            "hydrogenation": "Pt/Al2O3 or Pd/C",
+            "dehydrogenation": "Pt/Al2O3"
+        },
+        "energy_efficiency_dehydrogenation": {
+            "value": 0.85,
+            "unit": "dimensionless",
+            "note": "Fraction of ΔH supplied as heat that drives reaction; rest = losses"
+        }
+    },
+
+    "ammonia": {
+        "name": "Ammonia (NH3)",
+        "gravimetric_capacity_wt_pct": {
+            "value": 17.6,
+            "unit": "wt%",
+            "note": "H2 content by mass of NH3. 3 H2 per NH3. Lamb et al. 2019"
+        },
+        "delta_H_synthesis": {
+            "value": -46000.0,
+            "unit": "J/mol_H2",
+            "note": "Enthalpy of NH3 synthesis per mol H2 consumed (exothermic). Lamb et al. 2019"
+        },
+        "delta_H_cracking": {
+            "value": 46000.0,
+            "unit": "J/mol_H2",
+            "note": "Enthalpy of NH3 cracking per mol H2 produced (endothermic). Lamb et al. 2019"
+        },
+        "T_reactor_synthesis_K": {
+            "value": 723.0,
+            "unit": "K",
+            "note": "Haber-Bosch synthesis temperature ~450°C. Lamb et al. 2019"
+        },
+        "T_reactor_cracking_K": {
+            "value": 773.0,
+            "unit": "K",
+            "note": "NH3 cracking temperature ~500°C. Lamb et al. 2019"
+        },
+        "molar_mass_nh3_kg_per_mol": {
+            "value": 0.017031,
+            "unit": "kg/mol"
+        },
+        "H2_mol_per_mol_carrier": {
+            "value": 1.5,
+            "unit": "mol_H2/mol_NH3",
+            "note": "NH3 → 0.5 N2 + 1.5 H2"
+        },
+        "catalyst": {
+            "synthesis": "Fe-based (Haber-Bosch) or Ru-based",
+            "cracking": "Ru/Al2O3 or Ni-based"
+        },
+        "energy_efficiency_cracking": {
+            "value": 0.90,
+            "unit": "dimensionless",
+            "note": "Fraction of ΔH supplied as heat that drives cracking"
+        }
+    },
+
+    "thermodynamics": {
+        "M_H2": {"value": 0.002016, "unit": "kg/mol"},
+        "R_universal": {"value": 8.314, "unit": "J/mol/K"},
+        "LHV_H2": {"value": 120.0e6, "unit": "J/kg", "note": "Lower heating value of H2"}
+    },
+
+    "valid_ranges": {
+        "h2_mass_kg": {"min": 0.001, "max": 10000.0, "unit": "kg"},
+        "mode": {"values": ["lohc", "ammonia"]},
+        "direction": {"values": ["hydrogenation", "dehydrogenation", "synthesis", "cracking"]}
+    }
+}

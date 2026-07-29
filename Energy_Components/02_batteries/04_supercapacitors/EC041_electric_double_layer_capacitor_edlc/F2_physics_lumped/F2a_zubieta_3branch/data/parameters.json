@@ -1,0 +1,39 @@
+{
+    "component_id": "EC041",
+    "component_name": "Electric Double-Layer Capacitor (EDLC) Supercapacitor",
+    "fidelity": "F2a — Zubieta 3-Branch Equivalent Circuit with Voltage-Dependent C(V) + Thermal ODE",
+    "source": "Zubieta & Bonert (2000), IEEE Trans. Ind. Appl. 36(1), 199-205; Conway (1999), Electrochemical Supercapacitors, Plenum; Rafik et al. (2007), J. Power Sources 165, 928-934; Berrueta et al. (2019), IEEE Trans. Ind. Electron. 66(6), 4750-4759",
+    "unit": {
+        "name": "Generic 3000 F / 2.7 V carbon/carbon EDLC cell (Maxwell BCAP3000 class) — Zubieta 3-branch identification",
+        "C0": {"value": 2400.0, "unit": "F", "note": "Constant (voltage-independent) part of immediate-branch differential capacitance. Zubieta C(V)=C0+kv*V; here C0 ~0.8*C_rated",
+               "source": "Zubieta & Bonert (2000), IEEE Trans. Ind. Appl. 36(1), 199"},
+        "kv": {"value": 600.0, "unit": "F/V", "note": "Voltage coefficient of immediate-branch capacitance. Differential C_imm(V)=C0+kv*V models double-layer C rising with V (Helmholtz/Gouy-Chapman)",
+               "source": "Zubieta & Bonert (2000); Rafik et al. (2007), J. Power Sources 165, 928"},
+        "Ri": {"value": 0.00029, "unit": "Ohm", "note": "Immediate-branch series resistance (ESR), ~0.29 mOhm; dominates fast charge/discharge and Joule heating",
+               "source": "Maxwell BCAP3000 datasheet; Zubieta & Bonert (2000)"},
+        "Rd": {"value": 0.9, "unit": "Ohm", "note": "Delayed-branch resistance; charge redistribution over seconds-to-minutes"},
+        "Cd": {"value": 120.0, "unit": "F", "note": "Delayed-branch capacitance"},
+        "Rl": {"value": 5.2, "unit": "Ohm", "note": "Long-term branch resistance; redistribution over minutes-to-hours"},
+        "Cl": {"value": 60.0, "unit": "F", "note": "Long-term branch capacitance"},
+        "R_leak": {"value": 5500.0, "unit": "Ohm", "note": "Parallel leakage / self-discharge resistance across the immediate branch (~1 uA/F class)",
+                   "source": "Maxwell BCAP3000 datasheet; Conway (1999)"},
+        "v_max": {"value": 2.7, "unit": "V", "note": "Rated charge voltage"},
+        "v_min": {"value": 0.0, "unit": "V"},
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 degC)"},
+        "E_a_esr": {"value": 8000.0, "unit": "J/mol", "note": "Activation energy for ESR (Arrhenius). EDLC ionic transport in porous carbon is weakly activated",
+                    "source": "Berrueta et al. (2019), IEEE Trans. Ind. Electron. 66(6), 4750; Rafik et al. (2007)"},
+        "R_gas": {"value": 8.314, "unit": "J/(mol.K)"},
+        "m_cell": {"value": 0.51, "unit": "kg", "note": "Cell mass (BCAP3000 ~510 g)"},
+        "cp_cell": {"value": 1100.0, "unit": "J/(kg.K)", "note": "Effective specific heat of EDLC cell (carbon/electrolyte/can composite)",
+                    "source": "Berrueta et al. (2019), IEEE Trans. Ind. Electron."},
+        "hA_amb": {"value": 0.45, "unit": "W/K", "note": "Convective heat-transfer coeff * surface area to ambient (natural convection on cylindrical can)"},
+        "T_amb": {"value": 298.15, "unit": "K", "note": "Ambient temperature"}
+    },
+    "valid_ranges": {
+        "v_cap": {"min": 0.0, "max": 2.7, "unit": "V"},
+        "current": {"min": -400.0, "max": 400.0, "unit": "A", "note": "Negative=charge, Positive=discharge"},
+        "temperature": {"min": 233.15, "max": 338.15, "unit": "K", "note": "-40 to 65 degC; EDLC operates over a very wide temperature range"},
+        "dt": {"min": 0.001, "max": 5.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 36000.0, "unit": "s"}
+    }
+}

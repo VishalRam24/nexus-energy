@@ -1,0 +1,45 @@
+{
+    "component": "EC125 Adiabatic CAES (A-CAES)",
+    "fidelity": "F1b",
+    "description": "Extends F1a with TES thermal losses, ambient T compressor correction, and cavern thermal drift. RTE recalibrated to 0.700 (w_exp=335 kJ/kg) to satisfy A-CAES physical limit <0.75.",
+    "unit": {
+        "name": "Generic A-CAES (ADELE-class) + Thermal",
+        "source": "Barbour et al. (2015) RE&SE Reviews 45:598; Budt et al. (2016) Applied Energy 170:250; Wolf & Budt (2014) Applied Energy 125:158; Zunft et al. (2006) DLR TR",
+        "eta_compressor": {"value": 0.80, "unit": "dimensionless"},
+        "eta_motor": {"value": 0.97, "unit": "dimensionless"},
+        "eta_expander": {"value": 0.86, "unit": "dimensionless"},
+        "eta_generator": {"value": 0.97, "unit": "dimensionless"},
+        "eta_tes": {"value": 0.90, "unit": "dimensionless", "note": "TES round-trip efficiency"},
+        "p_max": {"value": 7.0e6, "unit": "Pa", "note": "70 bar"},
+        "p_min": {"value": 4.3e6, "unit": "Pa", "note": "43 bar"},
+        "cavern_volume": {"value": 310000.0, "unit": "m3"},
+        "T_cavern_nominal": {"value": 313.15, "unit": "K", "note": "40°C nominal"},
+        "T_rock": {"value": 308.15, "unit": "K", "note": "35°C rock"},
+        "specific_work": {"value": 310.0, "unit": "kJ/kg", "note": "Compressor specific work"},
+        "specific_expansion_adiabatic": {"value": 335.0, "unit": "kJ/kg", "note": "Phase-7 recalibrated: E_out=335*0.86*0.97=279.9; E_in=310/(0.80*0.97)=399.5; RTE=0.700"},
+        "R_air": {"value": 287.0, "unit": "J/(kg.K)"},
+        "T_ref_comp": {"value": 288.15, "unit": "K", "note": "ISO 15°C reference"},
+        "k_comp_T": {"value": 0.004, "unit": "1/K", "note": "Specific work change per K above T_ref"},
+        "cavern_thermal_mass": {"value": 5.0e9, "unit": "J/K"},
+        "UA_cavern_rock": {"value": 50000.0, "unit": "W/K"},
+        "cp_air": {"value": 1005.0, "unit": "J/(kg.K)"},
+        "T_tes_design": {"value": 550.0, "unit": "K", "note": "TES design charge temperature (multi-stage compression heat, 277°C)"},
+        "T_tes_ambient": {"value": 298.15, "unit": "K", "note": "Ambient reference for TES heat loss"},
+        "Cm_tes": {"value": 1.0e9, "unit": "J/K", "note": "TES thermal mass (concrete/rock bed, ~500 t at 2000 J/(kg·K))"},
+        "UA_tes": {"value": 5000.0, "unit": "W/K", "note": "TES insulation conductance; tau_tes = 1e9/5000 = 200000 s ≈ 56 h"},
+        "k_tes_temp_coeff": {"value": 0.50, "unit": "dimensionless", "note": "Sensitivity of expansion work to TES temp deviation"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "-"},
+        "T_amb_K": {"min": 253.15, "max": 313.15, "unit": "K"},
+        "T_cav_K": {"min": 288.15, "max": 333.15, "unit": "K"},
+        "T_tes_K": {"min": 298.15, "max": 600.0, "unit": "K"},
+        "mode": {"values": ["charge", "discharge", "idle", "thermal"]}
+    },
+    "physics_notes": {
+        "rte_a_caes_design": "0.700 at design (T_amb=288.15K, T_tes=550K)",
+        "rte_physical_limit": "< 0.75 for A-CAES (Budt 2016); hard constraint enforced in tests",
+        "rte_cold_ambient": "Increases slightly (less compression work) at T_amb < 288 K",
+        "tes_idle_decay_tau": "~56 h (UA_tes=5000 W/K, Cm_tes=1e9 J/K)"
+    }
+}

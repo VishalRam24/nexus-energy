@@ -1,0 +1,33 @@
+{
+  "component_id": "EC093",
+  "component_name": "Silica-Gel/Water Adsorption Chiller",
+  "fidelity": "F0a \u2014 empirical lookup",
+  "source": "Saha et al. (1995) HRS&CHP 15,581-590; Wang & Oliveira (2006) PECS 32,424-458",
+  "Q_rated": {
+    "value": 50.0,
+    "unit": "kW_th",
+    "note": "Rated cooling capacity"
+  },
+  "COP_rated": {
+    "value": 0.55,
+    "unit": "-",
+    "note": "COP at rated conditions"
+  },
+  "table": {
+    "x_key": "T_hot_C",
+    "x": [
+      55.0,
+      70.0,
+      85.0,
+      95.0
+    ],
+    "cop": [
+      0.35,
+      0.48,
+      0.55,
+      0.58
+    ],
+    "x_rated": 85.0,
+    "note": "COP vs T_hot_C (np.interp); COP at x_rated = COP_rated"
+  }
+}

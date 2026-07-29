@@ -1,0 +1,70 @@
+{
+  "platform": "macOS-26.4.1-arm64-arm-64bit",
+  "python": "3.12.13",
+  "cases": [
+    {
+      "n_buses": 3,
+      "T": 24,
+      "nexus": {
+        "framework": "nexus-energy",
+        "status": "optimal",
+        "total_cost": 175746.8803919618,
+        "build_time_ms": 0.10158300574403256,
+        "solve_time_ms": 147.38358299655374,
+        "peak_memory_mb": 0.8304624557495117
+      },
+      "pypsa": {
+        "framework": "pypsa",
+        "status": "not_installed"
+      }
+    },
+    {
+      "n_buses": 10,
+      "T": 168,
+      "nexus": {
+        "framework": "nexus-energy",
+        "status": "optimal",
+        "total_cost": 3406145.5611041375,
+        "build_time_ms": 0.2625839988468215,
+        "solve_time_ms": 3019.4391249970067,
+        "peak_memory_mb": 0.8908958435058594
+      },
+      "pypsa": {
+        "framework": "pypsa",
+        "status": "not_installed"
+      }
+    },
+    {
+      "n_buses": 30,
+      "T": 168,
+      "nexus": {
+        "framework": "nexus-energy",
+        "status": "optimal",
+        "total_cost": 10141302.884516897,
+        "build_time_ms": 0.7166249997681007,
+        "solve_time_ms": 9150.917292005033,
+        "peak_memory_mb": 2.5173473358154297
+      },
+      "pypsa": {
+        "framework": "pypsa",
+        "status": "not_installed"
+      }
+    },
+    {
+      "n_buses": 50,
+      "T": 168,
+      "nexus": {
+        "framework": "nexus-energy",
+        "status": "optimal",
+        "total_cost": 16805919.596344713,
+        "build_time_ms": 1.1658330040518194,
+        "solve_time_ms": 17927.536249990226,
+        "peak_memory_mb": 4.260608673095703
+      },
+      "pypsa": {
+        "framework": "pypsa",
+        "status": "not_installed"
+      }
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+    "component": "EC208 CO2 Geological Sequestration",
+    "fidelity": "F1b",
+    "description": "CO2 injection with reservoir pressure build-up, injection pressure effects, and leakage",
+    "source": "van der Meer (1993); IPCC (2005) CCS Ch.5; Benson & Cole (2008); Nordbotten et al. (2005)",
+    "reservoir": {
+        "name": "Typical deep saline aquifer (1500-2500 m depth)",
+        "depth_m": {"value": 2000.0, "unit": "m"},
+        "thickness_m": {"value": 100.0, "unit": "m"},
+        "area_km2": {"value": 100.0, "unit": "km2"},
+        "porosity": {"value": 0.15, "unit": "dimensionless"},
+        "permeability_mD": {"value": 50.0, "unit": "mD"},
+        "P_reservoir_initial_bar": {"value": 200.0, "unit": "bar", "note": "Initial undisturbed pressure"},
+        "P_max_bar": {"value": 270.0, "unit": "bar", "note": "Maximum injection pressure (fracture gradient limit, ~0.9*P_frac)"},
+        "T_reservoir_K": {"value": 333.15, "unit": "K"},
+        "storage_efficiency": {"value": 0.02, "unit": "dimensionless"},
+        "skin_factor": {"value": 0.0, "unit": "dimensionless"},
+        "wellbore_radius_m": {"value": 0.15, "unit": "m"},
+        "drainage_radius_m": {"value": 500.0, "unit": "m"},
+        "compressibility": {"value": 5.0e-10, "unit": "1/Pa", "note": "Reservoir + fluid compressibility"},
+        "leakage_fraction_per_year": {"value": 0.001, "unit": "1/year", "note": "CO2 leakage through caprocks (0.1%/yr conservative)"}
+    },
+    "co2": {
+        "rho_injection": {"value": 700.0, "unit": "kg/m3"},
+        "viscosity_injection": {"value": 6.0e-5, "unit": "Pa.s"},
+        "P_injection_wellhead": {"value": 150.0, "unit": "bar"}
+    },
+    "valid_ranges": {
+        "P_wellhead_bar": {"min": 80.0, "max": 300.0, "unit": "bar"},
+        "area_km2": {"min": 1.0, "max": 10000.0, "unit": "km2"},
+        "injection_years": {"min": 0.0, "max": 50.0, "unit": "years"}
+    }
+}

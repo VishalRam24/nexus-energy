@@ -1,0 +1,52 @@
+{
+  "component_id": "EC007",
+  "component_name": "Reversible Fuel Cell (RFC)",
+  "fidelity": "F0a \u2014 empirical lookup",
+  "version": "1.0.0",
+  "source": "RFC F1a params reused (E_rev=1.23 V, FC & EL modes)",
+  "metric": "roundtrip_efficiency_LHV",
+  "note": "RFC round-trip efficiency (FC eff x EL eff) ~35-45%; rated 40% at mid load.",
+  "lookup": {
+    "load_fraction": {
+      "value": [
+        0.0,
+        0.1,
+        0.2,
+        0.3,
+        0.5,
+        0.8,
+        1.0
+      ],
+      "unit": "-",
+      "note": "Breakpoints: fraction of rated power"
+    },
+    "efficiency": {
+      "value": [
+        0.0,
+        0.5,
+        0.49,
+        0.47,
+        0.4,
+        0.32,
+        0.27
+      ],
+      "unit": "-",
+      "note": "Empirical efficiency at each load (LHV basis)"
+    }
+  },
+  "rated": {
+    "load_fraction": {
+      "value": 0.5,
+      "unit": "-"
+    },
+    "efficiency": {
+      "value": 0.4,
+      "unit": "-",
+      "note": "Datasheet rated efficiency"
+    },
+    "P_rated": {
+      "value": 2000.0,
+      "unit": "W"
+    }
+  }
+}

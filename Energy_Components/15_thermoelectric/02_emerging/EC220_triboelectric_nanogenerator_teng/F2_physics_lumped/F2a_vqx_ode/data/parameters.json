@@ -1,0 +1,23 @@
+{
+    "component_id": "EC220",
+    "component_name": "Triboelectric Nanogenerator (TENG)",
+    "fidelity": "F2a — Physics-Lumped V-Q-x Governing Equation with Charge ODE",
+    "source": "Niu, S. et al. (2013) Energy Environ. Sci. 6, 3576 (TENG governing theory); Niu, S. & Wang, Z.L. (2015) Nano Energy 14, 161; Wang, Z.L. (2013) ACS Nano 7(11), 9533",
+    "description": "Contact-separation mode TENG integrated with external resistive load R via the Niu/Wang governing equation V = -Q/C(x) + sigma*x(t)/eps_0; charge ODE dQ/dt = V/R solved with scipy.solve_ivp.",
+    "unit": {
+        "name": "PTFE-Al contact-separation TENG (typical lab device, dielectric-to-conductor)",
+        "sigma": {"value": 5e-6, "unit": "C/m^2", "note": "Triboelectric surface charge density (typical PTFE-Al: 5-50 uC/m^2). Niu 2013."},
+        "electrode_area": {"value": 0.0025, "unit": "m^2", "note": "Electrode area 50mm x 50mm"},
+        "gap_max": {"value": 0.002, "unit": "m", "note": "Maximum separation gap x_max = 2 mm"},
+        "epsilon_r_dielectric": {"value": 2.1, "unit": "-", "note": "PTFE relative permittivity"},
+        "dielectric_thickness": {"value": 0.0001, "unit": "m", "note": "PTFE dielectric thickness 100 um. d0 = d/eps_r is the effective dielectric thickness in vacuum."},
+        "R_load_default": {"value": 1e7, "unit": "ohm", "note": "Optimal load ~10 MOhm for TENG (high internal impedance device)"},
+        "cycle_frequency_default": {"value": 3.0, "unit": "Hz", "note": "Contact-separation frequency 3 Hz"}
+    },
+    "valid_ranges": {
+        "gap": {"min": 0.0, "max": 0.01, "unit": "m"},
+        "frequency": {"min": 0.1, "max": 100.0, "unit": "Hz"},
+        "R_load": {"min": 1e4, "max": 1e10, "unit": "ohm"},
+        "n_cycles": {"min": 1, "max": 200, "unit": "-"}
+    }
+}

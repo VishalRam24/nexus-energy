@@ -1,0 +1,17 @@
+{
+  "default_parameters": {
+    "unit": {
+      "capacity_kwh":          {"value": 8000.0,  "unit": "kWh",      "note": "Seasonal ATES district system"},
+      "aquifer_volume_m3":     {"value": 20000.0, "unit": "m3"},
+      "cp_water_j_kgk":        {"value": 4180.0,  "unit": "J/(kg.K)"},
+      "rho_water_kg_m3":       {"value": 1000.0,  "unit": "kg/m3"},
+      "T_aquifer_natural":     {"value": 12.0,    "unit": "degC"},
+      "UA_loss_w_per_k":       {"value": 80.0,    "unit": "W/K",      "note": "Thermal dispersion to surrounding aquifer"},
+      "Q_charge_max_kw":       {"value": 800.0,   "unit": "kW"},
+      "Q_discharge_max_kw":    {"value": 600.0,   "unit": "kW"},
+      "N_nodes":               {"value": 8,       "unit": "-"},
+      "k_dispersion_w_per_k":  {"value": 5.0,     "unit": "W/K",      "note": "Inter-node thermal dispersion"},
+      "eta_rt":                {"value": 0.75,    "unit": "-",        "note": "η_rt applied CHARGE SIDE only"}
+    }
+  }
+}

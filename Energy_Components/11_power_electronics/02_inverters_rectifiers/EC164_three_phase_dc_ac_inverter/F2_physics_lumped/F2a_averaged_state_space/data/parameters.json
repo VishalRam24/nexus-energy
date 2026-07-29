@@ -1,0 +1,21 @@
+{
+    "component": "EC164 Three-Phase DC-AC Inverter",
+    "fidelity": "F2a",
+    "description": "dq-frame averaged model for grid-tied three-phase inverter. 2 electrical ODEs (i_d, i_q).",
+    "unit": {
+        "name": "Grid-Tied 100kW Three-Phase Inverter -- dq-Frame Model",
+        "source": "Teodorescu, R., Liserre, M. & Rodriguez, P. (2011). Grid Converters for Photovoltaic and Wind Power Systems. Wiley.",
+        "L": {"value": 2e-3, "unit": "H", "note": "Filter inductance (2 mH)"},
+        "R": {"value": 0.1, "unit": "Ohm", "note": "Filter resistance"},
+        "V_dc": {"value": 800.0, "unit": "V", "note": "DC bus voltage"},
+        "f_grid": {"value": 50.0, "unit": "Hz", "note": "Grid frequency"},
+        "V_grid_rms": {"value": 400.0, "unit": "V", "note": "Grid line-to-line RMS voltage"},
+        "P_rated": {"value": 100000.0, "unit": "W", "note": "100 kW rated power"}
+    },
+    "valid_ranges": {
+        "P_ref_kw": {"min": -120.0, "max": 120.0, "unit": "kW"},
+        "Q_ref_kvar": {"min": -60.0, "max": 60.0, "unit": "kvar"},
+        "dt": {"min": 1e-6, "max": 1e-3, "unit": "s"},
+        "duration_s": {"min": 0.001, "max": 5.0, "unit": "s"}
+    }
+}

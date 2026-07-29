@@ -1,0 +1,23 @@
+{
+    "component": "EC212 Multi-Stage Flash Distillation (MSF)",
+    "fidelity": "F0a",
+    "description": "Empirical GOR-vs-top-brine-temperature lookup for MSF. GOR rises with T_top (more flashing stages exploitable). Rated GOR=8 at 110C. SEC_thermal/elec reused from EC212 F1a.",
+    "unit": {
+        "name": "Generic MSF desalination plant",
+        "source": "El-Dessouky & Ettouney (2002) Fundamentals of Salt Water Desalination; IDA",
+        "T_top_breakpoints": {"value": [90.0, 100.0, 110.0, 120.0], "unit": "degC"},
+        "gor_breakpoints": {"value": [6.0, 7.0, 8.0, 9.0], "unit": "dimensionless", "note": "kg distillate / kg steam vs top brine temp"},
+        "T_top_rated_C": {"value": 110.0, "unit": "degC"},
+        "gor_rated": {"value": 8.0, "unit": "dimensionless"},
+        "sec_thermal_kJ_kg": {"value": 250.0, "unit": "kJ/kg", "note": "Thermal energy per kg distillate"},
+        "sec_elec_kWh_m3": {"value": 3.5, "unit": "kWh/m3", "note": "Electrical (pumping, recirculation)"},
+        "recovery": {"value": 0.20, "unit": "dimensionless"},
+        "N_stages": {"value": 20, "unit": "dimensionless"},
+        "capacity_m3_h": {"value": 1000.0, "unit": "m3/h"},
+        "h_latent_kJ_kg": {"value": 2300.0, "unit": "kJ/kg", "note": "Latent heat of vaporization for thermal-from-GOR cross-check"}
+    },
+    "valid_ranges": {
+        "T_top_brine_C": {"min": 90.0, "max": 120.0, "unit": "degC"},
+        "capacity_fraction": {"min": 0.1, "max": 1.0, "unit": "dimensionless"}
+    }
+}

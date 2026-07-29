@@ -1,0 +1,45 @@
+{
+    "component": "EC032 Zinc-Air Battery",
+    "fidelity": "F1b",
+    "description": "SOC-thermal voltage model: V = OCV(SOC) - I*R(T) with Arrhenius R(T) and entropic heating",
+    "source": "Fu et al. (2010) J. Electrochem. Soc.; Lee et al. (2011) Int. J. Hydrogen Energy; Chotard et al. (2014); Parker et al. (2017) Science",
+
+    "cell": {
+        "name": "Zinc-Air (primary/secondary)",
+        "note": "Primary: 1.65 V OCV; secondary (rechargeable): 1.35 V nominal",
+        "nominal_voltage":  {"value": 1.2,   "unit": "V", "note": "Nominal discharge voltage for secondary Zn-air"},
+        "capacity_ref":     {"value": 1.0,   "unit": "Ah", "note": "Reference capacity at T_ref (normalize to 1 Ah cell)"},
+        "voltage_max":      {"value": 1.65,  "unit": "V", "note": "Open-circuit voltage (Zn + 0.5 O2 -> ZnO, E^0 = 1.65 V)"},
+        "voltage_min":      {"value": 0.9,   "unit": "V", "note": "Discharge cutoff voltage"},
+        "R_ref":            {"value": 0.050, "unit": "Ohm", "note": "Internal resistance at T_ref; higher than Li-ion due to alkaline electrolyte and O2 transport"}
+    },
+
+    "ocv_coefficients": {
+        "description": "OCV(SOC) polynomial for Zn-air (SOC=1=full Zn electrode, SOC=0=fully discharged ZnO)",
+        "source": "Fu et al. (2010) J. Electrochem. Soc. 157(1), A50-A56",
+        "a0": 0.90,
+        "a1": 2.80,
+        "a2": -5.20,
+        "a3": 8.00,
+        "a4": -6.00,
+        "a5": 1.65,
+        "note": "Polynomial fit to Zn-air OCV: starts at 0.90 V (empty), rises to ~1.35 V plateau, reaches ~1.65 V OCV. Parker et al. 2017"
+    },
+
+    "thermal": {
+        "T_ref":    {"value": 298.15, "unit": "K"},
+        "E_a":      {"value": 30000,  "unit": "J/mol",
+                     "note": "Activation energy for Zn-air internal resistance (alkaline electrolyte KOH). Lee et al. (2011)"},
+        "alpha_c":  {"value": 0.003,  "unit": "1/K",
+                     "note": "Capacity temperature coefficient (Zn-air slightly less T-sensitive than Li-ion)"},
+        "dOCV_dT":  {"value": -0.0004, "unit": "V/K",
+                     "note": "Entropic coefficient for Zn-air. Negative: discharge voltage drops slightly with T. Parker et al. 2017; Chotard 2014. Sign: dOCV/dT < 0 for Zn-air (entropy decreases on discharge)"},
+        "R_gas":    {"value": 8.314,  "unit": "J/(mol*K)"}
+    },
+
+    "valid_ranges": {
+        "soc":         {"min": 0.0,    "max": 1.0,    "unit": "dimensionless"},
+        "current":     {"min": -5.0,   "max": 5.0,    "unit": "A", "note": "Positive=discharge. Limited reversibility for Zn-air"},
+        "temperature": {"min": 253.15, "max": 333.15, "unit": "K", "note": "-20 to 60 degC"}
+    }
+}

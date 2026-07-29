@@ -1,0 +1,39 @@
+{
+    "component": "EC018 LFP Battery (Lithium Iron Phosphate)",
+    "fidelity": "F1b",
+    "description": "SOC-thermal voltage model: V = OCV(SOC) - I*R(T), with Arrhenius resistance and capacity correction",
+    "cell": {
+        "name": "A123 ANR26650M1B (LFP)",
+        "source": "Chen et al. (2020), J. Electrochem. Soc., 167, 080534; A123 datasheet",
+        "nominal_voltage": {"value": 3.3, "unit": "V"},
+        "capacity_ref": {"value": 3.3, "unit": "Ah", "note": "Nominal capacity at T_ref"},
+        "voltage_max": {"value": 3.6, "unit": "V"},
+        "voltage_min": {"value": 2.0, "unit": "V"},
+        "R_ref": {"value": 0.020, "unit": "Ohm", "note": "Internal resistance at T_ref (298.15 K)"}
+    },
+    "ocv_coefficients": {
+        "description": "OCV(SOC) polynomial fit for LFP -- characteristically flat plateau ~3.3V",
+        "source": "Fitted to LFP OCV data from Chen et al. (2020) and A123 discharge curves",
+        "a0": 2.6,
+        "a1": 5.8,
+        "a2": -25.0,
+        "a3": 50.0,
+        "a4": -45.0,
+        "a5": 15.0
+    },
+    "thermal": {
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 degC)"},
+        "E_a": {"value": 22000, "unit": "J/mol", "note": "Activation energy for internal resistance (LFP less temp-sensitive)",
+                "source": "Ecker et al. (2015), J. Electrochem. Soc., 162(9), A1836-A1848; Thomas et al. (2008)"},
+        "alpha_c": {"value": 0.004, "unit": "1/K", "note": "Linear capacity temperature coefficient (LFP less sensitive)",
+                    "source": "Gallagher et al. (2014), J. Electrochem. Soc., 161(3), A403-A410"},
+        "dOCV_dT": {"value": -0.0002, "unit": "V/K", "note": "Entropic coefficient (LFP has smaller entropy change)",
+                    "source": "Forgez et al. (2010), J. Power Sources, 195(9), 2961-2968"},
+        "R_gas": {"value": 8.314, "unit": "J/(mol*K)", "note": "Universal gas constant"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "current": {"min": -17.5, "max": 17.5, "unit": "A", "note": "Negative=charge, Positive=discharge"},
+        "temperature": {"min": 253.15, "max": 333.15, "unit": "K", "note": "-20 to 60 degC"}
+    }
+}

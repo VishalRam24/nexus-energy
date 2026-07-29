@@ -1,0 +1,42 @@
+{
+    "component": "EC116 Pressurized Water Reactor (PWR)",
+    "fidelity": "F2a",
+    "description": "Six-group delayed neutron point kinetics with thermal-hydraulic feedback. Stiff ODE system requiring Radau/BDF solver.",
+    "unit": {
+        "name": "Generic 1000 MWe PWR (Westinghouse-type 4-loop)",
+        "source": "Duderstadt & Hamilton (1976), Nuclear Reactor Analysis; Stacey (2007), Nuclear Reactor Physics, 2nd ed.; Keepin (1965), Physics of Nuclear Kinetics",
+        "P_thermal_rated": {"value": 3000e6, "unit": "W", "note": "Rated thermal power (3000 MWth)"},
+        "P_elec_rated": {"value": 1000e6, "unit": "W", "note": "Rated electrical power (1000 MWe)"},
+        "eta_thermal": {"value": 0.333, "unit": "dimensionless", "note": "Thermal-to-electrical efficiency"},
+
+        "Lambda": {"value": 2e-5, "unit": "s", "note": "Prompt neutron generation time"},
+        "beta": {
+            "value": [0.000215, 0.001424, 0.001274, 0.002568, 0.000748, 0.000273],
+            "unit": "dimensionless",
+            "note": "Delayed neutron fractions for 6 groups (U-235), total beta = 0.006502"
+        },
+        "lambda_precursor": {
+            "value": [0.0124, 0.0305, 0.111, 0.301, 1.14, 3.01],
+            "unit": "1/s",
+            "note": "Precursor decay constants for 6 groups"
+        },
+
+        "alpha_f": {"value": -2.5e-5, "unit": "dk/K", "note": "Fuel temperature (Doppler) reactivity coefficient"},
+        "alpha_m": {"value": -1.5e-4, "unit": "dk/K", "note": "Moderator temperature reactivity coefficient"},
+
+        "T_f0": {"value": 900.0, "unit": "K", "note": "Reference fuel temperature"},
+        "T_m0": {"value": 580.0, "unit": "K", "note": "Reference moderator temperature"},
+        "T_inlet": {"value": 565.0, "unit": "K", "note": "Coolant inlet temperature (~292 C)"},
+
+        "m_f_cp_f": {"value": 2.0e6, "unit": "J/K", "note": "Fuel heat capacity (m_f * cp_f per unit)"},
+        "m_m_cp_m": {"value": 4.0e6, "unit": "J/K", "note": "Moderator heat capacity (m_m * cp_m per unit)"},
+        "hA_fg": {"value": 5.0e6, "unit": "W/K", "note": "Fuel-to-moderator heat transfer coefficient * area"},
+        "m_dot_cp_c": {"value": 1.0e7, "unit": "W/K", "note": "Coolant mass flow rate * specific heat (m_dot * cp)"},
+
+        "n0": {"value": 1.0, "unit": "dimensionless", "note": "Initial normalized neutron population (1.0 = rated)"}
+    },
+    "valid_ranges": {
+        "rho_ext": {"min": -0.01, "max": 0.005, "unit": "dk/k", "note": "External reactivity insertion"},
+        "simulation_time": {"min": 0.01, "max": 1000.0, "unit": "s"}
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "component": "EC069 Ground-Source Heat Pump (GSHP)",
+    "fidelity": "F1a",
+    "description": "COP as f(T_source, T_sink) using Carnot fraction approach with stable ground temperature",
+    "unit": {
+        "name": "Generic 15kW GSHP (R410A, horizontal ground loop)",
+        "source": "Staffell et al. (2012), Energy Environ. Sci., 5, 9291-9306; ASHRAE Handbook HVAC Applications (2019) Ch.34",
+        "rated_capacity": {"value": 15.0, "unit": "kW_th", "note": "Rated heating output"},
+        "rated_cop": {"value": 4.5, "unit": "dimensionless", "note": "At G10/W35 (ground 10C, water 35C)"},
+        "carnot_fraction": {"value": 0.365, "unit": "dimensionless", "note": "Calibrated to COP=4.5 at G10/W35: eta=4.5/COP_Carnot=4.5/12.33=0.365"},
+        "T_ground_nominal": {"value": 10.0, "unit": "degC", "note": "Typical undisturbed ground temperature in temperate climate"},
+        "min_source_temp": {"value": 0.0, "unit": "degC", "note": "Near-freezing ground with antifreeze loop"},
+        "max_source_temp": {"value": 20.0, "unit": "degC", "note": "Warm ground or cooling mode source"},
+        "min_sink_temp": {"value": 25.0, "unit": "degC"},
+        "max_sink_temp": {"value": 65.0, "unit": "degC"},
+        "auxiliary_power": {"value": 0.05, "unit": "kW", "note": "Circulating pump, controls, standby"}
+    },
+    "valid_ranges": {
+        "T_source": {"min": 0.0, "max": 20.0, "unit": "degC"},
+        "T_sink": {"min": 25.0, "max": 65.0, "unit": "degC"},
+        "part_load_ratio": {"min": 0.0, "max": 1.0, "unit": "dimensionless"}
+    }
+}

@@ -1,0 +1,38 @@
+{
+    "component_id": "EC050",
+    "component_name": "Organic Photovoltaic (OPV)",
+    "fidelity": "F2a — Physics-Lumped Single-Diode + Lumped Thermal ODE",
+    "description": "First-principles single-diode (Shockley) OPV cell with high ideality factor and significant series/shunt resistance (low fill factor). Full I-V / P-V by root-finding, MPP by bracketed maximisation, irradiance + temperature dependence, and a lumped energy-balance thermal ODE integrated with scipy.solve_ivp.",
+    "source": "Shockley (1949) Bell Syst. Tech. J. 28, 435; De Soto et al. (2006) Solar Energy 80(1), 78-88; Brabec et al. (2010) Adv. Mater. 22, 3839-3856; Faiman (2008) Prog. Photovolt. 16(4), 307-315; Kawano et al. (2006) J. Appl. Phys. 100, 033514; Zhang et al. (2018) Adv. Energy Mater. 8(6), 1701567; Cuce et al. (2013) low-light OPV characterisation",
+    "unit": {
+        "name": "OPV NFA module (PM6:Y6-type, n~1.7) — physics-lumped single cell-string",
+        "technology": "Organic thin-film bulk-heterojunction, non-fullerene acceptor",
+        "I_L_ref": {"value": 0.116, "unit": "A", "note": "String photocurrent at STC (G=1000 W/m2, 25C); Jsc ~7.25 mA/cm2 over per-cell area 16 cm2 (800 cm2 module / 50 series cells). This is the SERIES-STRING current (not multiplied by N_s)."},
+        "I0_ref": {"value": 1.0e-8, "unit": "A", "note": "Diode saturation (dark) current at T_ref; high for organics due to defect/CT-state recombination"},
+        "n": {"value": 1.7, "unit": "-", "note": "Diode ideality factor; high (>1.5) in OPV due to trap-assisted/CT-state recombination (Brabec 2010)"},
+        "N_s": {"value": 50, "unit": "-", "note": "Cells in series in the module string; multiplies the per-cell thermal voltage"},
+        "Rs": {"value": 10.0, "unit": "Ohm", "note": "Series resistance; large due to low carrier mobility in organic transport layers -> low fill factor"},
+        "Rsh": {"value": 900.0, "unit": "Ohm", "note": "Shunt resistance; moderate, set by morphological defects -> low fill factor; scaled as Rsh_ref*G_ref/G so it grows at low light (good low-light/indoor behaviour)"},
+        "alpha_sc": {"value": 0.000024, "unit": "A/K", "note": "String Isc temperature coefficient (+0.024 mA/K); slight positive tempco typical of OPV, scaled to string current"},
+        "Eg_ref": {"value": 1.35, "unit": "eV", "note": "Effective charge-transfer-state energy gap (below optical bandgap ~1.6 eV) governing I0(T)"},
+        "dEgdT": {"value": -0.0002, "unit": "eV/K", "note": "Temperature coefficient of effective CT-state gap"},
+        "area": {"value": 0.08, "unit": "m2", "note": "Module active area (800 cm2) for efficiency normalisation"},
+        "T_ref": {"value": 298.15, "unit": "K", "note": "STC reference temperature (25C)"},
+        "G_ref": {"value": 1000.0, "unit": "W/m2", "note": "STC reference irradiance"},
+        "absorptance": {"value": 0.80, "unit": "-", "note": "Fraction of incident irradiance absorbed as heat+power by the thin-film stack"},
+        "m_cp": {"value": 600.0, "unit": "J/K", "note": "Lumped module heat capacity (thin lightweight flexible substrate -> low thermal mass)"},
+        "U_loss": {"value": 25.0, "unit": "W/(m2.K)", "note": "Combined convective+radiative loss coefficient to ambient (Faiman-style)"}
+    },
+    "valid_ranges": {
+        "irradiance": {"min": 0.0, "max": 1200.0, "unit": "W/m2"},
+        "T_ambient": {"min": -10.0, "max": 60.0, "unit": "degC"},
+        "V": {"min": 0.0, "max": 50.0, "unit": "V"},
+        "dt": {"min": 0.1, "max": 60.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 7200.0, "unit": "s"}
+    },
+    "notes": {
+        "low_light": "OPV retains high relative efficiency at low/indoor irradiance (the shunt-limited regime is favourable); modelled through the single-diode shunt branch (Cuce 2013).",
+        "flexible": "Lightweight flexible substrate -> small thermal mass m_cp, fast thermal response.",
+        "degradation": "Real OPV degrades faster than Si/perovskite (burn-in + photo-oxidation, T80 of months-years). Not integrated here; reserved for an F2c degradation sub-fidelity. See Brabec et al. (2010)."
+    }
+}

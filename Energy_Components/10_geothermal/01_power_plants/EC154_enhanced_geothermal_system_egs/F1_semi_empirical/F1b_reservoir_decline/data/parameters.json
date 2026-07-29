@@ -1,0 +1,46 @@
+{
+    "component": "EC154 Enhanced Geothermal System (EGS)",
+    "fidelity": "F1b",
+    "description": "Reservoir thermal breakthrough + permeability decline + ORC part-load + ambient derating",
+    "unit": {
+        "name": "Generic EGS Plant (Binary/ORC cycle)",
+        "source": "Tester et al. (2006) MIT/DOE; DiPippo (2015) Ch.16; Sanyal & Butler (2005)",
+        "T_geo_design_degC":         {"value": 200.0, "unit": "degC"},
+        "T_reject_design_degC":      {"value": 25.0,  "unit": "degC"},
+        "m_dot_design_kg_s":         {"value": 50.0,  "unit": "kg/s"},
+        "cp_fluid_J_kgK":            {"value": 4100.0, "unit": "J/(kg*K)"},
+        "eta_utilization":           {"value": 0.40, "unit": "dimensionless",
+                                      "note": "Slightly lower than natural geothermal (pump parasitic)"},
+        "pump_parasitic_fraction_0": {"value": 0.10, "unit": "dimensionless",
+                                      "note": "Initial pump parasitic fraction; 8-15% for EGS (Tester 2006)"},
+        "pump_parasitic_max":        {"value": 0.45, "unit": "dimensionless",
+                                      "note": "Max pump fraction before project becomes uneconomic"},
+        "T_reinject_offset":         {"value": 30.0, "unit": "degC",
+                                      "note": "Reinjection T above ambient: min temp to avoid mineral precipitation"},
+        "P_rated_kw":                {"value": 5000.0, "unit": "kW"},
+        "tau_thermal_yr":            {"value": 10.0, "unit": "years",
+                                      "note": "Thermal breakthrough time constant; 5-20 yr depending on fracture spacing (Tester 2006)"},
+        "T_inject_degC":             {"value": 50.0, "unit": "degC",
+                                      "note": "Water injection temperature; defines lower bound of thermal decline"},
+        "c_perm_decline":            {"value": 0.02, "unit": "1/(MPa*yr)",
+                                      "note": "Permeability decline coefficient; stress-induced fracture closure"},
+        "delta_P_design_MPa":        {"value": 5.0, "unit": "MPa",
+                                      "note": "Design reservoir pressure differential (typical EGS: 3-10 MPa)"},
+        "ambient_derating_coeff":    {"value": 0.005, "unit": "1/degC",
+                                      "note": "Air-cooled ORC condenser sensitivity"},
+        "PLR_min":                   {"value": 0.3, "unit": "dimensionless"}
+    },
+    "part_load_curve": {
+        "PLR_points": [0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+        "eta_ratio":  [0.75, 0.82, 0.88, 0.92, 0.95, 0.97, 0.99, 1.00],
+        "note": "ORC part-load curve (same as EC153 binary); DiPippo (2015)"
+    },
+    "valid_ranges": {
+        "T_geo_degC":        {"min": 150.0, "max": 350.0, "unit": "degC"},
+        "m_dot_kg_s":        {"min": 5.0,   "max": 200.0, "unit": "kg/s"},
+        "T_reject_degC":     {"min": -10.0, "max": 50.0,  "unit": "degC"},
+        "PLR":               {"min": 0.3,   "max": 1.0},
+        "years_operation":   {"min": 0.0,   "max": 50.0,  "unit": "years"},
+        "delta_P_MPa":       {"min": 1.0,   "max": 20.0,  "unit": "MPa"}
+    }
+}

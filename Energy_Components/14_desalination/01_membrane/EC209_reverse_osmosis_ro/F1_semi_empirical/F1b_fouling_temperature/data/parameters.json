@@ -1,0 +1,27 @@
+{
+    "component": "EC209 Reverse Osmosis (RO)",
+    "fidelity": "F1b",
+    "description": "RO model with membrane fouling and temperature-dependent flux",
+    "unit": {
+        "name": "Generic SWRO Module with Fouling",
+        "source": "Elimelech & Phillip (2011), Science, 333, 712-717; Kang & Cao (2012)",
+        "A0": {"value": 4.0, "unit": "L/(m2*h*bar)", "note": "Clean membrane water permeability"},
+        "membrane_area_m2": {"value": 37.0, "unit": "m2"},
+        "B": {"value": 0.05, "unit": "L/(m2*h)", "note": "Salt permeability coefficient"},
+        "pump_efficiency": {"value": 0.85, "unit": "dimensionless"},
+        "k_foul": {"value": 0.10, "unit": "1/year", "note": "Fouling rate constant"},
+        "eta_ERD": {"value": 0.95, "unit": "dimensionless"},
+        "dP_membrane": {"value": 2.0, "unit": "bar"},
+        "osmotic_pressure_coeff": {"value": 0.7, "unit": "bar/ppm*1000", "note": "pi = 0.7 * S/1000 bar (S in ppm)"},
+        "T_ref_K": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 degC)"},
+        "activation_energy_factor": {"value": 2500.0, "unit": "K", "note": "For Arrhenius flux correction: J(T)=J_ref*exp(E*(1/T_ref-1/T))"},
+        "salt_rejection_clean": {"value": 0.995, "unit": "dimensionless"}
+    },
+    "valid_ranges": {
+        "feed_salinity_ppm": {"min": 1000.0, "max": 45000.0, "unit": "ppm"},
+        "feed_pressure_bar": {"min": 20.0, "max": 80.0, "unit": "bar"},
+        "feed_temperature_degC": {"min": 10.0, "max": 40.0, "unit": "degC"},
+        "recovery_ratio": {"min": 0.3, "max": 0.6, "unit": "dimensionless"},
+        "operating_hours": {"min": 0.0, "max": 87600.0, "unit": "hours"}
+    }
+}

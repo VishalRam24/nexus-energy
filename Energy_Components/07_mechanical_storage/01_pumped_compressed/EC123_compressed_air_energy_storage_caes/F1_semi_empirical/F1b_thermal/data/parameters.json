@@ -1,0 +1,35 @@
+{
+    "component": "EC123 Compressed Air Energy Storage (CAES)",
+    "fidelity": "F1b",
+    "description": "Extends F1a with cavern thermal losses to rock wall, ambient T effect on compressor intake, and thermal time constant",
+    "source": "Budt et al. (2016), Applied Energy, 170, 250-268; Greenblatt et al. (2012), J. Power Sources, 216, 105-115; Succar & Williams (2008), Compressed Air Energy Storage, Princeton",
+    "unit": {
+        "name": "Generic Diabatic CAES (Huntorf-class) + Thermal",
+        "eta_compressor": {"value": 0.72, "unit": "dimensionless"},
+        "eta_motor": {"value": 0.97, "unit": "dimensionless"},
+        "eta_expander": {"value": 0.82, "unit": "dimensionless"},
+        "eta_generator": {"value": 0.97, "unit": "dimensionless"},
+        "heat_rate": {"value": 4200.0, "unit": "kJ/kWh_e"},
+        "fuel_lhv": {"value": 50000.0, "unit": "kJ/kg"},
+        "p_max": {"value": 7.0e6, "unit": "Pa", "note": "70 bar"},
+        "p_min": {"value": 4.3e6, "unit": "Pa", "note": "43 bar"},
+        "cavern_volume": {"value": 310000.0, "unit": "m3"},
+        "T_cavern_nominal": {"value": 313.15, "unit": "K", "note": "Nominal 40°C after compression heat dissipation"},
+        "T_rock": {"value": 308.15, "unit": "K", "note": "Surrounding rock temperature ~35°C"},
+        "specific_work": {"value": 280.0, "unit": "kJ/kg"},
+        "specific_expansion": {"value": 470.0, "unit": "kJ/kg"},
+        "R_air": {"value": 287.0, "unit": "J/(kg·K)"},
+        "cavern_thermal_mass": {"value": 5.0e9, "unit": "J/K", "note": "Rock + air thermal mass (very large)"},
+        "UA_cavern_rock": {"value": 50000.0, "unit": "W/K", "note": "Cavern wall conductance to rock"},
+        "T_ref_comp": {"value": 288.15, "unit": "K", "note": "Compressor reference inlet temperature (ISO 15°C)"},
+        "k_comp_T": {"value": 0.004, "unit": "1/K", "note": "Compressor specific work change per K above T_ref"},
+        "cp_air": {"value": 1005.0, "unit": "J/(kg·K)"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "-"},
+        "T_amb": {"min": 253.15, "max": 313.15, "unit": "K"},
+        "T_cavern": {"min": 288.15, "max": 333.15, "unit": "K"},
+        "power_command_kw": {"min": -400000.0, "max": 400000.0, "unit": "kW"},
+        "mode": {"values": ["charge", "discharge", "idle"]}
+    }
+}

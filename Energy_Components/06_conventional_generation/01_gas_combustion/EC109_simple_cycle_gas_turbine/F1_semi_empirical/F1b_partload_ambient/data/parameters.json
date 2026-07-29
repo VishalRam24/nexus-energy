@@ -1,0 +1,28 @@
+{
+    "component": "EC109 Simple Cycle Gas Turbine",
+    "fidelity": "F1b",
+    "description": "Part-load efficiency curve with ISO ambient pressure/temperature correction",
+    "unit": {
+        "name": "GE LM6000-class simple-cycle gas turbine (~43 MW)",
+        "source": "Walsh & Fletcher (2004), Gas Turbine Performance, 2nd ed.; ISO 2314:2009",
+        "P_rated_mw": {"value": 43.0, "unit": "MW", "note": "Rated electrical output at ISO conditions"},
+        "eta_rated": {"value": 0.41, "unit": "dimensionless", "note": "LHV net electrical efficiency at ISO"},
+        "T_iso_ref_k": {"value": 288.15, "unit": "K", "note": "ISO reference temperature (15 degC)"},
+        "P_iso_ref_kpa": {"value": 101.325, "unit": "kPa", "note": "ISO reference pressure"},
+        "a_plr": {"value": 0.1, "unit": "dimensionless", "note": "Part-load quadratic constant term"},
+        "b_plr": {"value": 1.3, "unit": "dimensionless", "note": "Part-load quadratic linear term"},
+        "c_plr": {"value": -0.4, "unit": "dimensionless", "note": "Part-load quadratic quadratic term"},
+        "LHV_fuel_kj_kg": {"value": 50000.0, "unit": "kJ/kg", "note": "LHV of natural gas"},
+        "fuel_lhv_mj_kg": {"value": 50.0, "unit": "MJ/kg", "note": "LHV of natural gas"},
+        "PLR_min": {"value": 0.3, "unit": "dimensionless", "note": "Minimum stable PLR"},
+        "T_exhaust_rated_k": {"value": 823.15, "unit": "K", "note": "Exhaust temperature at ISO full load (~550 degC)"},
+        "exhaust_temp_rise_partload": {"value": 30.0, "unit": "K", "note": "Exhaust temp rise at low load vs full load"},
+        "cp_exhaust": {"value": 1.1, "unit": "kJ/(kg.K)", "note": "Mean specific heat of exhaust gas"}
+    },
+    "valid_ranges": {
+        "PLR": {"min": 0.3, "max": 1.0, "unit": "dimensionless"},
+        "T_ambient_k": {"min": 243.15, "max": 323.15, "unit": "K"},
+        "P_ambient_kpa": {"min": 80.0, "max": 110.0, "unit": "kPa"},
+        "fuel_lhv_mj_kg": {"min": 40.0, "max": 55.0, "unit": "MJ/kg"}
+    }
+}

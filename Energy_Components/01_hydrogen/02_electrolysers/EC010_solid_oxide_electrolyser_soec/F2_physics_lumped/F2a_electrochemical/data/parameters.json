@@ -1,0 +1,30 @@
+{
+    "component": "EC010 Solid Oxide Electrolyser Cell (SOEC)",
+    "fidelity": "F2a",
+    "description": "Electrochemical model with Nernst + Butler-Volmer + YSZ ohmic + steam utilization effect",
+    "unit": {
+        "name": "Generic 30-cell SOEC stack",
+        "source": "Ni et al. (2007); Udagawa et al. (2007)",
+        "N_cells": {"value": 30, "unit": "dimensionless"},
+        "electrode_area_cm2": {"value": 100.0, "unit": "cm2"},
+        "t_electrolyte_m": {"value": 1.5e-5, "unit": "m", "note": "YSZ electrolyte thickness"},
+        "A_YSZ": {"value": 3.34e6, "unit": "S*K/m", "note": "YSZ conductivity pre-exponential"},
+        "E_YSZ": {"value": 80000.0, "unit": "J/mol", "note": "YSZ activation energy"},
+        "alpha": {"value": 0.5, "unit": "dimensionless"},
+        "n": {"value": 2, "unit": "dimensionless"},
+        "j0_cathode_ref": {"value": 5000.0, "unit": "A/m2"},
+        "j0_anode_ref": {"value": 2000.0, "unit": "A/m2"},
+        "E_act_cathode": {"value": 100000.0, "unit": "J/mol"},
+        "E_act_anode": {"value": 120000.0, "unit": "J/mol"},
+        "T_ref": {"value": 1073.15, "unit": "K", "note": "800 degC"},
+        "V_thermoneutral": {"value": 1.285, "unit": "V"},
+        "E0_ref": {"value": 0.94, "unit": "V", "note": "OCV at T_ref"},
+        "dE0_dT": {"value": -0.00024, "unit": "V/K"},
+        "p_total_bar": {"value": 1.0, "unit": "bar"}
+    },
+    "valid_ranges": {
+        "current_density": {"min": 0.01, "max": 2.0, "unit": "A/cm2"},
+        "T_K": {"min": 923, "max": 1173, "unit": "K"},
+        "steam_utilization": {"min": 0.1, "max": 0.9, "unit": "dimensionless"}
+    }
+}

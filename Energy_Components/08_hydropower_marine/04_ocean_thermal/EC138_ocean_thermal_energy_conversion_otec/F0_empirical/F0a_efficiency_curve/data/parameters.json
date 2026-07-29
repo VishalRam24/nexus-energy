@@ -1,0 +1,22 @@
+{
+    "component": "EC138 Ocean Thermal Energy Conversion (OTEC)",
+    "fidelity": "F0a",
+    "description": "Empirical net-efficiency curve vs warm/cold temperature difference dT. eta_net = (dT/(Tw+273.15))*eta_cycle_fraction*(1-parasitic_fraction); net power = eta_net*P_gross. Tabulated at representative Tw=26 C and interpolated; zero below dT_min.",
+    "rated": {
+        "T_warm_ref_c": {"value": 26.0, "unit": "degC", "note": "Representative warm surface temperature for the lookup"},
+        "eta_cycle_fraction": {"value": 0.70, "unit": "dimensionless", "note": "Fraction of Carnot achieved by real ammonia ORC"},
+        "parasitic_fraction": {"value": 0.30, "unit": "dimensionless", "note": "Fraction of gross power consumed by pumps/auxiliaries"},
+        "P_gross_kw": {"value": 1000.0, "unit": "kW", "note": "Gross power rating (before parasitic load)"},
+        "dT_min_c": {"value": 10.0, "unit": "degC", "note": "Minimum temperature difference for net generation"},
+        "eta_net_design": {"value": 0.0344, "unit": "dimensionless", "note": "Net efficiency at design dT=21 C (Tw=26, Tc=5)"},
+        "P_net_design_kw": {"value": 34.4, "unit": "kW", "note": "Net power at design dT=21 C"}
+    },
+    "efficiency_curve": {
+        "dT_c": {"value": [10.0, 12.0, 14.0, 16.0, 18.0, 20.0, 21.0, 22.0, 24.0, 26.0, 28.0], "unit": "degC", "note": "Warm-cold temperature difference breakpoints"},
+        "eta_net": {"value": [0.01638, 0.01966, 0.02293, 0.02621, 0.02948, 0.03276, 0.0344, 0.03604, 0.03931, 0.04259, 0.04586], "unit": "dimensionless", "note": "Net thermal-to-electric efficiency"}
+    },
+    "valid_ranges": {
+        "dT_c": {"min": 10.0, "max": 28.0, "unit": "degC"}
+    },
+    "source": "Vega (2002) OTEC review; Nihous (2007) J. Energy Resour. Technol. 129:10; NREL OTEC resource assessment; reuses EC138 F1a parameters"
+}

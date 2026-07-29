@@ -1,0 +1,31 @@
+{
+    "component": "EC203 Membrane-Based CO2 Separation",
+    "fidelity": "F1b",
+    "description": "Polymeric membrane CO2 separation with permeance aging and temperature correction",
+    "unit": {
+        "name": "Commercial-scale CO2/N2 polymeric membrane module",
+        "source": "Merkel et al. (2010) J. Membrane Sci. 359 126-139; Baker & Low (2014) Macromolecules 47 6999",
+        "P0_CO2_GPU": {"value": 1000.0, "unit": "GPU", "note": "Fresh membrane CO2 permeance (Merkel 2010: Polaris ~1000 GPU)"},
+        "selectivity_CO2_N2": {"value": 50.0, "unit": "dimensionless", "note": "CO2/N2 selectivity (Polaris: 40-60)"},
+        "k_age": {"value": 0.06, "unit": "1/year", "note": "Physical aging rate constant (~6%/yr for thin-film polymers)"},
+        "E_a_kJ_mol": {"value": -10.0, "unit": "kJ/mol", "note": "Activation energy for CO2 permeation (negative = higher P at higher T)"},
+        "T_ref_K": {"value": 298.15, "unit": "K"},
+        "SEC_min": {"value": 150.0, "unit": "kWh_e/tCO2", "note": "Minimum SEC at low capture rate"},
+        "k_sec": {"value": 200.0, "unit": "kWh_e/tCO2", "note": "Pre-exponential for SEC curve"},
+        "gamma_sec": {"value": 4.0, "unit": "1/dimensionless", "note": "Capture rate sensitivity (higher = steeper rise at high CR)"},
+        "CR_ref": {"value": 0.60, "unit": "dimensionless", "note": "Reference capture rate for SEC curve"},
+        "eta_compressor": {"value": 0.80, "unit": "dimensionless"},
+        "P_feed_bar": {"value": 1.0, "unit": "bar", "note": "Feed gas pressure (atmospheric for post-combustion)"},
+        "P_permeate_bar": {"value": 0.1, "unit": "bar", "note": "Permeate (CO2-rich) side pressure (vacuum)"},
+        "M_CO2_kg_mol": {"value": 0.04401, "unit": "kg/mol"},
+        "gamma_gas": {"value": 1.30, "unit": "dimensionless", "note": "Cp/Cv for CO2-rich gas"}
+    },
+    "valid_ranges": {
+        "co2_feed_fraction": {"min": 0.04, "max": 0.20, "unit": "mol/mol"},
+        "feed_flow_mol_s": {"min": 1.0, "max": 1000.0, "unit": "mol/s"},
+        "capture_rate_target": {"min": 0.30, "max": 0.90, "unit": "dimensionless"},
+        "T_feed_degC": {"min": 20.0, "max": 80.0, "unit": "degC"},
+        "operating_hours": {"min": 0.0, "max": 87600.0, "unit": "hours"},
+        "injection_pressure_bar": {"min": 10.0, "max": 200.0, "unit": "bar"}
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "component": "EC162 Resonant LLC Converter",
+    "fidelity": "F1b",
+    "description": "Detailed semiconductor loss model for LLC resonant converter: MOSFET conduction + near-ZVS switching, diode conduction + reverse recovery, transformer + resonant inductor copper losses, temperature-dependent Rds_on, thermal balance",
+    "unit": {
+        "name": "Generic 400V/12V LLC Resonant Converter with Detailed Losses",
+        "source": "Yang, B. et al. (2002). LLC resonant converter for front end DC/DC conversion. IEEE APEC 2002.",
+        "v_in_nominal": {"value": 400.0, "unit": "V"},
+        "v_out_nominal": {"value": 12.0, "unit": "V"},
+        "n_turns": {"value": 16.0, "unit": "dimensionless", "note": "Transformer turns ratio N1/N2"},
+        "f_r": {"value": 100000.0, "unit": "Hz", "note": "Resonant frequency 100 kHz"},
+        "f_sw": {"value": 100000.0, "unit": "Hz", "note": "Switching frequency (at resonance)"},
+        "L_r": {"value": 5e-6, "unit": "H", "note": "Resonant inductance 5 uH"},
+        "C_r": {"value": 5e-9, "unit": "F", "note": "Resonant capacitance 5 nF"},
+        "L_m": {"value": 30e-6, "unit": "H", "note": "Magnetizing inductance 30 uH"},
+        "R_ds_on": {"value": 0.020, "unit": "Ohm", "note": "Primary MOSFET Rds_on at T_ref (20 mohm)"},
+        "V_f": {"value": 0.5, "unit": "V", "note": "Secondary diode forward voltage"},
+        "t_off": {"value": 2.0e-8, "unit": "s", "note": "Turn-off time (ZVS near-zero, 20 ns residual)"},
+        "R_Lr": {"value": 0.020, "unit": "Ohm", "note": "Resonant inductor winding resistance (20 mohm)"},
+        "R_pri": {"value": 0.025, "unit": "Ohm", "note": "Primary transformer winding (25 mohm)"},
+        "R_sec": {"value": 0.003, "unit": "Ohm", "note": "Secondary transformer winding (3 mohm)"},
+        "P_rated": {"value": 2000.0, "unit": "W", "note": "Rated power 2 kW"},
+        "T_a": {"value": 25.0, "unit": "degC", "note": "Ambient temperature"},
+        "R_theta": {"value": 5.0, "unit": "degC/W", "note": "Junction-to-ambient thermal resistance"},
+        "T_ref": {"value": 25.0, "unit": "degC", "note": "Reference temperature for Rds_on"},
+        "alpha_rds": {"value": 0.004, "unit": "1/degC", "note": "MOSFET Rds_on positive tempco"}
+    },
+    "valid_ranges": {
+        "v_in": {"min": 200.0, "max": 600.0, "unit": "V"},
+        "v_out_target": {"min": 5.0, "max": 24.0, "unit": "V"},
+        "p_load": {"min": 0.0, "max": 3000.0, "unit": "W"}
+    }
+}

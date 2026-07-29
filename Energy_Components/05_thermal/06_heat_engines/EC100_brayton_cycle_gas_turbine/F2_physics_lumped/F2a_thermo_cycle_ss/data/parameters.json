@@ -1,0 +1,33 @@
+{
+    "component_id": "EC100",
+    "component_name": "Brayton Cycle Gas Turbine (Simple Cycle)",
+    "fidelity": "F2a — Physics-Lumped Air-Standard Brayton Cycle + Spool Dynamics ODE",
+    "source": "Moran & Shapiro (2014), Fundamentals of Engineering Thermodynamics 8th ed., Ch.9; Saravanamuttoo, Rogers & Cohen (2009), Gas Turbine Theory 6th ed., Ch.2-3; cp(T) polynomial fit per NASA Glenn (McBride et al. 2002) / Cengel & Boles (2015) air tables.",
+    "unit": {
+        "name": "GE 7F.04-class simple-cycle gas turbine (185 MW ISO) — air-standard physics model",
+        "P_rated_MW": {"value": 185.0, "unit": "MW", "note": "ISO net shaft/electrical output (reused from EC100 F1b)"},
+        "eta_rated": {"value": 0.385, "unit": "-", "note": "Net thermal efficiency at ISO (EC100 F1b reference)"},
+        "pressure_ratio": {"value": 18.0, "unit": "-", "note": "Compressor total pressure ratio (F-class ~17-19); Saravanamuttoo Ch.3"},
+        "eta_compressor": {"value": 0.88, "unit": "-", "note": "Compressor isentropic efficiency (modern axial; Saravanamuttoo 2009)"},
+        "eta_turbine": {"value": 0.90, "unit": "-", "note": "Turbine isentropic efficiency (cooled HP turbine; Saravanamuttoo 2009)"},
+        "eta_combustor": {"value": 0.99, "unit": "-", "note": "Combustion efficiency (fraction of fuel LHV released)"},
+        "T_inlet_K": {"value": 288.15, "unit": "K", "note": "Compressor inlet (ISO 15 degC); Moran & Shapiro"},
+        "P_inlet_kPa": {"value": 101.325, "unit": "kPa", "note": "Ambient inlet total pressure (ISO)"},
+        "TIT_K": {"value": 1700.0, "unit": "K", "note": "Turbine inlet temperature limit (F-class firing temp ~1430 degC); metallurgical limit"},
+        "mdot_air_kg_s": {"value": 432.0, "unit": "kg/s", "note": "Air mass flow at ISO (F-class ~430 kg/s)"},
+        "LHV_fuel_MJ_kg": {"value": 50.0, "unit": "MJ/kg", "note": "Lower heating value of natural gas (EC100 F1b)"},
+        "dP_combustor_frac": {"value": 0.04, "unit": "-", "note": "Combustor total-pressure-loss fraction (Saravanamuttoo Ch.6, 2-6%)"},
+        "regen_effectiveness": {"value": 0.0, "unit": "-", "note": "Recuperator effectiveness (0 = no regeneration; set >0 to enable)"},
+        "I_spool_kg_m2": {"value": 6500.0, "unit": "kg.m2", "note": "Lumped rotor/shaft polar moment of inertia (large industrial GT)"},
+        "N_rated_rpm": {"value": 3600.0, "unit": "rpm", "note": "Rated shaft speed (50/60 Hz synchronous, 2-pole eqv.)"}
+    },
+    "valid_ranges": {
+        "pressure_ratio": {"min": 2.0, "max": 40.0, "unit": "-"},
+        "TIT_K": {"min": 900.0, "max": 1900.0, "unit": "K"},
+        "T_inlet_K": {"min": 240.0, "max": 330.0, "unit": "K"},
+        "eta_compressor": {"min": 0.5, "max": 0.95, "unit": "-"},
+        "eta_turbine": {"min": 0.5, "max": 0.95, "unit": "-"},
+        "regen_effectiveness": {"min": 0.0, "max": 0.95, "unit": "-"},
+        "load_fraction": {"min": 0.0, "max": 1.0, "unit": "-"}
+    }
+}

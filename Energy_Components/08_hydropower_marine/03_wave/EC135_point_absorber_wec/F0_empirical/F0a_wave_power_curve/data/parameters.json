@@ -1,0 +1,23 @@
+{
+    "component": "EC135 Point Absorber WEC",
+    "fidelity": "F0a",
+    "description": "Empirical power matrix collapsed to a 1-D lookup of electrical power vs significant wave height Hs near resonance (Te~Tn). P = J(Hs,Te)*CWR_peak*diameter*eta_pto*eta_electrical, J=(rho*g^2/64pi)*Hs^2*Te. Capped at rated power.",
+    "rated": {
+        "diameter_m": {"value": 6.0, "unit": "m", "note": "Buoy diameter"},
+        "cwr_peak": {"value": 0.25, "unit": "dimensionless", "note": "Peak capture width ratio at resonance"},
+        "T_n_s": {"value": 10.0, "unit": "s", "note": "Natural resonance period of heaving buoy"},
+        "eta_pto": {"value": 0.80, "unit": "dimensionless", "note": "Linear-generator PTO efficiency"},
+        "eta_electrical": {"value": 0.95, "unit": "dimensionless", "note": "Power electronics efficiency"},
+        "Te_ref_s": {"value": 9.0, "unit": "s", "note": "Representative energy period for the lookup (near resonance)"},
+        "P_rated_kw": {"value": 80.0, "unit": "kW", "note": "Rated electrical power (curve clipped at rating)"},
+        "rho_water": {"value": 1025.0, "unit": "kg/m3", "note": "Seawater density"}
+    },
+    "power_curve": {
+        "Hs_m": {"value": [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 4.0, 5.0, 8.0], "unit": "m", "note": "Significant wave height breakpoints"},
+        "power_kw": {"value": [0.0, 1.26, 5.03, 11.33, 20.13, 31.46, 45.30, 80.0, 80.0, 80.0], "unit": "kW", "note": "Electrical power near resonance, clipped at 80 kW rated"}
+    },
+    "valid_ranges": {
+        "Hs_m": {"min": 0.0, "max": 8.0, "unit": "m"}
+    },
+    "source": "Falnes (2002); Babarit et al. (2012) Renew. Energy 41:44-63; CorPower Ocean datasheet; reuses EC135 F1a parameters"
+}

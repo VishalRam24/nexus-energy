@@ -1,0 +1,26 @@
+{
+    "component": "EC078 Sensible Heat Storage — Hot Water Tank",
+    "fidelity": "F1b",
+    "description": "Multi-node (N=10) stratification model with inter-node mixing and flow-driven advection",
+    "unit": {
+        "name": "Generic 500 L domestic/commercial hot water tank (stratified)",
+        "source": "Duffie & Beckman (2013) ch.8; De Cesaro Oliveski et al. (2003); Newton (1995) TRNSYS Type 60",
+        "volume_L": {"value": 500.0, "unit": "L"},
+        "N_nodes": {"value": 10, "unit": "-", "note": "Number of vertical nodes (1=top, N=bottom)"},
+        "UA_loss": {"value": 3.0, "unit": "W/K", "note": "Total tank heat loss coefficient (distributed equally per node)"},
+        "k_mix": {"value": 0.5, "unit": "W/K", "note": "Inter-node conduction/mixing coefficient"},
+        "T_min": {"value": 10.0, "unit": "degC"},
+        "T_max": {"value": 95.0, "unit": "degC"},
+        "cp_water": {"value": 4186.0, "unit": "J/(kg.K)"},
+        "rho_water": {"value": 1.0, "unit": "kg/L"},
+        "T_initial": {"value": 20.0, "unit": "degC", "note": "Default uniform initial temperature"}
+    },
+    "valid_ranges": {
+        "T_inlet_hot": {"min": 40.0, "max": 95.0, "unit": "degC"},
+        "T_inlet_cold": {"min": 5.0, "max": 30.0, "unit": "degC"},
+        "flow_rate_charge": {"min": 0.0, "max": 2.0, "unit": "kg/s"},
+        "flow_rate_discharge": {"min": 0.0, "max": 2.0, "unit": "kg/s"},
+        "T_ambient": {"min": -10.0, "max": 40.0, "unit": "degC"},
+        "duration_s": {"min": 1.0, "max": 86400.0, "unit": "s"}
+    }
+}

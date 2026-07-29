@@ -1,0 +1,38 @@
+{
+    "component_id": "EC096",
+    "component_name": "Magnetic Refrigeration (Active Magnetic Regenerator)",
+    "fidelity": "F2a — AMR cycle with mean-field (Weiss/Brillouin) Gd magnetocaloric material",
+    "source": "Pecharsky & Gschneidner (1999) JMMM 200:44; Dan'kov et al. (1998) PRB 57:3478; Tishin & Spichkin (2003) The Magnetocaloric Effect and its Applications, IOP; Kitanovski et al. (2015) Magnetocaloric Energy Conversion, Springer",
+    "unit": {
+        "name": "Gd packed-bed AMR refrigerator — physics-lumped 1D",
+        "J_total": {"value": 3.5, "unit": "-", "note": "Total angular momentum of Gd3+ (4f7, S=7/2, L=0), J=7/2 (Tishin & Spichkin 2003)"},
+        "g_lande": {"value": 2.0, "unit": "-", "note": "Lande g-factor for Gd3+ (pure spin)"},
+        "T_Curie_K": {"value": 293.0, "unit": "K", "note": "Gd Curie temperature ~293 K (Dan'kov et al. 1998; Pecharsky & Gschneidner 1999)"},
+        "rho_solid": {"value": 7900.0, "unit": "kg/m3", "note": "Density of Gd metal"},
+        "molar_mass": {"value": 0.157253, "unit": "kg/mol", "note": "Molar mass of gadolinium"},
+        "cp_solid": {"value": 235.0, "unit": "J/(kg.K)", "note": "Gd specific heat near T_C (Dan'kov et al. 1998; ~280 J/kgK peak, 235 baseline)"},
+        "debye_temp_K": {"value": 184.0, "unit": "K", "note": "Debye temperature of Gd (lattice entropy, Tishin & Spichkin 2003)"},
+        "N_nodes": {"value": 10, "unit": "-", "note": "Regenerator discretisation nodes (1D)"},
+        "bed_length": {"value": 0.05, "unit": "m", "note": "Regenerator bed length"},
+        "bed_area": {"value": 0.0004, "unit": "m2", "note": "Bed cross-section area (2x2 cm)"},
+        "porosity": {"value": 0.36, "unit": "-", "note": "Packed-sphere bed void fraction"},
+        "B_field_max": {"value": 1.5, "unit": "T", "note": "Permanent-magnet applied flux density (Kitanovski et al. 2015)"},
+        "cycle_freq": {"value": 2.0, "unit": "Hz", "note": "AMR cycle frequency"},
+        "mdot_fluid": {"value": 0.02, "unit": "kg/s", "note": "Heat-transfer-fluid mass flow during blow (water)"},
+        "cp_fluid": {"value": 4180.0, "unit": "J/(kg.K)", "note": "Specific heat of water HTF"},
+        "rho_fluid": {"value": 1000.0, "unit": "kg/m3", "note": "Density of water HTF"},
+        "h_htc": {"value": 2000.0, "unit": "W/(m2.K)", "note": "Solid-fluid convective heat-transfer coefficient (packed bed)"},
+        "a_specific": {"value": 6000.0, "unit": "m2/m3", "note": "Specific surface area of packed Gd spheres (~0.5 mm)"},
+        "eta_magnet": {"value": 0.5, "unit": "-", "note": "Magnet/drive system efficiency: real cycle work = ideal M-H loop work / eta_magnet, accounts for eddy currents, demag-field & drive losses (Kitanovski et al. 2015)"},
+        "T_hot_K": {"value": 296.0, "unit": "K", "note": "Hot reservoir temperature"},
+        "T_cold_K": {"value": 291.0, "unit": "K", "note": "Cold reservoir temperature (5 K span centred on T_C=293 K, below AMR no-load span)"}
+    },
+    "valid_ranges": {
+        "B_field_max": {"min": 0.5, "max": 7.0, "unit": "T"},
+        "cycle_freq": {"min": 0.1, "max": 10.0, "unit": "Hz"},
+        "mdot_fluid": {"min": 0.001, "max": 0.5, "unit": "kg/s"},
+        "T_hot_K": {"min": 250.0, "max": 320.0, "unit": "K"},
+        "T_cold_K": {"min": 240.0, "max": 315.0, "unit": "K"},
+        "n_cycles": {"min": 5, "max": 200, "unit": "-"}
+    }
+}

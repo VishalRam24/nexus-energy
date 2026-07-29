@@ -1,0 +1,24 @@
+{
+    "component": "EC082 Ice Thermal Storage",
+    "fidelity": "F1a",
+    "description": "Latent ice thermal storage at 0 C. Capacity model: tracks state of charge as the mass fraction of ice formed; charge/discharge at fixed phase-change temperature with effectiveness-limited heat-transfer rate; heat loss based on UA to ambient.",
+    "unit": {
+        "name": "Generic 500 kWh_th ice-on-coil thermal storage",
+        "source": "ASHRAE (2020). Handbook — HVAC Systems and Equipment, ch.51 'Thermal Storage'; Dincer & Rosen (2021), Thermal Energy Storage, 3rd ed., Wiley.",
+        "capacity_kwh":  {"value": 500.0, "unit": "kWh_th", "note": "Latent capacity at full ice fraction"},
+        "T_phase_change":{"value": 0.0,   "unit": "degC"},
+        "h_fusion":      {"value": 334.0, "unit": "kJ/kg", "note": "Latent heat of fusion of water"},
+        "mass_water_kg": {"value": 5390.0,"unit": "kg",    "note": "= capacity_kwh * 3600 / h_fusion"},
+        "Q_charge_max":  {"value": 120.0, "unit": "kW_th", "note": "Maximum charging rate at SOC=0"},
+        "Q_discharge_max":{"value": 200.0,"unit": "kW_th", "note": "Maximum discharging rate at SOC=1"},
+        "UA_loss":       {"value": 25.0,  "unit": "W/K",   "note": "Heat-loss coefficient to surroundings"},
+        "T_amb_default": {"value": 20.0,  "unit": "degC"},
+        "round_trip_efficiency": {"value": 0.92, "unit": "-"}
+    },
+    "valid_ranges": {
+        "soc":         {"min": 0.0,    "max": 1.0,   "unit": "-"},
+        "q_charge":    {"min": 0.0,    "max": 200000.0, "unit": "W"},
+        "q_discharge": {"min": 0.0,    "max": 300000.0, "unit": "W"},
+        "t_ambient":   {"min": -10.0,  "max": 40.0,  "unit": "degC"}
+    }
+}

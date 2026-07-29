@@ -1,0 +1,26 @@
+{
+    "component": "EC045 Polycrystalline Silicon PV",
+    "fidelity": "F1a",
+    "description": "Single-diode model for poly-Si PV module",
+    "module": {
+        "name": "Generic 60-cell Poly-Si Module (~290W)",
+        "source": "Adapted from typical poly-Si datasheets (Hanwha Q.PEAK style)",
+        "cells_in_series": {"value": 60, "unit": "cells"},
+        "alpha_sc": {"value": 0.0045, "unit": "A/K", "note": "Short-circuit current temp coeff"},
+        "area": {"value": 1.638, "unit": "m2", "note": "Module area"}
+    },
+    "desoto_params": {
+        "description": "De Soto 5-parameter single-diode model at STC",
+        "I_L_ref": {"value": 8.5, "unit": "A", "note": "Light current at STC"},
+        "I_o_ref": {"value": 3.5e-10, "unit": "A", "note": "Saturation current at STC"},
+        "R_s": {"value": 0.42, "unit": "Ohm", "note": "Series resistance"},
+        "R_sh_ref": {"value": 280.0, "unit": "Ohm", "note": "Shunt resistance at STC"},
+        "a_ref": {"value": 1.65, "unit": "V", "note": "Modified ideality factor n*Ns*Vt"},
+        "EgRef": {"value": 1.121, "unit": "eV", "note": "Silicon bandgap"},
+        "dEgdT": {"value": -0.0002677, "unit": "1/K"}
+    },
+    "valid_ranges": {
+        "irradiance": {"min": 0.0, "max": 1200.0, "unit": "W/m2"},
+        "cell_temperature": {"min": -20.0, "max": 80.0, "unit": "degC"}
+    }
+}

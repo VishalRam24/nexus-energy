@@ -1,0 +1,45 @@
+{
+    "component": "EC034 Aluminum-Ion Battery",
+    "fidelity": "F1b",
+    "description": "SOC-thermal model for aluminum-ion batteries: V = OCV(SOC) - I*R(T)",
+    "source": "Lin et al. (2015) Nature; Pang et al. (2019) Joule; Guo et al. (2020) Energy Storage Mater.",
+
+    "cell": {
+        "name": "Aluminum-Ion (Al-graphite in AlCl3:EMImCl ionic liquid)",
+        "note": "Al^3+ insertion into graphite cathode; Al anode dissolution. E ~ 2.0 V vs Al/Al^3+",
+        "nominal_voltage":  {"value": 2.0,   "unit": "V",  "note": "Nominal voltage (plateau near 2 V). Lin et al. 2015 Nature"},
+        "capacity_ref":     {"value": 1.0,   "unit": "Ah", "note": "Normalized reference cell"},
+        "voltage_max":      {"value": 2.45,  "unit": "V",  "note": "Upper cutoff. Lin et al. 2015"},
+        "voltage_min":      {"value": 0.5,   "unit": "V",  "note": "Lower cutoff"},
+        "R_ref":            {"value": 0.030, "unit": "Ohm","note": "Internal resistance at T_ref; ionic liquid electrolyte has moderate conductivity"}
+    },
+
+    "ocv_coefficients": {
+        "description": "OCV(SOC) polynomial for Al-ion battery (two-plateau behavior: ~2.2 V and ~1.8 V)",
+        "source": "Lin et al. (2015) Nature 520, 324-328; Pang et al. (2019) Joule 3(1), 136-148",
+        "a0": 0.50,
+        "a1": 6.00,
+        "a2": -12.00,
+        "a3": 15.00,
+        "a4": -10.50,
+        "a5": 3.45,
+        "note": "Two-step intercalation: Stage 1 ~2.2V, Stage 2 ~1.8V. Polynomial captures average. Pang 2019"
+    },
+
+    "thermal": {
+        "T_ref":   {"value": 298.15, "unit": "K"},
+        "E_a":     {"value": 20000,  "unit": "J/mol",
+                    "note": "Activation energy for Al-ion resistance. Ionic liquid shows moderate T-sensitivity. Guo 2020"},
+        "alpha_c": {"value": 0.006,  "unit": "1/K",
+                    "note": "Capacity T-coefficient. Ionic liquid viscosity decreases with T -> better ion transport. Guo 2020"},
+        "dOCV_dT": {"value": -0.0003, "unit": "V/K",
+                    "note": "Entropic coefficient for Al-ion. Slight negative (entropy decreases on Al insertion). Pang 2019"},
+        "R_gas":   {"value": 8.314,  "unit": "J/(mol*K)"}
+    },
+
+    "valid_ranges": {
+        "soc":         {"min": 0.0,    "max": 1.0,    "unit": "dimensionless"},
+        "current":     {"min": -10.0,  "max": 10.0,   "unit": "A", "note": "Al-ion can support high C-rates. Lin 2015"},
+        "temperature": {"min": 263.15, "max": 333.15, "unit": "K", "note": "Limited by ionic liquid freezing point"}
+    }
+}

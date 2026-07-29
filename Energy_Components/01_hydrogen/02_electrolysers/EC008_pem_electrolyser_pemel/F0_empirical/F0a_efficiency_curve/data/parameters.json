@@ -1,0 +1,52 @@
+{
+  "component_id": "EC008",
+  "component_name": "PEM Electrolyser (PEMEL)",
+  "fidelity": "F0a \u2014 empirical lookup",
+  "version": "1.0.0",
+  "source": "Garcia-Valverde et al. (2012), IJHE, 37(2), 1927-1938 (F1a params reused)",
+  "metric": "h2_production_efficiency_LHV",
+  "note": "PEMEL efficiency (LHV H2 out / electrical in) ~60-75%; drops at high current (ohmic). ~50 kWh/kg at rated.",
+  "lookup": {
+    "load_fraction": {
+      "value": [
+        0.0,
+        0.1,
+        0.2,
+        0.4,
+        0.6,
+        0.8,
+        1.0
+      ],
+      "unit": "-",
+      "note": "Breakpoints: fraction of rated power"
+    },
+    "efficiency": {
+      "value": [
+        0.0,
+        0.78,
+        0.77,
+        0.73,
+        0.68,
+        0.63,
+        0.58
+      ],
+      "unit": "-",
+      "note": "Empirical efficiency at each load (LHV basis)"
+    }
+  },
+  "rated": {
+    "load_fraction": {
+      "value": 0.6,
+      "unit": "-"
+    },
+    "efficiency": {
+      "value": 0.68,
+      "unit": "-",
+      "note": "Datasheet rated efficiency"
+    },
+    "P_rated": {
+      "value": 5000.0,
+      "unit": "W"
+    }
+  }
+}

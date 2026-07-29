@@ -1,0 +1,31 @@
+{
+    "component_id": "EC200",
+    "component_name": "Oxy-Fuel Combustion Capture",
+    "fidelity": "F2a — Combustion + Flue-Gas Recycle (lumped ODE)",
+    "description": "Lumped 0D oxy-fuel furnace: combustion stoichiometry in O2 + recycled flue gas, furnace energy-balance ODE with recycle ratio controlling flame temperature, dry-basis CO2 purity after water knockout.",
+    "source": "Buhre et al. (2005), Prog. Energy Combust. Sci. 31(4) 283-307; Toftegaard et al. (2010), 36(5) 581-625; Turns (2012) An Introduction to Combustion.",
+    "unit": {
+        "name": "Pulverised-coal Oxy-Fuel Furnace (lumped)",
+        "fuel_C": {"value": 0.72, "unit": "kg/kg", "note": "Carbon mass fraction, bituminous coal (daf)"},
+        "fuel_H": {"value": 0.05, "unit": "kg/kg", "note": "Hydrogen mass fraction"},
+        "fuel_S": {"value": 0.01, "unit": "kg/kg", "note": "Sulfur mass fraction"},
+        "fuel_O": {"value": 0.08, "unit": "kg/kg", "note": "Oxygen mass fraction (in fuel)"},
+        "fuel_N": {"value": 0.015, "unit": "kg/kg", "note": "Nitrogen mass fraction"},
+        "fuel_LHV": {"value": 26.0, "unit": "MJ/kg", "note": "Lower heating value, bituminous coal"},
+        "o2_purity": {"value": 0.97, "unit": "mol/mol", "note": "ASU O2 purity; balance is Ar+trace N2 (Buhre 2005: 95-99.5%)"},
+        "excess_o2_ratio": {"value": 0.03, "unit": "-", "note": "Excess O2 above stoichiometric (lambda-1); oxy-fuel runs low excess"},
+        "cp_gas": {"value": 1250.0, "unit": "J/(kg.K)", "note": "Mean flue-gas (CO2/H2O-rich) specific heat at furnace T"},
+        "cp_gas_flame": {"value": 1700.0, "unit": "J/(kg.K)", "note": "Effective high-T cp of CO2/H2O-rich gas near flame (rises strongly with T, with dissociation)"},
+        "hA_wall_per_kgfuel": {"value": 55000.0, "unit": "W/(K.(kg/s))", "note": "Lumped furnace heat-transfer coefficient*area per unit fuel rate"},
+        "T_wall": {"value": 800.0, "unit": "K", "note": "Effective steam-side wall temperature"},
+        "T_inlet": {"value": 600.0, "unit": "K", "note": "Preheated oxidant + recycle inlet temperature"},
+        "m_furnace_gas_per_kgfuel": {"value": 20.0, "unit": "kg/(kg/s)", "note": "Gas holdup in furnace per unit fuel rate (sets time constant)"}
+    },
+    "valid_ranges": {
+        "mdot_fuel": {"min": 1.0, "max": 100.0, "unit": "kg/s"},
+        "recycle_ratio": {"min": 0.0, "max": 0.8, "unit": "-"},
+        "T0": {"min": 800.0, "max": 2500.0, "unit": "K"},
+        "dt": {"min": 0.05, "max": 2.0, "unit": "s"},
+        "duration_s": {"min": 10.0, "max": 1000.0, "unit": "s"}
+    }
+}

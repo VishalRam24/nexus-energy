@@ -1,0 +1,29 @@
+{
+    "component": "EC173 Distribution Transformer",
+    "fidelity": "F1b",
+    "description": "IEC 60076 loss model: core (Steinmetz voltage-dependent) + copper (temperature-corrected I^2R) + stray losses, with hot-spot thermal model",
+    "unit": {
+        "name": "Generic 250 kVA ONAN Distribution Transformer (11 kV / 0.4 kV)",
+        "source": "IEC 60076-1:2011; IEC 60076-7:2018; ABB Distribution Transformer Manual (2016)",
+        "S_rated_kVA": {"value": 250.0, "unit": "kVA", "note": "Rated apparent power"},
+        "V_hv": {"value": 11000.0, "unit": "V", "note": "HV winding rated voltage"},
+        "V_lv": {"value": 400.0, "unit": "V", "note": "LV winding rated voltage"},
+        "P_no_load_W": {"value": 430.0, "unit": "W", "note": "No-load loss P_0 (IEC Ak efficiency class)"},
+        "P_load_loss_W": {"value": 3250.0, "unit": "W", "note": "Load loss P_k at rated I and 75°C (IEC Ck class)"},
+        "T_ref_winding": {"value": 75.0, "unit": "degC", "note": "IEC 60076 reference winding temperature"},
+        "alpha_Cu": {"value": 0.00393, "unit": "1/K", "note": "Copper temperature coefficient"},
+        "n_B": {"value": 1.8, "unit": "dimensionless", "note": "Core loss voltage exponent (CRGO laminations)"},
+        "k_stray": {"value": 0.08, "unit": "dimensionless", "note": "Stray loss fraction of P_k"},
+        "u_k_pu": {"value": 0.04, "unit": "pu", "note": "Short-circuit impedance voltage (4%)"},
+        "theta_oil_rise_K": {"value": 55.0, "unit": "K", "note": "Rated top-oil temperature rise above ambient (ONAN)"},
+        "theta_winding_grad_K": {"value": 23.0, "unit": "K", "note": "Winding-to-oil temperature gradient at rated current"},
+        "n_oil": {"value": 0.8, "unit": "dimensionless", "note": "Oil thermal exponent (IEC 60076-7, ONAN)"},
+        "n_wind": {"value": 1.6, "unit": "dimensionless", "note": "Winding thermal exponent"}
+    },
+    "valid_ranges": {
+        "load_fraction": {"min": 0.0, "max": 1.5, "unit": "pu"},
+        "voltage_pu": {"min": 0.9, "max": 1.1, "unit": "pu"},
+        "winding_temp": {"min": 20.0, "max": 200.0, "unit": "degC"},
+        "power_factor": {"min": 0.5, "max": 1.0, "unit": "dimensionless"}
+    }
+}

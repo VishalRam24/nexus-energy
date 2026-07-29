@@ -1,0 +1,43 @@
+{
+    "component": "EC175 Induction Motor/Generator",
+    "fidelity": "F0a",
+    "description": "Empirical part-load efficiency curve (np.interp lookup) anchored at F1 rated efficiency",
+    "source": "IEC 60034-30-1:2014; Boldea & Nasar (2010) (reused from F1a)",
+    "eta_rated": {
+        "value": 0.917,
+        "unit": "dimensionless",
+        "note": "rated efficiency reused from F1a datasheet"
+    },
+    "p_rated": {
+        "value": 15.0,
+        "unit": "kW",
+        "note": "rated power from F1a"
+    },
+    "load_fraction_breakpoints": {
+        "value": [
+            0.1,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+        ],
+        "unit": "fraction_of_rated"
+    },
+    "efficiency_breakpoints": {
+        "value": [
+            0.75604,
+            0.8761,
+            0.9151,
+            0.9205,
+            0.917
+        ],
+        "unit": "dimensionless",
+        "note": "two-component loss split (c0 constant + c2*load^2) anchored to eta_rated at PLR=1"
+    },
+    "loss_split": {
+        "c0_constant": 0.031679,
+        "c2_variable": 0.058833,
+        "unit": "dimensionless",
+        "note": "eta(lf)=lf/(lf+c0+c2*lf^2)"
+    }
+}

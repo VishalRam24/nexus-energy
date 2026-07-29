@@ -1,0 +1,26 @@
+{
+    "component": "EC093 Adsorption Chiller",
+    "fidelity": "F1a",
+    "description": "Solid-sorbent (silica-gel / water) adsorption chiller driven by low-grade heat (60–95 C). COP_c = f(T_hot, T_cool, T_chilled) via reversible cascade times an adsorption-cycle quality factor.",
+    "unit": {
+        "name": "Generic 50 kW_th silica-gel/water adsorption chiller",
+        "source": "Saha, B.B., Boelman, E.C., Kashiwagi, T. (1995). Heat Recovery Systems & CHP 15, 581-590; Wang, R.Z., Oliveira, R.G. (2006). Prog. Energy Combust. Sci. 32, 424-458; Herold, Radermacher & Klein (2016).",
+        "rated_cooling_capacity": {"value": 50.0, "unit": "kW_th"},
+        "rated_cop_cooling":  {"value": 0.55, "unit": "dimensionless", "note": "At T_hot=85C, T_cool=30C, T_chilled=14C"},
+        "carnot_fraction": {"value": 0.20, "unit": "dimensionless", "note": "Effective fraction of reversible cooling COP for silica-gel cycle"},
+        "T_hot_min":     {"value": 55.0, "unit": "degC"},
+        "T_hot_max":     {"value": 95.0, "unit": "degC"},
+        "T_cool_min":    {"value": 22.0, "unit": "degC"},
+        "T_cool_max":    {"value": 40.0, "unit": "degC"},
+        "T_chilled_min": {"value": 6.0,  "unit": "degC"},
+        "T_chilled_max": {"value": 20.0, "unit": "degC"},
+        "auxiliary_power": {"value": 0.4, "unit": "kW", "note": "Vacuum + cooling-water pump"},
+        "fluid_pair": {"value": "silica-gel / water", "unit": "-"}
+    },
+    "valid_ranges": {
+        "T_hot":     {"min": 55.0, "max": 95.0, "unit": "degC"},
+        "T_cool":    {"min": 22.0, "max": 40.0, "unit": "degC"},
+        "T_chilled": {"min": 6.0,  "max": 20.0, "unit": "degC"},
+        "part_load_ratio": {"min": 0.0, "max": 1.0, "unit": "-"}
+    }
+}

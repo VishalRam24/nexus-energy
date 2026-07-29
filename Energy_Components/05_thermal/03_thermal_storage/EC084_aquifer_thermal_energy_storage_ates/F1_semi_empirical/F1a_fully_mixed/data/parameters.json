@@ -1,0 +1,21 @@
+{
+    "component": "EC084 Aquifer Thermal Energy Storage (ATES)",
+    "fidelity": "F1a",
+    "description": "Fully-mixed aquifer: E = m*Cp*dT, with recovery efficiency eta_recovery",
+    "unit": {
+        "name": "Generic ATES System",
+        "source": "Bloemendal et al. (2014). ATES systems performance review. Geothermics.",
+        "V_aquifer": {"value": 50000.0, "unit": "m3", "note": "Aquifer volume"},
+        "rho": {"value": 1000.0, "unit": "kg/m3", "note": "Water density"},
+        "Cp": {"value": 4186.0, "unit": "J/kgK", "note": "Water specific heat"},
+        "eta_recovery": {"value": 0.70, "unit": "dimensionless", "note": "Thermal recovery efficiency"},
+        "T_ground": {"value": 12.0, "unit": "degC", "note": "Undisturbed aquifer temperature"},
+        "T_max": {"value": 25.0, "unit": "degC", "note": "Max storage temperature (warm well)"},
+        "T_min": {"value": 5.0, "unit": "degC", "note": "Min storage temperature (cold well)"}
+    },
+    "valid_ranges": {
+        "T_warm": {"min": 12.0, "max": 30.0, "unit": "degC"},
+        "T_cold": {"min": 2.0, "max": 12.0, "unit": "degC"},
+        "Q_flow": {"min": 0.0, "max": 100.0, "unit": "kg/s"}
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "component": "EC055 Solar Tower Central Receiver CSP",
+    "fidelity": "F1a",
+    "description": "Heliostat-field optical efficiency * IAM(theta_z) - receiver thermal losses (radiative + convective)",
+    "unit": {
+        "name": "Generic 100 MW_th Solar Tower (Gemasolar-like central receiver)",
+        "source": "Wagner & Wendelin (2018), Sandia STT model documentation; Falcone (1986) Solar One/Two reports",
+        "n_heliostats": {"value": 2650, "unit": "count"},
+        "A_heliostat": {"value": 120.0, "unit": "m2", "note": "Mirror area per heliostat"},
+        "A_field": {"value": 318000.0, "unit": "m2", "note": "Total mirror area"},
+        "eta_field_peak": {"value": 0.65, "unit": "dimensionless", "note": "Peak heliostat-field optical efficiency at zenith (cosine*shading*blocking*reflectivity*attenuation*spillage)"},
+        "atm_atten_coeff": {"value": 0.001, "unit": "1/deg", "note": "Atmospheric attenuation drop with solar zenith angle"},
+        "cosine_loss_coeff": {"value": 0.00018, "unit": "1/deg2", "note": "Field cosine loss (parabolic in zenith angle)"},
+        "A_receiver": {"value": 510.0, "unit": "m2", "note": "External cylindrical receiver surface area"},
+        "absorptivity": {"value": 0.94, "unit": "dimensionless", "note": "Receiver absorber coating absorptivity"},
+        "emissivity": {"value": 0.88, "unit": "dimensionless", "note": "Receiver thermal emissivity (Pyromark)"},
+        "h_conv": {"value": 25.0, "unit": "W/m2K", "note": "Convective HT coefficient (forced+natural mixed)"},
+        "stefan_boltzmann": {"value": 5.670374419e-8, "unit": "W/m2K4"}
+    },
+    "valid_ranges": {
+        "dni":              {"min": 0.0, "max": 1100.0, "unit": "W/m2"},
+        "solar_zenith":     {"min": 0.0, "max": 85.0, "unit": "deg"},
+        "T_receiver":       {"min": 300.0, "max": 800.0, "unit": "degC"},
+        "T_ambient":        {"min": -10.0, "max": 50.0, "unit": "degC"}
+    }
+}

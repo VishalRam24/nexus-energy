@@ -1,0 +1,32 @@
+{
+    "component_id": "EC215",
+    "component_name": "Solar Still / Humidification-Dehumidification (HDH)",
+    "fidelity": "F2a — Single-Basin Solar Still, Dunkle Lumped Energy Balance",
+    "source": "Dunkle, R.V. (1961) 'Solar water distillation', Int. Developments in Heat Transfer, ASME, pp.895-902; Tiwari & Tiwari (2007) 'Solar Distillation Practice for Water Desalination Systems'; Cooper, P.I. (1973) Solar Energy 12:313-331",
+    "unit": {
+        "name": "Generic single-basin double-slope solar still (1 m2)",
+        "A_basin": {"value": 1.0, "unit": "m2", "note": "Basin / water surface area (Tiwari 2007 typical bench still)"},
+        "A_glass": {"value": 1.05, "unit": "m2", "note": "Glass cover area (slightly larger than basin)"},
+        "m_water": {"value": 20.0, "unit": "kg", "note": "Basin water mass (20 mm depth over 1 m2)"},
+        "cp_water": {"value": 4186.0, "unit": "J/(kg.K)", "note": "Specific heat of saline water (~seawater, CRC)"},
+        "m_glass": {"value": 6.0, "unit": "kg", "note": "Glass cover mass (4 mm float glass, 2500 kg/m3)"},
+        "cp_glass": {"value": 800.0, "unit": "J/(kg.K)", "note": "Specific heat of soda-lime glass (Tiwari 2007)"},
+        "alpha_water": {"value": 0.6, "unit": "-", "note": "Fraction of transmitted solar absorbed in water+basin (Cooper 1973)"},
+        "alpha_glass": {"value": 0.05, "unit": "-", "note": "Solar absorptance of glass cover"},
+        "tau_glass": {"value": 0.85, "unit": "-", "note": "Solar transmittance of glass cover"},
+        "eps_water": {"value": 0.96, "unit": "-", "note": "Long-wave emissivity of water surface (Dunkle 1961)"},
+        "eps_glass": {"value": 0.88, "unit": "-", "note": "Long-wave emissivity of glass inner surface"},
+        "h_glass_amb": {"value": 10.0, "unit": "W/(m2.K)", "note": "Outer glass-to-ambient combined convective+radiative coeff (Cooper 1973, wind ~2 m/s)"},
+        "U_basin_amb": {"value": 4.0, "unit": "W/(m2.K)", "note": "Basin (bottom+side) heat loss coefficient to ambient, insulated still (Tiwari 2007)"},
+        "T_amb_K": {"value": 298.15, "unit": "K", "note": "Ambient / sky reference temperature"},
+        "G_peak": {"value": 900.0, "unit": "W/m2", "note": "Peak solar irradiance (clear-sky noon)"}
+    },
+    "valid_ranges": {
+        "G_peak": {"min": 0.0, "max": 1200.0, "unit": "W/m2"},
+        "T_water_K": {"min": 283.15, "max": 373.15, "unit": "K"},
+        "T_glass_K": {"min": 273.15, "max": 360.15, "unit": "K"},
+        "T_amb_K": {"min": 273.15, "max": 318.15, "unit": "K"},
+        "water_depth_mm": {"min": 5.0, "max": 100.0, "unit": "mm"},
+        "duration_s": {"min": 3600.0, "max": 172800.0, "unit": "s"}
+    }
+}

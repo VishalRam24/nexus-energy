@@ -1,0 +1,22 @@
+{
+    "component": "EC161 Dual Active Bridge (DAB) DC-DC Converter",
+    "fidelity": "F1a",
+    "description": "Ideal gain V_out = N*V_in; P = N*V1*V2*phi/(2*pi*f*L) with fixed efficiency eta",
+    "unit": {
+        "name": "Generic 10kW DAB Converter",
+        "source": "De Doncker et al. (1991), IEEE Trans. Ind. Appl.; Zhao & Green (2005)",
+        "n_turns": {"value": 1.0, "unit": "dimensionless", "note": "Transformer turns ratio N2/N1"},
+        "eta": {"value": 0.96, "unit": "dimensionless", "note": "Fixed overall efficiency"},
+        "p_rated": {"value": 10000.0, "unit": "W"},
+        "f_sw": {"value": 10000.0, "unit": "Hz", "note": "Switching frequency"},
+        "L_series": {"value": 0.001, "unit": "H", "note": "Series inductance (transformer leakage + external)"},
+        "v1_nominal": {"value": 400.0, "unit": "V", "note": "Primary-side nominal voltage"},
+        "v2_nominal": {"value": 400.0, "unit": "V", "note": "Secondary-side nominal voltage"},
+        "phi_max": {"value": 1.5707963, "unit": "rad", "note": "Max phase shift = pi/2"}
+    },
+    "valid_ranges": {
+        "v1": {"min": 200.0, "max": 600.0, "unit": "V"},
+        "v2": {"min": 200.0, "max": 600.0, "unit": "V"},
+        "phi_rad": {"min": -1.5707963, "max": 1.5707963, "unit": "rad"}
+    }
+}

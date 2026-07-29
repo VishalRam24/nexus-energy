@@ -1,0 +1,25 @@
+{
+  "component": "EC147 Hydrothermal Liquefaction (HTL)",
+  "fidelity": "F0a",
+  "description": "Empirical bio-crude mass-yield lookup per feedstock x temperature de-rating curve (peak at 330 C). Yields driven by lipid/protein/carb composition reused from EC147 F1b.",
+  "source": "Peterson et al. (2008); Vardon et al. (2011); Elliott et al. (2015) — reused from EC147 F1b",
+  "rated": {
+    "T_ref_degC": {"value": 330.0, "unit": "degC", "note": "Optimal HTL temperature (peak yield)"},
+    "HHV_biocrude_MJ_kg": {"value": 35.0, "unit": "MJ/kg", "note": "HHV of HTL bio-crude"},
+    "P_design_MPa": {"value": 20.0, "unit": "MPa"}
+  },
+  "feedstock_table": {
+    "comment": "Bio-crude mass yield (frac of dry ash-free feed) at optimal T, per feedstock. Lipid-rich -> higher yield.",
+    "feedstocks": ["macroalgae_laminaria", "sewage_sludge", "wood_biomass", "microalgae_chlorella", "microalgae_nannochloropsis"],
+    "biocrude_yield": [0.20, 0.28, 0.32, 0.38, 0.48]
+  },
+  "temperature_curve": {
+    "comment": "Yield multiplier vs temperature (degC). Peak 1.0 at 330 C, lower at sub/super-critical extremes.",
+    "T_degC": [250.0, 290.0, 330.0, 360.0, 400.0],
+    "yield_multiplier": [0.70, 0.90, 1.0, 0.92, 0.78]
+  },
+  "valid_ranges": {
+    "temperature_degC": {"min": 250.0, "max": 400.0, "unit": "degC"},
+    "moisture_fraction": {"min": 0.0, "max": 0.90, "unit": "-"}
+  }
+}

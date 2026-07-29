@@ -1,0 +1,29 @@
+{
+    "component": "EC111 Diesel Generator",
+    "fidelity": "F1b",
+    "description": "Willans line with altitude derating and temperature derating",
+    "unit": {
+        "name": "Generic 500 kW Diesel Generator",
+        "source": "US Army TM 5-811-6 (1996); Caterpillar Application Guide; ISO 8528-1",
+        "rated_power_kw": {"value": 500.0, "unit": "kW", "note": "Rated electrical output at standard conditions"},
+        "a_willans_lph": {"value": 10.0, "unit": "L/h", "note": "No-load fuel consumption (Willans intercept)"},
+        "b_willans_lkwh": {"value": 0.25, "unit": "L/kWh", "note": "Incremental fuel rate (Willans slope)"},
+        "rho_diesel_kgl": {"value": 0.832, "unit": "kg/L", "note": "Diesel density at 15 degC"},
+        "LHV_diesel_mj_kg": {"value": 42.5, "unit": "MJ/kg", "note": "Lower heating value of diesel"},
+        "PLR_min": {"value": 0.25, "unit": "dimensionless", "note": "Minimum part-load ratio"},
+        "altitude_derating_pct_per_300m": {"value": 3.5, "unit": "%/300m", "note": "Power derating per 300m above 1000m"},
+        "altitude_derating_start_m": {"value": 1000.0, "unit": "m", "note": "Altitude above which derating begins"},
+        "temp_derating_pct_per_degC": {"value": 0.5, "unit": "%/degC", "note": "Power derating per degC above 40 degC"},
+        "temp_derating_start_c": {"value": 40.0, "unit": "degC", "note": "Temperature above which derating begins"},
+        "T_ref_c": {"value": 25.0, "unit": "degC", "note": "Reference ambient temperature"},
+        "co2_factor_kgl": {"value": 2.68, "unit": "kg_CO2/L", "note": "CO2 emission factor"},
+        "T_exhaust_rated_c": {"value": 500.0, "unit": "degC", "note": "Exhaust temperature at rated load"},
+        "T_exhaust_idle_c": {"value": 250.0, "unit": "degC", "note": "Exhaust temperature at idle"}
+    },
+    "valid_ranges": {
+        "PLR": {"min": 0.25, "max": 1.0, "unit": "dimensionless"},
+        "T_ambient_c": {"min": -30.0, "max": 55.0, "unit": "degC"},
+        "altitude_m": {"min": 0.0, "max": 5000.0, "unit": "m"},
+        "rated_power_kw": {"min": 50.0, "max": 5000.0, "unit": "kW"}
+    }
+}

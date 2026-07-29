@@ -1,0 +1,23 @@
+{
+    "component": "EC111 Diesel Generator",
+    "fidelity": "F1a",
+    "description": "Willans line: fuel consumption linear with power output",
+    "unit": {
+        "name": "Generic 500 kW Diesel Generator",
+        "source": "US Army TM 5-811-6 (1996); Tuffaha & Gravdahl (2014)",
+        "P_rated_kw": {"value": 500.0, "unit": "kW"},
+        "SFC_rated_gkwh": {"value": 210.0, "unit": "g/kWh", "note": "Specific fuel consumption at rated load"},
+        "a_no_load_lph": {"value": 10.0, "unit": "L/h", "note": "No-load fuel consumption (Willans intercept)"},
+        "b_incremental_lkwh": {"value": 0.25, "unit": "L/kWh", "note": "Incremental fuel rate (Willans slope)"},
+        "rho_diesel_kgl": {"value": 0.832, "unit": "kg/L", "note": "Diesel density at 15 degC"},
+        "LHV_diesel_mjkg": {"value": 42.5, "unit": "MJ/kg", "note": "Lower heating value of diesel"},
+        "PLR_min": {"value": 0.25, "unit": "dimensionless", "note": "Minimum part-load ratio"},
+        "co2_factor_kgl": {"value": 2.68, "unit": "kg_CO2/L_diesel", "note": "CO2 emission factor (IPCC 2006)"},
+        "derating_factor_per_degC": {"value": 0.001, "unit": "1/degC", "note": "Power derating above 25 degC ambient"},
+        "T_ref_c": {"value": 25.0, "unit": "degC", "note": "Reference ambient temperature"}
+    },
+    "valid_ranges": {
+        "power_output_kw": {"min": 0.0, "max": 500.0, "unit": "kW"},
+        "ambient_temp_c": {"min": -20.0, "max": 55.0, "unit": "degC"}
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "component": "EC119 Molten Salt Reactor (MSR)",
+    "fidelity": "F1b",
+    "description": "Load-following MSR with Xe-135/I-135 dynamics. MSR unique: online fuel reprocessing removes Xe continuously, reducing xenon deadtime. Reactivity feedback from fuel salt temperature coefficient is strongly negative.",
+    "unit": {
+        "name": "Generic 1 GWth / 400 MWe Fluoride MSR (MSBR-class)",
+        "source": "Haubenreich & Engel (1970) ORNL-4394; MacPherson (1985) Nucl. Sci. Eng. 90:374-380; Delpech et al. (2009) J. Fluorine Chem. 130:11-17; NEA (2021) Molten Salt Reactor Handbook.",
+        "P_thermal_mw": {"value": 1000.0, "unit": "MW_th", "note": "Thermal power at full load (MSBR reference 1000 MWth)"},
+        "eta_thermal": {"value": 0.40, "unit": "dimensionless", "note": "Net thermal efficiency (MSR operates at ~700C, supercritical CO2 or high-pressure steam cycle -> ~40%)"},
+        "sigma_Xe_cm2": {"value": 2.65e-18, "unit": "cm2", "note": "Xe-135 microscopic absorption cross-section (same fission product)"},
+        "lambda_Xe_per_s": {"value": 2.09e-5, "unit": "1/s", "note": "Xe-135 decay constant (t_1/2 = 9.17 h)"},
+        "lambda_I_per_s": {"value": 2.87e-5, "unit": "1/s", "note": "I-135 decay constant (t_1/2 = 6.7 h)"},
+        "gamma_I": {"value": 0.064, "unit": "dimensionless", "note": "I-135 cumulative fission yield"},
+        "gamma_Xe": {"value": 0.003, "unit": "dimensionless", "note": "Direct Xe-135 fission yield"},
+        "ramp_rate_limit_pct_min": {"value": 10.0, "unit": "%/min", "note": "MSR has faster load-following than PWR: liquid fuel, no structural thermal stress, online reprocessing frees Xe constraint; ~10%/min feasible"},
+        "PLR_min": {"value": 0.2, "unit": "dimensionless", "note": "MSR can load-follow deeply (20-100%), liquid fuel avoids xenon preclude problem"},
+        "PLR_max": {"value": 1.0, "unit": "dimensionless"},
+        "total_reactivity_margin_pcm": {"value": 4000.0, "unit": "pcm", "note": "Lower margin needed because xenon is continuously stripped by off-gas system"},
+        "xenon_reactivity_coeff_pcm": {"value": -1500.0, "unit": "pcm", "note": "Effective Xe penalty is reduced vs solid-fuel reactors because online reprocessing strips Xe from liquid salt (typical 50% reduction)"},
+        "xe_strip_efficiency": {"value": 0.50, "unit": "dimensionless", "note": "Fraction of Xe continuously removed by off-gas system per decay constant time; 0.5 = 50% effective removal rate"},
+        "fuel_temp_coeff_pcm_per_K": {"value": -5.0, "unit": "pcm/K", "note": "Fuel salt temperature reactivity coefficient; large negative value (liquid fuel Doppler + expansion) provides inherent safety"},
+        "T_fuel_rated_C": {"value": 650.0, "unit": "degC", "note": "Fuel salt temperature at rated power (average of hot/cold leg)"}
+    },
+    "valid_ranges": {
+        "power_fraction": {"min": 0.2, "max": 1.0},
+        "time_at_power_hours": {"min": 0.0, "max": 168.0},
+        "previous_power_fraction": {"min": 0.0, "max": 1.0}
+    }
+}

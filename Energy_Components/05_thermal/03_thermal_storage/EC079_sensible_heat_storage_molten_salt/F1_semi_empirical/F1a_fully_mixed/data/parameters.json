@@ -1,0 +1,32 @@
+{
+    "component": "EC079 Molten Salt Thermal Energy Storage",
+    "fidelity": "F1a",
+    "description": "Fully mixed (0D) energy balance for two-tank solar salt (NaNO3-KNO3) molten salt TES",
+    "tank": {
+        "name": "Large-scale CSP molten salt TES (1000 m3 solar salt)",
+        "source": "Herrmann et al. (2004), Energy, 29, 883-893",
+        "fluid": "Solar salt: 60% NaNO3 + 40% KNO3",
+        "volume_m3": {"value": 1000.0, "unit": "m3"},
+        "mass_kg": {"value": 1800000.0, "unit": "kg", "note": "rho=1800 kg/m3 x 1000 m3"},
+        "density_kg_m3": {"value": 1800.0, "unit": "kg/m3"},
+        "cp_J_kgK": {"value": 1500.0, "unit": "J/(kg·K)", "note": "Solar salt specific heat capacity"},
+        "T_hot_C": {"value": 565.0, "unit": "degC", "note": "Hot tank design temperature"},
+        "T_cold_C": {"value": 290.0, "unit": "degC", "note": "Cold tank design temperature"},
+        "T_melt_C": {"value": 220.0, "unit": "degC", "note": "Solidification point — must stay above this"},
+        "UA_loss_W_K": {"value": 50.0, "unit": "W/K", "note": "Overall heat loss coefficient (insulated tank)"},
+        "T_ambient_ref_C": {"value": 25.0, "unit": "degC"}
+    },
+    "derived": {
+        "E_capacity_MWh": {
+            "value": 206.25,
+            "unit": "MWh",
+            "note": "mass * cp * (T_hot - T_cold) / 3.6e9 = 1.8e6 * 1500 * 275 / 3.6e9"
+        }
+    },
+    "valid_ranges": {
+        "temperature": {"min": 220.0, "max": 580.0, "unit": "degC"},
+        "q_charge": {"min": 0.0, "max": 100000.0, "unit": "kW"},
+        "q_discharge": {"min": 0.0, "max": 100000.0, "unit": "kW"},
+        "t_ambient": {"min": -20.0, "max": 50.0, "unit": "degC"}
+    }
+}

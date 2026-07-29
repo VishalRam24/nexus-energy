@@ -1,0 +1,59 @@
+{
+  "component": "EC023 LMO Battery (Lithium Manganese Oxide)",
+  "fidelity": "F0a",
+  "description": "Empirical round-trip-efficiency curve vs C-rate (1-D lookup). Derived from the cell ohmic loss fraction I*R/V_nom; numbers reused from F1a.",
+  "source": "LMO SOC-only F1a default parameters (Q_nom=2.5 Ah, R_int=30 mOhm, V 3.0-4.2 V)",
+  "cell": {
+    "name": "LMO Battery (Lithium Manganese Oxide)",
+    "nominal_voltage": {
+      "value": 3.7,
+      "unit": "V",
+      "note": "reused from F1a"
+    },
+    "capacity": {
+      "value": 2.5,
+      "unit": "Ah",
+      "note": "reused from F1a"
+    },
+    "internal_resistance": {
+      "value": 0.03,
+      "unit": "Ohm",
+      "note": "DC resistance at 25C, reused from F1a"
+    }
+  },
+  "efficiency_curve": {
+    "description": "Round-trip efficiency tabulated over C-rate breakpoints; eta = (1-f)/(1+f), f = C*capacity*R/V_nom.",
+    "c_rate": {
+      "value": [
+        0.0,
+        0.05,
+        0.1,
+        0.2,
+        0.5,
+        1.0,
+        3.0
+      ],
+      "unit": "dimensionless"
+    },
+    "round_trip_efficiency": {
+      "value": [
+        1.0,
+        0.99798,
+        0.99595,
+        0.99192,
+        0.97993,
+        0.96026,
+        0.88535
+      ],
+      "unit": "fraction (0-1)"
+    }
+  },
+  "valid_ranges": {
+    "c_rate": {
+      "min": 0.0,
+      "max": 3.0,
+      "unit": "dimensionless",
+      "note": "max continuous C-rate for this chemistry"
+    }
+  }
+}

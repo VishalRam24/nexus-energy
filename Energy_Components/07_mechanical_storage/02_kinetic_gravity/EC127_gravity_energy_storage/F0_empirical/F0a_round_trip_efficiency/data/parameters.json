@@ -1,0 +1,13 @@
+{
+    "component": "EC127 Gravity Energy Storage",
+    "fidelity": "F0a",
+    "description": "Empirical round-trip-efficiency curve vs part-load + self-discharge lookup",
+    "source": "Botha & Kamper (2019), J. Energy Storage, 23, 159-174; Berrada et al. (2017), Energy Convers. Manag., 137, 191-200 (reused from F1a)",
+    "rte_rated": {"value": 0.8318, "unit": "dimensionless", "note": "rated round-trip efficiency from F1 datasheet efficiencies"},
+    "power_fraction_breakpoints": {"value": [0.1, 0.25, 0.5, 0.75, 1.0], "unit": "fraction_of_rated"},
+    "rte_breakpoints": {"value": [0.748, 0.792, 0.815, 0.827, 0.8318], "unit": "dimensionless", "note": "Part-load RTE; declines below best-efficiency point"},
+    "self_discharge_per_hr": {"value": 0.0, "unit": "1/h"},
+    "mass_kg": {"value": 1.0e7, "unit": "kg", "note": "10,000 t moveable mass"},
+    "h_max_m": {"value": 500.0, "unit": "m"},
+    "P_rated_kw": {"value": 5000.0, "unit": "kW"}
+}

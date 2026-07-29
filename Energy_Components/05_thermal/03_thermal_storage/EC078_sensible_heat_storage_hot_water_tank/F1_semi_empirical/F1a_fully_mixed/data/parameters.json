@@ -1,0 +1,23 @@
+{
+    "component": "EC078 Sensible Heat Storage — Hot Water Tank",
+    "fidelity": "F1a",
+    "description": "Fully-mixed (perfectly stirred) tank model: dT/dt = (Q_charge - Q_discharge - UA*(T-T_amb)) / (m*cp)",
+    "unit": {
+        "name": "Generic 500 L domestic/commercial hot water tank",
+        "source": "Duffie, J.A., Beckman, W.A. (2013). Solar Engineering of Thermal Processes, 4th ed. Wiley, ch.8.",
+        "volume_L": {"value": 500.0, "unit": "L"},
+        "UA_loss": {"value": 3.0, "unit": "W/K", "note": "Overall heat loss coefficient times area"},
+        "T_set": {"value": 60.0, "unit": "degC", "note": "Design set-point temperature"},
+        "T_min": {"value": 30.0, "unit": "degC", "note": "Minimum usable temperature (SOC=0)"},
+        "T_max": {"value": 90.0, "unit": "degC", "note": "Maximum allowable temperature (SOC=1)"},
+        "T_amb_default": {"value": 20.0, "unit": "degC", "note": "Default ambient temperature"},
+        "cp_water": {"value": 4186.0, "unit": "J/(kg.K)"},
+        "rho_water": {"value": 1.0, "unit": "kg/L"}
+    },
+    "valid_ranges": {
+        "temperature":   {"min": 0.0,   "max": 100.0, "unit": "degC"},
+        "q_charge":      {"min": 0.0,   "max": 50000.0, "unit": "W"},
+        "q_discharge":   {"min": 0.0,   "max": 50000.0, "unit": "W"},
+        "t_ambient":     {"min": -10.0, "max": 40.0,  "unit": "degC"}
+    }
+}

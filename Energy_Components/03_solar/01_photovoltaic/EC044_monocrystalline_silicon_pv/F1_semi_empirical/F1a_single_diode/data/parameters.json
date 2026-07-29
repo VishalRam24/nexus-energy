@@ -1,0 +1,34 @@
+{
+    "component": "EC044 Monocrystalline Silicon PV",
+    "fidelity": "F1a",
+    "description": "Single-diode model (De Soto 5-parameter) via pvlib",
+    "module": {
+        "name": "Canadian Solar CS6K-280M",
+        "source": "CEC module database (pvlib built-in)",
+        "technology": "Mono-c-Si",
+        "p_mp_stc": {"value": 280.0, "unit": "W"},
+        "v_oc_stc": {"value": 38.3, "unit": "V"},
+        "i_sc_stc": {"value": 9.39, "unit": "A"},
+        "v_mp_stc": {"value": 31.2, "unit": "V"},
+        "i_mp_stc": {"value": 8.97, "unit": "A"},
+        "alpha_sc": {"value": 0.004694, "unit": "A/K", "note": "Short-circuit current temp coeff"},
+        "cells_in_series": {"value": 60, "unit": "cells"},
+        "n_diode": {"value": 1.0, "unit": "dimensionless", "note": "Ideality factor"}
+    },
+    "desoto_params": {
+        "description": "De Soto 5-parameter single-diode model coefficients at STC",
+        "source": "Calculated from module specs via pvlib.pvsystem.calcparams_desoto",
+        "I_L_ref": {"value": 9.39, "unit": "A", "note": "Light-generated current at STC"},
+        "I_o_ref": {"value": 3.0e-11, "unit": "A", "note": "Diode saturation current at STC"},
+        "R_s": {"value": 0.35, "unit": "Ohm", "note": "Series resistance"},
+        "R_sh_ref": {"value": 400.0, "unit": "Ohm", "note": "Shunt resistance at STC"},
+        "a_ref": {"value": 1.55, "unit": "V", "note": "Modified ideality factor at STC"},
+        "EgRef": {"value": 1.121, "unit": "eV", "note": "Bandgap energy at STC"},
+        "dEgdT": {"value": -0.0002677, "unit": "eV/K", "note": "Bandgap temperature coefficient"}
+    },
+    "valid_ranges": {
+        "irradiance": {"min": 0.0, "max": 1200.0, "unit": "W/m2"},
+        "cell_temperature": {"min": -10.0, "max": 80.0, "unit": "degC"},
+        "note": "STC = 1000 W/m2, 25C cell temperature"
+    }
+}

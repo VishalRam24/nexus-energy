@@ -1,0 +1,17 @@
+{
+    "component": "EC119 Molten Salt Reactor (MSR)",
+    "fidelity": "F1a",
+    "description": "Simple power-map model: P_elec = eta * P_thermal * load_factor. No xenon dynamics or temperature feedback.",
+    "unit": {
+        "name": "Generic Molten Salt Reactor (MSRE/MSFR class)",
+        "source": "Haubenreich & Engel (1970) Nucl. Appl. Technol. 8(2):118; MacPherson (1985) Nucl. Sci. Eng. 90:374; NEA (2021) MSR Handbook",
+        "P_thermal_mw":  {"value": 2250.0, "unit": "MW_th",        "note": "Thermal power at full load"},
+        "eta_thermal":   {"value": 0.45,   "unit": "dimensionless","note": "Net electrical efficiency (high-temp molten salt enables ~45%)"},
+        "T_core_degC":   {"value": 700.0,  "unit": "degC",         "note": "Core outlet temperature"},
+        "load_min":      {"value": 0.3,    "unit": "dimensionless","note": "Minimum load factor"},
+        "load_max":      {"value": 1.0,    "unit": "dimensionless","note": "Maximum load factor"}
+    },
+    "valid_ranges": {
+        "load_factor": {"min": 0.3, "max": 1.0, "unit": "dimensionless"}
+    }
+}

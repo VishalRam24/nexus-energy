@@ -1,0 +1,38 @@
+{
+  "component_id": "EC003",
+  "component_name": "Alkaline Fuel Cell (AFC)",
+  "fidelity": "F1b — Polarization-Thermal (KOH conductivity, Arrhenius kinetics)",
+  "source": "Gilliam et al. (2007) Int. J. Hydrogen Energy; Appleby & Foulkes (1989); Larminie & Dicks (2003)",
+  "default_parameters": {
+    "T_ref": 353.15,
+    "N_cells": 50,
+    "A_cell": 200.0,
+    "pH2": 1.0,
+    "pO2": 0.21,
+    "j_L": 1.0,
+    "i0_ref": 1e-3,
+    "E_act": 55000.0,
+    "alpha": 0.5,
+    "B_conc": 0.010,
+    "c_KOH": 6.0,
+    "L_electrolyte": 0.05
+  },
+  "parameter_metadata": {
+    "T_ref":           {"description": "Reference temperature for Arrhenius kinetics", "unit": "K",    "default": 353.15, "notes": "80 C"},
+    "N_cells":         {"description": "Number of cells in stack", "unit": "-",   "default": 50},
+    "A_cell":          {"description": "Active cell area", "unit": "cm2", "default": 200.0},
+    "pH2":             {"description": "Hydrogen partial pressure", "unit": "atm", "default": 1.0},
+    "pO2":             {"description": "Oxygen partial pressure", "unit": "atm", "default": 0.21},
+    "j_L":             {"description": "Limiting current density (lower than PEMFC due to liquid electrolyte)", "unit": "A/cm2", "default": 1.0},
+    "i0_ref":          {"description": "Exchange current density at T_ref (AFC ~10x higher than PEMFC)", "unit": "A/cm2", "default": 1e-3},
+    "E_act":           {"description": "Activation energy for exchange current density", "unit": "J/mol", "default": 55000.0},
+    "alpha":           {"description": "Charge transfer coefficient", "unit": "-", "default": 0.5},
+    "B_conc":          {"description": "Concentration loss coefficient", "unit": "V", "default": 0.010},
+    "c_KOH":           {"description": "KOH electrolyte molar concentration", "unit": "mol/L", "default": 6.0, "notes": "Typical AFC: 5-8 mol/L"},
+    "L_electrolyte":   {"description": "Electrolyte gap (electrode spacing)", "unit": "cm", "default": 0.05, "notes": "~0.5 mm matrix gap"}
+  },
+  "valid_ranges": {
+    "current_density": {"min": 0.0, "max": 1.0, "unit": "A/cm2"},
+    "temperature":     {"min": 333.0, "max": 363.0, "unit": "K"}
+  }
+}

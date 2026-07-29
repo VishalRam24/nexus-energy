@@ -1,0 +1,33 @@
+{
+    "component": "EC127 Gravity Energy Storage",
+    "fidelity": "F2a",
+    "description": "Physics-lumped hoist dynamics: mass raised/lowered through height h stores E=m*g*h. Newton's 2nd law ODE for mass position/velocity with motor/generator torque, winch drum inertia, cable, Coulomb friction and aerodynamic drag. Round-trip efficiency from motor/generator electrical losses + mechanical losses. Solid-mass tower / mineshaft hoist (Energy Vault class).",
+    "source": "Botha & Kamper (2019), J. Energy Storage, 23, 159-174; Berrada et al. (2017), Energy Conversion & Management, 137, 191-200; Tong et al. (2022), J. Energy Storage, 53, 105226 (gravity energy storage review); Pyrhonen et al. (2013), Design of Rotating Electrical Machines, Wiley (machine loss model)",
+    "unit": {
+        "name": "Generic Solid-Mass Gravity Storage (e.g. Energy Vault tower / mineshaft hoist)",
+        "source": "Botha & Kamper (2019); Berrada et al. (2017); Tong et al. (2022)",
+        "mass_kg": {"value": 1.0e7, "unit": "kg", "note": "Total moveable solid mass (10,000 t)"},
+        "h_max_m": {"value": 500.0, "unit": "m", "note": "Maximum lift height (top of tower / shaft head)"},
+        "h_min_m": {"value": 0.0, "unit": "m", "note": "Lowest position"},
+        "g": {"value": 9.81, "unit": "m/s2", "note": "Gravitational acceleration"},
+        "P_rated_kw": {"value": 5000.0, "unit": "kW", "note": "Motor/generator rated electrical power (hoist rating)"},
+        "v_max_mps": {"value": 3.0, "unit": "m/s", "note": "Maximum hoist line speed"},
+        "drum_radius_m": {"value": 2.0, "unit": "m", "note": "Winch drum radius (maps drum torque to cable force, tau = F*r)"},
+        "drum_inertia_kgm2": {"value": 4.0e6, "unit": "kg.m2", "note": "Lumped rotational inertia of drum + gearbox + rotor referred to drum shaft"},
+        "eta_motor_rated": {"value": 0.96, "unit": "dimensionless", "note": "Full-load motor electrical efficiency (electrical->shaft)"},
+        "eta_gen_rated": {"value": 0.96, "unit": "dimensionless", "note": "Full-load generator electrical efficiency (shaft->electrical)"},
+        "eta_drive_rated": {"value": 0.95, "unit": "dimensionless", "note": "Full-load drivetrain/gearbox mechanical efficiency"},
+        "motor_gen_plf_exp": {"value": 2.0, "unit": "dimensionless", "note": "Part-load loss exponent n (n=2 typical induction machine)"},
+        "friction_coeff": {"value": 0.002, "unit": "dimensionless", "note": "Coulomb friction coefficient at guide rails: F_fric = mu*m*g*sign(v)"},
+        "cable_drag_k": {"value": 0.5, "unit": "N.s2/m2", "note": "Aerodynamic drag coefficient: F_drag = k*v*|v|"},
+        "bearing_loss_frac": {"value": 0.005, "unit": "dimensionless", "note": "Bearing/seal parasitic loss as fraction of transmitted mechanical power"},
+        "cp2_unused": {"value": 0.0, "unit": "-", "note": "placeholder for future cost term"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "-"},
+        "velocity_mps": {"min": -3.0, "max": 3.0, "unit": "m/s"},
+        "P_command_kw": {"min": -5000.0, "max": 5000.0, "unit": "kW", "note": "negative = charge (lift), positive = discharge (lower/regenerate)"},
+        "duration_s": {"min": 0.0, "max": 200000.0, "unit": "s"},
+        "mode": {"values": ["charge", "discharge", "idle"]}
+    }
+}

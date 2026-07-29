@@ -1,0 +1,52 @@
+{
+    "component_id": "EC154",
+    "component_name": "Enhanced Geothermal System (EGS)",
+    "fidelity": "F2a -- Physics-Lumped Reservoir Thermal Drawdown + Binary/ORC Power Cycle",
+    "source": "Tester et al. (2006) The Future of Geothermal Energy, MIT/DOE; DiPippo (2015) Geothermal Power Plants 4th ed. Ch.16; Gringarten et al. (1975) J. Geophys. Res. 80(8); Armstead & Tester (1987) Heat Mining",
+    "unit": {
+        "name": "Generic EGS Doublet (Hot-Dry-Rock, fractured reservoir, binary/ORC surface plant)",
+
+        "T_geo_init_degC":    {"value": 200.0,  "unit": "degC",
+                               "note": "Initial undisturbed rock temperature at depth (~3-5 km); EGS resource 150-350C (Tester 2006)"},
+        "T_inject_degC":      {"value": 65.0,   "unit": "degC",
+                               "note": "Cold-leg reinjection temperature returned from ORC condenser (Tester 2006 design basis)"},
+        "m_dot_kg_s":         {"value": 50.0,   "unit": "kg/s",
+                               "note": "Circulation mass flow through the stimulated fracture network (Tester 2006: 40-100 kg/s target)"},
+
+        "rho_rock":           {"value": 2700.0, "unit": "kg/m3",
+                               "note": "Granite/crystalline basement density (Tester 2006 Table; DiPippo 2015)"},
+        "cp_rock_J_kgK":      {"value": 1000.0, "unit": "J/(kg*K)",
+                               "note": "Specific heat of granite (Tester 2006; ~790-1000 J/kgK)"},
+        "k_rock_W_mK":        {"value": 2.9,    "unit": "W/(m*K)",
+                               "note": "Thermal conductivity of granite (Tester 2006 MIT EGS report)"},
+
+        "rho_water":          {"value": 1000.0, "unit": "kg/m3",
+                               "note": "Working fluid (water) density, hardcoded"},
+        "cp_water_J_kgK":     {"value": 4200.0, "unit": "J/(kg*K)",
+                               "note": "Specific heat of liquid water at reservoir conditions (IAPWS approx)"},
+
+        "V_reservoir_m3":     {"value": 1.0e8,  "unit": "m3",
+                               "note": "Stimulated rock volume contributing heat (Tester 2006: commercial EGS ~0.1-0.3 km3)"},
+        "A_fracture_m2":      {"value": 2.0e6,  "unit": "m2",
+                               "note": "Total heat-transfer surface of the engineered fracture network (Gringarten 1975 multi-fracture)"},
+        "h_rock_fluid_W_m2K": {"value": 1.5,    "unit": "W/(m2*K)",
+                               "note": "Effective lumped rock-to-fluid heat-transfer coefficient incl. conduction skin (Gringarten 1975; Armstead & Tester 1987)"},
+
+        "eta_utilization":    {"value": 0.45,   "unit": "-",
+                               "note": "2nd-law (exergetic) utilization of the binary/ORC cycle vs Carnot (DiPippo 2015: 0.4-0.55 for binary)"},
+        "pump_parasitic_frac":{"value": 0.12,   "unit": "-",
+                               "note": "Circulation + feed pump parasitic as fraction of gross power (Tester 2006: 8-15% for EGS)"},
+        "T_ambient_degC":     {"value": 15.0,   "unit": "degC",
+                               "note": "Heat-sink (condenser) ambient temperature for cycle cold side"},
+
+        "P_rated_kW":         {"value": 6000.0, "unit": "kW",
+                               "note": "Nameplate gross capacity of the surface binary/ORC unit"}
+    },
+    "valid_ranges": {
+        "T_geo_init_degC":  {"min": 150.0,  "max": 350.0,  "unit": "degC"},
+        "T_inject_degC":    {"min": 40.0,   "max": 100.0,  "unit": "degC"},
+        "m_dot_kg_s":       {"min": 5.0,    "max": 200.0,  "unit": "kg/s"},
+        "years":            {"min": 0.0,    "max": 60.0,   "unit": "years"},
+        "T_ambient_degC":   {"min": -10.0,  "max": 45.0,   "unit": "degC"}
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "component": "EC152 Flash Steam Geothermal Plant",
+    "fidelity": "F0a",
+    "description": "Empirical net-plant-efficiency curve vs resource temperature. eta_net(T) tabulated from eta = eta_utilization * eta_Carnot at the F1a design rejection temperature. 1-D np.interp lookup.",
+    "source": "DiPippo, R. (2015). Geothermal Power Plants, 4th ed. Butterworth-Heinemann, Ch. 5-6. Breakpoints reuse EC152 F1a exergy-model design numbers (eta_utilization=0.45, T_reject=50 degC).",
+    "T_reject_ref": {"value": 50.0, "unit": "degC", "note": "Rejection temperature at which the efficiency curve was tabulated (F1a design)"},
+    "eta_utilization": {"value": 0.45, "unit": "dimensionless", "note": "Single-flash utilization efficiency reused from F1a (non-equilibrium flash, separator + turbine losses)"},
+    "rated": {
+        "T_geo_design": {"value": 240.0, "unit": "degC"},
+        "P_rated": {"value": 12000.0, "unit": "kW"},
+        "eta_net_rated": {"value": 0.1666, "unit": "dimensionless", "note": "Net plant efficiency at T_geo=240 degC, T_reject=50 degC"}
+    },
+    "curve": {
+        "note": "Net plant efficiency vs resource temperature (degC) at T_reject=50 degC. eta = 0.45*(1 - (Trej+273.15)/(Tgeo+273.15)).",
+        "T_geo_degC": [200.0, 240.0, 280.0, 320.0],
+        "eta_net": [0.1427, 0.1666, 0.1871, 0.2048]
+    },
+    "valid_ranges": {
+        "T_geothermal": {"min": 200.0, "max": 320.0, "unit": "degC"},
+        "flow_rate_kgs": {"min": 10.0, "max": 500.0, "unit": "kg/s"},
+        "cp_steam": {"value": 4100.0, "unit": "J/kgK", "note": "Brine specific heat (cp used for resource enthalpy estimate)"}
+    }
+}

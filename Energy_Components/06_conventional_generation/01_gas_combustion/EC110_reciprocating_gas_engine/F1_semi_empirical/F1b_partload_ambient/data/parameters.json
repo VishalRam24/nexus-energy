@@ -1,0 +1,29 @@
+{
+    "component": "EC110 Reciprocating Gas Engine",
+    "fidelity": "F1b",
+    "description": "Part-load efficiency + altitude correction + ambient temperature derating",
+    "unit": {
+        "name": "Generic 1 MW Lean-Burn Natural Gas Engine Genset",
+        "source": "US EPA CHP Catalog (2017) Section 2: Reciprocating Engines; Jenbacher J320/J420 product data; Caterpillar G3500 series; ISO 3046-1:2002",
+        "P_el_rated_kw": {"value": 1000.0, "unit": "kW_e", "note": "Rated electrical output at 25 degC, sea level"},
+        "eta_el_rated": {"value": 0.42, "unit": "-", "note": "Electrical efficiency at full load (LHV)"},
+        "PLR_min": {"value": 0.5, "unit": "-", "note": "Minimum stable part-load ratio"},
+        "LHV_gas_mjkg": {"value": 50.0, "unit": "MJ/kg", "note": "Lower heating value of natural gas"},
+        "rho_gas_kgm3": {"value": 0.717, "unit": "kg/m^3", "note": "Density of natural gas at STP"},
+        "b0": {"value": 0.10, "unit": "-", "note": "Electrical PLR curve constant"},
+        "b1": {"value": 0.95, "unit": "-", "note": "Electrical PLR curve linear"},
+        "b2": {"value": -0.05, "unit": "-", "note": "Electrical PLR curve quadratic"},
+        "T_ref_c": {"value": 25.0, "unit": "degC", "note": "Reference ambient temperature (ISO 3046-1 standard)"},
+        "temp_derating_pct_per_degC": {"value": 0.3, "unit": "%/degC", "note": "Power derating per degC above T_ref; reciprocating engines less sensitive than turbines"},
+        "temp_derating_start_c": {"value": 25.0, "unit": "degC", "note": "Temperature above which derating begins"},
+        "altitude_ref_m": {"value": 0.0, "unit": "m", "note": "Reference altitude (sea level)"},
+        "altitude_derating_pct_per_100m": {"value": 0.9, "unit": "%/100m", "note": "Power derating per 100m altitude above sea level (ISO 3046-1 ~1%/100m for turbocharged engines)"},
+        "eta_mech": {"value": 0.98, "unit": "-", "note": "Mechanical efficiency (crankshaft to generator shaft)"},
+        "eta_gen": {"value": 0.96, "unit": "-", "note": "Generator electrical efficiency"}
+    },
+    "valid_ranges": {
+        "PLR": {"min": 0.5, "max": 1.0, "unit": "-"},
+        "T_ambient_c": {"min": -20.0, "max": 50.0, "unit": "degC"},
+        "altitude_m": {"min": 0.0, "max": 3000.0, "unit": "m"}
+    }
+}

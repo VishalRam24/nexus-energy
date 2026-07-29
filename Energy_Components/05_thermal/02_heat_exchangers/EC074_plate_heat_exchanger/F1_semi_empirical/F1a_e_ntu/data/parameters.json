@@ -1,0 +1,19 @@
+{
+    "component": "EC074 Plate Heat Exchanger",
+    "fidelity": "F1a",
+    "description": "Effectiveness-NTU method for counter-flow plate heat exchanger (water-water)",
+    "unit": {
+        "name": "Generic Brazed Plate Heat Exchanger (BPHE), water-water",
+        "source": "Incropera & DeWitt (2006), Fundamentals of Heat and Mass Transfer, ch.11; Shah & Sekulic (2003), Fundamentals of Heat Exchanger Design",
+        "U": {"value": 3000.0, "unit": "W/m2K", "note": "Overall heat transfer coefficient, water-water BPHE"},
+        "A": {"value": 2.0, "unit": "m2", "note": "Total heat transfer area"},
+        "cp_hot": {"value": 4186.0, "unit": "J/kgK", "note": "Specific heat of hot-side fluid (water)"},
+        "cp_cold": {"value": 4186.0, "unit": "J/kgK", "note": "Specific heat of cold-side fluid (water)"}
+    },
+    "valid_ranges": {
+        "T_h_in": {"min": 30.0, "max": 120.0, "unit": "degC"},
+        "T_c_in": {"min": 5.0, "max": 60.0, "unit": "degC"},
+        "m_dot_hot": {"min": 0.05, "max": 5.0, "unit": "kg/s"},
+        "m_dot_cold": {"min": 0.05, "max": 5.0, "unit": "kg/s"}
+    }
+}

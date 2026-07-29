@@ -1,0 +1,32 @@
+{
+    "component_id": "EC008",
+    "component_name": "PEM Electrolyser (PEMEL)",
+    "fidelity": "F2a -- Full Electrochemical with Butler-Volmer + Springer Membrane",
+    "source": "Garcia-Valverde et al. (2012), Int. J. Hydrogen Energy 37(2); Springer (1991)",
+    "unit": {
+        "name": "Generic 1 MW PEMEL Stack",
+        "N_cells": {"value": 20, "unit": "-"},
+        "A_cell": {"value": 100.0, "unit": "cm2"},
+        "t_mem": {"value": 0.0183, "unit": "cm", "note": "Nafion 117 (183 um)"},
+        "lambda_mem": {"value": 14.0, "unit": "-"},
+        "j0_anode_ref": {"value": 1e-7, "unit": "A/cm2", "note": "IrO2 anode"},
+        "j0_cathode_ref": {"value": 1e-3, "unit": "A/cm2", "note": "Pt cathode"},
+        "alpha_anode": {"value": 0.5, "unit": "-"},
+        "alpha_cathode": {"value": 0.5, "unit": "-"},
+        "E_act_anode": {"value": 76000.0, "unit": "J/mol"},
+        "E_act_cathode": {"value": 18000.0, "unit": "J/mol"},
+        "T_ref": {"value": 353.15, "unit": "K"},
+        "j_max": {"value": 3.0, "unit": "A/cm2", "note": "Maximum practical current density"},
+        "eta_F_a": {"value": 250.0, "unit": "mA/cm2", "note": "Faradaic efficiency param a"},
+        "eta_F_b": {"value": 0.996, "unit": "-", "note": "Faradaic efficiency param b"},
+        "m_stack": {"value": 15.0, "unit": "kg"},
+        "cp_stack": {"value": 900.0, "unit": "J/(kg.K)"},
+        "hA_cool": {"value": 40.0, "unit": "W/K"},
+        "T_coolant": {"value": 333.15, "unit": "K"}
+    },
+    "valid_ranges": {
+        "current_density": {"min": 0.0, "max": 3.0, "unit": "A/cm2"},
+        "temperature": {"min": 303.15, "max": 373.15, "unit": "K"},
+        "pressure": {"min": 1.0, "max": 80.0, "unit": "bar"}
+    }
+}

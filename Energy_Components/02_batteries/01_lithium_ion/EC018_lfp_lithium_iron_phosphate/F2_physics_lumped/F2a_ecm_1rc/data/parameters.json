@@ -1,0 +1,32 @@
+{
+    "component": "EC018 LFP Battery (Lithium Iron Phosphate)",
+    "fidelity": "F2a",
+    "description": "1-RC Equivalent Circuit Model with SOC-dependent parameters",
+    "source": "Chen et al. (2020), J. Electrochem. Soc., 167, 080534; A123 datasheet",
+    "cell": {
+        "name": "A123 ANR26650M1B (LFP)",
+        "chemistry": "LFP",
+        "capacity": {"value": 3.3, "unit": "Ah"},
+        "voltage_max": {"value": 3.6, "unit": "V"},
+        "voltage_min": {"value": 2.0, "unit": "V"},
+        "R0": {"value": 0.012, "unit": "Ohm", "note": "Series resistance at 25C, 50% SOC"},
+        "R1": {"value": 0.008, "unit": "Ohm", "note": "Polarization resistance at 25C, 50% SOC"},
+        "C1": {"value": 4000.0, "unit": "F", "note": "Polarization capacitance, tau1 = R1*C1 = 32s"}
+    },
+    "ocv_coefficients": {
+        "description": "OCV(SOC) = a0 + a1*SOC + a2*SOC^2 + a3*SOC^3 + a4*SOC^4 + a5*SOC^5",
+        "source": "Fitted to LFP OCV data from Chen et al. (2020) and A123 discharge curves",
+        "a0": 2.6, "a1": 5.8, "a2": -25.0, "a3": 50.0, "a4": -45.0, "a5": 15.0
+    },
+    "soc_dependent_params": {
+        "description": "SOC-dependent multipliers for R0, R1, C1.",
+        "note": "factor(SOC) = b0 + b1*SOC + b2*SOC^2",
+        "R0_coeffs": [1.6, -1.5, 0.9],
+        "R1_coeffs": [2.2, -2.8, 1.6],
+        "C1_coeffs": [0.5, 1.2, -0.7]
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "current": {"min": -17.5, "max": 17.5, "unit": "A", "note": "positive=discharge"}
+    }
+}

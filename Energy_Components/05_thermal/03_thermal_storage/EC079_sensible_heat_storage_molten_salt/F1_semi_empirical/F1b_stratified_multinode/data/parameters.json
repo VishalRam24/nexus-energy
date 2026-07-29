@@ -1,0 +1,35 @@
+{
+    "component": "EC079 Molten Salt Thermal Energy Storage",
+    "fidelity": "F1b",
+    "description": "10-node stratified model with temperature-dependent properties for solar salt TES",
+    "tank": {
+        "name": "Large-scale CSP molten salt TES (1000 m3 solar salt, stratified)",
+        "source": "Herrmann et al. (2004); Pacheco et al. (2002)",
+        "fluid": "Solar salt: 60% NaNO3 + 40% KNO3",
+        "volume_m3": {"value": 1000.0, "unit": "m3"},
+        "tank_height_m": {"value": 14.0, "unit": "m"},
+        "n_nodes": {"value": 10, "unit": "dimensionless"},
+        "U_wall_W_m2K": {"value": 0.5, "unit": "W/(m2*K)", "note": "Wall heat loss coefficient"},
+        "k_destratification_W_mK": {"value": 0.1, "unit": "W/(m*K)", "note": "Effective axial mixing conductivity"},
+        "T_hot_design_C": {"value": 565.0, "unit": "degC"},
+        "T_cold_design_C": {"value": 290.0, "unit": "degC"},
+        "T_freeze_C": {"value": 220.0, "unit": "degC", "note": "Solidification point of solar salt"},
+        "T_ambient_ref_C": {"value": 25.0, "unit": "degC"}
+    },
+    "salt_properties": {
+        "rho_model": "rho(T) = 2090 - 0.636*T  [kg/m3, T in degC]",
+        "cp_model": "cp(T) = 1443 + 0.172*T  [J/(kg*K), T in degC]",
+        "rho_coeff_a": {"value": 2090.0, "unit": "kg/m3"},
+        "rho_coeff_b": {"value": -0.636, "unit": "kg/(m3*degC)"},
+        "cp_coeff_a": {"value": 1443.0, "unit": "J/(kg*K)"},
+        "cp_coeff_b": {"value": 0.172, "unit": "J/(kg*K*degC)"}
+    },
+    "valid_ranges": {
+        "T_charge_degC": {"min": 290.0, "max": 600.0, "unit": "degC"},
+        "T_discharge_degC": {"min": 220.0, "max": 565.0, "unit": "degC"},
+        "flow_rate_kg_s": {"min": 0.0, "max": 2000.0, "unit": "kg/s"},
+        "mode": {"values": ["charge", "discharge", "idle"]},
+        "T_ambient_degC": {"min": -20.0, "max": 60.0, "unit": "degC"},
+        "duration_s": {"min": 0.0, "max": 86400.0, "unit": "s"}
+    }
+}

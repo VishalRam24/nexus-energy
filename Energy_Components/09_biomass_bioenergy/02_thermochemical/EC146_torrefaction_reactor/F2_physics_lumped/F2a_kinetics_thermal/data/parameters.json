@@ -1,0 +1,37 @@
+{
+    "component_id": "EC146",
+    "component_name": "Torrefaction Reactor",
+    "fidelity": "F2a — Two-Step Arrhenius Kinetics + Reactor Energy-Balance ODE",
+    "source": "Di Blasi & Lanzetta (1997) J. Anal. Appl. Pyrolysis 40-41:287-303; Bergman et al. (2005) ECN-C-05-073; Prins et al. (2006) J. Anal. Appl. Pyrolysis 77:28-34; Bates & Ghoniem (2012) Bioresour. Technol. 124:460-469",
+    "unit": {
+        "name": "Generic Torrefaction Reactor — Physics-Lumped Two-Step Kinetics (wood chips)",
+
+        "A1": {"value": 2.48e4, "unit": "1/s", "note": "Pre-exponential factor, step 1 (B -> V1 + C1), Di Blasi & Lanzetta 1997 hemicellulose-rich wood, low-T branch"},
+        "E1": {"value": 75976.0, "unit": "J/mol", "note": "Activation energy, step 1 (Di Blasi & Lanzetta 1997)"},
+        "A2": {"value": 3.23e6, "unit": "1/s", "note": "Pre-exponential factor, step 2 (C1 -> V2 + C2)"},
+        "E2": {"value": 111705.0, "unit": "J/mol", "note": "Activation energy, step 2 (Di Blasi & Lanzetta 1997)"},
+
+        "c1_solid_frac": {"value": 0.55, "unit": "kg/kg", "note": "Solid (intermediate char C1) mass fraction from step-1 decomposition; remainder (0.45) is volatiles V1"},
+        "c2_solid_frac": {"value": 0.65, "unit": "kg/kg", "note": "Solid (final char C2) mass fraction from step-2 decomposition of C1; remainder is volatiles V2"},
+
+        "reactive_frac": {"value": 0.45, "unit": "kg/kg", "note": "Mass fraction of feed that is thermally reactive at torrefaction T (hemicellulose + amorphous cellulose). Di Blasi-Lanzetta kinetics apply to this fraction; the rest (crystalline cellulose + lignin) is treated as inert solid that survives mild torrefaction. Bergman 2005 / Prins 2006"},
+
+        "LHV_raw_MJ_kg": {"value": 18.0, "unit": "MJ/kg", "note": "LHV of raw dry biomass (wood chips), matches F1a"},
+        "LHV_char_MJ_kg": {"value": 32.0, "unit": "MJ/kg", "note": "LHV of fully-carbonised char fraction (C2). Energy concentrates in solid as O/C falls (van Krevelen). Bergman 2005 / Bates 2012"},
+        "LHV_volatiles_MJ_kg": {"value": 5.5, "unit": "MJ/kg", "note": "Effective LHV of released volatiles/torgas (CO2, H2O, acetic acid, light organics — low-energy oxygenates). Prins 2006"},
+
+        "delta_h_rxn_kJ_kg": {"value": -120.0, "unit": "kJ/kg_volatiles", "note": "Heat of torrefaction reaction per kg volatiles released; slightly exothermic at deep torrefaction. Negative = exothermic (releases heat). Bates & Ghoniem 2012; Ohliger 2013"},
+
+        "m_feed_kg": {"value": 1.0, "unit": "kg", "note": "Reference dry biomass batch / per-kg basis"},
+        "cp_solid_J_kgK": {"value": 1500.0, "unit": "J/(kg.K)", "note": "Specific heat of biomass/char solid. TenWolde 1988"},
+        "hA_heat_W_K": {"value": 8.0, "unit": "W/K", "note": "Overall heat-transfer coefficient * area from reactor wall to solid bed (per kg feed basis)"},
+        "T_wall_degC": {"value": 280.0, "unit": "degC", "note": "Reactor wall / heating-medium setpoint temperature"},
+        "T_feed_degC": {"value": 25.0, "unit": "degC", "note": "Inlet biomass temperature (cold start)"}
+    },
+    "valid_ranges": {
+        "T_set_degC": {"min": 200.0, "max": 320.0, "unit": "degC"},
+        "residence_time_min": {"min": 1.0, "max": 120.0, "unit": "min"},
+        "T0_degC": {"min": 15.0, "max": 320.0, "unit": "degC"},
+        "dt_s": {"min": 0.5, "max": 30.0, "unit": "s"}
+    }
+}

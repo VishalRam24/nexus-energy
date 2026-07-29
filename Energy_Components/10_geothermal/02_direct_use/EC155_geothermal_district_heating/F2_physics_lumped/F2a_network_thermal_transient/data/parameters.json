@@ -1,0 +1,40 @@
+{
+    "component_id": "EC155",
+    "component_name": "Geothermal District Heating",
+    "fidelity": "F2a — Lumped Network Thermal Transient (supply/return ODE)",
+    "source": "Lund, J.W. & Toth, A.N. (2021) Direct Utilization of Geothermal Energy 2020 Worldwide Review, Geothermics 90, 101915; Lund, J.W., Freeston, D.H. & Boyd, T.L. (2011) Direct utilization of geothermal energy 2010 worldwide review, Geothermics 40(3) 159-180; Frederiksen, S. & Werner, S. (2013) District Heating and Cooling, Studentlitteratur.",
+    "unit": {
+        "name": "Generic Direct-Use Geothermal District Heating Plant (Lund & Toth 2021 typical)",
+        "T_geo_source": {"value": 80.0, "unit": "degC", "note": "Geothermal production-well wellhead temperature (Lund & Toth 2021 direct-use median 50-90 C)"},
+        "T_geo_reinject_min": {"value": 30.0, "unit": "degC", "note": "Minimum geothermal reinjection temperature; cascade use drives this low to maximise extraction"},
+        "m_dot_geo": {"value": 50.0, "unit": "kg/s", "note": "Geothermal production-well mass flow"},
+        "eta_hx": {"value": 0.90, "unit": "dimensionless", "note": "Heat-exchanger effectiveness geothermal->network side (Frederiksen & Werner 2013, 0.85-0.95)"},
+
+        "T_supply_setpoint": {"value": 70.0, "unit": "degC", "note": "Network supply temperature set point delivered to consumers"},
+        "T_return_nominal": {"value": 40.0, "unit": "degC", "note": "Nominal network return temperature from consumers"},
+
+        "m_dot_net": {"value": 60.0, "unit": "kg/s", "note": "District-heating network circulation mass flow"},
+        "V_supply": {"value": 120.0, "unit": "m3", "note": "Lumped water volume of supply side of network (pipes + headers + thermal capacitance)"},
+        "V_return": {"value": 120.0, "unit": "m3", "note": "Lumped water volume of return side of network"},
+        "rho_water": {"value": 985.0, "unit": "kg/m3", "note": "Water density at ~65 C (IAPWS-IF97, Wagner & Pruss 2002)"},
+        "cp_water": {"value": 4186.0, "unit": "J/(kg.K)", "note": "Specific heat of liquid water near 60-70 C (CRC Handbook / IAPWS); hardcoded per F2 spec"},
+
+        "UA_supply": {"value": 8000.0, "unit": "W/K", "note": "Supply-pipe distribution heat-loss coefficient to ground (overall UA of buried supply network)"},
+        "UA_return": {"value": 6000.0, "unit": "W/K", "note": "Return-pipe distribution heat-loss coefficient to ground"},
+        "T_ground": {"value": 8.0, "unit": "degC", "note": "Mean ground/soil temperature around buried pipes"},
+
+        "Q_load_design": {"value": 8000.0, "unit": "kW", "note": "Design district heat demand (peak)"},
+        "f_cascade": {"value": 0.25, "unit": "dimensionless", "note": "Fraction of geothermal return heat recovered by cascade users (greenhouses/aquaculture) before reinjection (Lund & Toth 2021)"},
+
+        "Q_boiler_max": {"value": 4000.0, "unit": "kW", "note": "Peak gas/biomass boiler capacity to top up supply temperature on cold days"},
+        "eta_boiler": {"value": 0.92, "unit": "dimensionless", "note": "Peak boiler thermal efficiency"}
+    },
+    "valid_ranges": {
+        "T_geo_source": {"min": 50.0, "max": 150.0, "unit": "degC"},
+        "m_dot_geo": {"min": 5.0, "max": 500.0, "unit": "kg/s"},
+        "Q_load_kW": {"min": 0.0, "max": 20000.0, "unit": "kW"},
+        "m_dot_net": {"min": 5.0, "max": 600.0, "unit": "kg/s"},
+        "dt": {"min": 1.0, "max": 600.0, "unit": "s"},
+        "duration_s": {"min": 60.0, "max": 604800.0, "unit": "s"}
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "component": "EC166 Diode Bridge Rectifier (3-Phase Uncontrolled)",
+    "fidelity": "F1a",
+    "description": "V_dc = 3*sqrt(2)/pi * V_LL (3-phase uncontrolled); fixed efficiency eta",
+    "unit": {
+        "name": "Generic 3-Phase Diode Bridge Rectifier",
+        "source": "Mohan, N., Undeland, T.M., & Robbins, W.P. (2003). Power Electronics. Wiley.",
+        "eta": {"value": 0.96, "unit": "dimensionless", "note": "Accounts for diode drops and commutation"},
+        "p_rated": {"value": 50000.0, "unit": "W", "note": "50 kW rated"},
+        "v_ll_nominal": {"value": 400.0, "unit": "V", "note": "3-phase line-to-line RMS"},
+        "n_phases": {"value": 3, "unit": "dimensionless"},
+        "v_dc_ideal_factor": {"value": 1.3505, "unit": "dimensionless", "note": "3*sqrt(2)/pi = 1.3505"}
+    },
+    "valid_ranges": {
+        "v_ll": {"min": 100.0, "max": 700.0, "unit": "V", "note": "Line-to-line RMS"},
+        "p_out": {"min": 0.0, "max": 60000.0, "unit": "W"}
+    }
+}

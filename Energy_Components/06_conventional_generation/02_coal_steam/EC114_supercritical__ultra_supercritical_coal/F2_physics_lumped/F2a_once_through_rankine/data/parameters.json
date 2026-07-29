@@ -1,0 +1,46 @@
+{
+    "component_id": "EC114",
+    "component_name": "Supercritical / Ultra-Supercritical Coal Plant",
+    "fidelity": "F2a — Physics-Lumped Once-Through Supercritical Rankine Cycle with Evaporator Thermal ODE",
+    "description": "Pulverized-coal combustion feeding a supercritical (>221 bar) / ultra-supercritical (~600 C) once-through Rankine cycle with double reheat and regenerative feedwater heating. Steam-side enthalpies from simplified IAPWS-IF97-style correlations (hardcoded, cited). Lumped once-through evaporator thermal transient solved with scipy.solve_ivp.",
+    "source": "Weitzel, P.S. (2011), ASME PVP-2011-57934; IAPWS-IF97 (Wagner & Kretzschmar 2008, Int. Steam Tables, Springer); Spliethoff (2010), Power Generation from Solid Fuels, Springer; IEA Clean Coal Centre CCC/168 (2010); Luo, Z. et al. (2013) Energy, 57, 236-244.",
+    "unit": {
+        "name": "Generic 800 MW Ultra-Supercritical PC Plant (600 C / 250 bar, double reheat)",
+        "technology": "USC",
+        "rated_power_mw": {"value": 800.0, "unit": "MW_e", "note": "Net electrical rating at design"},
+        "P_boiler_bar": {"value": 250.0, "unit": "bar", "note": "Main steam / once-through evaporator pressure (>221 bar supercritical). SC ~250, USC up to ~300"},
+        "T_main_steam_c": {"value": 600.0, "unit": "degC", "note": "Superheater outlet / HP turbine inlet temperature. SC ~565-600, USC up to ~620"},
+        "T_reheat_c": {"value": 600.0, "unit": "degC", "note": "Reheat steam temperature (double reheat returns steam to this T)"},
+        "P_reheat1_bar": {"value": 55.0, "unit": "bar", "note": "First reheat pressure (HP turbine exhaust / cold reheat)"},
+        "P_reheat2_bar": {"value": 12.0, "unit": "bar", "note": "Second reheat pressure (IP turbine exhaust) for double-reheat USC"},
+        "P_condenser_bar": {"value": 0.05, "unit": "bar", "note": "Condenser pressure (~32.9 C saturation, water-cooled)"},
+        "eta_turbine_isentropic": {"value": 0.90, "unit": "-", "note": "Turbine isentropic efficiency, advanced steam path (Spliethoff 2010)"},
+        "eta_pump_isentropic": {"value": 0.85, "unit": "-", "note": "Boiler feed pump isentropic efficiency"},
+        "eta_generator": {"value": 0.985, "unit": "-", "note": "Generator electrical efficiency"},
+        "eta_mechanical": {"value": 0.995, "unit": "-", "note": "Turbine-generator mechanical efficiency"},
+        "eta_boiler": {"value": 0.94, "unit": "-", "note": "Boiler/combustion efficiency (fraction of coal LHV transferred to working fluid; balance is stack + radiation loss)"},
+        "fw_heating_fraction": {"value": 0.30, "unit": "-", "note": "Fraction of turbine steam bled for regenerative feedwater heating; raises mean heat-addition temperature (Carnotization)"},
+        "T_feedwater_c": {"value": 295.0, "unit": "degC", "note": "Final feedwater temperature after regenerative heating (high for SC/USC)"},
+        "aux_power_fraction": {"value": 0.06, "unit": "-", "note": "House/auxiliary load fraction (mills, fans, BFP) subtracted from gross to give net"},
+        "LHV_coal": {"value": 25.0, "unit": "MJ/kg", "note": "Bituminous coal lower heating value (Spliethoff 2010 typical range 24-27 MJ/kg)"},
+        "CO2_per_kg_coal": {"value": 2.57, "unit": "kg_CO2/kg_coal", "note": "0.70 kg_C/kg * 44/12"},
+        "m_evap_metal_kg": {"value": 450000.0, "unit": "kg", "note": "Lumped once-through evaporator + waterwall metal mass (thermal inertia)"},
+        "cp_metal_kj_kgK": {"value": 0.49, "unit": "kJ/(kg.K)", "note": "Specific heat of ferritic/martensitic boiler steel (P91/P92)"},
+        "m_fluid_evap_kg": {"value": 60000.0, "unit": "kg", "note": "Lumped supercritical-water inventory in evaporator section"},
+        "cp_fluid_kj_kgK": {"value": 6.5, "unit": "kJ/(kg.K)", "note": "Effective pseudo-cp of supercritical water near pseudocritical region (elevated vs subcritical liquid ~5)"},
+        "hA_evap_MW_K": {"value": 9.0, "unit": "MW/K", "note": "Lumped flue-gas to evaporator-fluid conductance (overall UA)"},
+        "T_flame_c": {"value": 1450.0, "unit": "degC", "note": "Adiabatic-ish furnace gas temperature seen by evaporator (PC flame ~1300-1600 C)"}
+    },
+    "subcritical_reference": {
+        "eta_net_subcritical": {"value": 0.38, "unit": "-", "note": "Typical modern subcritical PC net LHV efficiency (~37-39%); SC/USC must exceed this"},
+        "note": "Used by tests to enforce net_eff(USC) > subcritical reference."
+    },
+    "valid_ranges": {
+        "part_load_ratio": {"min": 0.30, "max": 1.0, "unit": "dimensionless"},
+        "P_boiler_bar": {"min": 221.0, "max": 320.0, "unit": "bar", "note": "Supercritical: above water critical pressure 220.6 bar"},
+        "T_main_steam_c": {"min": 540.0, "max": 650.0, "unit": "degC"},
+        "T_condenser_c": {"min": 25.0, "max": 50.0, "unit": "degC"},
+        "dt": {"min": 1.0, "max": 60.0, "unit": "s"},
+        "duration_s": {"min": 60.0, "max": 14400.0, "unit": "s"}
+    }
+}

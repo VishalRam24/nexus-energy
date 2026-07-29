@@ -1,0 +1,77 @@
+{
+  "component": "EC105 Gas Turbine CHP (with HRSG)",
+  "fidelity": "F0a - empirical lookup",
+  "model": "Two 1-D np.interp lookups: electrical & thermal efficiency vs part-load ratio",
+  "lookup": {
+    "plr_breakpoints": {
+      "value": [
+        0.0,
+        0.2,
+        0.3,
+        0.4,
+        0.5,
+        0.6,
+        0.7,
+        0.8,
+        0.9,
+        1.0
+      ],
+      "unit": "dimensionless",
+      "note": "Part-load ratio = P_el / P_el_rated"
+    },
+    "eta_el_breakpoints": {
+      "value": [
+        0.0,
+        0.0,
+        0.0,
+        0.1568,
+        0.184,
+        0.2112,
+        0.2384,
+        0.2656,
+        0.2928,
+        0.32
+      ],
+      "unit": "dimensionless",
+      "note": "Net electrical efficiency at each PLR (LHV)"
+    },
+    "eta_th_breakpoints": {
+      "value": [
+        0.0,
+        0.0,
+        0.0,
+        0.32,
+        0.35,
+        0.38,
+        0.41,
+        0.44,
+        0.47,
+        0.5
+      ],
+      "unit": "dimensionless",
+      "note": "Useful thermal (recovered heat) efficiency at each PLR (LHV)"
+    }
+  },
+  "rated": {
+    "P_el_rated": {
+      "value": 5000000.0,
+      "unit": "W",
+      "note": "Rated electrical output"
+    },
+    "eta_el_rated": {
+      "value": 0.32,
+      "unit": "dimensionless",
+      "note": "Electrical efficiency at PLR=1"
+    },
+    "eta_th_rated": {
+      "value": 0.5,
+      "unit": "dimensionless",
+      "note": "Thermal efficiency at PLR=1"
+    },
+    "PLR_min": {
+      "value": 0.4,
+      "unit": "dimensionless"
+    }
+  },
+  "source": "US EPA CHP Catalog (2017); Kehlhofer et al. (2009)"
+}

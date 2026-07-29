@@ -1,0 +1,94 @@
+{
+  "component_id": "EC001",
+  "component_name": "PEM Fuel Cell (PEMFC)",
+  "fidelity": "F1b — Thermal (temperature-dependent polarization curve)",
+  "source": "Amphlett et al. (1995); Springer et al. (1991) membrane model",
+  "default_parameters": {
+    "T_ref": 353.15,
+    "N_cells": 50,
+    "A_cell": 100.0,
+    "pH2": 1.0,
+    "pO2": 0.21,
+    "j_L": 2.0,
+    "i0_ref": 1e-4,
+    "E_act": 66000.0,
+    "sigma_ref": 0.1,
+    "membrane_thickness": 0.0183,
+    "lambda_mem": 14.0,
+    "alpha": 0.5,
+    "B_conc": 0.016
+  },
+  "parameter_metadata": {
+    "T_ref": {
+      "description": "Reference temperature for Arrhenius kinetics",
+      "unit": "K",
+      "default": 353.15,
+      "notes": "80 C"
+    },
+    "N_cells": {
+      "description": "Number of cells in stack",
+      "unit": "-",
+      "default": 50
+    },
+    "A_cell": {
+      "description": "Active cell area",
+      "unit": "cm2",
+      "default": 100.0
+    },
+    "pH2": {
+      "description": "Hydrogen partial pressure",
+      "unit": "atm",
+      "default": 1.0
+    },
+    "pO2": {
+      "description": "Oxygen partial pressure",
+      "unit": "atm",
+      "default": 0.21
+    },
+    "j_L": {
+      "description": "Limiting current density",
+      "unit": "A/cm2",
+      "default": 2.0
+    },
+    "i0_ref": {
+      "description": "Exchange current density at T_ref",
+      "unit": "A/cm2",
+      "default": 1e-4
+    },
+    "E_act": {
+      "description": "Activation energy for exchange current density",
+      "unit": "J/mol",
+      "default": 66000.0
+    },
+    "sigma_ref": {
+      "description": "Membrane conductivity reference (fully humidified Nafion at 303 K)",
+      "unit": "S/cm",
+      "default": 0.1
+    },
+    "membrane_thickness": {
+      "description": "Membrane thickness",
+      "unit": "cm",
+      "default": 0.0183,
+      "notes": "Nafion 117 (183 um)"
+    },
+    "lambda_mem": {
+      "description": "Membrane water content",
+      "unit": "-",
+      "default": 14.0
+    },
+    "alpha": {
+      "description": "Charge transfer coefficient",
+      "unit": "-",
+      "default": 0.5
+    },
+    "B_conc": {
+      "description": "Concentration loss coefficient",
+      "unit": "V",
+      "default": 0.016
+    }
+  },
+  "valid_ranges": {
+    "current_density": {"min": 0.0, "max": 2.0, "unit": "A/cm2"},
+    "temperature": {"min": 333.0, "max": 363.0, "unit": "K"}
+  }
+}

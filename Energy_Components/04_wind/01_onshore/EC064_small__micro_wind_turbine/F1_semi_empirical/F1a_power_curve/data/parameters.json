@@ -1,0 +1,21 @@
+{
+    "component": "EC064 Small/Micro Wind Turbine",
+    "fidelity": "F1a",
+    "description": "P = 0.5*rho*Cp*A*v^3 with cut-in/rated/cut-out limits",
+    "unit": {
+        "name": "10 kW Small Wind Turbine",
+        "source": "Manwell et al. (2009). Wind Energy Explained. 2nd ed.; IEC 61400-2",
+        "D": {"value": 5.0, "unit": "m", "note": "Rotor diameter"},
+        "P_rated": {"value": 10000.0, "unit": "W", "note": "Rated power"},
+        "v_cut_in": {"value": 3.0, "unit": "m/s", "note": "Cut-in wind speed"},
+        "v_rated": {"value": 12.0, "unit": "m/s", "note": "Rated wind speed"},
+        "v_cut_out": {"value": 25.0, "unit": "m/s", "note": "Cut-out wind speed"},
+        "Cp": {"value": 0.30, "unit": "dimensionless", "note": "Power coefficient"},
+        "rho": {"value": 1.225, "unit": "kg/m3", "note": "Air density at sea level"},
+        "eta_gen": {"value": 0.92, "unit": "dimensionless", "note": "Generator efficiency"}
+    },
+    "valid_ranges": {
+        "v": {"min": 0.0, "max": 50.0, "unit": "m/s"},
+        "rho": {"min": 0.9, "max": 1.4, "unit": "kg/m3"}
+    }
+}

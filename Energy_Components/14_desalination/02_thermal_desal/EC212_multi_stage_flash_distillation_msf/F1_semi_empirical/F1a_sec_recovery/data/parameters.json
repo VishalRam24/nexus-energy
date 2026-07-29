@@ -1,0 +1,20 @@
+{
+    "component": "EC212 Multi-Stage Flash Distillation (MSF)",
+    "fidelity": "F1a",
+    "description": "MSF thermal desalination: GOR=8, SEC_thermal=250 kJ/kg, SEC_elec=3.5 kWh/m3, T_top=110C, 20 stages.",
+    "unit": {
+        "name": "Generic MSF desalination plant",
+        "source": "El-Dessouky & Ettouney (2002) Fundamentals of Salt Water Desalination; IDA",
+        "GOR": {"value": 8.0, "unit": "dimensionless", "note": "Gain Output Ratio: kg distillate / kg steam"},
+        "SEC_thermal_kJ_kg": {"value": 250.0, "unit": "kJ/kg", "note": "Thermal energy per kg distillate"},
+        "SEC_elec_kWh_m3": {"value": 3.5, "unit": "kWh/m3", "note": "Electrical energy (pumping, recirculation)"},
+        "T_top_brine_C": {"value": 110.0, "unit": "degC", "note": "Top brine temperature"},
+        "N_stages": {"value": 20, "unit": "dimensionless"},
+        "recovery": {"value": 0.20, "unit": "dimensionless", "note": "Typical MSF recovery ratio"},
+        "capacity_m3_h": {"value": 1000.0, "unit": "m3/h"}
+    },
+    "valid_ranges": {
+        "capacity_fraction": {"min": 0.1, "max": 1.0, "unit": "dimensionless"},
+        "T_top_brine_C": {"min": 90.0, "max": 120.0, "unit": "degC"}
+    }
+}

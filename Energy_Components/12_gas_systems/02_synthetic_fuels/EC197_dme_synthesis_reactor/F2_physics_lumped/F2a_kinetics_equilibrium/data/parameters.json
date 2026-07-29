@@ -1,0 +1,33 @@
+{
+    "component_id": "EC197",
+    "component_name": "DME Synthesis Reactor",
+    "fidelity": "F2a — Kinetics + Equilibrium (Physics-Lumped, LHHW + Reactor Energy Balance)",
+    "description": "Direct (single-step) DME synthesis from syngas over a bifunctional CuO-ZnO-Al2O3 / gamma-Al2O3(HZSM-5) catalyst. Three coupled reactions (methanol synthesis, water-gas shift, methanol dehydration) integrated as LHHW rate ODEs along a residence-time coordinate with a lumped reactor energy balance via scipy.solve_ivp.",
+    "source": "Ng et al. (1999) Chem. Eng. Sci. 54:3587 (direct DME); Bercic & Levec (1992) IEC Res. 31:1035 and (1993) IEC Res. 32:2478 (methanol dehydration LHHW); Graaf et al. (1988) Chem. Eng. Sci. 43:3185 and Graaf et al. (1986) Chem. Eng. Sci. 41:2883 (methanol synthesis kinetics + equilibria); Moe (1962) WGS equilibrium.",
+    "unit": {
+        "name": "Generic bifunctional DME synthesis catalyst, 240-280 degC, 30-50 bar",
+        "k1_0":     {"value": 120.0, "unit": "mol/(kg.s.bar^3)", "note": "Methanol synthesis (R1) Arrhenius pre-exponential, lumped Graaf-type LHHW (CO+2H2->MeOH); tuned so single-pass X_CO~0.3-0.7 over the tau band"},
+        "Ea1":      {"value": 65000.0, "unit": "J/mol", "note": "Activation energy methanol synthesis (Graaf 1988, ~60-70 kJ/mol)"},
+        "k2_0":     {"value": 40.0, "unit": "mol/(kg.s.bar^2)", "note": "Water-gas-shift (R2) Arrhenius pre-exponential"},
+        "Ea2":      {"value": 60000.0, "unit": "J/mol", "note": "Activation energy WGS"},
+        "k3_0":     {"value": 5.0e7, "unit": "varies", "note": "Methanol dehydration (R3) pre-exponential, Bercic-Levec form; tuned for competitive dehydration vs synthesis"},
+        "Ea3":      {"value": 80480.0, "unit": "J/mol", "note": "Activation energy methanol dehydration (Bercic & Levec 1992: 80.48 kJ/mol)"},
+        "Ks_0":     {"value": 5.0e-6, "unit": "m3/mol", "note": "Methanol adsorption equilibrium pre-exponential (Bercic-Levec)"},
+        "dH_ads":   {"value": -70500.0, "unit": "J/mol", "note": "Methanol adsorption enthalpy on gamma-Al2O3 (Bercic & Levec 1992: -70.5 kJ/mol, exothermic)"},
+        "K_ads":    {"value": 0.4, "unit": "1/bar", "note": "Lumped adsorption constant for R1/R2 LHHW denominator"},
+        "rho_bulk": {"value": 1200.0, "unit": "kg/m3", "note": "Catalyst bulk density in packed bed"},
+        "Ua":       {"value": 8000.0, "unit": "W/(m3.K)", "note": "Volumetric overall heat-transfer (cooled multitubular reactor) U*a"},
+        "T_coolant":{"value": 523.15, "unit": "K", "note": "Coolant / shell-side temperature (250 degC boiling water)"},
+        "P_ref":    {"value": 40.0, "unit": "bar", "note": "Reference operating pressure"},
+        "n_CO_in":  {"value": 1.0, "unit": "mol/s", "note": "Default CO feed rate"},
+        "H2_CO_ratio": {"value": 2.0, "unit": "mol/mol", "note": "Feed H2/CO ratio (stoichiometric for direct DME: 2CO+4H2->DME+H2O is H2/CO=2)"},
+        "CO2_frac": {"value": 0.03, "unit": "mol/mol_CO", "note": "Small CO2 fraction in syngas (drives WGS)"}
+    },
+    "valid_ranges": {
+        "T_in_K":      {"min": 473.15, "max": 573.15, "unit": "K"},
+        "P_bar":       {"min": 10.0,   "max": 80.0,   "unit": "bar"},
+        "tau_max":     {"min": 0.1,    "max": 10.0,   "unit": "s-equiv (W/F proxy)"},
+        "H2_CO_ratio": {"min": 1.0,    "max": 3.0,    "unit": "mol/mol"},
+        "n_CO_in":     {"min": 0.01,   "max": 100.0,  "unit": "mol/s"}
+    }
+}

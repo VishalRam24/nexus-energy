@@ -1,0 +1,37 @@
+{
+    "component_id": "EC002",
+    "component_name": "Solid Oxide Fuel Cell (SOFC)",
+    "fidelity": "F2a -- Full Electrochemical Model with Butler-Volmer + Thermal ODE",
+    "source": "Chan et al. (2001) J. Power Sources 93, 130-140; Campanari & Iora (2004)",
+    "unit": {
+        "name": "Generic 10kW Anode-Supported SOFC Stack (YSZ)",
+        "N_cells": {"value": 40, "unit": "-"},
+        "A_cell": {"value": 100.0, "unit": "cm2"},
+        "t_electrolyte": {"value": 0.001, "unit": "cm", "note": "YSZ electrolyte thickness (10 um)"},
+        "sigma_0_ysz": {"value": 3.34e4, "unit": "S/cm", "note": "YSZ pre-exponential conductivity"},
+        "E_act_ysz": {"value": 10300.0, "unit": "K", "note": "YSZ activation energy / R"},
+        "j0_anode_ref": {"value": 0.4, "unit": "A/cm2", "note": "Anode exchange current density at T_ref"},
+        "j0_cathode_ref": {"value": 0.2, "unit": "A/cm2", "note": "Cathode exchange current density at T_ref"},
+        "E_act_anode": {"value": 100000.0, "unit": "J/mol"},
+        "E_act_cathode": {"value": 120000.0, "unit": "J/mol"},
+        "alpha_anode": {"value": 0.5, "unit": "-"},
+        "alpha_cathode": {"value": 0.5, "unit": "-"},
+        "j_L_anode": {"value": 3.0, "unit": "A/cm2"},
+        "j_L_cathode": {"value": 3.0, "unit": "A/cm2"},
+        "T_ref": {"value": 1073.15, "unit": "K", "note": "800C reference"},
+        "pH2": {"value": 0.97, "unit": "atm"},
+        "pO2": {"value": 0.21, "unit": "atm"},
+        "pH2O": {"value": 0.03, "unit": "atm"},
+        "m_stack": {"value": 50.0, "unit": "kg"},
+        "cp_stack": {"value": 600.0, "unit": "J/(kg.K)", "note": "Ceramic stack heat capacity"},
+        "hA_cool": {"value": 20.0, "unit": "W/K"},
+        "T_air_in": {"value": 1023.15, "unit": "K", "note": "Preheated cathode air inlet (750C)"},
+        "uf_nominal": {"value": 0.85, "unit": "-", "note": "Nominal fuel utilization"}
+    },
+    "valid_ranges": {
+        "current_density": {"min": 0.0, "max": 2.5, "unit": "A/cm2"},
+        "temperature": {"min": 873.15, "max": 1273.15, "unit": "K"},
+        "dt": {"min": 0.1, "max": 10.0, "unit": "s"},
+        "duration_s": {"min": 10.0, "max": 36000.0, "unit": "s"}
+    }
+}

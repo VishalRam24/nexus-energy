@@ -1,0 +1,23 @@
+{
+    "component": "EC059 Evacuated Tube Solar Collector",
+    "fidelity": "F1b",
+    "description": "Hottel-Whillier-Bliss with U_L(T) thermal loss curve. F1b extends F1a (constant U_L) with a weak temperature-dependent U_L(DeltaT) for vacuum insulation. Also adds incidence angle modifier (IAM) for off-normal performance.",
+    "unit": {
+        "name": "Generic 30-tube Evacuated Tube Collector (Apricus AP-30 style)",
+        "source": "Duffie & Beckman (2013), 'Solar Engineering of Thermal Processes', 4th ed., Ch.6; SRCC OG-100 ETC ratings; ISO 9806:2017 second-order efficiency equation",
+        "area": {"value": 3.0, "unit": "m2"},
+        "eta_0": {"value": 0.72, "unit": "dimensionless", "note": "Zero-loss optical efficiency (= F_R * tau * alpha at normal incidence)"},
+        "a1": {"value": 1.40, "unit": "W/m2K", "note": "First-order heat loss coefficient F_R*U_L at zero DeltaT"},
+        "a2": {"value": 0.012, "unit": "W/m2K2", "note": "Second-order heat loss coefficient for vacuum insulation. VERY small: ETC vacuum limits conduction/convection so a2 << flat plate (~0.06). Weak T dependence from end-cap conduction and residual gas."},
+        "b0": {"value": 0.18, "unit": "dimensionless", "note": "IAM incidence angle modifier coefficient (Duffie & Beckman Eq. 6.17.6)"},
+        "m_dot": {"value": 0.05, "unit": "kg/s"},
+        "cp_fluid": {"value": 4182.0, "unit": "J/kgK"},
+        "note_a2": "RATIONALE: For evacuated tube collectors, the second-order loss coefficient a2 is much smaller than for flat-plate collectors (~0.06 W/m2K2) because vacuum insulation eliminates most convective loss. The residual a2=0.012 accounts for end-cap conduction and residual gas conduction at temperatures above ~100C. Certified values from SRCC for high-performance ETCs are in range 0.008-0.020 W/m2K2."
+    },
+    "valid_ranges": {
+        "irradiance":   {"min": 0.0,   "max": 1200.0, "unit": "W/m2"},
+        "T_inlet":      {"min": 10.0,  "max": 180.0,  "unit": "degC", "note": "ETCs operate at higher T than flat plate"},
+        "T_ambient":    {"min": -20.0, "max": 45.0,   "unit": "degC"},
+        "incidence_angle": {"min": 0.0, "max": 80.0,  "unit": "deg"}
+    }
+}

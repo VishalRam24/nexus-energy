@@ -1,0 +1,33 @@
+{
+    "component": "EC074 Plate Heat Exchanger",
+    "fidelity": "F1b",
+    "description": "Effectiveness-NTU with fouling resistance correction: 1/U_fouled = 1/U_clean + Rf_hot + Rf_cold",
+    "unit": {
+        "name": "Generic Brazed Plate Heat Exchanger (BPHE), water-water",
+        "source": "Incropera & DeWitt (2006) ch.11; Shah & Sekulic (2003); TEMA Standards 10th ed.",
+        "U_clean": {"value": 3000.0, "unit": "W/m2K", "note": "Clean overall HTC"},
+        "A": {"value": 2.0, "unit": "m2"},
+        "cp_hot": {"value": 4186.0, "unit": "J/kgK"},
+        "cp_cold": {"value": 4186.0, "unit": "J/kgK"},
+        "Rf_hot_default": {"value": 0.0001, "unit": "m2K/W", "note": "Typical fouling resistance for clean water (hot side)"},
+        "Rf_cold_default": {"value": 0.0001, "unit": "m2K/W", "note": "Typical fouling resistance for clean water (cold side)"}
+    },
+    "fouling_reference": {
+        "clean_water": {"Rf": 0.0001, "unit": "m2K/W"},
+        "treated_cooling_water": {"Rf": 0.0002, "unit": "m2K/W"},
+        "untreated_water": {"Rf": 0.0005, "unit": "m2K/W"},
+        "city_water": {"Rf": 0.0003, "unit": "m2K/W"},
+        "river_water": {"Rf": 0.001, "unit": "m2K/W"},
+        "sea_water": {"Rf": 0.0003, "unit": "m2K/W"},
+        "glycol_solution": {"Rf": 0.0002, "unit": "m2K/W"},
+        "dirty_fluids": {"Rf": 0.005, "unit": "m2K/W"}
+    },
+    "valid_ranges": {
+        "T_h_in": {"min": 30.0, "max": 120.0, "unit": "degC"},
+        "T_c_in": {"min": 5.0, "max": 60.0, "unit": "degC"},
+        "m_dot_hot": {"min": 0.05, "max": 5.0, "unit": "kg/s"},
+        "m_dot_cold": {"min": 0.05, "max": 5.0, "unit": "kg/s"},
+        "fouling_resistance_hot": {"min": 0.0, "max": 0.01, "unit": "m2K/W"},
+        "fouling_resistance_cold": {"min": 0.0, "max": 0.01, "unit": "m2K/W"}
+    }
+}

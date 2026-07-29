@@ -1,0 +1,28 @@
+{
+    "component": "EC102 Kalina Cycle",
+    "fidelity": "F1b",
+    "description": "Carnot-based efficiency with ammonia fraction, condenser T correction, and part-load penalty",
+    "unit": {
+        "name": "Kalina KCS 34 geothermal/waste-heat unit (100 kW class)",
+        "source": "Bombarda et al. (2010), Appl. Thermal Eng. 30(2); Lolos & Rogdakis (2009), Energy 34(4)",
+        "P_rated_kw": {"value": 100.0, "unit": "kW", "note": "Rated net electrical output"},
+        "T_hot_design_c": {"value": 150.0, "unit": "degC", "note": "Design heat source temperature"},
+        "T_cond_design_c": {"value": 32.0, "unit": "degC", "note": "Design condenser temperature"},
+        "x_NH3_design": {"value": 0.85, "unit": "-", "note": "Design ammonia mass fraction (optimal for 150C source)"},
+        "eta_internal": {"value": 0.50, "unit": "-", "note": "Fraction of Carnot achieved (higher than ORC due to composition matching)"},
+        "k_x": {"value": 0.30, "unit": "-", "note": "Efficiency sensitivity to NH3 fraction: f_x = 1 + k_x*(x - x_design)"},
+        "k_T": {"value": 0.020, "unit": "1/K", "note": "Condenser T sensitivity: f_T = 1 - k_T*(T_cond - T_design). NH3 high dP/dT"},
+        "PLR_min": {"value": 0.30, "unit": "-"},
+        "plr_a": {"value": 0.10, "unit": "-"},
+        "plr_b": {"value": 0.65, "unit": "-"},
+        "plr_c": {"value": 0.25, "unit": "-",
+                   "note": "PLR curve: at PLR=1: f=1.0"},
+        "T_approach_c": {"value": 5.0, "unit": "degC", "note": "Condenser approach temperature"}
+    },
+    "valid_ranges": {
+        "T_hot":  {"min": 80.0, "max": 220.0, "unit": "degC"},
+        "T_cond": {"min": 15.0, "max": 55.0, "unit": "degC"},
+        "x_NH3":  {"min": 0.70, "max": 0.95, "unit": "-"},
+        "PLR":    {"min": 0.30, "max": 1.0, "unit": "-"}
+    }
+}

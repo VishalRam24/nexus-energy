@@ -1,0 +1,11 @@
+{
+  "default_parameters": {
+    "Q_nom": 4.0,
+    "R_int": 0.100,
+    "V_min": 0.8,
+    "V_max": 1.5,
+    "ocv_flat": 1.28,
+    "ocv_droop": 0.15
+  },
+  "description": "Iron-Air SOC-only model. OCV ~1.28 V (Fe + O2 -> Fe2O3). R_int=100 mOhm (iron electrode kinetics), Q_nom=4.0 Ah."
+}

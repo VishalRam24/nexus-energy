@@ -1,0 +1,54 @@
+{
+    "component": "EC128 Conventional Hydroelectric Dam",
+    "fidelity": "F1b",
+    "description": "Variable head, turbine hill chart eta(Q/Q_rated, H/H_rated), multi-turbine type support, environmental flow constraint",
+    "unit": {
+        "name": "Generic Multi-Turbine Hydropower Plant",
+        "source": "Dixon & Hall (2014), Fluid Mechanics and Thermodynamics of Turbomachinery; IEC 60041",
+        "francis": {
+            "Q_rated": {"value": 50.0, "unit": "m3/s"},
+            "H_rated": {"value": 100.0, "unit": "m"},
+            "P_rated": {"value": 45000.0, "unit": "kW"},
+            "eta_peak": {"value": 0.93, "unit": "dimensionless"},
+            "q_min": {"value": 0.2, "unit": "dimensionless"},
+            "q_max": {"value": 1.1, "unit": "dimensionless"},
+            "h_min": {"value": 0.6, "unit": "dimensionless", "note": "Min head ratio"},
+            "h_max": {"value": 1.25, "unit": "dimensionless", "note": "Max head ratio"},
+            "k_q": {"value": 0.4, "unit": "dimensionless", "note": "Flow efficiency drop-off"},
+            "k_h": {"value": 0.2, "unit": "dimensionless", "note": "Head efficiency drop-off"}
+        },
+        "kaplan": {
+            "Q_rated": {"value": 100.0, "unit": "m3/s"},
+            "H_rated": {"value": 20.0, "unit": "m"},
+            "P_rated": {"value": 17000.0, "unit": "kW"},
+            "eta_peak": {"value": 0.91, "unit": "dimensionless"},
+            "q_min": {"value": 0.15, "unit": "dimensionless"},
+            "q_max": {"value": 1.2, "unit": "dimensionless"},
+            "h_min": {"value": 0.5, "unit": "dimensionless"},
+            "h_max": {"value": 1.3, "unit": "dimensionless"},
+            "k_q": {"value": 0.25, "unit": "dimensionless", "note": "Flatter curve (adjustable blades)"},
+            "k_h": {"value": 0.15, "unit": "dimensionless"}
+        },
+        "pelton": {
+            "Q_rated": {"value": 10.0, "unit": "m3/s"},
+            "H_rated": {"value": 600.0, "unit": "m"},
+            "P_rated": {"value": 50000.0, "unit": "kW"},
+            "eta_peak": {"value": 0.91, "unit": "dimensionless"},
+            "q_min": {"value": 0.1, "unit": "dimensionless"},
+            "q_max": {"value": 1.0, "unit": "dimensionless"},
+            "h_min": {"value": 0.85, "unit": "dimensionless"},
+            "h_max": {"value": 1.1, "unit": "dimensionless"},
+            "k_q": {"value": 0.35, "unit": "dimensionless"},
+            "k_h": {"value": 0.3, "unit": "dimensionless"}
+        },
+        "eta_generator": {"value": 0.98, "unit": "dimensionless"},
+        "rho": {"value": 1000.0, "unit": "kg/m3"},
+        "g": {"value": 9.81, "unit": "m/s2"},
+        "Q_env_fraction": {"value": 0.1, "unit": "dimensionless", "note": "Min environmental flow as fraction of Q_rated"}
+    },
+    "valid_ranges": {
+        "flow_rate_m3s": {"min": 0.0, "max": 200.0, "unit": "m3/s"},
+        "head_m": {"min": 5.0, "max": 1800.0, "unit": "m"},
+        "turbine_type": {"values": ["francis", "kaplan", "pelton"]}
+    }
+}

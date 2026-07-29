@@ -1,0 +1,23 @@
+{
+    "component": "EC150 Fischer-Tropsch Synthesis (BTL)",
+    "fidelity": "F1a",
+    "description": "Simple yield model using CO conversion and ASF chain-growth distribution. Products = syngas * CO_conversion * ASF_distribution. T=220 degC, P=25 bar.",
+    "unit": {
+        "name": "Generic Low-Temperature Fischer-Tropsch Reactor (Cobalt catalyst)",
+        "source": "Dry (2002) Catal. Today 71:227; Steynberg & Dry (2004) Fischer-Tropsch Technology; Spath & Dayton (2003) NREL/TP-510-34929",
+        "CO_conversion":          {"value": 0.80,  "unit": "dimensionless", "note": "Single-pass CO conversion fraction"},
+        "alpha_ASF":              {"value": 0.85,  "unit": "dimensionless", "note": "ASF chain-growth probability parameter"},
+        "T_operating_degC":       {"value": 220.0, "unit": "degC",          "note": "Reactor temperature (LTFT, cobalt catalyst)"},
+        "P_operating_bar":        {"value": 25.0,  "unit": "bar",           "note": "Reactor pressure"},
+        "H2_CO_ratio":            {"value": 2.0,   "unit": "mol/mol",       "note": "Syngas H2:CO molar ratio for FT synthesis"},
+        "LHV_FT_liquid_MJ_kg":    {"value": 44.0,  "unit": "MJ/kg",         "note": "LHV of FT liquid product (diesel-equivalent)"},
+        "wax_fraction_C21plus":   {"value": 0.30,  "unit": "dimensionless", "note": "C21+ wax fraction (from ASF at alpha=0.85)"},
+        "diesel_fraction_C10_C20":{"value": 0.35,  "unit": "dimensionless", "note": "Diesel-range fraction (C10-C20)"},
+        "naphtha_fraction_C5_C9": {"value": 0.15,  "unit": "dimensionless", "note": "Naphtha fraction (C5-C9)"},
+        "light_gas_fraction_C1_C4":{"value": 0.20, "unit": "dimensionless", "note": "Light gas fraction (C1-C4)"}
+    },
+    "valid_ranges": {
+        "syngas_flow_Nm3_per_h": {"min": 0.0, "max": 1e6, "unit": "Nm3/h"},
+        "CO_fraction_in_syngas":  {"min": 0.2, "max": 0.6, "unit": "dimensionless"}
+    }
+}

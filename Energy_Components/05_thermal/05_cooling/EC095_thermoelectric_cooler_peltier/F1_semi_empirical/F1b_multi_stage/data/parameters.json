@@ -1,0 +1,36 @@
+{
+    "component": "EC095 Thermoelectric Cooler (Peltier)",
+    "fidelity": "F1b",
+    "description": "Cascaded multi-stage TEC. Each stage pumps heat from its cold side to its hot side; the hot side of stage k = cold side of stage k+1. Inter-stage temperatures found by equating heat flows. Overall COP = Q_c_stage1 / W_total. COP per stage < single-stage at same total dT.",
+    "unit": {
+        "name": "Generic 2-stage cascaded Bi2Te3 TEC — stage-1 (cold) + stage-2 (hot)",
+        "source": "Goldsmid, H.J. (2010). Introduction to Thermoelectricity, Springer; Rowe, D.M. (Ed.) (2006). CRC Handbook of Thermoelectrics; Riffat & Ma (2003). Appl. Thermal Eng. 23, 913-935; Chein, R., Chen, Y. (2005). Int. J. Refrig. 28, 828-839.",
+        "n_stages": {"value": 2, "unit": "-", "note": "Number of cascade stages (1=single-stage, 2=two-stage; extend as needed)"},
+        "stage_1": {
+            "note": "Cold (bottom) stage — largest temperature span, highest ZT utilization",
+            "alpha_module": {"value": 0.053, "unit": "V/K"},
+            "R_module":     {"value": 3.5,   "unit": "ohm"},
+            "K_module":     {"value": 0.65,  "unit": "W/K"},
+            "n_modules":    {"value": 4,     "unit": "-"},
+            "I_max":        {"value": 6.0,   "unit": "A"},
+            "degradation_factor": {"value": 1.0, "unit": "-", "note": "Multiplier on effective ZT (1.0 = new)"}
+        },
+        "stage_2": {
+            "note": "Hot (top) stage — narrower span, smaller modules or lower current",
+            "alpha_module": {"value": 0.053, "unit": "V/K"},
+            "R_module":     {"value": 3.5,   "unit": "ohm"},
+            "K_module":     {"value": 0.65,  "unit": "W/K"},
+            "n_modules":    {"value": 6,     "unit": "-", "note": "Stage-2 needs more modules since it must pump Q_c + W_stage1"},
+            "I_max":        {"value": 6.0,   "unit": "A"},
+            "degradation_factor": {"value": 1.0, "unit": "-"}
+        },
+        "COP_degradation_per_stage": {"value": 0.92, "unit": "dimensionless", "note": "Fraction of ideal COP retained per additional stage due to thermal contact resistance and junction losses; from Chein & Chen (2005) two-stage experimental data"},
+        "contact_resistance_K_per_W": {"value": 0.005, "unit": "K/W", "note": "Thermal contact resistance at inter-stage interface (spreader + TIM); Riffat & Ma (2003)"}
+    },
+    "valid_ranges": {
+        "current_stage_1": {"min": 0.0, "max": 6.0, "unit": "A"},
+        "current_stage_2": {"min": 0.0, "max": 6.0, "unit": "A"},
+        "T_cold":  {"min": -40.0, "max": 20.0, "unit": "degC"},
+        "T_hot":   {"min": 10.0,  "max": 80.0, "unit": "degC"}
+    }
+}

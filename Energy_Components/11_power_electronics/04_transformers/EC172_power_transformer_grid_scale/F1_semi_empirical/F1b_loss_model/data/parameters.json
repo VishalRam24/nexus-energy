@@ -1,0 +1,29 @@
+{
+    "component": "EC172 Power Transformer (Grid-Scale)",
+    "fidelity": "F1b",
+    "description": "Core loss (proportional to V^2, Steinmetz), copper loss (proportional to I^2, temperature-dependent), temperature rise model. IEC 60076 standard.",
+    "unit": {
+        "name": "Generic 100 MVA 110/20 kV Grid Transformer",
+        "source": "IEC 60076-1:2011; Kulkarni & Khaparde (2004) Transformer Engineering; Montsinger (1930)",
+        "S_rated_MVA": {"value": 100.0, "unit": "MVA"},
+        "V_primary_kV": {"value": 110.0, "unit": "kV"},
+        "V_secondary_kV": {"value": 20.0, "unit": "kV"},
+        "P_no_load_kW": {"value": 50.0, "unit": "kW", "note": "Core (no-load) losses at rated voltage"},
+        "P_load_loss_kW": {"value": 300.0, "unit": "kW", "note": "Copper (load) losses at rated current and 75C"},
+        "T_ref_winding": {"value": 75.0, "unit": "degC", "note": "Reference temperature for copper loss specification (IEC 60076)"},
+        "T_ref": {"value": 25.0, "unit": "degC", "note": "Ambient reference"},
+        "alpha_Cu": {"value": 0.00393, "unit": "1/K"},
+        "core_voltage_exponent": {"value": 2.0, "unit": "dimensionless", "note": "Core loss ~ (V/V_rated)^n, typically 1.6-2.0 for Steinmetz"},
+        "theta_oil_rise_rated": {"value": 55.0, "unit": "K", "note": "Top-oil temperature rise above ambient at rated load (IEC 60076-2)"},
+        "theta_winding_gradient": {"value": 15.0, "unit": "K", "note": "Average winding-to-oil temperature gradient"},
+        "n_oil": {"value": 0.8, "unit": "dimensionless", "note": "Top-oil rise exponent (ONAN: 0.8-1.0)"},
+        "n_winding": {"value": 1.3, "unit": "dimensionless", "note": "Winding gradient exponent"},
+        "tau_oil_min": {"value": 120.0, "unit": "min", "note": "Oil thermal time constant"}
+    },
+    "valid_ranges": {
+        "load_fraction": {"min": 0.0, "max": 1.5, "unit": "dimensionless"},
+        "voltage_pu": {"min": 0.8, "max": 1.2, "unit": "pu"},
+        "winding_temperature": {"min": -20.0, "max": 200.0, "unit": "degC"},
+        "ambient_temperature": {"min": -40.0, "max": 50.0, "unit": "degC"}
+    }
+}

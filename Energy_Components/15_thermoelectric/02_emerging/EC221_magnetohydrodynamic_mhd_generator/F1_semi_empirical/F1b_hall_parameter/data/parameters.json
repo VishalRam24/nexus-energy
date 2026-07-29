@@ -1,0 +1,31 @@
+{
+    "component": "EC221 Magnetohydrodynamic (MHD) Generator",
+    "fidelity": "F1b",
+    "description": "Hall parameter correction, T-dependent conductivity, stagnation-enthalpy Q_in, optimal load factor",
+    "unit": {
+        "name": "Open-cycle Faraday MHD generator (K2CO3-seeded combustion plasma, superconducting magnet)",
+        "source": "Rosa (1987) Magnetohydrodynamic Energy Conversion; Messerle (1995) MHD Electrical Power Generation; Miura & Mori (1985) AIAA J.",
+        "sigma_plasma_0": {"value": 10.0, "unit": "S/m", "note": "Reference plasma conductivity at T_ref (seeded combustion ~5-50 S/m)"},
+        "T_ref_K": {"value": 2500.0, "unit": "K", "note": "Reference plasma temperature for conductivity model"},
+        "sigma_T_exp": {"value": 1.5, "unit": "-", "note": "Conductivity temperature exponent: sigma ~ T^exp (Coulomb scattering regime)"},
+        "u_plasma": {"value": 800.0, "unit": "m/s", "note": "Plasma flow velocity (supersonic ~700-1000 m/s)"},
+        "B_field": {"value": 5.0, "unit": "T", "note": "Magnetic field strength (superconducting ~4-7 T)"},
+        "K_load": {"value": 0.5, "unit": "-", "note": "Load factor K = V_load / EMF; optimal K differs from 0.5 with Hall effect"},
+        "beta_hall": {"value": 3.0, "unit": "-", "note": "Hall parameter beta = omega_e * tau_e = sigma*B/rho_e*q_e/m_e; typical 2-5 for seeded plasma"},
+        "channel_length": {"value": 5.0, "unit": "m", "note": "MHD channel length"},
+        "channel_width": {"value": 0.5, "unit": "m", "note": "MHD channel width (perpendicular to B and u)"},
+        "channel_height": {"value": 0.5, "unit": "m", "note": "MHD channel height (in B direction)"},
+        "cp_plasma": {"value": 1200.0, "unit": "J/(kg*K)", "note": "Specific heat at constant pressure of seeded combustion gas"},
+        "rho_plasma": {"value": 0.5, "unit": "kg/m^3", "note": "Plasma mass density (seeded combustion gas ~0.3-0.8 kg/m^3)"},
+        "T_plasma_K": {"value": 2500.0, "unit": "K", "note": "Plasma static temperature at channel inlet"},
+        "eta_plant": {"value": 0.50, "unit": "-", "note": "Combined plant efficiency (MHD + bottoming cycle ~50%)"}
+    },
+    "valid_ranges": {
+        "sigma": {"min": 1.0, "max": 100.0, "unit": "S/m"},
+        "u": {"min": 100.0, "max": 2000.0, "unit": "m/s"},
+        "B": {"min": 0.5, "max": 10.0, "unit": "T"},
+        "K": {"min": 0.0, "max": 1.0, "unit": "-"},
+        "beta_hall": {"min": 0.0, "max": 10.0, "unit": "-"},
+        "T_plasma_K": {"min": 1500.0, "max": 4000.0, "unit": "K"}
+    }
+}

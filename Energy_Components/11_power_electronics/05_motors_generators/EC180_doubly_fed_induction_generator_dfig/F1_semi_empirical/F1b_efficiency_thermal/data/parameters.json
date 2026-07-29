@@ -1,0 +1,32 @@
+{
+    "component": "EC180 Doubly-Fed Induction Generator (DFIG)",
+    "fidelity": "F1b",
+    "description": "DFIG loss model with slip-dependent rotor power, temperature-dependent stator+rotor copper resistance, iron and mechanical losses. Negative slip = super-synchronous (most wind turbine operation). Converter loss included.",
+    "unit": {
+        "name": "Generic 2 MW DFIG (typical wind turbine generator)",
+        "source": "Muller et al. (2002) Doubly Fed Induction Generator Systems for Wind Turbines; Boldea (2006)",
+        "P_rated_MW": {"value": 2.0, "unit": "MW"},
+        "S_rated_MVA": {"value": 2.2, "unit": "MVA"},
+        "V_stator_kV": {"value": 0.69, "unit": "kV"},
+        "pf_rated": {"value": 0.9, "unit": "dimensionless"},
+        "omega_sync_rpm": {"value": 1500.0, "unit": "rpm", "note": "Synchronous speed at 50 Hz, 2 pole-pairs"},
+        "slip_rated": {"value": -0.25, "unit": "dimensionless", "note": "Typical super-synchronous: -0.25 = 1875 rpm"},
+        "R_s_ref": {"value": 0.0008, "unit": "ohm", "note": "Stator resistance per phase at T_ref"},
+        "R_r_ref": {"value": 0.0012, "unit": "ohm", "note": "Rotor resistance per phase (referred to stator) at T_ref"},
+        "T_ref": {"value": 25.0, "unit": "degC"},
+        "alpha_Cu": {"value": 0.00393, "unit": "1/K"},
+        "k_iron": {"value": 8000.0, "unit": "W", "note": "Iron core loss at synchronous speed"},
+        "k_mech": {"value": 2000.0, "unit": "W", "note": "Bearing/seal mechanical loss"},
+        "k_stray": {"value": 0.005, "unit": "dimensionless"},
+        "eta_converter": {"value": 0.97, "unit": "dimensionless", "note": "Rotor-side converter efficiency"},
+        "ambient_derating_threshold": {"value": 40.0, "unit": "degC"},
+        "derating_slope": {"value": 0.01, "unit": "1/K"}
+    },
+    "valid_ranges": {
+        "load_fraction": {"min": 0.05, "max": 1.2, "unit": "dimensionless"},
+        "slip": {"min": -0.35, "max": 0.35, "unit": "dimensionless", "note": "Negative = super-synchronous"},
+        "stator_temperature": {"min": -20.0, "max": 180.0, "unit": "degC"},
+        "rotor_temperature": {"min": -20.0, "max": 180.0, "unit": "degC"},
+        "ambient_temperature": {"min": -20.0, "max": 60.0, "unit": "degC"}
+    }
+}

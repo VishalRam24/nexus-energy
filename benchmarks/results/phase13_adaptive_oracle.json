@@ -1,0 +1,41 @@
+{
+  "config": {
+    "n_scenarios": 20,
+    "T": 24,
+    "seed": 42
+  },
+  "rows": [
+    {
+      "method": "benders_plain",
+      "status": "optimal",
+      "iterations": 10,
+      "sub_solves": 200,
+      "wall_sec": 0.11312395900313277,
+      "expected_cost": 203651.4841817742
+    },
+    {
+      "method": "benders_trust_region",
+      "status": "optimal",
+      "iterations": 10,
+      "sub_solves": 200,
+      "wall_sec": 0.10254058400460053,
+      "expected_cost": 203651.4841817742
+    },
+    {
+      "method": "benders_adaptive",
+      "status": "optimal",
+      "iterations": 10,
+      "sub_solves": 200,
+      "wall_sec": 0.10034166699915659,
+      "expected_cost": 203651.4841817742
+    },
+    {
+      "method": "progressive_hedging",
+      "status": "max_iter",
+      "iterations": 30,
+      "sub_solves": 600,
+      "wall_sec": 0.3213382499961881,
+      "expected_cost": 246500.39618498797
+    }
+  ]
+}

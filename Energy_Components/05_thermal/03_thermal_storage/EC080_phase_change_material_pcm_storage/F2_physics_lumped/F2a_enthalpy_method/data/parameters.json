@@ -1,0 +1,31 @@
+{
+    "component_id": "EC080",
+    "component_name": "Phase Change Material (PCM) Storage",
+    "fidelity": "F2a — Enthalpy Method with Multi-Node ODE",
+    "source": "Voller & Cross (1990), Zalba et al. (2003) Review on thermal energy storage with PCM",
+    "unit": {
+        "name": "Paraffin RT60 PCM Storage Unit — 10 Node Enthalpy Model",
+        "N_nodes": {"value": 10, "unit": "-", "note": "Number of lumped nodes"},
+        "m_total": {"value": 100.0, "unit": "kg", "note": "Total PCM mass"},
+        "T_melt": {"value": 333.15, "unit": "K", "note": "Melting temperature (60 C)"},
+        "L_f": {"value": 180000.0, "unit": "J/kg", "note": "Latent heat of fusion"},
+        "cp_solid": {"value": 2000.0, "unit": "J/(kg.K)", "note": "Specific heat — solid phase"},
+        "cp_liquid": {"value": 2200.0, "unit": "J/(kg.K)", "note": "Specific heat — liquid phase"},
+        "k_pcm": {"value": 0.2, "unit": "W/(m.K)", "note": "Thermal conductivity of PCM"},
+        "rho_pcm": {"value": 800.0, "unit": "kg/m3", "note": "PCM density"},
+        "UA_htf": {"value": 500.0, "unit": "W/K", "note": "HTF-to-PCM heat transfer coefficient * area (total)"},
+        "UA_loss": {"value": 2.0, "unit": "W/K", "note": "Heat loss to ambient per node"},
+        "UA_node": {"value": 50.0, "unit": "W/K", "note": "Inter-node thermal conductance"},
+        "T_amb": {"value": 293.15, "unit": "K", "note": "Ambient temperature (20 C)"},
+        "T_ref": {"value": 293.15, "unit": "K", "note": "Reference temperature for enthalpy = 0"},
+        "T_htf_charge": {"value": 353.15, "unit": "K", "note": "HTF temperature during charge (80 C)"},
+        "T_htf_discharge": {"value": 313.15, "unit": "K", "note": "HTF temperature during discharge (40 C)"},
+        "m_dot_htf": {"value": 0.5, "unit": "kg/s", "note": "HTF mass flow rate"},
+        "cp_htf": {"value": 4186.0, "unit": "J/(kg.K)", "note": "HTF specific heat (water)"}
+    },
+    "valid_ranges": {
+        "T_htf": {"min": 283.15, "max": 373.15, "unit": "K"},
+        "duration_s": {"min": 1.0, "max": 86400.0, "unit": "s"},
+        "dt": {"min": 0.1, "max": 60.0, "unit": "s"}
+    }
+}

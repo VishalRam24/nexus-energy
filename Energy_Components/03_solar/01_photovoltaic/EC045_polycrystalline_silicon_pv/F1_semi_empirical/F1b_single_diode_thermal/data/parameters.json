@@ -1,0 +1,33 @@
+{
+    "component": "EC045 Polycrystalline Silicon PV",
+    "fidelity": "F1b",
+    "description": "Single-diode model with explicit cell temperature via Faiman NOCT model. Adds T_amb + irradiance → T_cell translation absent from F1a.",
+    "module": {
+        "name": "Generic 60-cell Poly-Si Module (~290W)",
+        "source": "Adapted from typical poly-Si datasheets (Hanwha Q.PEAK style); Faiman (2008) NOCT model",
+        "technology": "Poly-c-Si",
+        "cells_in_series": {"value": 60, "unit": "cells"},
+        "alpha_sc": {"value": 0.0045, "unit": "A/K", "note": "Short-circuit current temp coeff"},
+        "area": {"value": 1.638, "unit": "m2", "note": "Module area"},
+        "gamma_pmp": {"value": -0.0039, "unit": "1/K", "note": "Power temp coefficient ~ -0.39%/K for poly-Si"},
+        "NOCT": {"value": 46.0, "unit": "degC", "note": "Nominal operating cell temperature at 800 W/m2, 20C, 1m/s wind"},
+        "T_NOCT_amb": {"value": 20.0, "unit": "degC", "note": "Ambient temperature at NOCT conditions"},
+        "G_NOCT": {"value": 800.0, "unit": "W/m2", "note": "Irradiance at NOCT conditions"}
+    },
+    "desoto_params": {
+        "description": "De Soto 5-parameter single-diode model at STC",
+        "I_L_ref": {"value": 8.5, "unit": "A", "note": "Light current at STC"},
+        "I_o_ref": {"value": 3.5e-10, "unit": "A", "note": "Saturation current at STC"},
+        "R_s": {"value": 0.42, "unit": "Ohm", "note": "Series resistance"},
+        "R_sh_ref": {"value": 280.0, "unit": "Ohm", "note": "Shunt resistance at STC"},
+        "a_ref": {"value": 1.65, "unit": "V", "note": "Modified ideality factor n*Ns*Vt"},
+        "EgRef": {"value": 1.121, "unit": "eV", "note": "Silicon bandgap"},
+        "dEgdT": {"value": -0.0002677, "unit": "1/K"}
+    },
+    "valid_ranges": {
+        "irradiance": {"min": 0.0, "max": 1200.0, "unit": "W/m2"},
+        "T_ambient": {"min": -20.0, "max": 50.0, "unit": "degC"},
+        "cell_temperature": {"min": -20.0, "max": 90.0, "unit": "degC"},
+        "wind_speed": {"min": 0.0, "max": 20.0, "unit": "m/s"}
+    }
+}

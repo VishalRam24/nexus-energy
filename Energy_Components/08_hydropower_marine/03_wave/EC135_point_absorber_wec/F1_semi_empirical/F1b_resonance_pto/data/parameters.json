@@ -1,0 +1,28 @@
+{
+    "component": "EC135 Point Absorber WEC",
+    "fidelity": "F1b",
+    "description": "Extends F1a resonance model with PTO power limit (rated capacity), seawater density correction, PTO efficiency vs power level, and survival threshold (storm cutout).",
+    "device": {
+        "diameter_m":        {"value": 6.0,   "unit": "m",    "description": "Buoy diameter"},
+        "T_n_s":             {"value": 10.0,  "unit": "s",    "description": "Natural resonance period"},
+        "cwr_peak":          {"value": 0.25,  "unit": "-",    "description": "Peak CWR at resonance"},
+        "bandwidth_s":       {"value": 4.0,   "unit": "s",    "description": "Gaussian resonance bandwidth sigma [s]"},
+        "eta_pto_rated":     {"value": 0.82,  "unit": "-",    "description": "PTO efficiency at rated load (linear generator optimal operating point)"},
+        "eta_pto_min":       {"value": 0.55,  "unit": "-",    "description": "PTO efficiency at very low power (linear generator part-load)"},
+        "eta_electrical":    {"value": 0.95,  "unit": "-",    "description": "Power electronics efficiency"},
+        "rho_water":         {"value": 1025.0,"unit": "kg/m3","description": "Reference seawater density"},
+        "P_rated_kw":        {"value": 500.0, "unit": "kW",   "description": "Rated (maximum) electrical output before PTO limiting"},
+        "H_s_cutout":        {"value": 6.0,   "unit": "m",    "description": "Storm cutout significant wave height; device shuts down above this"},
+        "H_s_cutin":         {"value": 0.5,   "unit": "m",    "description": "Minimum H_s for positive net power (below this, efficiency too low)"},
+        "S_ref_psu":         {"value": 35.0,  "unit": "psu",  "description": "Reference salinity"},
+        "T_ref_C":           {"value": 15.0,  "unit": "degC", "description": "Reference temperature"},
+        "pto_partload_coeff":{"value": 0.40,  "unit": "-",    "description": "PTO efficiency reduction at zero power (linear interpolation: eta(P) = eta_rated - coeff*(1-P/P_rated))"}
+    },
+    "limits": {
+        "H_s_min_m": 0.0,
+        "H_s_max_m": 8.0,
+        "T_e_min_s": 4.0,
+        "T_e_max_s": 20.0
+    },
+    "source": "Falnes (2002); Babarit et al. (2012) Renew. Energy 41:44-63; CorPower Ocean datasheet (2020); Eriksson et al. (2005) Renew. Sustain. Energy Rev. 9:435."
+}

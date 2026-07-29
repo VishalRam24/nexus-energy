@@ -1,0 +1,52 @@
+{
+    "component": "EC149 Biodiesel Transesterification",
+    "fidelity": "F1b",
+    "description": "Feedstock-specific biodiesel model with oil content, FFA correction, temperature kinetics, moisture-LHV coupling",
+    "feedstock_db": {
+        "soybean_oil": {
+            "LHV_dry_MJ_kg": 37.0,
+            "oil_content_frac": 0.18,
+            "ffa_pct": 0.5,
+            "note": "Soybean — low FFA, standard base-catalyzed process (Freedman 1984)"
+        },
+        "palm_oil": {
+            "LHV_dry_MJ_kg": 37.5,
+            "oil_content_frac": 0.22,
+            "ffa_pct": 1.0,
+            "note": "Palm — higher oil content, moderate FFA"
+        },
+        "rapeseed_oil": {
+            "LHV_dry_MJ_kg": 37.2,
+            "oil_content_frac": 0.40,
+            "ffa_pct": 0.3,
+            "note": "Rapeseed/Canola — high oil content, very low FFA (European standard)"
+        },
+        "waste_cooking_oil": {
+            "LHV_dry_MJ_kg": 36.0,
+            "oil_content_frac": 0.90,
+            "ffa_pct": 6.0,
+            "note": "WCO — very high oil content but high FFA; needs pre-esterification (Rashid 2008)"
+        },
+        "jatropha": {
+            "LHV_dry_MJ_kg": 36.8,
+            "oil_content_frac": 0.35,
+            "ffa_pct": 3.0,
+            "note": "Jatropha curcas — non-edible energy crop, moderate FFA"
+        }
+    },
+    "unit": {
+        "PLR_min":                     {"value": 0.20,  "unit": "dimensionless"},
+        "a0":                          {"value": 0.60,  "unit": "dimensionless"},
+        "a1":                          {"value": 0.30,  "unit": "dimensionless"},
+        "a2":                          {"value": -0.10, "unit": "dimensionless"},
+        "methanol_to_oil_molar_ratio": {"value": 6.0,   "unit": "mol/mol", "note": "Typical 6:1 molar excess (Meher 2006)"},
+        "base_conversion":             {"value": 0.98,  "unit": "dimensionless", "note": "Max alkali conversion at design conditions"},
+        "ffa_penalty_per_pct":         {"value": 0.02,  "unit": "1/%FFA", "note": "2% yield loss per %FFA above 1% (Rashid 2008)"}
+    },
+    "valid_ranges": {
+        "temperature_degC":  {"min": 40.0, "max": 80.0, "unit": "degC"},
+        "moisture_fraction": {"min": 0.0,  "max": 0.30, "unit": "dimensionless", "note": "Low moisture critical; >0.5% water deactivates catalyst"},
+        "PLR":               {"min": 0.20, "max": 1.0,  "unit": "dimensionless"},
+        "feed_rate_kg_h":    {"min": 10.0, "max": 5000.0,"unit": "kg/h"}
+    }
+}

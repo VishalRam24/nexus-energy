@@ -1,0 +1,44 @@
+{
+  "component_id": "EC004",
+  "component_name": "Phosphoric Acid Fuel Cell (PAFC)",
+  "fidelity": "F1b — Polarization-Thermal (H3PO4 conductivity, Arrhenius cathode kinetics)",
+  "source": "Razaq et al. (1989); Appleby & Foulkes (1989); Li et al. (2003); Patel et al. (2012)",
+  "default_parameters": {
+    "T_ref": 453.15,
+    "N_cells": 100,
+    "A_cell": 400.0,
+    "pH2": 1.0,
+    "pO2": 0.21,
+    "j_L": 0.7,
+    "i0_ref": 5e-4,
+    "E_act": 70000.0,
+    "alpha": 0.5,
+    "B_conc": 0.012,
+    "sigma_ref_H3PO4": 0.15,
+    "E_act_sigma": 20000.0,
+    "t_acid": 0.03,
+    "E_tn_ref": 1.481,
+    "k_tn": 0.000126
+  },
+  "parameter_metadata": {
+    "T_ref":            {"description": "Reference temperature (180C)", "unit": "K", "default": 453.15},
+    "N_cells":          {"description": "Number of cells in stack", "unit": "-", "default": 100},
+    "A_cell":           {"description": "Active cell area", "unit": "cm2", "default": 400.0},
+    "pH2":              {"description": "Hydrogen partial pressure", "unit": "atm", "default": 1.0},
+    "pO2":              {"description": "Oxygen partial pressure (air)", "unit": "atm", "default": 0.21},
+    "j_L":              {"description": "Limiting current density (lower than PEMFC)", "unit": "A/cm2", "default": 0.7},
+    "i0_ref":           {"description": "Cathode exchange current density at T_ref", "unit": "A/cm2", "default": 5e-4},
+    "E_act":            {"description": "Activation energy for ORR in H3PO4 (cathode limited)", "unit": "J/mol", "default": 70000.0},
+    "alpha":            {"description": "Cathodic charge transfer coefficient", "unit": "-", "default": 0.5},
+    "B_conc":           {"description": "Concentration loss coefficient", "unit": "V", "default": 0.012},
+    "sigma_ref_H3PO4":  {"description": "H3PO4 electrolyte conductivity at T_ref", "unit": "S/cm", "default": 0.15, "notes": "95-100% H3PO4 at 177C"},
+    "E_act_sigma":      {"description": "Activation energy for H3PO4 ionic conductivity", "unit": "J/mol", "default": 20000.0},
+    "t_acid":           {"description": "H3PO4 electrolyte layer thickness", "unit": "cm", "default": 0.03},
+    "E_tn_ref":         {"description": "Thermoneutral voltage at 298K (HHV)", "unit": "V", "default": 1.481},
+    "k_tn":             {"description": "Temperature coefficient of thermoneutral voltage", "unit": "V/K", "default": 0.000126}
+  },
+  "valid_ranges": {
+    "current_density": {"min": 0.0, "max": 0.7, "unit": "A/cm2"},
+    "temperature":     {"min": 423.0, "max": 483.0, "unit": "K"}
+  }
+}

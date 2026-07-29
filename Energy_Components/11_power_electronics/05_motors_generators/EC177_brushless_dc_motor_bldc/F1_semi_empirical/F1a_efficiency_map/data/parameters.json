@@ -1,0 +1,22 @@
+{
+    "component": "EC177 Brushless DC Motor (BLDC)",
+    "fidelity": "F1a",
+    "description": "eta(PLR) = PLR/(PLR + c0 + c2*PLR^2); Kt=0.1 Nm/A; eta_peak=0.92",
+    "unit": {
+        "name": "Generic 1kW BLDC Motor",
+        "source": "Hanselman, D.C. (2006). Brushless Permanent Magnet Motor Design. Magna Physics.",
+        "rated_power": {"value": 1.0, "unit": "kW"},
+        "eta_rated": {"value": 0.92, "unit": "dimensionless", "note": "Peak efficiency at rated load"},
+        "omega_rated": {"value": 3000.0, "unit": "rpm", "note": "Rated speed"},
+        "Kt": {"value": 0.1, "unit": "Nm/A", "note": "Torque constant"},
+        "Ke": {"value": 0.1, "unit": "V/(rad/s)", "note": "Back-EMF constant (= Kt in SI)"},
+        "poles": {"value": 4, "unit": "dimensionless"},
+        "constant_loss_fraction": {"value": 0.35, "unit": "dimensionless", "note": "c0 = 0.35*(1/eta-1)"},
+        "variable_loss_fraction": {"value": 0.65, "unit": "dimensionless", "note": "c2 = 0.65*(1/eta-1)"}
+    },
+    "valid_ranges": {
+        "load_fraction": {"min": 0.05, "max": 1.2, "unit": "dimensionless"},
+        "torque_nm": {"min": 0.0, "max": 4.0, "unit": "Nm"},
+        "speed_rpm": {"min": 0.0, "max": 3600.0, "unit": "rpm"}
+    }
+}

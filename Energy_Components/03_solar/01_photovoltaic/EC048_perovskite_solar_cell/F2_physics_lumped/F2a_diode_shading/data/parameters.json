@@ -1,0 +1,24 @@
+{
+    "component_id": "EC048",
+    "component_name": "Perovskite Solar Cell",
+    "fidelity": "F2a -- Single-Diode Cell-Level + Bypass Diode + Partial Shading",
+    "source": "Miyano et al. (2016) Acc. Chem. Res.; Tress (2017) J. Phys. Chem. Lett.; typical MAPbI3 module",
+    "module": {
+        "name": "Generic MAPbI3 perovskite module (24-cell thin-film)",
+        "N_s": {"value": 24, "unit": "cells", "note": "Cells in series, thin-film monolithic interconnect"},
+        "I_L_ref": {"value": 2.0, "unit": "A", "note": "Photo-current at STC; ~20 mA/cm2 for 100 cm2 active area per cell"},
+        "I_o_ref": {"value": 1.0e-11, "unit": "A", "note": "Saturation current at STC; fitted for Voc~1.1V with n=1.8"},
+        "R_s_cell": {"value": 0.05, "unit": "Ohm", "note": "Series resistance per cell; ~5 Ohm*cm2 / 100 cm2"},
+        "R_sh_cell": {"value": 10.0, "unit": "Ohm", "note": "Shunt resistance per cell; ~1000 Ohm*cm2 / 100 cm2"},
+        "n_diode": {"value": 1.8, "unit": "-", "note": "Ideality factor; 1.5-2.0 typical for trap-assisted recombination"},
+        "E_g": {"value": 1.55, "unit": "eV", "note": "Bandgap energy MAPbI3"},
+        "alpha_sc": {"value": 0.0002, "unit": "A/K", "note": "Isc temperature coefficient; much smaller than Si"},
+        "V_bypass": {"value": -0.7, "unit": "V", "note": "Bypass diode forward voltage"},
+        "T_ref": {"value": 298.15, "unit": "K"},
+        "G_ref": {"value": 1000.0, "unit": "W/m2"}
+    },
+    "valid_ranges": {
+        "irradiance": {"min": 0.0, "max": 1200.0, "unit": "W/m2"},
+        "temperature": {"min": -20.0, "max": 80.0, "unit": "degC"}
+    }
+}

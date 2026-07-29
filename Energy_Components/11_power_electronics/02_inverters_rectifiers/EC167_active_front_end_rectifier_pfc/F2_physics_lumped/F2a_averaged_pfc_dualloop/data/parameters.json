@@ -1,0 +1,35 @@
+{
+    "component_id": "EC167",
+    "component_name": "Active Front End Rectifier / PFC (boost)",
+    "fidelity": "F2a — Averaged Boost-PFC with Dual-Loop Control (DC-link cap ODE)",
+    "source": "Mohan, Undeland & Robbins (2003) Power Electronics 3rd ed., Ch.18; Erickson & Maksimovic (2001) Fundamentals of Power Electronics 2nd ed., Ch.18 (low-harmonic rectifiers)",
+    "note": "Single-phase boost power-factor-correction (PFC) front end. Inner average-current loop forces inductor current to track a rectified-sine reference (near-unity PF, low THD); outer loop regulates DC-link voltage via the bulk-cap energy-balance ODE integrated with scipy.solve_ivp.",
+    "unit": {
+        "name": "Generic 3 kW single-phase boost-PFC front end (230 Vac, 50 Hz, 400 V DC-link)",
+        "V_line_rms": {"value": 230.0, "unit": "V", "note": "RMS line (mains) voltage"},
+        "f_line": {"value": 50.0, "unit": "Hz", "note": "Line frequency"},
+        "f_sw": {"value": 65000.0, "unit": "Hz", "note": "Boost switching frequency (CCM)"},
+        "L_boost": {"value": 0.001, "unit": "H", "note": "Boost inductor (1 mH)"},
+        "R_L": {"value": 0.15, "unit": "Ohm", "note": "Inductor + line ESR (conduction path)"},
+        "C_dc": {"value": 0.00094, "unit": "F", "note": "DC-link bulk capacitor (940 uF)"},
+        "V_dc_ref": {"value": 400.0, "unit": "V", "note": "DC-link voltage setpoint (> V_peak = 325 V)"},
+        "P_load_rated": {"value": 3000.0, "unit": "W", "note": "Rated DC load power"},
+        "V_f_diode": {"value": 0.9, "unit": "V", "note": "Boost output diode forward drop"},
+        "r_d_diode": {"value": 0.02, "unit": "Ohm", "note": "Output diode on-resistance"},
+        "R_ds_on": {"value": 0.045, "unit": "Ohm", "note": "Boost MOSFET on-resistance"},
+        "E_sw_ref": {"value": 4.0e-5, "unit": "J", "note": "MOSFET turn-on+off energy at V_ref/I_ref"},
+        "V_sw_ref": {"value": 400.0, "unit": "V", "note": "Reference voltage for switching-loss scaling"},
+        "I_sw_ref": {"value": 20.0, "unit": "A", "note": "Reference current for switching-loss scaling"},
+        "Kp_i": {"value": 0.45, "unit": "1/A", "note": "Inner current-loop proportional gain (duty per amp error)"},
+        "Ki_i": {"value": 600.0, "unit": "1/(A.s)", "note": "Inner current-loop integral gain"},
+        "Kp_v": {"value": 0.18, "unit": "A/V", "note": "Outer voltage-loop proportional gain"},
+        "Ki_v": {"value": 6.0, "unit": "A/(V.s)", "note": "Outer voltage-loop integral gain"}
+    },
+    "valid_ranges": {
+        "V_line_rms": {"min": 90.0, "max": 265.0, "unit": "V"},
+        "f_line": {"min": 45.0, "max": 65.0, "unit": "Hz"},
+        "V_dc_ref": {"min": 360.0, "max": 450.0, "unit": "V"},
+        "P_load": {"min": 0.0, "max": 3300.0, "unit": "W"},
+        "duration_s": {"min": 0.02, "max": 2.0, "unit": "s"}
+    }
+}

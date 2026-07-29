@@ -1,0 +1,30 @@
+{
+    "component": "EC020 NCA Battery (Nickel-Cobalt-Aluminum)",
+    "fidelity": "F1a",
+    "description": "Semi-empirical SOC-only voltage model for NCA Li-ion battery",
+    "source": "Tremblay & Dessaint (2009), IEEE Trans. Veh. Technol.; Panasonic NCR18650B datasheet",
+    "cell": {
+        "name": "Panasonic NCR18650B (NCA)",
+        "chemistry": "NCA (LiNiCoAlO2)",
+        "capacity": {"value": 3.35, "unit": "Ah"},
+        "voltage_nominal": {"value": 3.6, "unit": "V"},
+        "voltage_max": {"value": 4.2, "unit": "V"},
+        "voltage_min": {"value": 2.5, "unit": "V"},
+        "internal_resistance": {"value": 0.045, "unit": "Ohm"},
+        "max_discharge_current": {"value": 15.0, "unit": "A", "note": "4.5C continuous"},
+        "max_charge_current": {"value": 6.7, "unit": "A", "note": "2C continuous"}
+    },
+    "ocv_coefficients": {
+        "note": "OCV(SOC) = a0 + a1*SOC + a2*SOC^2 + a3*SOC^3 + a4*SOC^4 + a5*SOC^5",
+        "a0": 2.7,
+        "a1": 3.8,
+        "a2": -14.0,
+        "a3": 28.0,
+        "a4": -25.0,
+        "a5": 8.7
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "current": {"min": -15.0, "max": 15.0, "unit": "A", "note": "positive=discharge, negative=charge"}
+    }
+}

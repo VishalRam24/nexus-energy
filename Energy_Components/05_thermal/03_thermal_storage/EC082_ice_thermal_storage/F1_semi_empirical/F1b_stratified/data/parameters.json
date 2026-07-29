@@ -1,0 +1,27 @@
+{
+    "component": "EC082 Ice Thermal Storage",
+    "fidelity": "F1b",
+    "description": "Stratified ice-on-coil TES. Ice forms from bottom upward (cold glycol coils at base); discharge melts ice from top down (warm return contacts upper ice surface). Multi-node vertical stratification + heat loss through tank walls.",
+    "unit": {
+        "name": "Generic 500 kWh_th stratified ice-on-coil TES with 8 vertical nodes",
+        "source": "ASHRAE (2020) HVAC Systems ch.51; Dincer & Rosen (2021) Thermal Energy Storage, 3rd ed., Wiley; MacPhee, D., Dincer, I. (2009). Int. J. Heat Mass Transfer 52, 1753-1762; Jekel, T.B. et al. (1993). ASHRAE Trans. 99, 1016-1024.",
+        "capacity_kwh":      {"value": 500.0,  "unit": "kWh_th"},
+        "T_phase_change":    {"value": 0.0,    "unit": "degC"},
+        "h_fusion":          {"value": 334.0,  "unit": "kJ/kg"},
+        "mass_water_kg":     {"value": 5390.0, "unit": "kg", "note": "500*3600/334"},
+        "Q_charge_max":      {"value": 120.0,  "unit": "kW_th"},
+        "Q_discharge_max":   {"value": 200.0,  "unit": "kW_th"},
+        "UA_loss":           {"value": 25.0,   "unit": "W/K", "note": "Total heat-loss UA (tank walls + lid + floor)"},
+        "T_amb_default":     {"value": 20.0,   "unit": "degC"},
+        "N_nodes":           {"value": 8,      "unit": "-", "note": "Vertical nodes; node 1=bottom (coldest during charging), node N=top"},
+        "k_axial":           {"value": 0.8,    "unit": "W/K", "note": "Effective axial thermal conductance between adjacent nodes (conduction through ice + water layer); MacPhee & Dincer (2009)"},
+        "charge_effectiveness": {"value": 0.90, "unit": "-", "note": "Heat-transfer effectiveness of coil during charging (fraction of theoretical freezing rate achieved)"},
+        "discharge_effectiveness": {"value": 0.85, "unit": "-", "note": "Melt effectiveness on discharge; slightly lower due to ice-water film resistance — Jekel et al. (1993)"}
+    },
+    "valid_ranges": {
+        "soc_node":   {"min": 0.0, "max": 1.0, "unit": "-", "note": "Ice fraction per node"},
+        "q_charge":   {"min": 0.0, "max": 150000.0, "unit": "W"},
+        "q_discharge":{"min": 0.0, "max": 250000.0, "unit": "W"},
+        "t_ambient":  {"min": -10.0, "max": 40.0,  "unit": "degC"}
+    }
+}

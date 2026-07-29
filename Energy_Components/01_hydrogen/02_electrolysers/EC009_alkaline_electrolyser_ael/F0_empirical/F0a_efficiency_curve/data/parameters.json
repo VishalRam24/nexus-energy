@@ -1,0 +1,52 @@
+{
+  "component_id": "EC009",
+  "component_name": "Alkaline Electrolyser (AEL)",
+  "fidelity": "F0a \u2014 empirical lookup",
+  "version": "1.0.0",
+  "source": "Ulleberg (2003), IJHE, 28(1), 21-33 (F1a params reused)",
+  "metric": "h2_production_efficiency_LHV",
+  "note": "AEL efficiency ~60-72%; mature, slightly lower than PEM at part load due to bubble overpotential.",
+  "lookup": {
+    "load_fraction": {
+      "value": [
+        0.0,
+        0.1,
+        0.2,
+        0.4,
+        0.6,
+        0.8,
+        1.0
+      ],
+      "unit": "-",
+      "note": "Breakpoints: fraction of rated power"
+    },
+    "efficiency": {
+      "value": [
+        0.0,
+        0.74,
+        0.73,
+        0.7,
+        0.65,
+        0.6,
+        0.55
+      ],
+      "unit": "-",
+      "note": "Empirical efficiency at each load (LHV basis)"
+    }
+  },
+  "rated": {
+    "load_fraction": {
+      "value": 0.6,
+      "unit": "-"
+    },
+    "efficiency": {
+      "value": 0.65,
+      "unit": "-",
+      "note": "Datasheet rated efficiency"
+    },
+    "P_rated": {
+      "value": 5000.0,
+      "unit": "W"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+    "component_id": "EC087",
+    "component_name": "Biomass Boiler",
+    "fidelity": "F2a — Combustion + Flue-Gas Energy Balance + Lumped Thermal-Mass ODE",
+    "source": "Basu, P. (2013) Biomass Gasification, Pyrolysis and Torrefaction, 2nd ed., Academic Press; van Loo & Koppejan (2008) Handbook of Biomass Combustion and Co-firing, Earthscan; Obernberger & Thek (2008) The Pellet Handbook; EN 303-5:2012; Jenkins et al. (1998) Prog. Energy Comb. Sci. 24, 47-81.",
+    "unit": {
+        "name": "Generic 50 kW Modulating Biomass (Wood-Pellet) Boiler — Physics-Lumped",
+        "Q_rated": {"value": 50.0, "unit": "kW", "note": "Rated useful thermal output to water"},
+        "LHV_dry_MJ_kg": {"value": 19.0, "unit": "MJ/kg", "note": "Dry-basis LHV of wood pellets (EN ISO 18125)"},
+        "moisture_content": {"value": 0.12, "unit": "-", "note": "Moisture mass fraction, wet basis; EN+ pellets <=0.10, chips 0.20-0.35 — PRESERVED moisture->LHV coupling from F1"},
+        "h_fg_water": {"value": 2442.0, "unit": "kJ/kg", "note": "Latent heat of vaporisation of water at ~25 degC (Obernberger & Thek 2008)"},
+        "stoich_afr": {"value": 5.7, "unit": "-", "note": "Stoichiometric dry air-fuel mass ratio for cellulosic biomass (Basu 2013, Table 3.x)"},
+        "excess_air_ratio": {"value": 1.30, "unit": "-", "note": "Excess-air ratio lambda; 1.2-1.5 typical for biomass grate combustion (van Loo & Koppejan 2008)"},
+        "cp_flue": {"value": 1.10, "unit": "kJ/(kg.K)", "note": "Mean specific heat of biomass flue gas 20-200 degC (van Loo & Koppejan 2008, ~1.05-1.15)"},
+        "cp_water": {"value": 4.186, "unit": "kJ/(kg.K)", "note": "Specific heat of liquid water at ~60 degC (NIST/IAPWS, 4.18-4.19)"},
+        "m_water": {"value": 120.0, "unit": "kg", "note": "Lumped water/jacket thermal mass (water content of boiler block)"},
+        "m_metal": {"value": 250.0, "unit": "kg", "note": "Boiler steel/cast-iron mass participating in thermal inertia"},
+        "cp_metal": {"value": 0.49, "unit": "kJ/(kg.K)", "note": "Specific heat of carbon steel (Incropera, ~0.49)"},
+        "T_flue_full": {"value": 180.0, "unit": "degC", "note": "Flue-gas exit temperature at full load (higher than NG due to char/ash)"},
+        "T_air": {"value": 20.0, "unit": "degC", "note": "Combustion air / ambient inlet temperature"},
+        "UA_loss": {"value": 0.10, "unit": "kW/K", "note": "Casing standby conductance to ambient (lumped)"},
+        "UA_water": {"value": 8.0, "unit": "kW/K", "note": "Heat-transfer conductance combustion gas -> boiler water mass"},
+        "combustion_efficiency": {"value": 0.985, "unit": "-", "note": "Fraction of fuel LHV released (1 - unburnt-carbon loss); biomass 0.97-0.99 (van Loo & Koppejan 2008)"},
+        "PLR_min": {"value": 0.15, "unit": "-", "note": "Minimum stable modulation (turn-down) ratio"},
+        "tau_fuel": {"value": 30.0, "unit": "s", "note": "First-order fuel-feed / combustion lag time constant"}
+    },
+    "valid_ranges": {
+        "PLR": {"min": 0.0, "max": 1.0, "unit": "-"},
+        "moisture_content": {"min": 0.0, "max": 0.55, "unit": "-"},
+        "excess_air_ratio": {"min": 1.05, "max": 2.5, "unit": "-"},
+        "T_water_init": {"min": 280.0, "max": 370.0, "unit": "K"},
+        "dt": {"min": 0.1, "max": 10.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 36000.0, "unit": "s"}
+    }
+}

@@ -1,0 +1,35 @@
+{
+    "component": "EC048 Perovskite Solar Cell",
+    "fidelity": "F1a",
+    "description": "Single-diode model (De Soto 5-parameter) adapted for perovskite — lab-scale 25 cm2 cell",
+    "module": {
+        "name": "Lab-scale MAPbI3 perovskite cell (25 cm2)",
+        "source": "Miyano et al. (2016), J. Phys. Chem. Lett., 7, 2199-2202; NREL Efficiency Chart 2024",
+        "technology": "Perovskite (MAPbI3)",
+        "p_mp_stc": {"value": 0.5, "unit": "W", "note": "25 cm2 cell at 20% efficiency: 1000*0.0025*0.20=0.5W (Vmp*Imp=1.0*0.5)"},
+        "v_oc_stc": {"value": 1.18, "unit": "V", "note": "Higher than Si due to bandgap 1.55 eV"},
+        "i_sc_stc": {"value": 0.628, "unit": "A", "note": "25.1 mA/cm2 x 25 cm2"},
+        "v_mp_stc": {"value": 1.0, "unit": "V"},
+        "i_mp_stc": {"value": 0.5, "unit": "A"},
+        "alpha_sc": {"value": 0.0003, "unit": "A/K", "note": "Low temp coefficient typical of perovskites"},
+        "cells_in_series": {"value": 1, "unit": "cells"},
+        "n_diode": {"value": 1.5, "unit": "dimensionless", "note": "Higher ideality factor for perovskite"},
+        "area": {"value": 25e-4, "unit": "m2", "note": "25 cm2 = 25e-4 m2"}
+    },
+    "desoto_params": {
+        "description": "De Soto 5-parameter single-diode model coefficients at STC — perovskite adapted",
+        "source": "De Soto et al. (2006); perovskite parameters from Miyano et al. (2016)",
+        "I_L_ref": {"value": 0.6347, "unit": "A", "note": "Light-generated current at STC (fitted to match Isc, Vmp, Imp)"},
+        "I_o_ref": {"value": 2.525e-14, "unit": "A", "note": "Saturation current fitted to Voc=1.18V, n=1.5 single cell"},
+        "R_s": {"value": 0.0938, "unit": "Ohm", "note": "Series resistance fitted to Vmp=1.0V, Imp=0.5A"},
+        "R_sh_ref": {"value": 8.81, "unit": "Ohm", "note": "Shunt resistance fitted to match MPP"},
+        "a_ref": {"value": 0.03854, "unit": "V", "note": "Modified ideality factor: n*Ns*k*T/q = 1.5*1*0.02569 at 298.15K"},
+        "EgRef": {"value": 1.55, "unit": "eV", "note": "Perovskite (MAPbI3) bandgap — higher than Si 1.12 eV"},
+        "dEgdT": {"value": -0.00045, "unit": "eV/K", "note": "Perovskite bandgap temp coefficient"}
+    },
+    "valid_ranges": {
+        "irradiance": {"min": 0.0, "max": 1200.0, "unit": "W/m2"},
+        "cell_temperature": {"min": -10.0, "max": 80.0, "unit": "degC"},
+        "note": "STC = 1000 W/m2, 25C cell temperature"
+    }
+}

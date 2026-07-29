@@ -1,0 +1,8 @@
+{
+  "default_parameters": {
+    "eta": 0.87,
+    "LHV_MJ_per_kg": 42.6,
+    "P_rated_kW": 500.0
+  },
+  "description": "Oil-fired boiler F1a: Q_out=eta*m_fuel*LHV. eta=0.87, LHV=42.6 MJ/kg, P_rated=500 kW."
+}

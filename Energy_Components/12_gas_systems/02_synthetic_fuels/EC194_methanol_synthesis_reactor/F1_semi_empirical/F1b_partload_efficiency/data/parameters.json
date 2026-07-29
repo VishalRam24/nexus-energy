@@ -1,0 +1,31 @@
+{
+    "component": "EC194 Methanol Synthesis Reactor",
+    "fidelity": "F1b",
+    "description": "Cu/ZnO/Al2O3 methanol synthesis with part-load conversion correction and thermal integration credit",
+    "unit": {
+        "name": "Cu/ZnO/Al2O3 Fixed-Bed Methanol Reactor",
+        "source": "Graaf, G.H. et al. (1988). Chem. Eng. Sci., 43(12), 3185-3195.",
+        "T_design": {"value": 250.0, "unit": "degC"},
+        "P_design": {"value": 80.0, "unit": "bar"},
+        "H2_CO_ratio_design": {"value": 2.1, "unit": "mol/mol"},
+        "n_CO_in": {"value": 1.0, "unit": "mol/s"},
+        "X_max": {"value": 0.75, "unit": "dimensionless", "note": "Equilibrium-limited per-pass conversion"},
+        "T_opt": {"value": 250.0, "unit": "degC"},
+        "k_T": {"value": 8.0, "unit": "dimensionless"},
+        "P_ref": {"value": 80.0, "unit": "bar"},
+        "P_exp": {"value": 0.15, "unit": "dimensionless"},
+        "LHV_MeOH": {"value": 638.1, "unit": "kJ/mol"},
+        "LHV_H2": {"value": 241.8, "unit": "kJ/mol"},
+        "DH_reaction": {"value": -90.6, "unit": "kJ/mol_CO", "note": "CO + 2H2 → CH3OH, ΔH298 = -90.6 kJ/mol"},
+        "f_recovery": {"value": 0.70, "unit": "dimensionless"},
+        "PLR_coeffs": {"value": [0.15, 1.25, -0.40], "unit": "dimensionless",
+                        "note": "Quadratic PLR correction: normalized so f(PLR=1)=1"},
+        "selectivity_design": {"value": 0.92, "unit": "dimensionless"}
+    },
+    "valid_ranges": {
+        "temperature": {"min": 200.0, "max": 300.0, "unit": "degC"},
+        "pressure": {"min": 50.0, "max": 120.0, "unit": "bar"},
+        "h2_co_ratio": {"min": 1.8, "max": 2.5, "unit": "mol/mol"},
+        "PLR": {"min": 0.3, "max": 1.0, "unit": "dimensionless"}
+    }
+}

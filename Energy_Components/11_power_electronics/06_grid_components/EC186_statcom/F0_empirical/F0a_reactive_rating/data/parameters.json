@@ -1,0 +1,55 @@
+{
+    "component": "EC186 STATCOM",
+    "fidelity": "F0a",
+    "description": "Empirical reactive-output rating with linear loss lookup; Q clamped to [Q_min, Q_max]",
+    "source": "Hingorani & Gyugyi (2000), Understanding FACTS, Ch. 6 (reused from F1a)",
+    "Q_max": {
+        "value": 100.0,
+        "unit": "MVAR",
+        "note": "max capacitive output (reused from F1a)"
+    },
+    "Q_min": {
+        "value": -100.0,
+        "unit": "MVAR",
+        "note": "max inductive output (reused from F1a)"
+    },
+    "V_rated_kV": {
+        "value": 132.0,
+        "unit": "kV"
+    },
+    "loss_factor": {
+        "value": 0.015,
+        "unit": "dimensionless",
+        "note": "loss as fraction of |Q_out| (reused from F1a)"
+    },
+    "q_fraction_breakpoints": {
+        "value": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+        ],
+        "unit": "fraction_of_Q_max"
+    },
+    "loss_fraction_breakpoints": {
+        "value": [
+            0.0,
+            0.00375,
+            0.0075,
+            0.01125,
+            0.015
+        ],
+        "unit": "dimensionless",
+        "note": "loss / |Q| at each output level"
+    },
+    "response_time_ms": {
+        "value": 5.0,
+        "unit": "ms"
+    },
+    "P_standby_MW": {
+        "value": 0.5,
+        "unit": "MW",
+        "note": "no-load aux losses (reused from F1a)"
+    }
+}

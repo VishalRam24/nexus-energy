@@ -1,0 +1,56 @@
+{
+  "component_id": "EC017",
+  "component_name": "Hydrogen Purifier (PSA)",
+  "fidelity": "F0a \u2014 empirical lookup",
+  "version": "1.0.0",
+  "source": "Sircar & Golden (2000) Sep. Sci. Technol.; DOE H2 Program (F1a params reused)",
+  "metric": "recovery_vs_feed_h2",
+  "note": "PSA H2 recovery vs feed H2 fraction; nominal 85% at y=0.75 (SMR reformate). Product purity 99.99%, specific energy 1.5 kWh/kg.",
+  "lookup": {
+    "feed_h2_fraction": {
+      "value": [
+        0.3,
+        0.5,
+        0.65,
+        0.75,
+        0.85,
+        0.95,
+        0.999
+      ],
+      "unit": "mol_fraction",
+      "note": "Feed H2 mole fraction breakpoints"
+    },
+    "recovery_fraction": {
+      "value": [
+        0.62,
+        0.72,
+        0.8,
+        0.85,
+        0.87,
+        0.89,
+        0.9
+      ],
+      "unit": "-",
+      "note": "H2 recovery fraction"
+    }
+  },
+  "rated": {
+    "feed_h2_fraction": {
+      "value": 0.75,
+      "unit": "mol_fraction"
+    },
+    "recovery_fraction": {
+      "value": 0.85,
+      "unit": "-",
+      "note": "Nominal recovery"
+    },
+    "purity": {
+      "value": 0.9999,
+      "unit": "mol_fraction"
+    },
+    "specific_energy": {
+      "value": 1.5,
+      "unit": "kWh/kg_H2"
+    }
+  }
+}

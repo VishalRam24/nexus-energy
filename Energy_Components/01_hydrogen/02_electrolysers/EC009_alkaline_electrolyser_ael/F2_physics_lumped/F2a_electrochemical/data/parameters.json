@@ -1,0 +1,28 @@
+{
+    "component": "EC009 Alkaline Electrolyser (AEL)",
+    "fidelity": "F2a",
+    "description": "Electrochemical model with Nernst + Butler-Volmer activation + ohmic (KOH + diaphragm) + bubble coverage",
+    "unit": {
+        "name": "Generic 30-cell AEL stack",
+        "source": "Ulleberg (2003); Haug et al. (2017)",
+        "N_cells": {"value": 30, "unit": "dimensionless"},
+        "electrode_area_m2": {"value": 0.25, "unit": "m2"},
+        "n": {"value": 2, "unit": "dimensionless"},
+        "alpha": {"value": 0.5, "unit": "dimensionless"},
+        "j0_anode": {"value": 30.0, "unit": "A/m2", "note": "OER exchange current density"},
+        "j0_cathode": {"value": 100.0, "unit": "A/m2", "note": "HER exchange current density"},
+        "d_gap_m": {"value": 0.005, "unit": "m", "note": "electrode gap"},
+        "t_dia_m": {"value": 0.0005, "unit": "m", "note": "diaphragm thickness"},
+        "sigma_dia": {"value": 10.0, "unit": "S/m", "note": "diaphragm conductivity"},
+        "k_bubble": {"value": 0.03, "unit": "dimensionless", "note": "bubble coverage coeff"},
+        "f1": {"value": 0.995, "unit": "dimensionless"},
+        "f2": {"value": 2.5, "unit": "A2"},
+        "E_rev_ref": {"value": 1.229, "unit": "V"},
+        "E_rev_T_coeff": {"value": 0.0009, "unit": "V/K"}
+    },
+    "valid_ranges": {
+        "current_density": {"min": 100.0, "max": 6000.0, "unit": "A/m2"},
+        "T_K": {"min": 323.0, "max": 363.0, "unit": "K"},
+        "koh_wt_pct": {"min": 20.0, "max": 40.0, "unit": "%"}
+    }
+}

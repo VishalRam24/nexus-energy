@@ -1,0 +1,46 @@
+{
+  "component": "EC199 Pre-Combustion Capture (WGS + Separation)",
+  "fidelity": "F0a -- empirical lookup",
+  "source": "IEAGHG (2014) Rpt 2012/8; Kunze & Spliethoff (2012) Appl. Energy 94:109.",
+  "unit": {
+    "source": "IEAGHG (2014) Rpt 2012/8; Kunze & Spliethoff (2012) Appl. Energy 94:109.",
+    "eta_sep_design": {
+      "value": 0.97,
+      "unit": "-",
+      "note": "Selexol separation efficiency"
+    },
+    "E_sep_base": {
+      "value": 0.3,
+      "unit": "GJ/tCO2",
+      "note": "Selexol separation energy"
+    },
+    "E_compression": {
+      "value": 0.1,
+      "unit": "GJ/tCO2",
+      "note": "CO2 compression to pipeline"
+    },
+    "X_WGS_max": {
+      "value": 0.95,
+      "unit": "-"
+    }
+  },
+  "wgs_curve": {
+    "T_C": [
+      180,
+      220,
+      250,
+      300,
+      350,
+      420
+    ],
+    "X_WGS": [
+      0.78,
+      0.9,
+      0.95,
+      0.9,
+      0.8,
+      0.62
+    ],
+    "note": "CO conversion peaks at low-T shift optimum (~250 C), falls at high T (equilibrium)."
+  }
+}

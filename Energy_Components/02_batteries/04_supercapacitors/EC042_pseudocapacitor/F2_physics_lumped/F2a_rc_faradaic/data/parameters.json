@@ -1,0 +1,39 @@
+{
+    "component_id": "EC042",
+    "component_name": "Pseudocapacitor",
+    "fidelity": "F2a — RC-Ladder + Voltage-Dependent Faradaic Pseudocapacitance + Redox Kinetics + Thermal ODE",
+    "description": "Physics-lumped pseudocapacitor (e.g. RuO2 / MnO2 / conducting polymer). Combines an electrostatic double-layer capacitance with a voltage-dependent FARADAIC pseudocapacitance C_far(V) from fast, reversible proton-coupled redox surface reactions. A two-branch RC ladder (fast accessible surface + slow porous/bulk redox sites) reproduces the rate-dependent capacitance loss at high current. Charge-transfer (redox) kinetics via Butler-Volmer limit usable pseudocapacitance at high rate. Leakage from faradaic side reactions, and a lumped thermal ODE (Joule + reversible entropic redox heat) integrated with scipy.solve_ivp.",
+    "source": "Conway, B. E. (1999). Electrochemical Supercapacitors: Scientific Fundamentals and Technological Applications. Kluwer Academic/Plenum, New York. Chs. 10-11 (pseudocapacitance, C(V)).",
+    "cell": {
+        "name": "Generic RuO2 pseudocapacitor cell, 1 V class (aqueous H2SO4)",
+        "source": "Conway (1999) Electrochemical Supercapacitors; Trasatti & Buzzanca (1971) J. Electroanal. Chem. 29, A1; Zheng, Cygan & Jow (1995) J. Electrochem. Soc. 142, 2699; Sugimoto et al. (2006) Electrochim. Acta 52, 1742; Simon & Gogotsi (2008) Nature Materials 7, 845",
+        "C_dl": {"value": 40.0, "unit": "F", "note": "Electrostatic double-layer capacitance (non-faradaic). EDLC contribution is roughly voltage-independent. For RuO2 the EDL is a minor fraction (~15-25%) of total stored charge; the rest is faradaic."},
+        "C_far0": {"value": 160.0, "unit": "F", "note": "Baseline faradaic pseudocapacitance scale at the redox mid-potential. Total low-rate capacitance C_dl + ~C_far0 ~ 200 F (matches F1 RuO2 cell). RuO2 cells report 720-900 F/g; here lumped to a 200 F module."},
+        "esr_ref": {"value": 0.005, "unit": "Ohm", "note": "Series (ohmic) ESR at T_ref: electrolyte + contact + bulk electronic resistance (~5 mOhm). Source: Zheng et al. (1995)."},
+        "R_ct_ref": {"value": 0.020, "unit": "Ohm", "note": "Linearised charge-transfer (redox) resistance of the slow porous branch at T_ref. Governs high-rate pseudocapacitance fade. Source: Conway (1999) Ch.11 EIS of RuO2."},
+        "v_max": {"value": 1.0, "unit": "V", "note": "Rated voltage for RuO2 in H2SO4 (window ~1 V). MnO2 in neutral electrolyte also ~1 V."},
+        "v_min": {"value": 0.0, "unit": "V"},
+        "v_redox": {"value": 0.5, "unit": "V", "note": "Centre of the redox pseudocapacitance peak (mid of 0-1 V window). RuO2 shows a broad, nearly rectangular CV from a series of overlapping surface redox transitions centred mid-window. Source: Conway (1999); Trasatti & Buzzanca (1971)."},
+        "v_width": {"value": 0.35, "unit": "V", "note": "Half-width of the Gaussian-broadened faradaic C(V) hump. Reflects the spread of redox site energies giving the broad mirror-image CV of RuO2."},
+        "leakage_resistance": {"value": 2000.0, "unit": "Ohm", "note": "Self-discharge resistance; pseudocapacitors leak more than EDLC due to faradaic side reactions / parasitic redox. Source: Simon & Gogotsi (2008)."}
+    },
+    "thermal": {
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 degC)"},
+        "E_a_esr": {"value": 12000.0, "unit": "J/mol", "note": "Activation energy for series ESR (faradaic charge-transfer activation at RuO2 surface, higher than EDLC's ~8 kJ/mol). Source: Sugimoto et al. (2006); Zheng et al. (1995)."},
+        "E_a_ct": {"value": 20000.0, "unit": "J/mol", "note": "Activation energy of the redox charge-transfer resistance R_ct. Redox kinetics are more strongly thermally activated than ohmic transport. Source: Conway (1999) Ch.11."},
+        "alpha_C": {"value": 0.004, "unit": "1/K", "note": "Capacitance temperature coefficient (~0.4%/K). Pseudocapacitance rises with T via improved proton/ion kinetics. Source: Conway (1999); Sugimoto et al. (2006)."},
+        "dOCV_dT_specific": {"value": -0.0002, "unit": "V/K", "note": "Entropic coefficient for RuO2 + H+ + e- <-> RuO(OH) proton insertion (~-0.2 mV/K). Drives reversible heat. Source: Conway (1999); Trasatti & Buzzanca (1971)."},
+        "m_cell": {"value": 0.05, "unit": "kg", "note": "Lumped cell thermal mass (50 g module incl. electrodes, electrolyte, packaging)."},
+        "cp_cell": {"value": 900.0, "unit": "J/(kg.K)", "note": "Effective specific heat (carbon/RuO2 + aqueous electrolyte + casing average)."},
+        "hA_cool": {"value": 0.15, "unit": "W/K", "note": "Natural-convection heat-transfer coefficient times surface area to ambient."},
+        "T_ambient": {"value": 298.15, "unit": "K", "note": "Ambient / coolant sink temperature."},
+        "R_gas": {"value": 8.314, "unit": "J/(mol*K)"}
+    },
+    "valid_ranges": {
+        "v_cap": {"min": 0.0, "max": 1.0, "unit": "V"},
+        "current": {"min": -100.0, "max": 100.0, "unit": "A", "note": "Negative=charge, Positive=discharge"},
+        "temperature": {"min": 243.15, "max": 333.15, "unit": "K", "note": "-30 to 60 degC; narrow due to aqueous electrolyte"},
+        "dt": {"min": 0.001, "max": 1.0, "unit": "s"},
+        "duration_s": {"min": 0.1, "max": 3600.0, "unit": "s"}
+    }
+}

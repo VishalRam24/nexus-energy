@@ -1,0 +1,22 @@
+{
+    "component": "EC167 Active Front End Rectifier with PFC",
+    "fidelity": "F1a",
+    "description": "V_dc controlled (boost); PF ~ 1.0; fixed efficiency eta",
+    "unit": {
+        "name": "Generic Active Front End PFC Rectifier",
+        "source": "Mohan, N. (2003). Power Electronics. Wiley.; IEC 61000-3-2",
+        "eta": {"value": 0.97, "unit": "dimensionless", "note": "High efficiency via PWM control and boost topology"},
+        "p_rated": {"value": 50000.0, "unit": "W", "note": "50 kW rated"},
+        "v_dc_set": {"value": 700.0, "unit": "V", "note": "Controlled DC output voltage"},
+        "v_ll_nominal": {"value": 400.0, "unit": "V", "note": "3-phase AC line-to-line RMS"},
+        "pf_nominal": {"value": 1.0, "unit": "dimensionless", "note": "Unity power factor (sinusoidal current)"},
+        "thd_i": {"value": 0.03, "unit": "dimensionless", "note": "Current THD < 3% for boost PFC"},
+        "v_dc_min": {"value": 600.0, "unit": "V", "note": "Minimum controllable V_dc"},
+        "v_dc_max": {"value": 800.0, "unit": "V", "note": "Maximum controllable V_dc"}
+    },
+    "valid_ranges": {
+        "v_ll": {"min": 300.0, "max": 500.0, "unit": "V"},
+        "v_dc_set": {"min": 600.0, "max": 800.0, "unit": "V"},
+        "p_out": {"min": 0.0, "max": 55000.0, "unit": "W"}
+    }
+}

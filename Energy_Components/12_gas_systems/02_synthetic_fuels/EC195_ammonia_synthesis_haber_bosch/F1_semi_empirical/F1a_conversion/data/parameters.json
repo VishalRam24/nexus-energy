@@ -1,0 +1,26 @@
+{
+    "component": "EC195 Ammonia Synthesis (Haber-Bosch)",
+    "fidelity": "F1a",
+    "description": "Per-pass conversion model: N2 + 3H2 -> 2NH3 with equilibrium limit",
+    "unit": {
+        "name": "Iron-Catalyzed Haber-Bosch Reactor",
+        "source": "Appl, M. (2011). Ammonia. In Ullmann's Encyclopedia of Industrial Chemistry.",
+        "T_design": {"value": 450.0, "unit": "degC"},
+        "P_design": {"value": 200.0, "unit": "bar"},
+        "T_ref": {"value": 450.0, "unit": "degC"},
+        "P_ref": {"value": 200.0, "unit": "bar"},
+        "X_ref": {"value": 0.15, "unit": "dimensionless", "note": "Per-pass conversion at design conditions"},
+        "E_a_R": {"value": 8000.0, "unit": "K", "note": "Activation energy / R (Arrhenius) for per-pass conversion"},
+        "P_exp": {"value": 0.5, "unit": "dimensionless", "note": "Pressure exponent for per-pass conversion"},
+        "catalyst": {"value": "Fe (promoted)", "unit": "-"},
+        "E_specific": {"value": 28.0, "unit": "GJ/tNH3"},
+        "recycle_ratio": {"value": 5.0, "unit": "dimensionless"},
+        "MW_NH3": {"value": 17.031, "unit": "g/mol"},
+        "MW_N2": {"value": 28.014, "unit": "g/mol"},
+        "n_N2_in": {"value": 1.0, "unit": "mol/s", "note": "Base N2 feed rate"}
+    },
+    "valid_ranges": {
+        "temperature": {"min": 350.0, "max": 550.0, "unit": "degC"},
+        "pressure": {"min": 100.0, "max": 300.0, "unit": "bar"}
+    }
+}

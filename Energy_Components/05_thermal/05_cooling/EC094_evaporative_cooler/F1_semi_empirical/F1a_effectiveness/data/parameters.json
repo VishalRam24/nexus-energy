@@ -1,0 +1,9 @@
+{
+  "default_parameters": {
+    "epsilon": 0.85,
+    "P_fan_W": 200.0,
+    "Cp_air_J_kgK": 1005.0,
+    "rho_air_kg_m3": 1.2
+  },
+  "description": "Evaporative cooler F1a: T_out=T_db-eps*(T_db-T_wb), Q_cool=m_air*Cp*(T_db-T_out). epsilon=0.85, P_fan=200W."
+}

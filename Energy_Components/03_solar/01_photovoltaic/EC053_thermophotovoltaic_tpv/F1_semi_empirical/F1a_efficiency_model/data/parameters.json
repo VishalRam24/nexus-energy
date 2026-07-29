@@ -1,0 +1,19 @@
+{
+    "component": "EC053 Thermophotovoltaic (TPV)",
+    "fidelity": "F1a",
+    "description": "P = eta * sigma * T_emitter^4 * A_cell * F_view",
+    "unit": {
+        "name": "GaSb TPV Cell with SiC Emitter",
+        "source": "Coutts (1999). A review of progress in thermophotovoltaic generation. Renew. Sust. Energy Rev.",
+        "eta": {"value": 0.25, "unit": "dimensionless", "note": "Cell conversion efficiency"},
+        "T_emitter": {"value": 1500.0, "unit": "K", "note": "Emitter temperature"},
+        "A_cell": {"value": 1e-4, "unit": "m2", "note": "Cell area 1 cm²"},
+        "F_view": {"value": 0.5, "unit": "dimensionless", "note": "View factor emitter-to-cell"},
+        "sigma": {"value": 5.67e-8, "unit": "W/m2/K4", "note": "Stefan-Boltzmann constant"},
+        "emissivity": {"value": 0.9, "unit": "dimensionless", "note": "Emitter spectral emissivity"}
+    },
+    "valid_ranges": {
+        "T_emitter": {"min": 800.0, "max": 2000.0, "unit": "K"},
+        "F_view": {"min": 0.1, "max": 1.0, "unit": "dimensionless"}
+    }
+}

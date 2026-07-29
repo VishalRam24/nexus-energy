@@ -1,0 +1,42 @@
+{
+  "component_id": "EC002",
+  "component_name": "Solid Oxide Fuel Cell (SOFC)",
+  "fidelity": "F1b -- Thermal (temperature-dependent ASR and kinetics)",
+  "source": "Chan et al. (2001); Bessette et al. (1995); Virkar (2005)",
+  "default_parameters": {
+    "T_ref": 1073.0,
+    "N_cells": 40,
+    "A_cell": 100.0,
+    "pH2": 0.97,
+    "pO2": 0.21,
+    "pH2O": 0.03,
+    "j_L": 2.0,
+    "A_sigma": 33400.0,
+    "E_act_ion": 80000.0,
+    "thickness_electrolyte": 0.001,
+    "i0_anode_ref": 0.5,
+    "E_act_anode": 100000.0,
+    "i0_cathode_ref": 0.2,
+    "E_act_cathode": 120000.0,
+    "alpha": 0.5,
+    "fuel_utilization": 0.7
+  },
+  "parameter_metadata": {
+    "T_ref": {"description": "Reference temperature", "unit": "K", "default": 1073.0},
+    "N_cells": {"description": "Number of cells in stack", "unit": "-", "default": 40},
+    "A_cell": {"description": "Active cell area", "unit": "cm2", "default": 100.0},
+    "A_sigma": {"description": "Pre-exponential for YSZ ionic conductivity", "unit": "S K/cm", "default": 33400.0},
+    "E_act_ion": {"description": "Activation energy for YSZ ionic conductivity", "unit": "J/mol", "default": 80000.0},
+    "thickness_electrolyte": {"description": "YSZ electrolyte thickness", "unit": "cm", "default": 0.001},
+    "i0_anode_ref": {"description": "Anode exchange current density at T_ref", "unit": "A/cm2", "default": 0.5},
+    "E_act_anode": {"description": "Anode activation energy", "unit": "J/mol", "default": 100000.0},
+    "i0_cathode_ref": {"description": "Cathode exchange current density at T_ref", "unit": "A/cm2", "default": 0.2},
+    "E_act_cathode": {"description": "Cathode activation energy", "unit": "J/mol", "default": 120000.0},
+    "alpha": {"description": "Charge transfer coefficient", "unit": "-", "default": 0.5},
+    "fuel_utilization": {"description": "Fuel utilization fraction", "unit": "-", "default": 0.7}
+  },
+  "valid_ranges": {
+    "current_density": {"min": 0.0, "max": 2.0, "unit": "A/cm2"},
+    "temperature": {"min": 973.0, "max": 1273.0, "unit": "K"}
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "component": "EC049 Multi-Junction Concentrator PV",
+  "fidelity": "F0a",
+  "model": "Rated-efficiency curve: P = eta(DNI,T) * DNI * A_cell",
+  "source": "Luque & Hegedus (2011), Handbook of Photovoltaic Science and Engineering",
+  "rated": {
+    "eta_stc": {
+      "value": 0.4,
+      "unit": "dimensionless",
+      "note": "Rated cell/module efficiency at STC"
+    },
+    "gamma_pmp": {
+      "value": -0.001,
+      "unit": "1/K",
+      "note": "Efficiency temperature coefficient"
+    },
+    "stc_irradiance": {
+      "value": 1000.0,
+      "unit": "W/m2"
+    },
+    "stc_temperature": {
+      "value": 25.0,
+      "unit": "degC"
+    },
+    "irradiance_key": {
+      "value": "DNI",
+      "unit": "-",
+      "note": "Irradiance input name (G or DNI)"
+    }
+  },
+  "irradiance_breakpoints": {
+    "value": [
+      0.0,
+      100.0,
+      200.0,
+      400.0,
+      600.0,
+      800.0,
+      1000.0,
+      1100.0
+    ],
+    "unit": "W/m2"
+  },
+  "rel_eff_breakpoints": {
+    "value": [
+      0.0,
+      0.9,
+      0.94,
+      0.975,
+      0.99,
+      1.0,
+      1.0,
+      0.998
+    ],
+    "unit": "dimensionless",
+    "note": "Relative efficiency vs irradiance, normalised to 1.0 at STC"
+  },
+  "valid_ranges": {
+    "irradiance": {
+      "min": 0.0,
+      "max": 1100.0,
+      "unit": "W/m2"
+    },
+    "cell_temperature": {
+      "min": -20.0,
+      "max": 100.0,
+      "unit": "degC"
+    }
+  }
+}

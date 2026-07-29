@@ -1,0 +1,23 @@
+{
+    "component": "EC110 Reciprocating Gas Engine",
+    "fidelity": "F1a",
+    "description": "Part-load electrical efficiency curve for natural-gas reciprocating engine genset",
+    "unit": {
+        "name": "Generic 1 MW Lean-Burn Natural Gas Engine Genset",
+        "source": "US EPA CHP Catalog (2017); Jenbacher J320/J420 product data; Caterpillar G3500 series",
+        "P_el_rated": {"value": 1000.0, "unit": "kW_e", "note": "Rated electrical output"},
+        "eta_el_rated": {"value": 0.42, "unit": "dimensionless", "note": "Electrical efficiency at full load (LHV)"},
+        "PLR_min": {"value": 0.5, "unit": "dimensionless", "note": "Minimum stable part-load ratio"},
+        "LHV_gas_mjkg": {"value": 50.0, "unit": "MJ/kg", "note": "Lower heating value of natural gas"},
+        "rho_gas_kgm3": {"value": 0.717, "unit": "kg/m^3", "note": "Density of natural gas at STP"},
+        "b0": {"value": 0.10, "unit": "-", "note": "Electrical PLR curve constant term"},
+        "b1": {"value": 0.95, "unit": "-", "note": "Electrical PLR curve linear term"},
+        "b2": {"value": -0.05, "unit": "-", "note": "Electrical PLR curve quadratic term"},
+        "T_ref_c": {"value": 25.0, "unit": "degC", "note": "Reference ambient temperature"},
+        "derating_per_degC": {"value": 0.003, "unit": "1/degC", "note": "Power derating above T_ref"}
+    },
+    "valid_ranges": {
+        "part_load_ratio": {"min": 0.5, "max": 1.0, "unit": "dimensionless"},
+        "ambient_temp_c":  {"min": -20.0, "max": 50.0, "unit": "degC"}
+    }
+}

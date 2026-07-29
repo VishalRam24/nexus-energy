@@ -1,0 +1,41 @@
+{
+    "component_id": "EC030",
+    "component_name": "Nickel-Cadmium Battery (NiCd)",
+    "fidelity": "F2a — Thevenin Equivalent-Circuit Model (1-RC / 2-RC) with Coulomb-counted SOC and Thermal ODE",
+    "source": "Berndt (2003) Maintenance-Free Batteries, Wiley; Shepherd (1965) J. Electrochem. Soc. 112, 657; Thomas & Newman (2003) J. Electrochem. Soc. 150, A176; Plett (2015) Battery Management Systems Vol.2, Artech House; Hu et al. (2012) J. Power Sources 198, 359 (ECM comparison)",
+    "unit": {
+        "name": "Standard NiCd D-cell (sintered plate) — Thevenin ECM",
+        "capacity_ref": {"value": 10.0, "unit": "Ah", "note": "Nominal capacity at T_ref (C/5 rate). Berndt (2003)"},
+        "nominal_voltage": {"value": 1.2, "unit": "V", "note": "NiCd flat plateau ~1.2 V (NiOOH/Ni(OH)2 couple)"},
+        "voltage_max": {"value": 1.45, "unit": "V", "note": "End-of-charge ceiling"},
+        "voltage_min": {"value": 0.9, "unit": "V", "note": "Discharge cut-off (knee at low SOC)"},
+        "R0_ref": {"value": 0.010, "unit": "Ohm", "note": "Series ohmic resistance at T_ref. Very low for NiCd (sintered plates, KOH electrolyte). Berndt (2003)"},
+        "R1_ref": {"value": 0.006, "unit": "Ohm", "note": "First RC (charge-transfer) resistance at T_ref"},
+        "C1_ref": {"value": 1500.0, "unit": "F", "note": "First RC capacitance — fast double-layer/charge-transfer; tau1 = R1*C1 ~ 9 s"},
+        "R2_ref": {"value": 0.004, "unit": "Ohm", "note": "Second RC (diffusion) resistance at T_ref"},
+        "C2_ref": {"value": 30000.0, "unit": "F", "note": "Second RC capacitance — slow diffusion; tau2 = R2*C2 ~ 120 s"},
+        "ocv_a0": {"value": 0.95, "unit": "V", "note": "OCV(SOC) polynomial coeff a0 (reused from EC030 F1b)"},
+        "ocv_a1": {"value": 0.65, "unit": "V", "note": "OCV(SOC) coeff a1"},
+        "ocv_a2": {"value": -1.0, "unit": "V", "note": "OCV(SOC) coeff a2"},
+        "ocv_a3": {"value": 1.5, "unit": "V", "note": "OCV(SOC) coeff a3"},
+        "ocv_a4": {"value": -1.0, "unit": "V", "note": "OCV(SOC) coeff a4"},
+        "ocv_a5": {"value": 0.25, "unit": "V", "note": "OCV(SOC) coeff a5 — gives flat ~1.2-1.25 V plateau"},
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 degC)"},
+        "E_a": {"value": 20000.0, "unit": "J/mol", "note": "Arrhenius activation energy for resistances. Low for aqueous KOH. Berndt (2003); Plett (2015)"},
+        "alpha_c": {"value": 0.003, "unit": "1/K", "note": "Capacity temperature coefficient. Berndt (2003)"},
+        "dOCV_dT": {"value": -0.00060, "unit": "V/K", "note": "Entropic coefficient ~ -0.60 mV/K. NiOOH+H2O+e- -> Ni(OH)2+OH- has large negative entropy -> strong discharge heating. Thomas & Newman (2003)"},
+        "R_gas": {"value": 8.314, "unit": "J/(mol.K)", "note": "Universal gas constant"},
+        "coulombic_eff": {"value": 0.92, "unit": "-", "note": "NiCd charge acceptance efficiency ~85-92% (gassing/side reactions on charge). Berndt (2003). Discharge eff ~1.0"},
+        "m_cell": {"value": 0.17, "unit": "kg", "note": "Mass of a NiCd D-cell"},
+        "cp_cell": {"value": 880.0, "unit": "J/(kg.K)", "note": "Effective lumped specific heat (metal/KOH composite)"},
+        "hA_cell": {"value": 0.18, "unit": "W/K", "note": "Convective heat-transfer coeff * surface area to ambient (natural convection)"},
+        "T_amb": {"value": 298.15, "unit": "K", "note": "Ambient temperature"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "-"},
+        "current_A": {"min": -50.0, "max": 50.0, "unit": "A", "note": "Negative=charge, Positive=discharge; NiCd tolerates very high rates"},
+        "temperature": {"min": 243.15, "max": 333.15, "unit": "K", "note": "-30 to 60 degC; NiCd excels at low T"},
+        "dt": {"min": 0.01, "max": 5.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 36000.0, "unit": "s"}
+    }
+}

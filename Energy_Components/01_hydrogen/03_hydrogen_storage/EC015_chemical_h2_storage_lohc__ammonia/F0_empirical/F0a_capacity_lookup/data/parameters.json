@@ -1,0 +1,42 @@
+{
+  "component_id": "EC015",
+  "component_name": "Chemical H2 Storage (LOHC / Ammonia)",
+  "fidelity": "F0a \u2014 empirical lookup",
+  "version": "1.0.0",
+  "source": "Niermann et al. (2021); Preuster et al. (2017); Lamb et al. (2019) (F1a params reused)",
+  "metric": "gravimetric_capacity_by_carrier",
+  "note": "Gravimetric H2 capacity: DBT LOHC 6.2 wt%, Ammonia 17.6 wt%. Dehydrogenation enthalpy 65 (DBT) / 46 (NH3) kJ/mol_H2.",
+  "lookup": {
+    "carrier_index": {
+      "value": [
+        0.0,
+        1.0
+      ],
+      "unit": "-",
+      "note": "Independent-variable breakpoints"
+    },
+    "gravimetric_capacity_wt_pct": {
+      "value": [
+        6.2,
+        17.6
+      ],
+      "unit": "wt%",
+      "note": "Tabulated empirical value"
+    }
+  },
+  "rated": {
+    "carrier_index": {
+      "value": 0.0,
+      "unit": "-"
+    },
+    "gravimetric_capacity_wt_pct": {
+      "value": 6.2,
+      "unit": "wt%",
+      "note": "Datasheet/nominal point"
+    },
+    "capacity_kg": {
+      "value": 6.2,
+      "unit": "kg_H2"
+    }
+  }
+}

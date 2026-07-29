@@ -1,0 +1,40 @@
+{
+    "component": "EC207 CO2 Compression & Pipeline",
+    "fidelity": "F1b",
+    "description": "CO2 compression + pipeline with injection pressure effects and leakage losses",
+    "compressor": {
+        "name": "Multi-stage CO2 compressor with intercooling",
+        "n_stages": {"value": 4, "unit": "dimensionless"},
+        "polytropic_index": {"value": 1.30, "unit": "dimensionless"},
+        "eta_polytropic": {"value": 0.80, "unit": "dimensionless"},
+        "eta_mech": {"value": 0.95, "unit": "dimensionless"},
+        "T_inlet": {"value": 308.15, "unit": "K"},
+        "P_inlet": {"value": 1.5, "unit": "bar"},
+        "P_supercritical": {"value": 150.0, "unit": "bar"},
+        "seal_degradation_rate": {"value": 5.0e-6, "unit": "per_hour", "note": "Compressor seal leakage rate increase per hour"},
+        "eta_poly_degradation": {"value": 1.0e-5, "unit": "per_hour", "note": "Polytropic efficiency loss per hour (fouling, wear)"}
+    },
+    "co2": {
+        "molar_mass": {"value": 0.04401, "unit": "kg/mol"},
+        "R_specific": {"value": 188.9, "unit": "J/(kg.K)"},
+        "gamma": {"value": 1.29, "unit": "dimensionless"},
+        "T_critical": {"value": 304.2, "unit": "K"},
+        "P_critical": {"value": 73.8, "unit": "bar"},
+        "rho_dense_phase": {"value": 800.0, "unit": "kg/m3"},
+        "viscosity_dense": {"value": 8.0e-5, "unit": "Pa.s"},
+        "JT_coefficient_dense": {"value": -1.0e-7, "unit": "K/Pa"},
+        "SEC_ref": {"value": 100.0, "unit": "kWh/tCO2"},
+        "leakage_rate_base": {"value": 0.002, "unit": "fraction/year", "note": "0.2%/year pipeline leakage (IEAGHG 2007)"}
+    },
+    "pipeline": {
+        "roughness": {"value": 4.6e-5, "unit": "m"},
+        "G_CO2": {"value": 1.519, "unit": "dimensionless"}
+    },
+    "valid_ranges": {
+        "P_inlet": {"min": 0.1, "max": 10.0, "unit": "bar"},
+        "P_outlet": {"min": 100.0, "max": 250.0, "unit": "bar"},
+        "mass_flow": {"min": 0.0, "max": 1000.0, "unit": "kg/s"},
+        "pipeline_length_km": {"min": 0.0, "max": 500.0, "unit": "km"},
+        "operating_hours": {"min": 0.0, "max": 100000.0, "unit": "hours"}
+    }
+}

@@ -1,0 +1,32 @@
+{
+  "model": "capacitance_esr_curve",
+  "capacitance": {
+    "value": 3000.0,
+    "unit": "F"
+  },
+  "esr": {
+    "value": 0.00029,
+    "unit": "Ohm",
+    "note": "equivalent series resistance"
+  },
+  "V_max": {
+    "value": 2.7,
+    "unit": "V"
+  },
+  "V_min": {
+    "value": 1.35,
+    "unit": "V",
+    "note": "usable floor (=V_max/2 -> 75% energy swing)"
+  },
+  "E_max_J": {
+    "value": 10935.0,
+    "unit": "J",
+    "note": "0.5*C*V_max^2"
+  },
+  "E_usable_J": {
+    "value": 8201.25,
+    "unit": "J",
+    "note": "0.5*C*(V_max^2 - V_min^2)"
+  },
+  "source": "EC041 F1a (C=3000 F, ESR=0.29 mOhm, V_max=2.7 V); Maxwell BCAP3000; Conway (1999). DC round-trip eff >98%."
+}

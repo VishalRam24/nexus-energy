@@ -1,0 +1,63 @@
+{
+    "component_id": "EC156",
+    "component_name": "Geothermal Heat Pump (GHP / Ground-Source)",
+    "fidelity": "F2a — Vapor-Compression Cycle + Lumped Borehole/Condenser Thermal ODE",
+    "source": "Kavanaugh & Rafferty (2014) Geothermal Heating and Cooling: Design of Ground-Source Heat Pump Systems, ASHRAE. ASHRAE Handbook—HVAC Systems & Equipment (2020) Ch.9 (Vapor Compression). Klein et al. property fits; R-410A NIST REFPROP-derived saturation data (Lemmon 2003).",
+    "unit": {
+        "name": "Generic 10 kW_th Closed-Loop GSHP — Single Borehole, R-410A Vapor Compression",
+
+        "rated_capacity": {"value": 10.0, "unit": "kW_th", "note": "Condenser (heating) thermal capacity at rated ground/load conditions"},
+        "V_disp": {"value": 2.75e-5, "unit": "m3/rev", "note": "Compressor displacement per revolution (scroll, ~10 kW class); sized so condenser duty ~10 kW_th at rated 8 degC loop / 45 degC supply"},
+        "n_comp": {"value": 50.0, "unit": "rev/s", "note": "Compressor speed (3000 rpm nominal)"},
+        "eta_isen": {"value": 0.70, "unit": "-", "note": "Isentropic compressor efficiency (ASHRAE 2020, scroll 0.65-0.75)"},
+        "eta_vol_a": {"value": 1.00, "unit": "-", "note": "Volumetric efficiency intercept (eta_v = a - b*(PR-1))"},
+        "eta_vol_b": {"value": 0.045, "unit": "-", "note": "Volumetric efficiency clearance slope vs pressure ratio"},
+        "eta_motor": {"value": 0.90, "unit": "-", "note": "Compressor motor + mechanical efficiency"},
+        "superheat_K": {"value": 5.0, "unit": "K", "note": "Evaporator superheat (TXV setpoint)"},
+        "subcool_K": {"value": 3.0, "unit": "K", "note": "Condenser subcooling"},
+
+        "auxiliary_power": {"value": 0.10, "unit": "kW", "note": "Ground-loop circulation pump + controls"},
+
+        "pinch_evap_K": {"value": 4.0, "unit": "K", "note": "Evaporator approach: T_evap = T_loop_out - pinch"},
+        "pinch_cond_K": {"value": 4.0, "unit": "K", "note": "Condenser approach: T_cond = T_supply + pinch"},
+
+        "T_ground_undisturbed": {"value": 12.0, "unit": "degC", "note": "Mean annual undisturbed ground temperature (Kavanaugh & Rafferty 2014, 10-15 degC temperate)"},
+        "k_ground": {"value": 2.4, "unit": "W/(m.K)", "note": "Ground thermal conductivity (saturated rock/soil, K&R 2014)"},
+        "rho_cp_ground": {"value": 2.4e6, "unit": "J/(m3.K)", "note": "Volumetric heat capacity of ground"},
+        "borehole_depth": {"value": 120.0, "unit": "m", "note": "Active borehole length (single U-tube)"},
+        "R_b": {"value": 0.10, "unit": "(m.K)/W", "note": "Borehole thermal resistance grout+pipe (K&R 2014, 0.08-0.15)"},
+        "r_b": {"value": 0.055, "unit": "m", "note": "Borehole radius (110 mm bore)"},
+
+        "m_loop": {"value": 120.0, "unit": "kg", "note": "Ground-loop fluid mass (water-glycol in U-tube + headers)"},
+        "cp_loop": {"value": 3800.0, "unit": "J/(kg.K)", "note": "Specific heat of 20% propylene-glycol brine (ASHRAE 2020)"},
+        "mdot_loop": {"value": 0.5, "unit": "kg/s", "note": "Ground-loop circulation mass flow"},
+
+        "C_cond": {"value": 80000.0, "unit": "J/K", "note": "Condenser + building-water-side lumped thermal capacitance"},
+        "hA_cond_load": {"value": 1800.0, "unit": "W/K", "note": "Condenser-to-building-load UA (delivers heat to building water)"},
+
+        "refrigerant": "R-410A",
+        "R_gas": {"value": 8.314, "unit": "J/(mol.K)", "note": "Universal gas constant"},
+        "M_R410A": {"value": 0.07259, "unit": "kg/mol", "note": "R-410A molar mass (50/50 R32/R125)"},
+        "gamma_R410A": {"value": 1.20, "unit": "-", "note": "Approx isentropic exponent of R-410A vapor near 0-50 degC (NIST)"},
+        "cp_vap_R410A": {"value": 0.85, "unit": "kJ/(kg.K)", "note": "R-410A superheated vapor cp (Lemmon 2003)"},
+        "hfg_ref_R410A": {"value": 221.0, "unit": "kJ/kg", "note": "Latent heat at ~5 degC evaporation (NIST REFPROP)"},
+        "hfg_slope_R410A": {"value": -1.35, "unit": "kJ/(kg.K)", "note": "d(hfg)/dT linear fit 0-50 degC (NIST)"},
+        "Tref_hfg_R410A": {"value": 5.0, "unit": "degC", "note": "Reference T for hfg fit"}
+    },
+    "saturation_R410A": {
+        "note": "R-410A saturation pressure vs temperature, fitted to NIST REFPROP (Lemmon 2003) data at -30..50 degC (max err <0.5%). Antoine-form ln(P[kPa]) = A - B/(T[K]+C).",
+        "antoine_A": 15.1161,
+        "antoine_B": 2225.94,
+        "antoine_C": -9.236,
+        "T_min_degC": -30.0,
+        "T_max_degC": 60.0
+    },
+    "valid_ranges": {
+        "T_supply_c": {"min": 25.0, "max": 60.0, "unit": "degC", "note": "Building heating supply (condenser) temperature"},
+        "Q_demand_kW": {"min": 0.0, "max": 12.0, "unit": "kW", "note": "Building heating demand"},
+        "T_ground_undisturbed": {"min": 5.0, "max": 20.0, "unit": "degC"},
+        "n_comp": {"min": 20.0, "max": 60.0, "unit": "rev/s"},
+        "dt": {"min": 1.0, "max": 600.0, "unit": "s"},
+        "duration_s": {"min": 60.0, "max": 864000.0, "unit": "s"}
+    }
+}

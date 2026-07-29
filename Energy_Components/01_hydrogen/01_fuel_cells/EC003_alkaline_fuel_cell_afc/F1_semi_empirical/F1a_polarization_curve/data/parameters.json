@@ -1,0 +1,30 @@
+{
+  "component_id": "EC003",
+  "component_name": "Alkaline Fuel Cell (AFC)",
+  "fidelity": "F1a -- Polarization Curve",
+  "source": "Larminie & Dicks (2003); Appleby & Foulkes (1989); Gilliam et al. (2007)",
+  "default_parameters": {
+    "T": 343.15,
+    "N_cells": 40,
+    "A_cell": 200.0,
+    "pH2": 1.0,
+    "pO2": 0.21,
+    "j_L": 1.0,
+    "i0": 0.005,
+    "alpha": 0.5,
+    "R_ohm": 0.25,
+    "B_conc": 0.010
+  },
+  "parameter_metadata": {
+    "T": {"description": "Operating temperature", "unit": "K", "default": 343.15, "notes": "70 C typical AFC operating temperature"},
+    "N_cells": {"description": "Number of cells in stack", "unit": "-", "default": 40},
+    "A_cell": {"description": "Active cell area", "unit": "cm2", "default": 200.0, "notes": "Typical AFC cell area"},
+    "pH2": {"description": "Hydrogen partial pressure", "unit": "atm", "default": 1.0},
+    "pO2": {"description": "Oxygen partial pressure", "unit": "atm", "default": 0.21, "notes": "Air-fed; use 1.0 for pure O2"},
+    "j_L": {"description": "Limiting current density", "unit": "A/cm2", "default": 1.0, "notes": "AFC lower j_L than PEMFC due to liquid electrolyte mass transport"},
+    "i0": {"description": "Exchange current density", "unit": "A/cm2", "default": 0.005, "notes": "Ag/Pt catalyst in KOH, Appleby (1989)"},
+    "alpha": {"description": "Charge transfer coefficient", "unit": "-", "default": 0.5},
+    "R_ohm": {"description": "Area-specific ohmic resistance", "unit": "ohm cm2", "default": 0.25, "notes": "KOH electrolyte gap ~0.2 cm, sigma ~0.8 S/cm at 70C, Gilliam (2007)"},
+    "B_conc": {"description": "Concentration loss coefficient", "unit": "V", "default": 0.010}
+  }
+}

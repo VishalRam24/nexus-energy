@@ -1,0 +1,99 @@
+{
+    "component": "EC014 Metal Hydride H2 Storage",
+    "fidelity": "F1b",
+    "description": "van't Hoff model with kinetics-based sorption rate and lumped thermal balance",
+    "source": "Sandrock (1999) J. Alloys Compd. 293-295; Lototskyy et al. (2014) Prog. Nat. Sci.; Mayer et al. (1987) Int. J. Hydrogen Energy",
+
+    "material": {
+        "name": "LaNi5",
+        "note": "LaNi5 reference intermetallic hydride material",
+        "delta_H": {
+            "value": -30100.0,
+            "unit": "J/mol_H2",
+            "note": "Enthalpy of hydride FORMATION (absorption, exothermic, negative). Sandrock 1999: LaNi5 dH_abs = -30.1 kJ/mol"
+        },
+        "delta_S": {
+            "value": -108.0,
+            "unit": "J/mol_H2/K",
+            "note": "Entropy of hydride FORMATION (absorption, negative). Sandrock 1999"
+        },
+        "H_max_wt_pct": {
+            "value": 1.4,
+            "unit": "wt%",
+            "note": "Maximum gravimetric H2 capacity for LaNi5"
+        },
+        "bed_mass_kg": {
+            "value": 10.0,
+            "unit": "kg"
+        },
+        "volumetric_capacity": {
+            "value": 105.0,
+            "unit": "kg_H2/m3"
+        },
+        "bed_volume_m3": {
+            "value": 0.0025,
+            "unit": "m3"
+        }
+    },
+
+    "thermodynamics": {
+        "R_universal": {"value": 8.314, "unit": "J/mol/K"},
+        "hysteresis_factor": {
+            "value": 1.2,
+            "unit": "dimensionless",
+            "note": "Absorption P_abs = hysteresis_factor * P_des"
+        },
+        "plateau_slope_factor": {
+            "value": 0.05,
+            "unit": "dimensionless"
+        }
+    },
+
+    "kinetics": {
+        "note": "First-order kinetics: dm_H2/dt = Ca * exp(-Ea/RT) * ln(P/P_eq) * (C_max - C) for absorption",
+        "Ca_abs": {
+            "value": 59.187,
+            "unit": "1/s",
+            "note": "Pre-exponential rate constant for absorption. Mayer et al. (1987) Int. J. H2 Energy"
+        },
+        "Ca_des": {
+            "value": 9.57,
+            "unit": "1/s",
+            "note": "Pre-exponential rate constant for desorption. Mayer et al. (1987)"
+        },
+        "Ea_abs": {
+            "value": 21179.6,
+            "unit": "J/mol",
+            "note": "Activation energy for absorption. Mayer et al. (1987)"
+        },
+        "Ea_des": {
+            "value": 16473.0,
+            "unit": "J/mol",
+            "note": "Activation energy for desorption. Mayer et al. (1987)"
+        }
+    },
+
+    "thermal": {
+        "cp_hydride": {
+            "value": 419.0,
+            "unit": "J/kg/K",
+            "note": "Heat capacity of LaNi5H6. Herbst & Hector 2005"
+        },
+        "UA_bed": {
+            "value": 25.0,
+            "unit": "W/K",
+            "note": "Overall heat transfer coefficient * area for bed cooling"
+        },
+        "T_ref": {
+            "value": 298.15,
+            "unit": "K",
+            "note": "Reference temperature"
+        }
+    },
+
+    "valid_ranges": {
+        "temperature": {"min": 253.0, "max": 373.0, "unit": "K"},
+        "soc":         {"min": 0.0,   "max": 1.0,   "unit": "dimensionless"},
+        "pressure":    {"min": 0.1,   "max": 100.0, "unit": "bar"}
+    }
+}

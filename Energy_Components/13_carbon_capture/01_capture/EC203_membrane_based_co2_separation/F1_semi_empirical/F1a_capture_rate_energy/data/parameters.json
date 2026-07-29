@@ -1,0 +1,21 @@
+{
+    "component": "EC203 Membrane-Based CO2 Separation",
+    "fidelity": "F1a",
+    "description": "Pressure-driven membrane CO2 separation. SEC ranges 0.5-1.0 MJ/kgCO2 depending on pressure ratio.",
+    "unit": {
+        "name": "Generic polymeric membrane CO2 separator",
+        "source": "Baker (2002) Ind. Eng. Chem. Res.; Merkel et al. (2010)",
+        "CO2_recovery": {"value": 0.80, "unit": "dimensionless", "note": "Fraction of feed CO2 recovered in permeate"},
+        "CO2_purity": {"value": 0.95, "unit": "dimensionless", "note": "CO2 mole fraction in permeate"},
+        "SEC_ref_MJ_kgCO2": {"value": 0.75, "unit": "MJ/kgCO2", "note": "Reference SEC at design pressure ratio"},
+        "pressure_ratio": {"value": 10.0, "unit": "dimensionless", "note": "Feed/permeate pressure ratio"},
+        "SEC_min_MJ_kgCO2": {"value": 0.5, "unit": "MJ/kgCO2"},
+        "SEC_max_MJ_kgCO2": {"value": 1.0, "unit": "MJ/kgCO2"},
+        "SEC_pressure_coeff": {"value": 0.05, "unit": "MJ/kgCO2 per unit pressure_ratio",
+                               "note": "SEC increases with pressure ratio above 10"}
+    },
+    "valid_ranges": {
+        "capacity_fraction": {"min": 0.1, "max": 1.0, "unit": "dimensionless"},
+        "pressure_ratio": {"min": 5.0, "max": 20.0, "unit": "dimensionless"}
+    }
+}

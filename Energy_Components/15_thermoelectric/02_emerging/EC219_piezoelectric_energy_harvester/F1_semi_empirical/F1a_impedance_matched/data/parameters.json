@@ -1,0 +1,23 @@
+{
+    "component": "EC219 Piezoelectric Energy Harvester",
+    "fidelity": "F1a",
+    "description": "Cantilever PZT beam at mechanical resonance, impedance-matched load",
+    "unit": {
+        "name": "PZT-5A bimorph cantilever beam (typical MEMS harvester)",
+        "source": "Roundy et al. (2003) Smart Mater. Struct.; Erturk & Inman (2011) Piezoelectric Energy Harvesting",
+        "d31": {"value": -1.71e-10, "unit": "m/V", "note": "Piezoelectric strain constant PZT-5A"},
+        "Y_piezo": {"value": 61e9, "unit": "Pa", "note": "Young's modulus of PZT-5A"},
+        "epsilon_r": {"value": 1700.0, "unit": "-", "note": "Relative permittivity of PZT-5A"},
+        "beam_length": {"value": 0.03, "unit": "m", "note": "Cantilever length 30 mm"},
+        "beam_width": {"value": 0.01, "unit": "m", "note": "Beam width 10 mm"},
+        "beam_thickness_piezo": {"value": 0.0002, "unit": "m", "note": "PZT layer thickness 0.2 mm"},
+        "mass_tip": {"value": 0.001, "unit": "kg", "note": "Tip mass 1 g"},
+        "damping_ratio": {"value": 0.02, "unit": "-", "note": "Mechanical damping ratio ~2% for PZT cantilever"},
+        "resonance_freq_hz": {"value": 100.0, "unit": "Hz", "note": "First resonance frequency ~100 Hz (can be tuned)"},
+        "base_acceleration_default": {"value": 9.81, "unit": "m/s^2", "note": "1g base acceleration"}
+    },
+    "valid_ranges": {
+        "frequency": {"min": 10.0, "max": 1000.0, "unit": "Hz"},
+        "acceleration": {"min": 0.1, "max": 50.0, "unit": "m/s^2"}
+    }
+}

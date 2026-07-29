@@ -1,0 +1,27 @@
+{
+    "component": "EC116 Pressurized Water Reactor (PWR)",
+    "fidelity": "F1b",
+    "description": "Load-following PWR model with simplified xenon-135 dynamics and ramp rate constraints",
+    "unit": {
+        "name": "Typical 4-loop PWR (AP1000-class)",
+        "source": "Todreas & Kazimi (2012); Stacey (2007) Nuclear Reactor Physics",
+        "P_thermal_mw": {"value": 3400.0, "unit": "MW_th"},
+        "eta_thermal": {"value": 0.33, "unit": "dimensionless"},
+        "sigma_Xe_cm2": {"value": 2.65e-18, "unit": "cm2", "note": "Xe-135 microscopic absorption cross-section"},
+        "lambda_Xe_per_s": {"value": 2.09e-5, "unit": "1/s", "note": "Xe-135 decay constant (t_1/2 = 9.17 h)"},
+        "lambda_I_per_s": {"value": 2.87e-5, "unit": "1/s", "note": "I-135 decay constant (t_1/2 = 6.7 h)"},
+        "gamma_I": {"value": 0.064, "unit": "dimensionless", "note": "I-135 cumulative fission yield"},
+        "gamma_Xe": {"value": 0.003, "unit": "dimensionless", "note": "Direct Xe-135 fission yield"},
+        "Sigma_f_phi_ref": {"value": 1.0, "unit": "dimensionless", "note": "Reference Sigma_f*phi product (normalized)"},
+        "ramp_rate_limit_pct_min": {"value": 5.0, "unit": "%/min", "note": "Maximum allowed power ramp rate"},
+        "PLR_min": {"value": 0.3, "unit": "dimensionless"},
+        "PLR_max": {"value": 1.0, "unit": "dimensionless"},
+        "total_reactivity_margin_pcm": {"value": 5000.0, "unit": "pcm", "note": "Total control rod reactivity margin"},
+        "xenon_reactivity_coeff_pcm": {"value": -3000.0, "unit": "pcm", "note": "Reactivity penalty at equilibrium Xe at full power"}
+    },
+    "valid_ranges": {
+        "power_fraction": {"min": 0.3, "max": 1.0},
+        "time_at_power_hours": {"min": 0.0, "max": 168.0},
+        "previous_power_fraction": {"min": 0.0, "max": 1.0}
+    }
+}

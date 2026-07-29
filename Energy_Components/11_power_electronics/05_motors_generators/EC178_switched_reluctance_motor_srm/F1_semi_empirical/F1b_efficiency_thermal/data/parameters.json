@@ -1,0 +1,30 @@
+{
+    "component": "EC178 Switched Reluctance Motor (SRM)",
+    "fidelity": "F1b",
+    "description": "Loss-split efficiency model with temperature-dependent copper resistance, slip-dependent iron loss, and stray losses. SRM has no PMs, so no demagnetization. Iron losses dominate at high speed.",
+    "unit": {
+        "name": "Generic 3 kW 4-phase 8/6 SRM",
+        "source": "Miller (1993) Switched Reluctance Motors and their Control; IEC 60034-30-1:2014",
+        "P_rated_W": {"value": 3000.0, "unit": "W"},
+        "T_rated_Nm": {"value": 9.55, "unit": "Nm"},
+        "omega_rated_rpm": {"value": 3000.0, "unit": "rpm"},
+        "omega_max_rpm": {"value": 9000.0, "unit": "rpm"},
+        "R_ph_ref": {"value": 0.8, "unit": "ohm", "note": "Phase winding resistance at T_ref"},
+        "T_ref": {"value": 25.0, "unit": "degC"},
+        "alpha_Cu": {"value": 0.00393, "unit": "1/K"},
+        "n_phases": {"value": 4, "unit": "dimensionless"},
+        "k_iron_eddy": {"value": 0.003, "unit": "W/(rpm^2)", "note": "Eddy current iron loss coefficient"},
+        "k_iron_hyst": {"value": 0.008, "unit": "W/rpm", "note": "Hysteresis iron loss coefficient"},
+        "k_mech": {"value": 0.0008, "unit": "W/rpm", "note": "Friction+windage coefficient"},
+        "k_stray": {"value": 0.008, "unit": "dimensionless", "note": "Stray loss fraction of output power"},
+        "V_phase": {"value": 200.0, "unit": "V", "note": "Nominal phase voltage"},
+        "ambient_derating_threshold": {"value": 40.0, "unit": "degC"},
+        "derating_slope": {"value": 0.01, "unit": "1/K"}
+    },
+    "valid_ranges": {
+        "torque_nm": {"min": 0.0, "max": 15.0, "unit": "Nm"},
+        "speed_rpm": {"min": 0.0, "max": 9000.0, "unit": "rpm"},
+        "winding_temperature": {"min": -20.0, "max": 180.0, "unit": "degC"},
+        "ambient_temperature": {"min": -20.0, "max": 60.0, "unit": "degC"}
+    }
+}

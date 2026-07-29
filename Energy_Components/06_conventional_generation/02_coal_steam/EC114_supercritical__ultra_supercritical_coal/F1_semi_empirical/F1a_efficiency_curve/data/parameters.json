@@ -1,0 +1,36 @@
+{
+    "component": "EC114 Supercritical / Ultra-Supercritical Coal Plant",
+    "fidelity": "F1a",
+    "description": "Net LHV efficiency as f(PLR, T_amb) for SC/USC Rankine cycle; selectable technology level (SC or USC).",
+    "unit": {
+        "name": "Generic 800 MW Ultra-Supercritical PC Plant (700 C / 300 bar)",
+        "source": "Weitzel, P.S. (2011). Steam generator for advanced ultra supercritical power plants. ASME PVP-2011-57934; IEA CCC/168 (2010); Luo, Z. et al. (2013) Energy, 57, 236-244.",
+        "technology": "USC",
+        "rated_power_mw": {"value": 800.0, "unit": "MW_e"},
+        "eta_iso": {"value": 0.46, "unit": "dimensionless", "note": "Net LHV efficiency at rated load (USC ~44-47%; SC ~42-44%); PLR=1, T_amb=15C"},
+        "T_amb_ref": {"value": 15.0, "unit": "degC", "note": "ISO reference ambient temperature"},
+        "k_amb": {"value": 0.0003, "unit": "1/K", "note": "Efficiency derating per K; condenser back-pressure effect (~0.03%/K)"},
+        "plr_coeffs": {
+            "a0": {"value": 0.08, "unit": "dimensionless", "note": "Slightly flatter part-load than subcritical due to advanced steam path"},
+            "a1": {"value": 0.92, "unit": "dimensionless"},
+            "a2": {"value": 0.0, "unit": "dimensionless"}
+        },
+        "LHV_coal": {"value": 25.0, "unit": "MJ/kg", "note": "Bituminous coal lower heating value"},
+        "coal_carbon_fraction": {"value": 0.70, "unit": "kg_C/kg_coal"},
+        "CO2_per_kg_coal": {"value": 2.57, "unit": "kg_CO2/kg_coal", "note": "0.70 * 44/12 = 2.567"},
+        "min_plr": {"value": 0.30, "unit": "dimensionless"},
+        "max_plr": {"value": 1.0, "unit": "dimensionless"},
+        "steam_temp_c": {"value": 700.0, "unit": "degC", "note": "Main steam temperature (USC target; SC ~600 C)"},
+        "steam_pressure_bar": {"value": 300.0, "unit": "bar", "note": "Main steam pressure (USC; SC ~250 bar)"}
+    },
+    "sc_variant": {
+        "name": "Supercritical variant (600 C / 250 bar)",
+        "eta_iso": {"value": 0.43, "unit": "dimensionless", "note": "SC lower bound 42-44%"},
+        "steam_temp_c": {"value": 600.0, "unit": "degC"},
+        "steam_pressure_bar": {"value": 250.0, "unit": "bar"}
+    },
+    "valid_ranges": {
+        "part_load_ratio": {"min": 0.30, "max": 1.0, "unit": "dimensionless"},
+        "ambient_temp": {"min": -10.0, "max": 45.0, "unit": "degC"}
+    }
+}

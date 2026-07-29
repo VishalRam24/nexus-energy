@@ -1,0 +1,48 @@
+{
+    "component_id": "EC035",
+    "component_name": "Sodium-Sulfur (NaS) Battery",
+    "fidelity": "F2a — Thevenin 1-RC ECM + Coulomb SOC + Arrhenius beta-alumina resistance + lumped thermal ODE (heater + self-heating)",
+    "source": "Sudworth & Tilley (1985), The Sodium Sulfur Battery, Chapman & Hall; Wen et al. (2008), Mater. Sci. Eng. B 154-155, 73-78; Hueso et al. (2013), Energy Environ. Sci. 6, 734; NGK Insulators NAS Battery Technical Brochure",
+    "unit": {
+        "name": "Generic high-temperature NaS cell (NGK PS-class, T_op ~ 320 degC)",
+        "capacity_ref": {"value": 100.0, "unit": "Ah", "note": "Nominal cell capacity at T_op_ref (593.15 K = 320 degC). Wen et al. (2008)"},
+        "voltage_max": {"value": 2.08, "unit": "V", "note": "Upper terminal-voltage clamp (high OCV plateau, single-phase Na2S5)"},
+        "voltage_min": {"value": 1.78, "unit": "V", "note": "Lower terminal-voltage clamp (end of two-phase region). Sudworth & Tilley (1985)"},
+        "R0_ref": {"value": 0.004, "unit": "Ohm", "note": "Series ohmic resistance at T_op_ref — beta-alumina solid electrolyte + leads, dominated by ceramic. Wen et al. (2008)"},
+        "R1_ref": {"value": 0.002, "unit": "Ohm", "note": "Charge-transfer/polarisation resistance of the 1-RC branch at T_op_ref"},
+        "C1": {"value": 5000.0, "unit": "F", "note": "Double-layer/polarisation capacitance; RC time constant tau1 = R1*C1 ~ 10 s"},
+        "E_a_R": {"value": 12000.0, "unit": "J/mol", "note": "Apparent activation energy of beta-alumina ionic conduction within the 300-350C window (conductivity ~ exp(-Ea/RT)). Sudworth & Tilley (1985); Wen et al. (2008)"},
+        "alpha_c": {"value": 0.001, "unit": "1/K", "note": "Small capacity temperature coefficient within the operating window. NGK NAS brochure"},
+        "dOCV_dT": {"value": -0.0003, "unit": "V/K", "note": "Entropic (reversible) coefficient; small for molten NaS electrode. Sudworth & Tilley (1985), ch. 3"},
+        "T_op_ref": {"value": 593.15, "unit": "K", "note": "Reference operating temperature (320 degC)"},
+        "T_op_min": {"value": 573.15, "unit": "K", "note": "Minimum operating temperature (300 degC); below this Na and S solidify and the cell is non-functional"},
+        "T_op_max": {"value": 623.15, "unit": "K", "note": "Maximum operating temperature (350 degC); above this risk of thermal runaway / corrosion"},
+        "m_cell": {"value": 0.55, "unit": "kg", "note": "Single-cell mass (active materials + ceramic + casing). NGK PS-class scale"},
+        "cp_cell": {"value": 1000.0, "unit": "J/(kg.K)", "note": "Effective lumped specific heat (molten Na/S + alumina + steel)"},
+        "hA_loss": {"value": 0.12, "unit": "W/K", "note": "Effective UA of cell-to-ambient heat loss through vacuum/insulation jacket; NaS modules are heavily insulated"},
+        "T_ambient": {"value": 298.15, "unit": "K", "note": "Ambient temperature outside the insulated enclosure (25 degC)"},
+        "heater_power_max": {"value": 40.0, "unit": "W", "note": "Per-cell share of the thermal-management heater used to hold T in the operating band during idle/standby"},
+        "T_heater_setpoint": {"value": 593.15, "unit": "K", "note": "Thermostat setpoint the heater regulates toward (320 degC)"},
+        "heater_band": {"value": 5.0, "unit": "K", "note": "Proportional band of the heater controller below setpoint"}
+    },
+    "ocv_coefficients": {
+        "description": "OCV(SOC) = a0 + a1*SOC + a2*SOC^2 + a3*SOC^3 + a4*SOC^4 + a5*SOC^5; monotonically increasing 1.779 V (empty) -> 2.080 V (full), reproducing the NaS two-plateau discharge curve (sloping two-phase Na2Sx region then ~2.08 V single-phase plateau)",
+        "source": "Polynomial fit to representative NaS discharge curve (Sudworth & Tilley 1985; Wen et al. 2008). Reused from EC035 F1a/F1b.",
+        "a0": 1.7793531468531478,
+        "a1": 0.6101194638694872,
+        "a2": -2.45651223776239,
+        "a3": 7.180215617716007,
+        "a4": -8.078379953380372,
+        "a5": 3.044871794871948
+    },
+    "constants": {
+        "R_gas": {"value": 8.314, "unit": "J/(mol.K)", "note": "Universal gas constant"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "-"},
+        "current": {"min": -200.0, "max": 200.0, "unit": "A", "note": "Negative = charge, Positive = discharge"},
+        "temperature": {"min": 573.15, "max": 623.15, "unit": "K", "note": "300-350 degC operating window; outside it the cell is non-functional"},
+        "dt": {"min": 0.1, "max": 60.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 86400.0, "unit": "s"}
+    }
+}

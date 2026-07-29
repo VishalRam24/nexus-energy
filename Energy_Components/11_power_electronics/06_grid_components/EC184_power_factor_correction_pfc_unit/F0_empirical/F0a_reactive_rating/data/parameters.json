@@ -1,0 +1,51 @@
+{
+    "component": "EC184 Power Factor Correction Unit",
+    "fidelity": "F0a",
+    "description": "Empirical reactive-output rating with linear loss lookup; Q clamped to [Q_min, Q_max]",
+    "source": "Acha et al. (2004), FACTS: Modelling and Simulation in Power Networks (reused from F1a)",
+    "Q_max": {
+        "value": 1000.0,
+        "unit": "kVAR",
+        "note": "max capacitive output (reused from F1a)"
+    },
+    "Q_min": {
+        "value": 0.0,
+        "unit": "kVAR",
+        "note": "max inductive output (reused from F1a)"
+    },
+    "V_rated_kV": {
+        "value": 11.0,
+        "unit": "kV"
+    },
+    "loss_factor": {
+        "value": 0.003,
+        "unit": "dimensionless",
+        "note": "loss as fraction of |Q_out| (reused from F1a)"
+    },
+    "q_fraction_breakpoints": {
+        "value": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+        ],
+        "unit": "fraction_of_Q_max"
+    },
+    "loss_fraction_breakpoints": {
+        "value": [
+            0.0,
+            0.00075,
+            0.0015,
+            0.00225,
+            0.003
+        ],
+        "unit": "dimensionless",
+        "note": "loss / |Q| at each output level"
+    },
+    "pf_target": {
+        "value": 0.95,
+        "unit": "dimensionless",
+        "note": "target pf (reused from F1a)"
+    }
+}

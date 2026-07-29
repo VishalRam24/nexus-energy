@@ -1,0 +1,53 @@
+{
+  "model": "roundtrip_efficiency_curve",
+  "V_nominal": {
+    "value": 111.0,
+    "unit": "V",
+    "note": "stack nominal voltage"
+  },
+  "R_series": {
+    "value": 0.09,
+    "unit": "Ohm",
+    "note": "ohmic series resistance"
+  },
+  "Q_nominal": {
+    "value": 100.0,
+    "unit": "Ah"
+  },
+  "c_rate_breakpoints": {
+    "value": [
+      0.0,
+      0.1,
+      0.2,
+      0.5,
+      1.0,
+      2.0,
+      5.0
+    ],
+    "unit": "1/h",
+    "note": "discharge/charge C-rate breakpoints"
+  },
+  "roundtrip_efficiency": {
+    "value": [
+      0.7281,
+      0.7171,
+      0.7056,
+      0.6721,
+      0.6195,
+      0.5254,
+      0.3084
+    ],
+    "unit": "fraction",
+    "note": "DC round-trip efficiency at each C-rate"
+  },
+  "eta_rated": {
+    "value": 0.7,
+    "unit": "fraction",
+    "note": "literature rated round-trip eff at C=0.25"
+  },
+  "c_rated": {
+    "value": 0.25,
+    "unit": "1/h"
+  },
+  "source": "EC037 F1a (E0=1.85 V, ASR=1.5 Ohm.cm2, 1000 cm2, 60 cells); ZBFB round-trip eff ~65-75% (Skyllas-Kazacos et al. 2011)."
+}

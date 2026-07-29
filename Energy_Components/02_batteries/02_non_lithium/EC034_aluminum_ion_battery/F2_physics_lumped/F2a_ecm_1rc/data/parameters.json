@@ -1,0 +1,55 @@
+{
+    "component_id": "EC034",
+    "component_name": "Aluminum-Ion Battery",
+    "fidelity": "F2a — Thevenin Equivalent-Circuit Model (1-RC / 2-RC) with Coulomb-counted SOC and lumped thermal ODE",
+    "source": "Lin et al. (2015) Nature 520, 324-328; Pang et al. (2019) Joule 3(1), 136-148; Guo et al. (2020) Energy Storage Mater. 28, 240-248; Plett (2015) Battery Management Systems Vol.1 (ECM/Coulomb counting)",
+    "unit": {
+        "name": "Aluminum-Ion cell (Al / AlCl4-graphite) in AlCl3:EMImCl ionic liquid — physics-lumped ECM",
+        "note": "Al anode dissolution (Al - 3e- -> Al^3+); AlCl4- intercalation into graphite cathode. Multi-step staging gives ~1.8-2.2 V plateaus. Lin et al. 2015 Nature.",
+
+        "capacity_ref": {"value": 1.0, "unit": "Ah", "note": "Reference cell capacity (normalized). Lin 2015 reports ~70 mAh/g graphite; cell scaled to 1 Ah"},
+        "voltage_max": {"value": 2.45, "unit": "V", "note": "Upper charge cutoff. Lin et al. 2015 Nature"},
+        "voltage_min": {"value": 0.5, "unit": "V", "note": "Lower discharge cutoff"},
+
+        "R0_ref": {"value": 0.022, "unit": "Ohm", "note": "Series (ohmic) resistance at T_ref. Ionic-liquid electrolyte, low for high-rate Al-ion. Lin 2015 (charge in 1 min)"},
+        "R1_ref": {"value": 0.012, "unit": "Ohm", "note": "RC-pair 1 charge-transfer/diffusion resistance at T_ref"},
+        "C1": {"value": 1500.0, "unit": "F", "note": "RC-pair 1 capacitance -> tau1 = R1*C1 ~ 18 s (fast Al-ion kinetics)"},
+        "R2_ref": {"value": 0.008, "unit": "Ohm", "note": "RC-pair 2 (slow diffusion) resistance at T_ref; used only in 2-RC mode"},
+        "C2": {"value": 12000.0, "unit": "F", "note": "RC-pair 2 capacitance -> tau2 = R2*C2 ~ 96 s"},
+        "n_rc": {"value": 1, "unit": "-", "note": "Number of RC pairs: 1 (default) or 2"},
+
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 C)"},
+        "E_a": {"value": 20000.0, "unit": "J/mol", "note": "Arrhenius activation energy for resistances. Ionic-liquid moderate T-sensitivity. Guo 2020"},
+        "alpha_c": {"value": 0.006, "unit": "1/K", "note": "Capacity temperature coefficient; ionic-liquid viscosity drops with T. Guo 2020"},
+        "dOCV_dT": {"value": -0.0003, "unit": "V/K", "note": "Entropic coefficient (reversible heat). Slight negative on Al insertion. Pang 2019"},
+        "R_gas": {"value": 8.314, "unit": "J/(mol.K)", "note": "Universal gas constant"},
+
+        "m_cell": {"value": 0.045, "unit": "kg", "note": "Lumped cell thermal mass"},
+        "cp_cell": {"value": 900.0, "unit": "J/(kg.K)", "note": "Effective specific heat of cell"},
+        "hA": {"value": 0.08, "unit": "W/K", "note": "Convective heat-transfer coeff * surface area to ambient"},
+        "T_amb": {"value": 298.15, "unit": "K", "note": "Ambient temperature"},
+
+        "coulomb_eff": {"value": 0.995, "unit": "-", "note": "Coulombic (charge) efficiency; Al-ion >99% with ultra-long cycle life (Lin 2015: 7500+ cycles, no decay)"},
+        "cycle_life": {"value": 7500, "unit": "cycles", "note": "Demonstrated cycle life with ~no capacity decay. Lin et al. 2015 Nature"}
+    },
+
+    "ocv_coefficients": {
+        "description": "OCV(SOC) for Al-ion: multi-step graphite/chloroaluminate intercalation, ~1.8-2.2 V plateaus, monotonically increasing in SOC",
+        "source": "Lin et al. (2015) Nature 520, 324-328; Pang et al. (2019) Joule 3(1), 136-148",
+        "a0": 0.50,
+        "a1": 6.00,
+        "a2": -12.00,
+        "a3": 15.00,
+        "a4": -10.50,
+        "a5": 3.45,
+        "note": "5th-order polynomial fit; reproduces two-plateau staging (~2.2 V and ~1.8 V). Monotone increasing on [0,1]. Pang 2019"
+    },
+
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "-"},
+        "current_A": {"min": -20.0, "max": 20.0, "unit": "A", "note": "positive=discharge, negative=charge. Al-ion supports very high C-rates (Lin 2015 charges in ~1 min). |I|<=20 ~ 20C"},
+        "temperature_K": {"min": 263.15, "max": 333.15, "unit": "K", "note": "Bounded by ionic-liquid freezing/decomposition"},
+        "dt": {"min": 0.01, "max": 10.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 36000.0, "unit": "s"}
+    }
+}

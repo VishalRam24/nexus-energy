@@ -1,0 +1,27 @@
+{
+    "component": "EC193 Methanation Reactor (Power-to-Gas)",
+    "fidelity": "F1a",
+    "description": "Sabatier reaction equilibrium conversion model: CO2 + 4H2 -> CH4 + 2H2O",
+    "unit": {
+        "name": "Ni/Al2O3 Catalytic Methanation Reactor",
+        "source": "Gao, J. et al. (2012). RSC Advances, 2, 2358-2368.",
+        "T_design": {"value": 300.0, "unit": "degC"},
+        "P_design": {"value": 10.0, "unit": "bar"},
+        "H2_CO2_ratio_design": {"value": 4.0, "unit": "mol/mol"},
+        "catalyst": {"value": "Ni/Al2O3", "unit": "-"},
+        "n_CO2_in": {"value": 1.0, "unit": "mol/s"},
+        "X_max": {"value": 0.98, "unit": "dimensionless", "note": "Max conversion at T_opt, P_ref"},
+        "T_opt": {"value": 300.0, "unit": "degC"},
+        "k_T": {"value": 10.0, "unit": "dimensionless", "note": "Gaussian width parameter for T sensitivity"},
+        "P_ref": {"value": 10.0, "unit": "bar"},
+        "P_exp": {"value": 0.1, "unit": "dimensionless", "note": "Pressure exponent for conversion scaling"},
+        "LHV_CH4": {"value": 802.3, "unit": "kJ/mol", "note": "Lower heating value of methane"},
+        "LHV_H2": {"value": 241.8, "unit": "kJ/mol", "note": "Lower heating value of hydrogen"},
+        "DH_reaction": {"value": -165.0, "unit": "kJ/mol_CO2", "note": "Enthalpy of Sabatier reaction at 300°C (exothermic)"}
+    },
+    "valid_ranges": {
+        "temperature": {"min": 200.0, "max": 500.0, "unit": "degC"},
+        "pressure": {"min": 1.0, "max": 30.0, "unit": "bar"},
+        "h2_co2_ratio": {"min": 3.5, "max": 5.0, "unit": "mol/mol"}
+    }
+}

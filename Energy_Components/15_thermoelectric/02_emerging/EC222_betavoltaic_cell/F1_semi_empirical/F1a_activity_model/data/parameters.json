@@ -1,0 +1,26 @@
+{
+    "component": "EC222 Betavoltaic Cell",
+    "fidelity": "F1a",
+    "description": "P = A(t) * E_beta * eta_capture * eta_conv; isotope decay over decades",
+    "unit": {
+        "name": "Ni-63 betavoltaic cell (diamond semiconductor)",
+        "source": "Blanovsky, A.E. (2012) IEEE AERO; Olsen et al. (1993) Nucl. Instrum. Methods; Sychov et al. (2008) Appl. Radiat. Isot.",
+        "isotope": {"value": "Ni-63", "unit": "-", "note": "Nickel-63 beta emitter"},
+        "A0_Bq": {"value": 3.7e9, "unit": "Bq", "note": "Initial activity (0.1 Ci = 3.7 GBq — typical lab source)"},
+        "t_half_years": {"value": 100.2, "unit": "years", "note": "Ni-63 half-life 100.2 years"},
+        "E_beta_MeV": {"value": 0.017, "unit": "MeV", "note": "Mean beta energy for Ni-63 (max 66.9 keV, mean ~17 keV)"},
+        "eta_capture": {"value": 0.30, "unit": "-", "note": "Geometric/absorption capture efficiency ~30%"},
+        "eta_conv": {"value": 0.06, "unit": "-", "note": "Conversion efficiency (diamond semiconductor) ~5-8%"},
+        "design_life_years": {"value": 50.0, "unit": "years", "note": "Design operational lifetime 50 years"}
+    },
+    "isotopes": {
+        "Tritium": {"t_half_years": 12.32, "E_beta_MeV": 0.005685, "note": "H-3, mean energy 5.685 keV"},
+        "Ni-63":   {"t_half_years": 100.2, "E_beta_MeV": 0.017,    "note": "Mean ~17 keV"},
+        "Pm-147":  {"t_half_years": 2.623, "E_beta_MeV": 0.062,    "note": "Mean 62 keV, shorter life"},
+        "Sr-90":   {"t_half_years": 28.8,  "E_beta_MeV": 0.196,    "note": "Mean ~196 keV (+ Y-90 daughter)"}
+    },
+    "valid_ranges": {
+        "t_years": {"min": 0.0, "max": 500.0, "unit": "years"},
+        "A0_Bq": {"min": 1e6, "max": 1e12, "unit": "Bq"}
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "component": "EC154 Enhanced Geothermal System (EGS)",
+    "fidelity": "F1a",
+    "description": "Exergy efficiency model for EGS — hot dry rock + hydraulic fracturing, ORC or binary cycle",
+    "unit": {
+        "name": "Generic EGS Plant (Binary/ORC)",
+        "source": "Tester et al. (2006). The Future of Geothermal Energy, MIT/DOE. DiPippo (2015) Chapter 16.",
+        "T_geo_design": {"value": 200.0, "unit": "degC"},
+        "T_reject_design": {"value": 30.0, "unit": "degC"},
+        "m_dot_design": {"value": 50.0, "unit": "kg/s"},
+        "cp_fluid": {"value": 4100.0, "unit": "J/kgK", "note": "Working fluid (water) specific heat"},
+        "eta_utilization": {"value": 0.40, "unit": "dimensionless", "note": "Slightly lower than natural geothermal due to pumping parasitic loads (stimulation pumps)"},
+        "pump_parasitic_fraction": {"value": 0.10, "unit": "dimensionless", "note": "Fraction of gross power consumed by circulation pumps"},
+        "T_reinject_offset": {"value": 30.0, "unit": "degC", "note": "Fluid reinjected 30°C above rejection T; constrained by reservoir thermal depletion concerns"},
+        "P_rated": {"value": 5000.0, "unit": "kW"}
+    },
+    "valid_ranges": {
+        "T_geothermal": {"min": 150.0, "max": 350.0, "unit": "degC", "note": "EGS targets 150-350°C depending on depth"},
+        "T_rejection": {"min": 10.0, "max": 40.0, "unit": "degC"},
+        "flow_rate_kgs": {"min": 5.0, "max": 200.0, "unit": "kg/s"}
+    }
+}

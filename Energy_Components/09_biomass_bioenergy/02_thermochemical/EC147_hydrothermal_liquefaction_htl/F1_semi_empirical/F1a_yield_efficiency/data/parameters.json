@@ -1,0 +1,21 @@
+{
+    "component": "EC147 Hydrothermal Liquefaction (HTL)",
+    "fidelity": "F1a",
+    "description": "Simple yield model: bio_crude = wet_feedstock * bio_crude_yield. Moisture-tolerant process at 350 degC / 200 bar.",
+    "unit": {
+        "name": "Generic HTL Reactor (350 degC, 200 bar)",
+        "source": "Toor et al. (2011) Energy 36:2328; Elliott et al. (2015) Bioresour. Technol. 178:147; Biller & Ross (2011) Bioresour. Technol. 102:215",
+        "bio_crude_yield":    {"value": 0.35, "unit": "kg_bio_crude/kg_dry_feed","note": "Bio-crude mass yield from dry feedstock basis"},
+        "LHV_bio_crude_MJ_kg":{"value": 33.0, "unit": "MJ/kg",                   "note": "LHV of HTL bio-crude"},
+        "T_operating_degC":   {"value": 350.0,"unit": "degC",                     "note": "Reaction temperature"},
+        "P_operating_bar":    {"value": 200.0,"unit": "bar",                      "note": "Reaction pressure"},
+        "aqueous_yield":      {"value": 0.30, "unit": "kg/kg_dry_feed",           "note": "Aqueous phase yield (contains dissolved organics)"},
+        "gas_yield":          {"value": 0.10, "unit": "kg/kg_dry_feed",           "note": "Gas phase yield (mostly CO2)"},
+        "solid_yield":        {"value": 0.25, "unit": "kg/kg_dry_feed",           "note": "Solid residue yield"},
+        "moisture_tolerance": {"value": 1,    "unit": "bool",                     "note": "Process handles wet feedstocks (>80% moisture)"},
+        "SEC_kWh_per_t":      {"value": 150.0,"unit": "kWh/t_wet_feed",           "note": "Specific energy consumption (pumping + heating)"}
+    },
+    "valid_ranges": {
+        "feedstock_dry_kg_per_h": {"min": 0.0, "max": 1e5, "unit": "kg/h"}
+    }
+}

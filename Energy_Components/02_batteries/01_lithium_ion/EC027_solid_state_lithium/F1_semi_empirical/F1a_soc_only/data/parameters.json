@@ -1,0 +1,29 @@
+{
+    "component": "EC027 Solid-State Lithium Battery",
+    "fidelity": "F1a",
+    "description": "Simple SOC-voltage model: V = OCV(SOC) - I*R_internal",
+    "cell": {
+        "name": "Generic solid-state Li cell (LiCoO2 / sulfide solid electrolyte / Li metal)",
+        "source": "Janek & Zeier (2016), Nat. Energy 1, 16141; QuantumScape & Solid Power patents",
+        "nominal_voltage": {"value": 3.8, "unit": "V"},
+        "capacity": {"value": 4.0, "unit": "Ah"},
+        "voltage_max": {"value": 4.3, "unit": "V"},
+        "voltage_min": {"value": 3.0, "unit": "V"},
+        "internal_resistance": {"value": 0.045, "unit": "Ohm", "note": "Approximate DC resistance at 25C, 50% SOC; SSE typically higher than liquid Li-ion"}
+    },
+    "ocv_coefficients": {
+        "description": "OCV(SOC) polynomial fit: OCV = a0 + a1*SOC + a2*SOC^2 + a3*SOC^3 + a4*SOC^4 + a5*SOC^5",
+        "source": "Polynomial fit to representative solid-state Li cell discharge curve (similar to NMC with higher upper cut-off)",
+        "a0": 3.002779720279721,
+        "a1": 4.205224358974421,
+        "a2": -9.586465617716001,
+        "a3": 14.10329254079347,
+        "a4": -10.46765734265828,
+        "a5": 3.0448717948721176
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "current": {"min": -20.0, "max": 20.0, "unit": "A", "note": "Negative=charge, Positive=discharge"},
+        "temperature": {"min": -20.0, "max": 80.0, "unit": "degC", "note": "F1a ignores temperature effects; SSE often operated warmer"}
+    }
+}

@@ -1,0 +1,95 @@
+{
+  "component": "EC073 Shell-and-Tube Heat Exchanger",
+  "fidelity": "F0a \u2014 empirical effectiveness curve",
+  "description": "Tabulated heat-exchanger effectiveness vs NTU at the rated capacity ratio Cr. Q = eps * Cmin * (T_h_in - T_c_in). eps looked up via np.interp on NTU.",
+  "lookup": {
+    "NTU_breakpoints": {
+      "value": [
+        0.0,
+        0.5,
+        1.0,
+        1.5,
+        2.0,
+        2.5,
+        3.0,
+        3.5,
+        4.0,
+        4.5,
+        5.0,
+        5.5,
+        6.0,
+        6.5,
+        7.0,
+        7.5,
+        8.0
+      ],
+      "unit": "dimensionless",
+      "note": "Number of transfer units = UA/Cmin"
+    },
+    "effectiveness_table": {
+      "value": [
+        0.0,
+        0.3244,
+        0.46267,
+        0.52639,
+        0.55681,
+        0.57157,
+        0.5788,
+        0.58234,
+        0.58409,
+        0.58495,
+        0.58537,
+        0.58558,
+        0.58569,
+        0.58574,
+        0.58576,
+        0.58577,
+        0.58578
+      ],
+      "unit": "dimensionless",
+      "note": "eps-NTU for shell_tube_1_2 at Cr=1.0"
+    }
+  },
+  "rated": {
+    "flow_config": {
+      "value": "shell_tube_1_2",
+      "unit": "-"
+    },
+    "UA": {
+      "value": 37500.0,
+      "unit": "W/K"
+    },
+    "Cmin": {
+      "value": 20930.0,
+      "unit": "W/K"
+    },
+    "Cr": {
+      "value": 1.0,
+      "unit": "dimensionless",
+      "note": "Cmin/Cmax"
+    },
+    "NTU_rated": {
+      "value": 1.7917,
+      "unit": "dimensionless"
+    },
+    "effectiveness_rated": {
+      "value": 0.54414,
+      "unit": "dimensionless",
+      "note": "Design-point effectiveness"
+    }
+  },
+  "valid_ranges": {
+    "NTU": {
+      "min": 0.0,
+      "max": 8.0,
+      "unit": "dimensionless"
+    },
+    "Cr": {
+      "min": 0.0,
+      "max": 1.0,
+      "unit": "dimensionless"
+    }
+  },
+  "source": "Incropera & DeWitt (2006) ch.11; Kakac & Liu (2002); TEMA (2007)",
+  "note": "U=1500 W/m2K, A=25 m2 -> UA=37500 W/K; water-water Cmin~5 kg/s*4186"
+}

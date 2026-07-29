@@ -1,0 +1,29 @@
+{
+    "component": "EC019 NMC Battery (Nickel Manganese Cobalt)",
+    "fidelity": "F1a",
+    "description": "Simple SOC-voltage model: V = OCV(SOC) - I*R_internal",
+    "cell": {
+        "name": "Samsung INR21700-50E (NMC811)",
+        "source": "Chen et al. (2020), J. Electrochem. Soc., 167, 080534",
+        "nominal_voltage": {"value": 3.6, "unit": "V"},
+        "capacity": {"value": 5.0, "unit": "Ah"},
+        "voltage_max": {"value": 4.2, "unit": "V"},
+        "voltage_min": {"value": 2.5, "unit": "V"},
+        "internal_resistance": {"value": 0.035, "unit": "Ohm", "note": "Approximate DC resistance at 25C, 50% SOC"}
+    },
+    "ocv_coefficients": {
+        "description": "OCV(SOC) polynomial fit: OCV = a0 + a1*SOC + a2*SOC^2 + a3*SOC^3 + a4*SOC^4 + a5*SOC^5",
+        "source": "Fitted to NMC811 OCV data from Chen et al. (2020)",
+        "a0": 2.8,
+        "a1": 3.3,
+        "a2": -12.0,
+        "a3": 25.0,
+        "a4": -23.0,
+        "a5": 8.1
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "current": {"min": -25.0, "max": 25.0, "unit": "A", "note": "Negative=charge, Positive=discharge"},
+        "temperature": {"min": -20.0, "max": 60.0, "unit": "degC", "note": "F1a ignores temperature effects"}
+    }
+}

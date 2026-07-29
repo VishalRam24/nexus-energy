@@ -1,0 +1,34 @@
+{
+    "component_id": "EC170",
+    "component_name": "Solid State Transformer (SST)",
+    "fidelity": "F2a — Cascaded Averaged Three-Stage Model with DC-Link ODE",
+    "source": "Huang, A.Q. (2016) Medium-Voltage Solid-State Transformer: Technology for a Smarter and Resilient Grid, IEEE Ind. Electron. Mag. 10(3); She, X., Huang, A.Q., Burgos, R. (2013) Review of Solid-State Transformer Technologies, IEEE JESTPE 1(3); Krismer & Kolar (2012) IEEE Trans. Ind. Electron. 59(7)",
+    "unit": {
+        "name": "Generic Single-Phase MV SST (10 kVA, 10kV:400V class, 800V/400V DC links)",
+        "P_rated": {"value": 10000.0, "unit": "W", "note": "Rated through-power"},
+        "V_hv_dc_nom": {"value": 800.0, "unit": "V", "note": "HV-side (rectifier output) DC-link nominal voltage"},
+        "V_lv_dc_nom": {"value": 400.0, "unit": "V", "note": "LV-side (inverter input) DC-link nominal voltage"},
+        "turns_ratio": {"value": 2.0, "unit": "dimensionless", "note": "Medium-frequency transformer HV:LV turns ratio n=N1/N2"},
+
+        "eta_rect_nom": {"value": 0.985, "unit": "dimensionless", "note": "Stage 1 AC-DC rectifier peak efficiency (Huang 2016, SiC AFE)"},
+        "k_rect_load": {"value": 0.012, "unit": "dimensionless", "note": "Rectifier load-dependent loss coefficient (quadratic copper-like term)"},
+
+        "eta_dab_nom": {"value": 0.980, "unit": "dimensionless", "note": "Stage 2 DAB isolated DC-DC peak efficiency (Krismer & Kolar 2012)"},
+        "k_dab_load": {"value": 0.015, "unit": "dimensionless", "note": "DAB load-dependent loss coefficient"},
+        "P_core_dab": {"value": 50.0, "unit": "W", "note": "MF transformer core (Steinmetz) standing loss when energised"},
+
+        "eta_inv_nom": {"value": 0.982, "unit": "dimensionless", "note": "Stage 3 DC-AC inverter peak efficiency"},
+        "k_inv_load": {"value": 0.013, "unit": "dimensionless", "note": "Inverter load-dependent loss coefficient"},
+
+        "C_hv": {"value": 0.0020, "unit": "F", "note": "HV-side DC-link capacitance (2000 uF)"},
+        "C_lv": {"value": 0.0040, "unit": "F", "note": "LV-side DC-link capacitance (4000 uF)"},
+        "tau_ctrl": {"value": 0.005, "unit": "s", "note": "Inner power-flow control loop time constant (DAB phase-shift actuation)"}
+    },
+    "valid_ranges": {
+        "p_command_w": {"min": -12000.0, "max": 12000.0, "unit": "W", "note": "Commanded through-power; negative = reverse flow (LV->HV)"},
+        "power_factor": {"min": 0.6, "max": 1.0, "unit": "dimensionless"},
+        "v_grid_hv_v": {"min": 6000.0, "max": 12000.0, "unit": "V", "note": "MV AC RMS input"},
+        "dt": {"min": 0.0001, "max": 0.01, "unit": "s"},
+        "duration_s": {"min": 0.01, "max": 5.0, "unit": "s"}
+    }
+}

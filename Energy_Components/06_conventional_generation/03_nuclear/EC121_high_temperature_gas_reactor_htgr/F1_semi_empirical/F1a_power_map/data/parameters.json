@@ -1,0 +1,17 @@
+{
+    "component": "EC121 High Temperature Gas Reactor (HTGR)",
+    "fidelity": "F1a",
+    "description": "Simple power-map model: P_elec = eta * P_thermal * load_factor. Helium-cooled, high-efficiency gas reactor.",
+    "unit": {
+        "name": "Generic Pebble-Bed HTGR (HTR-PM class)",
+        "source": "Zhang et al. (2009) Nucl. Eng. Des. 239:2265; Dong (2011) Nucl. Eng. Des. 241:4755",
+        "P_thermal_mw":  {"value": 600.0,  "unit": "MW_th",        "note": "Thermal power at full load (2 x 250 MW modules + margin)"},
+        "eta_thermal":   {"value": 0.47,   "unit": "dimensionless","note": "Net electrical efficiency (He Brayton/Rankine at 750C outlet ~47%)"},
+        "T_out_degC":    {"value": 750.0,  "unit": "degC",         "note": "Helium outlet temperature at rated power"},
+        "load_min":      {"value": 0.4,    "unit": "dimensionless","note": "Minimum stable power fraction (pebble-bed design limit)"},
+        "load_max":      {"value": 1.0,    "unit": "dimensionless"}
+    },
+    "valid_ranges": {
+        "load_factor": {"min": 0.4, "max": 1.0, "unit": "dimensionless"}
+    }
+}

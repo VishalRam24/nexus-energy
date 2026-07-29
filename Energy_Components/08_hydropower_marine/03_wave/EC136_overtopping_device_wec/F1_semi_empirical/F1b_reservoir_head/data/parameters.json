@@ -1,0 +1,28 @@
+{
+    "component": "EC136 Overtopping Device WEC",
+    "fidelity": "F1b",
+    "description": "Extends F1a with variable reservoir head model, seawater density correction, and turbine efficiency vs head.",
+    "device": {
+        "ramp_width_m":      {"value": 20.0,  "unit": "m",    "description": "Width of overtopping ramp"},
+        "reservoir_height_design_m": {"value": 1.0, "unit": "m", "description": "Design reservoir head above mean sea level"},
+        "overtopping_rate_design": {"value": 0.05, "unit": "m^3/(s*m)", "description": "Mean overtopping flow per unit crest width at design wave"},
+        "eta_turbine_peak":  {"value": 0.82,  "unit": "-",    "description": "Peak turbine efficiency at design head"},
+        "eta_generator":     {"value": 0.92,  "unit": "-",    "description": "Generator efficiency"},
+        "eta_ramp_design":   {"value": 0.20,  "unit": "-",    "description": "Ramp efficiency at design wave condition"},
+        "rho_water":         {"value": 1025.0,"unit": "kg/m3","description": "Reference seawater density"},
+        "k_head_turbine":    {"value": 0.35,  "unit": "-",    "description": "Turbine efficiency head-dependence curvature: eta(h) = eta_peak*(1-k*(h/h_design-1)^2)"},
+        "h_min_turbine":     {"value": 0.2,   "unit": "m",    "description": "Minimum reservoir head for turbine operation"},
+        "overtopping_Hs_exp":{"value": 1.5,   "unit": "-",    "description": "Power law exponent: Q_overtopping ~ H_s^1.5 (more overtopping at higher waves)"},
+        "S_ref_psu":         {"value": 35.0,  "unit": "psu",  "description": "Reference salinity"},
+        "T_ref_C":           {"value": 15.0,  "unit": "degC", "description": "Reference temperature"}
+    },
+    "limits": {
+        "H_s_min_m": 0.5,
+        "H_s_max_m": 6.0,
+        "T_e_min_s": 5.0,
+        "T_e_max_s": 20.0,
+        "h_reservoir_min_m": 0.0,
+        "h_reservoir_max_m": 3.0
+    },
+    "source": "Kofoed et al. (2006) Coastal Eng. 53:859-867; Wave Dragon AS (2010); Margheritini et al. (2009) Renew. Energy 34:1473."
+}

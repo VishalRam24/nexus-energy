@@ -1,0 +1,35 @@
+{
+    "component_id": "EC221",
+    "component_name": "Magnetohydrodynamic (MHD) Generator",
+    "fidelity": "F2a — Physics-Lumped 1D Channel Flow with Saha Conductivity + Hall Effect",
+    "source": "Rosa, R.J. (1987) Magnetohydrodynamic Energy Conversion, McGraw-Hill; Sutton, G.W. & Sherman, A. (1965) Engineering Magnetohydrodynamics, McGraw-Hill; Messerle, H.K. (1995) MHD Electrical Power Generation, Wiley",
+    "unit": {
+        "name": "Open-cycle Faraday MHD generator (K2CO3/Cs-seeded combustion plasma, superconducting magnet)",
+        "B_field": {"value": 5.0, "unit": "T", "note": "Applied magnetic field (superconducting magnet ~4-7 T)"},
+        "K_load": {"value": 0.5, "unit": "-", "note": "Load factor K = E/(u*B); K=0.5 is the maximum-power point"},
+        "channel_length": {"value": 5.0, "unit": "m", "note": "Faraday channel length along flow direction x"},
+        "channel_width": {"value": 0.5, "unit": "m", "note": "Channel width (electrode spacing d, perpendicular to B and u)"},
+        "channel_height": {"value": 0.5, "unit": "m", "note": "Channel height in B direction at inlet"},
+        "area_ratio": {"value": 1.6, "unit": "-", "note": "Outlet/inlet cross-sectional area ratio (diverging channel to limit Mach rise)"},
+        "u_inlet": {"value": 800.0, "unit": "m/s", "note": "Plasma inlet velocity (supersonic combustion flow ~700-1000 m/s)"},
+        "T_inlet": {"value": 2800.0, "unit": "K", "note": "Plasma inlet static temperature (seeded combustion ~2500-3000 K)"},
+        "p_inlet": {"value": 500000.0, "unit": "Pa", "note": "Plasma inlet static pressure (~5 atm combustor)"},
+        "mdot": {"value": 100.0, "unit": "kg/s", "note": "Plasma mass flow rate through channel"},
+        "cp_plasma": {"value": 1200.0, "unit": "J/(kg*K)", "note": "Specific heat at constant pressure of seeded combustion gas"},
+        "gamma_plasma": {"value": 1.2, "unit": "-", "note": "Ratio of specific heats for hot combustion gas"},
+        "M_gas": {"value": 0.029, "unit": "kg/mol", "note": "Mean molar mass of combustion gas (~air-like)"},
+        "seed_fraction": {"value": 0.01, "unit": "-", "note": "Mole fraction of alkali seed (K) in the gas"},
+        "E_ion_seed": {"value": 4.34, "unit": "eV", "note": "First ionization energy of potassium seed (Cs=3.89, K=4.34, Na=5.14)"},
+        "sigma_floor": {"value": 0.5, "unit": "S/m", "note": "Lower clamp on conductivity for numerical stability"},
+        "sigma_scale": {"value": 0.1, "unit": "-", "note": "Calibration factor for electron-neutral collisions: sigma=scale*n_e*e*mu_e maps idealized Saha n_e to measured ~10-40 S/m (Sutton & Sherman 1965)"},
+        "mu_e": {"value": 0.4, "unit": "m2/(V*s)", "note": "Electron mobility in seeded combustion plasma (sets Hall parameter beta=mu_e*B~2 at 5T)"}
+    },
+    "valid_ranges": {
+        "B": {"min": 0.5, "max": 10.0, "unit": "T"},
+        "K": {"min": 0.05, "max": 0.95, "unit": "-"},
+        "u_inlet": {"min": 100.0, "max": 2000.0, "unit": "m/s"},
+        "T_inlet": {"min": 2000.0, "max": 4000.0, "unit": "K"},
+        "p_inlet": {"min": 100000.0, "max": 2000000.0, "unit": "Pa"},
+        "seed_fraction": {"min": 0.001, "max": 0.05, "unit": "-"}
+    }
+}

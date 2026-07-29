@@ -1,0 +1,34 @@
+{
+    "component_id": "EC129",
+    "component_name": "Run-of-River Hydropower",
+    "fidelity": "F2a — Physics-Lumped Headpond Transient with Penstock Head Loss",
+    "source": "Gulliver & Arndt (1991) Hydropower Engineering Handbook, McGraw-Hill; Penche (1998) Layman's Guidebook on How to Develop a Small Hydro Site; IEC 60041",
+    "unit": {
+        "name": "Generic Low-Head Run-of-River Plant (Kaplan turbine) — Physics-Lumped",
+        "H_design": {"value": 8.0, "unit": "m", "note": "Design gross head = forebay level above tailwater (2-20 m typical for RoR); Gulliver & Arndt (1991) Ch.3"},
+        "Q_design": {"value": 50.0, "unit": "m3/s", "note": "Turbine design (best-efficiency) flow"},
+        "P_rated": {"value": 3200.0, "unit": "kW", "note": "Rated electrical power output"},
+        "eta_peak": {"value": 0.90, "unit": "-", "note": "Peak hydraulic (turbine) efficiency at BEP, Kaplan; Gulliver & Arndt (1991) Ch.5"},
+        "eta_generator": {"value": 0.96, "unit": "-", "note": "Generator + gearbox electrical efficiency"},
+        "k_efficiency": {"value": 0.22, "unit": "-", "note": "Parabolic hill-chart drop coefficient for off-BEP flow"},
+        "q_min": {"value": 0.20, "unit": "-", "note": "Minimum flow ratio (fraction of Q_design) below which turbine is shut"},
+        "q_max": {"value": 1.20, "unit": "-", "note": "Maximum admissible flow ratio (gate fully open)"},
+        "penstock_length": {"value": 120.0, "unit": "m", "note": "Penstock length L (short for RoR)"},
+        "penstock_diameter": {"value": 4.5, "unit": "m", "note": "Penstock internal diameter D"},
+        "friction_factor": {"value": 0.015, "unit": "-", "note": "Darcy-Weisbach friction factor f (steel, fully-rough turbulent); Gulliver & Arndt (1991) Ch.4"},
+        "minor_loss_K": {"value": 0.5, "unit": "-", "note": "Sum of minor-loss coefficients (entrance, bends, valve, draft tube exit)"},
+        "pond_area": {"value": 40000.0, "unit": "m2", "note": "Forebay/headpond plan surface area (minimal pondage)"},
+        "z0": {"value": 8.0, "unit": "m", "note": "Initial forebay level above tailwater (= H_design)"},
+        "z_min": {"value": 6.0, "unit": "m", "note": "Minimum operating forebay level"},
+        "z_max": {"value": 9.0, "unit": "m", "note": "Spillway crest / max forebay level (overtops to spill)"},
+        "spill_coeff": {"value": 30.0, "unit": "m2.5/s", "note": "Weir discharge coefficient C_w*L_weir for spill = C*(z-z_max)^1.5"},
+        "rho": {"value": 1000.0, "unit": "kg/m3", "note": "Water density at ~10C; Gulliver & Arndt (1991) App. A; CRC Handbook of Chemistry and Physics"},
+        "g": {"value": 9.81, "unit": "m/s2", "note": "Standard gravitational acceleration; IEC 60041"}
+    },
+    "valid_ranges": {
+        "Q_inflow_m3s": {"min": 0.0, "max": 80.0, "unit": "m3/s"},
+        "z_forebay_m": {"min": 4.0, "max": 9.5, "unit": "m"},
+        "dt": {"min": 0.5, "max": 60.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 86400.0, "unit": "s"}
+    }
+}

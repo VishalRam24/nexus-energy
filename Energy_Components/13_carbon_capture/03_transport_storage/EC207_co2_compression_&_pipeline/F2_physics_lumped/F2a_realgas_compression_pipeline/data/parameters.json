@@ -1,0 +1,53 @@
+{
+    "component_id": "EC207",
+    "component_name": "CO2 Compression & Pipeline",
+    "fidelity": "F2a — Real-Gas Multistage Compression + Dense-Phase Pipeline with Pressure-Transient ODE",
+    "source": "McCollum & Ogden (2006) UCD-ITS CO2 compression study; IEAGHG (2002/2011) CO2 pipeline transport; IPCC (2005) CCS Special Report Ch.4; Span & Wagner (1996) J.Phys.Chem.Ref.Data 25(6) CO2 EoS; McCoy & Rubin (2008) Int.J.Greenhouse Gas Control 2,219.",
+    "compressor": {
+        "name": "Multi-stage intercooled CO2 compressor (1.5 -> 150 bar, supercritical)",
+        "n_stages": {"value": 5, "unit": "dimensionless",
+                     "note": "McCollum & Ogden (2006): 5-7 integrally-geared stages typical for 1->150 bar"},
+        "polytropic_index": {"value": 1.30, "unit": "dimensionless",
+                             "note": "CO2 effective polytropic exponent (gamma~1.29 ideal near 1 bar; 1.30 effective)"},
+        "eta_polytropic": {"value": 0.80, "unit": "dimensionless",
+                           "note": "Polytropic stage efficiency, centrifugal CO2 compressor (McCollum & Ogden 2006)"},
+        "eta_mech": {"value": 0.95, "unit": "dimensionless", "note": "Mechanical/driveline efficiency"},
+        "T_inlet": {"value": 308.15, "unit": "K", "note": "35C inlet, above T_crit=304.2K"},
+        "T_intercool": {"value": 308.15, "unit": "K", "note": "Intercooler outlet temperature (35C) between stages"},
+        "P_inlet": {"value": 1.5, "unit": "bar", "note": "Typical post-capture pressure"},
+        "P_supercritical": {"value": 150.0, "unit": "bar", "note": "Target pipeline / discharge pressure"}
+    },
+    "co2": {
+        "molar_mass": {"value": 0.04401, "unit": "kg/mol"},
+        "R_specific": {"value": 188.92, "unit": "J/(kg.K)", "note": "R_universal(8.314)/M_CO2(0.04401)"},
+        "gamma": {"value": 1.29, "unit": "dimensionless", "note": "Ideal-gas cp/cv near ambient"},
+        "cp_ideal": {"value": 846.0, "unit": "J/(kg.K)", "note": "CO2 ideal-gas cp ~ near 300-400 K (Span & Wagner 1996)"},
+        "T_critical": {"value": 304.13, "unit": "K", "note": "CO2 critical temperature (Span & Wagner 1996)"},
+        "P_critical": {"value": 73.77, "unit": "bar", "note": "CO2 critical pressure (Span & Wagner 1996)"},
+        "rho_critical": {"value": 467.6, "unit": "kg/m3", "note": "CO2 critical density (Span & Wagner 1996)"},
+        "omega": {"value": 0.2239, "unit": "dimensionless", "note": "CO2 acentric factor (for Redlich-Kwong-Soave Z)"},
+        "rho_dense_phase": {"value": 800.0, "unit": "kg/m3",
+                            "note": "Dense-phase CO2 density ~150 bar, 35C (Span & Wagner 1996; NIST ~ 780-850)"},
+        "viscosity_dense": {"value": 7.0e-5, "unit": "Pa.s", "note": "Dense-phase CO2 dynamic viscosity ~150 bar 35C (NIST)"},
+        "bulk_modulus_dense": {"value": 5.0e8, "unit": "Pa", "note": "Isothermal bulk modulus of dense-phase CO2 (~500 MPa) for pressure-transient ODE"},
+        "SEC_ref": {"value": 100.0, "unit": "kWh/tCO2",
+                    "note": "McCollum & Ogden (2006): ~90-120 kWh/tCO2 for compression 0.1->15 MPa with intercooling"}
+    },
+    "pipeline": {
+        "name": "Dense-phase CO2 pipeline",
+        "length_km": {"value": 100.0, "unit": "km", "note": "Reference trunkline length"},
+        "diameter_m": {"value": 0.508, "unit": "m", "note": "20-inch nominal pipeline ID (IEAGHG 2002)"},
+        "roughness": {"value": 4.6e-5, "unit": "m", "note": "Commercial steel pipe absolute roughness"},
+        "mass_flow": {"value": 100.0, "unit": "kg/s", "note": "~3.15 Mt/yr design flow"},
+        "volume_pipe_inlet": {"value": 2000.0, "unit": "m3",
+                              "note": "Lumped inlet/discharge volume for pressure-transient ODE (receiver + first km)"}
+    },
+    "valid_ranges": {
+        "P_inlet": {"min": 0.1, "max": 10.0, "unit": "bar"},
+        "P_outlet": {"min": 100.0, "max": 250.0, "unit": "bar"},
+        "mass_flow": {"min": 0.0, "max": 1000.0, "unit": "kg/s"},
+        "pipeline_length_km": {"min": 0.0, "max": 500.0, "unit": "km"},
+        "diameter_m": {"min": 0.1, "max": 1.2, "unit": "m"},
+        "duration_s": {"min": 1.0, "max": 36000.0, "unit": "s"}
+    }
+}

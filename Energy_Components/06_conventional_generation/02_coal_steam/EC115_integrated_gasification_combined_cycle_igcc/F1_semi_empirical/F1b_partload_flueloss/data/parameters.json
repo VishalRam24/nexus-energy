@@ -1,0 +1,32 @@
+{
+    "component": "EC115 Integrated Gasification Combined Cycle (IGCC)",
+    "fidelity": "F1b",
+    "description": "Part-load efficiency with flue/auxiliary losses, ambient temperature correction, CO2 intensity. Adds gasifier turndown penalties, HRSG flue loss, and auxiliary power fraction to F1a.",
+    "unit": {
+        "name": "Generic 400 MW Coal IGCC (GE/Texaco-type entrained-flow gasifier)",
+        "source": "Cormos, C.-C. (2012). Int. J. Hydrogen Energy 37(4), 3083-3095; IEA GHG R&D Programme (2003); Booras & Holt (2004) EPRI; Higman & van der Burgt (2008) Gasification, 2nd ed. Elsevier.",
+        "rated_power_mw": {"value": 400.0, "unit": "MW_e"},
+        "eta_iso": {"value": 0.42, "unit": "dimensionless", "note": "Net LHV efficiency at rated load (PLR=1, T_amb=15C, no flue loss penalty)"},
+        "T_amb_ref": {"value": 15.0, "unit": "degC"},
+        "k_amb": {"value": 0.004, "unit": "1/K", "note": "Ambient derating coefficient (~0.4%/K, gas turbine component dominant)"},
+        "plr_coeffs": {
+            "a0": {"value": 0.20, "unit": "dimensionless", "note": "IGCC part-load floor; gasifier turndown is the limiting constraint"},
+            "a1": {"value": 0.80, "unit": "dimensionless"},
+            "a2": {"value": 0.0, "unit": "dimensionless"}
+        },
+        "LHV_coal": {"value": 25.0, "unit": "MJ/kg", "note": "Bituminous feed coal LHV"},
+        "CO2_per_kg_coal": {"value": 2.57, "unit": "kg_CO2/kg_coal", "note": "Stoichiometric from 70% carbon fraction"},
+        "syngas_lhv": {"value": 11.0, "unit": "MJ/Nm3", "note": "Syngas LHV after cleanup; range 10-12 MJ/Nm3 for coal syngas"},
+        "gasifier_cold_gas_efficiency": {"value": 0.80, "unit": "dimensionless", "note": "Coal-to-syngas LHV transfer efficiency"},
+        "min_plr": {"value": 0.40, "unit": "dimensionless", "note": "Gasifier turndown constraint"},
+        "max_plr": {"value": 1.0, "unit": "dimensionless"},
+        "flue_loss_base": {"value": 0.015, "unit": "dimensionless", "note": "Stack/flue gas heat loss fraction at rated load (1.5% of coal LHV input); IGCC HRSG is smaller than PC so loss is slightly lower"},
+        "flue_loss_partload_coeff": {"value": 0.012, "unit": "dimensionless", "note": "Additional flue loss penalty per unit PLR drop below 1.0; lower combustion temperature at part load raises stack losses"},
+        "aux_power_base_fraction": {"value": 0.08, "unit": "dimensionless", "note": "Auxiliary power fraction at rated load (ASU, pumps, compressors ~7-9%); subtracted after cycle efficiency"},
+        "aux_partload_coeff": {"value": 0.02, "unit": "dimensionless", "note": "Auxiliary fraction increase per unit PLR drop; air separation unit cannot turn down proportionally"}
+    },
+    "valid_ranges": {
+        "part_load_ratio": {"min": 0.40, "max": 1.0, "unit": "dimensionless"},
+        "ambient_temp": {"min": -10.0, "max": 45.0, "unit": "degC"}
+    }
+}

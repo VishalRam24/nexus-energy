@@ -1,0 +1,51 @@
+{
+    "component_id": "EC113",
+    "component_name": "Subcritical Pulverized Coal Plant",
+    "fidelity": "F2a — Physics-Lumped Combustion + Subcritical Rankine Cycle with Drum Thermal ODE",
+    "source": "Black & Veatch (1996), Power Plant Engineering, Chapman & Hall; El-Wakil (1984), Powerplant Technology, McGraw-Hill; Borgnakke & Sonntag (2009), Fundamentals of Thermodynamics 7th ed.; IAPWS-IF97 (Wagner et al., 2000) simplified correlations; IEA Clean Coal Centre CCC/168 (2010).",
+    "unit": {
+        "name": "Generic 500 MW Subcritical PC Plant (540 C / 165 bar, single reheat)",
+
+        "rated_power_mw": {"value": 500.0, "unit": "MW_e", "note": "Net rated electrical output"},
+
+        "LHV_coal": {"value": 25.0, "unit": "MJ/kg", "note": "Bituminous coal lower heating value; range 23-29 MJ/kg (Black & Veatch Table)"},
+        "coal_carbon_fraction": {"value": 0.70, "unit": "kg_C/kg_coal", "note": "Mass fraction of carbon in bituminous coal"},
+        "CO2_per_kg_coal": {"value": 2.57, "unit": "kg_CO2/kg_coal", "note": "0.70 * 44/12 = 2.567 stoichiometric CO2"},
+        "stoich_air_kg_per_kg_coal": {"value": 10.5, "unit": "kg_air/kg_coal", "note": "Stoichiometric air for bituminous coal"},
+        "excess_air_fraction": {"value": 0.20, "unit": "-", "note": "Fraction of air above stoichiometric (~20% typical PC)"},
+
+        "T_stack_c": {"value": 130.0, "unit": "degC", "note": "Flue gas stack temperature (above acid dew point ~120C)"},
+        "T_air_in_c": {"value": 25.0, "unit": "degC", "note": "Combustion air inlet (after air heater datum)"},
+        "cp_flue_kj_kgK": {"value": 1.05, "unit": "kJ/(kg.K)", "note": "Mean specific heat of flue gas"},
+        "boiler_radiation_loss_frac": {"value": 0.015, "unit": "-", "note": "Radiation + convection + unburnt-carbon losses (~1.5%)"},
+
+        "P_drum_bar": {"value": 165.0, "unit": "bar", "note": "Boiler drum saturation pressure (subcritical, <221 bar)"},
+        "T_superheat_c": {"value": 540.0, "unit": "degC", "note": "Main steam (superheater outlet) temperature"},
+        "P_reheat_bar": {"value": 40.0, "unit": "bar", "note": "Cold/hot reheat pressure (IP turbine inlet)"},
+        "T_reheat_c": {"value": 540.0, "unit": "degC", "note": "Reheat steam temperature"},
+        "P_condenser_bar": {"value": 0.07, "unit": "bar", "note": "Condenser pressure (~39C saturation, water-cooled)"},
+
+        "eta_turbine_isen": {"value": 0.88, "unit": "-", "note": "Isentropic efficiency of steam turbine (HP+IP+LP lumped)"},
+        "eta_pump_isen": {"value": 0.80, "unit": "-", "note": "Isentropic efficiency of feedwater pump"},
+        "feedwater_temp_c": {"value": 250.0, "unit": "degC", "note": "Final feedwater temperature after regenerative heaters (~250C for 165 bar plant)"},
+        "regen_bleed_fraction": {"value": 0.22, "unit": "-", "note": "Total fraction of throttle steam bled to feedwater heaters (reduces LP work)"},
+        "eta_generator": {"value": 0.985, "unit": "-", "note": "Electrical generator efficiency"},
+        "eta_mechanical": {"value": 0.99, "unit": "-", "note": "Turbine-shaft mechanical efficiency"},
+        "aux_power_frac": {"value": 0.07, "unit": "-", "note": "Auxiliary load (fans, mills, pumps) as fraction of gross (~7%)"},
+
+        "drum_metal_mass_kg": {"value": 250000.0, "unit": "kg", "note": "Drum + riser/downcomer metal + water inventory lumped thermal mass"},
+        "drum_cp_kj_kgK": {"value": 2.0, "unit": "kJ/(kg.K)", "note": "Effective lumped heat capacity of drum metal+water mixture"},
+        "drum_UA_kw_K": {"value": 9000.0, "unit": "kW/K", "note": "Effective heat-transfer conductance furnace->drum working fluid"},
+
+        "min_plr": {"value": 0.30, "unit": "-"},
+        "max_plr": {"value": 1.0, "unit": "-"}
+    },
+    "valid_ranges": {
+        "part_load_ratio": {"min": 0.30, "max": 1.0, "unit": "-"},
+        "P_drum_bar": {"min": 100.0, "max": 200.0, "unit": "bar"},
+        "T_superheat_c": {"min": 400.0, "max": 565.0, "unit": "degC"},
+        "T_amb_c": {"min": -10.0, "max": 45.0, "unit": "degC"},
+        "dt": {"min": 0.1, "max": 60.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 100000.0, "unit": "s"}
+    }
+}

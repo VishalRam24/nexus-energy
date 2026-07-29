@@ -1,0 +1,78 @@
+{
+    "component": "EC145 Pyrolysis Reactor",
+    "fidelity": "F1b",
+    "description": "Feedstock-specific pyrolysis with moisture-LHV coupling, temperature-dependent yields, and part-load efficiency",
+    "feedstock_db": {
+        "wood_chips": {
+            "LHV_dry_MJ_kg": 18.5,
+            "cellulose_frac": 0.42,
+            "hemicellulose_frac": 0.30,
+            "lignin_frac": 0.25,
+            "ash_frac": 0.01,
+            "LHV_bio_oil_MJ_kg": 17.5,
+            "LHV_char_MJ_kg": 30.0,
+            "LHV_gas_MJ_kg": 7.5,
+            "note": "Generic hardwood chips (Bridgwater 2012)"
+        },
+        "pine": {
+            "LHV_dry_MJ_kg": 19.5,
+            "cellulose_frac": 0.44,
+            "hemicellulose_frac": 0.28,
+            "lignin_frac": 0.26,
+            "ash_frac": 0.005,
+            "LHV_bio_oil_MJ_kg": 18.0,
+            "LHV_char_MJ_kg": 31.0,
+            "LHV_gas_MJ_kg": 8.0,
+            "note": "Pine wood (low ash, high LHV)"
+        },
+        "corn_stover": {
+            "LHV_dry_MJ_kg": 17.0,
+            "cellulose_frac": 0.36,
+            "hemicellulose_frac": 0.28,
+            "lignin_frac": 0.18,
+            "ash_frac": 0.05,
+            "LHV_bio_oil_MJ_kg": 16.0,
+            "LHV_char_MJ_kg": 27.0,
+            "LHV_gas_MJ_kg": 6.5,
+            "note": "Agricultural residue, lower lignin"
+        },
+        "rice_husk": {
+            "LHV_dry_MJ_kg": 14.5,
+            "cellulose_frac": 0.32,
+            "hemicellulose_frac": 0.24,
+            "lignin_frac": 0.22,
+            "ash_frac": 0.20,
+            "LHV_bio_oil_MJ_kg": 15.0,
+            "LHV_char_MJ_kg": 24.0,
+            "LHV_gas_MJ_kg": 5.5,
+            "note": "High silica ash, lower bio-oil quality"
+        },
+        "switchgrass": {
+            "LHV_dry_MJ_kg": 17.8,
+            "cellulose_frac": 0.38,
+            "hemicellulose_frac": 0.32,
+            "lignin_frac": 0.18,
+            "ash_frac": 0.04,
+            "LHV_bio_oil_MJ_kg": 17.0,
+            "LHV_char_MJ_kg": 28.0,
+            "LHV_gas_MJ_kg": 7.0,
+            "note": "Energy crop, moderate lignin"
+        }
+    },
+    "unit": {
+        "Q_rated_kw":         {"value": 2000.0, "unit": "kW",          "note": "Reactor thermal input at full load"},
+        "T_ref_degC":         {"value": 500.0,  "unit": "degC",        "note": "Design reactor temperature for fast pyrolysis"},
+        "PLR_min":            {"value": 0.20,   "unit": "dimensionless","note": "Minimum turndown ratio"},
+        "a0":                 {"value": 0.55,   "unit": "dimensionless","note": "Thermal efficiency polynomial coefficient"},
+        "a1":                 {"value": 0.35,   "unit": "dimensionless","note": "Thermal efficiency polynomial coefficient"},
+        "a2":                 {"value": -0.10,  "unit": "dimensionless","note": "Thermal efficiency polynomial coefficient"},
+        "T_bio_oil_peak_degC":{"value": 500.0,  "unit": "degC",        "note": "Temperature of maximum bio-oil yield (Bridgwater 2012)"},
+        "T_gas_rise_degC":    {"value": 550.0,  "unit": "degC",        "note": "Temperature above which non-condensable gas fraction rises"}
+    },
+    "valid_ranges": {
+        "temperature_degC":    {"min": 300.0, "max": 700.0, "unit": "degC"},
+        "moisture_fraction":   {"min": 0.0,   "max": 0.60,  "unit": "dimensionless"},
+        "PLR":                 {"min": 0.20,  "max": 1.0,   "unit": "dimensionless"},
+        "feed_rate_kg_h":      {"min": 10.0,  "max": 5000.0,"unit": "kg/h"}
+    }
+}

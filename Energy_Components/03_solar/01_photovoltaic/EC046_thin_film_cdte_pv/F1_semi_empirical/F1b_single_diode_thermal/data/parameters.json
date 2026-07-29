@@ -1,0 +1,44 @@
+{
+    "component": "EC046 Thin-Film CdTe PV",
+    "fidelity": "F1b",
+    "description": "Single-diode (De Soto) + Faiman NOCT thermal + empirical power tempco correction for CdTe. F1a over-estimated Pmp at elevated temperature because the De Soto model alone under-captures the anomalously low CdTe tempco; a multiplicative empirical correction factor is applied.",
+    "module": {
+        "name": "First Solar Series 6 (CdTe, ~445W)",
+        "source": "First Solar Series 6 datasheet; Strevel et al. (2012) Prog. Photovolt.; Cunningham et al. (2010) IEEE PVSC",
+        "technology": "CdTe",
+        "p_mp_stc": {"value": 445.0, "unit": "W"},
+        "v_oc_stc": {"value": 218.5, "unit": "V"},
+        "i_sc_stc": {"value": 2.66, "unit": "A"},
+        "alpha_sc": {"value": 0.0011, "unit": "A/K"},
+        "gamma_pmp": {"value": -0.0028, "unit": "1/K", "note": "Empirical datasheet tempco -0.28%/K — LOWER than Si due to CdTe bandgap near optimal for AM1.5 and lower Voc tempco"},
+        "cells_in_series": {"value": 264, "unit": "cells"},
+        "area": {"value": 2.475, "unit": "m2"},
+        "NOCT": {"value": 45.0, "unit": "degC", "note": "CdTe thin-film absorbs slightly less thermal IR than c-Si"},
+        "T_NOCT_amb": {"value": 20.0, "unit": "degC"},
+        "G_NOCT": {"value": 800.0, "unit": "W/m2"},
+        "tempco_correction_note": "RATIONALE: De Soto I_o scaling gives a tempco of ~-0.35 to -0.40%/K for the fitted CdTe parameters due to the exponential temperature dependence of I_o. Real CdTe is -0.28%/K. The difference arises because CdTe has a near-optimal bandgap (1.45 eV) for AM1.5, so carriers excited by sub-bandgap photons contribute less to temperature sensitivity than in Si (1.12 eV). An empirical multiplicative correction alpha_corr = gamma_pmp_empirical / gamma_pmp_desoto is applied to P_mp to align with measured CdTe field data. This is documented separately in tempco_correction_factor below."
+    },
+    "desoto_params": {
+        "description": "De Soto 5-parameter single-diode model coefficients at STC",
+        "source": "Fitted from First Solar Series 6 datasheet",
+        "I_L_ref": {"value": 2.66, "unit": "A"},
+        "I_o_ref": {"value": 2.0e-12, "unit": "A"},
+        "R_s": {"value": 4.5, "unit": "Ohm"},
+        "R_sh_ref": {"value": 1500.0, "unit": "Ohm"},
+        "a_ref": {"value": 7.5, "unit": "V"},
+        "EgRef": {"value": 1.45, "unit": "eV", "note": "CdTe bandgap — wider than Si"},
+        "dEgdT": {"value": -0.0003, "unit": "eV/K"}
+    },
+    "tempco_correction": {
+        "description": "Empirical correction to match CdTe -0.28%/K datasheet tempco",
+        "gamma_pmp_desoto_approx": {"value": -0.00485, "unit": "1/K", "note": "Actual tempco from De Soto model (numerically differentiated P_mp w.r.t. T at STC): -0.485%/K — much higher than -0.28%/K because CdTe I_o has high exponential T-sensitivity from the fitted saturation current"},
+        "gamma_pmp_empirical": {"value": -0.0028, "unit": "1/K", "note": "Measured CdTe tempco from First Solar datasheet: -0.28%/K"},
+        "correction_factor": {"value": 0.578, "unit": "dimensionless", "note": "alpha_corr = |gamma_empirical / gamma_desoto| = 0.0028/0.00485 = 0.578 applied as fractional correction to temperature-dependent Pmp deviation"},
+        "rationale": "RATIONALE: CdTe has a near-optimal bandgap (1.45 eV) for AM1.5G spectrum resulting in lower temperature sensitivity than Si. The De Soto model fit to CdTe datasheet points yields an I_o temperature exponent that over-predicts thermal sensitivity (-0.485%/K vs measured -0.28%/K). Correction factor 0.578 = 0.0028/0.00485 is derived by numerical differentiation of the fitted De Soto model. Multiplying the temperature-dependent Pmp deviation by 0.578 aligns the model with validated First Solar field measurements (Strevel et al. 2012, DOI: 10.1002/pip.1209). This correction is CdTe-specific and must not be applied to Si models."
+    },
+    "valid_ranges": {
+        "irradiance": {"min": 0.0, "max": 1200.0, "unit": "W/m2"},
+        "T_ambient": {"min": -10.0, "max": 50.0, "unit": "degC"},
+        "cell_temperature": {"min": -10.0, "max": 90.0, "unit": "degC"}
+    }
+}

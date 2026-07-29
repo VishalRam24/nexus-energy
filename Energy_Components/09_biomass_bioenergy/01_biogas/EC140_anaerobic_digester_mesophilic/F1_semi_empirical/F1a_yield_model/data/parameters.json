@@ -1,0 +1,30 @@
+{
+    "component": "EC140 Anaerobic Digester (Mesophilic)",
+    "fidelity": "F1a",
+    "description": "Simplified Buswell equation + empirical yield model with temperature correction",
+    "unit": {
+        "name": "Generic 500 m3 Mesophilic Continuous Stirred Tank Reactor (CSTR)",
+        "source": "Buswell & Mueller (1952); Batstone et al. (2002) IWA ADM1 simplified",
+        "V_reactor_m3": {"value": 500.0, "unit": "m³", "note": "Total reactor volume"},
+        "VS_loading_kgm3day": {"value": 3.0, "unit": "kgVS/(m³·day)", "note": "Volatile solids loading rate"},
+        "Y_max_m3kgvs": {"value": 0.35, "unit": "m³_CH4/kgVS", "note": "Maximum specific methane yield"},
+        "k_decay_per_day": {"value": 0.15, "unit": "1/day", "note": "First-order hydrolysis/decay rate constant"},
+        "T_ref_k": {"value": 310.15, "unit": "K", "note": "Reference temperature = 37 degC = 310.15 K (mesophilic optimum)"},
+        "HRT_days": {"value": 20.0, "unit": "days", "note": "Hydraulic retention time (design value)"},
+        "methane_fraction": {"value": 0.60, "unit": "dimensionless", "note": "CH4 fraction in biogas (typical: 55-65%)"},
+        "E_a_jmol": {"value": 55000.0, "unit": "J/mol", "note": "Activation energy for temperature correction (Arrhenius)"},
+        "R_jmolk": {"value": 8.314, "unit": "J/(mol·K)", "note": "Universal gas constant"},
+        "LHV_methane_kwh_m3": {"value": 9.97, "unit": "kWh/m³_CH4", "note": "Lower heating value of methane at STP"},
+        "T_optimal_c": {"value": 37.0, "unit": "degC", "note": "Optimal mesophilic temperature"},
+        "T_inhibit_c": {"value": 42.0, "unit": "degC", "note": "Temperature above which yield begins to drop"},
+        "VS_loading_min": {"value": 1.0, "unit": "kgVS/(m³·day)"},
+        "VS_loading_max": {"value": 8.0, "unit": "kgVS/(m³·day)"},
+        "HRT_min_days": {"value": 5.0, "unit": "days"},
+        "HRT_max_days": {"value": 40.0, "unit": "days"}
+    },
+    "valid_ranges": {
+        "vs_loading": {"min": 1.0, "max": 8.0, "unit": "kgVS/(m³·day)"},
+        "hrt": {"min": 5.0, "max": 40.0, "unit": "days"},
+        "temperature": {"min": 25.0, "max": 55.0, "unit": "degC"}
+    }
+}

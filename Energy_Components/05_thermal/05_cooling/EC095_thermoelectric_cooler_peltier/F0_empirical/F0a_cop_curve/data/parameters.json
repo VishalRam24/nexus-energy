@@ -1,0 +1,37 @@
+{
+  "component_id": "EC095",
+  "component_name": "Thermoelectric Cooler (Peltier, Bi2Te3)",
+  "fidelity": "F0a \u2014 empirical lookup",
+  "source": "Goldsmid (2010) Introduction to Thermoelectricity; Riffat & Ma (2003) ATE 23,913-935",
+  "Q_rated": {
+    "value": 0.32,
+    "unit": "kW",
+    "note": "Rated cooling capacity"
+  },
+  "COP_rated": {
+    "value": 0.6,
+    "unit": "-",
+    "note": "COP at rated conditions"
+  },
+  "table": {
+    "x_key": "dT_lift_K",
+    "x": [
+      0.0,
+      10.0,
+      20.0,
+      30.0,
+      40.0,
+      50.0
+    ],
+    "cop": [
+      1.6,
+      1.0,
+      0.6,
+      0.35,
+      0.2,
+      0.1
+    ],
+    "x_rated": 20.0,
+    "note": "COP vs dT_lift_K (np.interp); COP at x_rated = COP_rated"
+  }
+}

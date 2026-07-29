@@ -1,0 +1,22 @@
+{
+    "component": "EC092 Absorption Chiller",
+    "fidelity": "F1a",
+    "description": "COP as f(T_generator, T_condenser) using characteristic equation approach",
+    "unit": {
+        "name": "Generic 500kW Single-Effect LiBr-H2O Absorption Chiller",
+        "source": "Herold, Radermacher & Klein (2016), 'Absorption Chillers and Heat Pumps', 2nd ed., CRC Press; Gordon & Ng (2000), 'Cool Thermodynamics', Cambridge Int. Sci.",
+        "Q_cool_rated": {"value": 500.0, "unit": "kW_th", "note": "Rated cooling capacity"},
+        "T_gen_rated": {"value": 90.0, "unit": "degC", "note": "Rated generator temperature"},
+        "T_cond_rated": {"value": 35.0, "unit": "degC", "note": "Rated condenser temperature"},
+        "T_evap_rated": {"value": 7.0, "unit": "degC", "note": "Rated evaporator temperature"},
+        "COP_rated": {"value": 0.70, "unit": "dimensionless", "note": "COP at rated conditions"},
+        "COP_max": {"value": 0.75, "unit": "dimensionless", "note": "Max COP (single-effect LiBr-H2O theoretical ~0.80)"},
+        "alpha": {"value": 3.0, "unit": "dimensionless", "note": "Shape factor — steepness of COP rise with dT_driving"},
+        "dT_ref": {"value": 50.0, "unit": "K", "note": "Reference temperature difference for normalisation"}
+    },
+    "valid_ranges": {
+        "T_generator": {"min": 70.0, "max": 120.0, "unit": "degC"},
+        "T_condenser": {"min": 25.0, "max": 45.0, "unit": "degC"},
+        "T_evaporator": {"min": 4.0, "max": 15.0, "unit": "degC"}
+    }
+}

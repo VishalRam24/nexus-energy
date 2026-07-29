@@ -1,0 +1,36 @@
+{
+  "case9": {
+    "case": "tiny3",
+    "formulation": "polar",
+    "pandapower": null,
+    "nexus": {
+      "status": "optimal",
+      "formulation": "polar",
+      "objective": 904.7241315522718,
+      "objective_plus_cp0": 904.7241315522718,
+      "cp0_sum": 0.0,
+      "solve_time_s": 0.0038490829974762164,
+      "clarabel_solve_time_s": 0.00364708300185157,
+      "voltage_mag": {
+        "b1": 1.1000000089400996,
+        "b2": 1.0916108891152982,
+        "b3": 1.0838907253152508
+      },
+      "gen_p_mw": {
+        "gen0": 30.157471051742395
+      },
+      "gen_q_mvar": {
+        "gen0": 6.574710517423781
+      },
+      "branch_p_mw": {
+        "br0": 30.157471051742395,
+        "br1": 30.078735525871213
+      },
+      "branch_loss_mw": {
+        "br0": 0.07873552587118193,
+        "br1": 0.07873552587121524
+      }
+    },
+    "competitor": "skipped"
+  }
+}

@@ -1,0 +1,35 @@
+{
+    "component": "EC222 Betavoltaic Cell",
+    "fidelity": "F1b",
+    "description": "P-N junction electrical model: Isc(t), Voc(T), fill-factor, T-dependent Voc, isotope decay P(t)=P0*exp(-lambda*t)",
+    "unit": {
+        "name": "Ni-63 betavoltaic cell with diamond p-n junction (temperature-dependent electrical model)",
+        "source": "Olsen et al. (1993) Nucl. Instrum. Methods B 73; Sychov et al. (2008) Appl. Radiat. Isot. 66; Prelas et al. (2014) Progress in Nuclear Energy 75; Sun et al. (2018) Appl. Energy 225",
+        "isotope": {"value": "Ni-63", "unit": "-", "note": "Nickel-63 beta emitter"},
+        "A0_Bq": {"value": 3.7e9, "unit": "Bq", "note": "Initial activity 0.1 Ci = 3.7 GBq"},
+        "t_half_years": {"value": 100.2, "unit": "years", "note": "Ni-63 half-life 100.2 years"},
+        "E_beta_MeV": {"value": 0.017, "unit": "MeV", "note": "Mean beta energy for Ni-63 ~17 keV"},
+        "eta_capture": {"value": 0.30, "unit": "-", "note": "Geometric/absorption capture efficiency ~30%"},
+        "E_gap_eV": {"value": 5.5, "unit": "eV", "note": "Diamond bandgap ~5.5 eV (wide-gap, radiation-hard)"},
+        "T_cell_K": {"value": 300.0, "unit": "K", "note": "Cell operating temperature (default 300 K)"},
+        "T_ref_K": {"value": 300.0, "unit": "K", "note": "Reference temperature for Voc model"},
+        "ideality_factor": {"value": 1.5, "unit": "-", "note": "Diode ideality factor n (1-2, diamond ~1.5)"},
+        "Voc_ref_V": {"value": 2.0, "unit": "V", "note": "Open-circuit voltage at T_ref and t=0 (diamond beta cell ~1.5-3V)"},
+        "dVoc_dT_mV_K": {"value": -2.5, "unit": "mV/K", "note": "Temperature coefficient of Voc (negative, like PV cells, ~-2 to -3 mV/K)"},
+        "fill_factor_0": {"value": 0.70, "unit": "-", "note": "Fill factor at t=0 (beta cell FF typically 0.6-0.75)"},
+        "fill_factor_decay_rate": {"value": 0.0005, "unit": "1/year", "note": "FF degradation rate due to radiation damage (small for Ni-63)"},
+        "Isc_ref_uA": {"value": 0.50, "unit": "uA", "note": "Short-circuit current at T_ref and t=0 (0.1 Ci Ni-63 ~0.3-0.8 uA)"},
+        "alpha_Isc": {"value": 0.001, "unit": "1/K", "note": "Temperature coefficient of Isc (slightly positive ~0.1%/K)"},
+        "design_life_years": {"value": 50.0, "unit": "years", "note": "Design operational lifetime 50 years"}
+    },
+    "isotopes": {
+        "Tritium": {"t_half_years": 12.32, "E_beta_MeV": 0.005685, "E_gap_eV": 1.12, "note": "H-3, Si semiconductor"},
+        "Ni-63":   {"t_half_years": 100.2, "E_beta_MeV": 0.017, "E_gap_eV": 5.5, "note": "Diamond, very long life"},
+        "Pm-147":  {"t_half_years": 2.623, "E_beta_MeV": 0.062, "E_gap_eV": 3.26, "note": "GaN semiconductor"},
+        "Sr-90":   {"t_half_years": 28.8, "E_beta_MeV": 0.196, "E_gap_eV": 3.26, "note": "GaN, higher power"}
+    },
+    "valid_ranges": {
+        "t_years": {"min": 0.0, "max": 500.0, "unit": "years"},
+        "T_cell_K": {"min": 200.0, "max": 500.0, "unit": "K"}
+    }
+}

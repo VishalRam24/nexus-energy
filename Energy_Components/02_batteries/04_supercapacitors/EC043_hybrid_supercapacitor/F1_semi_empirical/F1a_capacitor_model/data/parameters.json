@@ -1,0 +1,19 @@
+{
+    "component": "EC043 Hybrid Supercapacitor",
+    "fidelity": "F1a",
+    "description": "Simple RC capacitor model: V = Q/C + I*R_esr",
+    "unit": {
+        "name": "Generic Hybrid Supercapacitor",
+        "source": "Conway (1999). Electrochemical Supercapacitors; manufacturer datasheets",
+        "C": {"value": 200.0, "unit": "F", "note": "Nominal capacitance"},
+        "R_esr": {"value": 0.010, "unit": "Ohm", "note": "Equivalent series resistance"},
+        "V_max": {"value": 3.8, "unit": "V", "note": "Maximum cell voltage"},
+        "V_min": {"value": 0.0, "unit": "V", "note": "Minimum usable voltage"},
+        "Q_max": {"value": 760.0, "unit": "C", "note": "Max charge = C * V_max"}
+    },
+    "valid_ranges": {
+        "Q": {"min": 0.0, "max": 760.0, "unit": "C"},
+        "I": {"min": -500.0, "max": 500.0, "unit": "A"},
+        "T_amb": {"min": -40.0, "max": 65.0, "unit": "degC"}
+    }
+}

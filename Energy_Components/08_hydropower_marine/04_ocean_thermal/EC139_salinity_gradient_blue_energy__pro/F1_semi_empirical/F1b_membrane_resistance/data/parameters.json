@@ -1,0 +1,36 @@
+{
+  "system": {
+    "C_seawater_g_per_L":     {"value": 35.0,   "unit": "g/L",    "description": "Seawater draw concentration"},
+    "C_freshwater_g_per_L":   {"value": 0.5,    "unit": "g/L",    "description": "River water feed concentration"},
+    "T_degC":                 {"value": 25.0,   "unit": "degC",   "description": "Bulk operating temperature"},
+    "Q_feed_m3_per_s":        {"value": 1.0,    "unit": "m3/s",   "description": "Total feed flow (50:50 sw:fw split)"},
+    "recovery_ratio":         {"value": 0.40,   "unit": "-",      "description": "Fraction of freshwater permeated"},
+    "M_NaCl_g_per_mol":       {"value": 58.44,  "unit": "g/mol",  "description": "Molar mass NaCl"},
+    "nu_NaCl":                {"value": 2,      "unit": "-",      "description": "Van't Hoff factor NaCl"},
+    "R_J_mol_K":              {"value": 8.314,  "unit": "J/(mol*K)", "description": "Gas constant"}
+  },
+  "membrane": {
+    "A_m2":                   {"value": 200.0,  "unit": "m2",     "description": "Total active membrane area"},
+    "A_w_L_m2_h_bar":         {"value": 3.5,    "unit": "L/(m2*h*bar)", "description": "Water permeability coefficient A (Achilli 2010: 2-6)"},
+    "B_g_m2_h":               {"value": 0.15,   "unit": "g/(m2*h)", "description": "Salt permeability B (Straub 2016: 0.05-0.5)"},
+    "S_m":                    {"value": 1.0e-4, "unit": "m",      "description": "Membrane structural parameter S; 50-300 um typical TFC-PRO (Straub 2016)"},
+    "D_NaCl_m2_s":            {"value": 1.61e-9,"unit": "m2/s",   "description": "NaCl diffusivity in water at 25 degC"},
+    "k_f_m_s":                {"value": 5e-5,   "unit": "m/s",    "description": "Feed-side mass transfer coefficient"},
+    "k_d_m_s":                {"value": 8e-5,   "unit": "m/s",    "description": "Draw-side mass transfer coefficient"},
+    "delta_pressure_bar":     {"value": 12.0,   "unit": "bar",    "description": "Applied hydraulic pressure on draw side"},
+    "eta_turbine":            {"value": 0.85,   "unit": "-",      "description": "Hydro-turbine efficiency"},
+    "eta_pump":               {"value": 0.80,   "unit": "-",      "description": "Pump efficiency (pressurising draw side)"},
+    "eta_pressure_exchanger": {"value": 0.95,   "unit": "-",      "description": "Pressure exchanger efficiency"}
+  },
+  "limits": {
+    "T_degC_min":   0.0,
+    "T_degC_max":   40.0,
+    "C_sw_min":     25.0,
+    "C_sw_max":     40.0,
+    "C_fw_min":     0.1,
+    "C_fw_max":     2.0,
+    "delta_P_min":  0.0,
+    "delta_P_max":  30.0
+  },
+  "source": "Yip & Elimelech (2012) EST 46:5230; Achilli & Childress (2010) Desalination 261:205; Loeb et al. (1997) J Membr Sci 129:243; Straub et al. (2016) Nature Energy 1:16090"
+}

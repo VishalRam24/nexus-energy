@@ -1,0 +1,48 @@
+{
+    "component_id": "EC192",
+    "component_name": "Gas Pressure Regulator",
+    "fidelity": "F2a — Physics-Lumped Diaphragm/Valve Dynamics with Downstream-Volume Pressure ODE",
+    "source": "ANSI/ISA-75.01.01-2012 Flow Equations for Sizing Control Valves; Emerson/Fisher Control Valve Handbook 5th ed. (2019) Ch.2 & Ch.5 (regulators, droop, lockup); Driskell (1983) Control Valve Selection and Sizing, ISA; Menon (2005) Gas Pipeline Hydraulics Ch.4; Burnett (1999) JT coefficients for NG mixtures",
+    "unit": {
+        "name": "Pipeline self-operated spring-loaded gas pressure regulator (downstream-sensing, direct-acting)",
+        "valve": {
+            "Cv_full": {"value": 50.0, "unit": "gal/min/psi^0.5", "note": "Flow coefficient at full open (mid-size pipeline regulator). Fisher Control Valve Handbook Ch.5"},
+            "Xt": {"value": 0.68, "unit": "-", "note": "Pressure differential ratio factor at choke. ISA-75.01.01 Table"},
+            "Fk": {"value": 0.936, "unit": "-", "note": "Specific-heat ratio factor Fk = gamma/1.40 = 1.31/1.40"},
+            "x_max": {"value": 0.012, "unit": "m", "note": "Maximum valve/plug travel (12 mm)"},
+            "Cv_PLR_coeffs": {"value": [0.0, 1.1, -0.1], "unit": "-", "note": "Cv_eff = Cv_full*(a0+a1*s+a2*s^2)/(a0+a1+a2), s = x/x_max (modified-linear trim)"},
+            "N7": {"value": 417.0, "unit": "-", "note": "ISA-75.01.01 numerical constant for Q[m3/h normal], P[bar abs], T[K] in Q=N7*Cv*P1*Y*sqrt(x/(G*T1*Z))"},
+            "Z": {"value": 0.9, "unit": "-", "note": "Gas compressibility factor at regulator conditions"}
+        },
+        "actuator": {
+            "P_set": {"value": 4.0, "unit": "bar", "note": "Downstream setpoint (control/outlet) pressure"},
+            "A_diaphragm": {"value": 0.0314, "unit": "m^2", "note": "Effective diaphragm sensing area (~200 mm dia)"},
+            "k_spring": {"value": 1.2e5, "unit": "N/m", "note": "Control-spring stiffness"},
+            "m_diaphragm": {"value": 0.8, "unit": "kg", "note": "Lumped moving mass (diaphragm + plug + stem)"},
+            "c_damp": {"value": 900.0, "unit": "N.s/m", "note": "Viscous/friction damping of moving assembly"},
+            "F_preload": {"value": 720.0, "unit": "N", "note": "Spring preload = k*x_ref at the reference travel (x_max/2). Steady force balance F_preload - k*x = (P_d - P_set)*A_dia gives P_d=P_set at mid-travel; falling P_d with opening = proportional droop, rising P_d as valve seats = lockup"}
+        },
+        "gas": {
+            "name": "Natural Gas (pipeline quality, SG=0.6)",
+            "specific_gravity": {"value": 0.6, "unit": "-"},
+            "gamma": {"value": 1.31, "unit": "-"},
+            "R_specific": {"value": 518.3, "unit": "J/(kg.K)", "note": "R/M for NG, M~0.01604 kg/mol"},
+            "cp": {"value": 2190.0, "unit": "J/(kg.K)", "note": "Specific heat at constant pressure"},
+            "rho_std": {"value": 0.717, "unit": "kg/m^3", "note": "Density at 288.15 K, 1.01325 bar"},
+            "JT_coefficient": {"value": 4.5e-6, "unit": "K/Pa", "note": "Joule-Thomson coefficient for NG ~50 bar/288 K (~0.45 K/bar); positive = cooling on expansion. Burnett (1999)"},
+            "T_inversion": {"value": 700.0, "unit": "K", "note": "JT inversion temperature for NG"}
+        },
+        "downstream": {
+            "V_down": {"value": 0.5, "unit": "m^3", "note": "Lumped downstream control volume (outlet piping/header)"},
+            "T_down": {"value": 283.15, "unit": "K", "note": "Nominal downstream gas temperature"}
+        }
+    },
+    "valid_ranges": {
+        "P_up_bar": {"min": 5.0, "max": 200.0, "unit": "bar"},
+        "P_set_bar": {"min": 1.0, "max": 50.0, "unit": "bar"},
+        "T_up_K": {"min": 240.0, "max": 330.0, "unit": "K"},
+        "load_flow_std_m3_per_h": {"min": 0.0, "max": 5000.0, "unit": "m^3/h"},
+        "dt": {"min": 0.001, "max": 1.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 600.0, "unit": "s"}
+    }
+}

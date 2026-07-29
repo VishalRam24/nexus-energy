@@ -1,0 +1,21 @@
+{
+  "rows": [
+    {
+      "framework": "nexus_highs_milp",
+      "status": "optimal",
+      "objective": 13250.0,
+      "build_ms": 0.020708997908513993,
+      "solve_ms": 8.528708000085317,
+      "commitment": {
+        "coal": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      }
+    }
+  ]
+}

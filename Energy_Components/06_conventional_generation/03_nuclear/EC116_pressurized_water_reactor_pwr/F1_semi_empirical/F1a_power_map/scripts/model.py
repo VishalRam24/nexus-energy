@@ -1,0 +1,70 @@
+"""
+EC116 — Pressurized Water Reactor (PWR) — F1a Steady-State Power Map
+
+Model equations:
+    P_thermal  = P_thermal_rated * PLR                              [MW_th]
+    f_PLR      = 1.0 for PLR >= PLR_derate_threshold
+               = PLR / PLR_derate_threshold  for PLR < PLR_derate_threshold
+    P_electric = P_thermal * eta_cycle * eta_gen * f_PLR            [MW_e]
+    eta_net    = P_electric / P_thermal                             [-]
+    dT         = P_thermal * 1e6 / (m_dot * cp * 1000)             [degC]
+    T_outlet   = T_inlet + dT
+
+Reference:
+    Todreas, N.E. & Kazimi, M.S. (2012). Nuclear Systems, 2nd Edition. CRC Press.
+"""
+
+import numpy as np
+
+
+class PWRF1a:
+    """Pressurized Water Reactor — steady-state power map model."""
+
+    def __init__(self, params: dict):
+        u = params["unit"]
+        self.P_thermal_rated = u["P_thermal_mw"]["value"]     # MW_th
+        self.P_electric_rated = u["P_electric_mw"]["value"]   # MW_e
+        self.eta_cycle = u["eta_cycle"]["value"]              # -
+        self.eta_gen = u["eta_gen"]["value"]                  # -
+        self.T_inlet = u["T_inlet_c"]["value"]                # degC
+        self.T_outlet_rated = u["T_outlet_c"]["value"]        # degC
+        self.PLR_min = u["PLR_min"]["value"]                  # -
+        self.cp = u["cp_coolant_kjkgk"]["value"]              # kJ/(kg·K)
+        self.m_dot_nominal = u["m_dot_nominal_kgs"]["value"]  # kg/s
+        self.PLR_derate = u["PLR_linear_derate_below"]["value"]  # -
+
+    def _f_plr(self, PLR):
+        """Efficiency derating factor for PLR < PLR_derate threshold."""
+        PLR = np.asarray(PLR, dtype=float)
+        return np.where(PLR >= self.PLR_derate, 1.0, PLR / self.PLR_derate)
+
+    def thermal_power(self, part_load_ratio):
+        """Reactor thermal power [MW_th]."""
+        PLR = np.clip(np.asarray(part_load_ratio, dtype=float), self.PLR_min, 1.0)
+        return self.P_thermal_rated * PLR
+
+    def electric_power(self, part_load_ratio):
+        """Net electrical output [MW_e]."""
+        PLR = np.clip(np.asarray(part_load_ratio, dtype=float), self.PLR_min, 1.0)
+        P_th = self.thermal_power(PLR)
+        f = self._f_plr(PLR)
+        return P_th * self.eta_cycle * self.eta_gen * f
+
+    def efficiency(self, part_load_ratio):
+        """Net thermal efficiency = P_electric / P_thermal [-]."""
+        PLR = np.clip(np.asarray(part_load_ratio, dtype=float), self.PLR_min, 1.0)
+        P_th = self.thermal_power(PLR)
+        P_el = self.electric_power(PLR)
+        return np.where(P_th > 0, P_el / P_th, 0.0)
+
+    def coolant_outlet_temp(self, part_load_ratio, coolant_flow_kgs=None):
+        """
+        Primary coolant hot-leg temperature [degC].
+        T_outlet = T_inlet + P_thermal*1e6 / (m_dot * cp * 1000)
+        """
+        PLR = np.clip(np.asarray(part_load_ratio, dtype=float), self.PLR_min, 1.0)
+        P_th_W = self.thermal_power(PLR) * 1e6  # W
+        m_dot = self.m_dot_nominal if coolant_flow_kgs is None else np.asarray(coolant_flow_kgs, dtype=float)
+        cp_J = self.cp * 1000.0  # J/(kg·K)
+        dT = P_th_W / (m_dot * cp_J)
+        return self.T_inlet + dT

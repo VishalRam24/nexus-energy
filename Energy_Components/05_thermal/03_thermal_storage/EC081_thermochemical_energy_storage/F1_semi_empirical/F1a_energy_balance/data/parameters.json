@@ -1,0 +1,18 @@
+{
+    "component": "EC081 Thermochemical Energy Storage",
+    "fidelity": "F1a",
+    "description": "E = m * dH_rxn * x, charge/discharge via reaction extent x",
+    "unit": {
+        "name": "CaO/Ca(OH)2 Thermochemical Storage System",
+        "source": "Pardo et al. (2014). A review on high temperature thermochemical heat energy storage. Renew. Sust. Energy Rev.",
+        "m": {"value": 1000.0, "unit": "kg", "note": "Mass of reactive material"},
+        "dH_rxn": {"value": 400.0e3, "unit": "J/kg", "note": "Reaction enthalpy per kg"},
+        "eta_rt": {"value": 0.70, "unit": "dimensionless", "note": "Round-trip efficiency"},
+        "T_reaction": {"value": 500.0, "unit": "degC", "note": "Reaction temperature"},
+        "x_max": {"value": 1.0, "unit": "dimensionless", "note": "Maximum conversion (fully charged)"}
+    },
+    "valid_ranges": {
+        "x": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "Q_charge": {"min": 0.0, "max": 400000.0, "unit": "W"}
+    }
+}

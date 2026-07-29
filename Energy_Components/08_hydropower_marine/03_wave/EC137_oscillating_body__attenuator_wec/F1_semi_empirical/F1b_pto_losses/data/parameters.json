@@ -1,0 +1,29 @@
+{
+    "component": "EC137 Oscillating Body / Attenuator WEC (Pelamis-type)",
+    "fidelity": "F1b",
+    "description": "Extends F1a with joint-level PTO efficiency model, seawater density correction, and wave directionality correction. Each joint extracts power; efficiency depends on sea state relative to design.",
+    "device": {
+        "length_m":             {"value": 150.0, "unit": "m",  "description": "Total device length"},
+        "segment_width_m":      {"value": 3.5,   "unit": "m",  "description": "Tube diameter / body width"},
+        "n_joints":             {"value": 4,     "unit": "-",  "description": "Number of PTO joints"},
+        "cwr_design":           {"value": 0.25,  "unit": "-",  "description": "Capture width ratio at design sea state"},
+        "eta_pto_design":       {"value": 0.82,  "unit": "-",  "description": "Hydraulic PTO efficiency at design sea state (Hs=3m, Te=10s)"},
+        "eta_electrical":       {"value": 0.95,  "unit": "-",  "description": "Electrical generator efficiency"},
+        "rho_water":            {"value": 1025.0,"unit": "kg/m3","description": "Reference seawater density"},
+        "T_e_design":           {"value": 10.0,  "unit": "s",  "description": "Design energy period"},
+        "H_s_design":           {"value": 3.0,   "unit": "m",  "description": "Design significant wave height"},
+        "cwr_H_s_exponent":     {"value": 0.3,   "unit": "-",  "description": "CWR variation with H_s: CWR(H_s) = cwr_design*(H_s/H_s_design)^exponent; CWR slightly higher at larger waves (more motion)"},
+        "cwr_T_e_sigma":        {"value": 3.0,   "unit": "s",  "description": "CWR period sensitivity Gaussian sigma [s]; off-design periods reduce CWR"},
+        "pto_efficiency_H_s_coeff": {"value": -0.04, "unit": "m^-1", "description": "PTO efficiency penalty per m deviation from design H_s: eta_pto = eta_pto_design + coeff*(H_s - H_s_design)"},
+        "directionality_factor": {"value": 0.92,  "unit": "-", "description": "Mean power reduction from wave directionality spread in real seas (attenuator aligned to predominant direction)"},
+        "S_ref_psu":            {"value": 35.0,  "unit": "psu","description": "Reference salinity"},
+        "T_ref_C":              {"value": 15.0,  "unit": "degC","description": "Reference temperature"}
+    },
+    "limits": {
+        "H_s_min_m": 0.0,
+        "H_s_max_m": 8.0,
+        "T_e_min_s": 5.0,
+        "T_e_max_s": 20.0
+    },
+    "source": "Henderson (2006) Appl. Ocean Res. 28:297-307; Yemm et al. (2012) Phil. Trans. R. Soc. A 370:365-380 (Pelamis P2); Babarit (2015) RSER 46:291-306."
+}

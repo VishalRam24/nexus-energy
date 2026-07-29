@@ -1,0 +1,16 @@
+{
+  "device": {
+    "width_m":          {"value": 10.0,  "unit": "m",    "description": "Device capture width (width of OWC chamber opening)"},
+    "capture_width_ratio": {"value": 0.20, "unit": "-",   "description": "Ratio of captured power to incident wave power per metre"},
+    "eta_turbine":      {"value": 0.60,  "unit": "-",    "description": "Wells turbine efficiency (typ 0.5-0.7)"},
+    "eta_generator":    {"value": 0.92,  "unit": "-",    "description": "Electrical generator efficiency"},
+    "rho_water":        {"value": 1025.0,"unit": "kg/m3","description": "Seawater density"}
+  },
+  "limits": {
+    "H_s_min_m": 0.0,
+    "H_s_max_m": 8.0,
+    "T_e_min_s": 5.0,
+    "T_e_max_s": 20.0
+  },
+  "source": "Falnes (2002), Ocean Waves and Oscillating Systems. Cambridge UP; EMEC device performance data."
+}

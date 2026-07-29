@@ -1,0 +1,31 @@
+{
+    "component": "EC065 Offshore Fixed-Bottom Wind Turbine",
+    "fidelity": "F1b",
+    "description": "Power curve with turbulence correction + humid air density: rho = P/(Rd*T)*(1-0.378*e_w/P). Lower offshore TI ~ 0.06-0.10.",
+    "turbine": {
+        "name": "Generic 8MW Offshore (Vestas V164-8.0 class)",
+        "source": "IEC 61400-12-1; Albers et al. (2007); Burton et al. (2011) Wind Energy Handbook",
+        "rated_power": {"value": 8000.0, "unit": "kW"},
+        "hub_height": {"value": 105.0, "unit": "m"},
+        "rotor_diameter": {"value": 164.0, "unit": "m"},
+        "cut_in_speed": {"value": 3.0, "unit": "m/s"},
+        "rated_speed": {"value": 13.0, "unit": "m/s"},
+        "cut_out_speed": {"value": 25.0, "unit": "m/s"}
+    },
+    "power_curve": {
+        "description": "Manufacturer power curve at 1.225 kg/m3 (27 points)",
+        "source": "Vestas V164-8.0MW datasheet; windpowerlib database",
+        "wind_speeds_ms": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25],
+        "power_kw":       [0,0,0,0,200,500,1000,1700,2700,3900,5200,6500,7500,7950,8000,8000,8000,8000,8000,8000,8000,8000,8000,8000,8000,8000]
+    },
+    "atmosphere": {
+        "Rd": {"value": 287.058, "unit": "J/kgK", "note": "Specific gas constant for dry air"},
+        "P_atm": {"value": 101325.0, "unit": "Pa", "note": "Standard atmospheric pressure"}
+    },
+    "valid_ranges": {
+        "wind_speed": {"min": 0.0, "max": 30.0, "unit": "m/s"},
+        "turbulence_intensity": {"min": 0.0, "max": 0.30, "unit": "dimensionless"},
+        "air_temperature": {"min": -10.0, "max": 40.0, "unit": "degC"},
+        "relative_humidity": {"min": 0.0, "max": 1.0, "unit": "dimensionless"}
+    }
+}

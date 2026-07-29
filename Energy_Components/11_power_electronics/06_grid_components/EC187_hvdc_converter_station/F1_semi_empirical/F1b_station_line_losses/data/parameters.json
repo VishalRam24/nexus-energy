@@ -1,0 +1,26 @@
+{
+    "component": "EC187 HVDC Converter Station",
+    "fidelity": "F1b",
+    "description": "Full point-to-point HVDC link: rectifier station loss (~0.7% LCC / ~1.0% VSC) + DC line resistive loss + inverter station loss; LCC reactive demand model; bipolar DC line.",
+    "unit": {
+        "name": "Generic ±500 kV LCC-HVDC Link, 1000 MW, 500 km",
+        "source": "Cigre TB 492 (2012) VSC Transmission; Cigre TB 388 (2009) LCC HVDC; EPRI (2012) HVDC Design Guide; Kundur (1994) Power System Stability and Control. McGraw-Hill; ABB (2019) HVDC Reference Projects.",
+        "P_rated_MW": {"value": 1000.0, "unit": "MW", "note": "Rated power"},
+        "V_dc_kV": {"value": 500.0, "unit": "kV", "note": "Pole-to-ground DC voltage (±500 kV bipolar)"},
+        "converter_type": {"value": "LCC", "note": "LCC (Line Commutated Converter) or VSC"},
+        "loss_factor_station": {"value": 0.007, "unit": "dimensionless", "note": "0.7% per LCC station at rated power (Cigre TB 388; ABB 2019). VSC ~1.0%."},
+        "P_no_load_MW": {"value": 5.0, "unit": "MW", "note": "No-load / auxiliary losses per station (cooling, controls, transformer)"},
+        "line_length_km": {"value": 500.0, "unit": "km", "note": "DC line length"},
+        "line_R_ohm_per_km": {"value": 0.010, "unit": "Ohm/km", "note": "DC cable/OHL resistance (bipolar: ~10 mOhm/km total per pole, XLPE cable typical)"},
+        "Q_demand_factor": {"value": 0.5, "unit": "dimensionless", "note": "LCC: reactive demand = Q_demand_factor * P_transfer (approx 0.5 at rated, varies with firing angle)"},
+        "Q_cap_MVAR": {"value": 400.0, "unit": "MVAR", "note": "Harmonic filter / shunt capacitor bank at each station (provides reactive for LCC)"},
+        "alpha_line_R": {"value": 0.00393, "unit": "1/K", "note": "Temperature coefficient of DC line resistance (copper or aluminium conductor)"},
+        "T_ref_line": {"value": 20.0, "unit": "degC", "note": "Reference temperature for line resistance"},
+        "n_stations": {"value": 2, "unit": "dimensionless", "note": "Number of converter stations in link (2 for P2P)"}
+    },
+    "valid_ranges": {
+        "P_transfer_MW": {"min": 0.0, "max": 1000.0, "unit": "MW"},
+        "direction": {"values": ["rectifier_to_inverter"]},
+        "T_line": {"min": -20.0, "max": 80.0, "unit": "degC"}
+    }
+}

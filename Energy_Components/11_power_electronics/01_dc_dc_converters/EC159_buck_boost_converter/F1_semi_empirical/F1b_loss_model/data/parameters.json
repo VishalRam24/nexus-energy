@@ -1,0 +1,27 @@
+{
+    "component": "EC159 Buck-Boost Converter (Inverting)",
+    "fidelity": "F1b",
+    "description": "Detailed semiconductor loss model: MOSFET conduction + switching, diode conduction, inductor DCR, temperature-dependent Rds_on, thermal balance",
+    "unit": {
+        "name": "Generic 24V Buck-Boost Converter with Detailed Losses",
+        "source": "Erickson & Maksimovic (2020), Fundamentals of Power Electronics, 3rd ed., Springer",
+        "v_in_nominal": {"value": 24.0, "unit": "V"},
+        "v_out_nominal": {"value": 12.0, "unit": "V"},
+        "f_sw": {"value": 100000.0, "unit": "Hz", "note": "100 kHz switching frequency"},
+        "R_ds_on": {"value": 0.012, "unit": "Ohm", "note": "MOSFET on-state resistance at T_ref (12 mohm)"},
+        "V_f": {"value": 0.6, "unit": "V", "note": "Diode forward voltage drop"},
+        "t_on": {"value": 3.0e-8, "unit": "s", "note": "MOSFET turn-on time (30 ns)"},
+        "t_off": {"value": 4.0e-8, "unit": "s", "note": "MOSFET turn-off time (40 ns)"},
+        "R_L": {"value": 0.025, "unit": "Ohm", "note": "Inductor DCR (25 mohm)"},
+        "I_rated": {"value": 8.0, "unit": "A", "note": "Rated output current"},
+        "T_a": {"value": 25.0, "unit": "degC", "note": "Ambient temperature"},
+        "R_theta": {"value": 3.0, "unit": "degC/W", "note": "Junction-to-ambient thermal resistance"},
+        "T_ref": {"value": 25.0, "unit": "degC", "note": "Reference temperature for Rds_on"},
+        "alpha_rds": {"value": 0.004, "unit": "1/degC", "note": "MOSFET Rds_on positive tempco (silicon ~0.4%/K)"}
+    },
+    "valid_ranges": {
+        "v_in": {"min": 5.0, "max": 60.0, "unit": "V"},
+        "v_out_target": {"min": 1.0, "max": 50.0, "unit": "V"},
+        "i_load": {"min": 0.0, "max": 15.0, "unit": "A"}
+    }
+}

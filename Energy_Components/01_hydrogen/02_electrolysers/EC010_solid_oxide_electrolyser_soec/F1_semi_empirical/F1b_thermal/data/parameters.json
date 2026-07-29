@@ -1,0 +1,40 @@
+{
+  "component_id": "EC010",
+  "component_name": "Solid Oxide Electrolyser (SOEC)",
+  "fidelity": "F1b -- Thermal (temperature-dependent ASR, activation, and thermal mode)",
+  "source": "Ni et al. (2007); Udagawa et al. (2007); Kazempoor & Braun (2014)",
+  "default_parameters": {
+    "T_ref": 1073.0,
+    "N_cells": 30,
+    "A_cell": 100.0,
+    "A_sigma": 33400.0,
+    "E_act_ion": 80000.0,
+    "thickness_electrolyte": 0.001,
+    "i0_anode_ref": 0.3,
+    "E_act_anode": 110000.0,
+    "i0_cathode_ref": 0.5,
+    "E_act_cathode": 100000.0,
+    "alpha": 0.5,
+    "j_L": 2.5,
+    "steam_utilization": 0.6
+  },
+  "parameter_metadata": {
+    "T_ref": {"description": "Reference temperature", "unit": "K", "default": 1073.0},
+    "N_cells": {"description": "Number of cells in stack", "unit": "-", "default": 30},
+    "A_cell": {"description": "Active cell area", "unit": "cm2", "default": 100.0},
+    "A_sigma": {"description": "YSZ conductivity pre-exponential", "unit": "S K/cm", "default": 33400.0},
+    "E_act_ion": {"description": "YSZ ionic activation energy", "unit": "J/mol", "default": 80000.0},
+    "thickness_electrolyte": {"description": "YSZ electrolyte thickness", "unit": "cm", "default": 0.001},
+    "i0_anode_ref": {"description": "Anode (O2 electrode) exchange current density at T_ref", "unit": "A/cm2", "default": 0.3},
+    "E_act_anode": {"description": "Anode activation energy", "unit": "J/mol", "default": 110000.0},
+    "i0_cathode_ref": {"description": "Cathode (H2/H2O electrode) exchange current density at T_ref", "unit": "A/cm2", "default": 0.5},
+    "E_act_cathode": {"description": "Cathode activation energy", "unit": "J/mol", "default": 100000.0},
+    "alpha": {"description": "Charge transfer coefficient", "unit": "-", "default": 0.5},
+    "j_L": {"description": "Limiting current density", "unit": "A/cm2", "default": 2.5},
+    "steam_utilization": {"description": "Steam utilization fraction", "unit": "-", "default": 0.6}
+  },
+  "valid_ranges": {
+    "current_density": {"min": 0.0, "max": 2.5, "unit": "A/cm2"},
+    "temperature": {"min": 973.0, "max": 1123.0, "unit": "K"}
+  }
+}

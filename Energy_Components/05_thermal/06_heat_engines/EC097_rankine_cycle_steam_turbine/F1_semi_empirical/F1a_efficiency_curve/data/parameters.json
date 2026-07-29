@@ -1,0 +1,21 @@
+{
+    "component": "EC097 Rankine Cycle (Steam Turbine)",
+    "fidelity": "F1a",
+    "description": "Part-load efficiency curve: eta = eta_rated * (1 - a*(1-PLR)^2)",
+    "turbine": {
+        "name": "Generic Subcritical Steam Turbine",
+        "source": "Cotton (1998), Evaluating and Improving Steam Turbine Performance",
+        "P_rated": {"value": 100e6, "unit": "W", "note": "Rated electrical output"},
+        "eta_rated": {"value": 0.38, "unit": "dimensionless", "note": "Rated cycle efficiency"},
+        "a_partload": {"value": 0.15, "unit": "dimensionless", "note": "Part-load loss coefficient"},
+        "T_steam": {"value": 540.0, "unit": "degC", "note": "Main steam temperature"},
+        "P_steam": {"value": 170.0, "unit": "bar", "note": "Main steam pressure"},
+        "T_condenser": {"value": 35.0, "unit": "degC", "note": "Condenser temperature"},
+        "PLR_min": {"value": 0.20, "unit": "dimensionless", "note": "Minimum part-load ratio"}
+    },
+    "valid_ranges": {
+        "power_output": {"min": 0.0, "max": 100e6, "unit": "W"},
+        "T_steam": {"min": 400.0, "max": 620.0, "unit": "degC"},
+        "P_steam": {"min": 80.0, "max": 250.0, "unit": "bar"}
+    }
+}

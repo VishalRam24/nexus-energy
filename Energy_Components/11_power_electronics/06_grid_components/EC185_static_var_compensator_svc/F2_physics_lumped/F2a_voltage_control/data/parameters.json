@@ -1,0 +1,33 @@
+{
+    "component_id": "EC185",
+    "component_name": "Static VAR Compensator (SVC)",
+    "fidelity": "F2a — Physics-Lumped TCR/TSC with V-Q Droop Voltage-Control ODE",
+    "source": "Hingorani & Gyugyi (2000) Understanding FACTS, IEEE Press, Ch. 5; Mathur & Varma (2002) Thyristor-Based FACTS Controllers, IEEE/Wiley, Ch. 3-4; IEEE Std 1031-2011.",
+    "unit": {
+        "name": "Generic 100 MVAR FC-TCR/TSC SVC at 132 kV bus",
+        "S_base_MVA": {"value": 100.0, "unit": "MVA", "note": "System/SVC power base for per-unit susceptance"},
+        "V_rated_kV": {"value": 132.0, "unit": "kV", "note": "Rated line-line bus voltage"},
+        "f_system_Hz": {"value": 50.0, "unit": "Hz", "note": "System frequency"},
+        "Q_cap_max_MVAR": {"value": 100.0, "unit": "MVAR", "note": "Max capacitive output at 1.0 pu (TSC/FC bank fully on)"},
+        "Q_ind_max_MVAR": {"value": 50.0, "unit": "MVAR", "note": "Max inductive output at 1.0 pu (TCR fully conducting, alpha=90deg)"},
+        "B_cap_pu": {"value": 1.0, "unit": "pu", "note": "Fixed/switched capacitor susceptance on S_base (Q_cap_max/S_base = +100/100)"},
+        "B_ind_max_pu": {"value": 1.5, "unit": "pu", "note": "Max TCR inductive susceptance on S_base (alpha=90deg); net at full TCR = B_C-B_L = 1.0-1.5 = -0.5 pu (-50 MVAR)"},
+        "X_L_pu": {"value": 0.6666666666666666, "unit": "pu", "note": "TCR reactor reactance on S_base; B_L_max = 1/X_L = 1.5 at full conduction"},
+        "alpha_min_deg": {"value": 90.0, "unit": "deg", "note": "Firing angle for full conduction (max B_L)"},
+        "alpha_max_deg": {"value": 180.0, "unit": "deg", "note": "Firing angle for zero conduction (B_L=0)"},
+        "V_ref_pu": {"value": 1.0, "unit": "pu", "note": "Voltage regulator setpoint"},
+        "droop_slope_pu": {"value": 0.03, "unit": "pu", "note": "Slope (current-droop) reactance X_SL: 3% V change over full Q range"},
+        "T_regulator_s": {"value": 0.04, "unit": "s", "note": "Voltage-regulator/measurement lumped time constant (~2 cycles at 50 Hz)"},
+        "K_regulator": {"value": 1.0, "unit": "pu", "note": "Steady-state regulator gain (1/droop applied internally)"},
+        "T_thyristor_s": {"value": 0.005, "unit": "s", "note": "Firing/thyristor transport lag (quarter cycle)"},
+        "loss_factor": {"value": 0.01, "unit": "-", "note": "Losses ~1% of |Q_out| (thyristor + reactor + cooling)"}
+    },
+    "valid_ranges": {
+        "V_pu": {"min": 0.85, "max": 1.15, "unit": "pu"},
+        "alpha_deg": {"min": 90.0, "max": 180.0, "unit": "deg"},
+        "V_ref_pu": {"min": 0.9, "max": 1.1, "unit": "pu"},
+        "X_thev_pu": {"min": 0.02, "max": 0.5, "unit": "pu"},
+        "dt": {"min": 0.0005, "max": 0.02, "unit": "s"},
+        "duration_s": {"min": 0.05, "max": 5.0, "unit": "s"}
+    }
+}

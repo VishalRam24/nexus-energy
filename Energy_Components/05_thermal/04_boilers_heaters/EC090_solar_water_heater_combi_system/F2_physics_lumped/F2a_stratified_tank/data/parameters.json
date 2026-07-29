@@ -1,0 +1,37 @@
+{
+    "component_id": "EC090",
+    "component_name": "Solar Water Heater Combi System",
+    "fidelity": "F2a — Physics-Lumped Stratified Tank Combi System",
+    "source": "Duffie & Beckman (2013), Solar Engineering of Thermal Processes, 4th ed., Wiley (Hottel-Whillier collector eq. 6.7.6, stratified tank multinode eqs. 8.4); oemof.thermal stratified_thermal_storage docs (2020)",
+    "unit": {
+        "name": "Residential Solar Combi System — flat-plate collector + 500 L multi-node stratified store + gas auxiliary",
+        "A_collector": {"value": 6.0, "unit": "m2", "note": "Collector aperture area (reused from F1a)"},
+        "F_R_tau_alpha": {"value": 0.72, "unit": "-", "note": "Hottel-Whillier optical efficiency F_R*(tau*alpha); intercept of efficiency curve (Duffie & Beckman Table 6.x flat-plate)"},
+        "F_R_U_L": {"value": 4.5, "unit": "W/(m2.K)", "note": "Hottel-Whillier overall loss coeff F_R*U_L; slope of collector efficiency curve"},
+        "mdot_coll": {"value": 0.12, "unit": "kg/s", "note": "Collector loop mass flow (~0.02 kg/s per m2, Duffie & Beckman recommended)"},
+        "cp_water": {"value": 4186.0, "unit": "J/(kg.K)", "note": "Specific heat of liquid water at ~20-60C (CRC Handbook / Duffie & Beckman); hardcoded property"},
+        "rho_water": {"value": 1000.0, "unit": "kg/m3", "note": "Density of liquid water (hardcoded property)"},
+        "V_tank": {"value": 0.5, "unit": "m3", "note": "Total storage tank volume (500 L combi store)"},
+        "N_nodes": {"value": 6, "unit": "-", "note": "Number of stratified tank nodes (top=hot, bottom=cold)"},
+        "H_tank": {"value": 1.5, "unit": "m", "note": "Tank height (for inter-node conduction area)"},
+        "D_tank": {"value": 0.65, "unit": "m", "note": "Tank diameter"},
+        "U_tank": {"value": 0.8, "unit": "W/(m2.K)", "note": "Tank wall heat-loss coefficient (insulated store, oemof.thermal default range 0.3-1.0)"},
+        "k_eff": {"value": 0.64, "unit": "W/(m.K)", "note": "Effective vertical conductivity of water column (thermal conduction between nodes, Duffie & Beckman 8.4)"},
+        "T_amb_tank": {"value": 293.15, "unit": "K", "note": "Ambient temperature around tank (plant room, 20C)"},
+        "T_mains": {"value": 283.15, "unit": "K", "note": "Cold mains make-up water temperature (10C)"},
+        "T_set_aux": {"value": 333.15, "unit": "K", "note": "Auxiliary backup setpoint for top node (60C)"},
+        "T_aux_deadband": {"value": 3.0, "unit": "K", "note": "Hysteresis deadband for auxiliary heater"},
+        "Q_aux_max": {"value": 6000.0, "unit": "W", "note": "Maximum auxiliary (gas/electric) backup power into top node"},
+        "eta_aux": {"value": 0.92, "unit": "-", "note": "Auxiliary heater conversion efficiency (delivered/fuel)"},
+        "pump_dT_on": {"value": 6.0, "unit": "K", "note": "Differential controller: pump ON when T_collector_out - T_tank_bottom > dT_on"},
+        "pump_dT_off": {"value": 2.0, "unit": "K", "note": "Differential controller: pump OFF below this dT (anti short-cycle)"}
+    },
+    "valid_ranges": {
+        "G": {"min": 0.0, "max": 1100.0, "unit": "W/m2"},
+        "T_amb": {"min": 253.15, "max": 318.15, "unit": "K"},
+        "load_dhw_lpm": {"min": 0.0, "max": 20.0, "unit": "L/min"},
+        "load_space_W": {"min": 0.0, "max": 8000.0, "unit": "W"},
+        "duration_s": {"min": 60.0, "max": 172800.0, "unit": "s"},
+        "dt": {"min": 10.0, "max": 600.0, "unit": "s"}
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "component": "EC153 Binary Cycle Geothermal Plant",
+    "fidelity": "F1a",
+    "description": "Exergy efficiency model: eta = eta_utilization * eta_Carnot",
+    "unit": {
+        "name": "Generic ORC Binary Geothermal Plant",
+        "source": "DiPippo, R. (2015). Geothermal Power Plants, 4th ed. Butterworth-Heinemann.",
+        "T_geo_design": {"value": 150.0, "unit": "degC"},
+        "T_reject_design": {"value": 25.0, "unit": "degC"},
+        "m_dot_geo_design": {"value": 50.0, "unit": "kg/s"},
+        "cp_geo": {"value": 4186.0, "unit": "J/kgK", "note": "Specific heat of geothermal brine (approx. water)"},
+        "eta_utilization": {"value": 0.45, "unit": "dimensionless", "note": "Accounts for HX irreversibilities, pump work, parasitic loads"},
+        "P_rated": {"value": 5000.0, "unit": "kW"},
+        "T_reinject_offset": {"value": 10.0, "unit": "degC", "note": "Minimum reinjection temp above rejection temp"}
+    },
+    "valid_ranges": {
+        "T_geothermal": {"min": 80.0, "max": 200.0, "unit": "degC"},
+        "T_rejection": {"min": 10.0, "max": 40.0, "unit": "degC"},
+        "flow_rate_kgs": {"min": 10.0, "max": 100.0, "unit": "kg/s"}
+    }
+}

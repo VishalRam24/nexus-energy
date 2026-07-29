@@ -1,0 +1,41 @@
+{
+    "component_id": "EC021",
+    "component_name": "LTO Battery (Lithium Titanate Oxide)",
+    "fidelity": "F2a — Thevenin 1-RC Equivalent-Circuit Model with Thermal ODE",
+    "source": "Takami et al. (2011) J. Power Sources 196, 6989; He et al. (2013) J. Power Sources 239, 269; Hu et al. (2012) J. Power Sources 198, 359 (RC ECM); Kobayashi et al. (2013) J. Power Sources 244, 727; Toshiba SCiB datasheet",
+    "unit": {
+        "name": "Generic LTO 18650-class cell (Li4Ti5O12 anode vs LMO/NMC cathode) — Thevenin 1-RC",
+        "capacity_ref": {"value": 2.9, "unit": "Ah", "note": "Nominal capacity at T_ref (298.15 K)", "source": "Takami et al. (2011); Toshiba SCiB datasheet"},
+        "voltage_max": {"value": 2.7, "unit": "V", "note": "Charge cutoff voltage"},
+        "voltage_min": {"value": 1.5, "unit": "V", "note": "Discharge cutoff voltage"},
+        "R0_ref": {"value": 0.012, "unit": "Ohm", "note": "Series (ohmic) resistance at T_ref; very low for LTO due to fast spinel Li+ kinetics", "source": "He et al. (2013); Hu et al. (2012)"},
+        "R1_ref": {"value": 0.008, "unit": "Ohm", "note": "Charge-transfer/diffusion polarization resistance of the RC branch at T_ref", "source": "Hu et al. (2012) J. Power Sources 198, 359 — 1-RC Thevenin fit"},
+        "C1": {"value": 1500.0, "unit": "F", "note": "RC-branch capacitance; tau1 = R1*C1 ~ 12 s polarization time constant", "source": "Hu et al. (2012); He et al. (2013)"},
+        "E_a_R": {"value": 15000.0, "unit": "J/mol", "note": "Activation energy for resistance Arrhenius scaling; low for LTO spinel", "source": "He et al. (2013) J. Power Sources 239, 269; Keil & Jossen (2016) J. Electrochem. Soc. 163(9), A1872"},
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 degC)"},
+        "R_gas": {"value": 8.314, "unit": "J/(mol.K)", "note": "Universal gas constant"},
+        "alpha_c": {"value": 0.003, "unit": "1/K", "note": "Linear capacity temperature coefficient", "source": "Bernardi et al. (1985) J. Electrochem. Soc. 132, 5"},
+        "dOCV_dT": {"value": -0.0002, "unit": "V/K", "note": "Entropic coefficient for LTO; small due to flat OCV plateau", "source": "Kobayashi et al. (2013) J. Power Sources 244, 727"},
+        "m_cell": {"value": 0.045, "unit": "kg", "note": "Cell mass (18650-class LTO)", "source": "Toshiba SCiB datasheet"},
+        "cp_cell": {"value": 1000.0, "unit": "J/(kg.K)", "note": "Cell specific heat (Li-ion typical)", "source": "Bernardi et al. (1985)"},
+        "hA_cool": {"value": 0.08, "unit": "W/K", "note": "Convective heat transfer coeff * surface area to ambient (natural convection)"},
+        "T_amb": {"value": 298.15, "unit": "K", "note": "Ambient temperature (25 degC)"},
+        "ocv_coefficients": {
+            "description": "OCV(SOC) = a0 + a1*SOC + a2*SOC^2 + a3*SOC^3 + a4*SOC^4 + a5*SOC^5 — flat ~2.4 V plateau",
+            "source": "Polynomial fit to representative LTO discharge curve; Takami et al. (2011)",
+            "a0": 1.50020979020979,
+            "a1": 7.686375291375377,
+            "a2": -25.73280885780935,
+            "a3": 42.47086247086359,
+            "a4": -34.76107226107335,
+            "a5": 11.5384615384619
+        }
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "current": {"min": -30.0, "max": 30.0, "unit": "A", "note": "Negative=charge, Positive=discharge; LTO supports very high C-rates (>10C)"},
+        "temperature": {"min": 243.15, "max": 333.15, "unit": "K", "note": "-30 to 60 degC; LTO operates well at low temperatures"},
+        "dt": {"min": 0.01, "max": 10.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 36000.0, "unit": "s"}
+    }
+}

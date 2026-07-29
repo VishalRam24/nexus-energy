@@ -1,0 +1,38 @@
+{
+  "component_id": "EC089",
+  "component_name": "Hydrogen Boiler (100% H2)",
+  "fidelity": "F0a \u2014 empirical lookup",
+  "source": "Hy4Heat WP6 (2021); BEIS Hydrogen Heating Trials (2022); Cellek & Pinarbasi (2018) IJHE 43,1194-1207",
+  "Q_rated": {
+    "value": 30.0,
+    "unit": "kW",
+    "note": "Rated thermal output"
+  },
+  "eta_nom": {
+    "value": 0.92,
+    "unit": "-",
+    "note": "Full-load efficiency"
+  },
+  "PLR_min": {
+    "value": 0.1,
+    "unit": "-",
+    "note": "Min part-load ratio (clamped)"
+  },
+  "table": {
+    "plr": [
+      0.1,
+      0.3,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "eta": [
+      0.94,
+      0.945,
+      0.94,
+      0.93,
+      0.92
+    ],
+    "note": "Part-load efficiency breakpoints; eta at PLR=1.0 = eta_nom"
+  }
+}

@@ -1,0 +1,29 @@
+{
+    "component": "EC053 Thermophotovoltaic (TPV)",
+    "fidelity": "F1b",
+    "description": "Two-diode model with emitter-temperature-dependent photocurrent (Wien approximation of above-bandgap Planck flux) and heat-sink thermal model. Representative of GaSb or InGaAs TPV cells at ~1500K emitter.",
+    "module": {
+        "name": "GaSb TPV cell representative (Bauer 2011; Coutts 1999)",
+        "source": "Coutts (1999) RSER; Bauer (2011) Springer; Datas & Algora (2010) Prog. Photovolt.",
+        "technology": "Thermophotovoltaic (GaSb, Eg=0.72eV; or InGaAs, Eg=0.74eV)",
+        "cells_in_series": {"value": 1, "unit": "cells", "note": "Single cell; modules series-connect many"},
+        "cell_area": {"value": 0.0016, "unit": "m2", "note": "4cm x 4cm = 16cm2 typical TPV cell"},
+        "I_ph_ref": {"value": 3.2, "unit": "A", "note": "Photocurrent at T_emitter_ref=1500K (Jsc~200mA/cm2 for GaSb at 1500K)"},
+        "I_01": {"value": 1.0e-8, "unit": "A", "note": "Diffusion saturation current (n1=1)"},
+        "I_02": {"value": 5.0e-5, "unit": "A", "note": "Recombination saturation current (n2=2); higher than Si due to lower Eg"},
+        "n1": {"value": 1.0, "unit": "dimensionless"},
+        "n2": {"value": 2.0, "unit": "dimensionless"},
+        "Rs": {"value": 0.01, "unit": "Ohm", "note": "Low series resistance for III-V cell"},
+        "Rsh_ref": {"value": 50.0, "unit": "Ohm", "note": "Shunt resistance at reference flux"},
+        "T_cell_ref": {"value": 25.0, "unit": "degC", "note": "Reference cell temperature"},
+        "alpha_sc": {"value": 0.0005, "unit": "A/K", "note": "Short-circuit current temperature coefficient"},
+        "Eg": {"value": 0.72, "unit": "eV", "note": "GaSb bandgap (0.72 eV at 300K)"},
+        "T_emitter_ref": {"value": 1500.0, "unit": "K", "note": "Reference emitter temperature for I_ph_ref"},
+        "R_thermal": {"value": 5.0, "unit": "K/W", "note": "Cell-to-heatsink thermal resistance"},
+        "T_heatsink": {"value": 25.0, "unit": "degC", "note": "Heat sink (cold side) temperature"}
+    },
+    "valid_ranges": {
+        "T_emitter": {"min": 800.0, "max": 2000.0, "unit": "K"},
+        "T_heatsink": {"min": 0.0, "max": 60.0, "unit": "degC"}
+    }
+}

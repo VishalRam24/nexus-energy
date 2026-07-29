@@ -1,0 +1,17 @@
+{
+    "component": "EC168 MPPT Controller",
+    "fidelity": "F1a",
+    "description": "Tracking efficiency as f(irradiance) using exponential saturation model",
+    "unit": {
+        "name": "Generic 10kW MPPT Controller",
+        "source": "Hohm & Ropp (2003), Progress in Photovoltaics, 11, 47-62",
+        "eta_max": {"value": 0.99, "unit": "dimensionless", "note": "Maximum tracking efficiency at high irradiance"},
+        "k": {"value": 5.0, "unit": "dimensionless", "note": "Roll-off steepness at low irradiance (Hohm & Ropp 2003)"},
+        "G_ref": {"value": 1000.0, "unit": "W/m2", "note": "Reference irradiance (STC)"},
+        "P_rated": {"value": 10000.0, "unit": "W", "note": "Rated input power"}
+    },
+    "valid_ranges": {
+        "irradiance": {"min": 0.0, "max": 1200.0, "unit": "W/m2"},
+        "p_mpp_input": {"min": 0.0, "max": 12000.0, "unit": "W"}
+    }
+}

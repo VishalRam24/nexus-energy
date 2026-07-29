@@ -1,0 +1,18 @@
+{
+  "device": {
+    "ramp_width_m":      {"value": 20.0,  "unit": "m",    "description": "Width of overtopping ramp"},
+    "reservoir_height_m":{"value": 1.0,   "unit": "m",    "description": "Mean water head above mean sea level in reservoir"},
+    "overtopping_rate_m3_per_s_per_m": {"value": 0.05, "unit": "m^3/(s*m)", "description": "Mean overtopping flow per unit crest width at design wave condition"},
+    "eta_turbine":       {"value": 0.80,  "unit": "-",    "description": "Low-head turbine efficiency (Kaplan-type)"},
+    "eta_generator":     {"value": 0.92,  "unit": "-",    "description": "Generator efficiency"},
+    "eta_ramp":          {"value": 0.20,  "unit": "-",    "description": "Fraction of incident wave power captured as overtopping (overall ramp efficiency)"},
+    "rho_water":         {"value": 1025.0,"unit": "kg/m3","description": "Seawater density"}
+  },
+  "limits": {
+    "H_s_min_m": 0.5,
+    "H_s_max_m": 6.0,
+    "T_e_min_s": 5.0,
+    "T_e_max_s": 20.0
+  },
+  "source": "Kofoed et al. (2006) Coastal Eng. 53:859-867; Wave Dragon device data; Vicinanza et al. (2012) ISOPE."
+}

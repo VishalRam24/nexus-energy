@@ -1,0 +1,43 @@
+{
+    "component_id": "EC123",
+    "component_name": "Compressed Air Energy Storage (CAES) — Diabatic",
+    "fidelity": "F2a — Physics-Lumped Cavern Thermodynamics with Fuel-Fired Expansion",
+    "source": "Crotogino et al. (2001) Huntorf CAES; Succar & Williams (2008) Princeton; Raju & Khaitan (2012) Applied Energy 89:474; Budt et al. (2016) Applied Energy 170:250",
+    "unit": {
+        "name": "Huntorf-class Diabatic CAES (290 MW, 310,000 m3 salt cavern)",
+
+        "cavern_volume": {"value": 310000.0, "unit": "m3", "source": "Crotogino et al. (2001)", "note": "Huntorf two-cavern total geometric volume"},
+        "p_max": {"value": 7.0e6, "unit": "Pa", "source": "Crotogino et al. (2001)", "note": "Max cavern pressure 70 bar"},
+        "p_min": {"value": 4.3e6, "unit": "Pa", "source": "Crotogino et al. (2001)", "note": "Min cavern pressure 43 bar (turbine throttle floor)"},
+        "T_rock": {"value": 313.15, "unit": "K", "source": "Raju & Khaitan (2012)", "note": "Surrounding salt-rock wall temperature ~40C at depth"},
+
+        "n_stages_comp": {"value": 3, "unit": "-", "source": "Succar & Williams (2008)", "note": "Multistage intercooled compressor train"},
+        "eta_poly_comp": {"value": 0.80, "unit": "-", "source": "Succar & Williams (2008)", "note": "Per-stage polytropic compressor efficiency"},
+        "eta_motor": {"value": 0.97, "unit": "-", "source": "Budt et al. (2016)", "note": "Motor-drive electrical efficiency"},
+        "T_intercool": {"value": 313.15, "unit": "K", "source": "Succar & Williams (2008)", "note": "Intercooler / aftercooler outlet temperature (air to cavern ~40C)"},
+        "T_intake": {"value": 288.15, "unit": "K", "source": "ISO 2314", "note": "Compressor intake air temperature (ISO 15C)"},
+        "p_intake": {"value": 1.013e5, "unit": "Pa", "source": "ISO 2314", "note": "Ambient intake pressure (1 atm)"},
+
+        "eta_turb": {"value": 0.85, "unit": "-", "source": "Crotogino et al. (2001)", "note": "Combined HP+LP expander isentropic efficiency"},
+        "eta_gen": {"value": 0.97, "unit": "-", "source": "Budt et al. (2016)", "note": "Generator electrical efficiency"},
+        "T_turb_in": {"value": 823.15, "unit": "K", "source": "Crotogino et al. (2001)", "note": "Turbine inlet temperature after combustor (HP ~550C)"},
+        "p_turb_out": {"value": 1.05e5, "unit": "Pa", "source": "Crotogino et al. (2001)", "note": "Turbine exhaust (near atmospheric)"},
+        "fuel_lhv": {"value": 50.0e6, "unit": "J/kg", "source": "Engineering Toolbox", "note": "Natural-gas lower heating value"},
+
+        "cp_air": {"value": 1005.0, "unit": "J/(kg·K)", "source": "Cengel & Boles (2015), air @ 300K", "note": "Air specific heat at constant pressure"},
+        "cv_air": {"value": 718.0, "unit": "J/(kg·K)", "source": "Cengel & Boles (2015), air @ 300K", "note": "Air specific heat at constant volume"},
+        "gamma_air": {"value": 1.40, "unit": "-", "source": "Cengel & Boles (2015)", "note": "Air ratio of specific heats cp/cv"},
+        "R_air": {"value": 287.0, "unit": "J/(kg·K)", "source": "Cengel & Boles (2015)", "note": "Specific gas constant of air"},
+
+        "UA_cav_rock": {"value": 30000.0, "unit": "W/K", "source": "Raju & Khaitan (2012)", "note": "Lumped cavern-wall to rock heat-transfer conductance"},
+        "rated_power_MW": {"value": 290.0, "unit": "MW", "source": "Crotogino et al. (2001)", "note": "Huntorf rated generation power"}
+    },
+    "valid_ranges": {
+        "m_dot_charge": {"min": 0.0, "max": 200.0, "unit": "kg/s"},
+        "m_dot_discharge": {"min": 0.0, "max": 600.0, "unit": "kg/s"},
+        "P_cavern": {"min": 4.3e6, "max": 7.0e6, "unit": "Pa"},
+        "T_cavern": {"min": 293.15, "max": 360.15, "unit": "K"},
+        "dt": {"min": 1.0, "max": 600.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 86400.0, "unit": "s"}
+    }
+}

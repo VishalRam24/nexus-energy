@@ -1,0 +1,38 @@
+{
+  "component_id": "EC086",
+  "component_name": "Electric Boiler / Resistance Heater",
+  "fidelity": "F1a — Constant Efficiency",
+  "source": "ASHRAE Handbook (HVAC Systems & Equipment, 2020), Ch. 32 'Boilers'; IEA Task 44 'Solar and Heat Pump Systems'.",
+  "default_parameters": {
+    "P_rated_kw": 30.0,
+    "eta_nom": 0.99,
+    "P_standby_kw": 0.02,
+    "PLR_min": 0.0
+  },
+  "parameter_metadata": {
+    "P_rated_kw": {
+      "description": "Rated electrical input power",
+      "unit": "kW",
+      "default": 30.0,
+      "notes": "30 kW typical residential/light-commercial electric boiler"
+    },
+    "eta_nom": {
+      "description": "Nominal conversion efficiency (electrical-to-thermal)",
+      "unit": "-",
+      "default": 0.99,
+      "notes": "Resistance heating ~99%; small jacket/standby losses only"
+    },
+    "P_standby_kw": {
+      "description": "Standby (parasitic) electrical draw",
+      "unit": "kW",
+      "default": 0.02,
+      "notes": "Controls, pump, idle losses"
+    },
+    "PLR_min": {
+      "description": "Minimum part-load ratio (electric units modulate to 0)",
+      "unit": "-",
+      "default": 0.0,
+      "notes": "Resistance heaters can fully modulate or cycle"
+    }
+  }
+}

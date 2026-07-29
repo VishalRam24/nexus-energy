@@ -1,0 +1,20 @@
+{
+    "component": "EC160 Isolated DC-DC Converter (Flyback/Forward)",
+    "fidelity": "F1a",
+    "description": "Ideal gain V_out = N*D*V_in with fixed efficiency eta",
+    "unit": {
+        "name": "Generic 100W Flyback Converter",
+        "source": "Erickson & Maksimovic (2020), Fundamentals of Power Electronics, 3rd ed.",
+        "n_turns": {"value": 0.1, "unit": "dimensionless", "note": "Transformer turns ratio N2/N1"},
+        "eta": {"value": 0.85, "unit": "dimensionless", "note": "Fixed overall efficiency"},
+        "p_rated": {"value": 100.0, "unit": "W"},
+        "v_in_nominal": {"value": 400.0, "unit": "V"},
+        "v_out_nominal": {"value": 12.0, "unit": "V"},
+        "d_max": {"value": 0.5, "unit": "dimensionless", "note": "Maximum duty cycle"}
+    },
+    "valid_ranges": {
+        "v_in": {"min": 100.0, "max": 600.0, "unit": "V"},
+        "duty_cycle": {"min": 0.05, "max": 0.5, "unit": "dimensionless"},
+        "p_in": {"min": 0.0, "max": 120.0, "unit": "W"}
+    }
+}

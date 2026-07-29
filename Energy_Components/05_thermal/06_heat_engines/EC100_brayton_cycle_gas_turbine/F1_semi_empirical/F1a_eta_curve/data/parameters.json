@@ -1,0 +1,9 @@
+{
+  "default_parameters": {
+    "eta_rated": 0.38,
+    "P_rated_MW": 50.0,
+    "f_load_a": 0.2,
+    "f_load_b": 0.8
+  },
+  "description": "Brayton cycle gas turbine F1a: eta=eta_rated*f(load), f(load)=a+b*load, eta_rated=0.38, P_rated=50MW."
+}

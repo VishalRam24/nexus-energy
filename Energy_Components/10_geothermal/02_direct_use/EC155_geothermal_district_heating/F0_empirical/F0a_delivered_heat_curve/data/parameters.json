@@ -1,0 +1,27 @@
+{
+    "component": "EC155 Geothermal District Heating",
+    "fidelity": "F0a",
+    "description": "Empirical delivered-heat curve. q_specific(T_source) = cp*(T_source - T_return)*eta_HX*(1 - distribution_losses), tabulated as delivered kW per kg/s of geothermal flow. 1-D np.interp lookup; Q_delivered = q_specific(T_source) * m_dot.",
+    "source": "Lund, J.W. & Toth, A.N. (2021). Direct Utilization of Geothermal Energy 2020 Worldwide Review, Geothermics. Breakpoints reuse EC155 F1a heat-extraction design numbers.",
+    "T_return_ref": {"value": 40.0, "unit": "degC", "note": "Return temperature to reinjection well (F1a design)"},
+    "cp_geo": {"value": 4100.0, "unit": "J/kgK"},
+    "heat_transfer_efficiency": {"value": 0.90, "unit": "dimensionless", "note": "Heat-exchanger efficiency, reused from F1a"},
+    "distribution_losses": {"value": 0.05, "unit": "dimensionless", "note": "Pipeline thermal loss fraction, reused from F1a"},
+    "pump_power_fraction": {"value": 0.02, "unit": "dimensionless", "note": "Circulation pump power as fraction of delivered heat"},
+    "rated": {
+        "T_source_design": {"value": 80.0, "unit": "degC"},
+        "m_dot_geo_design": {"value": 50.0, "unit": "kg/s"},
+        "q_specific_rated": {"value": 140.22, "unit": "kW_per_kgps", "note": "Delivered heat per kg/s at T_source=80, T_return=40 degC"},
+        "Q_delivered_rated": {"value": 7011.0, "unit": "kW", "note": "50 kg/s * 140.22 kW per kg/s"}
+    },
+    "curve": {
+        "note": "Delivered heat per unit flow (kW per kg/s) vs source temperature (degC) at T_return=40 degC. q = cp*(Ts-40)/1000 * 0.90 * (1-0.05).",
+        "T_source_degC": [50.0, 60.0, 70.0, 80.0, 100.0, 120.0, 150.0],
+        "q_specific_kW_per_kgps": [35.05, 70.11, 105.16, 140.22, 210.33, 280.44, 385.61]
+    },
+    "valid_ranges": {
+        "T_source": {"min": 50.0, "max": 150.0, "unit": "degC"},
+        "T_return": {"min": 20.0, "max": 60.0, "unit": "degC"},
+        "flow_rate_kgs": {"min": 5.0, "max": 500.0, "unit": "kg/s"}
+    }
+}

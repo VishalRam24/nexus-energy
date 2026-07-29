@@ -1,0 +1,32 @@
+{
+    "component": "EC197 DME Synthesis Reactor",
+    "fidelity": "F1b",
+    "description": "DME reactor with part-load PLR correction, bed temperature drop, HZSM-5 coking deactivation, heat recovery, and methanol by-product slip.",
+    "unit": {
+        "name": "Generic CuO-ZnO-Al2O3/NaHZSM-5, 250-280 degC, 40 bar, with heat integration",
+        "source": "Ereña et al. (2005); García-Trenco et al. (2018); Naik et al. (2011).",
+        "T_opt":                {"value": 260.0,  "unit": "degC",    "note": "Optimal conversion temperature"},
+        "X_max":                {"value": 0.85,   "unit": "-",       "note": "Maximum CO conversion at design"},
+        "k_T":                  {"value": 5.0,    "unit": "-",       "note": "Gaussian temperature width"},
+        "P_ref":                {"value": 40.0,   "unit": "bar",     "note": "Reference pressure"},
+        "P_exp":                {"value": 0.45,   "unit": "-",       "note": "Pressure exponent"},
+        "S_DME_max":            {"value": 0.90,   "unit": "-",       "note": "Max DME selectivity at T_S_opt"},
+        "k_S":                  {"value": 3.0,    "unit": "-",       "note": "Selectivity Gaussian width"},
+        "T_S_opt":              {"value": 265.0,  "unit": "degC",    "note": "Optimal T for dehydration to DME"},
+        "n_CO_in":              {"value": 1.0,    "unit": "mol/s",   "note": "Design CO feed rate"},
+        "H2_CO_ratio":          {"value": 2.0,    "unit": "mol/mol", "note": "Feed H2/CO ratio"},
+        "LHV_DME":              {"value": 1460.0, "unit": "kJ/mol",  "note": "LHV of DME"},
+        "LHV_H2":               {"value": 241.8,  "unit": "kJ/mol",  "note": "LHV of H2"},
+        "DH_reaction":          {"value": -102.4, "unit": "kJ/mol_CO","note": "Exotherm per mol CO"},
+        "f_recovery":           {"value": 0.55,   "unit": "-",       "note": "Heat recovery fraction (pre-heat feed + steam generation)"},
+        "PLR_coeffs":           {"value": [0.3, 0.5, 0.2], "unit": "-", "note": "PLR quadratic correction; ~10% conversion drop at PLR=0.5"},
+        "dT_cold_K":            {"value": 15.0,   "unit": "K",       "note": "Bed temperature drop at PLR=0 (less exotherm)"},
+        "k_deact_per_1000h":    {"value": 0.015,  "unit": "1/1000h", "note": "HZSM-5 coking deactivation ~1.5% per 1000h (faster than metal catalyst, García-Trenco 2018)"}
+    },
+    "valid_ranges": {
+        "temperature_C":   {"min": 200.0, "max": 350.0, "unit": "degC"},
+        "pressure_bar":    {"min": 10.0,  "max": 80.0,  "unit": "bar"},
+        "plr":             {"min": 0.2,   "max": 1.0,   "unit": "-"},
+        "operating_hours": {"min": 0.0,   "max": 30000.0,"unit": "h"}
+    }
+}

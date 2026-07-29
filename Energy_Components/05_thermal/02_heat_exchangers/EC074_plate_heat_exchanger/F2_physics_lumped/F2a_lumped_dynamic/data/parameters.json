@@ -1,0 +1,29 @@
+{
+    "component_id": "EC074",
+    "component_name": "Plate Heat Exchanger",
+    "fidelity": "F2a — Lumped Dynamic Two-Fluid Capacitance Model",
+    "source": "Incropera & DeWitt (2011) Fundamentals of Heat and Mass Transfer; Shah & Sekulic (2003) Fundamentals of Heat Exchanger Design",
+    "unit": {
+        "name": "Generic Plate Heat Exchanger — 50 kW nominal",
+        "UA_nominal": {"value": 2500.0, "unit": "W/K", "note": "Overall heat transfer coefficient * area at design point"},
+        "M_hot": {"value": 15.0, "unit": "kg", "note": "Mass of hot-side fluid holdup"},
+        "M_cold": {"value": 15.0, "unit": "kg", "note": "Mass of cold-side fluid holdup"},
+        "cp_hot": {"value": 4186.0, "unit": "J/(kg.K)", "note": "Specific heat of hot fluid (water)"},
+        "cp_cold": {"value": 4186.0, "unit": "J/(kg.K)", "note": "Specific heat of cold fluid (water)"},
+        "m_dot_hot_design": {"value": 1.2, "unit": "kg/s", "note": "Design hot-side mass flow rate"},
+        "m_dot_cold_design": {"value": 1.0, "unit": "kg/s", "note": "Design cold-side mass flow rate"},
+        "T_hot_in_design": {"value": 353.15, "unit": "K", "note": "Design hot inlet temperature (80 C)"},
+        "T_cold_in_design": {"value": 293.15, "unit": "K", "note": "Design cold inlet temperature (20 C)"},
+        "n_plates": {"value": 40, "unit": "-", "note": "Number of plates"},
+        "plate_area": {"value": 0.05, "unit": "m2", "note": "Single plate heat transfer area"},
+        "UA_loss": {"value": 5.0, "unit": "W/K", "note": "Heat loss to ambient per side"},
+        "T_ambient": {"value": 293.15, "unit": "K", "note": "Ambient temperature"}
+    },
+    "valid_ranges": {
+        "m_dot_hot": {"min": 0.0, "max": 3.0, "unit": "kg/s"},
+        "m_dot_cold": {"min": 0.0, "max": 3.0, "unit": "kg/s"},
+        "T_hot_in": {"min": 293.15, "max": 423.15, "unit": "K"},
+        "T_cold_in": {"min": 273.15, "max": 373.15, "unit": "K"},
+        "duration_s": {"min": 1.0, "max": 7200.0, "unit": "s"}
+    }
+}

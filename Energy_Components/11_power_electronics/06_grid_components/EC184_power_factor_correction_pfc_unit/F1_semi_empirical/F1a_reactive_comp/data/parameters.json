@@ -1,0 +1,19 @@
+{
+    "component": "EC184 Power Factor Correction Unit",
+    "fidelity": "F1a",
+    "description": "Capacitor bank: Q_comp = P*(tan(phi1)-tan(phi2)); losses = loss_factor * Q_comp.",
+    "unit": {
+        "name": "Generic 11kV Capacitor Bank PFC Unit",
+        "source": "Acha et al. (2004), FACTS: Modelling and Simulation in Power Networks. Wiley.",
+        "Q_rated_kVAR": {"value": 1000.0, "unit": "kVAR", "note": "Total capacitor bank rating"},
+        "V_rated_kV": {"value": 11.0, "unit": "kV"},
+        "loss_factor": {"value": 0.003, "unit": "dimensionless", "note": "0.3% losses of Q_comp (dielectric + switching)"},
+        "pf_target": {"value": 0.95, "unit": "dimensionless", "note": "Target power factor"}
+    },
+    "valid_ranges": {
+        "P_kW": {"min": 0.0, "max": 10000.0, "unit": "kW"},
+        "pf_initial": {"min": 0.5, "max": 0.99, "unit": "dimensionless"},
+        "pf_target": {"min": 0.8, "max": 1.0, "unit": "dimensionless"},
+        "Q_comp_kVAR": {"min": 0.0, "max": 2000.0, "unit": "kVAR"}
+    }
+}

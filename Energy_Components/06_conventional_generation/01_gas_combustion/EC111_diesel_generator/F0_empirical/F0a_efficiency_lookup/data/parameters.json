@@ -1,0 +1,90 @@
+{
+    "component": "EC111 Diesel Generator",
+    "fidelity": "F0a - empirical lookup",
+    "description": "Net LHV electrical efficiency as a tabulated part-load curve plus a linear ambient-temperature derate. Breakpoints generated from the F1a semi-empirical part-load curve.",
+    "unit": {
+        "name": "Generic 500 kW Diesel Generator (Willans line basis)",
+        "source": "US Army TM 5-811-6 (1996); Tuffaha & Gravdahl (2014); F1a EC111",
+        "P_rated": {
+            "value": 500.0,
+            "unit": "kW_e",
+            "note": "Rated electrical output"
+        },
+        "eta_rated": {
+            "value": 0.37707,
+            "unit": "dimensionless",
+            "note": "Net LHV efficiency at rated load (PLR=1, T_ref)"
+        },
+        "T_amb_ref": {
+            "value": 25.0,
+            "unit": "degC",
+            "note": "Reference ambient temperature"
+        },
+        "f_amb_coeff": {
+            "value": 0.001,
+            "unit": "1/degC",
+            "note": "Ambient derate: eta scaled by (1 - coeff*(T-T_ref))"
+        },
+        "PLR_min": {
+            "value": 0.25,
+            "unit": "dimensionless",
+            "note": "Minimum stable part-load ratio"
+        },
+        "plr_breakpoints": {
+            "value": [
+                0.25,
+                0.3,
+                0.35,
+                0.4,
+                0.45,
+                0.5,
+                0.55,
+                0.6,
+                0.65,
+                0.7,
+                0.75,
+                0.8,
+                0.85,
+                0.9,
+                0.95,
+                1.0
+            ],
+            "unit": "dimensionless",
+            "note": "Lookup x-axis"
+        },
+        "eta_breakpoints": {
+            "value": [
+                0.30852,
+                0.32151,
+                0.33147,
+                0.33937,
+                0.34577,
+                0.35107,
+                0.35553,
+                0.35933,
+                0.36261,
+                0.36547,
+                0.36799,
+                0.37022,
+                0.37221,
+                0.374,
+                0.37561,
+                0.37707
+            ],
+            "unit": "dimensionless",
+            "note": "Net LHV efficiency at each PLR breakpoint, T_ref"
+        }
+    },
+    "valid_ranges": {
+        "part_load_ratio": {
+            "min": 0.25,
+            "max": 1.0,
+            "unit": "dimensionless"
+        },
+        "ambient_temp_c": {
+            "min": -20.0,
+            "max": 55.0,
+            "unit": "degC"
+        }
+    }
+}

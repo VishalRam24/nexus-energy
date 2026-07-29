@@ -1,0 +1,24 @@
+{
+    "component": "EC126 Flywheel Energy Storage",
+    "fidelity": "F1a",
+    "description": "Kinetic model: E=0.5*J*omega^2, SOC, self-discharge, round-trip efficiency",
+    "unit": {
+        "name": "Generic 100 kW / 25 kWh Steel Flywheel (FESS)",
+        "source": "Arani et al. (2017). Energies, 10, 1361. doi:10.3390/en10091361",
+        "J_kgm2": {"value": 100.0, "unit": "kg·m²", "note": "Moment of inertia"},
+        "omega_max_rads": {"value": 1675.94, "unit": "rad/s", "note": "16000 rpm = 1675.94 rad/s"},
+        "omega_min_rads": {"value": 837.97, "unit": "rad/s", "note": "8000 rpm = 837.97 rad/s (50% of max)"},
+        "P_rated_kw": {"value": 100.0, "unit": "kW", "note": "Rated charge/discharge power"},
+        "E_rated_kwh": {"value": 25.0, "unit": "kWh", "note": "Usable energy at SOC=1"},
+        "k_sd_per_hr": {"value": 0.01, "unit": "1/h", "note": "Self-discharge rate constant (~1%/h for steel flywheel)"},
+        "eta_motor": {"value": 0.95, "unit": "dimensionless", "note": "Motor efficiency (charging)"},
+        "eta_gen": {"value": 0.95, "unit": "dimensionless", "note": "Generator efficiency (discharging)"},
+        "rpm_max": {"value": 16000.0, "unit": "rpm"},
+        "rpm_min": {"value": 8000.0, "unit": "rpm"}
+    },
+    "valid_ranges": {
+        "speed_rpm": {"min": 8000.0, "max": 16000.0, "unit": "rpm"},
+        "torque_nm": {"min": -100.0, "max": 100.0, "unit": "N·m", "note": "Negative=discharge, Positive=charge"},
+        "time_hours": {"min": 0.0, "max": 24.0, "unit": "h"}
+    }
+}

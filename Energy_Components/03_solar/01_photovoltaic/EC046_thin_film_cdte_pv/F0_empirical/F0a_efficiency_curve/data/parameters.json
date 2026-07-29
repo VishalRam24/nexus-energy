@@ -1,0 +1,77 @@
+{
+  "component": "EC046 Thin-Film CdTe PV",
+  "fidelity": "F0a",
+  "model": "Empirical efficiency curve: eta(G,T) lookup -> P = eta * G * A",
+  "source": "First Solar Series 6 datasheet",
+  "rated": {
+    "p_mp_stc": {
+      "value": 445.0,
+      "unit": "W",
+      "note": "Nameplate power at STC"
+    },
+    "area": {
+      "value": 2.475,
+      "unit": "m2",
+      "note": "Module aperture area"
+    },
+    "eta_stc": {
+      "value": 0.1798,
+      "unit": "dimensionless",
+      "note": "Module efficiency at STC = P/(G*A)"
+    },
+    "gamma_pmp": {
+      "value": -0.0028,
+      "unit": "1/K",
+      "note": "Power temperature coefficient"
+    },
+    "stc_irradiance": {
+      "value": 1000.0,
+      "unit": "W/m2"
+    },
+    "stc_temperature": {
+      "value": 25.0,
+      "unit": "degC"
+    }
+  },
+  "irradiance_breakpoints": {
+    "value": [
+      0.0,
+      100.0,
+      200.0,
+      400.0,
+      600.0,
+      800.0,
+      1000.0,
+      1100.0,
+      1200.0
+    ],
+    "unit": "W/m2"
+  },
+  "rel_eff_breakpoints": {
+    "value": [
+      0.0,
+      0.93,
+      0.96,
+      0.985,
+      0.995,
+      1.0,
+      1.0,
+      0.998,
+      0.995
+    ],
+    "unit": "dimensionless",
+    "note": "Relative module efficiency vs irradiance (low-light loss), 1.0 at STC"
+  },
+  "valid_ranges": {
+    "irradiance": {
+      "min": 0.0,
+      "max": 1200.0,
+      "unit": "W/m2"
+    },
+    "cell_temperature": {
+      "min": -10.0,
+      "max": 80.0,
+      "unit": "degC"
+    }
+  }
+}

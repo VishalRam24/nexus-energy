@@ -1,0 +1,18 @@
+{
+    "component": "EC142 Biogas Upgrading to Biomethane",
+    "fidelity": "F1a",
+    "description": "Simple yield model: biomethane = biogas_in * CH4_fraction * CH4_recovery; SEC applied to electrical energy consumption.",
+    "unit": {
+        "name": "Generic Biogas Upgrading Unit (PSA/membrane/amine)",
+        "source": "IEA Bioenergy Task 37 (2017); Bauer et al. (2013) Bioresour. Technol. 122:145",
+        "CH4_recovery":              {"value": 0.97,  "unit": "dimensionless", "note": "Fraction of CH4 recovered from raw biogas"},
+        "biomethane_purity":         {"value": 0.97,  "unit": "dimensionless", "note": "CH4 content in product biomethane"},
+        "SEC_kWh_per_Nm3":           {"value": 0.25,  "unit": "kWh/Nm3",      "note": "Specific energy consumption per Nm3 raw biogas"},
+        "CO2_removal_fraction":      {"value": 0.95,  "unit": "dimensionless", "note": "Fraction of CO2 stripped from biogas"},
+        "LHV_biomethane_kWh_m3":     {"value": 9.97,  "unit": "kWh/Nm3",      "note": "LHV of product biomethane (near-pure CH4)"}
+    },
+    "valid_ranges": {
+        "biogas_flow_Nm3_per_h": {"min": 0.0, "max": 1e5, "unit": "Nm3/h"},
+        "CH4_fraction_in":       {"min": 0.4, "max": 0.75,"unit": "dimensionless"}
+    }
+}

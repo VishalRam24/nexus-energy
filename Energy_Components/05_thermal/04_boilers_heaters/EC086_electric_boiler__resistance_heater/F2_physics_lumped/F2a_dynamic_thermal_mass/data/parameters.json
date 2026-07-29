@@ -1,0 +1,29 @@
+{
+    "component_id": "EC086",
+    "component_name": "Electric Boiler / Resistance Heater",
+    "fidelity": "F2a — Dynamic Thermal-Mass (Lumped) with Thermostat Control",
+    "source": "ASHRAE Handbook HVAC Systems & Equipment (2020), Ch. 32 'Boilers'; Incropera & DeWitt (2007) Fundamentals of Heat and Mass Transfer, Ch. 5 'Lumped Capacitance'; cp_water from NIST/IAPWS-95 (Wagner & Pruss, 2002).",
+    "unit": {
+        "name": "30 kW residential/light-commercial electric resistance boiler — lumped thermal mass",
+        "P_rated_kw": {"value": 30.0, "unit": "kW", "note": "Rated electrical input of resistance/electrode element"},
+        "eta_elec": {"value": 0.99, "unit": "-", "note": "Electrical-to-thermal conversion efficiency of element (resistance heating ~99%)"},
+        "V_water_L": {"value": 80.0, "unit": "L", "note": "Water volume in vessel/jacket"},
+        "m_vessel_kg": {"value": 25.0, "unit": "kg", "note": "Metal vessel mass contributing to thermal mass"},
+        "cp_vessel": {"value": 490.0, "unit": "J/(kg.K)", "note": "Specific heat of carbon steel vessel (Incropera 2007)"},
+        "rho_water": {"value": 983.2, "unit": "kg/m3", "note": "Water density at 60C (NIST/IAPWS-95)"},
+        "cp_water": {"value": 4185.0, "unit": "J/(kg.K)", "note": "Specific heat of liquid water near 60C (NIST/IAPWS-95, Wagner & Pruss 2002)"},
+        "UA_loss": {"value": 3.0, "unit": "W/K", "note": "Standby loss conductance (jacket UA) to ambient"},
+        "T_ambient_K": {"value": 293.15, "unit": "K", "note": "Ambient air temperature around vessel (20C)"},
+        "T_set_K": {"value": 343.15, "unit": "K", "note": "Thermostat setpoint (70C)"},
+        "T_deadband_K": {"value": 4.0, "unit": "K", "note": "Thermostat hysteresis deadband (on/off control)"},
+        "T_inlet_K": {"value": 283.15, "unit": "K", "note": "Cold feed/return water temperature (10C)"}
+    },
+    "valid_ranges": {
+        "mdot_kg_s": {"min": 0.0, "max": 1.0, "unit": "kg/s"},
+        "T_init_K": {"min": 274.0, "max": 372.0, "unit": "K"},
+        "T_set_K": {"min": 293.0, "max": 368.0, "unit": "K"},
+        "dt": {"min": 0.1, "max": 10.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 86400.0, "unit": "s"},
+        "control": {"options": ["onoff", "modulating"], "unit": "-"}
+    }
+}

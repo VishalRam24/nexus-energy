@@ -1,0 +1,41 @@
+{
+    "component": "EC025 Lithium-Sulfur Battery (Li-S)",
+    "fidelity": "F1b",
+    "description": "SOC-thermal voltage model: V = OCV(SOC) - I*R(T), with Arrhenius resistance and capacity correction",
+    "cell": {
+        "name": "Generic Li-S pouch cell",
+        "source": "Wild et al. (2015), Energy Environ. Sci. 8, 3477; Mikhaylik & Akridge (2004), J. Electrochem. Soc. 151, A1969",
+        "nominal_voltage": {"value": 2.1, "unit": "V"},
+        "capacity_ref": {"value": 3.0, "unit": "Ah", "note": "Nominal capacity at T_ref (theoretical 1675 mAh/g, practical ~600 mAh/g)"},
+        "voltage_max": {"value": 2.7, "unit": "V"},
+        "voltage_min": {"value": 1.7, "unit": "V"},
+        "R_ref": {"value": 0.080, "unit": "Ohm", "note": "Internal resistance at T_ref (298.15 K); higher than Li-ion due to poor sulfur conductivity"}
+    },
+    "ocv_coefficients": {
+        "description": "OCV(SOC) = a0 + a1*SOC + a2*SOC^2 + a3*SOC^3 + a4*SOC^4 + a5*SOC^5",
+        "source": "Fitted to Li-S two-plateau OCV profile; upper plateau ~2.4V (S8 to Li2S4), lower plateau ~2.1V (Li2S4 to Li2S)",
+        "a0": 1.75,
+        "a1": 1.80,
+        "a2": -3.5,
+        "a3": 5.0,
+        "a4": -3.8,
+        "a5": 0.9
+    },
+    "thermal": {
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 degC)"},
+        "E_a": {"value": 30000, "unit": "J/mol",
+                "note": "Activation energy; higher than Li-ion because polysulfide dissolution kinetics are thermally activated",
+                "source": "Mikhaylik & Akridge (2004), J. Electrochem. Soc. 151, A1969; Kumaresan et al. (2008), J. Electrochem. Soc. 155(6), A576"},
+        "alpha_c": {"value": 0.008, "unit": "1/K", "note": "Capacity temperature coefficient; Li-S capacity strongly increases with T due to polysulfide dissolution",
+                    "source": "Wild et al. (2015), Energy Environ. Sci. 8, 3477"},
+        "dOCV_dT": {"value": 0.00035, "unit": "V/K",
+                    "note": "POSITIVE entropic coefficient for Li-S; unique among battery chemistries. The Li + 0.5S -> 0.5Li2S reaction has a positive entropy change (dS/dxi > 0) yielding dOCV/dT > 0, approx +0.35 mV/K. This means the cell is cooled during discharge (reversible endothermic).",
+                    "source": "Kumaresan et al. (2008), J. Electrochem. Soc. 155(6), A576; Cuisinier et al. (2014), J. Phys. Chem. Lett. 5, 3227"},
+        "R_gas": {"value": 8.314, "unit": "J/(mol*K)", "note": "Universal gas constant"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "current": {"min": -6.0, "max": 6.0, "unit": "A", "note": "Negative=charge, Positive=discharge; Li-S limited to ~2C due to polysulfide shuttle"},
+        "temperature": {"min": 258.15, "max": 333.15, "unit": "K", "note": "-15 to 60 degC; lower bound due to electrolyte freezing"}
+    }
+}

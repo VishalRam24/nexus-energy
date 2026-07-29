@@ -1,0 +1,26 @@
+{
+    "component": "EC216 Thermoelectric Generator (TEG)",
+    "fidelity": "F0a",
+    "description": "Empirical efficiency-vs-deltaT lookup for a Bi2Te3 TEG module (ZT~1). Conversion efficiency eta = eta_carnot * gamma, where gamma=(sqrt(1+ZT)-1)/(sqrt(1+ZT)+Tc/Th). Table tabulated at T_cold=30C.",
+    "source": "Rowe (2006) Thermoelectrics Handbook; Snyder & Toberer (2008), Nature Materials, 7, 105-114",
+    "ZT": {"value": 1.0, "unit": "dimensionless", "note": "Average ZT for Bi2Te3 (reused from EC216 F1a)"},
+    "T_cold_ref": {"value": 30.0, "unit": "degC", "note": "Reference cold-side temperature for the lookup table"},
+    "alpha_seebeck": {"value": 0.0002, "unit": "V/K", "note": "Seebeck coefficient per couple (reused from F1a)"},
+    "R_internal": {"value": 2.0, "unit": "ohm", "note": "Internal resistance per module at matched load (reused from F1a)"},
+    "N_couples": {"value": 127, "unit": "-", "note": "Couples per module (reused from F1a)"},
+    "module_area": {"value": 0.0016, "unit": "m2", "note": "40x40mm module face area (reused from F1a)"},
+    "lookup": {
+        "note": "Breakpoints: hot-side temperature (degC) -> module conversion efficiency (fraction), cold side fixed at 30C",
+        "T_hot_degC": {"value": [50.0, 100.0, 150.0, 200.0, 250.0, 300.0], "unit": "degC"},
+        "efficiency": {"value": [0.0109, 0.0349, 0.0551, 0.0724, 0.0874, 0.1004], "unit": "fraction"}
+    },
+    "rated_point": {
+        "T_hot": {"value": 200.0, "unit": "degC"},
+        "T_cold": {"value": 30.0, "unit": "degC"},
+        "efficiency": {"value": 0.0724, "unit": "fraction", "note": "Rated efficiency ~7.2% at 200C/30C for ZT=1 Bi2Te3 (Carnot x ZT reduction factor)"}
+    },
+    "valid_ranges": {
+        "T_hot": {"min": 50.0, "max": 300.0, "unit": "degC"},
+        "T_cold": {"min": 0.0, "max": 50.0, "unit": "degC"}
+    }
+}

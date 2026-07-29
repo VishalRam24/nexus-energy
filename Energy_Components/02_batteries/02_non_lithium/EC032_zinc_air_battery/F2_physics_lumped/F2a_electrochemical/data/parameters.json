@@ -1,0 +1,40 @@
+{
+    "component_id": "EC032",
+    "component_name": "Zinc-Air Battery",
+    "fidelity": "F2a — Air-Cathode Electrochemical Model with Thermal ODE",
+    "source": "Deiss et al. (2002) Electrochim. Acta 47, 3995-4010; Mao & White (1992) J. Electrochem. Soc. 139, 1105; Schroder & Krewer (2014) Electrochim. Acta 117, 541-553; Fu et al. (2010) J. Electrochem. Soc. 157(1), A50-A56; Parker et al. (2017) Science 356, 415-418",
+    "unit": {
+        "name": "Single rechargeable Zn-air cell — Physics-Lumped Air-Cathode Electrochemical",
+        "A_electrode": {"value": 10.0, "unit": "cm2", "note": "Geometric air-electrode area (Schroder & Krewer 2014 bench cell)"},
+        "E_eq": {"value": 1.65, "unit": "V", "note": "Equilibrium cell potential Zn|O2 at 1 atm O2, alkaline (E0_Zn=-1.25 V vs ORR +0.40 V => 1.65 V). Linden's Handbook of Batteries"},
+        "dE_dT": {"value": -0.0004, "unit": "V/K", "note": "Reversible entropic coefficient dE_eq/dT < 0 for Zn-air. Parker et al. (2017); Chotard et al. (2014)"},
+
+        "j0_orr": {"value": 1.0e-7, "unit": "A/cm2", "note": "ORR exchange current density on air-electrode (carbon/MnO2 GDE) in KOH. Deiss et al. (2002); Schroder & Krewer (2014)"},
+        "alpha_orr": {"value": 0.5, "unit": "-", "note": "Cathodic transfer coefficient for oxygen reduction (Tafel slope ~ 120 mV/dec at alpha=0.5)"},
+        "n_orr": {"value": 4, "unit": "-", "note": "Electrons in 4-electron alkaline ORR: O2 + 2H2O + 4e- -> 4OH-"},
+        "j0_zn": {"value": 2.0e-2, "unit": "A/cm2", "note": "Zn dissolution exchange current density in KOH (fast, near-reversible). Mao & White (1992)"},
+        "alpha_zn": {"value": 0.5, "unit": "-", "note": "Anodic transfer coefficient for Zn oxidation"},
+        "n_zn": {"value": 2, "unit": "-", "note": "Electrons per Zn: Zn + 4OH- -> Zn(OH)4^2- + 2e-"},
+        "E_act": {"value": 35000.0, "unit": "J/mol", "note": "Apparent activation energy of air-cathode kinetics in KOH. Lee et al. (2011) Int. J. Hydrogen Energy 36(14)"},
+
+        "j_L": {"value": 0.30, "unit": "A/cm2", "note": "Air-electrode O2 mass-transport limiting current density (diffusion through GDL at ambient air, pO2=0.21 atm). Deiss et al. (2002); typical commercial Zn-air 0.2-0.4 A/cm2"},
+        "P_o2_ref": {"value": 0.21, "unit": "atm", "note": "Reference O2 partial pressure (ambient air)"},
+
+        "R_ohm_area": {"value": 1.8, "unit": "Ohm.cm2", "note": "Area-specific ohmic resistance: KOH electrolyte + separator + contacts. 6 M KOH conductivity ~0.6 S/cm, gap ~0.1 cm. Schroder & Krewer (2014)"},
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 degC)"},
+
+        "capacity_Ah": {"value": 1.0, "unit": "Ah", "note": "Cell Zn capacity (normalised 1 Ah)"},
+        "m_cell": {"value": 0.020, "unit": "kg", "note": "Lumped cell thermal mass"},
+        "cp_cell": {"value": 900.0, "unit": "J/(kg.K)", "note": "Effective specific heat (Zn + KOH + casing average)"},
+        "hA_loss": {"value": 0.05, "unit": "W/K", "note": "Convective heat-loss coefficient * area to ambient (natural convection, air-breathing cell)"},
+        "T_amb": {"value": 298.15, "unit": "K", "note": "Ambient temperature"}
+    },
+    "valid_ranges": {
+        "current_density": {"min": 0.0, "max": 0.30, "unit": "A/cm2", "note": "Must stay below j_L of air electrode"},
+        "temperature": {"min": 253.15, "max": 333.15, "unit": "K"},
+        "P_o2": {"min": 0.05, "max": 1.0, "unit": "atm"},
+        "soc": {"min": 0.0, "max": 1.0, "unit": "-"},
+        "dt": {"min": 0.1, "max": 10.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 100000.0, "unit": "s"}
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "component": "EC145 Pyrolysis Reactor",
+    "fidelity": "F1a",
+    "description": "Simple yield model at fixed operating point (T=500 degC, fast pyrolysis): product = feedstock * yield_fraction.",
+    "unit": {
+        "name": "Generic Fast Pyrolysis Reactor (500 degC)",
+        "source": "Bridgwater, A.V. (2012) Biomass Bioenergy 38:68; Mohan et al. (2006) Energy Fuels 20:848",
+        "bio_oil_yield":    {"value": 0.60, "unit": "kg/kg_dry_feed", "note": "Bio-oil mass yield from dry biomass (fast pyrolysis at 500 degC)"},
+        "char_yield":       {"value": 0.20, "unit": "kg/kg_dry_feed", "note": "Biochar mass yield"},
+        "gas_yield":        {"value": 0.20, "unit": "kg/kg_dry_feed", "note": "Syngas mass yield"},
+        "T_operating_degC": {"value": 500.0,"unit": "degC",           "note": "Pyrolysis temperature"},
+        "LHV_bio_oil_MJ_kg":{"value": 17.0, "unit": "MJ/kg",          "note": "Lower heating value of bio-oil"},
+        "LHV_char_MJ_kg":   {"value": 30.0, "unit": "MJ/kg",          "note": "LHV of biochar"},
+        "LHV_gas_MJ_kg":    {"value": 7.5,  "unit": "MJ/kg",          "note": "LHV of pyrolysis gas"}
+    },
+    "valid_ranges": {
+        "feedstock_dry_kg_per_h": {"min": 0.0, "max": 1e5, "unit": "kg/h"}
+    }
+}

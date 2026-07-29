@@ -1,0 +1,45 @@
+{
+    "component_id": "EC040",
+    "component_name": "Hydrogen-Bromine Flow Battery (HBrFB)",
+    "fidelity": "F2a — Physics-Lumped Stack Model (kinetics + SOC ODE + Br crossover + thermal ODE)",
+    "source": "Livshits et al. (2006) J. Power Sources 160, 1298-1301; Cho et al. (2012) J. Electrochem. Soc. 159, A1806-A1815; Tucker et al. (2015) J. Electrochem. Soc. 162, A2159-A2165; Kreutzer et al. (2012) J. Electrochem. Soc. 159, F331; Bard & Faulkner (2001) Electrochemical Methods",
+    "unit": {
+        "name": "Generic 30-cell H2-Br2 flow battery stack, 200 cm2 electrode area, high power density",
+        "N_cells": {"value": 30, "unit": "-", "note": "Number of cells in stack"},
+        "A_cell": {"value": 200.0, "unit": "cm2", "note": "Active electrode area (Cho et al. 2012 cell scale)"},
+        "E0": {"value": 1.09, "unit": "V", "note": "Standard cell potential Br2/Br- (+1.065 V SHE) vs H+/H2 (0 V SHE), activity-corrected ~1.09 V at 25 C", "source": "Livshits et al. (2006); Tucker et al. (2015)"},
+        "n": {"value": 2, "unit": "-", "note": "2-electron bromine reaction: Br2 + 2e- <-> 2Br-"},
+
+        "j0_Br_ref": {"value": 0.020, "unit": "A/cm2", "note": "Exchange current density of Br2/Br- couple at T_ref on carbon electrode; Br2 reduction is the rate-limiting (slow) electrode. Range 5e-3 to 5e-2 A/cm2.", "source": "Cho et al. (2012); Kreutzer et al. (2012)"},
+        "j0_H2_ref": {"value": 0.50, "unit": "A/cm2", "note": "Exchange current density of HOR/HER on Pt/C; very fast kinetics -> negligible H2 activation overpotential", "source": "Tucker et al. (2015)"},
+        "alpha_Br": {"value": 0.5, "unit": "-", "note": "Charge-transfer (symmetry) coefficient, Br2/Br- couple"},
+        "alpha_H2": {"value": 0.5, "unit": "-", "note": "Charge-transfer coefficient, H2/H+ couple"},
+        "E_act_Br": {"value": 25000.0, "unit": "J/mol", "note": "Activation energy of Br2/Br- kinetics (Arrhenius T-dependence of j0)", "source": "Kreutzer et al. (2012)"},
+
+        "R_ohm_cm2_ref": {"value": 0.55, "unit": "Ohm.cm2", "note": "Area-specific ohmic resistance at T_ref; HBrFB has low ASR (thin Nafion membrane + good contact) enabling high power density (~1 W/cm2)", "source": "Cho et al. (2012) reported ASR ~0.4-0.6 Ohm.cm2"},
+        "E_act_R": {"value": 14000.0, "unit": "J/mol", "note": "Activation energy for membrane/ohmic resistance (Nafion proton conductivity)", "source": "Cho et al. (2012); Tucker et al. (2015)"},
+
+        "j_L": {"value": 4.0, "unit": "A/cm2", "note": "Limiting current density (Br2 mass transport at electrode at nominal flow); high due to forced convection", "source": "Cho et al. (2012)"},
+
+        "Q_nom_Ah": {"value": 80.0, "unit": "Ah", "note": "Nominal stack charge capacity (Br2/Br- reservoir)"},
+        "c_Br2_M": {"value": 1.0, "unit": "mol/L", "note": "Bromine concentration in catholyte at SOC=1"},
+        "k_cross": {"value": 8.0e-6, "unit": "1/s", "note": "Lumped Br2 crossover rate constant (Br2 diffusion across membrane to H2 side, self-discharge). Calibrated so coulombic efficiency ~95-98% at rated current, consistent with reported HBrFB CE.", "source": "Cho et al. (2012); Kreutzer et al. (2012) crossover-limited efficiency"},
+
+        "pump_loss_coefficient": {"value": 0.015, "unit": "W/(A^2)", "note": "Parasitic pump power (electrolyte + H2 recirculation), P_pump = k_pump*I^2"},
+
+        "m_stack": {"value": 12.0, "unit": "kg", "note": "Stack + electrolyte thermal mass"},
+        "cp_stack": {"value": 2500.0, "unit": "J/(kg.K)", "note": "Effective specific heat (aqueous HBr electrolyte dominated)"},
+        "hA_cool": {"value": 120.0, "unit": "W/K", "note": "Lumped heat-transfer coefficient * area to coolant loop (sized to hold the stack within 20-60 C at rated heat load ~1 kW)"},
+        "T_coolant": {"value": 298.15, "unit": "K", "note": "Coolant / ambient inlet temperature (25 C)"},
+        "dOCV_dT": {"value": -0.00050, "unit": "V/K", "note": "Reversible (entropic) temperature coefficient dE0/dT = -dS/(nF); -0.50 mV/K per cell", "source": "Livshits et al. (2006); Atkins Physical Chemistry HBr(aq) thermodynamics"},
+
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 C)"}
+    },
+    "valid_ranges": {
+        "current": {"min": -300.0, "max": 300.0, "unit": "A", "note": "positive=discharge, negative=charge; high current density allowed by fast H2 kinetics"},
+        "soc": {"min": 0.02, "max": 0.98, "unit": "-"},
+        "temperature": {"min": 293.15, "max": 333.15, "unit": "K", "note": "20 to 60 C operating window"},
+        "dt": {"min": 0.1, "max": 60.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 86400.0, "unit": "s"}
+    }
+}

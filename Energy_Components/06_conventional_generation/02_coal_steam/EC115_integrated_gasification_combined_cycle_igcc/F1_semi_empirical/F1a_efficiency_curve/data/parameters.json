@@ -1,0 +1,29 @@
+{
+    "component": "EC115 Integrated Gasification Combined Cycle (IGCC)",
+    "fidelity": "F1a",
+    "description": "Net LHV efficiency as f(PLR, T_amb) for coal IGCC plant. Gasifier + syngas cleanup + CCGT block. Syngas LHV and CO2 intensity included. Carbon-capture-ready configuration.",
+    "unit": {
+        "name": "Generic 400 MW Coal IGCC (GE/Texaco-type entrained-flow gasifier)",
+        "source": "Cormos, C.-C. (2012). Evaluation of energy integration aspects for IGCC-based hydrogen production with CO2 capture and storage. Int. J. Hydrogen Energy, 37(4), 3083-3095; IEA GHG R&D Programme (2003). Potential for improvements in gasification combined cycle power generation with CO2 capture; Booras & Holt (2004), EPRI.",
+        "rated_power_mw": {"value": 400.0, "unit": "MW_e"},
+        "eta_iso": {"value": 0.42, "unit": "dimensionless", "note": "Net LHV efficiency at rated load (typical IGCC 40-45%); PLR=1, T_amb=15C"},
+        "T_amb_ref": {"value": 15.0, "unit": "degC"},
+        "k_amb": {"value": 0.004, "unit": "1/K", "note": "Ambient derating; larger than PC due to gas turbine component (~0.4%/K)"},
+        "plr_coeffs": {
+            "a0": {"value": 0.20, "unit": "dimensionless", "note": "IGCC has flatter minimum load floor due to gasifier turndown limits"},
+            "a1": {"value": 0.80, "unit": "dimensionless"},
+            "a2": {"value": 0.0, "unit": "dimensionless"}
+        },
+        "LHV_coal": {"value": 25.0, "unit": "MJ/kg", "note": "Feed coal (bituminous)"},
+        "coal_carbon_fraction": {"value": 0.70, "unit": "kg_C/kg_coal"},
+        "CO2_per_kg_coal": {"value": 2.57, "unit": "kg_CO2/kg_coal", "note": "Stoichiometric from 70% carbon"},
+        "syngas_lhv": {"value": 11.0, "unit": "MJ/Nm3", "note": "Syngas LHV after cleanup; range 10-12 MJ/Nm3 for coal syngas (H2+CO mix)"},
+        "gasifier_cold_gas_efficiency": {"value": 0.80, "unit": "dimensionless", "note": "Fraction of coal LHV transferred to syngas (cold-gas efficiency); typical 78-83%"},
+        "min_plr": {"value": 0.40, "unit": "dimensionless", "note": "Higher minimum PLR than PC due to gasifier turndown constraints"},
+        "max_plr": {"value": 1.0, "unit": "dimensionless"}
+    },
+    "valid_ranges": {
+        "part_load_ratio": {"min": 0.40, "max": 1.0, "unit": "dimensionless"},
+        "ambient_temp": {"min": -10.0, "max": 45.0, "unit": "degC"}
+    }
+}

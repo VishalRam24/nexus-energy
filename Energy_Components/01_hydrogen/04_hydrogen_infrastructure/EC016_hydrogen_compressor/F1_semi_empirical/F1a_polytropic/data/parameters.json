@@ -1,0 +1,29 @@
+{
+    "component": "EC016 Hydrogen Compressor",
+    "fidelity": "F1a",
+    "description": "Multistage polytropic compression with intercooling for hydrogen service",
+    "source": "Sdanghi et al. (2019) Renewable & Sustainable Energy Reviews, 102, 150; Bossel (2006) IEEE Proc., 94(10), 1826",
+    "compressor": {
+        "name": "Generic 4-stage reciprocating H2 compressor (50 kg/h)",
+        "n_stages": {"value": 4, "unit": "dimensionless"},
+        "polytropic_index": {"value": 1.38, "unit": "dimensionless", "note": "Effective polytropic exponent for H2 (close to gamma=1.41)"},
+        "eta_polytropic": {"value": 0.75, "unit": "dimensionless", "note": "Polytropic stage efficiency"},
+        "eta_mech": {"value": 0.92, "unit": "dimensionless", "note": "Mechanical / motor efficiency"},
+        "T_inlet": {"value": 298.15, "unit": "K", "note": "Inlet temperature (intercooled to ambient)"},
+        "P_inlet": {"value": 20.0, "unit": "bar", "note": "Suction pressure"},
+        "P_outlet_max": {"value": 900.0, "unit": "bar", "note": "Maximum discharge pressure"},
+        "intercooled": {"value": true, "note": "Stages assumed intercooled to T_inlet"}
+    },
+    "hydrogen": {
+        "molar_mass": {"value": 0.002016, "unit": "kg/mol"},
+        "R_specific": {"value": 4124.2, "unit": "J/(kg.K)", "note": "R_universal / M_H2"},
+        "gamma": {"value": 1.41, "unit": "dimensionless", "note": "cp/cv for H2 at near-ambient T"},
+        "LHV": {"value": 120.0, "unit": "MJ/kg"}
+    },
+    "valid_ranges": {
+        "P_inlet": {"min": 1.0, "max": 100.0, "unit": "bar"},
+        "P_outlet": {"min": 10.0, "max": 1000.0, "unit": "bar"},
+        "T_inlet": {"min": 263.0, "max": 333.0, "unit": "K"},
+        "mass_flow": {"min": 0.0, "max": 0.05, "unit": "kg/s"}
+    }
+}

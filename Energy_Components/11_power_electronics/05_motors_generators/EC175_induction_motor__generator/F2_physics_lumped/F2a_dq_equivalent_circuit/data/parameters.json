@@ -1,0 +1,27 @@
+{
+    "component": "EC175 Induction Motor/Generator",
+    "fidelity": "F2a",
+    "description": "dq-frame dynamic model with 4 electrical ODEs + 1 mechanical ODE.",
+    "unit": {
+        "name": "Generic 10kW Induction Motor -- dq-Frame Model",
+        "source": "Boldea, I. & Nasar, S.A. (2010). The Induction Machine Handbook. CRC Press.",
+        "Rs": {"value": 0.5, "unit": "Ohm", "note": "Stator resistance"},
+        "Rr": {"value": 0.4, "unit": "Ohm", "note": "Rotor resistance"},
+        "Ls": {"value": 0.08, "unit": "H", "note": "Stator inductance"},
+        "Lr": {"value": 0.08, "unit": "H", "note": "Rotor inductance"},
+        "Lm": {"value": 0.075, "unit": "H", "note": "Mutual inductance"},
+        "P": {"value": 2, "unit": "pole_pairs", "note": "Number of pole pairs"},
+        "J": {"value": 0.1, "unit": "kg.m2", "note": "Rotor inertia"},
+        "B": {"value": 0.001, "unit": "N.m.s/rad", "note": "Viscous friction coefficient"},
+        "V_rated": {"value": 400.0, "unit": "V", "note": "Rated line-to-line voltage RMS"},
+        "f_rated": {"value": 50.0, "unit": "Hz", "note": "Rated frequency"},
+        "P_rated": {"value": 10000.0, "unit": "W", "note": "Rated power"}
+    },
+    "valid_ranges": {
+        "v_supply_rms": {"min": 100.0, "max": 600.0, "unit": "V"},
+        "frequency_hz": {"min": 10.0, "max": 100.0, "unit": "Hz"},
+        "T_load_Nm": {"min": 0.0, "max": 100.0, "unit": "Nm"},
+        "dt": {"min": 1e-5, "max": 1e-3, "unit": "s"},
+        "duration_s": {"min": 0.01, "max": 10.0, "unit": "s"}
+    }
+}

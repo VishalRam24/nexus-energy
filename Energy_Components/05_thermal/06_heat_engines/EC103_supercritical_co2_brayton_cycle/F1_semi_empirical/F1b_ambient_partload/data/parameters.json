@@ -1,0 +1,30 @@
+{
+    "component": "EC103 Supercritical CO2 Brayton Cycle",
+    "fidelity": "F1b",
+    "description": "T_reject dependence near critical point + recuperator effectiveness at part-load + ambient derating",
+    "cycle": {
+        "name": "Recompression sCO2 Brayton — demonstrator class (10 MWe)",
+        "source": "Dostal, Driscoll & Hejzlar (2004) MIT-ANP-TR-100; Crespi et al. (2017) Appl. Energy 195, 152-183; Wright et al. (2010) SAND2010-0171; Sarkar & Bhattacharyya (2009) Energy Conv. Manag. 50, 1991-1997.",
+        "P_rated_w":         {"value": 10e6,  "unit": "W",    "note": "Rated electrical output (10 MWe demonstrator)"},
+        "eta_rated":         {"value": 0.48,  "unit": "-",    "note": "Rated cycle efficiency at design point"},
+        "a_partload":        {"value": 0.10,  "unit": "-",    "note": "Part-load loss coefficient (sCO2 relatively flat; compressor matching issue at low load)"},
+        "T_in_design_c":     {"value": 700.0, "unit": "degC", "note": "Turbine inlet temperature (design)"},
+        "T_reject_design_c": {"value": 32.0,  "unit": "degC", "note": "Compressor inlet temperature at design — near critical point (31.1 degC)"},
+        "T_critical_co2_c":  {"value": 31.1,  "unit": "degC", "note": "CO2 critical temperature"},
+        "P_critical_co2_mpa":{"value": 7.38,  "unit": "MPa",  "note": "CO2 critical pressure"},
+        "P_low_mpa":         {"value": 7.5,   "unit": "MPa",  "note": "Low-side pressure (just above critical)"},
+        "P_high_mpa":        {"value": 25.0,  "unit": "MPa",  "note": "High-side pressure"},
+        "k_T_reject":        {"value": 0.018, "unit": "1/K",  "note": "Efficiency derating per K above design T_reject (stronger than steam because near critical point)"},
+        "T_critical_penalty_c": {"value": 2.0, "unit": "degC", "note": "Temperature margin above T_crit; within this band penalty is nonlinear"},
+        "eps_recup_design":  {"value": 0.95,  "unit": "-",    "note": "Recuperator effectiveness at design point (high-effectiveness HTX critical for sCO2)"},
+        "eps_recup_PLR_slope": {"value": -0.15, "unit": "-",  "note": "Recuperator effectiveness drop per unit PLR reduction: eps = eps_design * (1 + slope*(1-PLR))"},
+        "PLR_min":           {"value": 0.25,  "unit": "-",    "note": "Minimum stable PLR (inventory control)"},
+        "aux_fraction":      {"value": 0.02,  "unit": "-",    "note": "Auxiliary power fraction"}
+    },
+    "valid_ranges": {
+        "PLR":               {"min": 0.25, "max": 1.0,   "unit": "-"},
+        "T_in_c":            {"min": 500.0,"max": 800.0, "unit": "degC"},
+        "T_reject_c":        {"min": 25.0, "max": 60.0,  "unit": "degC"},
+        "T_ambient_c":       {"min": -10.0,"max": 50.0,  "unit": "degC"}
+    }
+}

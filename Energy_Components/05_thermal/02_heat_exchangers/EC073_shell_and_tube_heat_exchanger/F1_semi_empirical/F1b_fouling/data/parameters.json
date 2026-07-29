@@ -1,0 +1,25 @@
+{
+    "component": "EC073 Shell-and-Tube Heat Exchanger",
+    "fidelity": "F1b",
+    "description": "Shell-and-tube HX (1 shell pass / 2 tube passes, TEMA E) with fouling resistance. Extends F1a (e-NTU) with: UA_eff = 1/(1/UA_0 + R_f_total) where R_f_total = Rf_shell + Rf_tube/A_ratio. Fouling degrades Q and effectiveness.",
+    "unit": {
+        "name": "Generic 1-shell 2-tube-pass shell-and-tube HX (water-water, TEMA E)",
+        "source": "Incropera & DeWitt (2006) ch.11; Shah & Sekulic (2003) ch.9; TEMA Standards 10th ed. Table RGP-T-2.4; Kern, D.Q. (1950). Process Heat Transfer.",
+        "U_clean": {"value": 1500.0, "unit": "W/m2K", "note": "Clean overall HTC, water-water S&T"},
+        "A": {"value": 25.0, "unit": "m2", "note": "Total external tube heat-transfer area"},
+        "cp_hot":  {"value": 4186.0, "unit": "J/kgK"},
+        "cp_cold": {"value": 4186.0, "unit": "J/kgK"},
+        "n_shell_passes": {"value": 1, "unit": "-"},
+        "n_tube_passes":  {"value": 2, "unit": "-"},
+        "Rf_shell_default": {"value": 0.0002, "unit": "m2K/W", "note": "TEMA RGP-T-2.4 cooling tower water shell side; typical range 0.0001-0.001"},
+        "Rf_tube_default":  {"value": 0.0002, "unit": "m2K/W", "note": "TEMA treated cooling water tube side; typical range 0.0001-0.001"}
+    },
+    "valid_ranges": {
+        "T_h_in":     {"min": 30.0, "max": 200.0, "unit": "degC"},
+        "T_c_in":     {"min": 5.0,  "max": 80.0,  "unit": "degC"},
+        "m_dot_hot":  {"min": 0.1,  "max": 50.0,  "unit": "kg/s"},
+        "m_dot_cold": {"min": 0.1,  "max": 50.0,  "unit": "kg/s"},
+        "Rf_shell":   {"min": 0.0,  "max": 0.005, "unit": "m2K/W"},
+        "Rf_tube":    {"min": 0.0,  "max": 0.005, "unit": "m2K/W"}
+    }
+}

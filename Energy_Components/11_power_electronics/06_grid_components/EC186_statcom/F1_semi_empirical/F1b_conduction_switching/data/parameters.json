@@ -1,0 +1,32 @@
+{
+    "component": "EC186 STATCOM",
+    "fidelity": "F1b",
+    "description": "VSC STATCOM: IGBT conduction + switching losses split from F1a bulk loss_factor; temperature-dependent on-state resistance; transformer copper losses; symmetric +/-Q capability maintained regardless of V.",
+    "unit": {
+        "name": "Generic ±100 MVAR MMC-STATCOM, 132 kV",
+        "source": "Hingorani & Gyugyi (2000) Ch.6; Cigre TB 401 (2009) VSC Transmission; Bahrman & Johnson (2007) IEEE Power&Energy; IEC 62927:2018 VSC STATCOM standard; Semikron IGBT Application Manual (2021).",
+        "Q_max_MVAR": {"value": 100.0, "unit": "MVAR", "note": "Max capacitive output"},
+        "Q_min_MVAR": {"value": -100.0, "unit": "MVAR", "note": "Max inductive output (symmetric VSC)"},
+        "V_rated_kV": {"value": 132.0, "unit": "kV"},
+        "S_rated_MVA": {"value": 100.0, "unit": "MVA", "note": "Converter apparent power rating"},
+        "V_dc_kV": {"value": 20.0, "unit": "kV", "note": "DC link voltage (typical MMC sub-module equivalent)"},
+        "IGBT_V_ce0": {"value": 1.7, "unit": "V", "note": "IGBT threshold voltage V_ce0 at T_j=125C"},
+        "IGBT_r_ce": {"value": 0.003, "unit": "Ohm", "note": "IGBT differential on-resistance r_ce at T_j=125C"},
+        "IGBT_r_ce_alpha": {"value": 0.005, "unit": "1/K", "note": "Temperature coefficient of r_ce: r_ce(T)=r_ce_ref*(1+alpha*(T-T_j_ref))"},
+        "IGBT_T_j_ref": {"value": 125.0, "unit": "degC", "note": "Reference junction temperature for IGBT params"},
+        "IGBT_E_sw": {"value": 0.015, "unit": "J", "note": "Total switching energy (E_on+E_off) per pulse at V_ref, I_ref"},
+        "IGBT_V_ref": {"value": 1800.0, "unit": "V"},
+        "IGBT_I_ref": {"value": 1000.0, "unit": "A"},
+        "f_sw_Hz": {"value": 1350.0, "unit": "Hz", "note": "Carrier frequency (27x fundamental for MMC)"},
+        "n_IGBT_per_phase": {"value": 6, "unit": "dimensionless", "note": "Active IGBTs per phase (simplified; MMC: ~72 SMs but equivalent 6 switches)"},
+        "n_phases": {"value": 3, "unit": "dimensionless"},
+        "transformer_R_pu": {"value": 0.005, "unit": "pu", "note": "Coupling transformer resistance (0.5% pu)"},
+        "P_standby_MW": {"value": 0.5, "unit": "MW", "note": "Auxiliary + cooling always-on"},
+        "T_j": {"value": 125.0, "unit": "degC", "note": "Default junction temperature for loss calculation"}
+    },
+    "valid_ranges": {
+        "Q_demand_MVAR": {"min": -100.0, "max": 100.0, "unit": "MVAR"},
+        "V_pu": {"min": 0.8, "max": 1.2, "unit": "pu"},
+        "T_j": {"min": 25.0, "max": 150.0, "unit": "degC"}
+    }
+}

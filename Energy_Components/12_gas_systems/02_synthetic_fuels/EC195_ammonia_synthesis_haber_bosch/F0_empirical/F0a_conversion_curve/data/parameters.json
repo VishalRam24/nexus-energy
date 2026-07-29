@@ -1,0 +1,44 @@
+{
+  "component_id": "EC195",
+  "component_name": "Ammonia Synthesis (Haber-Bosch)",
+  "fidelity": "F0a \u2014 empirical lookup",
+  "version": "1.0.0",
+  "source": "Appl (2011) Ammonia, Ullmann's Encyclopedia of Industrial Chemistry (F1a params reused)",
+  "metric": "conversion_vs_temperature",
+  "note": "Fe-catalyzed Haber-Bosch per-pass N2 conversion vs temperature (rising branch). X ~0.15-0.20 per pass at 450 degC, 200 bar (equilibrium-limited, high recycle).",
+  "lookup": {
+    "temperature_C": {
+      "value": [
+        350.0,
+        390.0,
+        420.0,
+        440.0,
+        450.0
+      ],
+      "unit": "degC",
+      "note": "Reactor temperature"
+    },
+    "conversion": {
+      "value": [
+        0.1558,
+        0.1828,
+        0.1956,
+        0.1995,
+        0.2
+      ],
+      "unit": "-",
+      "note": "Per-pass N2 conversion"
+    }
+  },
+  "rated": {
+    "temperature_C": {
+      "value": 450.0,
+      "unit": "degC"
+    },
+    "conversion": {
+      "value": 0.2,
+      "unit": "-",
+      "note": "Rated point"
+    }
+  }
+}

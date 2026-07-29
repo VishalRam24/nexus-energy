@@ -1,0 +1,55 @@
+{
+    "component_id": "EC013",
+    "component_name": "Liquid Hydrogen (LH2) Storage",
+    "fidelity": "F2a — Two-Phase Lumped Cryogenic Tank (self-pressurization + boil-off ODE)",
+    "source": "Van Dresar & Stochl (1993) NASA TM-106033; Barron (1985) Cryogenic Systems 2nd ed., Oxford; Sherif et al. (1997) Int. J. Hydrogen Energy 22(7):683; Johnson (2010) NREL/TP-560-47503 (MLI k(T)); NIST Chemistry WebBook / Leachman et al. (2009) J. Phys. Chem. Ref. Data 38(3):721 (normal-H2 properties at 20 K)",
+    "unit": {
+        "name": "Generic 1 m3 vacuum-jacketed 30-layer-MLI LH2 dewar",
+        "V_tank": {"value": 1.0, "unit": "m3", "note": "Total internal tank volume"},
+        "A_surf": {"value": 5.0, "unit": "m2", "note": "Wetted/insulated outer surface area"},
+        "m_tank": {"value": 250.0, "unit": "kg", "note": "Empty tank structural mass (inner vessel + MLI)"},
+        "cp_wall": {"value": 0.20, "unit": "kJ/(kg.K)", "note": "Inner-wall (Al/SS) specific heat near 20-30 K; small but finite thermal mass"},
+        "U_ref": {"value": 0.0015, "unit": "W/(m2.K)", "note": "Effective overall U at T_amb=298 K (vacuum + 30-layer perforated MLI)"},
+        "MLI_layers": {"value": 30, "unit": "-"},
+        "MLI_thickness": {"value": 0.03, "unit": "m", "note": "Total MLI blanket thickness"},
+        "n_mli": {"value": 1.5, "unit": "-", "note": "MLI apparent-conductivity power-law exponent; Johnson (2010)"},
+        "T0_mli_ref": {"value": 160.0, "unit": "K", "note": "Reference mean-wall temperature for MLI fit"},
+        "P_vent": {"value": 5.5, "unit": "bar", "note": "Pressure-relief vent set-point"},
+        "P_max": {"value": 6.0, "unit": "bar", "note": "Mechanical design pressure (MAWP)"},
+        "fill_fraction_max": {"value": 0.95, "unit": "-", "note": "Max liquid fill (5% ullage minimum)"},
+        "f_vapor_to_liquid": {"value": 0.0, "unit": "-", "note": "Fraction of heat leak reaching liquid via ullage (0 = all heat reaches liquid surface directly)"}
+    },
+    "hydrogen": {
+        "note": "Normal-hydrogen saturated-property values near the normal boiling point (20.28 K, 1 atm). Source: NIST Chemistry WebBook; Leachman et al. (2009) reference EOS.",
+        "T_sat_1atm": {"value": 20.28, "unit": "K", "note": "Normal boiling point at 1.01325 bar"},
+        "T_crit": {"value": 33.15, "unit": "K", "note": "Critical temperature of H2"},
+        "P_crit": {"value": 12.96, "unit": "bar", "note": "Critical pressure of H2"},
+        "rho_liquid": {"value": 70.85, "unit": "kg/m3", "note": "Saturated liquid density at NBP"},
+        "rho_vapor": {"value": 1.34, "unit": "kg/m3", "note": "Saturated vapor density at NBP"},
+        "h_vap": {"value": 445.6, "unit": "kJ/kg", "note": "Latent heat of vaporization at NBP"},
+        "cp_liquid": {"value": 9.69, "unit": "kJ/(kg.K)", "note": "Saturated liquid specific heat at NBP"},
+        "cv_vapor": {"value": 6.49, "unit": "kJ/(kg.K)", "note": "Vapor cv near NBP (cp ~ 10.9, gamma ~ 1.68)"},
+        "cp_vapor": {"value": 10.90, "unit": "kJ/(kg.K)", "note": "Saturated vapor cp near NBP"},
+        "LHV": {"value": 120.0, "unit": "MJ/kg", "note": "Lower heating value of H2"},
+        "R_H2": {"value": 4124.2, "unit": "J/(kg.K)", "note": "Specific gas constant (8.314/0.002016)"},
+        "M_H2": {"value": 0.002016, "unit": "kg/mol"},
+        "dhvap_dT": {"value": -7.5, "unit": "kJ/(kg.K)", "note": "Latent-heat decline with T toward critical point (NIST-derived slope near NBP)"}
+    },
+    "antoine": {
+        "note": "Antoine-type vapor-pressure correlation for normal H2, log10(P_bar) = A - B/(T_K + C), fit to NIST saturation data 14-32 K. Barron (1985) tabulation.",
+        "A": {"value": 3.54314, "unit": "-"},
+        "B": {"value": 99.395, "unit": "-"},
+        "C": {"value": 7.726, "unit": "-"}
+    },
+    "ambient": {
+        "T_ambient_default": {"value": 298.15, "unit": "K"},
+        "T_ambient_min": {"value": 233.15, "unit": "K"},
+        "T_ambient_max": {"value": 333.15, "unit": "K"}
+    },
+    "valid_ranges": {
+        "fill_fraction": {"min": 0.05, "max": 0.95, "unit": "-"},
+        "T_ambient": {"min": 233.15, "max": 333.15, "unit": "K"},
+        "P_tank": {"min": 1.0, "max": 6.0, "unit": "bar"},
+        "duration_s": {"min": 60.0, "max": 2592000.0, "unit": "s", "note": "up to 30 days dormancy"}
+    }
+}

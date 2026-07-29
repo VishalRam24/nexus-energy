@@ -1,0 +1,25 @@
+{
+    "component": "EC218 Thermionic Converter",
+    "fidelity": "F0a",
+    "description": "Empirical output-power-density vs emitter-temperature lookup for a Cs-vapor thermionic diode. Breakpoints from ideal Richardson-Dushman emission J=A*Te^2*exp(-phi_e/(k*Te)), output voltage V=phi_emitter-phi_collector, P=J*V.",
+    "source": "Hatsopoulos & Gyftopoulos (1979) Thermionic Energy Conversion; Angrist (1982) Direct Energy Conversion",
+    "phi_emitter": {"value": 2.0, "unit": "eV", "note": "Emitter work function (reused from EC218 F1a)"},
+    "phi_collector": {"value": 1.5, "unit": "eV", "note": "Collector work function (reused from F1a)"},
+    "A_richardson": {"value": 1200000.0, "unit": "A/(m^2*K^2)", "note": "Richardson constant (reused from F1a)"},
+    "emitter_area": {"value": 0.0001, "unit": "m^2", "note": "Emitter area 1 cm^2 (reused from F1a)"},
+    "output_voltage": {"value": 0.5, "unit": "V", "note": "Ideal output voltage = phi_emitter - phi_collector"},
+    "lookup": {
+        "note": "Breakpoints: emitter temperature (K) -> output power density (W/m^2)",
+        "T_emitter_K": {"value": [1200.0, 1400.0, 1600.0, 1700.0, 1800.0, 2000.0], "unit": "K"},
+        "power_density_W_m2": {"value": [3440.0, 74207.1, 769883.2, 2040182.3, 4883443.3, 21889616.0], "unit": "W/m^2"}
+    },
+    "rated_point": {
+        "T_emitter": {"value": 1700.0, "unit": "K"},
+        "T_collector": {"value": 900.0, "unit": "K"},
+        "power_density_W_m2": {"value": 2040182.3, "unit": "W/m^2", "note": "~204 W/cm^2 at 1700 K (ideal, no space-charge loss)"}
+    },
+    "valid_ranges": {
+        "T_emitter": {"min": 1200.0, "max": 2000.0, "unit": "K"},
+        "T_collector": {"min": 400.0, "max": 1200.0, "unit": "K"}
+    }
+}

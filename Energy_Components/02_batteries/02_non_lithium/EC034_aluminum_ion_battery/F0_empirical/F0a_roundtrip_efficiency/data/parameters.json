@@ -1,0 +1,53 @@
+{
+  "model": "roundtrip_efficiency_curve",
+  "V_nominal": {
+    "value": 2.0,
+    "unit": "V",
+    "note": "cell nominal voltage"
+  },
+  "R_series": {
+    "value": 0.08,
+    "unit": "Ohm",
+    "note": "ohmic series resistance"
+  },
+  "Q_nominal": {
+    "value": 1.0,
+    "unit": "Ah"
+  },
+  "c_rate_breakpoints": {
+    "value": [
+      0.0,
+      0.1,
+      0.2,
+      0.5,
+      1.0,
+      2.0,
+      5.0
+    ],
+    "unit": "1/h",
+    "note": "discharge/charge C-rate breakpoints"
+  },
+  "roundtrip_efficiency": {
+    "value": [
+      0.9199,
+      0.9135,
+      0.9062,
+      0.8847,
+      0.85,
+      0.7844,
+      0.6139
+    ],
+    "unit": "fraction",
+    "note": "DC round-trip efficiency at each C-rate"
+  },
+  "eta_rated": {
+    "value": 0.85,
+    "unit": "fraction",
+    "note": "literature rated round-trip eff at C=1.0"
+  },
+  "c_rated": {
+    "value": 1.0,
+    "unit": "1/h"
+  },
+  "source": "EC034 F1a (V_nom~2.0 V, R_int=80 mOhm, Q_nom=1.0 Ah); Al/graphite. Round-trip eff ~80-90% (Lin, M.-C. et al. Nature 2015)."
+}

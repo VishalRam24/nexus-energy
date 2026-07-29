@@ -1,0 +1,30 @@
+{
+    "component": "EC121 High Temperature Gas Reactor (HTGR)",
+    "fidelity": "F1b",
+    "description": "Load-following HTGR (helium-cooled, pebble-bed or prismatic) with Xe-135 dynamics and large graphite thermal mass inertia. Graphite moderator has a very large heat capacity which slows power transients and provides thermal stability.",
+    "unit": {
+        "name": "Generic 250 MWth / 100 MWe Pebble Bed HTGR (PBMR/HTR-PM class)",
+        "source": "Dong (2011) Nucl. Eng. Des. 241:4755-4762; Zhang et al. (2009) Nucl. Eng. Des. 239:2265-2274 (HTR-PM); Muto et al. (2003) IAEA-TECDOC-1318 (GTHTR300); Reitsma (2004) IAEA TRS-424.",
+        "P_thermal_mw": {"value": 250.0, "unit": "MW_th", "note": "Thermal power at full load (HTR-PM module: 250 MWth)"},
+        "eta_thermal": {"value": 0.42, "unit": "dimensionless", "note": "Net efficiency; HTGR drives Brayton cycle at 750-950C -> ~42-45% possible; use 42%"},
+        "sigma_Xe_cm2": {"value": 2.65e-18, "unit": "cm2", "note": "Xe-135 microscopic absorption cross-section (thermal spectrum reactor)"},
+        "lambda_Xe_per_s": {"value": 2.09e-5, "unit": "1/s", "note": "Xe-135 decay constant (t_1/2 = 9.17 h)"},
+        "lambda_I_per_s": {"value": 2.87e-5, "unit": "1/s", "note": "I-135 decay constant (t_1/2 = 6.7 h)"},
+        "gamma_I": {"value": 0.064, "unit": "dimensionless", "note": "I-135 cumulative fission yield (same for thermal U-235 fission)"},
+        "gamma_Xe": {"value": 0.003, "unit": "dimensionless", "note": "Direct Xe-135 fission yield"},
+        "ramp_rate_limit_pct_min": {"value": 7.0, "unit": "%/min", "note": "HTGR has moderate ramp capability; helium has low thermal inertia but graphite moderator slows fuel temperature changes; ~7%/min typical for pebble-bed design"},
+        "PLR_min": {"value": 0.4, "unit": "dimensionless", "note": "Minimum stable power for pebble-bed design (40%); helium circulators and cycle efficiency degrade below this"},
+        "PLR_max": {"value": 1.0, "unit": "dimensionless"},
+        "total_reactivity_margin_pcm": {"value": 6000.0, "unit": "pcm", "note": "HTGR uses control rods plus reflector control; high margin for graphite-moderated design"},
+        "xenon_reactivity_coeff_pcm": {"value": -2500.0, "unit": "pcm", "note": "Xe worth in graphite-moderated thermal reactor (slightly lower than PWR due to harder thermal spectrum in graphite)"},
+        "graphite_thermal_mass_mj_per_k": {"value": 280.0, "unit": "MJ/K", "note": "Total graphite moderator heat capacity (250 MWth core: ~1400 tonnes graphite, cp~0.2 kJ/kgK -> 280 MJ/K); large thermal inertia slows power transients"},
+        "temp_coeff_pcm_per_K": {"value": -3.5, "unit": "pcm/K", "note": "Combined fuel+moderator temperature reactivity coefficient; strongly negative in TRISO-fueled HTGR (Doppler + graphite neutron spectrum shift)"},
+        "T_helium_inlet_C": {"value": 250.0, "unit": "degC", "note": "Helium inlet temperature at rated power"},
+        "T_helium_outlet_C": {"value": 750.0, "unit": "degC", "note": "Helium outlet temperature at rated power"}
+    },
+    "valid_ranges": {
+        "power_fraction": {"min": 0.4, "max": 1.0},
+        "time_at_power_hours": {"min": 0.0, "max": 168.0},
+        "previous_power_fraction": {"min": 0.0, "max": 1.0}
+    }
+}

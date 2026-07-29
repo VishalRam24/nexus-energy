@@ -1,0 +1,26 @@
+{
+    "component": "EC072 CO2 Transcritical Heat Pump",
+    "fidelity": "F1a",
+    "description": "Transcritical R744 (CO2) heat pump with gas cooler. COP curve = f(T_evap, T_water_out, P_high) using a Carnot-fraction approach with explicit gas-cooler-outlet temperature pinch and an optimum high-side pressure correction.",
+    "unit": {
+        "name": "Generic 50 kW_th transcritical CO2 heat pump for high-temperature water heating",
+        "source": "Lorentzen, G. (1994). Int. J. Refrigeration 17, 292-301; Sarkar, J., Bhattacharyya, S., Ram Gopal, M. (2004). Int. J. Refrigeration 27, 830-838.",
+        "rated_heating_capacity": {"value": 50.0, "unit": "kW_th"},
+        "rated_cop": {"value": 3.5, "unit": "dimensionless", "note": "At T_evap=0C, T_water_in=15C, T_water_out=65C"},
+        "carnot_fraction_base": {"value": 0.42, "unit": "dimensionless", "note": "Effective fraction of Carnot at optimum high-side pressure"},
+        "P_high_opt_a": {"value": 2.778, "unit": "bar/K", "note": "Liao et al. (2000) optimum P_high slope on T_gc_out"},
+        "P_high_opt_b": {"value": 0.0157, "unit": "bar/K2", "note": "Curvature term"},
+        "P_high_opt_c": {"value": 32.0, "unit": "bar", "note": "Intercept; tuned so P_opt sits in transcritical regime (>= ~74 bar)"},
+        "T_gc_out_pinch": {"value": 3.0, "unit": "K", "note": "Pinch between CO2 gas-cooler outlet and water inlet"},
+        "T_evap_min": {"value": -20.0, "unit": "degC"},
+        "T_evap_max": {"value": 20.0, "unit": "degC"},
+        "T_water_out_min": {"value": 40.0, "unit": "degC"},
+        "T_water_out_max": {"value": 90.0, "unit": "degC"},
+        "auxiliary_power": {"value": 0.1, "unit": "kW"}
+    },
+    "valid_ranges": {
+        "T_evap":      {"min": -20.0, "max": 20.0, "unit": "degC"},
+        "T_water_in":  {"min": 5.0,   "max": 50.0, "unit": "degC"},
+        "T_water_out": {"min": 40.0,  "max": 90.0, "unit": "degC"}
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "component": "EC134 Oscillating Water Column (OWC)",
+    "fidelity": "F1b",
+    "description": "Extends F1a wave power model with PTO efficiency vs wave period/height, seawater density correction, directional spreading loss, and device orientation correction.",
+    "device": {
+        "width_m":          {"value": 10.0, "unit": "m",    "description": "Device capture width (OWC chamber opening)"},
+        "capture_width_ratio": {"value": 0.20, "unit": "-", "description": "Base CWR at design conditions"},
+        "eta_turbine_peak": {"value": 0.62, "unit": "-",    "description": "Wells turbine peak efficiency at design flow coefficient"},
+        "eta_generator":    {"value": 0.92, "unit": "-",    "description": "Electrical generator efficiency"},
+        "rho_water":        {"value": 1025.0,"unit": "kg/m3","description": "Reference seawater density"},
+        "T_e_design":       {"value": 10.0, "unit": "s",    "description": "Design energy period (peak turbine efficiency)"},
+        "H_s_rated":        {"value": 3.0,  "unit": "m",    "description": "Rated significant wave height (design condition)"},
+        "turbine_bandwidth_s": {"value": 6.0, "unit": "s",  "description": "Wells turbine efficiency half-bandwidth around design T_e [s]"},
+        "eta_turbine_min":  {"value": 0.35, "unit": "-",    "description": "Minimum turbine efficiency at extreme off-design periods"},
+        "directional_spread_factor": {"value": 0.90, "unit": "-", "description": "Power reduction from directional spreading (real seas less unidirectional); 0.85-0.95"},
+        "S_ref_psu":        {"value": 35.0, "unit": "psu",  "description": "Reference salinity for density correction"},
+        "T_ref_C":          {"value": 15.0, "unit": "degC", "description": "Reference temperature for density correction"}
+    },
+    "limits": {
+        "H_s_min_m": 0.0,
+        "H_s_max_m": 8.0,
+        "T_e_min_s": 4.0,
+        "T_e_max_s": 22.0
+    },
+    "source": "Falnes (2002) Ocean Waves and Oscillating Systems. CUP; Folley (2016) Numerical Modelling of WECs; EMEC TR-001 (2019)."
+}

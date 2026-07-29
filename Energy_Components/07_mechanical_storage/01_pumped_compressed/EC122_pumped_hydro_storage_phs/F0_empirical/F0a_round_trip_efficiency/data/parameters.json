@@ -1,0 +1,12 @@
+{
+    "component": "EC122 Pumped Hydro Storage (PHS)",
+    "fidelity": "F0a",
+    "description": "Empirical round-trip-efficiency curve vs part-load + self-discharge lookup",
+    "source": "Rehman et al. (2015), Renewable and Sustainable Energy Reviews, 44, 586-598 (reused from F1a)",
+    "rte_rated": {"value": 0.7454, "unit": "dimensionless", "note": "eta_turbine*eta_generator*eta_pump*eta_motor = 0.90*0.97*0.88*0.97"},
+    "power_fraction_breakpoints": {"value": [0.1, 0.25, 0.5, 0.75, 1.0], "unit": "fraction_of_rated"},
+    "rte_breakpoints": {"value": [0.560, 0.652, 0.708, 0.738, 0.7454], "unit": "dimensionless", "note": "Part-load RTE; declines below best-efficiency point of pump/turbine"},
+    "self_discharge_per_hr": {"value": 0.0, "unit": "1/h", "note": "PHS evaporation negligible at short timescales"},
+    "energy_capacity_kwh": {"value": 4087500.0, "unit": "kWh", "note": "rho*g*V*head*eta_turbine*eta_generator/3.6e6 ~ 4.09 GWh"},
+    "power_rating_mw": {"value": 132.4, "unit": "MW", "note": "rho*g*Q*head*eta ~ 132 MW at Q=50 m3/s, H=300 m"}
+}

@@ -1,0 +1,59 @@
+{
+  "component_id": "EC085",
+  "component_name": "Natural Gas Boiler (Condensing)",
+  "fidelity": "F1a — Part-Load Efficiency",
+  "source": "EnergyPlus Engineering Reference (2023), Boiler:HotWater; Stafford (2009), Energy and Buildings 41(2) 168-175",
+  "default_parameters": {
+    "Q_rated": 50.0,
+    "eta_nom": 0.95,
+    "a0": 0.1,
+    "a1": 0.9,
+    "a2": 0.0,
+    "PLR_min": 0.1,
+    "LHV_gas": 36.6
+  },
+  "parameter_metadata": {
+    "Q_rated": {
+      "description": "Rated thermal output",
+      "unit": "kW",
+      "default": 50.0,
+      "notes": "50 kW residential/light-commercial condensing boiler"
+    },
+    "eta_nom": {
+      "description": "Nominal (full-load) thermal efficiency",
+      "unit": "-",
+      "default": 0.95,
+      "notes": "0.95 typical for modern condensing gas boiler (ErP A-rated)"
+    },
+    "a0": {
+      "description": "Constant term in part-load efficiency polynomial",
+      "unit": "-",
+      "default": 0.1,
+      "notes": "a0+a1+a2 must equal 1.0; EnergyPlus Boiler:HotWater convention"
+    },
+    "a1": {
+      "description": "Linear term in part-load efficiency polynomial",
+      "unit": "-",
+      "default": 0.9,
+      "notes": "Dominant term: nearly linear part-load behaviour"
+    },
+    "a2": {
+      "description": "Quadratic term in part-load efficiency polynomial",
+      "unit": "-",
+      "default": 0.0,
+      "notes": "Zero for linear curve; increase for convex curve"
+    },
+    "PLR_min": {
+      "description": "Minimum stable part-load ratio",
+      "unit": "-",
+      "default": 0.1,
+      "notes": "Below PLR_min, boiler cycles on/off; model clamps to PLR_min"
+    },
+    "LHV_gas": {
+      "description": "Lower heating value of natural gas",
+      "unit": "MJ/m³",
+      "default": 36.6,
+      "notes": "36.6 MJ/m³ ~ 10.17 kWh/m³ for typical UK/EU natural gas"
+    }
+  }
+}

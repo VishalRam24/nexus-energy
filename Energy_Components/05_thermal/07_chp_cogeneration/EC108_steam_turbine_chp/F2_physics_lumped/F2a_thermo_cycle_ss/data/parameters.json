@@ -1,0 +1,35 @@
+{
+    "component": "EC108 Steam Turbine CHP",
+    "fidelity": "F2a",
+    "description": "Physics-lumped back-pressure / extraction steam-turbine CHP. Rankine steam path with isentropic turbine expansion (IAPWS-IF97-simplified enthalpy correlations) supplying process/district heat from the exhaust/extraction steam, coupled to a lumped boiler+steam thermal-mass transient ODE (scipy.solve_ivp).",
+    "unit": {
+        "name": "Generic 10 MW_e Back-Pressure Steam Turbine CHP",
+        "source": "Moran, Shapiro, Boettner & Bailey (2018) Fundamentals of Engineering Thermodynamics, 9th ed., Wiley (Rankine cycle, Ch. 8); Kehlhofer et al. (2009) Combined-Cycle Gas & Steam Turbine Power Plants, 3rd ed., PennWell; US EPA CHP Catalog (2017); IAPWS-IF97 (Wagner & Kretzschmar 2008).",
+
+        "P_boiler_bar":        {"value": 60.0,   "unit": "bar",        "note": "Boiler / turbine inlet (live steam) pressure"},
+        "T_steam_in_C":        {"value": 480.0,  "unit": "degC",       "note": "Superheated live-steam temperature at turbine inlet"},
+        "P_back_bar":          {"value": 4.0,    "unit": "bar",        "note": "Back-pressure (turbine exhaust / extraction) pressure delivering useful process/district heat"},
+        "eta_isentropic":      {"value": 0.82,   "unit": "-",          "note": "Turbine isentropic (internal) efficiency"},
+        "eta_mech_gen":        {"value": 0.97,   "unit": "-",          "note": "Combined mechanical + generator efficiency"},
+        "eta_boiler":          {"value": 0.90,   "unit": "-",          "note": "Boiler combustion-to-steam thermal efficiency (fuel LHV basis)"},
+
+        "m_dot_steam_rated":   {"value": 18.0,   "unit": "kg/s",       "note": "Rated live-steam mass flow"},
+        "T_feedwater_C":       {"value": 105.0,  "unit": "degC",       "note": "Boiler feedwater temperature (deaerator)"},
+        "T_heat_return_C":     {"value": 60.0,   "unit": "degC",       "note": "Process/district-heat condensate return temperature; sets useful-heat sink"},
+
+        "m_thermal_kg":        {"value": 45000.0, "unit": "kg",        "note": "Lumped thermal mass of boiler water+steel+steam inventory"},
+        "cp_thermal":          {"value": 1100.0,  "unit": "J/(kg.K)",  "note": "Effective lumped heat capacity (steel + water/steam mix)"},
+        "UA_loss":             {"value": 8000.0,  "unit": "W/K",       "note": "Boiler envelope heat-loss conductance to ambient"},
+        "T_ambient_C":         {"value": 20.0,    "unit": "degC",      "note": "Ambient temperature for envelope losses"},
+        "tau_fuel_s":          {"value": 30.0,    "unit": "s",         "note": "First-order boiler fuel/firing response time constant"},
+
+        "PLR_min":             {"value": 0.3,    "unit": "-",          "note": "Minimum stable part-load ratio (sliding pressure limit)"},
+        "PLR_max":             {"value": 1.0,    "unit": "-"}
+    },
+    "valid_ranges": {
+        "PLR":          {"min": 0.3,  "max": 1.0,  "unit": "-"},
+        "P_boiler_bar": {"min": 20.0, "max": 120.0,"unit": "bar"},
+        "T_steam_in_C": {"min": 300.0,"max": 560.0,"unit": "degC"},
+        "P_back_bar":   {"min": 1.5,  "max": 16.0, "unit": "bar"}
+    }
+}

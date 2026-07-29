@@ -1,0 +1,62 @@
+{
+    "component": "EC147 Hydrothermal Liquefaction (HTL)",
+    "fidelity": "F1b",
+    "description": "Feedstock-specific HTL with biochemical composition, moisture-LHV coupling, temperature-dependent bio-crude yield",
+    "feedstock_db": {
+        "microalgae_chlorella": {
+            "LHV_dry_MJ_kg": 22.0,
+            "lipid_frac": 0.30,
+            "protein_frac": 0.45,
+            "carb_frac": 0.15,
+            "ash_frac": 0.07,
+            "note": "Chlorella vulgaris — high protein, moderate lipid (Vardon 2011)"
+        },
+        "microalgae_nannochloropsis": {
+            "LHV_dry_MJ_kg": 24.0,
+            "lipid_frac": 0.45,
+            "protein_frac": 0.35,
+            "carb_frac": 0.12,
+            "ash_frac": 0.06,
+            "note": "Nannochloropsis sp. — high lipid content"
+        },
+        "sewage_sludge": {
+            "LHV_dry_MJ_kg": 15.0,
+            "lipid_frac": 0.20,
+            "protein_frac": 0.30,
+            "carb_frac": 0.20,
+            "ash_frac": 0.30,
+            "note": "Municipal wastewater sludge (Elliott 2015)"
+        },
+        "wood_biomass": {
+            "LHV_dry_MJ_kg": 18.5,
+            "lipid_frac": 0.02,
+            "protein_frac": 0.02,
+            "carb_frac": 0.72,
+            "ash_frac": 0.01,
+            "note": "Lignocellulosic wood — low lipid, high carb"
+        },
+        "macroalgae_laminaria": {
+            "LHV_dry_MJ_kg": 14.0,
+            "lipid_frac": 0.05,
+            "protein_frac": 0.15,
+            "carb_frac": 0.50,
+            "ash_frac": 0.25,
+            "note": "Brown macroalga Laminaria saccharina (Anastasakis 2011)"
+        }
+    },
+    "unit": {
+        "T_ref_degC":        {"value": 330.0,  "unit": "degC",    "note": "Optimal HTL temperature (Peterson 2008)"},
+        "P_design_MPa":      {"value": 20.0,   "unit": "MPa",     "note": "Operating pressure (subcritical water ~20 MPa)"},
+        "HHV_biocrude_MJ_kg":{"value": 35.0,   "unit": "MJ/kg",   "note": "HHV of HTL bio-crude (30-38 MJ/kg typical)"},
+        "PLR_min":           {"value": 0.20,   "unit": "dimensionless"},
+        "a0":                {"value": 0.50,   "unit": "dimensionless"},
+        "a1":                {"value": 0.40,   "unit": "dimensionless"},
+        "a2":                {"value": -0.10,  "unit": "dimensionless"}
+    },
+    "valid_ranges": {
+        "temperature_degC":  {"min": 250.0, "max": 400.0, "unit": "degC"},
+        "moisture_fraction": {"min": 0.0,   "max": 0.90,  "unit": "dimensionless", "note": "HTL handles wet feedstocks"},
+        "PLR":               {"min": 0.20,  "max": 1.0,   "unit": "dimensionless"},
+        "feed_rate_kg_h":    {"min": 10.0,  "max": 5000.0,"unit": "kg/h (wet basis)"}
+    }
+}

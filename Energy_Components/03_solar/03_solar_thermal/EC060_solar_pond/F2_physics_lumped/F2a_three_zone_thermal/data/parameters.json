@@ -1,0 +1,31 @@
+{
+    "component_id": "EC060",
+    "component_name": "Solar Pond (Salinity-Gradient)",
+    "fidelity": "F2a — Three-Zone Lumped Energy Balance (UCZ/NCZ/LCZ) with Beer-Lambert Attenuation",
+    "source": "Tabor (1981) Solar ponds, Solar Energy 27(3):181-194; Hull (1980) Computer simulation of solar pond thermal behavior, Solar Energy 25:33-40; Rabl & Nielsen (1975) Solar ponds for space heating, Solar Energy 17:1-12; Wang & Akbarzadeh (1982) A parametric study on solar ponds, Solar Energy 30(6):555-562; Duffie & Beckman (2013) Solar Engineering of Thermal Processes, ch.9.",
+    "unit": {
+        "name": "Non-Convecting Salt-Gradient Solar Pond — Three Zone Lumped",
+        "A_pond": {"value": 10000.0, "unit": "m2", "note": "Pond surface area (1 ha demonstration pond, e.g. Beit Ha'Arava / El Paso)"},
+        "h_ucz": {"value": 0.3, "unit": "m", "note": "Upper Convective Zone (surface mixed layer) thickness"},
+        "h_ncz": {"value": 1.2, "unit": "m", "note": "Non-Convecting (gradient/insulating) Zone thickness — Tabor recommends ~1-1.5 m"},
+        "h_lcz": {"value": 1.5, "unit": "m", "note": "Lower Convective Zone (storage) thickness"},
+        "rho_brine": {"value": 1180.0, "unit": "kg/m3", "note": "Density of hot concentrated NaCl brine in LCZ (~20-26% w/w)"},
+        "cp_brine": {"value": 3300.0, "unit": "J/(kg.K)", "note": "Specific heat of concentrated brine (lower than water due to salinity)"},
+        "k_water": {"value": 0.6, "unit": "W/(m.K)", "note": "Thermal conductivity of saline water in NCZ (conductive insulation path)"},
+        "tau_surface": {"value": 0.85, "unit": "-", "note": "Fraction of incident radiation transmitted through the air-water surface (after reflection)"},
+        "mu_extinction": {"value": 0.6, "unit": "1/m", "note": "Effective Bouguer/Beer-Lambert bulk extinction coefficient for brine (turbidity-dependent; Hull 1980, Rabl-Nielsen)"},
+        "T_ground": {"value": 15.0, "unit": "degC", "note": "Deep ground (far-field) temperature below pond"},
+        "k_ground": {"value": 1.5, "unit": "W/(m.K)", "note": "Thermal conductivity of soil beneath pond"},
+        "L_ground": {"value": 3.0, "unit": "m", "note": "Characteristic distance to constant-temperature ground sink"},
+        "U_top": {"value": 30.0, "unit": "W/(m2.K)", "note": "Effective top loss coefficient UCZ->ambient (convection+evaporation+radiation lumped)"},
+        "T_design": {"value": 85.0, "unit": "degC", "note": "Design LCZ storage temperature"}
+    },
+    "valid_ranges": {
+        "G": {"min": 0.0, "max": 1100.0, "unit": "W/m2"},
+        "T_amb": {"min": -10.0, "max": 45.0, "unit": "degC"},
+        "T_lcz_init": {"min": 10.0, "max": 95.0, "unit": "degC"},
+        "Q_extract_W": {"min": 0.0, "max": 5000000.0, "unit": "W"},
+        "duration_days": {"min": 0.1, "max": 365.0, "unit": "days"},
+        "dt_hours": {"min": 0.05, "max": 6.0, "unit": "hours"}
+    }
+}

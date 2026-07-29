@@ -1,0 +1,32 @@
+{
+  "model": "capacitance_esr_curve",
+  "capacitance": {
+    "value": 200.0,
+    "unit": "F"
+  },
+  "esr": {
+    "value": 0.01,
+    "unit": "Ohm",
+    "note": "equivalent series resistance"
+  },
+  "V_max": {
+    "value": 3.8,
+    "unit": "V"
+  },
+  "V_min": {
+    "value": 1.9,
+    "unit": "V",
+    "note": "usable floor (=V_max/2 -> 75% energy swing)"
+  },
+  "E_max_J": {
+    "value": 1444.0,
+    "unit": "J",
+    "note": "0.5*C*V_max^2"
+  },
+  "E_usable_J": {
+    "value": 1083.0,
+    "unit": "J",
+    "note": "0.5*C*(V_max^2 - V_min^2)"
+  },
+  "source": "EC043 F1a (C=200 F, ESR=10 mOhm, V_max=3.8 V, Q_max=760 C); Conway (1999); Li-ion capacitor datasheets. DC round-trip eff ~94-97%."
+}

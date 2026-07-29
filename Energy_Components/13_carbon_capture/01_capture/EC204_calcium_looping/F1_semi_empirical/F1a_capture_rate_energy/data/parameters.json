@@ -1,0 +1,21 @@
+{
+    "component": "EC204 Calcium Looping",
+    "fidelity": "F1a",
+    "description": "CaO sorbent looping: carbonator at 650C captures CO2, calciner at 900C regenerates CaO. SEC_thermal=3.2 GJ/tCO2.",
+    "unit": {
+        "name": "Generic calcium looping post-combustion capture",
+        "source": "Abanades et al. (2004) Chem. Eng. J.; Dean et al. (2011)",
+        "capture_rate": {"value": 0.90, "unit": "dimensionless"},
+        "SEC_thermal_GJ_tCO2": {"value": 3.2, "unit": "GJ/tCO2", "note": "Includes calciner duty"},
+        "SEC_elec_GJ_tCO2": {"value": 0.3, "unit": "GJ/tCO2", "note": "Solids transport, fans, compression"},
+        "T_calciner_C": {"value": 900.0, "unit": "degC"},
+        "T_carbonator_C": {"value": 650.0, "unit": "degC"},
+        "sorbent": {"value": "CaO", "unit": "string"},
+        "sorbent_activity_decay": {"value": 0.002, "unit": "1/cycle",
+                                   "note": "Capture rate decay per cycle (simplified)"}
+    },
+    "valid_ranges": {
+        "capacity_fraction": {"min": 0.1, "max": 1.0, "unit": "dimensionless"},
+        "cycle_number": {"min": 1, "max": 500, "unit": "dimensionless"}
+    }
+}

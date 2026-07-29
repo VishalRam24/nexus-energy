@@ -1,0 +1,27 @@
+{
+    "component": "EC069 Ground-Source Heat Pump (GSHP)",
+    "fidelity": "F2a",
+    "model": "Steady-state vapor compression cycle with ground-loop coupling",
+    "refrigerant": "R410A",
+    "unit": {
+        "name": "Generic 15kW GSHP (R410A)",
+        "source": "ASHRAE Handbook; Kavanaugh & Rafferty (2014) Ground-Source Heat Pumps",
+        "capacity_nominal_kw": {"value": 15.0, "unit": "kW_th"},
+        "eta_isentropic": {"value": 0.78, "unit": "dimensionless"},
+        "eta_motor": {"value": 0.95, "unit": "dimensionless"},
+        "superheat_K": {"value": 5.0, "unit": "K"},
+        "subcool_K": {"value": 3.0, "unit": "K"}
+    },
+    "ground_loop": {
+        "T_ground_degC": {"value": 10.0, "unit": "degC", "note": "Undisturbed ground temperature"},
+        "borehole_depth_m": {"value": 100.0, "unit": "m"},
+        "borehole_resistance_mKW": {"value": 0.08, "unit": "m.K/W", "note": "Thermal resistance per unit length"},
+        "m_brine_kg_s": {"value": 0.8, "unit": "kg/s", "note": "Brine mass flow rate"},
+        "cp_brine_J_kgK": {"value": 3800.0, "unit": "J/(kg.K)", "note": "Propylene glycol 25%"},
+        "eta_bhe": {"value": 0.85, "unit": "dimensionless", "note": "Borehole heat exchanger effectiveness"}
+    },
+    "valid_ranges": {
+        "T_cond_degC": {"min": 25.0, "max": 55.0, "unit": "degC"},
+        "Q_demand_kw": {"min": 0.0, "max": 20.0, "unit": "kW"}
+    }
+}

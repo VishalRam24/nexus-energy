@@ -1,0 +1,64 @@
+{
+  "component": "EC080 PCM Storage (Paraffin RT42)",
+  "fidelity": "F0a \u2014 empirical capacity lookup",
+  "description": "Linear capacity lookup: usable stored energy = SOC * E_capacity. Round-trip efficiency and self-discharge are constant empirical ratings.",
+  "lookup": {
+    "SOC_breakpoints": {
+      "value": [
+        0.0,
+        0.1,
+        0.2,
+        0.30000000000000004,
+        0.4,
+        0.5,
+        0.6000000000000001,
+        0.7000000000000001,
+        0.8,
+        0.9,
+        1.0
+      ],
+      "unit": "dimensionless"
+    },
+    "usable_energy_table": {
+      "value": [
+        0.0,
+        2.417,
+        4.834,
+        7.251,
+        9.668,
+        12.085,
+        14.502,
+        16.919,
+        19.336,
+        21.753,
+        24.17
+      ],
+      "unit": "kWh_th",
+      "note": "Stored thermal energy available at each SOC"
+    }
+  },
+  "rated": {
+    "E_capacity": {
+      "value": 24.17,
+      "unit": "kWh_th",
+      "note": "Latent: 500 kg * 174 kJ/kg / 3600 = 24.17 kWh"
+    },
+    "round_trip_efficiency": {
+      "value": 0.95,
+      "unit": "dimensionless"
+    },
+    "self_discharge_per_day": {
+      "value": 5.0,
+      "unit": "%/day",
+      "note": "Standing thermal loss"
+    }
+  },
+  "valid_ranges": {
+    "soc": {
+      "min": 0.0,
+      "max": 1.0,
+      "unit": "dimensionless"
+    }
+  },
+  "source": "Mehling & Cabeza (2008); Rubitherm RT42 datasheet"
+}

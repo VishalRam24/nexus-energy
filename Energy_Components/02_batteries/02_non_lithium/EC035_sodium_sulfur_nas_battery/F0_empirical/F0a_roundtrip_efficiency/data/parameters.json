@@ -1,0 +1,53 @@
+{
+  "model": "roundtrip_efficiency_curve",
+  "V_nominal": {
+    "value": 2.0,
+    "unit": "V",
+    "note": "cell nominal voltage"
+  },
+  "R_series": {
+    "value": 0.005,
+    "unit": "Ohm",
+    "note": "ohmic series resistance"
+  },
+  "Q_nominal": {
+    "value": 100.0,
+    "unit": "Ah"
+  },
+  "c_rate_breakpoints": {
+    "value": [
+      0.0,
+      0.1,
+      0.2,
+      0.5,
+      1.0,
+      2.0,
+      5.0
+    ],
+    "unit": "1/h",
+    "note": "discharge/charge C-rate breakpoints"
+  },
+  "roundtrip_efficiency": {
+    "value": [
+      0.9118,
+      0.8682,
+      0.8258,
+      0.7099,
+      0.5477,
+      0.3043,
+      0.01
+    ],
+    "unit": "fraction",
+    "note": "DC round-trip efficiency at each C-rate"
+  },
+  "eta_rated": {
+    "value": 0.85,
+    "unit": "fraction",
+    "note": "literature rated round-trip eff at C=0.143"
+  },
+  "c_rated": {
+    "value": 0.143,
+    "unit": "1/h"
+  },
+  "source": "EC035 F1a (V_nom=2.0 V, R_int=5 mOhm, Q_nom=100 Ah, T=320 C); NGK NAS. AC round-trip eff ~75-85% (NGK Insulators brochure; Wen et al. 2008)."
+}

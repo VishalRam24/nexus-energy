@@ -1,0 +1,29 @@
+{
+    "component": "EC176 Permanent Magnet Synchronous Motor (PMSM)",
+    "fidelity": "F1b",
+    "description": "Thermal-dependent efficiency: PM flux demagnetization with temperature, copper R(T), demagnetization risk",
+    "unit": {
+        "name": "Generic 5 kW NdFeB PMSM",
+        "source": "Gieras, J.F. (2010). PM Motor Technology. CRC Press; Arnold Magnetic Technologies NdFeB datasheet",
+        "P_rated_W": {"value": 5000.0, "unit": "W", "note": "Rated output power"},
+        "T_rated_Nm": {"value": 16.0, "unit": "Nm", "note": "Rated torque"},
+        "omega_base_rpm": {"value": 3000.0, "unit": "rpm", "note": "Base speed"},
+        "omega_max_rpm": {"value": 12000.0, "unit": "rpm"},
+        "pole_pairs": {"value": 4, "unit": "dimensionless"},
+        "Phi_m_ref": {"value": 0.3, "unit": "Wb", "note": "PM flux linkage at T_ref"},
+        "T_ref": {"value": 25.0, "unit": "degC", "note": "Reference temperature for Phi_m and R_s"},
+        "alpha_Br": {"value": -0.0012, "unit": "1/K", "note": "NdFeB remanence temp coeff (negative: flux drops with T)"},
+        "R_s_ref": {"value": 0.2, "unit": "ohm", "note": "Stator resistance per phase at T_ref"},
+        "alpha_Cu": {"value": 0.00393, "unit": "1/K", "note": "Copper resistance temp coeff"},
+        "k_e": {"value": 0.005559, "unit": "W/(rpm^1.5)", "note": "Iron loss coefficient"},
+        "k_f": {"value": 0.130484, "unit": "W/rpm", "note": "Mechanical loss coefficient"},
+        "T_demag": {"value": 150.0, "unit": "degC", "note": "Irreversible demagnetization threshold for NdFeB"},
+        "eta_peak_ref": {"value": 0.96, "unit": "dimensionless"}
+    },
+    "valid_ranges": {
+        "torque": {"min": 0.0, "max": 25.0, "unit": "Nm"},
+        "speed_rpm": {"min": 0.0, "max": 12000.0, "unit": "rpm"},
+        "magnet_temperature": {"min": 20.0, "max": 180.0, "unit": "degC"},
+        "ambient_temperature": {"min": -20.0, "max": 60.0, "unit": "degC"}
+    }
+}

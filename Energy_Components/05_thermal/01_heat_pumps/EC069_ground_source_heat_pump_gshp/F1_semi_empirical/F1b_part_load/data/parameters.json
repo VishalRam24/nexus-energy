@@ -1,0 +1,24 @@
+{
+    "component": "EC069 Ground-Source Heat Pump (GSHP)",
+    "fidelity": "F1b",
+    "description": "Part-load COP with PLF (EN 14825) + seasonal ground temperature variation",
+    "unit": {
+        "name": "Generic 15kW GSHP (R410A, horizontal ground loop)",
+        "source": "Staffell et al. (2012); ASHRAE Handbook (2019) Ch.34; EN 14825:2016",
+        "rated_capacity": {"value": 15.0, "unit": "kW_th"},
+        "rated_cop": {"value": 4.5, "unit": "dimensionless", "note": "At G10/W35"},
+        "carnot_fraction": {"value": 0.365, "unit": "dimensionless"},
+        "auxiliary_power": {"value": 0.05, "unit": "kW"},
+        "C_d": {"value": 0.20, "unit": "dimensionless", "note": "Lower than ASHP due to stable source"},
+        "PLR_min": {"value": 0.10, "unit": "dimensionless"},
+        "T_ground_mean": {"value": 10.0, "unit": "degC", "note": "Annual mean undisturbed ground temperature"},
+        "T_ground_amplitude": {"value": 5.0, "unit": "degC", "note": "Seasonal swing amplitude at borehole depth"},
+        "month_min_temp": {"value": 2, "unit": "month", "note": "Month of minimum ground temperature (Feb for N. hemisphere)"}
+    },
+    "valid_ranges": {
+        "T_source": {"min": 0.0, "max": 20.0, "unit": "degC"},
+        "T_sink": {"min": 25.0, "max": 65.0, "unit": "degC"},
+        "part_load_ratio": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "month": {"min": 1, "max": 12, "unit": "month"}
+    }
+}

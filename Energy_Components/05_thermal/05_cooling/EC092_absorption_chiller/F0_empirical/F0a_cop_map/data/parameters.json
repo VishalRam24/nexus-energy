@@ -1,0 +1,35 @@
+{
+  "component_id": "EC092",
+  "component_name": "Single-Effect LiBr-H2O Absorption Chiller",
+  "fidelity": "F0a \u2014 empirical lookup",
+  "source": "Herold, Radermacher & Klein (2016) Absorption Chillers and Heat Pumps, 2nd ed., CRC",
+  "Q_rated": {
+    "value": 500.0,
+    "unit": "kW_th",
+    "note": "Rated cooling capacity"
+  },
+  "COP_rated": {
+    "value": 0.7,
+    "unit": "-",
+    "note": "COP at rated conditions"
+  },
+  "table": {
+    "x_key": "T_gen_C",
+    "x": [
+      70.0,
+      80.0,
+      90.0,
+      100.0,
+      120.0
+    ],
+    "cop": [
+      0.55,
+      0.65,
+      0.7,
+      0.73,
+      0.75
+    ],
+    "x_rated": 90.0,
+    "note": "COP vs T_gen_C (np.interp); COP at x_rated = COP_rated"
+  }
+}

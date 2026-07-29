@@ -1,0 +1,39 @@
+{
+    "component": "EC214 Mechanical Vapor Compression (MVC)",
+    "fidelity": "F2a",
+    "description": "Physics-lumped single-effect MVC evaporator. Brine boils at T_brine; a mechanical compressor lifts the generated vapor to a higher saturation temperature (T_steam) so the same vapor is reused as heating steam (heat-pump-like, electricity-driven, no external steam). Lumped evaporator energy/level transient via scipy.solve_ivp. SEC ~7-12 kWh/m3.",
+    "unit": {
+        "name": "Generic seawater MVC evaporator (forced-circulation)",
+        "source": "El-Dessouky & Ettouney (2002) Fundamentals of Salt Water Desalination, Ch.6; Veza (1995) Mechanical vapour compression desalination plants, Desalination 101:1-10",
+        "capacity_m3_day": {"value": 100.0, "unit": "m3/day", "note": "Design distillate production (small/medium MVC unit, Veza 1995)"},
+        "T_brine_C": {"value": 60.0, "unit": "degC", "note": "Evaporator boiling temperature; MVC runs 55-70 C (El-Dessouky & Ettouney 2002, Ch.6)"},
+        "delta_T_lift_C": {"value": 3.0, "unit": "degC", "note": "Net useful temperature driving force across evaporator tubes after BPE; compressor lift is delta_T_lift + BPE (El-Dessouky 2002 typical 3-5 C)"},
+        "feed_salinity_ppm": {"value": 42000.0, "unit": "ppm", "note": "Seawater TDS feed"},
+        "recovery": {"value": 0.40, "unit": "dimensionless", "note": "Distillate/feed fraction; MVC single-effect 0.3-0.5"},
+        "compressor_efficiency": {"value": 0.75, "unit": "dimensionless", "note": "Isentropic+mechanical efficiency of centrifugal vapor compressor (Veza 1995)"},
+        "motor_efficiency": {"value": 0.95, "unit": "dimensionless", "note": "Electric motor + drive efficiency"},
+        "UA_kW_K": {"value": 1090.0, "unit": "kW/K", "note": "Overall evaporator conductance U*A (lumped); sized so UA*(dT_lift-BPE) matches design latent demand at steady state. Implies U~2.5 kW/m2K, A~440 m2 (El-Dessouky 2002 evaporator U for falling-film)"},
+        "evap_holdup_kg": {"value": 8000.0, "unit": "kg", "note": "Brine liquid holdup in evaporator sump (lumped thermal mass)"},
+        "evap_metal_mass_kg": {"value": 3000.0, "unit": "kg", "note": "Tube/shell metal mass lumped with liquid for thermal inertia"},
+        "level_area_m2": {"value": 6.0, "unit": "m2", "note": "Evaporator sump cross-sectional area for level dynamics"},
+        "T_feed_C": {"value": 25.0, "unit": "degC", "note": "Raw seawater feed temperature (preheated to near-brine in practice via regenerator; raw value used for sensible-heat demand)"},
+        "feed_preheat_eff": {"value": 0.97, "unit": "dimensionless", "note": "Regenerative feed-preheater effectiveness; feed brought to within ~1 K pinch of brine using hot distillate + brine streams (El-Dessouky 2002)"}
+    },
+    "constants": {
+        "cp_brine_kJ_kgK": {"value": 3.93, "unit": "kJ/(kg.K)", "note": "Seawater specific heat ~42 g/kg, 60 C (Sharqawy, Lienhard & Zubair 2010, Desal. Water Treat. 16:354-380)"},
+        "cp_metal_kJ_kgK": {"value": 0.50, "unit": "kJ/(kg.K)", "note": "Carbon/stainless steel"},
+        "rho_brine_kg_m3": {"value": 1020.0, "unit": "kg/m3", "note": "Seawater density at 60 C, 42 g/kg (Sharqawy et al. 2010)"},
+        "hfg_ref_kJ_kg": {"value": 2358.0, "unit": "kJ/kg", "note": "Latent heat of vaporization of water at 60 C (NIST/IAPWS-IF97)"},
+        "cp_vapor_kJ_kgK": {"value": 1.93, "unit": "kJ/(kg.K)", "note": "Superheated steam cp near 60 C, low pressure (NIST)"},
+        "gamma_vapor": {"value": 1.33, "unit": "dimensionless", "note": "Ratio of specific heats of low-pressure steam"},
+        "R_vapor_kJ_kgK": {"value": 0.4615, "unit": "kJ/(kg.K)", "note": "Specific gas constant of water vapor"},
+        "BPE_const": {"value": 0.0, "unit": "-", "note": "Boiling point elevation from Sharqawy et al. (2010) correlation, computed in model from salinity and T"}
+    },
+    "valid_ranges": {
+        "T_brine_C": {"min": 50.0, "max": 75.0, "unit": "degC"},
+        "delta_T_lift_C": {"min": 2.0, "max": 8.0, "unit": "degC"},
+        "feed_salinity_ppm": {"min": 30000.0, "max": 70000.0, "unit": "ppm"},
+        "capacity_m3_day": {"min": 10.0, "max": 5000.0, "unit": "m3/day"},
+        "compressor_efficiency": {"min": 0.55, "max": 0.85, "unit": "dimensionless"}
+    }
+}

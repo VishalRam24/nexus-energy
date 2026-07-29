@@ -1,0 +1,12 @@
+{
+  "default_parameters": {
+    "E0": 1.0,
+    "n": 1,
+    "T": 298.15,
+    "R_int_area": 2.0,
+    "N_cells": 20,
+    "A_cell": 500.0,
+    "Q_nom_Ah": 50.0
+  },
+  "description": "Organic flow battery. E0=1.0V (quinone-based redox couple). n=1. R_int_area=2.0 ohm*cm^2. N_cells=20. A_cell=500 cm^2. Nernst OCV: E=E0+RT/(nF)*ln(SOC/(1-SOC))."
+}

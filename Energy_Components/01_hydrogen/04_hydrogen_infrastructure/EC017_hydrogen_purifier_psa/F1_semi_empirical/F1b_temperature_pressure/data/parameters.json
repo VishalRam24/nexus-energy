@@ -1,0 +1,60 @@
+{
+    "component": "EC017 Hydrogen Purifier (PSA)",
+    "fidelity": "F1b",
+    "description": "PSA model with temperature-dependent adsorption capacity and enhanced pressure/part-load corrections",
+    "source": "Sircar & Golden (2000) Sep. Sci. Technol.; Yang (1987); Ruthven (1984) Principles of Adsorption; Cavenati et al. (2004) J. Chem. Eng. Data",
+
+    "psa_unit": {
+        "feed_pressure_ref_bar":    {"value": 20.0,    "unit": "bar"},
+        "purge_pressure_bar":       {"value": 1.5,     "unit": "bar"},
+        "feed_h2_fraction_nominal": {"value": 0.75,    "unit": "mol fraction"},
+        "T_ref_K":                  {"value": 298.15,  "unit": "K", "note": "Reference temperature for adsorption capacity"},
+        "adsorbent":                "Activated carbon + zeolite 5A"
+    },
+
+    "performance": {
+        "recovery_nominal":               {"value": 0.85,  "unit": "dimensionless"},
+        "purity_nominal":                 {"value": 0.9999, "unit": "mol fraction"},
+        "specific_energy_kWh_per_kg_H2":  {"value": 1.5,   "unit": "kWh/kg_H2", "note": "Nominal specific energy per Sircar & Golden (2000)"},
+        "recovery_pressure_exponent":     {"value": 0.15,  "unit": "dimensionless"},
+        "recovery_feed_h2_coefficient":   {"value": 0.25,  "unit": "dimensionless"},
+        "energy_pressure_factor":         {"value": 0.15,  "unit": "dimensionless",
+                                           "note": "W = W_nom*(P_ref/P)^0.15 per task specification (Sircar & Golden 2000)"}
+    },
+
+    "thermal": {
+        "Q_ads_H2":  {
+            "value": -800.0,
+            "unit": "J/mol",
+            "note": "Isosteric heat of adsorption of H2 on activated carbon (~800 J/mol). Ruthven 1984"
+        },
+        "Q_ads_CO2": {
+            "value": -25000.0,
+            "unit": "J/mol",
+            "note": "Isosteric heat of adsorption of CO2 on zeolite 5A (~25 kJ/mol). Cavenati 2004"
+        },
+        "E_a_cap": {
+            "value": 3500.0,
+            "unit": "J/mol",
+            "note": "Apparent activation energy for adsorption capacity vs temperature. van't Hoff: q(T) = q_ref*exp(E_a/R*(1/T_ref - 1/T))"
+        },
+        "recovery_temp_coeff": {
+            "value": -0.002,
+            "unit": "1/K",
+            "note": "Linear T-correction to recovery: eta = eta_base * (1 + k*(T - T_ref)). Higher T reduces adsorption selectivity. Sircar & Golden (2000)"
+        },
+        "energy_temp_exponent": {
+            "value": 0.5,
+            "unit": "dimensionless",
+            "note": "Specific energy T-correction: W = W_base * (T/T_ref)^0.5. Higher T -> reduced adsorption -> more recompression needed."
+        }
+    },
+
+    "valid_ranges": {
+        "feed_flow_kg_per_s":  {"min": 1e-6, "max": 100.0, "unit": "kg/s"},
+        "feed_h2_fraction":    {"min": 0.3,  "max": 0.999, "unit": "mol_fraction"},
+        "feed_pressure_bar":   {"min": 5.0,  "max": 80.0,  "unit": "bar"},
+        "temperature_K":       {"min": 253.15, "max": 353.15, "unit": "K"},
+        "target_purity":       {"min": 0.99, "max": 0.99999, "unit": "mol_fraction"}
+    }
+}

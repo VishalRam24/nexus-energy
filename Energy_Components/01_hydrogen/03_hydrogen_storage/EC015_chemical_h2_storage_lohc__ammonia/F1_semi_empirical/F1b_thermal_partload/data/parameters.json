@@ -1,0 +1,64 @@
+{
+    "component": "EC015 Chemical H2 Storage (LOHC / Ammonia)",
+    "fidelity": "F1b",
+    "description": "LOHC and ammonia storage with temperature-dependent efficiency and part-load corrections",
+    "source": "Niermann et al. (2021) Energy Environ. Sci.; Preuster et al. (2017) Acc. Chem. Res.; Lamb et al. (2019); Reuse et al. (2004) Chem. Eng. J.",
+
+    "lohc_dbt": {
+        "name": "Dibenzyltoluene (DBT)",
+        "gravimetric_capacity_wt_pct": {"value": 6.2,      "unit": "wt%"},
+        "delta_H_hydrogenation":       {"value": -65000.0, "unit": "J/mol_H2"},
+        "delta_H_dehydrogenation":     {"value": 65000.0,  "unit": "J/mol_H2"},
+        "T_nom_hydrogenation_K":       {"value": 423.0,    "unit": "K", "note": "Nominal hydrogenation T = 150 degC"},
+        "T_nom_dehydrogenation_K":     {"value": 573.0,    "unit": "K", "note": "Nominal dehydrogenation T = 300 degC"},
+        "molar_mass_carrier_kg_per_mol": {"value": 0.2723, "unit": "kg/mol"},
+        "H2_mol_per_mol_carrier":        {"value": 9.0,    "unit": "mol_H2/mol"},
+        "energy_efficiency_nom":         {"value": 0.85,   "unit": "dimensionless", "note": "Nominal dehydrogenation efficiency"},
+        "T_activation_K": {
+            "value": 40000.0,
+            "unit": "J/mol",
+            "note": "Apparent activation energy for efficiency T-correction. Reuse et al. (2004) Chem. Eng. J. 101: Arrhenius E_a ~ 40 kJ/mol for Pt/Al2O3 dehydrogenation"
+        },
+        "part_load_exponent": {
+            "value": 0.12,
+            "unit": "dimensionless",
+            "note": "Part-load efficiency penalty: eta_pl = (F/F_nom)^exponent. Niermann 2021"
+        },
+        "F_nom_kg_s": {"value": 0.01, "unit": "kg_H2/s", "note": "Nominal H2 throughput"},
+        "cp_lohc": {"value": 2000.0, "unit": "J/kg/K", "note": "Specific heat of DBT carrier"}
+    },
+
+    "ammonia": {
+        "name": "Ammonia (NH3)",
+        "gravimetric_capacity_wt_pct": {"value": 17.6,     "unit": "wt%"},
+        "delta_H_synthesis":           {"value": -46000.0, "unit": "J/mol_H2"},
+        "delta_H_cracking":            {"value": 46000.0,  "unit": "J/mol_H2"},
+        "T_nom_synthesis_K":           {"value": 723.0,    "unit": "K"},
+        "T_nom_cracking_K":            {"value": 773.0,    "unit": "K"},
+        "molar_mass_nh3_kg_per_mol":   {"value": 0.017031, "unit": "kg/mol"},
+        "H2_mol_per_mol_carrier":      {"value": 1.5,      "unit": "mol_H2/mol_NH3"},
+        "energy_efficiency_nom":       {"value": 0.90,     "unit": "dimensionless"},
+        "T_activation_K": {
+            "value": 50000.0,
+            "unit": "J/mol",
+            "note": "Activation energy for NH3 cracking efficiency T-correction. Lamb et al. (2019) Int. J. H2 Energy"
+        },
+        "part_load_exponent": {
+            "value": 0.10,
+            "unit": "dimensionless"
+        },
+        "F_nom_kg_s": {"value": 0.01, "unit": "kg_H2/s"}
+    },
+
+    "thermodynamics": {
+        "M_H2":       {"value": 0.002016, "unit": "kg/mol"},
+        "R_universal": {"value": 8.314,   "unit": "J/mol/K"},
+        "LHV_H2":     {"value": 120.0e6, "unit": "J/kg"}
+    },
+
+    "valid_ranges": {
+        "h2_mass_kg":   {"min": 0.001, "max": 10000.0, "unit": "kg"},
+        "temperature":  {"min": 300.0, "max": 900.0,   "unit": "K"},
+        "part_load":    {"min": 0.1,   "max": 1.0,     "unit": "dimensionless"}
+    }
+}

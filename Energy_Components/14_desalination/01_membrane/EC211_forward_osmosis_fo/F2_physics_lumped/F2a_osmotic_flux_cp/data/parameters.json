@@ -1,0 +1,31 @@
+{
+    "component_id": "EC211",
+    "component_name": "Forward Osmosis (FO)",
+    "fidelity": "F2a — Physics-Lumped Osmotic Flux with Concentration Polarization",
+    "description": "0D lumped FO module. Water flux Jw = A*(pi_draw_eff - pi_feed_eff) driven by osmotic pressure only (no hydraulic pressure). Internal (ICP) + external (ECP) concentration polarization reduce effective driving force; reverse salt flux Js dilutes draw and salts feed. solve_ivp integrates draw-tank concentration/volume.",
+    "source": "McCutcheon & Elimelech (2006) J. Membr. Sci. 284:237-247 (ICP/ECP flux model); Cath, Childress & Elimelech (2006) J. Membr. Sci. 281:70-87 (FO review); McGinnis & Elimelech (2008) Environ. Sci. Technol. 42:8625 (draw regeneration energy)",
+    "unit": {
+        "name": "Thin-film composite FO module (TFC-ES class), NaCl draw",
+        "A_perm": {"value": 1.2, "unit": "L/(m2*h*bar)", "note": "Water permeability coefficient at 25C (TFC-ES: 1-2 LMH/bar) — McCutcheon 2006"},
+        "B_salt": {"value": 0.3, "unit": "L/(m2*h)", "note": "Salt (reverse) permeability coefficient for NaCl"},
+        "membrane_area_m2": {"value": 10.0, "unit": "m2", "note": "Active membrane area of module"},
+        "k_ecp": {"value": 2.5e-5, "unit": "m/s", "note": "External concentration polarization mass-transfer coefficient (draw-side, dilutive ECP)"},
+        "D_salt": {"value": 1.5e-9, "unit": "m2/s", "note": "NaCl diffusivity in support-layer pores"},
+        "S_structural_m": {"value": 4.0e-4, "unit": "m", "note": "Membrane structural parameter S = t*tau/eps (~400 um, TFC-ES) — controls ICP"},
+        "i_vant_hoff": {"value": 2.0, "unit": "-", "note": "van't Hoff dissociation factor for NaCl (Na+ + Cl-)"},
+        "phi_osmotic": {"value": 0.93, "unit": "-", "note": "Osmotic coefficient for NaCl at seawater concentration"},
+        "T_op_K": {"value": 298.15, "unit": "K", "note": "Operating temperature (25C)"},
+        "M_salt_kg_mol": {"value": 0.05844, "unit": "kg/mol", "note": "Molar mass of NaCl"},
+        "V_draw0_m3": {"value": 1.0, "unit": "m3", "note": "Initial draw-solution tank volume"},
+        "c_draw0_mol_m3": {"value": 1000.0, "unit": "mol/m3", "note": "Initial draw molar concentration (1 M NaCl ~ 1000 mol/m3 ~ 58.4 g/L)"},
+        "c_feed_mol_m3": {"value": 17.1, "unit": "mol/m3", "note": "Feed-water concentration held constant (brackish ~1 g/L NaCl)"},
+        "SEC_regen_kWh_m3": {"value": 2.0, "unit": "kWh/m3", "note": "Draw reconcentration specific energy (RO/thermal regen) — McGinnis 2008"}
+    },
+    "valid_ranges": {
+        "c_draw0_mol_m3": {"min": 100.0, "max": 5000.0, "unit": "mol/m3"},
+        "c_feed_mol_m3": {"min": 0.0, "max": 600.0, "unit": "mol/m3"},
+        "T_op_K": {"min": 278.15, "max": 318.15, "unit": "K"},
+        "duration_s": {"min": 1.0, "max": 86400.0, "unit": "s"},
+        "membrane_area_m2": {"min": 0.1, "max": 1000.0, "unit": "m2"}
+    }
+}

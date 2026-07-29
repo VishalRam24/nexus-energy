@@ -1,0 +1,41 @@
+{
+    "component": "EC024 Silicon-Anode Li-ion Battery (Si/NMC)",
+    "fidelity": "F1b",
+    "description": "SOC-thermal voltage model: V = OCV(SOC) - I*R(T), with Arrhenius resistance and capacity correction",
+    "cell": {
+        "name": "Si/NMC pouch cell (10% Si blend anode)",
+        "source": "Zheng et al. (2014), J. Electrochem. Soc. 161(11), A2066; McDowell et al. (2013), Adv. Mater. 25, 4966",
+        "nominal_voltage": {"value": 3.6, "unit": "V"},
+        "capacity_ref": {"value": 3.5, "unit": "Ah", "note": "Nominal capacity at T_ref (higher than pure graphite due to Si capacity contribution)"},
+        "voltage_max": {"value": 4.2, "unit": "V"},
+        "voltage_min": {"value": 2.7, "unit": "V"},
+        "R_ref": {"value": 0.020, "unit": "Ohm", "note": "Internal resistance at T_ref (298.15 K); slightly lower than pure graphite due to Si SEI differences"}
+    },
+    "ocv_coefficients": {
+        "description": "OCV(SOC) = a0 + a1*SOC + a2*SOC^2 + a3*SOC^3 + a4*SOC^4 + a5*SOC^5",
+        "source": "Fitted to Si/NMC OCV data; NMC cathode dominates the OCV shape, slightly offset from pure NMC due to Si anode plateau at ~0.4V vs Li",
+        "a0": 2.85,
+        "a1": 3.2,
+        "a2": -11.0,
+        "a3": 22.5,
+        "a4": -20.5,
+        "a5": 7.0
+    },
+    "thermal": {
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 degC)"},
+        "E_a": {"value": 26000, "unit": "J/mol",
+                "note": "Activation energy for internal resistance; higher than NMC due to Si-induced SEI layer cracking increasing effective Ea",
+                "source": "Plett (2015), Battery Management Systems Vol. 2, Artech House; Lundqvist et al. (2021), J. Electrochem. Soc. 168, 060522"},
+        "alpha_c": {"value": 0.005, "unit": "1/K", "note": "Linear capacity temperature coefficient (same order as NMC)",
+                    "source": "Schmalstieg et al. (2014), J. Power Sources 257, 325"},
+        "dOCV_dT": {"value": -0.00015, "unit": "V/K",
+                    "note": "Entropic coefficient; Si-blend anode shifts dOCV/dT slightly less negative than pure graphite/NMC; avg -0.15 mV/K over SOC range",
+                    "source": "Geng et al. (2020), J. Electrochem. Soc. 167, 090504; Thomas & Newman (2003), J. Electrochem. Soc. 150, A176"},
+        "R_gas": {"value": 8.314, "unit": "J/(mol*K)", "note": "Universal gas constant"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "current": {"min": -17.5, "max": 17.5, "unit": "A", "note": "Negative=charge, Positive=discharge; ~5C max for 3.5Ah"},
+        "temperature": {"min": 253.15, "max": 333.15, "unit": "K", "note": "-20 to 60 degC"}
+    }
+}

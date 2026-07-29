@@ -1,0 +1,23 @@
+{
+    "component": "EC171 Cycloconverter",
+    "fidelity": "F1b",
+    "description": "SCR cycloconverter: per-thyristor conduction loss (V_T0*I_avg + r_T*I_rms^2) + R-C snubber dissipation",
+    "unit": {
+        "name": "Generic 3-phase-to-3-phase Cycloconverter (500 kW, 6.6 kV input)",
+        "source": "Mohan, Undeland & Robbins (2003) Power Electronics 3rd ed.; Rashid (2011)",
+        "n_phase_out": {"value": 3, "unit": "dimensionless", "note": "Output phases"},
+        "V_T0": {"value": 1.5, "unit": "V", "note": "SCR threshold voltage"},
+        "r_T": {"value": 0.0008, "unit": "Ohm", "note": "SCR on-state slope resistance"},
+        "C_snubber": {"value": 0.000002, "unit": "F", "note": "R-C snubber capacitance per device (2 µF)"},
+        "f_line": {"value": 50.0, "unit": "Hz", "note": "Input line frequency"},
+        "V_in_ll": {"value": 690.0, "unit": "V", "note": "Input line-to-line RMS voltage"},
+        "P_rated": {"value": 500000.0, "unit": "W", "note": "Rated output power"},
+        "R_th_ja": {"value": 0.05, "unit": "K/W", "note": "SCR junction-to-ambient thermal resistance"},
+        "T_a": {"value": 40.0, "unit": "degC", "note": "Ambient temperature"}
+    },
+    "valid_ranges": {
+        "p_out": {"min": 0.0, "max": 600000.0, "unit": "W"},
+        "v_out_ll_rms": {"min": 50.0, "max": 650.0, "unit": "V"},
+        "power_factor": {"min": 0.5, "max": 1.0, "unit": "dimensionless"}
+    }
+}

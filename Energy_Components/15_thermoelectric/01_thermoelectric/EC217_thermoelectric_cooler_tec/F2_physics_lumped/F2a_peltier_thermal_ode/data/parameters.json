@@ -1,0 +1,35 @@
+{
+    "component_id": "EC217",
+    "component_name": "Thermoelectric Cooler (TEC)",
+    "fidelity": "F2a — Peltier Cooler with Lumped Cold/Hot-Plate Thermal ODE",
+    "source": "Rowe (2006) Thermoelectrics Handbook (CRC); Goldsmid (1986) Electronic Refrigeration (Pion); Ioffe (1957) Semiconductor Thermoelements and Thermoelectric Cooling",
+    "unit": {
+        "name": "Bi2Te3 TEC Module (40x40mm, 127 couples) — Physics-Lumped Peltier + Thermal ODE",
+        "alpha0": {"value": 200e-6, "unit": "V/K", "note": "Per-element Seebeck coefficient at T0 (Bi2Te3 ~200 uV/K) — Goldsmid (1986)"},
+        "k0": {"value": 1.5, "unit": "W/(m*K)", "note": "Per-element thermal conductivity at T0 — Rowe (2006)"},
+        "sigma_e0": {"value": 1.0e5, "unit": "S/m", "note": "Per-element electrical conductivity at T0 (rho ~1e-5 ohm.m)"},
+        "T0_K": {"value": 300.0, "unit": "K", "note": "Reference temperature for property fits"},
+        "a1": {"value": -2e-4, "unit": "1/K", "note": "Linear Seebeck temperature coefficient"},
+        "a2": {"value": 0.0, "unit": "1/K2", "note": "Quadratic Seebeck term"},
+        "b1": {"value": 3e-4, "unit": "1/K", "note": "Linear thermal-conductivity temperature coefficient"},
+        "c1": {"value": -5e-4, "unit": "1/K", "note": "Linear electrical-conductivity temperature coefficient"},
+        "n_couples": {"value": 127, "unit": "-", "note": "Number of thermoelectric couples (p-n pairs)"},
+        "A_element_m2": {"value": 1.4e-6, "unit": "m2", "note": "Cross-sectional area per leg"},
+        "L_element_m": {"value": 1.6e-3, "unit": "m", "note": "Leg length"},
+        "module_area": {"value": 0.0016, "unit": "m2", "note": "Module footprint (40x40mm)"},
+        "contact_resistance_fraction": {"value": 0.05, "unit": "-", "note": "Electrical contact resistance as fraction of element resistance"},
+        "C_cold_J_per_K": {"value": 2.0, "unit": "J/K", "note": "Lumped heat capacity of cold plate + payload"},
+        "C_hot_J_per_K": {"value": 8.0, "unit": "J/K", "note": "Lumped heat capacity of hot plate"},
+        "hA_cold_W_per_K": {"value": 0.15, "unit": "W/K", "note": "Cold-side parasitic load conductance to ambient"},
+        "hA_hot_W_per_K": {"value": 2.0, "unit": "W/K", "note": "Hot-side heat-sink conductance to ambient (forced convection)"},
+        "T_ambient_K": {"value": 300.0, "unit": "K", "note": "Ambient temperature"},
+        "Q_load_W": {"value": 0.0, "unit": "W", "note": "Active thermal load applied to the cold plate"}
+    },
+    "valid_ranges": {
+        "T_cold_K": {"min": 200.0, "max": 320.0, "unit": "K"},
+        "T_hot_K": {"min": 280.0, "max": 400.0, "unit": "K"},
+        "I_A": {"min": 0.0, "max": 12.0, "unit": "A"},
+        "duration_s": {"min": 1.0, "max": 3600.0, "unit": "s"},
+        "Q_load_W": {"min": 0.0, "max": 50.0, "unit": "W"}
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "component": "EC159 Buck-Boost Converter",
+    "fidelity": "F1a",
+    "description": "Ideal gain model: V_out = D/(1-D) * V_in (inverting), efficiency eta=0.88 constant. Duty cycle D range [0.1, 0.9].",
+    "unit": {
+        "name": "Generic Buck-Boost Converter (Inverting)",
+        "source": "Erickson, R.W. & Maksimovic, D. (2001). Fundamentals of Power Electronics, 2nd ed. Springer; Kazimierczuk, M.K. (2015). Pulse-Width Modulated DC-DC Power Converters, 2nd ed. Wiley",
+        "eta":   {"value": 0.88, "unit": "dimensionless", "note": "Overall converter efficiency (lumped; includes switching and conduction losses)"},
+        "D_min": {"value": 0.1,  "unit": "dimensionless", "note": "Minimum duty cycle (practical lower bound)"},
+        "D_max": {"value": 0.9,  "unit": "dimensionless", "note": "Maximum duty cycle (practical upper bound)"},
+        "note_polarity": "Buck-boost output is inverted: V_out = -D/(1-D)*V_in for ideal inverting topology"
+    },
+    "valid_ranges": {
+        "v_in":  {"min": 1.0,  "max": 1000.0, "unit": "V"},
+        "D":     {"min": 0.1,  "max": 0.9,    "unit": "dimensionless"},
+        "P_out": {"min": 0.0,  "max": 1e6,    "unit": "W"}
+    }
+}

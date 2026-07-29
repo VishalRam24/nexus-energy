@@ -1,0 +1,59 @@
+{
+  "component": "EC031 Sodium-Ion Battery",
+  "fidelity": "F0a",
+  "description": "Empirical round-trip-efficiency curve vs C-rate (1-D lookup). Derived from the cell ohmic loss fraction I*R/V_nom; numbers reused from F1a.",
+  "source": "Tremblay & Dessaint (2009) framework adapted for Na-ion; CATL first-gen Na-ion data",
+  "cell": {
+    "name": "Sodium-Ion Battery",
+    "nominal_voltage": {
+      "value": 3.1,
+      "unit": "V",
+      "note": "reused from F1a"
+    },
+    "capacity": {
+      "value": 10.0,
+      "unit": "Ah",
+      "note": "reused from F1a"
+    },
+    "internal_resistance": {
+      "value": 0.05,
+      "unit": "Ohm",
+      "note": "DC resistance at 25C, reused from F1a"
+    }
+  },
+  "efficiency_curve": {
+    "description": "Round-trip efficiency tabulated over C-rate breakpoints; eta = (1-f)/(1+f), f = C*capacity*R/V_nom.",
+    "c_rate": {
+      "value": [
+        0.0,
+        0.05,
+        0.1,
+        0.2,
+        0.5,
+        1.0,
+        3.0
+      ],
+      "unit": "dimensionless"
+    },
+    "round_trip_efficiency": {
+      "value": [
+        1.0,
+        0.984,
+        0.96825,
+        0.9375,
+        0.85075,
+        0.72222,
+        0.34783
+      ],
+      "unit": "fraction (0-1)"
+    }
+  },
+  "valid_ranges": {
+    "c_rate": {
+      "min": 0.0,
+      "max": 3.0,
+      "unit": "dimensionless",
+      "note": "max continuous C-rate for this chemistry"
+    }
+  }
+}

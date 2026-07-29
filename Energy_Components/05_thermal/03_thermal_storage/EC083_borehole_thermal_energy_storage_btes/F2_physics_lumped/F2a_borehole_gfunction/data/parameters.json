@@ -1,0 +1,28 @@
+{
+    "component_id": "EC083",
+    "component_name": "Borehole Thermal Energy Storage (BTES)",
+    "fidelity": "F2a — Physics-Lumped Borehole Heat Exchanger + g-function Ground Coupling",
+    "source": "Eskilson (1987) Thermal Analysis of Heat Extraction Boreholes (PhD, Lund); Hellström (1991) Ground Heat Storage: Thermal Analyses of Duct Storage Systems (Lund); Claesson & Javed (2011) ASHRAE Trans. finite line source; Nordell (1994) Borehole Heat Store Design Optimization.",
+    "unit": {
+        "name": "Generic Seasonal BTES Field — Physics-Lumped (single equivalent borehole)",
+        "N_boreholes": {"value": 100, "unit": "-", "note": "Number of boreholes in the field"},
+        "H": {"value": 100.0, "unit": "m", "note": "Active borehole depth"},
+        "r_b": {"value": 0.057, "unit": "m", "note": "Borehole radius (Eskilson/Hellström reference 114 mm dia)"},
+        "B_spacing": {"value": 4.0, "unit": "m", "note": "Borehole-to-borehole spacing"},
+        "k_ground": {"value": 2.5, "unit": "W/(m.K)", "note": "Ground thermal conductivity (rock/saturated soil), Hellström (1991)"},
+        "rho_ground": {"value": 2500.0, "unit": "kg/m3", "note": "Ground density (rock/soil)"},
+        "cp_ground": {"value": 800.0, "unit": "J/(kg.K)", "note": "Ground specific heat"},
+        "R_b": {"value": 0.10, "unit": "(m.K)/W", "note": "Borehole thermal resistance fluid->wall, Hellström (1991) single-U-tube"},
+        "mdot": {"value": 0.5, "unit": "kg/s", "note": "Circulating fluid mass flow per borehole"},
+        "cp_fluid": {"value": 4180.0, "unit": "J/(kg.K)", "note": "Heat carrier fluid specific heat (water)"},
+        "T_ground_undisturbed": {"value": 10.0, "unit": "degC", "note": "Undisturbed/far-field ground temperature"},
+        "T_max": {"value": 90.0, "unit": "degC", "note": "Maximum allowed mean storage temperature"},
+        "V_store_factor": {"value": 0.785, "unit": "-", "note": "Storage-volume packing factor; V_store = factor * N * B^2 * H (cylinder-in-square)"}
+    },
+    "valid_ranges": {
+        "Q_fluid_W": {"min": -1500000.0, "max": 1500000.0, "unit": "W", "note": "Total field thermal power; + = charge (inject heat), - = discharge"},
+        "T_inlet_degC": {"min": 0.0, "max": 95.0, "unit": "degC"},
+        "duration_s": {"min": 3600.0, "max": 63072000.0, "unit": "s", "note": "up to ~2 years"},
+        "T_amb_degC": {"min": -10.0, "max": 30.0, "unit": "degC"}
+    }
+}

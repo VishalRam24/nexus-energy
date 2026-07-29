@@ -1,0 +1,30 @@
+{
+    "component": "EC201 Direct Air Capture (DAC) — Solid Sorbent",
+    "fidelity": "F1b",
+    "description": "Part-load + sorbent degradation model with humidity and temperature effects",
+    "unit": {
+        "name": "Generic Solid Sorbent DAC Unit",
+        "source": "Fasihi et al. (2019), J. Cleaner Production, 224, 957-980",
+        "q0": {"value": 1.5, "unit": "mmol_CO2/g_sorbent", "note": "Initial sorbent capacity"},
+        "sorbent_mass_kg": {"value": 10000.0, "unit": "kg"},
+        "T_desorption_degC": {"value": 100.0, "unit": "degC"},
+        "cycle_time_s": {"value": 3600.0, "unit": "s"},
+        "k_deg": {"value": 5e-5, "unit": "1/cycle", "note": "Sorbent degradation rate per cycle"},
+        "E_th_base": {"value": 1500.0, "unit": "kWh_th/tCO2"},
+        "E_el_base": {"value": 250.0, "unit": "kWh_e/tCO2"},
+        "capture_efficiency": {"value": 0.75, "unit": "dimensionless"},
+        "CO2_concentration_ppm": {"value": 415.0, "unit": "ppm_v"},
+        "rho_air": {"value": 1.225, "unit": "kg/m3"},
+        "CO2_molar_mass": {"value": 44.0, "unit": "g/mol"},
+        "air_molar_mass": {"value": 29.0, "unit": "g/mol"},
+        "cp_sorbent": {"value": 1.0, "unit": "kJ/(kg*K)", "note": "Specific heat of sorbent"},
+        "humidity_capacity_coeffs": {"value": [0.6, 0.8, -0.4], "unit": "dimensionless", "note": "q_factor = a + b*RH + c*RH^2"}
+    },
+    "valid_ranges": {
+        "air_flow_m3_s": {"min": 1.0, "max": 100.0, "unit": "m3/s"},
+        "T_ambient_degC": {"min": -10.0, "max": 45.0, "unit": "degC"},
+        "relative_humidity": {"min": 0.2, "max": 0.8, "unit": "dimensionless"},
+        "PLR": {"min": 0.3, "max": 1.0, "unit": "dimensionless"},
+        "n_cycles": {"min": 0, "max": 100000, "unit": "cycles"}
+    }
+}

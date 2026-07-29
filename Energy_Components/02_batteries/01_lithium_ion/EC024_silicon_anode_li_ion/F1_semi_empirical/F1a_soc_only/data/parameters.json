@@ -1,0 +1,10 @@
+{
+  "default_parameters": {
+    "Q_nom": 4.0,
+    "R_int": 0.050,
+    "V_min": 2.8,
+    "V_max": 4.2,
+    "ocv_coeffs": [4.2, -1.0, 0.6, -0.3, 0.15]
+  },
+  "description": "Silicon-anode Li-ion SOC-only model. Q_nom=4.0 Ah (high capacity due to Si anode ~3590 mAh/g). R_int=50 mOhm. V range 2.8-4.2 V."
+}

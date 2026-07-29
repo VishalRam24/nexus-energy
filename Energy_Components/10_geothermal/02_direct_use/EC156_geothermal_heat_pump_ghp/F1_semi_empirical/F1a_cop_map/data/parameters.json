@@ -1,0 +1,19 @@
+{
+    "component": "EC156 Geothermal Heat Pump (GHP)",
+    "fidelity": "F1a",
+    "description": "COP map model for ground-coupled heat pump — stable ground temperature gives better COP than ASHP",
+    "unit": {
+        "name": "Generic Ground-Coupled Heat Pump (Closed Loop)",
+        "source": "Staffell et al. (2012). Energy Environ. Sci., 5, 9291-9306. ASHRAE (2011). Geothermal Heating and Cooling Applications.",
+        "rated_capacity": {"value": 10.0, "unit": "kW_th", "note": "Thermal capacity at rated conditions"},
+        "carnot_fraction": {"value": 0.55, "unit": "dimensionless", "note": "GHP Carnot fraction 0.50-0.60; higher than ASHP (0.40-0.50) due to stable ground source"},
+        "auxiliary_power": {"value": 0.1, "unit": "kW", "note": "Circulation pump and auxiliary power"},
+        "T_ground_nominal": {"value": 12.0, "unit": "degC", "note": "Mean annual ground temperature (stable year-round, 10-15°C typical)"},
+        "ground_loop_offset": {"value": 3.0, "unit": "degC", "note": "Ground loop fluid temperature offset from undisturbed ground T (heating: T_src = T_ground - offset)"}
+    },
+    "valid_ranges": {
+        "T_source": {"min": 0.0, "max": 25.0, "unit": "degC", "note": "Ground loop fluid temperature (stable, narrow range vs ASHP)"},
+        "T_sink": {"min": 25.0, "max": 65.0, "unit": "degC"},
+        "part_load_ratio": {"min": 0.0, "max": 1.0, "unit": "dimensionless"}
+    }
+}

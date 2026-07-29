@@ -1,0 +1,27 @@
+{
+    "component_id": "EC062",
+    "component_name": "Horizontal Axis Wind Turbine (HAWT) Onshore",
+    "fidelity": "F2a -- Blade Element Momentum (BEM) Steady-State",
+    "source": "Burton et al. (2011) Wind Energy Handbook; Hansen (2015) Aerodynamics of Wind Turbines",
+    "turbine": {
+        "name": "Generic 3MW Onshore HAWT (IEC Class II)",
+        "N_blades": {"value": 3, "unit": "-"},
+        "R": {"value": 56.0, "unit": "m", "note": "Rotor radius"},
+        "hub_height": {"value": 80.0, "unit": "m"},
+        "N_elements": {"value": 20, "unit": "-"},
+        "rho_air": {"value": 1.225, "unit": "kg/m3"},
+        "rated_power": {"value": 3000.0, "unit": "kW"},
+        "rated_wind": {"value": 12.0, "unit": "m/s"},
+        "cut_in": {"value": 3.5, "unit": "m/s"},
+        "cut_out": {"value": 25.0, "unit": "m/s"},
+        "tip_speed_ratio_design": {"value": 7.0, "unit": "-"},
+        "chord_root": {"value": 3.5, "unit": "m"},
+        "chord_tip": {"value": 1.0, "unit": "m"},
+        "twist_root": {"value": 15.0, "unit": "deg"},
+        "twist_tip": {"value": 0.0, "unit": "deg"}
+    },
+    "airfoil": {
+        "name": "Simplified NACA 4412",
+        "note": "Linearized Cl/Cd tables used internally"
+    }
+}

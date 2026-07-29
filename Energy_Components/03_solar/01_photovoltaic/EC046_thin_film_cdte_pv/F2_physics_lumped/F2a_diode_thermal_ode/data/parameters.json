@@ -1,0 +1,63 @@
+{
+    "component": "EC046 Thin-Film CdTe PV",
+    "fidelity": "F2a — Physics-Lumped Single-Diode + Lumped Thermal ODE",
+    "description": "De Soto 5-parameter single-diode model solved analytically via Lambert-W (with Newton root-find fallback) for the full I-V/P-V curve, coupled to a 0D lumped-capacitance thermal ODE (scipy.solve_ivp). Adds CdTe spectral response and an empirically-corrected, low temperature coefficient. Preserves the F1b CdTe tempco correction factor 0.578.",
+    "source": "De Soto, Klein & Beckman (2006) Solar Energy 80(1) 78-88; Jain & Kapoor (2004) Sol. Energy Mater. Sol. Cells 81 269-277 (Lambert-W I-V); Faiman (2008) Prog. Photovolt. 16(4) 307-315 (thermal); Strevel, Trippel & Gloeckler (2012) Prog. Photovolt. 20(1) 6-11 (CdTe field tempco); Nann & Emery (1992) Sol. Energy Mater. Sol. Cells 27 189-216 (spectral); First Solar Series 6 datasheet (2019)",
+    "module": {
+        "name": "First Solar Series 6 (CdTe, ~445W)",
+        "technology": "CdTe",
+        "p_mp_stc": {"value": 445.0, "unit": "W", "note": "Nameplate at STC"},
+        "v_oc_stc": {"value": 218.5, "unit": "V"},
+        "i_sc_stc": {"value": 2.66, "unit": "A"},
+        "v_mp_stc": {"value": 184.6, "unit": "V"},
+        "i_mp_stc": {"value": 2.41, "unit": "A"},
+        "alpha_sc": {"value": 0.0011, "unit": "A/K", "note": "Isc temp coeff (~0.04 %/K)"},
+        "gamma_pmp": {"value": -0.0028, "unit": "1/K", "note": "Measured CdTe Pmp tempco -0.28 %/K — far lower than c-Si (~-0.40 %/K), key CdTe advantage in hot climates"},
+        "cells_in_series": {"value": 264, "unit": "cells"},
+        "area": {"value": 2.475, "unit": "m2", "note": "Series 6 aperture area"},
+        "NOCT": {"value": 45.0, "unit": "degC", "note": "Nominal operating cell temperature"},
+        "T_NOCT_amb": {"value": 20.0, "unit": "degC"},
+        "G_NOCT": {"value": 800.0, "unit": "W/m2"}
+    },
+    "desoto_params": {
+        "description": "De Soto 5-parameter single-diode coefficients at STC (1000 W/m2, 25 C, AM1.5G)",
+        "source": "Fitted from First Solar Series 6 datasheet specs",
+        "I_L_ref": {"value": 2.66, "unit": "A", "note": "Light-generated current at STC"},
+        "I_o_ref": {"value": 2.0e-12, "unit": "A", "note": "Diode saturation current at STC (low: wide 1.45 eV bandgap)"},
+        "R_s": {"value": 4.5, "unit": "Ohm", "note": "Series resistance (module)"},
+        "R_sh_ref": {"value": 1500.0, "unit": "Ohm", "note": "Shunt resistance at STC"},
+        "a_ref": {"value": 7.5, "unit": "V", "note": "Modified ideality factor n*Ns*k*T/q at STC"},
+        "EgRef": {"value": 1.45, "unit": "eV", "note": "CdTe bandgap at STC"},
+        "dEgdT": {"value": -0.0003, "unit": "eV/K", "note": "Bandgap temperature coefficient"}
+    },
+    "tempco_correction": {
+        "description": "CdTe-specific empirical Pmp tempco correction (preserved from F1b). De Soto I_o scaling over-predicts CdTe thermal sensitivity (-0.485 %/K) vs measured -0.28 %/K because CdTe's near-optimal 1.45 eV bandgap suppresses sub-bandgap thermal excitation present in Si (1.12 eV).",
+        "gamma_pmp_desoto_approx": {"value": -0.00485, "unit": "1/K", "note": "Tempco of bare De Soto model (numerically differentiated dPmp/dT at STC)"},
+        "gamma_pmp_empirical": {"value": -0.0028, "unit": "1/K", "note": "Measured CdTe tempco, First Solar datasheet"},
+        "correction_factor": {"value": 0.578, "unit": "dimensionless", "note": "alpha_corr = |gamma_empirical/gamma_desoto| = 0.0028/0.00485 = 0.578. CdTe-ONLY — never apply to Si. Validated vs Strevel et al. (2012) DOI:10.1002/pip.1209."}
+    },
+    "spectral": {
+        "description": "CdTe spectral / low-light response. Effective irradiance gain relative to the broadband sensor varies with air mass; CdTe's blue-rich response slightly favours high-AM (cloudy/morning) spectra, giving better real-world energy yield than its STC rating suggests.",
+        "source": "Nann & Emery (1992); Huld & Amillo (2015) Energies 8 5159-5181 (CdTe outdoor spectral gain)",
+        "M_low_light_gain": {"value": 0.03, "unit": "dimensionless", "note": "Peak fractional efficiency uplift at very low irradiance (200 W/m2) from reduced relative Rsh/series losses and favourable diffuse spectrum (CdTe field range 1-3%). Applied with a quadratic ramp so it is concentrated at genuinely low light and decays to ~0 by mid-range."},
+        "AM_ref": {"value": 1.5, "unit": "dimensionless", "note": "Reference air mass for spectral mismatch M=1"}
+    },
+    "thermal": {
+        "description": "0D lumped-capacitance thermal ODE: C_th dT/dt = alpha*G*A - (1-eta_el)... net = Q_abs - P_elec - Q_conv - Q_rad.",
+        "source": "Faiman (2008); Jones & Underwood (2001) Sol. Energy 70(4) 349-359 (PV thermal capacitance)",
+        "C_thermal": {"value": 21000.0, "unit": "J/K", "note": "Module lumped heat capacity (~8.5 kJ/(m2.K) glass-glass laminate x 2.475 m2)"},
+        "alpha_abs": {"value": 0.90, "unit": "dimensionless", "note": "Solar absorptance of module front surface"},
+        "U_const": {"value": 25.0, "unit": "W/(m2.K)", "note": "Faiman U0 constant wind-independent heat-loss coefficient"},
+        "U_wind": {"value": 6.84, "unit": "W*s/(m3.K)", "note": "Faiman U1 wind-dependent heat-loss coefficient"},
+        "epsilon": {"value": 0.85, "unit": "dimensionless", "note": "Long-wave emissivity (glass front)"},
+        "default_wind": {"value": 1.0, "unit": "m/s"}
+    },
+    "valid_ranges": {
+        "irradiance": {"min": 0.0, "max": 1200.0, "unit": "W/m2"},
+        "T_ambient": {"min": -20.0, "max": 50.0, "unit": "degC"},
+        "cell_temperature": {"min": -20.0, "max": 90.0, "unit": "degC"},
+        "wind_speed": {"min": 0.0, "max": 25.0, "unit": "m/s"},
+        "duration_s": {"min": 1.0, "max": 86400.0, "unit": "s"},
+        "note": "STC = 1000 W/m2, 25 C cell temperature, AM1.5G"
+    }
+}

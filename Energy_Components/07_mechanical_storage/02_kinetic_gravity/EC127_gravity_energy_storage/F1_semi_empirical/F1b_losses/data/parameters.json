@@ -1,0 +1,30 @@
+{
+    "component": "EC127 Gravity Energy Storage",
+    "fidelity": "F1b",
+    "description": "Extends F1a with speed-dependent mechanical losses (friction, drivetrain) and partial-load motor/generator efficiency curves",
+    "source": "Botha & Kamper (2019), J. Energy Storage, 23, 159-174; Berrada et al. (2017), Energy Conversion and Management, 137, 191-200; Pyrhonen et al. (2013), Design of Rotating Electrical Machines",
+    "unit": {
+        "name": "Generic Solid-Mass Gravity Storage (e.g., Energy Vault / mineshaft)",
+        "source": "Botha & Kamper (2019); Berrada et al. (2017)",
+        "mass_kg": {"value": 1.0e7, "unit": "kg"},
+        "h_max_m": {"value": 500.0, "unit": "m"},
+        "h_min_m": {"value": 0.0, "unit": "m"},
+        "g": {"value": 9.81, "unit": "m/s2"},
+        "P_rated_kw": {"value": 5000.0, "unit": "kW"},
+        "eta_motor_rated": {"value": 0.96, "unit": "dimensionless", "note": "Full-load motor efficiency"},
+        "eta_gen_rated": {"value": 0.96, "unit": "dimensionless", "note": "Full-load generator efficiency"},
+        "eta_drive_rated": {"value": 0.95, "unit": "dimensionless", "note": "Full-load drivetrain efficiency"},
+        "motor_gen_plf_exp": {"value": 2.0, "unit": "dimensionless", "note": "Part-load exponent n: eta_mg(PLF) = 1 - (1-eta_rated)*(1 + (PLF-1)^n); n=2 typical induction motor"},
+        "friction_coeff": {"value": 0.002, "unit": "dimensionless", "note": "Coulomb friction coefficient at guide surfaces"},
+        "cable_drag_k": {"value": 0.5, "unit": "W/(m/s)^2", "note": "Aerodynamic drag coefficient of cable/mass: P_drag = k * v^2"},
+        "bearing_loss_frac": {"value": 0.005, "unit": "dimensionless", "note": "Bearing/seal loss as fraction of instantaneous mechanical power"},
+        "v_max_mps": {"value": 3.0, "unit": "m/s", "note": "Maximum lift/lower speed"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "-"},
+        "velocity_mps": {"min": 0.0, "max": 3.0, "unit": "m/s"},
+        "plf": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "power_command_kw": {"min": -5000.0, "max": 5000.0, "unit": "kW"},
+        "mode": {"values": ["charge", "discharge", "idle"]}
+    }
+}

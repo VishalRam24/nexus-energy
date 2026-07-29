@@ -1,0 +1,41 @@
+{
+    "component": "EC035 Sodium-Sulfur (NaS) Battery",
+    "fidelity": "F1b",
+    "description": "SOC-thermal voltage model for high-temperature NaS cell. Cell is ONLY functional in 300-350 degC window. Thermal model maintains operating temperature.",
+    "cell": {
+        "name": "Generic high-temperature NaS cell (NGK PS-class T~320 C)",
+        "source": "Wen, Z. et al. (2008), Mater. Sci. Eng. B 154-155, 73; NGK Insulators NAS battery technical brochure",
+        "nominal_voltage": {"value": 2.0, "unit": "V"},
+        "capacity_ref": {"value": 100.0, "unit": "Ah", "note": "Nominal capacity at T_op_ref (593.15 K = 320 degC)"},
+        "voltage_max": {"value": 2.08, "unit": "V"},
+        "voltage_min": {"value": 1.78, "unit": "V"},
+        "R_ref": {"value": 0.005, "unit": "Ohm", "note": "Approximate DC resistance per cell at T_op_ref (320 C, 50% SOC)"}
+    },
+    "ocv_coefficients": {
+        "description": "OCV(SOC) = a0 + a1*SOC + a2*SOC^2 + a3*SOC^3 + a4*SOC^4 + a5*SOC^5",
+        "source": "Polynomial fit to representative NaS discharge curve (two-plateau, 1.78-2.08 V)",
+        "a0": 1.7793531468531478,
+        "a1": 0.6101194638694872,
+        "a2": -2.45651223776239,
+        "a3": 7.180215617716007,
+        "a4": -8.078379953380372,
+        "a5": 3.044871794871948
+    },
+    "thermal": {
+        "T_op_ref": {"value": 593.15, "unit": "K", "note": "Nominal operating temperature reference (320 degC)"},
+        "T_op_min": {"value": 573.15, "unit": "K", "note": "Minimum operating temperature (300 degC); below this Na and S solidify"},
+        "T_op_max": {"value": 623.15, "unit": "K", "note": "Maximum operating temperature (350 degC); above this risk of thermal runaway"},
+        "E_a": {"value": 12000, "unit": "J/mol", "note": "Activation energy for beta-alumina ionic conductivity within the 300-350C window; conductivity varies ~10% over this range",
+                "source": "Sudworth & Tilley (1985), The Sodium Sulfur Battery; Wen et al. (2008)"},
+        "alpha_c": {"value": 0.001, "unit": "1/K", "note": "Small capacity temperature coefficient within 300-350C operating window",
+                    "source": "NGK NAS brochure; Wen et al. (2008)"},
+        "dOCV_dT": {"value": -0.0003, "unit": "V/K", "note": "Entropic coefficient for NaS within operating window; small due to molten electrode",
+                    "source": "Sudworth & Tilley (1985), The Sodium Sulfur Battery, ch. 3"},
+        "R_gas": {"value": 8.314, "unit": "J/(mol*K)", "note": "Universal gas constant"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "current": {"min": -200.0, "max": 200.0, "unit": "A", "note": "Negative=charge, Positive=discharge"},
+        "temperature": {"min": 573.15, "max": 623.15, "unit": "K", "note": "300 to 350 degC; OUTSIDE THIS RANGE CELL IS NON-FUNCTIONAL"}
+    }
+}

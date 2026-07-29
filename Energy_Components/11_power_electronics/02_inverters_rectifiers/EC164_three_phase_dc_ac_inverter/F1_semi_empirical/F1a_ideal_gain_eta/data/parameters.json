@@ -1,0 +1,52 @@
+{
+  "component_id": "EC164",
+  "component_name": "Three-Phase DC-AC Inverter",
+  "fidelity": "F1a — Ideal Gain + Part-Load Efficiency",
+  "source": "Mohan, Undeland & Robbins (2003), Power Electronics, 3rd ed. Wiley; IEC 61683 / EN 50530",
+  "default_parameters": {
+    "V_dc_rated": 800.0,
+    "P_rated": 100000.0,
+    "eta_rated": 0.98,
+    "k1": 0.02,
+    "k2": 0.005,
+    "f_sw": 10000.0
+  },
+  "parameter_metadata": {
+    "V_dc_rated": {
+      "description": "Rated DC bus voltage",
+      "unit": "V",
+      "default": 800.0,
+      "notes": "Typical HV battery/DC bus for 100 kW system"
+    },
+    "P_rated": {
+      "description": "Rated output power",
+      "unit": "W",
+      "default": 100000.0,
+      "notes": "100 kW rated power"
+    },
+    "eta_rated": {
+      "description": "Efficiency at rated (full) load",
+      "unit": "-",
+      "default": 0.98,
+      "notes": "0.98 typical for modern IGBT-based 100 kW inverter"
+    },
+    "k1": {
+      "description": "First-order part-load efficiency loss coefficient",
+      "unit": "-",
+      "default": 0.02,
+      "notes": "Fitted to typical 100 kW IGBT inverter datasheets"
+    },
+    "k2": {
+      "description": "Second-order part-load efficiency loss coefficient",
+      "unit": "-",
+      "default": 0.005,
+      "notes": "Small second-order term for curvature at very low load"
+    },
+    "f_sw": {
+      "description": "Switching frequency",
+      "unit": "Hz",
+      "default": 10000.0,
+      "notes": "10 kHz — typical IGBT switching frequency; metadata only"
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "model": "roundtrip_efficiency_curve",
+  "V_nominal": {
+    "value": 1.28,
+    "unit": "V",
+    "note": "cell nominal voltage"
+  },
+  "R_series": {
+    "value": 0.1,
+    "unit": "Ohm",
+    "note": "ohmic series resistance"
+  },
+  "Q_nominal": {
+    "value": 4.0,
+    "unit": "Ah"
+  },
+  "c_rate_breakpoints": {
+    "value": [
+      0.0,
+      0.1,
+      0.2,
+      0.5,
+      1.0,
+      2.0,
+      5.0
+    ],
+    "unit": "1/h",
+    "note": "discharge/charge C-rate breakpoints"
+  },
+  "roundtrip_efficiency": {
+    "value": [
+      0.5317,
+      0.5,
+      0.4696,
+      0.3884,
+      0.2788,
+      0.1228,
+      0.01
+    ],
+    "unit": "fraction",
+    "note": "DC round-trip efficiency at each C-rate"
+  },
+  "eta_rated": {
+    "value": 0.5,
+    "unit": "fraction",
+    "note": "literature rated round-trip eff at C=0.1"
+  },
+  "c_rated": {
+    "value": 0.1,
+    "unit": "1/h"
+  },
+  "source": "EC033 F1a (V_nom=1.28 V, R_int=100 mOhm, Q_nom=4.0 Ah); Fe+O2->Fe2O3. Round-trip eff ~40-55% (Weber et al., J. Appl. Electrochem. 2011)."
+}

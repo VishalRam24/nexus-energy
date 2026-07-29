@@ -1,0 +1,30 @@
+{
+    "component": "EC049 Multi-Junction Concentrator PV",
+    "fidelity": "F1b",
+    "description": "Two-diode model with concentration-ratio scaling and CPV thermal model. Based on GaInP/GaInAs/Ge triple-junction architecture at 500x concentration.",
+    "module": {
+        "name": "Spectrolab C3MJ+ 500x CPV (Two-Diode Parametrisation)",
+        "source": "Araki & Yamaguchi (2003) Solar Energy Mater.; King et al. (2012) Prog. Photovolt.; Cotal et al. (2009) Energy Environ. Sci.",
+        "technology": "III-V triple-junction (GaInP/GaInAs/Ge), 500x Fresnel lens CPV",
+        "cells_in_series": {"value": 1, "unit": "cells", "note": "Single triple-junction cell; module has multiple cells"},
+        "lens_area": {"value": 0.0004, "unit": "m2", "note": "Primary Fresnel lens area per cell, ~20x20mm"},
+        "I_ph_ref": {"value": 0.0167, "unit": "A", "note": "1-sun photocurrent at STC (top sub-cell limited ~16.7 mA/cm2 for 1cm2 cell)"},
+        "I_01": {"value": 2.0e-25, "unit": "A", "note": "Diffusion saturation current (n1=1); low for III-V due to high material quality"},
+        "I_02": {"value": 1.5e-14, "unit": "A", "note": "Recombination saturation current (n2=2)"},
+        "n1": {"value": 1.0, "unit": "dimensionless"},
+        "n2": {"value": 2.0, "unit": "dimensionless"},
+        "Rs": {"value": 0.05, "unit": "Ohm", "note": "Series resistance (low for concentrated cells; high current)"},
+        "Rsh_ref": {"value": 2000.0, "unit": "Ohm", "note": "Shunt resistance at 1-sun; scales with 1/C at concentration"},
+        "T_ref": {"value": 25.0, "unit": "degC"},
+        "alpha_sc": {"value": 0.0000167, "unit": "A/K", "note": "Short-circuit current temperature coefficient at 1-sun (~+0.1%/K per sub-cell)"},
+        "Eg_eff": {"value": 1.40, "unit": "eV", "note": "Effective bandgap for I_o temperature scaling; approximate for triple junction"},
+        "optical_efficiency": {"value": 0.85, "unit": "dimensionless", "note": "Fresnel lens + secondary optics transmission"},
+        "NOCT_cpv": {"value": 52.0, "unit": "degC", "note": "Nominal Operating Cell Temperature at C_noct concentration"},
+        "C_noct": {"value": 500.0, "unit": "suns", "note": "Concentration at which NOCT is measured"}
+    },
+    "valid_ranges": {
+        "dni": {"min": 0.0, "max": 1100.0, "unit": "W/m2", "note": "Direct Normal Irradiance on primary optics"},
+        "T_ambient": {"min": -10.0, "max": 50.0, "unit": "degC"},
+        "note": "STC = 1000 W/m2 DNI, 25C, AM1.5D spectrum"
+    }
+}

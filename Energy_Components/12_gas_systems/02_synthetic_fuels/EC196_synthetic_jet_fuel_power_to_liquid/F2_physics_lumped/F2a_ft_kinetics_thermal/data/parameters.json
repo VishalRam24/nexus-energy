@@ -1,0 +1,49 @@
+{
+    "component_id": "EC196",
+    "component_name": "Synthetic Jet Fuel (Power-to-Liquid)",
+    "fidelity": "F2a — FT Chain-Growth Kinetics + Lumped Reactor Thermal ODE",
+    "description": "Physics-lumped Fischer-Tropsch (Co/Al2O3 LTFT) reactor for Power-to-Liquid synthetic kerosene. Langmuir-Hinshelwood CO-consumption kinetics, Anderson-Schulz-Flory chain-growth tuned for jet-range (C8-C16) selectivity, wax hydrocracking to the jet cut, and a lumped exothermic reactor energy balance integrated with scipy.solve_ivp. Reports jet-fuel yield/selectivity, CO conversion, reactor temperature, and overall power-to-liquid efficiency including the electrolysis/RWGS upstream context.",
+    "source": "Schmidt et al. (2018) 'Power-to-Liquids as Renewable Fuel Option for Aviation', Chem. Ing. Tech. 90(1-2), 127-140; De Klerk, A. (2011) 'Fischer-Tropsch Refining', Wiley-VCH; Dry, M.E. (2002) Catalysis Today 71, 227-241; Yates & Satterfield (1991) Energy & Fuels 5, 168-173; Anderson (1956); Schulz (1999) Appl. Catal. A 186, 3-12.",
+    "unit": {
+        "name": "Generic LTFT Co/Al2O3 Slurry Reactor for PtL Jet Fuel, 200-230 degC, 20-30 bar",
+
+        "T_opt":             {"value": 220.0,   "unit": "degC",      "note": "Optimal LTFT reactor temperature (Co catalyst 200-230 C, Dry 2002)"},
+        "P_ref":             {"value": 25.0,    "unit": "bar",       "note": "Reference operating pressure (typical LTFT)"},
+
+        "k0_FT":             {"value": 2.71e7,  "unit": "mol/(s.bar.kg_cat)", "note": "Arrhenius pre-exponential for Yates-Satterfield LH FT CO-consumption rate, calibrated so per-pass X_CO~0.8 at T_opt design point (Yates & Satterfield 1991; Dry 2002)"},
+        "Ea_FT":             {"value": 95000.0, "unit": "J/mol",     "note": "FT apparent activation energy (Co catalyst ~80-110 kJ/mol, Yates & Satterfield 1991)"},
+        "K_ads":             {"value": 3.3,     "unit": "1/bar",     "note": "Yates-Satterfield CO adsorption constant a/b in r=a*P_H2*P_CO/(1+b*P_CO)^2"},
+        "m_cat":             {"value": 2000.0,  "unit": "kg",        "note": "Catalyst loading in lumped slurry reactor"},
+
+        "alpha_ASF":         {"value": 0.90,    "unit": "-",         "note": "ASF chain-growth probability at T_opt (LTFT Co: 0.85-0.92, high C5+)"},
+        "dalpha_dT":         {"value": -0.0015, "unit": "1/degC",    "note": "Chain-growth probability decreases with temperature (HTFT lowers alpha, Dry 2002)"},
+        "wax_to_jet_frac":   {"value": 0.65,    "unit": "-",         "note": "Fraction of C16+ wax recovered into jet cut by mild hydrocracking (De Klerk 2011: hydrocracker jet yield ~0.6-0.8)"},
+
+        "n_CO_in":           {"value": 1.0,     "unit": "mol/s",     "note": "Default CO feed rate to FT reactor"},
+        "H2_CO_ratio":       {"value": 2.1,     "unit": "mol/mol",   "note": "H2/CO syngas ratio (stoichiometric FT ~2.0-2.15)"},
+        "P_CO":              {"value": 8.0,     "unit": "bar",       "note": "CO partial pressure at reactor inlet"},
+        "P_H2":              {"value": 16.0,    "unit": "bar",       "note": "H2 partial pressure at reactor inlet (~2.1x CO)"},
+
+        "LHV_FT_kJ_mol":     {"value": 7800.0,  "unit": "kJ/mol",    "note": "LHV per mol C12 surrogate jet fuel (~44 MJ/kg)"},
+        "MW_jet":            {"value": 170.0,   "unit": "g/mol",     "note": "Molar mass of C12 surrogate jet fuel (kerosene avg)"},
+        "C_per_jet":         {"value": 12.0,    "unit": "-",         "note": "Carbon atoms per jet-fuel surrogate molecule (C12)"},
+        "LHV_H2":            {"value": 241.8,   "unit": "kJ/mol",    "note": "LHV of H2"},
+        "LHV_CO":            {"value": 283.0,   "unit": "kJ/mol",    "note": "LHV of CO (combustion to CO2)"},
+        "eta_electrolysis":  {"value": 0.70,    "unit": "-",         "note": "PEM electrolysis LHV efficiency for upstream H2 (Schmidt 2018)"},
+        "eta_rwgs":          {"value": 0.92,    "unit": "-",         "note": "Reverse water-gas-shift energy retention CO2->CO (Schmidt 2018)"},
+
+        "DH_reaction":       {"value": -165.0,  "unit": "kJ/mol_CO", "note": "FT exotherm per mol CO converted (Dry 2002, Table 1)"},
+        "m_reactor":         {"value": 8000.0,  "unit": "kg",        "note": "Lumped thermal mass of slurry reactor + inventory"},
+        "cp_reactor":        {"value": 2100.0,  "unit": "J/(kg.K)",  "note": "Effective specific heat of slurry (paraffin wax/oil dominated)"},
+        "UA_cool":           {"value": 9000.0,  "unit": "W/K",       "note": "Overall cooling coefficient * area (steam-raising coils)"},
+        "T_coolant":         {"value": 215.0,   "unit": "degC",      "note": "Boiling-water cooling temperature (saturated steam coils)"}
+    },
+    "valid_ranges": {
+        "temperature_C":   {"min": 150.0, "max": 300.0, "unit": "degC"},
+        "pressure_bar":    {"min": 10.0,  "max": 50.0,  "unit": "bar"},
+        "H2_CO_ratio":     {"min": 1.5,   "max": 3.0,   "unit": "mol/mol"},
+        "n_CO_in":         {"min": 0.01,  "max": 100.0, "unit": "mol/s"},
+        "dt":              {"min": 1.0,   "max": 60.0,  "unit": "s"},
+        "duration_s":      {"min": 60.0,  "max": 36000.0, "unit": "s"}
+    }
+}

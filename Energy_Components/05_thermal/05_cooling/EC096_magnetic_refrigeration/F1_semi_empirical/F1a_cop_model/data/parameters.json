@@ -1,0 +1,10 @@
+{
+  "default_parameters": {
+    "eta_2nd": 0.4,
+    "delta_T_MCE": 3.0,
+    "N_stages": 6,
+    "T_cold_K": 273.15,
+    "T_hot_K": 298.15
+  },
+  "description": "Magnetic refrigeration F1a: COP=eta_2nd*T_cold/(T_hot-T_cold), Q_cool=COP*W_input. eta_2nd=0.4, delta_T_MCE=3K, N_stages=6."
+}

@@ -1,0 +1,21 @@
+{
+    "component": "EC165 Multilevel Inverter (3-Level NPC)",
+    "fidelity": "F1a",
+    "description": "V_ac = ma * V_dc / 2 (NPC 3-level); THD reduced; fixed efficiency eta",
+    "unit": {
+        "name": "Generic 3-Level NPC Inverter",
+        "source": "Rodriguez, J., Lai, J.S., & Peng, F.Z. (2002). IEEE Trans. Ind. Electron., 49(4), 724-738.",
+        "eta": {"value": 0.97, "unit": "dimensionless", "note": "Fixed efficiency (multilevel reduces switching losses)"},
+        "p_rated": {"value": 100000.0, "unit": "W", "note": "100 kW rated"},
+        "v_dc_nominal": {"value": 800.0, "unit": "V", "note": "DC bus voltage (split: +400V, 0, -400V)"},
+        "v_ac_nominal": {"value": 400.0, "unit": "V", "note": "AC line voltage (rms)"},
+        "ma_nominal": {"value": 1.0, "unit": "dimensionless", "note": "Modulation index at rated output"},
+        "n_levels": {"value": 3, "unit": "dimensionless", "note": "3-level NPC"},
+        "f_out": {"value": 50.0, "unit": "Hz", "note": "Output frequency"}
+    },
+    "valid_ranges": {
+        "v_dc": {"min": 400.0, "max": 1200.0, "unit": "V"},
+        "ma": {"min": 0.0, "max": 1.15, "unit": "dimensionless", "note": "Overmodulation up to 1.15"},
+        "p_in": {"min": 0.0, "max": 120000.0, "unit": "W"}
+    }
+}

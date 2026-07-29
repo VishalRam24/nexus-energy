@@ -1,0 +1,31 @@
+{
+    "component": "EC202 Direct Air Capture — Liquid Solvent (KOH/Ca(OH)2)",
+    "fidelity": "F1b",
+    "description": "Part-load + solvent degradation model for liquid-solvent DAC (Carbon Engineering style)",
+    "unit": {
+        "name": "1 MtCO2/yr Reference Plant Module",
+        "source": "Keith et al. (2018) Joule 2(8) 1573-1594; McQueen et al. (2021) Progress in Energy 3(3)",
+        "Q_calciner_base": {"value": 8.0, "unit": "GJ/tCO2", "note": "Base calciner thermal duty at design (Keith 2018: ~7-9 GJ/tCO2)"},
+        "E_el_base": {"value": 366.0, "unit": "kWh_e/tCO2", "note": "Base electrical (Keith 2018 Table S1: ~366 kWh/tCO2)"},
+        "T_calciner_ref": {"value": 900.0, "unit": "degC", "note": "Reference calciner temperature for CaCO3 decomposition"},
+        "alpha_calciner": {"value": 0.3, "unit": "dimensionless", "note": "Temperature sensitivity: 10% lower T -> ~3% higher duty"},
+        "k_cap_koh": {"value": 25.0, "unit": "mol_CO2/(m2*h)", "note": "KOH absorber capacity per unit area at design"},
+        "area_contactor_m2": {"value": 1000.0, "unit": "m2", "note": "Single air contactor cross-sectional area"},
+        "n_contactors": {"value": 40, "unit": "count", "note": "Number of air contactors in plant"},
+        "capture_efficiency": {"value": 0.75, "unit": "dimensionless", "note": "Single-pass CO2 capture efficiency (75%)"},
+        "CO2_concentration_ppm": {"value": 420.0, "unit": "ppm_v", "note": "Atmospheric CO2 concentration"},
+        "rho_air": {"value": 1.204, "unit": "kg/m3"},
+        "CO2_molar_mass": {"value": 44.01, "unit": "g/mol"},
+        "air_molar_mass": {"value": 28.97, "unit": "g/mol"},
+        "k_deg": {"value": 0.05, "unit": "1/year", "note": "KOH capacity loss rate due to K2CO3 build-up (~5%/yr)"},
+        "E_liq_coeff": {"value": 0.25, "unit": "GJ/tCO2", "note": "Compression energy coefficient: E = coeff*ln(P/P_atm)"},
+        "P_atm": {"value": 1.01325, "unit": "bar"}
+    },
+    "valid_ranges": {
+        "air_flow_m3h": {"min": 1e5, "max": 1e8, "unit": "m3/h"},
+        "T_calciner_degC": {"min": 750.0, "max": 950.0, "unit": "degC"},
+        "plr": {"min": 0.2, "max": 1.0, "unit": "dimensionless"},
+        "operating_hours": {"min": 0.0, "max": 87600.0, "unit": "hours"},
+        "injection_pressure_bar": {"min": 1.0, "max": 300.0, "unit": "bar"}
+    }
+}

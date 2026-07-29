@@ -1,0 +1,56 @@
+{
+    "component": "EC188 Superconducting Magnetic Energy Storage (SMES)",
+    "fidelity": "F0a",
+    "description": "Empirical round-trip-efficiency lookup (eta_conv^2) + E=0.5*L*I^2 energy; cryo standby loss",
+    "source": "Buckles & Hassenzahl (2000), IEEE Power Eng. Rev. 20(5):16-20; Kalsi (2011), Wiley (reused from F1a)",
+    "L_H": {
+        "value": 10.0,
+        "unit": "H",
+        "note": "coil inductance (reused from F1a)"
+    },
+    "I_max_A": {
+        "value": 1414.0,
+        "unit": "A",
+        "note": "max coil current (reused from F1a)"
+    },
+    "P_rated_MW": {
+        "value": 10.0,
+        "unit": "MW"
+    },
+    "P_cryo_MW": {
+        "value": 0.3,
+        "unit": "MW",
+        "note": "continuous cryogenic refrigeration (reused from F1a)"
+    },
+    "eta_converter": {
+        "value": 0.98,
+        "unit": "dimensionless",
+        "note": "AC/DC per pass (reused from F1a)"
+    },
+    "rte_rated": {
+        "value": 0.9604,
+        "unit": "dimensionless",
+        "note": "eta_converter^2 round-trip"
+    },
+    "power_fraction_breakpoints": {
+        "value": [
+            0.1,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+        ],
+        "unit": "fraction_of_rated"
+    },
+    "rte_breakpoints": {
+        "value": [
+            0.9,
+            0.94,
+            0.955,
+            0.958,
+            0.9604
+        ],
+        "unit": "dimensionless",
+        "note": "part-load round-trip efficiency; best near rated"
+    }
+}

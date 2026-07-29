@@ -1,0 +1,33 @@
+{
+    "component_id": "EC051",
+    "component_name": "Dye-Sensitized Solar Cell (DSSC)",
+    "fidelity": "F2a — Physics-Lumped Single-Diode (electrochemical PV) with Thermal ODE",
+    "source": "O'Regan & Graetzel (1991) Nature 353:737; Graetzel (2003) J. Photochem. Photobiol. C 4:145; Snaith & Schmidt-Mende (2007) Adv. Mater. 19:3187; Ni et al. (2006) Sol. Energy Mater. Sol. Cells 90:1331",
+    "unit": {
+        "name": "Generic N719-dye / TiO2 / I3-/I- redox DSSC, 1 cm2 lab cell",
+        "I_L_density_ref": {"value": 16.5e-3, "unit": "A/cm2", "note": "Photocurrent density (dye absorption) at G_ref=1000 W/m2, AM1.5G, N719"},
+        "I0_density_ref": {"value": 1.5e-8, "unit": "A/cm2", "note": "Diode dark saturation current (TiO2/electrolyte recombination) at T_ref"},
+        "n_ideality": {"value": 2.0, "unit": "-", "note": "Diode ideality factor; ~2 for DSSC interfacial recombination (Snaith 2007)"},
+        "E_g": {"value": 1.65, "unit": "eV", "note": "Effective optical gap of N719 dye/TiO2 system (sets I0(T) bandgap term)"},
+        "Rs_area": {"value": 8.0, "unit": "Ohm.cm2", "note": "Series resistance*area: TCO sheet + electrolyte/redox (I3-/I-) ohmic drop"},
+        "Rsh_area": {"value": 1000.0, "unit": "Ohm.cm2", "note": "Shunt resistance*area: interfacial leakage / back recombination"},
+        "j_diff_lim": {"value": 22.0e-3, "unit": "A/cm2", "note": "I3- diffusion-limited current density in electrolyte (mass-transport ceiling)"},
+        "alpha_isc": {"value": 0.0005, "unit": "1/K", "note": "Temperature coeff of photocurrent (+, slight Isc rise with T)"},
+        "A_cell": {"value": 1.0, "unit": "cm2", "note": "Active cell area (small lab DSSC)"},
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference cell temperature (25 C)"},
+        "G_ref": {"value": 1000.0, "unit": "W/m2", "note": "Reference irradiance (AM1.5G, 1 sun)"},
+        "m_cell": {"value": 0.012, "unit": "kg", "note": "Lumped thermal mass (glass+TiO2+electrolyte, 1 cm2 sandwich)"},
+        "cp_cell": {"value": 750.0, "unit": "J/(kg.K)", "note": "Effective specific heat (glass-dominated)"},
+        "hA_loss": {"value": 0.02, "unit": "W/K", "note": "Convective+radiative heat loss coefficient*area to ambient"},
+        "absorptance": {"value": 0.85, "unit": "-", "note": "Fraction of incident irradiance absorbed as heat+photons"},
+        "T_amb": {"value": 298.15, "unit": "K", "note": "Ambient temperature (25 C)"}
+    },
+    "valid_ranges": {
+        "irradiance_W_m2": {"min": 0.0, "max": 1200.0, "unit": "W/m2"},
+        "T_cell_K": {"min": 263.15, "max": 343.15, "unit": "K"},
+        "T_amb_K": {"min": 263.15, "max": 333.15, "unit": "K"},
+        "dt": {"min": 0.1, "max": 10.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 7200.0, "unit": "s"},
+        "efficiency": {"min": 0.0, "max": 0.13, "unit": "-"}
+    }
+}

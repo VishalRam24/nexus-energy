@@ -1,0 +1,44 @@
+{
+    "component_id": "EC117",
+    "component_name": "Boiling Water Reactor (BWR)",
+    "fidelity": "F2a -- Point Reactor Kinetics + Lumped Thermal-Hydraulics with Reactivity Feedback",
+    "source": "Duderstadt & Hamilton (1976), Nuclear Reactor Analysis, Wiley; Lamarsh & Baratta (2001), Introduction to Nuclear Reactor Theory / Nuclear Reactor Engineering, 3rd ed.; Todreas & Kazimi (2012), Nuclear Systems, 2nd ed., CRC Press",
+    "unit": {
+        "name": "Generic 3300 MWth / 1100 MWe BWR (BWR/6 class), point-kinetics representation",
+        "P_thermal_rated_mw": {"value": 3300.0, "unit": "MW_th", "note": "Rated reactor core thermal power"},
+
+        "Lambda": {"value": 4.0e-5, "unit": "s", "note": "Prompt neutron generation time (thermal LWR ~ 1e-5..1e-4 s; Duderstadt & Hamilton 1976)"},
+        "beta_total": {"value": 0.0065, "unit": "dimensionless", "note": "Total delayed neutron fraction for U-235 (~0.0065; Lamarsh & Baratta 2001 Table)"},
+        "beta_fractions": {"value": [0.000215, 0.001424, 0.001274, 0.002568, 0.000748, 0.000273], "unit": "dimensionless", "note": "6-group delayed-neutron fractions, U-235 thermal fission (Keepin / Duderstadt & Hamilton 1976)"},
+        "lambda_decay": {"value": [0.0124, 0.0305, 0.111, 0.301, 1.14, 3.01], "unit": "1/s", "note": "6-group delayed-neutron precursor decay constants, U-235 (Keepin; Duderstadt & Hamilton 1976)"},
+
+        "alpha_doppler": {"value": -2.5e-5, "unit": "1/K", "note": "Doppler (fuel temperature) reactivity coefficient, negative (U-238 resonance broadening); Lamarsh & Baratta 2001"},
+        "alpha_void": {"value": -1.2e-3, "unit": "1/(void fraction)", "note": "Void reactivity coefficient dk/k per unit core-average void fraction; strongly negative in a BWR (Todreas & Kazimi 2012)"},
+        "alpha_coolant": {"value": -5.0e-5, "unit": "1/K", "note": "Moderator/coolant-temperature reactivity coefficient (negative)"},
+
+        "T_fuel_ref_k": {"value": 800.0, "unit": "K", "note": "Reference fuel temperature for Doppler feedback (full-power average)"},
+        "T_coolant_ref_k": {"value": 559.0, "unit": "K", "note": "Reference coolant/saturation temperature (~286 degC at 70 bar)"},
+        "alpha_void_ref": {"value": 0.40, "unit": "dimensionless", "note": "Reference core-average void fraction at full power (BWR typical 0.4)"},
+
+        "m_fuel_kg": {"value": 1.5e5, "unit": "kg", "note": "Total UO2 fuel mass in core (~150 t for a 3300 MWth core)"},
+        "cp_fuel": {"value": 300.0, "unit": "J/(kg.K)", "note": "UO2 specific heat at operating temperature (Todreas & Kazimi 2012)"},
+        "m_coolant_kg": {"value": 1.0e4, "unit": "kg", "note": "Effective coolant/moderator mass in active core inventory"},
+        "cp_coolant": {"value": 5000.0, "unit": "J/(kg.K)", "note": "Effective water specific heat near saturation at 70 bar"},
+
+        "hA_fuel_coolant": {"value": 6.1e6, "unit": "W/K", "note": "Fuel-to-coolant heat-transfer conductance (UA), core lumped; sized for full-power fuel-coolant DeltaT ~ 540 K"},
+        "W_cool": {"value": 1.65e9, "unit": "W/K", "note": "Coolant-to-saturation-sink conductance; large because heat is removed as latent boiling at near-constant saturation temperature -> coolant stays ~2 K above sink at full power"},
+        "T_sink_k": {"value": 557.0, "unit": "K", "note": "Saturation heat-sink reference (pressure-controlled, ~286 degC at 70 bar)"},
+
+        "h_fg_jkg": {"value": 1.505e6, "unit": "J/kg", "note": "Latent heat of vaporization at 70 bar (Todreas & Kazimi 2012)"},
+        "void_gain": {"value": 1.0, "unit": "dimensionless", "note": "Steady-state void response gain mapping boiling power to core-average void"},
+        "tau_void_s": {"value": 1.0, "unit": "s", "note": "First-order void-formation time constant (vapor transit/relaxation)"}
+    },
+    "valid_ranges": {
+        "reactivity_dollars": {"min": -5.0, "max": 0.9, "unit": "$", "note": "Inserted reactivity in dollars (must stay below prompt critical = 1$)"},
+        "T_fuel_k": {"min": 400.0, "max": 2800.0, "unit": "K"},
+        "T_coolant_k": {"min": 450.0, "max": 600.0, "unit": "K"},
+        "void_fraction": {"min": 0.0, "max": 0.9, "unit": "dimensionless"},
+        "dt": {"min": 0.001, "max": 1.0, "unit": "s"},
+        "duration_s": {"min": 0.1, "max": 1000.0, "unit": "s"}
+    }
+}

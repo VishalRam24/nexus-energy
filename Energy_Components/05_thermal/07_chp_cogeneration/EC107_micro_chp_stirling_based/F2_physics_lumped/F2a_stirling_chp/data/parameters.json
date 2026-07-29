@@ -1,0 +1,34 @@
+{
+    "component_id": "EC107",
+    "component_name": "Micro-CHP (Stirling-based)",
+    "fidelity": "F2a — Physics-Lumped Stirling micro-CHP with thermal warm-up ODE",
+    "source": "Walker (1980) Stirling Engines, Oxford; Organ (1992) Thermodynamics & Gas Dynamics of the Stirling Cycle Machine, Cambridge; Beale number correlation (West 1986, Principles & Applications of Stirling Engines); WhisperGen Mk5 / Microgen Stirling micro-CHP datasheets; Onovwiona & Ugursal (2006) Renew. Sustain. Energy Rev. 10:389; Conroy et al. (2014) Appl. Energy 122:194 (WhisperGen field trial)",
+    "unit": {
+        "name": "Generic ~1 kWe Burner-driven Stirling micro-CHP (WhisperGen-class)",
+        "P_e_rated_W": {"value": 1000.0, "unit": "W", "note": "Rated electrical output ~1 kWe (WhisperGen Mk5 ~1 kWe; Microgen ~1 kWe)"},
+        "T_hot_K": {"value": 873.15, "unit": "K", "note": "Heater-head (expansion space) gas temperature, 600 C, set by burner"},
+        "T_cold_K": {"value": 333.15, "unit": "K", "note": "Cooler (compression space) temperature ~60 C, coupled to heating-circuit return water"},
+        "beale_number": {"value": 0.11, "unit": "-", "note": "Beale number Bn=P/(p_mean*V_swept*f); West (1986) typical 0.11-0.15 for well-designed engines"},
+        "p_mean_Pa": {"value": 2.8e6, "unit": "Pa", "note": "Mean working-gas (N2/He) charge pressure, 28 bar"},
+        "V_swept_m3": {"value": 1.0e-4, "unit": "m3", "note": "Swept (displaced) volume of power piston, 100 cm3"},
+        "freq_Hz": {"value": 50.0, "unit": "Hz", "note": "Engine cycle frequency (3000 rpm, grid-synchronous linear/kinematic)"},
+        "eta_mech": {"value": 0.85, "unit": "-", "note": "Mechanical+alternator efficiency: indicated power -> electrical"},
+        "eta_burner": {"value": 0.92, "unit": "-", "note": "Burner combustion efficiency (fuel LHV -> heat delivered to heater head + flue)"},
+        "eta_flue_recovery": {"value": 0.80, "unit": "-", "note": "Fraction of flue-gas sensible heat recovered to water (condensing recuperator)"},
+        "carnot_fraction": {"value": 0.22, "unit": "-", "note": "Fraction of Carnot efficiency achieved by the small indicated cycle (regenerator/dead-volume/hysteresis losses dominate at this scale); gives eta_ind~0.14 so eta_e~0.11, matching WhisperGen-class units; Walker (1980), Onovwiona & Ugursal (2006)"},
+        "m_thermal_kg": {"value": 25.0, "unit": "kg", "note": "Lumped thermal mass of heater head + engine block + water jacket"},
+        "cp_thermal_J_kgK": {"value": 500.0, "unit": "J/(kg.K)", "note": "Effective specific heat of lumped metal+water mass"},
+        "hA_loss_W_K": {"value": 4.0, "unit": "W/K", "note": "Casing standby heat-loss conductance to ambient"},
+        "Q_fuel_max_W": {"value": 7000.0, "unit": "W", "note": "Max burner fuel input (LHV basis) at full fire, ~7 kW"},
+        "cp_gas_J_kgK": {"value": 1150.0, "unit": "J/(kg.K)", "note": "Flue-gas mean specific heat at constant pressure (natural-gas combustion products, 25-200 C); Turns (2012) An Introduction to Combustion"},
+        "cp_water_J_kgK": {"value": 4186.0, "unit": "J/(kg.K)", "note": "Liquid water specific heat at ~40 C; NIST/Cengel & Boles (2015) Thermodynamics, Table A-3"},
+        "T_amb_K": {"value": 293.15, "unit": "K", "note": "Ambient temperature, 20 C"}
+    },
+    "valid_ranges": {
+        "load_fraction": {"min": 0.0, "max": 1.0, "unit": "-"},
+        "T_hot_K": {"min": 700.0, "max": 1000.0, "unit": "K"},
+        "T_cold_K": {"min": 300.0, "max": 360.0, "unit": "K"},
+        "dt": {"min": 0.1, "max": 30.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 7200.0, "unit": "s"}
+    }
+}

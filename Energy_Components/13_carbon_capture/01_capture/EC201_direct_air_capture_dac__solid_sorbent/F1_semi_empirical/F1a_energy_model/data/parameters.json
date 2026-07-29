@@ -1,0 +1,23 @@
+{
+    "component": "EC201 Direct Air Capture (DAC) — Solid Sorbent",
+    "fidelity": "F1a",
+    "description": "Energy consumption model: thermal and electrical energy per tonne CO2 captured",
+    "unit": {
+        "name": "Generic Solid Sorbent DAC Unit",
+        "source": "Fasihi et al. (2019), J. Cleaner Production, 224, 957-980",
+        "E_th_base": {"value": 1500.0, "unit": "kWh_th/tCO2", "note": "Base thermal energy for regeneration"},
+        "E_el_base": {"value": 250.0, "unit": "kWh_e/tCO2", "note": "Electrical energy for fans + vacuum pump"},
+        "T_regen": {"value": 100.0, "unit": "degC", "note": "Sorbent regeneration temperature"},
+        "capture_efficiency": {"value": 0.75, "unit": "dimensionless", "note": "Fraction of CO2 in air stream captured"},
+        "air_throughput_rated": {"value": 1000000.0, "unit": "m3/hr", "note": "Rated air throughput"},
+        "CO2_concentration_ppm": {"value": 415.0, "unit": "ppm_v", "note": "Ambient CO2 concentration"},
+        "rho_air": {"value": 1.225, "unit": "kg/m3", "note": "Air density at standard conditions"},
+        "CO2_molar_mass": {"value": 44.0, "unit": "g/mol"},
+        "air_molar_mass": {"value": 29.0, "unit": "g/mol"}
+    },
+    "valid_ranges": {
+        "air_flow_m3h": {"min": 100000.0, "max": 10000000.0, "unit": "m3/hr"},
+        "relative_humidity": {"min": 0.1, "max": 0.9, "unit": "dimensionless (0-1)"},
+        "ambient_temp": {"min": -10.0, "max": 45.0, "unit": "degC"}
+    }
+}

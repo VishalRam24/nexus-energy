@@ -1,0 +1,34 @@
+{
+    "component_id": "EC144",
+    "component_name": "Biomass Combustion CHP",
+    "fidelity": "F2a — Combustion + Steam-Cycle CHP with Lumped Boiler Thermal ODE",
+    "source": "van Loo & Koppejan (2008) The Handbook of Biomass Combustion and Co-firing, Earthscan; Obernberger & Thek (2008) The Pellet Handbook; EN 303-5:2012; Moran, Shapiro et al. (2018) Fundamentals of Engineering Thermodynamics",
+    "unit": {
+        "name": "5 MW_fuel biomass back-pressure steam-turbine CHP",
+        "Q_rated_fuel_kw": {"value": 5000.0, "unit": "kW_fuel", "note": "Rated fuel (LHV) thermal input"},
+        "biomass_LHV_dry_MJ_kg": {"value": 18.5, "unit": "MJ/kg", "note": "Dry LHV woody biomass; van Loo & Koppejan (2008) Tab 2.6 ~18-19 MJ/kg"},
+        "h_fg_water_kJ_kg": {"value": 2442.0, "unit": "kJ/kg", "note": "Latent heat of vaporisation of water at 25 C; reduces LHV per kg moisture (van Loo & Koppejan 2008)"},
+        "stoich_afr": {"value": 5.8, "unit": "kg_air/kg_fuel", "note": "Stoichiometric air-fuel ratio for dry woody biomass; van Loo & Koppejan (2008) Ch. 7"},
+        "excess_air_ratio": {"value": 1.35, "unit": "-", "note": "Lambda, typical grate/fluidised-bed biomass combustion (van Loo & Koppejan 2008)"},
+        "cp_flue_kJ_kgK": {"value": 1.10, "unit": "kJ/(kg.K)", "note": "Mean specific heat of biomass flue gas 25-200 C; van Loo & Koppejan (2008)"},
+        "cp_steam_kJ_kgK": {"value": 2.10, "unit": "kJ/(kg.K)", "note": "Mean cp of superheated steam; Moran & Shapiro (2018) steam tables"},
+        "T_flue_full_degC": {"value": 180.0, "unit": "degC", "note": "Stack flue gas temperature at full load"},
+        "T_ambient_degC": {"value": 15.0, "unit": "degC", "note": "Reference / combustion air temperature"},
+        "radiation_loss_frac": {"value": 0.015, "unit": "-", "note": "Radiation + unburnt-carbon loss fraction of fuel input; van Loo & Koppejan (2008)"},
+        "T_steam_K": {"value": 673.15, "unit": "K", "note": "Live steam temperature (~400 C back-pressure turbine)"},
+        "T_boiler_setpoint_K": {"value": 673.15, "unit": "K", "note": "Boiler/steam lumped node target temperature"},
+        "T_back_pressure_K": {"value": 423.15, "unit": "K", "note": "Turbine exhaust / process-heat delivery temperature (~150 C)"},
+        "eta_isentropic": {"value": 0.75, "unit": "-", "note": "Isentropic efficiency of back-pressure steam turbine; Moran & Shapiro (2018)"},
+        "eta_mech_gen": {"value": 0.95, "unit": "-", "note": "Combined mechanical + generator efficiency"},
+        "m_boiler_kg": {"value": 8000.0, "unit": "kg", "note": "Lumped boiler water/metal thermal mass"},
+        "cp_boiler_kJ_kgK": {"value": 2.50, "unit": "kJ/(kg.K)", "note": "Effective lumped heat capacity (water+steel mix)"},
+        "UA_loss_kW_K": {"value": 1.2, "unit": "kW/K", "note": "Boiler shell heat-loss conductance to ambient"}
+    },
+    "valid_ranges": {
+        "PLR": {"min": 0.25, "max": 1.0, "unit": "-"},
+        "moisture_fraction": {"min": 0.0, "max": 0.60, "unit": "wet-basis"},
+        "T_ambient_degC": {"min": -10.0, "max": 35.0, "unit": "degC"},
+        "dt": {"min": 1.0, "max": 60.0, "unit": "s"},
+        "duration_s": {"min": 60.0, "max": 36000.0, "unit": "s"}
+    }
+}

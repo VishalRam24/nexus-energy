@@ -1,0 +1,28 @@
+{
+    "component": "EC161 Dual Active Bridge (DAB) DC-DC Converter",
+    "fidelity": "F1b",
+    "description": "Detailed semiconductor loss model for DAB: 8 MOSFET conduction + switching losses (two full H-bridges), transformer copper losses, temperature-dependent Rds_on, thermal balance",
+    "unit": {
+        "name": "Generic 400V/200V DAB Converter with Detailed Losses",
+        "source": "De Doncker, R.W.A.A. et al. (1991). A three-phase soft-switched high power density DC/DC converter. IEEE Trans. Ind. Appl., 27(1), 63-73.",
+        "v_in_nominal": {"value": 400.0, "unit": "V"},
+        "v_out_nominal": {"value": 200.0, "unit": "V"},
+        "n_turns": {"value": 2.0, "unit": "dimensionless", "note": "Turns ratio n = N1/N2"},
+        "L_s": {"value": 5e-6, "unit": "H", "note": "Series inductance (transformer leakage + external) 5 uH"},
+        "f_sw": {"value": 100000.0, "unit": "Hz", "note": "100 kHz switching frequency"},
+        "R_ds_on": {"value": 0.020, "unit": "Ohm", "note": "MOSFET Rds_on per device at T_ref (20 mohm)"},
+        "t_on": {"value": 2.5e-8, "unit": "s", "note": "MOSFET turn-on time (25 ns)"},
+        "t_off": {"value": 3.5e-8, "unit": "s", "note": "MOSFET turn-off time (35 ns)"},
+        "R_xfmr": {"value": 0.050, "unit": "Ohm", "note": "Transformer total winding resistance (50 mohm)"},
+        "P_rated": {"value": 10000.0, "unit": "W", "note": "Rated power 10 kW"},
+        "T_a": {"value": 25.0, "unit": "degC", "note": "Ambient temperature"},
+        "R_theta": {"value": 2.0, "unit": "degC/W", "note": "Junction-to-ambient thermal resistance"},
+        "T_ref": {"value": 25.0, "unit": "degC", "note": "Reference temperature for Rds_on"},
+        "alpha_rds": {"value": 0.004, "unit": "1/degC", "note": "MOSFET Rds_on positive tempco"}
+    },
+    "valid_ranges": {
+        "v_in": {"min": 200.0, "max": 800.0, "unit": "V"},
+        "v_out_target": {"min": 100.0, "max": 400.0, "unit": "V"},
+        "p_load": {"min": 0.0, "max": 15000.0, "unit": "W"}
+    }
+}

@@ -1,0 +1,30 @@
+{
+    "component": "EC048 Perovskite Solar Cell",
+    "fidelity": "F1b",
+    "description": "Two-diode model with hysteresis correction: P_actual = P_two_diode * (1 - h_factor*|dG/dt|/G_ref)",
+    "module": {
+        "name": "Lab-scale MAPbI3 perovskite cell (1 cm2) — Two-Diode with Hysteresis",
+        "source": "Miyano et al. (2016), J. Phys. Chem. Lett. 7, 2199; Tress (2017), J. Phys. Chem. Lett. 8, 3106",
+        "technology": "Perovskite (MAPbI3)",
+        "area": {"value": 1.0e-4, "unit": "m2", "note": "1 cm2 cell area"},
+        "I_ph_ref": {"value": 0.0221, "unit": "A", "note": "22.1 mA/cm2 * 1 cm2 = 22.1 mA at STC"},
+        "I_01": {"value": 1.0e-22, "unit": "A", "note": "Diffusion saturation current per cell (very low for perovskite)"},
+        "I_02": {"value": 1.0e-12, "unit": "A", "note": "Recombination saturation current per cell"},
+        "n1": {"value": 1.0, "unit": "dimensionless", "note": "Ideality factor diode 1 (diffusion)"},
+        "n2": {"value": 2.0, "unit": "dimensionless", "note": "Ideality factor diode 2 (recombination)"},
+        "Rs": {"value": 5.0, "unit": "Ohm*cm2", "note": "Series resistance area-normalised"},
+        "Rsh": {"value": 1000.0, "unit": "Ohm*cm2", "note": "Shunt resistance area-normalised"},
+        "N_s": {"value": 1, "unit": "cells", "note": "Single cell"},
+        "T_ref": {"value": 25.0, "unit": "degC"},
+        "alpha_sc": {"value": 3.0e-6, "unit": "A/K", "note": "Low temp coefficient for perovskite Isc"},
+        "Eg": {"value": 1.55, "unit": "eV", "note": "MAPbI3 bandgap"},
+        "h_factor": {"value": 0.1, "unit": "dimensionless", "note": "Hysteresis factor: fraction power loss per unit normalised irradiance rate"},
+        "G_ref": {"value": 1000.0, "unit": "W/m2", "note": "Reference irradiance for hysteresis normalisation"}
+    },
+    "valid_ranges": {
+        "irradiance": {"min": 0.0, "max": 1200.0, "unit": "W/m2"},
+        "cell_temperature": {"min": -10.0, "max": 80.0, "unit": "degC"},
+        "irradiance_rate": {"min": -1000.0, "max": 1000.0, "unit": "W/m2/s"},
+        "note": "STC = 1000 W/m2, 25C cell temperature"
+    }
+}

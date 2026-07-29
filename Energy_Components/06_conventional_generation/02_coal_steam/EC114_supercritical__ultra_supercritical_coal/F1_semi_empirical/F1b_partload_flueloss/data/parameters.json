@@ -1,0 +1,36 @@
+{
+    "component": "EC114 Supercritical / Ultra-Supercritical Coal Plant",
+    "fidelity": "F1b",
+    "description": "Part-load efficiency with flue gas enthalpy loss, auxiliary power curve, and stack temperature model for SC/USC Rankine cycle.",
+    "unit": {
+        "name": "Generic 800 MW Ultra-Supercritical PC Plant (700 C / 300 bar)",
+        "technology": "USC",
+        "source": "Weitzel, P.S. (2011). ASME PVP-2011-57934; IEA CCC/168 (2010); Luo, Z. et al. (2013) Energy, 57, 236-244.",
+        "rated_power_mw": {"value": 800.0, "unit": "MW_e"},
+        "eta_iso": {"value": 0.46, "unit": "dimensionless", "note": "Net LHV efficiency at rated USC conditions (44-47%)"},
+        "T_amb_ref": {"value": 15.0, "unit": "degC"},
+        "k_amb": {"value": 0.0003, "unit": "1/K", "note": "Condenser back-pressure derating per K"},
+        "plr_coeffs": {
+            "a0": {"value": 0.08},
+            "a1": {"value": 0.92},
+            "a2": {"value": 0.0}
+        },
+        "LHV_coal": {"value": 25.0, "unit": "MJ/kg"},
+        "CO2_per_kg_coal": {"value": 2.57, "unit": "kg_CO2/kg_coal"},
+        "min_plr": {"value": 0.30, "unit": "dimensionless"},
+        "max_plr": {"value": 1.0, "unit": "dimensionless"},
+        "T_stack_rated_c": {"value": 120.0, "unit": "degC", "note": "USC plants typically have tighter stack temperature control (advanced air preheaters)"},
+        "T_stack_partload_offset_c": {"value": 30.0, "unit": "degC", "note": "Stack temperature rise at minimum PLR"},
+        "cp_flue_kj_kgK": {"value": 1.05, "unit": "kJ/(kg.K)"},
+        "T_amb_standard_c": {"value": 15.0, "unit": "degC"},
+        "stoich_air_kg_per_kg_coal": {"value": 10.5, "unit": "kg_air/kg_coal"},
+        "excess_air_fraction": {"value": 0.15, "unit": "-", "note": "USC uses lower excess air (15%) due to better burner control"},
+        "aux_power_rated_pct": {"value": 6.0, "unit": "%", "note": "USC slightly lower aux power fraction due to fewer startup fans"},
+        "aux_power_partload_extra_pct": {"value": 2.0, "unit": "%"},
+        "steam_temp_c": {"value": 700.0, "unit": "degC", "note": "Main steam temperature"}
+    },
+    "valid_ranges": {
+        "part_load_ratio": {"min": 0.30, "max": 1.0, "unit": "dimensionless"},
+        "ambient_temp": {"min": -10.0, "max": 45.0, "unit": "degC"}
+    }
+}

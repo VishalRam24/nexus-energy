@@ -1,0 +1,21 @@
+{
+    "component": "EC133 Tidal Lagoon",
+    "fidelity": "F1a",
+    "description": "Bidirectional basin model: P_avg = eta * 0.5*rho*g*A*h^2/T_tide (both ebb and flood generation); offshore enclosed lagoon",
+    "unit": {
+        "name": "Generic Tidal Lagoon (Bidirectional)",
+        "source": "Aggidis & Feather (2012) Tidal Lagoons; Xiao et al. (2020) Tidal Lagoon Power; Tidal Lagoon Swansea Bay (2015) Scoping Report",
+        "A_lagoon": {"value": 11.5e6, "unit": "m2", "note": "Lagoon plan area (e.g., Swansea Bay ~11.5 km2)"},
+        "h_tidal": {"value": 4.5, "unit": "m", "note": "Mean tidal range amplitude (half peak-to-trough); smaller range acceptable vs barrage"},
+        "T_tide": {"value": 44712.0, "unit": "s", "note": "Tidal period (12.42 h semidiurnal = 44712 s)"},
+        "eta_plant": {"value": 0.25, "unit": "dimensionless", "note": "Overall plant efficiency; slightly lower than barrage (bidirectional turbines ~25%)"},
+        "n_cycles_per_period": {"value": 2.0, "unit": "dimensionless", "note": "Both ebb AND flood generation (bidirectional) = 2 generation cycles per tidal period"},
+        "h_min_operation": {"value": 0.75, "unit": "m", "note": "Minimum head difference for generation (lower than barrage due to bidirectional capability)"},
+        "rho": {"value": 1025.0, "unit": "kg/m3", "note": "Seawater density"},
+        "g": {"value": 9.81, "unit": "m/s2", "note": "Gravitational acceleration"}
+    },
+    "valid_ranges": {
+        "tidal_range_m": {"min": 0.0, "max": 12.0, "unit": "m", "note": "Full peak-to-trough range = 2*h_tidal"},
+        "lagoon_area_m2": {"min": 1.0e5, "max": 5.0e8, "unit": "m2"}
+    }
+}

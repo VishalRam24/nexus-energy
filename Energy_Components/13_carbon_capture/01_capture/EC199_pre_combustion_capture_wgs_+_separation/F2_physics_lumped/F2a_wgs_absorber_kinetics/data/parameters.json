@@ -1,0 +1,40 @@
+{
+    "component_id": "EC199",
+    "component_name": "Pre-Combustion Capture (WGS + Separation)",
+    "fidelity": "F2a — WGS Reactor Kinetics + Physical-Solvent Absorber ODE",
+    "source": "Moe (1962) CEP 58:33 (WGS Keq); Kohl & Nielsen (1997) Gas Purification 5th ed., Ch.14 (Selexol/Rectisol physical absorption, Henry's law); Smith et al. (2010) Chem.Eng.Res.Des. 88:1 (WGS LT-shift kinetics); IPCC (2005) SRCCS Ch.3 (pre-combustion energy penalty); Kunze & Spliethoff (2012) Appl.Energy 94:109.",
+    "unit": {
+        "name": "IGCC LT-shift WGS reactor + Selexol absorber — physics-lumped",
+
+        "k0_WGS": {"value": 1500.0, "unit": "mol/(m3.s.bar^2)", "note": "Pre-exponential forward WGS rate (lumped LT Cu/Zn shift catalyst bed, calibrated so the reactor approaches equilibrium within the design residence time, Smith 2010)"},
+        "Ea_WGS": {"value": 47400.0, "unit": "J/mol", "note": "WGS forward apparent activation energy, low-temperature Cu/Zn shift (Smith et al. 2010)"},
+        "DH_WGS": {"value": -41100.0, "unit": "J/mol", "note": "WGS reaction enthalpy (exothermic, -41.1 kJ/mol CO)"},
+        "tau_WGS_s": {"value": 12.0, "unit": "s", "note": "WGS reactor gas residence time (space time, V_bed/Q at operating T,P)"},
+        "T_WGS_K": {"value": 523.15, "unit": "K", "note": "Nominal WGS bed temperature (250 degC, LT-shift window 200-300 degC)"},
+
+        "henry_CO2_Selexol_ref": {"value": 0.155, "unit": "mol/(m3.Pa)*1e-3 -> mol/(m3.bar)", "note": "placeholder, see henry_CO2_molperm3bar"},
+        "henry_CO2_molperm3bar": {"value": 155.0, "unit": "mol/(m3.bar)", "note": "CO2 solubility in Selexol/DEPG at ~25 degC: ~0.155 mol/(m3.Pa)*... -> ~155 mol/m3 per bar CO2 partial pressure (Kohl & Nielsen 1997, Selexol ~3-9x CO2 solubility of water)"},
+        "henry_H2_molperm3bar": {"value": 2.5, "unit": "mol/(m3.bar)", "note": "H2 solubility in Selexol (very low — physical solvent selective for CO2, Kohl & Nielsen 1997)"},
+        "dH_sol_CO2": {"value": -19000.0, "unit": "J/mol", "note": "Heat of physical absorption of CO2 in DEPG (van't Hoff temperature correction of Henry coefficient)"},
+        "KLa_absorber": {"value": 0.45, "unit": "1/s", "note": "Volumetric gas-liquid mass-transfer coefficient for CO2 in packed Selexol absorber (lumped)"},
+        "tau_abs_s": {"value": 20.0, "unit": "s", "note": "Absorber gas residence (contact) time"},
+        "L_over_G": {"value": 8.0, "unit": "mol_solvent/mol_gas", "note": "Solvent-to-gas molar ratio in absorber (lean Selexol circulation)"},
+        "T_abs_K": {"value": 298.15, "unit": "K", "note": "Absorber operating temperature (~25 degC, chilled physical solvent)"},
+
+        "E_pump_GJ_tCO2": {"value": 0.10, "unit": "GJ/tCO2", "note": "Solvent circulation pumping + flash regeneration parasitic (physical solvent, low — IPCC 2005 / Kunze 2012)"},
+        "E_compression_GJ_tCO2": {"value": 0.33, "unit": "GJ/tCO2", "note": "CO2 compression to 110 bar pipeline pressure (multistage, ~0.33 GJ/tCO2 from elevated capture P)"},
+
+        "MW_CO2": {"value": 44.01, "unit": "g/mol"},
+        "MW_H2": {"value": 2.016, "unit": "g/mol"},
+        "MW_CO": {"value": 28.01, "unit": "g/mol"},
+        "MW_H2O": {"value": 18.015, "unit": "g/mol"}
+    },
+    "valid_ranges": {
+        "T_WGS_K": {"min": 453.15, "max": 723.15, "unit": "K"},
+        "T_abs_K": {"min": 273.15, "max": 313.15, "unit": "K"},
+        "P_bar": {"min": 10.0, "max": 60.0, "unit": "bar"},
+        "co_fraction": {"min": 0.1, "max": 0.6, "unit": "mol/mol"},
+        "steam_co_ratio": {"min": 2.0, "max": 5.0, "unit": "mol/mol"},
+        "syngas_flow_mol_s": {"min": 1.0, "max": 5000.0, "unit": "mol/s"}
+    }
+}

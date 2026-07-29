@@ -1,0 +1,53 @@
+{
+  "model": "roundtrip_efficiency_curve",
+  "V_nominal": {
+    "value": 32.7,
+    "unit": "V",
+    "note": "stack nominal voltage"
+  },
+  "R_series": {
+    "value": 0.01875,
+    "unit": "Ohm",
+    "note": "ohmic series resistance"
+  },
+  "Q_nominal": {
+    "value": 80.0,
+    "unit": "Ah"
+  },
+  "c_rate_breakpoints": {
+    "value": [
+      0.0,
+      0.1,
+      0.2,
+      0.5,
+      1.0,
+      2.0,
+      5.0
+    ],
+    "unit": "1/h",
+    "note": "discharge/charge C-rate breakpoints"
+  },
+  "roundtrip_efficiency": {
+    "value": [
+      0.8367,
+      0.8299,
+      0.8223,
+      0.8,
+      0.7641,
+      0.6968,
+      0.525
+    ],
+    "unit": "fraction",
+    "note": "DC round-trip efficiency at each C-rate"
+  },
+  "eta_rated": {
+    "value": 0.8,
+    "unit": "fraction",
+    "note": "literature rated round-trip eff at C=0.5"
+  },
+  "c_rated": {
+    "value": 0.5,
+    "unit": "1/h"
+  },
+  "source": "EC040 F1a (E0=1.09 V, ASR=0.5 Ohm.cm2, 800 cm2, 30 cells); H2-Br2 RFB round-trip eff ~75-85% (Cho et al. J. Electrochem. Soc. 2012)."
+}

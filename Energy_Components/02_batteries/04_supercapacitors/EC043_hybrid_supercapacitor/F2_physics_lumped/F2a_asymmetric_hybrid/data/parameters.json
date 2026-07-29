@@ -1,0 +1,29 @@
+{
+    "component_id": "EC043",
+    "component_name": "Hybrid Supercapacitor (Lithium-Ion Capacitor)",
+    "fidelity": "F2a — Asymmetric Hybrid Physics-Lumped Model with Thermal ODE",
+    "source": "Conway (1999) Electrochemical Supercapacitors; Omar et al. (2015) IEEE Trans. Ind. Electron. 62(10):6738-6745 (LIC characterization); Soltani & Beheshti (2021) J. Energy Storage 34:102019 (LIC review); Firouz & Van Mierlo (2017) Electrochim. Acta 256 (LIC ECM)",
+    "unit": {
+        "name": "Generic 2200F Lithium-Ion Capacitor Cell — Asymmetric (LTO/graphite faradaic anode + activated-carbon EDLC cathode)",
+        "Q_max": {"value": 4400.0, "unit": "C", "note": "Usable charge capacity over 2.2-3.8 V window (~1.22 Ah)"},
+        "C_dl": {"value": 2200.0, "unit": "F", "note": "Double-layer capacitance of activated-carbon (EDLC) electrode branch"},
+        "f_far": {"value": 0.55, "unit": "-", "note": "Fraction of terminal voltage swing carried by the faradaic (battery-type) OCV branch; rest is EDLC. Soltani & Beheshti (2021)"},
+        "V_max": {"value": 3.8, "unit": "V", "note": "Maximum cell voltage (Omar et al. 2015 LIC upper limit)"},
+        "V_min": {"value": 2.2, "unit": "V", "note": "Minimum cell voltage — faradaic plateau floor (sloping LIC, not 0 V like EDLC)"},
+        "R_esr": {"value": 0.0011, "unit": "Ohm", "note": "Equivalent series resistance (1.1 mOhm, Omar et al. 2015)"},
+        "R_leak": {"value": 9000.0, "unit": "Ohm", "note": "Parallel leakage/self-discharge resistance (low for hybrid vs ideal cap)"},
+        "k_far": {"value": 0.18, "unit": "V", "note": "Curvature coefficient of the Nernst-like faradaic OCV term"},
+        "m_cell": {"value": 0.220, "unit": "kg", "note": "Cell mass (prismatic LIC, ~1.2 Ah)"},
+        "cp_cell": {"value": 950.0, "unit": "J/(kg.K)", "note": "Lumped specific heat capacity of cell"},
+        "hA_amb": {"value": 0.12, "unit": "W/K", "note": "Convective heat-transfer coefficient * surface area to ambient"},
+        "T_amb": {"value": 298.15, "unit": "K", "note": "Ambient temperature (25C)"},
+        "alpha_R": {"value": -0.004, "unit": "1/K", "note": "ESR temperature coefficient (ESR falls with rising T)"}
+    },
+    "valid_ranges": {
+        "Q": {"min": 0.0, "max": 4400.0, "unit": "C"},
+        "I": {"min": -600.0, "max": 600.0, "unit": "A"},
+        "T_cell_K": {"min": 233.15, "max": 343.15, "unit": "K"},
+        "dt": {"min": 0.001, "max": 1.0, "unit": "s"},
+        "duration_s": {"min": 0.1, "max": 36000.0, "unit": "s"}
+    }
+}

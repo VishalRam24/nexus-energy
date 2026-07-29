@@ -1,0 +1,41 @@
+{
+    "component_id": "EC148",
+    "component_name": "Bioethanol Fermentation",
+    "fidelity": "F2a — Monod Growth with Ethanol Product Inhibition + Lumped Thermal ODE",
+    "source": "Bai, Anderson & Moo-Young (2008) Biotechnol. Adv. 26:89-105; Luong (1985) Biotechnol. Bioeng. 27:280-285; Levenspiel (1980) Biotechnol. Bioeng. 22:1671; Monod (1949) Annu. Rev. Microbiol. 3:371",
+    "unit": {
+        "name": "Generic S. cerevisiae Batch/Fed-Batch Bioethanol Fermenter — Physics-Lumped Kinetics + Thermal",
+        "mu_max": {"value": 0.40, "unit": "1/h", "note": "Max specific growth rate, S. cerevisiae on glucose, ~30-32 C (Bai 2008)"},
+        "Ks": {"value": 1.6, "unit": "g/L", "note": "Monod half-saturation constant for glucose (Bai 2008 range 0.5-2)"},
+        "Yxs": {"value": 0.50, "unit": "g_cells/g_glucose", "note": "Apparent biomass yield on the anabolic glucose fraction; most carbon is catabolised to ethanol so only a small glucose share builds biomass (Bai 2008)"},
+        "Yps": {"value": 0.46, "unit": "g_EtOH/g_glucose", "note": "Observed ethanol yield on glucose; <= theoretical 0.511 (Bai 2008)"},
+        "Yps_theoretical": {"value": 0.511, "unit": "g_EtOH/g_glucose", "note": "Gay-Lussac stoichiometric max: C6H12O6 -> 2 C2H5OH + 2 CO2"},
+        "ms": {"value": 0.02, "unit": "g_glucose/(g_cells.h)", "note": "Maintenance substrate coefficient (Bai 2008)"},
+        "alpha_lp": {"value": 2.2, "unit": "g_EtOH/g_cells", "note": "Luedeking-Piret growth-associated ethanol coefficient"},
+        "beta_lp": {"value": 0.55, "unit": "g_EtOH/(g_cells.h)", "note": "Luedeking-Piret non-growth ethanol coefficient (dominant fermentative flux)"},
+        "P_star": {"value": 95.0, "unit": "g/L", "note": "Critical ethanol conc. for fermentation/product formation (Luong 1985; ~90-100 g/L)"},
+        "P_star_growth": {"value": 55.0, "unit": "g/L", "note": "Critical ethanol conc. for growth; lower than P* (yeast growth is more ethanol-sensitive than fermentation, Bai 2008)"},
+        "n_luong": {"value": 1.5, "unit": "dimensionless", "note": "Luong inhibition exponent for growth (n>1 toxic power-law, Luong 1985)"},
+        "n_luong_p": {"value": 1.0, "unit": "dimensionless", "note": "Luong inhibition exponent for product formation"},
+        "S0": {"value": 180.0, "unit": "g/L", "note": "Initial glucose concentration (very high gravity fermentation)"},
+        "X0": {"value": 0.5, "unit": "g/L", "note": "Initial yeast inoculum biomass"},
+        "P0": {"value": 0.0, "unit": "g/L", "note": "Initial ethanol concentration"},
+        "V": {"value": 1.0, "unit": "m3", "note": "Bioreactor working volume"},
+        "rho_broth": {"value": 1020.0, "unit": "kg/m3", "note": "Fermentation broth density"},
+        "cp_broth": {"value": 4000.0, "unit": "J/(kg.K)", "note": "Broth specific heat (mostly water)"},
+        "dH_ferment": {"value": 99600.0, "unit": "J/mol_glucose", "note": "Exothermic heat of fermentation, ~0.553 MJ/kg glucose (Bai 2008)"},
+        "M_glucose": {"value": 180.16, "unit": "g/mol", "note": "Molar mass of glucose"},
+        "UA_cool": {"value": 600.0, "unit": "W/K", "note": "Cooling jacket overall heat-transfer coefficient * area (1 m3 reactor)"},
+        "T_coolant_K": {"value": 303.15, "unit": "K", "note": "Cooling water inlet temperature (30 C)"},
+        "T_opt_K": {"value": 305.15, "unit": "K", "note": "Optimal fermentation temperature (32 C)"},
+        "T_width_K": {"value": 9.0, "unit": "K", "note": "Gaussian temperature-activity half-width for mu(T)"}
+    },
+    "valid_ranges": {
+        "S0_g_L": {"min": 0.0, "max": 350.0, "unit": "g/L"},
+        "X0_g_L": {"min": 0.01, "max": 20.0, "unit": "g/L"},
+        "P0_g_L": {"min": 0.0, "max": 120.0, "unit": "g/L"},
+        "T_K": {"min": 288.15, "max": 318.15, "unit": "K"},
+        "duration_h": {"min": 1.0, "max": 200.0, "unit": "h"},
+        "dt_h": {"min": 0.01, "max": 2.0, "unit": "h"}
+    }
+}

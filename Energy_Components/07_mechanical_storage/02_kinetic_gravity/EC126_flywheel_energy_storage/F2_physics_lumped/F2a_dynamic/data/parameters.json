@@ -1,0 +1,26 @@
+{
+    "component_id": "EC126",
+    "component_name": "Flywheel Energy Storage",
+    "fidelity": "F2a -- Dynamic ODE Model with Rotational Dynamics",
+    "source": "Amiryar & Pullen (2017) Applied Sciences 7(3):286; Beacon Power flywheel specifications",
+    "unit": {
+        "name": "Generic 250 kW / 25 kWh Flywheel System",
+        "J": {"value": 200.0, "unit": "kg.m2", "note": "Rotor moment of inertia"},
+        "omega_max": {"value": 3665.0, "unit": "rad/s", "note": "Maximum angular speed (35000 rpm)"},
+        "omega_min": {"value": 1833.0, "unit": "rad/s", "note": "Minimum angular speed (50% of max, 17500 rpm)"},
+        "P_rated": {"value": 250000.0, "unit": "W", "note": "Rated charge/discharge power"},
+        "eta_motor": {"value": 0.95, "unit": "-", "note": "Motor/generator electrical efficiency"},
+        "eta_pe": {"value": 0.97, "unit": "-", "note": "Power electronics efficiency"},
+        "c_windage": {"value": 1e-8, "unit": "N.m.s2/rad2", "note": "Windage drag coefficient (high vacuum ~0.1 Pa)"},
+        "T_bearing": {"value": 0.01, "unit": "N.m", "note": "Bearing friction torque (magnetic bearings)"},
+        "T_rated": {"value": 68.2, "unit": "N.m", "note": "Rated motor torque"},
+        "E_max": {"value": 90000000.0, "unit": "J", "note": "Maximum stored energy (25 kWh)"},
+        "self_discharge_pct_hr": {"value": 2.0, "unit": "%/hr", "note": "Self-discharge rate from losses"},
+        "vacuum_pressure": {"value": 0.1, "unit": "Pa", "note": "Operating vacuum pressure"}
+    },
+    "valid_ranges": {
+        "omega": {"min": 0.0, "max": 4000.0, "unit": "rad/s"},
+        "P_command": {"min": -250000.0, "max": 250000.0, "unit": "W"},
+        "duration_s": {"min": 1.0, "max": 86400.0, "unit": "s"}
+    }
+}

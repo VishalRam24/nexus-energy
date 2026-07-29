@@ -1,0 +1,38 @@
+{
+    "component": "EC076 Regenerative Heat Exchanger (Rotary Wheel / Recuperator)",
+    "fidelity": "F1b",
+    "description": "Effectiveness-NTU for regenerative HX with carryover/leakage penalty, fouling resistance, and temperature-dependent property corrections for gas streams. Accounts for the cyclic nature of regenerators via the heat capacity ratio C_r* correction.",
+    "unit": {
+        "name": "Generic Air-to-Air Rotary Regenerator (HVAC/turbomachinery class)",
+        "source": "Incropera & DeWitt (2006) ch.11; Shah & Sekulic (2003) ch.5; Kays & London (1984); ASHRAE HB 2020",
+        "U_clean": {"value": 80.0, "unit": "W/m2K",
+                    "note": "Clean matrix overall HTC for air-air (gas-gas); typical 60-120 W/m2K"},
+        "A": {"value": 30.0, "unit": "m2", "note": "Total heat transfer area of matrix"},
+        "cp_hot": {"value": 1010.0, "unit": "J/kgK", "note": "Hot gas (air) specific heat"},
+        "cp_cold": {"value": 1010.0, "unit": "J/kgK", "note": "Cold gas (air) specific heat"},
+        "Cr_star": {"value": 5.0, "unit": "dimensionless",
+                    "note": "Dimensionless heat capacity rate of matrix Cr* = C_r/(C_min); >5 is near ideal"},
+        "carryover_leakage": {"value": 0.03, "unit": "dimensionless",
+                               "note": "Fractional leakage/carryover loss (typically 1-5% for rotary wheels)"},
+        "Rf_hot_default": {"value": 0.0002, "unit": "m2K/W",
+                           "note": "Hot-gas-side fouling resistance; industrial gas"},
+        "Rf_cold_default": {"value": 0.0002, "unit": "m2K/W",
+                            "note": "Cold-gas-side fouling resistance"}
+    },
+    "fouling_reference": {
+        "clean_air": {"Rf": 0.0001, "unit": "m2K/W"},
+        "industrial_exhaust": {"Rf": 0.0005, "unit": "m2K/W"},
+        "flue_gas": {"Rf": 0.001, "unit": "m2K/W"},
+        "combustion_gas": {"Rf": 0.002, "unit": "m2K/W"}
+    },
+    "valid_ranges": {
+        "T_h_in": {"min": 50.0, "max": 600.0, "unit": "degC",
+                   "note": "Regenerators often used in high-temperature applications"},
+        "T_c_in": {"min": -20.0, "max": 100.0, "unit": "degC"},
+        "m_dot_hot": {"min": 0.1, "max": 20.0, "unit": "kg/s"},
+        "m_dot_cold": {"min": 0.1, "max": 20.0, "unit": "kg/s"},
+        "fouling_resistance_hot": {"min": 0.0, "max": 0.01, "unit": "m2K/W"},
+        "fouling_resistance_cold": {"min": 0.0, "max": 0.01, "unit": "m2K/W"},
+        "carryover_leakage": {"min": 0.0, "max": 0.10, "unit": "dimensionless"}
+    }
+}

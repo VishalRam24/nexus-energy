@@ -1,0 +1,48 @@
+{
+    "component_id": "EC120",
+    "component_name": "Fast Breeder Reactor (FBR), sodium-cooled",
+    "fidelity": "F2a — Fast-Spectrum Point Kinetics + Lumped Thermal + Breeding",
+    "description": "Six-group delayed-neutron point kinetics for a FAST (sodium-cooled) spectrum coupled to a lumped fuel+sodium thermal model. Doppler + axial-expansion + sodium-void reactivity feedback (net-negative power coefficient). Breeding ratio > 1 (U-238 -> Pu-239). Stiff ODE (very small prompt-neutron generation time) — Radau/BDF.",
+    "source": "Waltar & Reynolds (1981) Fast Breeder Reactors, Pergamon; Duderstadt & Hamilton (1976) Nuclear Reactor Analysis, Wiley; Keepin (1965) Physics of Nuclear Kinetics; Guidez & Prele (2017) Sodium Cooled Fast Reactors; IAEA (2012) TECDOC-1689 (BN-800 class)",
+    "unit": {
+        "name": "Generic 2100 MWth / 800 MWe Sodium-Cooled Fast Breeder Reactor (BN-800/ASTRID class)",
+        "P_thermal_rated": {"value": 2100e6, "unit": "W", "note": "Rated thermal power (BN-800 class ~2100 MWth)"},
+        "P_elec_rated": {"value": 820e6, "unit": "W", "note": "Rated electrical power (~820 MWe)"},
+        "eta_thermal": {"value": 0.39, "unit": "dimensionless", "note": "Net efficiency; sodium fast cycle drives ~500C steam Rankine -> ~39%"},
+
+        "Lambda": {"value": 4.4e-7, "unit": "s", "note": "Prompt-neutron generation time, FAST spectrum (~4.4e-7 s) — ~45x shorter than PWR (2e-5 s); Waltar & Reynolds (1981), Duderstadt & Hamilton (1976)"},
+        "beta": {
+            "value": [0.00009, 0.00076, 0.00057, 0.00115, 0.00055, 0.00018],
+            "unit": "dimensionless",
+            "note": "Pu-239-dominated 6-group delayed-neutron fractions, total beta_eff = 0.00330 (~half of U-235's 0.0065); Keepin (1965), Waltar & Reynolds (1981) Table 6-2"
+        },
+        "lambda_precursor": {
+            "value": [0.0129, 0.0311, 0.134, 0.331, 1.26, 3.21],
+            "unit": "1/s",
+            "note": "Pu-239 precursor decay constants, 6 groups (Keepin 1965)"
+        },
+
+        "alpha_doppler": {"value": -1.2e-6, "unit": "dk/k per K", "note": "Doppler coefficient (-1.2 pcm/K); U-238 resonance broadening in fast fuel — negative, prompt-acting; Waltar & Reynolds (1981) Ch. 6"},
+        "alpha_axial": {"value": -3.0e-7, "unit": "dk/k per K", "note": "Axial fuel-expansion coefficient (-0.3 pcm/K); fuel column lengthens with T -> increased leakage -> negative"},
+        "alpha_void": {"value": 0.10, "unit": "dk/k per void-fraction", "note": "Sodium-void reactivity coefficient, POSITIVE in large LMFBR core centre (spectral hardening). Applied to pseudo-void fraction; kept small enough that net power coefficient (Doppler+axial+void) stays NEGATIVE for self-stabilisation"},
+        "void_per_K": {"value": 1.0e-5, "unit": "void-fraction per K", "note": "Coolant-density-driven pseudo-void fraction per K above reference (sodium thermal expansion / incipient voiding surrogate)"},
+        "T_Na_ref": {"value": -1.0, "unit": "K", "note": "Reference coolant temperature for void model; <=0 means use equilibrium coolant temperature"},
+
+        "T_inlet": {"value": 628.0, "unit": "K", "note": "Core sodium inlet temperature (~355 C, BN-800 class)"},
+        "m_f_cp_f": {"value": 1.5e6, "unit": "J/K", "note": "Lumped fuel heat capacity (m_f * cp_f); metallic/oxide fast fuel"},
+        "m_Na_cp_Na": {"value": 6.0e6, "unit": "J/K", "note": "Lumped sodium-coolant heat capacity (m_Na * cp_Na); cp_Na ~1270 J/kg/K (Foust 1972 / Waltar & Reynolds 1981 Na tables)"},
+        "hA_fc": {"value": 8.0e6, "unit": "W/K", "note": "Fuel-to-sodium heat-transfer coefficient * area; high due to excellent liquid-metal heat transfer"},
+        "W_cp_coolant": {"value": 1.5e7, "unit": "W/K", "note": "Coolant mass flow * specific heat (W * cp_Na); sets core delta-T ~150 K (628 K in -> ~783 K out, ~510 C outlet)"},
+
+        "n0": {"value": 1.0, "unit": "dimensionless", "note": "Initial normalized neutron population (1.0 = rated)"},
+
+        "breeding_ratio": {"value": 1.20, "unit": "dimensionless", "note": "Nominal breeding ratio > 1 (BN-800 class ~1.2; core+blanket U-238->Pu-239 conversion); Waltar & Reynolds (1981) Ch. 7"},
+        "breeding_ratio_T_coeff": {"value": 5.0e-5, "unit": "1/K", "note": "Weak BR increase with fuel temperature (spectrum hardening raises Pu-239 eta)"},
+        "fissile_burn_rate": {"value": 1.06e-5, "unit": "kg/s", "note": "Fissile (Pu-239) destruction rate at rated power (~0.92 kg/day ~ 2100 MWth); used for cumulative breeding inventory tracking"}
+    },
+    "valid_ranges": {
+        "rho_ext": {"min": -0.005, "max": 0.002, "unit": "dk/k", "note": "External reactivity insertion; keep < beta_eff (0.0033) to avoid prompt criticality"},
+        "simulation_time": {"min": 0.001, "max": 1000.0, "unit": "s"},
+        "dt": {"min": 0.001, "max": 1.0, "unit": "s"}
+    }
+}

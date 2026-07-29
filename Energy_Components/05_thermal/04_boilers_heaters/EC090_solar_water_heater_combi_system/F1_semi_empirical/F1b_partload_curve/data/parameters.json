@@ -1,0 +1,17 @@
+{
+  "default_parameters": {
+    "A_collector_m2":     20.0,
+    "eta0":               0.79,
+    "a1_collector":        3.8,
+    "a2_collector":        0.015,
+    "T_collector_mean_c": 60.0,
+    "Q_aux_rated_kw":     24.0,
+    "a0_aux":              0.72,
+    "a1_aux":              0.46,
+    "a2_aux":             -0.28,
+    "PLR_min_aux":         0.15,
+    "UA_tank_w_per_k":     2.5,
+    "T_tank_c":           60.0,
+    "T_ambient_design":   10.0
+  }
+}

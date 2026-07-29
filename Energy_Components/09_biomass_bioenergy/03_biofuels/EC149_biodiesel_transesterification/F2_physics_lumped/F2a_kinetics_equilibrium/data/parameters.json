@@ -1,0 +1,57 @@
+{
+    "component_id": "EC149",
+    "component_name": "Biodiesel Transesterification",
+    "fidelity": "F2a — Physics-Lumped Kinetics + Reactor Energy Balance",
+    "source": "Noureddini & Zhu (1997) JAOCS 74:1457 (3-step reversible kinetics, soybean oil, 0.2% NaOH); Freedman et al. (1986) JAOCS 63:1375; Freedman et al. (1984) JAOCS 61:1638",
+    "unit": {
+        "name": "Base-Catalyzed Batch Transesterification Reactor — Physics-Lumped Kinetics",
+
+        "_kinetics_note": "Reversible network: TG+MeOH<->DG+FAME (k1/k2), DG+MeOH<->MG+FAME (k3/k4), MG+MeOH<->GL+FAME (k5/k6). Rate constants are second-order (L/mol/min). Arrhenius A in same units; Ea in J/mol. Fit by Noureddini & Zhu (1997) to soybean oil, 6:1 MeOH:oil, 0.2 wt% NaOH, 30-70 degC.",
+
+        "A1": {"value": 3.92e7,  "unit": "L/(mol.min)", "note": "Pre-exponential, TG->DG forward (Noureddini & Zhu 1997)"},
+        "Ea1": {"value": 55000.0, "unit": "J/mol",       "note": "Activation energy TG->DG forward (13.145 kcal/mol)"},
+        "A2": {"value": 5.77e5,  "unit": "L/(mol.min)", "note": "Pre-exponential, DG->TG reverse"},
+        "Ea2": {"value": 41570.0, "unit": "J/mol",       "note": "Activation energy DG->TG reverse (9.932 kcal/mol)"},
+        "A3": {"value": 5.88e12, "unit": "L/(mol.min)", "note": "Pre-exponential, DG->MG forward"},
+        "Ea3": {"value": 83140.0, "unit": "J/mol",       "note": "Activation energy DG->MG forward (19.860 kcal/mol)"},
+        "A4": {"value": 9.85e9,  "unit": "L/(mol.min)", "note": "Pre-exponential, MG->DG reverse"},
+        "Ea4": {"value": 61300.0, "unit": "J/mol",       "note": "Activation energy MG->DG reverse (14.639 kcal/mol)"},
+        "A5": {"value": 5.35e3,  "unit": "L/(mol.min)", "note": "Pre-exponential, MG->GL forward"},
+        "Ea5": {"value": 26800.0, "unit": "J/mol",       "note": "Activation energy MG->GL forward (6.421 kcal/mol)"},
+        "A6": {"value": 2.15e4,  "unit": "L/(mol.min)", "note": "Pre-exponential, GL->MG reverse"},
+        "Ea6": {"value": 41070.0, "unit": "J/mol",       "note": "Activation energy GL->MG reverse (9.808 kcal/mol)"},
+
+        "T_ref": {"value": 323.15, "unit": "K", "note": "Reference temperature 50 degC for reported rate constants"},
+
+        "k1_ref": {"value": 0.050, "unit": "L/(mol.min)", "note": "TG->DG forward rate const at 50 degC (Noureddini & Zhu 1997)"},
+        "k2_ref": {"value": 0.110, "unit": "L/(mol.min)", "note": "DG->TG reverse rate const at 50 degC"},
+        "k3_ref": {"value": 0.215, "unit": "L/(mol.min)", "note": "DG->MG forward rate const at 50 degC"},
+        "k4_ref": {"value": 1.228, "unit": "L/(mol.min)", "note": "MG->DG reverse rate const at 50 degC"},
+        "k5_ref": {"value": 0.242, "unit": "L/(mol.min)", "note": "MG->GL forward rate const at 50 degC"},
+        "k6_ref": {"value": 0.007, "unit": "L/(mol.min)", "note": "GL->MG reverse rate const at 50 degC"},
+
+        "MW_TG":  {"value": 884.0, "unit": "g/mol", "note": "Triglyceride (triolein) molar mass"},
+        "MW_DG":  {"value": 620.0, "unit": "g/mol", "note": "Diglyceride molar mass"},
+        "MW_MG":  {"value": 356.0, "unit": "g/mol", "note": "Monoglyceride molar mass"},
+        "MW_FAME":{"value": 296.0, "unit": "g/mol", "note": "FAME (methyl oleate) molar mass"},
+        "MW_GL":  {"value": 92.0,  "unit": "g/mol", "note": "Glycerol molar mass"},
+        "MW_MeOH":{"value": 32.0,  "unit": "g/mol", "note": "Methanol molar mass"},
+
+        "density_oil": {"value": 0.92,  "unit": "kg/L", "note": "Soybean oil density"},
+        "density_MeOH":{"value": 0.792, "unit": "kg/L", "note": "Methanol density"},
+
+        "dH_rxn": {"value": -18200.0, "unit": "J/mol_FAME", "note": "Net exothermic enthalpy of transesterification per mol FAME formed (mildly exothermic; Freedman 1986 / process data)"},
+        "rho_mix": {"value": 0.88, "unit": "kg/L", "note": "Reaction mixture density"},
+        "cp_mix":  {"value": 2100.0, "unit": "J/(kg.K)", "note": "Reaction mixture specific heat (oil-methanol)"},
+        "V_reactor": {"value": 1.0, "unit": "L", "note": "Reactor volume (basis)"},
+        "UA_jacket": {"value": 8.0, "unit": "W/K", "note": "Jacket overall heat-transfer coefficient * area (lab batch reactor)"},
+        "T_jacket": {"value": 333.15, "unit": "K", "note": "Heating jacket / coolant set temperature (60 degC)"}
+    },
+    "valid_ranges": {
+        "temperature": {"min": 303.15, "max": 343.15, "unit": "K"},
+        "methanol_ratio": {"min": 3.0, "max": 12.0, "unit": "mol_MeOH/mol_oil"},
+        "catalyst_factor": {"min": 0.1, "max": 5.0, "unit": "-"},
+        "duration_min": {"min": 1.0, "max": 240.0, "unit": "min"},
+        "TG0_mol_L": {"min": 0.1, "max": 2.0, "unit": "mol/L"}
+    }
+}

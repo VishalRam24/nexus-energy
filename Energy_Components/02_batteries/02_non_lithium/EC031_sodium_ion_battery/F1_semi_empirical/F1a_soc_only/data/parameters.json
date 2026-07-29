@@ -1,0 +1,30 @@
+{
+    "component": "EC031 Sodium-Ion Battery",
+    "fidelity": "F1a",
+    "description": "Semi-empirical SOC-only voltage model for Na-ion battery (prismatic cell)",
+    "source": "Tremblay & Dessaint (2009) framework adapted for Na-ion; CATL first-gen Na-ion press release data",
+    "cell": {
+        "name": "CATL-inspired Na-ion Prismatic Cell",
+        "chemistry": "Na-ion (layered oxide cathode / hard carbon anode)",
+        "capacity": {"value": 10.0, "unit": "Ah"},
+        "voltage_nominal": {"value": 3.1, "unit": "V"},
+        "voltage_max": {"value": 3.9, "unit": "V"},
+        "voltage_min": {"value": 1.5, "unit": "V"},
+        "internal_resistance": {"value": 0.050, "unit": "Ohm", "note": "Higher than Li-ion due to Na+ larger ionic radius"},
+        "max_discharge_current": {"value": 30.0, "unit": "A", "note": "3C continuous"},
+        "max_charge_current": {"value": 20.0, "unit": "A", "note": "2C continuous"}
+    },
+    "ocv_coefficients": {
+        "note": "OCV(SOC) = a0 + a1*SOC + a2*SOC^2 + a3*SOC^3 + a4*SOC^4 + a5*SOC^5",
+        "a0": 2.2,
+        "a1": 3.0,
+        "a2": -9.0,
+        "a3": 18.0,
+        "a4": -16.0,
+        "a5": 5.6
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "current": {"min": -30.0, "max": 30.0, "unit": "A", "note": "positive=discharge, negative=charge"}
+    }
+}

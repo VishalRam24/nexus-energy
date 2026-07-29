@@ -1,0 +1,28 @@
+{
+    "component_id": "EC095",
+    "component_name": "Thermoelectric Cooler (Peltier)",
+    "fidelity": "F2a — Physics-Lumped Transient (Seebeck + Joule + Fourier, 2-node thermal ODE)",
+    "source": "Rowe, D.M. (Ed.) (2006). CRC Handbook of Thermoelectrics; Goldsmid, H.J. (2010). Introduction to Thermoelectricity, Springer; Riffat & Ma (2003) Appl. Thermal Eng. 23, 913-935.",
+    "unit": {
+        "name": "Generic Bi2Te3 TEC stack — 4 modules in series, ~80 W cooling each (reused from F1a)",
+        "n_modules":          {"value": 4,      "unit": "-",   "note": "Modules electrically in series; share the same current I"},
+        "alpha_module":       {"value": 0.053,  "unit": "V/K", "note": "Effective Seebeck coefficient per module (~127 Bi2Te3 thermocouples). Rowe Handbook Ch.1"},
+        "R_module":           {"value": 3.5,    "unit": "ohm", "note": "Electrical resistance per module"},
+        "K_module":           {"value": 0.65,   "unit": "W/K", "note": "Thermal conductance per module (Fourier leak)"},
+        "I_max":              {"value": 6.0,    "unit": "A",   "note": "Maximum operating current per module"},
+        "ZT_ref":             {"value": 0.71,   "unit": "-",   "note": "Intrinsic material figure of merit for commercial Bi2Te3 at 300K (Rowe 2006). The lumped device ZT=alpha^2/(R*K)*T~0.37 is lower because R,K include lead/contact losses. Diagnostic only."},
+        "C_cold":             {"value": 25.0,   "unit": "J/K", "note": "Lumped heat capacity of cold-plate node + attached cold-side heat sink mass"},
+        "C_hot":              {"value": 120.0,  "unit": "J/K", "note": "Lumped heat capacity of hot-plate node + hot-side heat sink mass"},
+        "hA_cold":            {"value": 1.2,    "unit": "W/K", "note": "Cold-side sink-to-load conductance (load/chamber coupling)"},
+        "hA_hot":             {"value": 6.0,    "unit": "W/K", "note": "Hot-side heat-sink-to-ambient conductance (forced-air sink)"},
+        "auxiliary_power":    {"value": 0.0,    "unit": "W",   "note": "Parasitic/fan electrical draw"}
+    },
+    "valid_ranges": {
+        "current":     {"min": 0.0,  "max": 6.0,    "unit": "A"},
+        "T_load":      {"min": -20.0, "max": 40.0,  "unit": "degC", "note": "Cold-side thermal load setpoint / chamber temperature"},
+        "T_ambient":   {"min": 0.0,  "max": 50.0,   "unit": "degC"},
+        "Q_load":      {"min": 0.0,  "max": 300.0,  "unit": "W",    "note": "External heat load applied to cold side"},
+        "dt":          {"min": 0.01, "max": 5.0,    "unit": "s"},
+        "duration_s":  {"min": 1.0,  "max": 7200.0, "unit": "s"}
+    }
+}

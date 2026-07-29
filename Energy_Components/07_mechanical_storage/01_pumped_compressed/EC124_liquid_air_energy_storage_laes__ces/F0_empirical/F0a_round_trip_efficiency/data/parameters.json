@@ -1,0 +1,12 @@
+{
+    "component": "EC124 Liquid Air Energy Storage (LAES / CES)",
+    "fidelity": "F0a",
+    "description": "Empirical round-trip-efficiency curve vs part-load + self-discharge lookup",
+    "source": "Morgan et al. (2015), Applied Energy, 137, 845-853; Sciacovelli et al. (2017), Applied Energy, 190, 84-98 (reused from F1a)",
+    "rte_rated": {"value": 0.6308, "unit": "dimensionless", "note": "rated round-trip efficiency from F1 datasheet efficiencies"},
+    "power_fraction_breakpoints": {"value": [0.1, 0.25, 0.5, 0.75, 1.0], "unit": "fraction_of_rated"},
+    "rte_breakpoints": {"value": [0.473, 0.552, 0.599, 0.624, 0.6308], "unit": "dimensionless", "note": "Part-load RTE; declines below best-efficiency point"},
+    "self_discharge_per_hr": {"value": 0.000208, "unit": "1/h"},
+    "boil_off_per_hr": {"value": 0.000208, "unit": "1/h", "note": "0.5%/day liquid-air boil-off => ~0.0208%/h"},
+    "tank_capacity_kg": {"value": 1500000.0, "unit": "kg", "note": "~1500 t liquid air"}
+}

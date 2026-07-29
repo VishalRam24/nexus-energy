@@ -1,0 +1,27 @@
+{
+    "component": "EC130 Small/Micro Hydropower",
+    "fidelity": "F1b",
+    "description": "2D hill chart per turbine type, Q^2 penstock losses, cavitation derate, water temperature density, ecological flow. Phase 7: use 30% flow for part-load test to avoid P_rated saturation.",
+    "unit": {
+        "name": "Generic Small Hydro Site (Francis, 500 kW, H=45m)",
+        "source": "Penche (1998) EC DGXVII; Harvey et al. (1993) Micro-Hydro Design; Fraenkel et al. (1991); IEC 60041",
+        "H_design": {"value": 45.0, "unit": "m", "note": "Net design head — Francis range"},
+        "Q_design": {"value": 1.3, "unit": "m3/s"},
+        "P_rated": {"value": 500.0, "unit": "kW"},
+        "head_loss_fraction": {"value": 0.03, "unit": "dimensionless", "note": "At Q_design; scales Q^2"},
+        "eta_generator": {"value": 0.95, "unit": "dimensionless"},
+        "q_min": {"value": 0.20, "unit": "dimensionless"},
+        "q_max": {"value": 1.10, "unit": "dimensionless"},
+        "rho_ref": {"value": 999.7, "unit": "kg/m3"},
+        "g": {"value": 9.81, "unit": "m/s2"},
+        "H_draft": {"value": 1.5, "unit": "m"},
+        "k_cavitation": {"value": 0.3, "unit": "dimensionless"},
+        "Q_eco": {"value": 0.13, "unit": "m3/s", "note": "10% Q_design ecological flow"}
+    },
+    "valid_ranges": {
+        "Q_m3s": {"min": 0.0, "max": 10.0, "unit": "m3/s"},
+        "gross_head_m": {"min": 2.0, "max": 1800.0, "unit": "m"},
+        "T_water_C": {"min": 1.0, "max": 25.0, "unit": "degC"}
+    },
+    "phase7_note": "At 70% flow (Q=0.91 m3/s, H=45m), P clips to P_rated. Use 30% flow (Q=0.39 m3/s) for part-load verification."
+}

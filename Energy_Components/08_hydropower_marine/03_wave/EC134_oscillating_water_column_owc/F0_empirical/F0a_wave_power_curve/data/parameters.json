@@ -1,0 +1,22 @@
+{
+    "component": "EC134 Oscillating Water Column (OWC)",
+    "fidelity": "F0a",
+    "description": "Empirical power matrix collapsed to a 1-D lookup of electrical power vs significant wave height Hs at representative energy period Te=9 s. P = J(Hs,Te)*width*CWR*eta_turbine*eta_generator, where J=(rho*g^2/64pi)*Hs^2*Te. Capped at rated power.",
+    "rated": {
+        "width_m": {"value": 10.0, "unit": "m", "note": "OWC chamber opening width"},
+        "capture_width_ratio": {"value": 0.20, "unit": "dimensionless", "note": "Captured/incident wave power per metre"},
+        "eta_turbine": {"value": 0.60, "unit": "dimensionless", "note": "Wells turbine efficiency"},
+        "eta_generator": {"value": 0.92, "unit": "dimensionless", "note": "Generator efficiency"},
+        "Te_ref_s": {"value": 9.0, "unit": "s", "note": "Representative energy period for the lookup"},
+        "P_rated_kw": {"value": 80.0, "unit": "kW", "note": "Rated electrical power (curve clipped at rating)"},
+        "rho_water": {"value": 1025.0, "unit": "kg/m3", "note": "Seawater density"}
+    },
+    "power_curve": {
+        "Hs_m": {"value": [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 4.0, 5.0, 8.0], "unit": "m", "note": "Significant wave height breakpoints"},
+        "power_kw": {"value": [0.0, 1.22, 4.87, 10.97, 19.50, 30.47, 43.87, 77.99, 80.0, 80.0], "unit": "kW", "note": "Electrical power at Te=9 s, clipped at 80 kW rated"}
+    },
+    "valid_ranges": {
+        "Hs_m": {"min": 0.0, "max": 8.0, "unit": "m"}
+    },
+    "source": "Falnes (2002), Ocean Waves and Oscillating Systems; EMEC device performance data; reuses EC134 F1a parameters"
+}

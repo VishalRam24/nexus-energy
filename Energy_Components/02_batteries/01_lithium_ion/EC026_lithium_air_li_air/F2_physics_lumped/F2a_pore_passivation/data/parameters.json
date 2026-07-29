@@ -1,0 +1,46 @@
+{
+    "component_id": "EC026",
+    "component_name": "Lithium-Air Battery (Li-O2 / Li-Air)",
+    "fidelity": "F2a — Physics-Lumped Pore-Passivation Electrochemical/Thevenin Hybrid with Thermal ODE",
+    "description": "0D aprotic Li-O2 cell. Discharge forms insulating Li2O2 that progressively fills/clogs the porous air-cathode (capacity cut off at pore saturation), large ORR/OER round-trip voltage gap (~1 V hysteresis), thermal ODE via scipy.solve_ivp.",
+    "source": "Laoire et al. (2010) J. Electrochem. Soc. 157(7), A821; Abraham & Jiang (1996) J. Electrochem. Soc. 143, 1; Viswanathan et al. (2011) J. Chem. Phys. 135, 214704; Lu et al. (2013) Nat. Chem. 5, 527; Read (2002) J. Electrochem. Soc. 149, A1190; Sandhu, Fellner & Brooks (2007) J. Power Sources 164, 365 (pore-clogging discharge model); Bao et al. (2015) J. Electrochem. Soc. 162, A1602",
+    "unit": {
+        "name": "Aprotic Li-O2 cell (Li metal anode / carbon porous air cathode, TEGDME/DMSO electrolyte)",
+        "E_eq_ref": {"value": 2.96, "unit": "V", "note": "Equilibrium (thermodynamic) cell potential of 2Li + O2 -> Li2O2 at T_ref; OCV anchor", "source": "Lu et al. (2013) Nat. Chem. 5, 527; Viswanathan et al. (2011)"},
+        "voltage_max": {"value": 4.6, "unit": "V", "note": "Upper safety/charge cutoff (OER plateau ceiling)"},
+        "voltage_min": {"value": 2.0, "unit": "V", "note": "Lower discharge cutoff"},
+
+        "capacity_ref": {"value": 1.0, "unit": "Ah", "note": "Nominal cell capacity (reused from F1); discharge truncated earlier by pore saturation", "source": "EC026 F1b"},
+        "Q_pore_max": {"value": 1.0, "unit": "Ah", "note": "Charge that can be passed in discharge before Li2O2 saturates the cathode pores (theoretical pore-fill capacity)", "source": "Sandhu et al. (2007) J. Power Sources 164, 365"},
+        "pore_cutoff_frac": {"value": 0.92, "unit": "-", "note": "Fraction of pore volume filled by Li2O2 at which transport collapses and discharge ends (sudden death)", "source": "Sandhu et al. (2007); Bao et al. (2015)"},
+
+        "R_ref": {"value": 0.150, "unit": "Ohm", "note": "Base internal resistance at T_ref (Li2O2 insulating film), reused from F1", "source": "EC026 F1b"},
+        "tau_ct": {"value": 30.0, "unit": "s", "note": "Charge-transfer/double-layer RC relaxation time constant (Thevenin branch)"},
+        "R_ct_ref": {"value": 0.10, "unit": "Ohm", "note": "Charge-transfer (polarization) resistance of the RC branch at T_ref"},
+
+        "eta_orr": {"value": 0.32, "unit": "V", "note": "Sluggish ORR (discharge) kinetic overpotential at reference rate", "source": "Lu et al. (2013) Nat. Chem. 5, 527"},
+        "eta_oer": {"value": 0.70, "unit": "V", "note": "Sluggish OER (charge) kinetic overpotential at reference rate; OER >> ORR drives ~1 V round-trip gap", "source": "Lu et al. (2013); McCloskey et al. (2011) J. Phys. Chem. Lett. 2, 1161"},
+        "i_ref": {"value": 1.0, "unit": "A", "note": "Reference current at which eta_orr/eta_oer are quoted (Tafel anchor)"},
+        "tafel_slope": {"value": 0.060, "unit": "V/decade", "note": "Effective Tafel slope for ORR/OER current dependence", "source": "Viswanathan et al. (2011)"},
+        "k_passiv": {"value": 0.9, "unit": "V", "note": "Maximum additional discharge overpotential from Li2O2 film passivation as pores fill", "source": "Sandhu et al. (2007); Bao et al. (2015)"},
+
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 degC)"},
+        "E_a": {"value": 35000.0, "unit": "J/mol", "note": "Activation energy of ORR/OER kinetics (Arrhenius on R and eta), reused from F1", "source": "Viswanathan et al. (2011); Laoire et al. (2010)"},
+        "dOCV_dT": {"value": -0.00050, "unit": "V/K", "note": "Entropic coefficient (most negative of common chemistries), reused from F1", "source": "Viswanathan et al. (2011); Lu et al. (2013)"},
+        "R_gas": {"value": 8.314, "unit": "J/(mol*K)", "note": "Universal gas constant"},
+        "n_e": {"value": 2, "unit": "-", "note": "Electrons per O2 in 2Li + O2 -> Li2O2"},
+        "F_const": {"value": 96485.0, "unit": "C/mol", "note": "Faraday constant"},
+
+        "m_cell": {"value": 0.02, "unit": "kg", "note": "Lumped cell thermal mass (small coin/pouch Li-O2 cell)"},
+        "cp_cell": {"value": 900.0, "unit": "J/(kg.K)", "note": "Effective specific heat of cell"},
+        "hA_amb": {"value": 0.05, "unit": "W/K", "note": "Cell-to-ambient heat-transfer coefficient * area"},
+        "T_amb": {"value": 298.15, "unit": "K", "note": "Ambient temperature"}
+    },
+    "valid_ranges": {
+        "current_A": {"min": -2.0, "max": 2.0, "unit": "A", "note": "Positive=discharge, negative=charge; Li-air limited to low rates"},
+        "soc_0": {"min": 0.0, "max": 1.0, "unit": "-"},
+        "temperature": {"min": 258.15, "max": 333.15, "unit": "K", "note": "-15 to 60 degC"},
+        "dt": {"min": 0.1, "max": 60.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 360000.0, "unit": "s"}
+    }
+}

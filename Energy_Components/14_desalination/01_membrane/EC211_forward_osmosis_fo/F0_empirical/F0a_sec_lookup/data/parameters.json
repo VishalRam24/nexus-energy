@@ -1,0 +1,21 @@
+{
+    "component": "EC211 Forward Osmosis (FO)",
+    "fidelity": "F0a",
+    "description": "Empirical SEC lookup for FO: membrane-only pumping (0.5 kWh/m3) plus optional draw-solution regeneration (3.0 kWh/m3). Reused from EC211 F1a.",
+    "unit": {
+        "name": "Generic forward osmosis with draw solution regeneration",
+        "source": "Lutchmiah et al. (2014) Water Res.; Zhao et al. (2012) Water Res.",
+        "sec_membrane_kWh_m3": {"value": 0.5, "unit": "kWh/m3", "note": "Pumping energy, FO membrane step"},
+        "sec_regen_kWh_m3": {"value": 3.0, "unit": "kWh/m3", "note": "Draw-solution regeneration (RO regen)"},
+        "sec_total_kWh_m3": {"value": 3.5, "unit": "kWh/m3", "note": "Membrane + regen, rated total"},
+        "load_breakpoints": {"value": [0.1, 0.5, 1.0], "unit": "dimensionless"},
+        "membrane_factor_breakpoints": {"value": [1.30, 1.08, 1.0], "unit": "dimensionless", "note": "Part-load multiplier on membrane pumping SEC"},
+        "recovery": {"value": 0.80, "unit": "dimensionless"},
+        "rejection": {"value": 0.95, "unit": "dimensionless"},
+        "capacity_m3_h": {"value": 100.0, "unit": "m3/h"}
+    },
+    "valid_ranges": {
+        "capacity_fraction": {"min": 0.1, "max": 1.0, "unit": "dimensionless"},
+        "include_regen": {"min": 0, "max": 1, "unit": "boolean"}
+    }
+}

@@ -1,0 +1,24 @@
+{
+  "component": "EC148 Bioethanol Fermentation",
+  "fidelity": "F0a",
+  "description": "Empirical ethanol-yield lookup per feedstock (L EtOH / tonne feed) x fermentation-temperature multiplier (np.interp, peak near 32 C). Numbers derived from EC148 F1b sugar composition + yeast efficiency.",
+  "source": "Chandel et al. (2011); Gay-Lussac stoichiometry; S. cerevisiae yeast data — reused from EC148 F1b",
+  "rated": {
+    "yeast_efficiency": {"value": 0.90, "unit": "-", "note": "Fraction of theoretical Gay-Lussac yield"},
+    "T_optimum_degC": {"value": 32.0, "unit": "degC", "note": "S. cerevisiae optimum"},
+    "LHV_ethanol_MJ_L": {"value": 21.1, "unit": "MJ/L", "note": "Lower heating value of ethanol"}
+  },
+  "feedstock_table": {
+    "comment": "Ethanol yield (L EtOH / tonne feed) at optimum, reflecting sugar/starch/cellulose content & pretreatment efficiency from EC148 F1b.",
+    "feedstocks": ["wheat_straw", "switchgrass", "sweet_sorghum", "sugarcane", "corn"],
+    "ethanol_L_per_tonne": [180.0, 200.0, 290.0, 70.0, 400.0]
+  },
+  "temperature_curve": {
+    "comment": "Yield multiplier vs fermentation temperature (degC). Peak 1.0 at 32 C; yeast inhibited at low/high T.",
+    "T_degC": [20.0, 28.0, 32.0, 38.0, 45.0],
+    "yield_multiplier": [0.65, 0.93, 1.0, 0.85, 0.40]
+  },
+  "valid_ranges": {
+    "temperature_degC": {"min": 20.0, "max": 45.0, "unit": "degC"}
+  }
+}

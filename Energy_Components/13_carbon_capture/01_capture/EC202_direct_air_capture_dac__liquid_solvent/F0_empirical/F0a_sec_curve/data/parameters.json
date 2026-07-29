@@ -1,0 +1,37 @@
+{
+  "component": "EC202 Direct Air Capture (DAC) -- Liquid Solvent",
+  "fidelity": "F0a -- empirical lookup",
+  "source": "Keith et al. (2018) Carbon Engineering; Fasihi et al. (2019).",
+  "unit": {
+    "source": "Keith et al. (2018) Carbon Engineering; Fasihi et al. (2019).",
+    "capture_rate": {
+      "value": 0.9,
+      "unit": "-"
+    },
+    "SEC_thermal_GJ_tCO2": {
+      "value": 6.0,
+      "unit": "GJ/tCO2"
+    },
+    "SEC_elec_GJ_tCO2": {
+      "value": 1.8,
+      "unit": "GJ/tCO2"
+    },
+    "T_regen_C": {
+      "value": 900.0,
+      "unit": "degC"
+    }
+  },
+  "partload_curve": {
+    "capacity_fraction": [
+      0.1,
+      0.5,
+      1.0
+    ],
+    "sec_multiplier": [
+      1.35,
+      1.1,
+      1.0
+    ],
+    "note": "Specific energy rises at part load (calciner standby losses)."
+  }
+}

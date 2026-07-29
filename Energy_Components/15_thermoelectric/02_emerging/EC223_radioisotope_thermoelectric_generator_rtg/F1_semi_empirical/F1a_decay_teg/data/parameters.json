@@ -1,0 +1,20 @@
+{
+    "component": "EC223 Radioisotope Thermoelectric Generator (RTG)",
+    "fidelity": "F1a",
+    "description": "Pu-238 decay heat + TEG conversion; P_thermal(t)=P0*exp(-ln2*t/t_half); eta_TEG~6-8%",
+    "unit": {
+        "name": "GPHS-RTG (Pu-238, ~4.5kg, as used on Voyager/Cassini/New Horizons)",
+        "source": "Bennett (2006) Acta Astronautica; El-Genk & Saber (2005) Energy Convers. Mgmt.; NASA GPHS-RTG spec",
+        "isotope": {"value": "Pu-238", "unit": "-", "note": "Plutonium-238 alpha emitter"},
+        "P_thermal_0_W": {"value": 4500.0, "unit": "W", "note": "Initial thermal power per GPHS-RTG at ~2400 Bq/g → 4.5kW thermal"},
+        "t_half_years": {"value": 87.7, "unit": "years", "note": "Pu-238 half-life 87.7 years"},
+        "eta_teg_0": {"value": 0.065, "unit": "-", "note": "Initial TEG conversion efficiency ~6.5% (SiGe thermoelectrics)"},
+        "eta_teg_degradation_rate": {"value": 0.001, "unit": "1/year", "note": "TEG efficiency degrades ~0.1%/year"},
+        "T_hot_0_K": {"value": 1273.0, "unit": "K", "note": "Initial hot-side temperature ~1000°C"},
+        "T_cold_K": {"value": 573.0, "unit": "K", "note": "Cold-side (space radiator) ~300°C"},
+        "design_life_years": {"value": 50.0, "unit": "years", "note": "Voyager: >45 years operational"}
+    },
+    "valid_ranges": {
+        "t_years": {"min": 0.0, "max": 200.0, "unit": "years"}
+    }
+}

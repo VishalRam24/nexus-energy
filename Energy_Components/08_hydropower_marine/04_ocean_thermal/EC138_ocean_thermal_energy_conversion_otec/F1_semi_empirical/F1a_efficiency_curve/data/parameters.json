@@ -1,0 +1,20 @@
+{
+  "cycle": {
+    "T_warm_c":         {"value": 26.0,  "unit": "degC", "description": "Warm surface water temperature (typ 24-28 degC)"},
+    "T_cold_c":         {"value": 5.0,   "unit": "degC", "description": "Cold deep water temperature (typ 4-7 degC)"},
+    "eta_cycle_fraction": {"value": 0.70, "unit": "-",   "description": "Fraction of Carnot achieved by real ammonia ORC cycle (typ 0.60-0.75)"},
+    "eta_pump":         {"value": 0.82,  "unit": "-",    "description": "Seawater pump efficiency (dominates parasitic load)"},
+    "parasitic_fraction": {"value": 0.30, "unit": "-",  "description": "Fraction of gross power consumed by pumps and auxiliaries"},
+    "P_gross_kw":       {"value": 1000.0,"unit": "kW",   "description": "Gross (before parasitic) power rating"},
+    "Q_warm_kg_per_s_per_kw": {"value": 4.0, "unit": "kg/(s*kW)", "description": "Warm water mass flow per kW gross (typ 3-5)"},
+    "Q_cold_kg_per_s_per_kw": {"value": 3.0, "unit": "kg/(s*kW)", "description": "Cold water mass flow per kW gross (typ 2-4)"}
+  },
+  "limits": {
+    "T_warm_min_c": 20.0,
+    "T_warm_max_c": 32.0,
+    "T_cold_min_c": 2.0,
+    "T_cold_max_c": 10.0,
+    "dT_min_c": 10.0
+  },
+  "source": "Vega (2002) OTEC review; Nihous (2007) J. Energy Resour. Technol. 129:10; NREL OTEC resource assessment."
+}

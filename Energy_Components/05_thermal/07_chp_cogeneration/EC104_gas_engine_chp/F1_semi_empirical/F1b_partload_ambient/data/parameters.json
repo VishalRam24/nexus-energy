@@ -1,0 +1,26 @@
+{
+    "component": "EC104 Gas Engine CHP",
+    "fidelity": "F1b",
+    "description": "Part-load electrical and thermal efficiency with ambient temperature correction",
+    "unit": {
+        "name": "Generic 2 MW Natural Gas Engine CHP",
+        "source": "US EPA CHP Catalog (2017); ASUE BHKW-Kenndaten (2011); Jenbacher JMS 620",
+        "P_el_rated_kw": {"value": 2000.0, "unit": "kW_e", "note": "Rated electrical output at 25 degC"},
+        "eta_el_rated": {"value": 0.42, "unit": "-", "note": "Electrical efficiency at full load"},
+        "eta_th_rated": {"value": 0.43, "unit": "-", "note": "Thermal efficiency at full load"},
+        "PLR_min": {"value": 0.5, "unit": "-", "note": "Minimum part-load ratio"},
+        "LHV_gas_mj_kg": {"value": 50.0, "unit": "MJ/kg", "note": "Natural gas LHV"},
+        "el_plr_a": {"value": 0.20, "unit": "-", "note": "Electrical PLR constant (eta_el/eta_el_rated at PLR=0)"},
+        "el_plr_b": {"value": 0.95, "unit": "-", "note": "Electrical PLR linear"},
+        "el_plr_c": {"value": -0.15, "unit": "-", "note": "Electrical PLR quadratic"},
+        "th_plr_a": {"value": 0.60, "unit": "-", "note": "Thermal PLR constant (higher at part load: more jacket losses recoverable)"},
+        "th_plr_b": {"value": 0.40, "unit": "-", "note": "Thermal PLR linear"},
+        "T_ref_c": {"value": 25.0, "unit": "degC", "note": "Reference ambient temperature"},
+        "temp_derating_pct_per_degC": {"value": 0.3, "unit": "%/degC", "note": "Power derating above 25 degC"},
+        "temp_derating_start_c": {"value": 25.0, "unit": "degC", "note": "Temperature above which derating begins"}
+    },
+    "valid_ranges": {
+        "PLR": {"min": 0.5, "max": 1.0, "unit": "-"},
+        "T_ambient_c": {"min": -20.0, "max": 50.0, "unit": "degC"}
+    }
+}

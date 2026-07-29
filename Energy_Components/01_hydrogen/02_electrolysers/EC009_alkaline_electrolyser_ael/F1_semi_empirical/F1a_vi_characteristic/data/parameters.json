@@ -1,0 +1,30 @@
+{
+    "component": "EC009 Alkaline Electrolyser (AEL)",
+    "fidelity": "F1a",
+    "description": "Ulleberg (2003) V-I characteristic model for alkaline electrolysis",
+    "source": "Ulleberg (2003), Int. J. Hydrogen Energy, 28(1), 21-33",
+    "unit": {
+        "name": "Generic 5 kW Alkaline Electrolyser Stack",
+        "N_cells": {"value": 20, "unit": "dimensionless", "note": "Number of cells in series"},
+        "electrode_area": {"value": 0.25, "unit": "m2", "note": "Active electrode area per cell"},
+        "T_nominal": {"value": 353.15, "unit": "K", "note": "Nominal operating temperature (80 C)"},
+        "r1": {"value": 8.05e-5, "unit": "Ohm.m2", "note": "Ohmic resistance coefficient (Ulleberg Table 1)"},
+        "r2": {"value": -2.5e-7, "unit": "Ohm.m2/K", "note": "Temperature dependence of ohmic resistance"},
+        "s": {"value": 0.185, "unit": "V", "note": "Overvoltage coefficient (Tafel slope)"},
+        "t1": {"value": 1.002, "unit": "m2/A", "note": "Overvoltage parameter t1"},
+        "t2": {"value": 8.424, "unit": "m2.K/A", "note": "Overvoltage parameter t2"},
+        "t3": {"value": 247.3, "unit": "m2.K2/A", "note": "Overvoltage parameter t3"},
+        "f1": {"value": 250.0, "unit": "(mA/cm2)2", "note": "Faraday efficiency coefficient f1"},
+        "f2": {"value": 0.98, "unit": "dimensionless", "note": "Faraday efficiency coefficient f2"}
+    },
+    "constants": {
+        "F": {"value": 96485.0, "unit": "C/mol", "note": "Faraday constant"},
+        "R": {"value": 8.314, "unit": "J/(mol.K)", "note": "Universal gas constant"},
+        "E_rev_ref": {"value": 1.229, "unit": "V", "note": "Reversible potential at 25 C"},
+        "E_rev_T_coeff": {"value": 0.0009, "unit": "V/K", "note": "Temperature coefficient of E_rev"}
+    },
+    "valid_ranges": {
+        "current_density": {"min": 0.0, "max": 3000.0, "unit": "A/m2"},
+        "temperature": {"min": 40.0, "max": 90.0, "unit": "degC"}
+    }
+}

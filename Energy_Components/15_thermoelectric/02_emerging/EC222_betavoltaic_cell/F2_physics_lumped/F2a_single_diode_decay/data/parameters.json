@@ -1,0 +1,41 @@
+{
+    "component_id": "EC222",
+    "component_name": "Betavoltaic Cell",
+    "fidelity": "F2a — Single-Diode I-V with Beta-Flux Photocurrent and Decay ODE",
+    "source": "Olsen, L.C. et al. (1993) Nucl. Instrum. Methods Phys. Res. B 73, 139; Prelas, M. et al. (2014) Progress in Nuclear Energy 75, 117; Sun, W. et al. (2018) Appl. Energy 225, 390; Klein, C.A. (1968) J. Appl. Phys. 39, 2029 (pair-creation energy)",
+    "unit": {
+        "name": "Ni-63 betavoltaic cell with diamond p-n junction — physics-lumped single-diode model",
+        "source": "Olsen et al. (1993); Sychov et al. (2008) Appl. Radiat. Isot. 66; Prelas et al. (2014); Sun et al. (2018)",
+        "isotope": {"value": "Ni-63", "unit": "-", "note": "Nickel-63 beta emitter"},
+        "A0_Bq": {"value": 3.7e9, "unit": "Bq", "note": "Initial activity 0.1 Ci = 3.7 GBq"},
+        "t_half_years": {"value": 100.2, "unit": "years", "note": "Ni-63 half-life 100.2 years"},
+        "E_beta_MeV": {"value": 0.017, "unit": "MeV", "note": "Mean beta energy for Ni-63 (~17 keV; max 66.9 keV)"},
+        "eta_capture": {"value": 0.30, "unit": "-", "note": "Geometric/self-absorption capture efficiency into the junction (~30%)"},
+        "eta_collection": {"value": 0.70, "unit": "-", "note": "Charge-collection efficiency of generated EHPs (fraction reaching contacts)"},
+        "E_gap_eV": {"value": 5.5, "unit": "eV", "note": "Diamond bandgap ~5.5 eV (wide-gap, radiation-hard)"},
+        "W_factor": {"value": 2.8, "unit": "-", "note": "Klein factor: pair-creation energy E_pair ~= 2.8*E_gap + 0.5 eV (Klein 1968)"},
+        "W_offset_eV": {"value": 0.5, "unit": "eV", "note": "Klein offset (phonon loss term) in E_pair = W*E_gap + offset"},
+        "T_ref_K": {"value": 300.0, "unit": "K", "note": "Reference temperature for saturation current"},
+        "ideality_factor": {"value": 1.5, "unit": "-", "note": "Diode ideality factor n (diamond ~1.5)"},
+        "I0_ref_A": {"value": 1.0e-18, "unit": "A", "note": "Diode reverse saturation current at T_ref (wide-gap -> tiny I0); set so Voc ~1V at 300K"},
+        "Eg_I0_eV": {"value": 1.5, "unit": "eV", "note": "EFFECTIVE recombination activation energy in I0(T) law. NOT the full 5.5 eV diamond gap: using the full gap makes I0(T) vary 30+ orders of magnitude over 100 K and collapses Voc unphysically. ~1.5 eV gives a realistic, gentle Voc(T) slope across 200-500 K."},
+        "R_series_ohm": {"value": 50.0, "unit": "ohm", "note": "Series resistance of the cell"},
+        "R_shunt_ohm": {"value": 5.0e7, "unit": "ohm", "note": "Shunt (parallel) resistance — high for good cells"},
+        "FF_decay_rate": {"value": 0.0005, "unit": "1/year", "note": "Radiation-damage degradation of collection efficiency (small for Ni-63)"},
+        "C_thermal_J_K": {"value": 0.002, "unit": "J/K", "note": "Lumped thermal capacitance of the tiny cell"},
+        "hA_W_K": {"value": 1.0e-3, "unit": "W/K", "note": "Conductance to ambient (heat-sink * area)"},
+        "T_amb_K": {"value": 300.0, "unit": "K", "note": "Ambient temperature"},
+        "design_life_years": {"value": 50.0, "unit": "years", "note": "Design operational lifetime 50 years"}
+    },
+    "isotopes": {
+        "Tritium": {"t_half_years": 12.32, "E_beta_MeV": 0.005685, "E_gap_eV": 1.12, "note": "H-3, Si semiconductor"},
+        "Ni-63":   {"t_half_years": 100.2, "E_beta_MeV": 0.017,    "E_gap_eV": 5.5,  "note": "Diamond, very long life"},
+        "Pm-147":  {"t_half_years": 2.623, "E_beta_MeV": 0.062,    "E_gap_eV": 3.26, "note": "GaN semiconductor"},
+        "Sr-90":   {"t_half_years": 28.8,  "E_beta_MeV": 0.196,    "E_gap_eV": 3.26, "note": "GaN, higher power"}
+    },
+    "valid_ranges": {
+        "t_years":  {"min": 0.0, "max": 500.0, "unit": "years"},
+        "T_cell_K": {"min": 200.0, "max": 500.0, "unit": "K"},
+        "A0_Bq":    {"min": 1.0e6, "max": 1.0e12, "unit": "Bq"}
+    }
+}

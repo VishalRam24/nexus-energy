@@ -1,0 +1,31 @@
+{
+    "component": "EC165 Multilevel Inverter (N-level NPC / Cascaded H-Bridge)",
+    "fidelity": "F2a",
+    "description": "Physics-lumped N-level inverter: staircase/PWM synthesis of a stepped sine with THD falling as levels rise; averaged LC output-filter ODE (solve_ivp); conduction+switching loss efficiency.",
+    "unit": {
+        "name": "Generic N-level NPC / CHB Inverter (50 kW, 700 V bus)",
+        "source": "Rodriguez, J., Lai, J.S., Peng, F.Z. (2002) IEEE Trans. Ind. Electron. 49(4) 724-738; Lai, J.S. & Peng, F.Z. (1996) IEEE Trans. Ind. Appl. 32(3) 509-517; Holmes & Lipo (2003) Pulse Width Modulation for Power Converters, Wiley.",
+        "V_dc": {"value": 700.0, "unit": "V", "note": "Total DC bus voltage (split across N-1 cells/capacitors)"},
+        "P_rated": {"value": 50000.0, "unit": "W", "note": "Rated output power"},
+        "n_levels": {"value": 5, "unit": "dimensionless", "note": "Number of output phase voltage levels (odd, >=2). 5-level default."},
+        "f_out": {"value": 50.0, "unit": "Hz", "note": "Fundamental output frequency"},
+        "f_sw": {"value": 2000.0, "unit": "Hz", "note": "Per-device switching/carrier frequency"},
+        "L_filter": {"value": 2.0e-3, "unit": "H", "note": "Output filter inductance (per phase)"},
+        "C_filter": {"value": 20.0e-6, "unit": "F", "note": "Output filter capacitance (per phase)"},
+        "R_load": {"value": 3.0, "unit": "Ohm", "note": "Resistive load per phase (sets ~50 kW 3ph at rated)"},
+        "R_filter": {"value": 0.05, "unit": "Ohm", "note": "Parasitic/damping series resistance of filter inductor"},
+        "V_ce0": {"value": 1.6, "unit": "V", "note": "IGBT/diode on-state threshold voltage"},
+        "r_ce": {"value": 0.0035, "unit": "Ohm", "note": "Device on-state slope resistance"},
+        "E_sw_ref": {"value": 0.020, "unit": "J", "note": "Combined turn-on+turn-off+recovery energy per switching event at V_ref,I_ref"},
+        "V_ref": {"value": 350.0, "unit": "V", "note": "Reference blocking voltage for switching-energy scaling (per-cell V_dc/(N-1))"},
+        "I_ref": {"value": 100.0, "unit": "A", "note": "Reference current for switching-energy scaling"},
+        "power_factor": {"value": 1.0, "unit": "dimensionless", "note": "Load power factor (resistive default)"}
+    },
+    "valid_ranges": {
+        "n_levels": {"min": 2, "max": 21, "unit": "dimensionless"},
+        "v_dc": {"min": 300.0, "max": 1200.0, "unit": "V"},
+        "modulation_index": {"min": 0.1, "max": 1.15, "unit": "dimensionless"},
+        "p_load": {"min": 0.0, "max": 60000.0, "unit": "W"},
+        "f_sw": {"min": 500.0, "max": 20000.0, "unit": "Hz"}
+    }
+}

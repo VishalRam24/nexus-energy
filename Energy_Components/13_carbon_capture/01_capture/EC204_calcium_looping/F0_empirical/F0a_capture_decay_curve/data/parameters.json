@@ -1,0 +1,41 @@
+{
+  "component": "EC204 Calcium Looping",
+  "fidelity": "F0a -- empirical lookup",
+  "source": "Abanades et al. (2004) Chem. Eng. J.; Dean et al. (2011).",
+  "unit": {
+    "source": "Abanades et al. (2004) Chem. Eng. J.; Dean et al. (2011).",
+    "capture_rate": {
+      "value": 0.9,
+      "unit": "-"
+    },
+    "SEC_thermal_GJ_tCO2": {
+      "value": 3.2,
+      "unit": "GJ/tCO2"
+    },
+    "SEC_elec_GJ_tCO2": {
+      "value": 0.3,
+      "unit": "GJ/tCO2"
+    },
+    "T_calciner_C": {
+      "value": 900.0,
+      "unit": "degC"
+    }
+  },
+  "decay_curve": {
+    "cycle_number": [
+      1,
+      10,
+      50,
+      100,
+      500
+    ],
+    "capture_rate": [
+      0.9,
+      0.8,
+      0.62,
+      0.5,
+      0.4
+    ],
+    "note": "CaO activity decay with cycles (residual conversion ~0.4)."
+  }
+}

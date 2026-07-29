@@ -1,0 +1,30 @@
+{
+    "component_id": "EC075",
+    "component_name": "Finned-Tube Heat Exchanger",
+    "fidelity": "F2a — Physics-Lumped Transient (multi-CV energy balance)",
+    "source": "Incropera & DeWitt (2006), Fundamentals of Heat and Mass Transfer, ch.11; Kays & London (1984), Compact Heat Exchanger Design (3rd ed.)",
+    "description": "Air-to-liquid finned-tube cross-flow HX discretised into N control volumes. Per-CV energy-balance ODEs for hot (water) stream, cold (air) stream, and tube+fin wall thermal mass. Fin efficiency factored into the air-side UA (the dominant resistance). Steady state reproduces the cross-flow effectiveness-NTU result of the F1a model.",
+    "unit": {
+        "name": "Generic finned-tube HX (water-to-air), reuses EC075 F1a geometry",
+        "U_overall": {"value": 45.0, "unit": "W/m2K", "note": "Overall U on total external area; reused from F1a so SS matches e-NTU. Incropera Table 11.2 air/water finned coils 25-50 W/m2K."},
+        "A": {"value": 25.0, "unit": "m2", "note": "Total external finned (air-side) area; reused from F1a."},
+        "air_side_fraction": {"value": 0.85, "unit": "-", "note": "Fraction of total thermal resistance on the air side (air-side dominant). Kays & London (1984): gas-side resistance dominates compact HX, typ. 0.8-0.9."},
+        "fin_efficiency": {"value": 0.85, "unit": "-", "note": "Overall surface (fin) efficiency eta_o for the air-side finned surface. Incropera eq. 11.3, typical aluminium plate-fin coil 0.80-0.90."},
+        "cp_hot": {"value": 4180.0, "unit": "J/kgK", "note": "Liquid water cp at ~40 C, 1 atm. CRC Handbook 97th ed. (2016); Incropera Table A.6."},
+        "rho_hot": {"value": 992.0, "unit": "kg/m3", "note": "Liquid water density at ~40 C. Incropera Table A.6 (v=1.008e-3 m3/kg)."},
+        "cp_cold": {"value": 1006.0, "unit": "J/kgK", "note": "Dry air cp at 300 K, 1 atm. Incropera Table A.4; Kays & London (1984)."},
+        "rho_cold": {"value": 1.1614, "unit": "kg/m3", "note": "Dry air density at 300 K, 1 atm. Incropera Table A.4."},
+        "cp_wall": {"value": 900.0, "unit": "J/kgK", "note": "Aluminium tube+fin material specific heat. Incropera Table A.1 (Al 2024-T6, 300 K)."},
+        "m_wall": {"value": 18.0, "unit": "kg", "note": "Total tube + fin metal mass (thermal mass of the matrix)."},
+        "V_hot": {"value": 0.012, "unit": "m3", "note": "Internal (water) volume of all tubes — sets liquid thermal mass / residence time."},
+        "V_cold": {"value": 0.30, "unit": "m3", "note": "Air-side free-flow + frontal volume holding the air thermal mass."},
+        "N_cv": {"value": 10, "unit": "-", "note": "Number of stream-wise control volumes for the lumped discretisation."}
+    },
+    "valid_ranges": {
+        "T_h_in": {"min": 20.0, "max": 120.0, "unit": "degC"},
+        "T_c_in": {"min": -20.0, "max": 50.0, "unit": "degC"},
+        "m_dot_hot": {"min": 0.05, "max": 5.0, "unit": "kg/s"},
+        "m_dot_cold": {"min": 0.1, "max": 10.0, "unit": "kg/s"},
+        "duration_s": {"min": 1.0, "max": 7200.0, "unit": "s"}
+    }
+}

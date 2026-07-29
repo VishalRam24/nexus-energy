@@ -1,0 +1,212 @@
+"""
+EC121 -- High Temperature Gas Reactor (HTGR) -- F2a Point Kinetics + Lumped Thermal
+Test suite: neutronics/thermal physics sanity, negative-feedback stability,
+thermal inertia, high outlet temperature, energy conservation, edge cases.
+"""
+
+import sys
+import os
+import time
+import numpy as np
+
+sys.path.insert(0, os.path.dirname(__file__))
+from model import HTGR_F2a, PCM
+from predict import ComponentModel
+
+PASS = "✓"
+FAIL = "✗"
+
+
+def assert_true(cond, msg):
+    if cond:
+        print(f"  {PASS}  {msg}")
+    else:
+        print(f"  {FAIL}  FAILED: {msg}")
+        raise AssertionError(msg)
+
+
+def make_model():
+    cm = ComponentModel()
+    return cm._model, cm
+
+
+# ---------------------------------------------------------------------------
+def test_neutronics_params():
+    print("\n[Test 1] Neutronics parameters physical")
+    m, _ = make_model()
+    assert_true(abs(m.beta - 0.0065) < 5e-4, f"beta={m.beta:.5f} ~ 0.0065 (U-235)")
+    assert_true(m.Lambda > 0 and m.Lambda < 1e-2,
+                f"Lambda={m.Lambda:.1e} s in graphite-moderated range")
+    assert_true(m.alpha_fuel < 0, f"Fuel(Doppler) coeff alpha_fuel={m.alpha_fuel:.2e} < 0")
+    assert_true(m.alpha_grph < 0, f"Graphite coeff alpha_grph={m.alpha_grph:.2e} < 0")
+
+
+def test_steady_state_holds():
+    print("\n[Test 2] Rated steady state is stationary (rho_ext=0, P0=1)")
+    m, _ = make_model()
+    r = m.simulate(0.0, 2000.0, P0_fraction=1.0)
+    n_end = r["power_fraction"][-1]
+    assert_true(abs(n_end - 1.0) < 0.02,
+                f"Power stays at rated: n_final={n_end:.4f} ~ 1.0")
+    dT = abs(r["T_fuel_K"][-1] - r["T_fuel_K"][-2])
+    assert_true(dT < 1.0, f"Fuel T near steady: dT={dT:.4f} K between last steps")
+
+
+def test_high_outlet_temperature():
+    print("\n[Test 3] Helium outlet temperature is high (HTGR 750-950C)")
+    m, _ = make_model()
+    r = m.simulate(0.0, 500.0, P0_fraction=1.0)
+    T_out = r["T_helium_outlet_C"][-1]
+    assert_true(700.0 < T_out < 1000.0,
+                f"T_out={T_out:.1f} C in HTGR high-temp band [700,1000]")
+    assert_true(r["T_fuel_K"][-1] > r["T_graphite_K"][-1] > r["T_helium_mean_K"][-1],
+                "Temperature ordering: fuel > graphite > helium")
+
+
+def test_negative_feedback_stability():
+    print("\n[Test 4] Negative feedback: +reactivity -> power rises then SETTLES")
+    m, _ = make_model()
+    # Insert +150 pcm. Negative feedback must arrest the rise (bounded, stable).
+    r = m.simulate(150.0 * PCM, 3000.0, P0_fraction=1.0)
+    n = r["power_fraction"]
+    assert_true(np.all(np.isfinite(n)), "Power remains finite (no divergence)")
+    assert_true(n.max() < 5.0, f"Power bounded by feedback: max={n.max():.3f} < 5x")
+    # Settles to a steady value (last 10% nearly flat)
+    tail = n[int(0.9 * len(n)):]
+    assert_true(tail.std() < 0.02, f"Power settles: tail std={tail.std():.4f}")
+    assert_true(n[-1] > 1.0, f"New equilibrium above rated: n={n[-1]:.3f}")
+
+
+def test_feedback_sign_on_heating():
+    print("\n[Test 5] Hotter core -> more negative feedback reactivity")
+    m, _ = make_model()
+    rho_hot = m.feedback_reactivity(m.T_fuel_0 + 100, m.T_grph_0 + 100)
+    rho_ref = m.feedback_reactivity(m.T_fuel_0, m.T_grph_0)
+    assert_true(abs(rho_ref) < 1e-12, "Feedback zero at reference temperatures")
+    assert_true(rho_hot < 0, f"Heating gives negative reactivity: {rho_hot:.2e}")
+
+
+def test_rod_insertion_lowers_power():
+    print("\n[Test 6] Negative external reactivity lowers steady power")
+    m, _ = make_model()
+    r = m.simulate(-200.0 * PCM, 3000.0, P0_fraction=1.0)
+    n_end = r["power_fraction"][-1]
+    assert_true(n_end < 1.0, f"Power drops below rated: n={n_end:.3f}")
+    assert_true(n_end > 0.3, f"Power settles to new positive equilibrium: n={n_end:.3f}")
+    assert_true(r["T_fuel_K"][-1] < m.T_fuel_0,
+                "Fuel cools at reduced power")
+
+
+def test_large_thermal_inertia():
+    print("\n[Test 7] Large graphite thermal inertia damps/slows transient")
+    m, _ = make_model()
+    # Graphite time constant C_grph / advective removal should be very long.
+    tau_graphite = m.C_grph / m.k_adv
+    assert_true(m.C_grph > 1e9, f"Graphite heat capacity huge: {m.C_grph:.2e} J/K")
+    assert_true(tau_graphite > 100.0,
+                f"Graphite thermal time constant slow: {tau_graphite:.0f} s")
+    # Step in reactivity: graphite must lag fuel (slower to respond).
+    r = m.simulate(150.0 * PCM, 1500.0, P0_fraction=1.0)
+    df_fuel = r["T_fuel_K"][50] - r["T_fuel_K"][0]
+    df_grph = r["T_graphite_K"][50] - r["T_graphite_K"][0]
+    assert_true(abs(df_fuel) > abs(df_grph),
+                f"Fuel responds faster than graphite (dT_f={df_fuel:.2f} > dT_g={df_grph:.2f})")
+
+
+def test_energy_conservation():
+    print("\n[Test 8] Energy balance: stored + advected = fission integral")
+    m, _ = make_model()
+    r = m.simulate(150.0 * PCM, 2000.0, P0_fraction=1.0, n_eval=2000)
+    t = r["t"]
+    P_fis = r["P_thermal_W"]
+    # Energy generated by fission
+    trapz = getattr(np, "trapezoid", np.trapz)
+    E_in = trapz(P_fis, t)
+    # Energy advected away by helium: k_adv*(T_He - T_in)
+    q_adv = m.k_adv * (r["T_helium_mean_K"] - m.T_He_in)
+    E_adv = trapz(q_adv, t)
+    # Energy stored in solid + gas nodes (relative to initial)
+    dE_store = (m.C_fuel * (r["T_fuel_K"][-1] - r["T_fuel_K"][0])
+                + m.C_grph * (r["T_graphite_K"][-1] - r["T_graphite_K"][0])
+                + m.C_He * (r["T_helium_mean_K"][-1] - r["T_helium_mean_K"][0]))
+    residual = E_in - E_adv - dE_store
+    rel = abs(residual) / E_in
+    print(f"  E_fission={E_in:.3e} J, E_adv={E_adv:.3e} J, "
+          f"dE_store={dE_store:.3e} J, rel residual={rel:.3%}")
+    assert_true(rel < 0.01, f"Energy conserved within 1%: residual={rel:.3%}")
+
+
+def test_precursor_equilibrium():
+    print("\n[Test 9] Delayed-neutron precursors at equilibrium")
+    m, _ = make_model()
+    y0 = m.initial_state(1.0)
+    C = y0[1:1 + m.n_groups]
+    # dC/dt should be ~0: beta_i/Lambda * n = lambda_i * C
+    src = m.beta_i / m.Lambda * 1.0
+    sink = m.lambda_i * C
+    err = np.max(np.abs(src - sink) / src)
+    assert_true(err < 1e-9, f"Precursors balanced: max rel err={err:.1e}")
+
+
+def test_passive_decay_heat():
+    print("\n[Test 10] Passive decay-heat removal keeps fuel below TRISO limit")
+    m, _ = make_model()
+    r = m.decay_heat_simulate(duration_s=30000.0)
+    T_peak = r["T_core_C"].max()
+    assert_true(r["P_decay_MW"][0] < 0.1 * m.P_rated / 1e6,
+                f"Decay heat is small fraction of rated: {r['P_decay_MW'][0]:.1f} MW")
+    assert_true(T_peak < 1600.0,
+                f"Peak core T={T_peak:.0f} C < 1600 C TRISO failure limit (passive safety)")
+
+
+def test_predict_interface():
+    print("\n[Test 11] ComponentModel predict() interface")
+    _, cm = make_model()
+    r = cm.predict({"rho_ext_pcm": -100.0, "duration_s": 500.0, "n_eval": 100})
+    for key in ["t", "power_fraction", "P_thermal_MW", "P_electric_MW",
+                "T_fuel_K", "T_graphite_K", "T_helium_outlet_C", "reactivity_total"]:
+        assert_true(key in r, f"Key '{key}' in output")
+    assert_true(len(r["t"]) == len(r["power_fraction"]), "Arrays same length")
+    info = cm.get_info()
+    assert_true(info["component_id"] == "EC121" and info["version"] == "1.0.0",
+                "get_info metadata correct")
+
+
+def test_benchmark():
+    print("\n[Test 12] Benchmark: 2000s reactor transient")
+    m, _ = make_model()
+    t0 = time.perf_counter()
+    m.simulate(150.0 * PCM, 2000.0, P0_fraction=1.0)
+    elapsed = time.perf_counter() - t0
+    print(f"  2000s transient solved in {elapsed*1000:.1f} ms")
+    assert_true(elapsed < 5.0, "Completes in < 5 s")
+
+
+if __name__ == "__main__":
+    tests = [
+        test_neutronics_params,
+        test_steady_state_holds,
+        test_high_outlet_temperature,
+        test_negative_feedback_stability,
+        test_feedback_sign_on_heating,
+        test_rod_insertion_lowers_power,
+        test_large_thermal_inertia,
+        test_energy_conservation,
+        test_precursor_equilibrium,
+        test_passive_decay_heat,
+        test_predict_interface,
+        test_benchmark,
+    ]
+    passed = failed = 0
+    for t in tests:
+        try:
+            t()
+            passed += 1
+        except (AssertionError, Exception) as e:
+            failed += 1
+            print(f"  ERROR: {e}")
+
+    print(f"\n{'='*60}")
+    print(f"EC121 HTGR F2a -- Results: {passed} passed, {failed} failed")
+    print(f"{'='*60}")
+    sys.exit(0 if failed == 0 else 1)

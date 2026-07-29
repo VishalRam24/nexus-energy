@@ -1,0 +1,9 @@
+{
+  "default_parameters": {
+    "eta_collector": 0.50,
+    "A_collector_m2": 6.0,
+    "eta_boiler": 0.90,
+    "Q_demand_W": 10000.0
+  },
+  "description": "Solar combi system F1a: Q_solar=eta_coll*G*A, Q_aux=(Q_demand-Q_solar)/eta_boiler, f_solar=Q_solar/Q_demand. eta_coll=0.50, A=6m^2, eta_boiler=0.90."
+}

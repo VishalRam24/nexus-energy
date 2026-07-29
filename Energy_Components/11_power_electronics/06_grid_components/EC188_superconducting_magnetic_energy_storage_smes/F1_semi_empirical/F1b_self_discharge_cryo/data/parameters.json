@@ -1,0 +1,32 @@
+{
+    "component": "EC188 SMES",
+    "fidelity": "F1b",
+    "description": "SMES energy model with AC losses (Norris model), cryogenic cooling load (Carnot-based COP), self-discharge, and round-trip efficiency.",
+    "unit": {
+        "name": "Generic HTS SMES Unit, 10 MJ / 2 MW",
+        "source": "Buckles & Hassenzahl (2000) IEEE Power Eng. Rev.; Kalsi (2011) Wiley; Norris (1970) J. Phys. D.; Cigre WG B4 SMES studies.",
+        "L_H":           {"value": 100.0,   "unit": "H",       "note": "Coil inductance (E=0.5*L*I^2; 100H * 447A^2/2 = ~10 MJ)"},
+        "I_max_A":       {"value": 447.0,   "unit": "A",       "note": "Maximum coil current at E_max=10 MJ"},
+        "I_min_A":       {"value": 100.0,   "unit": "A",       "note": "Minimum operating current (20% SOC)"},
+        "P_rated_MW":    {"value": 2.0,     "unit": "MW",      "note": "Rated converter power (charge/discharge)"},
+        "eta_converter": {"value": 0.97,    "unit": "-",       "note": "Converter efficiency per pass (VSC-type)"},
+        "k_ac_loss":     {"value": 1.0e-5,  "unit": "W/A^n",   "note": "AC loss coefficient (Norris simplified; ~0.1 mJ/cycle at I=100A typical HTS)"},
+        "n_ac_loss":     {"value": 2.5,     "unit": "-",       "note": "AC loss exponent (2-3 for HTS tape in Norris model)"},
+        "f_ripple_Hz":   {"value": 100.0,   "unit": "Hz",      "note": "Converter current ripple frequency (2*f_sw for VSC)"}
+    },
+    "cryo": {
+        "P_cryo_rated_MW":  {"value": 0.05,   "unit": "MW",    "note": "Static heat leak + base cooling at T_op_rated (50 kW for 10 MJ HTS SMES, Kalsi 2011)"},
+        "T_op_rated_K":     {"value": 20.0,   "unit": "K",     "note": "HTS operating temperature (20 K for MgB2 / REBCO with GM cooler)"},
+        "T_cryo_ref_K":     {"value": 20.0,   "unit": "K",     "note": "Reference temperature for P_cryo_rated"},
+        "COP_cryo":         {"value": 0.01,   "unit": "-",     "note": "Fraction of Carnot COP for GM/pulse-tube cooler (typical 0.5-2%, Xue 2006)"},
+        "T_ambient_K":      {"value": 293.15, "unit": "K",     "note": "Ambient temperature (20 degC)"},
+        "k_cryo_T":         {"value": 0.02,   "unit": "1/K",   "note": "Cryo load sensitivity to operating temperature variation"},
+        "heat_leak_MW":     {"value": 0.002,  "unit": "MW",    "note": "Static conduction + radiation heat leak to cold volume (2 kW typical for 10 MJ system)"}
+    },
+    "valid_ranges": {
+        "SOC":           {"min": 0.0,  "max": 1.0,   "unit": "-"},
+        "P_request_MW":  {"min": 0.0,  "max": 2.0,   "unit": "MW"},
+        "T_op_K":        {"min": 4.2,  "max": 77.0,  "unit": "K", "note": "LTS (4.2K) to HTS operating range"},
+        "dt_s":          {"min": 0.001,"max": 3600.0, "unit": "s"}
+    }
+}

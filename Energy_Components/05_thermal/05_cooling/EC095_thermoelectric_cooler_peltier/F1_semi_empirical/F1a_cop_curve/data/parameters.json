@@ -1,0 +1,20 @@
+{
+    "component": "EC095 Thermoelectric Cooler (Peltier)",
+    "fidelity": "F1a",
+    "description": "Peltier (TEC) module — semi-empirical Q_c, W_in, COP_c using effective Seebeck, electrical resistance, and thermal conductance lumped over a stack of N modules.",
+    "unit": {
+        "name": "Generic Bi2Te3 TEC stack — 4 modules in series, ~80 W cooling each",
+        "source": "Goldsmid, H.J. (2010). Introduction to Thermoelectricity, Springer; Rowe, D.M. (Ed.) (2006). CRC Handbook of Thermoelectrics; Riffat, S.B., Ma, X. (2003). Appl. Thermal Eng. 23, 913-935.",
+        "n_modules":          {"value": 4,      "unit": "-"},
+        "alpha_module":       {"value": 0.053,  "unit": "V/K", "note": "Effective Seebeck coefficient per module (~127 thermocouples Bi2Te3)"},
+        "R_module":           {"value": 3.5,    "unit": "ohm", "note": "Electrical resistance per module"},
+        "K_module":           {"value": 0.65,   "unit": "W/K", "note": "Thermal conductance per module"},
+        "I_max":              {"value": 6.0,    "unit": "A",   "note": "Maximum operating current per module"},
+        "auxiliary_power":    {"value": 0.0,    "unit": "W"}
+    },
+    "valid_ranges": {
+        "current":   {"min": 0.0,  "max": 6.0,   "unit": "A"},
+        "T_cold":    {"min": -20.0,"max": 30.0,  "unit": "degC"},
+        "T_hot":     {"min": 10.0, "max": 80.0,  "unit": "degC"}
+    }
+}

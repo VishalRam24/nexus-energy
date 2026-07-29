@@ -1,0 +1,23 @@
+{
+    "component": "EC132 Tidal Stream Turbine",
+    "fidelity": "F0a",
+    "description": "Empirical power curve P(v) vs current speed: zero below cut-in, cube-law region up to rated, flat at rated power to cut-out, zero above. Tabulated and interpolated with numpy.interp.",
+    "rated": {
+        "rated_power_kw": {"value": 1000.0, "unit": "kW", "note": "Rated electrical output"},
+        "rotor_diameter_m": {"value": 20.0, "unit": "m", "note": "Rotor diameter"},
+        "Cp_rated": {"value": 0.42, "unit": "dimensionless", "note": "Peak power coefficient (Betz=0.593)"},
+        "eta_drivetrain": {"value": 0.92, "unit": "dimensionless", "note": "Drivetrain+generator efficiency"},
+        "cut_in_speed_ms": {"value": 0.8, "unit": "m/s", "note": "Minimum current speed for generation"},
+        "rated_speed_ms": {"value": 2.524, "unit": "m/s", "note": "Current speed where cube-law reaches rated power"},
+        "cut_out_speed_ms": {"value": 4.0, "unit": "m/s", "note": "Max operating current speed (storm protection)"},
+        "rho_water": {"value": 1025.0, "unit": "kg/m3", "note": "Seawater density"}
+    },
+    "power_curve": {
+        "current_speed_ms": {"value": [0.0, 0.8, 1.0, 1.2, 1.5, 1.8, 2.0, 2.2, 2.524, 4.0, 4.001], "unit": "m/s", "note": "Current speed breakpoints"},
+        "power_kw": {"value": [0.0, 31.9, 62.2, 107.5, 210.0, 362.8, 497.7, 662.4, 1000.0, 1000.0, 0.0], "unit": "kW", "note": "Electrical power output; flat at rated 2.524-4.0 m/s, zero above cut-out"}
+    },
+    "valid_ranges": {
+        "current_speed_ms": {"min": 0.0, "max": 4.5, "unit": "m/s"}
+    },
+    "source": "EMEC Tidal Resource Guide; Fraenkel (2002) Marine Current Turbines; IEC TS 62600-200; reuses EC132 F1a parameters"
+}

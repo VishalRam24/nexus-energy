@@ -1,0 +1,22 @@
+{
+    "component": "EC060 Solar Pond",
+    "fidelity": "F1b",
+    "description": "Hottel-Whillier model for LCZ heat extraction with Fresnel/Snell IAM for brine surface",
+    "unit": {
+        "name": "Generic 1000 m2 Solar Pond (Dead Sea brine, LCZ ~80 degC)",
+        "source": "Duffie & Beckman (2013) Ch.9; Singh et al. (2011), Renew. Sust. Energ. Rev. 15(4), 1773-1781",
+        "area": {"value": 1000.0, "unit": "m2", "note": "Pond surface area"},
+        "tau_pond": {"value": 0.70, "unit": "-", "note": "Integrated transmittance through brine column to LCZ (normal incidence)"},
+        "alpha_lcz": {"value": 0.95, "unit": "-", "note": "Absorptance of LCZ (dark bottom lining)"},
+        "U_lcz": {"value": 1.2, "unit": "W/m2K", "note": "Overall heat loss coefficient from LCZ (insulated sides/bottom)"},
+        "n_brine": {"value": 1.40, "unit": "-", "note": "Refractive index of saturated NaCl brine"},
+        "m_dot": {"value": 2.0, "unit": "kg/s", "note": "Extraction flow rate from LCZ"},
+        "cp_brine": {"value": 3600.0, "unit": "J/kgK", "note": "Specific heat of saturated brine"}
+    },
+    "valid_ranges": {
+        "irradiance": {"min": 0.0, "max": 1100.0, "unit": "W/m2"},
+        "incidence_angle": {"min": 0.0, "max": 80.0, "unit": "deg"},
+        "T_lcz": {"min": 30.0, "max": 95.0, "unit": "degC"},
+        "T_ambient": {"min": 0.0, "max": 45.0, "unit": "degC"}
+    }
+}

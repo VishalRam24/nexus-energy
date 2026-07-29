@@ -1,0 +1,37 @@
+{
+    "component_id": "EC183",
+    "component_name": "Circuit Breaker",
+    "fidelity": "F2a — Cassie-Mayr Arc Interruption (physics-lumped ODE)",
+    "source": "Cassie (1939) CIGRE Report 102; Mayr (1943) Arch. Elektrotech. 37:588; Habedank (1988) ETZ Archiv; CIGRE WG 13.01 (1998) TRV; IEC 62271-100",
+    "unit": {
+        "name": "Generic 11kV Vacuum Circuit Breaker — Arc Interruption Model",
+        "V_rated_kV": {"value": 11.0, "unit": "kV", "note": "Rated line voltage (RMS, ph-ph)"},
+        "I_rated_A": {"value": 630.0, "unit": "A", "note": "Continuous current rating"},
+        "I_interrupt_kA": {"value": 25.0, "unit": "kA", "note": "Short-circuit breaking capacity (symmetrical RMS)"},
+        "f_Hz": {"value": 50.0, "unit": "Hz", "note": "System power frequency"},
+
+        "U_c_Cassie_V": {"value": 3900.0, "unit": "V", "note": "Cassie steady-state arc voltage constant (arc column voltage)"},
+        "tau_Cassie_us": {"value": 1.0, "unit": "us", "note": "Cassie arc time constant (high-current regime)"},
+        "P_loss_Mayr_W": {"value": 30000.0, "unit": "W", "note": "Mayr cooling power constant P0 (near current zero)"},
+        "tau_Mayr_us": {"value": 0.7, "unit": "us", "note": "Mayr arc time constant (current-zero regime)"},
+        "g_min_S": {"value": 1e-8, "unit": "S", "note": "Residual post-arc conductance floor (numerical + leakage)"},
+        "g0_S": {"value": 1000.0, "unit": "S", "note": "Initial arc conductance at contact separation"},
+
+        "L_source_mH": {"value": 5.0, "unit": "mH", "note": "Source-side inductance setting fault current (X/R dominated)"},
+        "R_source_ohm": {"value": 0.5, "unit": "Ohm", "note": "Source-side resistance"},
+        "C_trv_nF": {"value": 25.0, "unit": "nF", "note": "Parallel capacitance shaping TRV rise (CIGRE first-pole 11kV)"},
+        "k_pp": {"value": 1.5, "unit": "-", "note": "First-pole-to-clear factor (ungrounded 3-ph)"},
+        "k_af": {"value": 1.4, "unit": "-", "note": "TRV amplitude factor (CIGRE)"},
+
+        "t_open_ms": {"value": 1.0, "unit": "ms", "note": "Contact gap-open / dielectric-recovery onset within the arcing window (gap holds off TRV after this instant)"},
+        "u_dielectric_kV": {"value": 35.0, "unit": "kV", "note": "Cold-gap dielectric withstand (peak TRV the open gap holds)"}
+    },
+    "valid_ranges": {
+        "I_fault_kA": {"min": 0.1, "max": 50.0, "unit": "kA"},
+        "V_rated_kV": {"min": 1.0, "max": 36.0, "unit": "kV"},
+        "tau_us": {"min": 0.1, "max": 10.0, "unit": "us"},
+        "f_Hz": {"min": 16.7, "max": 60.0, "unit": "Hz"},
+        "dt_us": {"min": 0.001, "max": 1.0, "unit": "us"},
+        "duration_ms": {"min": 0.1, "max": 100.0, "unit": "ms"}
+    }
+}

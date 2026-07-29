@@ -1,0 +1,36 @@
+{
+    "component_id": "EC089",
+    "component_name": "Hydrogen Boiler (100% H2 Combustion)",
+    "fidelity": "F2a — Physics-Lumped: H2 combustion + flue-gas energy balance + boiler thermal-mass ODE",
+    "source": "Turns (2012) An Introduction to Combustion, 3rd ed., McGraw-Hill (H2 combustion, adiabatic flame temp, LHV/HHV); Cellek & Pinarbasi (2018) Int. J. Hydrogen Energy 43, 1194-1207 (H2 flame temp & NOx); Hy4Heat WP6 (2021) BEIS UK; Woolley et al. (2022) Appl. Energy 323, 119577; NIST-JANAF thermochemical tables (cp values, h_fg of water).",
+    "unit": {
+        "name": "Generic 30 kW Domestic/Light-Commercial 100% Hydrogen Condensing Boiler",
+        "Q_rated": {"value": 30.0, "unit": "kW", "note": "Rated useful thermal output to water"},
+        "LHV_H2_MJ_kg": {"value": 119.96, "unit": "MJ/kg", "note": "Lower heating value of H2 (Turns 2012, Table A; water in products as vapour)"},
+        "HHV_H2_MJ_kg": {"value": 141.79, "unit": "MJ/kg", "note": "Higher heating value of H2 (Turns 2012; water condensed). HHV-LHV = latent heat of product water -> high condensing potential"},
+        "AFR_stoich": {"value": 34.3, "unit": "kg_air/kg_H2", "note": "Stoichiometric air-fuel mass ratio: 2 H2 + O2 -> 2 H2O; 1 kg H2 needs 8 kg O2 = 34.3 kg air (O2 mass frac 0.233)"},
+        "excess_air_ratio": {"value": 1.25, "unit": "-", "note": "Lambda; lean operation moderates flame temp & thermal-NOx (Cellek & Pinarbasi 2018)"},
+        "cp_water": {"value": 4186.0, "unit": "J/(kg.K)", "note": "Specific heat of liquid water at ~50C (NIST)"},
+        "cp_flue": {"value": 1400.0, "unit": "J/(kg.K)", "note": "Mass-weighted cp of H2O-rich + N2 flue gas at ~400-800K (NIST-JANAF; H2O cp~2.0, N2 cp~1.1 kJ/kgK)"},
+        "cp_H2": {"value": 14300.0, "unit": "J/(kg.K)", "note": "Specific heat of H2 gas at ~300K (NIST)"},
+        "h_fg_water": {"value": 2442000.0, "unit": "J/kg", "note": "Latent heat of vaporisation of water at 25C (NIST); recoverable in condensing mode"},
+        "m_water": {"value": 25.0, "unit": "kg", "note": "Lumped water + heat-exchanger thermal mass (water-equivalent) in boiler"},
+        "T_adiabatic_flame_K": {"value": 2400.0, "unit": "K", "note": "Approx adiabatic flame temp of lean H2/air (lambda~1.25); ~150-200K hotter than CH4 -> elevated thermal NOx risk (Cellek & Pinarbasi 2018)"},
+        "T_ambient_K": {"value": 293.15, "unit": "K", "note": "Combustion air / ambient temperature (20C)"},
+        "T_flue_noncond_K": {"value": 343.15, "unit": "K", "note": "Stack exit temp, non-condensing (70C, above ~58C H2 dew point)"},
+        "T_flue_cond_K": {"value": 318.15, "unit": "K", "note": "Stack exit temp, condensing (45C, below dew point -> latent recovery)"},
+        "T_dew_K": {"value": 331.15, "unit": "K", "note": "Flue dew point ~58C; high because H2 products are ~100% H2O (higher H2O mole fraction than NG)"},
+        "condensation_fraction": {"value": 0.55, "unit": "-", "note": "Fraction of product water condensed in condensing mode at design return temp"},
+        "hA_load": {"value": 800.0, "unit": "W/K", "note": "UA of heat emitter / load loop (water -> heating circuit)"},
+        "T_return_K": {"value": 313.15, "unit": "K", "note": "Heating-circuit return water temp (40C); condensing requires low return temp"},
+        "hA_standby": {"value": 3.0, "unit": "W/K", "note": "Casing standby loss UA to ambient"},
+        "condensing": {"value": 1.0, "unit": "bool", "note": "1 = condensing operation (latent recovery active)"}
+    },
+    "valid_ranges": {
+        "firing_rate": {"min": 0.0, "max": 1.0, "unit": "-"},
+        "T_water_K": {"min": 280.0, "max": 373.15, "unit": "K"},
+        "excess_air_ratio": {"min": 1.05, "max": 3.0, "unit": "-"},
+        "dt": {"min": 0.1, "max": 10.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 36000.0, "unit": "s"}
+    }
+}

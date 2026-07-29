@@ -1,0 +1,36 @@
+{
+    "component": "EC047 Thin-Film CIGS PV",
+    "fidelity": "F1b",
+    "description": "Single-diode (De Soto) + Faiman NOCT thermal model for CIGS. Power tempco ~-0.31%/K (better than poly-Si -0.39%/K, worse than CdTe -0.28%/K).",
+    "module": {
+        "name": "Solar Frontier SF170-S (CIGS, ~170W)",
+        "source": "Solar Frontier SF170-S datasheet; Green et al. (2019) Prog. Photovolt. 27(1)",
+        "technology": "CIGS",
+        "p_mp_stc": {"value": 170.0, "unit": "W"},
+        "v_oc_stc": {"value": 112.0, "unit": "V"},
+        "i_sc_stc": {"value": 2.20, "unit": "A"},
+        "alpha_sc": {"value": 0.0002, "unit": "A/K"},
+        "gamma_pmp": {"value": -0.0031, "unit": "1/K", "note": "Power tempco -0.31%/K for CIGS (between CdTe -0.28 and c-Si -0.37 to -0.40)"},
+        "cells_in_series": {"value": 144, "unit": "cells"},
+        "area": {"value": 1.232, "unit": "m2"},
+        "NOCT": {"value": 45.0, "unit": "degC", "note": "Typical NOCT for thin-film (slightly lower than c-Si due to lower thermal absorption)"},
+        "T_NOCT_amb": {"value": 20.0, "unit": "degC"},
+        "G_NOCT": {"value": 800.0, "unit": "W/m2"}
+    },
+    "desoto_params": {
+        "description": "De Soto 5-parameter single-diode model coefficients at STC",
+        "source": "Fitted from Solar Frontier SF170-S datasheet",
+        "I_L_ref": {"value": 1.85, "unit": "A"},
+        "I_o_ref": {"value": 5.0e-12, "unit": "A"},
+        "R_s": {"value": 2.5, "unit": "Ohm"},
+        "R_sh_ref": {"value": 1000.0, "unit": "Ohm"},
+        "a_ref": {"value": 4.5, "unit": "V"},
+        "EgRef": {"value": 1.15, "unit": "eV", "note": "CIGS bandgap (tunable 1.0-1.7 eV; typical ~1.15 eV for Cu(In,Ga)Se2)"},
+        "dEgdT": {"value": -0.00011, "unit": "eV/K"}
+    },
+    "valid_ranges": {
+        "irradiance": {"min": 0.0, "max": 1200.0, "unit": "W/m2"},
+        "T_ambient": {"min": -10.0, "max": 50.0, "unit": "degC"},
+        "cell_temperature": {"min": -10.0, "max": 90.0, "unit": "degC"}
+    }
+}

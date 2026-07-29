@@ -1,0 +1,30 @@
+{
+    "component_id": "EC193",
+    "component_name": "Methanation Reactor (Power-to-Gas)",
+    "fidelity": "F2a -- Kinetics + Equilibrium CSTR Model",
+    "source": "Koschany et al. (2016) Applied Catalysis B; Roensch et al. (2016) Fuel; Sabatier reaction kinetics literature",
+    "unit": {
+        "name": "Generic Catalytic Methanation CSTR -- Power-to-Gas",
+        "V_reactor": {"value": 0.5, "unit": "m3", "note": "Reactor volume"},
+        "rho_cat": {"value": 1200.0, "unit": "kg/m3", "note": "Catalyst bed bulk density"},
+        "cat_fraction": {"value": 0.6, "unit": "-", "note": "Catalyst volume fraction in reactor"},
+        "A_pre": {"value": 1.5e7, "unit": "mol/(kg_cat.s.bar)", "note": "Pre-exponential factor"},
+        "Ea": {"value": 85000.0, "unit": "J/mol", "note": "Activation energy"},
+        "delta_H": {"value": -165000.0, "unit": "J/mol", "note": "Reaction enthalpy (CO2+4H2->CH4+2H2O)"},
+        "UA": {"value": 5000.0, "unit": "W/K", "note": "Overall heat transfer coefficient * area"},
+        "T_cool": {"value": 523.15, "unit": "K", "note": "Coolant temperature (250C)"},
+        "m_thermal": {"value": 500.0, "unit": "kg", "note": "Thermal mass of reactor + catalyst"},
+        "cp_thermal": {"value": 900.0, "unit": "J/(kg.K)", "note": "Effective specific heat"},
+        "T_in": {"value": 523.15, "unit": "K", "note": "Feed inlet temperature (250C)"},
+        "P_total": {"value": 10.0, "unit": "bar", "note": "Total pressure"},
+        "GHSV": {"value": 3000.0, "unit": "1/h", "note": "Gas hourly space velocity"},
+        "feed_H2_CO2_ratio": {"value": 4.0, "unit": "mol/mol", "note": "H2/CO2 feed ratio (stoichiometric)"},
+        "cp_gas": {"value": 35.0, "unit": "J/(mol.K)", "note": "Average molar heat capacity of gas mixture"}
+    },
+    "valid_ranges": {
+        "temperature": {"min": 473.15, "max": 873.15, "unit": "K"},
+        "pressure": {"min": 1.0, "max": 30.0, "unit": "bar"},
+        "GHSV": {"min": 1000.0, "max": 10000.0, "unit": "1/h"},
+        "H2_CO2_ratio": {"min": 3.0, "max": 5.0, "unit": "mol/mol"}
+    }
+}

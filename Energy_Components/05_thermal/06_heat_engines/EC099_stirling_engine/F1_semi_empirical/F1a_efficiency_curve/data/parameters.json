@@ -1,0 +1,20 @@
+{
+  "component": "EC099 Stirling Engine",
+  "fidelity": "F1a",
+  "description": "Stirling efficiency: eta = f_carnot * eta_carnot(T_h, T_c), with part-load loss curve and minimum load.",
+  "engine": {
+    "name": "Generic kinematic alpha-type Stirling engine (micro-CHP scale)",
+    "source": "Kongtragool & Wongwises (2003) Renewable & Sustainable Energy Reviews 7, 131-154; Cinar et al. (2005) Appl. Thermal Eng. 25, 1845-1854.",
+    "P_rated":     {"value": 9000.0,  "unit": "W",    "note": "Rated electrical output (~9 kW micro-CHP, e.g. WhisperGen)"},
+    "f_carnot":    {"value": 0.50,    "unit": "-",    "note": "Fraction of Carnot achieved (real Stirling 0.4-0.6)"},
+    "a_partload":  {"value": 0.20,    "unit": "-",    "note": "Part-load loss coefficient: eta = eta_design*(1 - a*(1-PLR)^2)"},
+    "T_h":         {"value": 650.0,   "unit": "degC", "note": "Hot-side (heater head) temperature"},
+    "T_c":         {"value": 50.0,    "unit": "degC", "note": "Cold-side (cooler) temperature"},
+    "PLR_min":     {"value": 0.20,    "unit": "-",    "note": "Minimum part-load ratio"}
+  },
+  "valid_ranges": {
+    "power_output": {"min": 0.0,    "max": 100000.0, "unit": "W"},
+    "T_h":          {"min": 400.0,  "max": 800.0,    "unit": "degC"},
+    "T_c":          {"min": 5.0,    "max": 80.0,     "unit": "degC"}
+  }
+}

@@ -1,0 +1,24 @@
+{
+    "component": "EC219 Piezoelectric Energy Harvester",
+    "fidelity": "F0a",
+    "description": "Empirical harvested-power vs base-acceleration lookup for a PZT-5A bimorph cantilever at resonance (100 Hz) into an impedance-matched load. At resonance P scales with acceleration^2; anchored at 0.5 mW for 1 g (9.81 m/s^2).",
+    "source": "Roundy et al. (2003) Smart Mater. Struct.; Erturk & Inman (2011) Piezoelectric Energy Harvesting",
+    "resonance_freq_hz": {"value": 100.0, "unit": "Hz", "note": "First resonance frequency (reused from EC219 F1a)"},
+    "damping_ratio": {"value": 0.02, "unit": "-", "note": "Mechanical damping ratio (reused from F1a)"},
+    "mass_tip": {"value": 0.001, "unit": "kg", "note": "Tip mass 1 g (reused from F1a)"},
+    "P_ref_mW": {"value": 0.5, "unit": "mW", "note": "Reference power at 1 g base acceleration"},
+    "lookup": {
+        "note": "Breakpoints: base acceleration (m/s^2) -> harvested power (mW) at resonance, matched load",
+        "acceleration_m_s2": {"value": [0.5, 1.0, 2.0, 5.0, 9.81, 20.0, 50.0], "unit": "m/s^2"},
+        "power_mW": {"value": [0.0013, 0.0052, 0.0208, 0.1299, 0.5, 2.0782, 12.9889], "unit": "mW"}
+    },
+    "rated_point": {
+        "acceleration": {"value": 9.81, "unit": "m/s^2"},
+        "frequency": {"value": 100.0, "unit": "Hz"},
+        "power_mW": {"value": 0.5, "unit": "mW", "note": "Rated 0.5 mW at 1 g, 100 Hz for PZT-5A bimorph"}
+    },
+    "valid_ranges": {
+        "frequency": {"min": 10.0, "max": 1000.0, "unit": "Hz"},
+        "acceleration": {"min": 0.1, "max": 50.0, "unit": "m/s^2"}
+    }
+}

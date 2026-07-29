@@ -1,0 +1,55 @@
+{
+  "component": "EC028 Lead-Acid Battery",
+  "fidelity": "F0a",
+  "description": "Empirical round-trip-efficiency curve vs C-rate (1-D lookup). Derived from the cell ohmic loss fraction I*R/V_nom; numbers reused from F1a.",
+  "source": "Copetti et al. (1993), J. Power Sources 47(1):109-118; Manwell & McGowan (1993), Sol. Energy 50(5):399-405",
+  "cell": {
+    "name": "Lead-Acid Battery",
+    "nominal_voltage": {
+      "value": 12.0,
+      "unit": "V",
+      "note": "reused from F1a"
+    },
+    "capacity": {
+      "value": 100.0,
+      "unit": "Ah",
+      "note": "reused from F1a"
+    },
+    "internal_resistance": {
+      "value": 0.01,
+      "unit": "Ohm",
+      "note": "DC resistance at 25C, reused from F1a"
+    }
+  },
+  "efficiency_curve": {
+    "description": "Round-trip efficiency tabulated over C-rate breakpoints; eta = (1-f)/(1+f), f = C*capacity*R/V_nom.",
+    "c_rate": {
+      "value": [
+        0.0,
+        0.05,
+        0.1,
+        0.2,
+        0.5
+      ],
+      "unit": "dimensionless"
+    },
+    "round_trip_efficiency": {
+      "value": [
+        1.0,
+        0.9917,
+        0.98347,
+        0.96721,
+        0.92
+      ],
+      "unit": "fraction (0-1)"
+    }
+  },
+  "valid_ranges": {
+    "c_rate": {
+      "min": 0.0,
+      "max": 0.5,
+      "unit": "dimensionless",
+      "note": "max continuous C-rate for this chemistry"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+    "component_id": "EC071",
+    "component_name": "Absorption Heat Pump (LiBr-H2O, single-effect)",
+    "fidelity": "F2a — Physics-Lumped Absorption Cycle with Solution Circuit + Transient ODE",
+    "source": "Herold, Radermacher & Klein (2016) Absorption Chillers and Heat Pumps, 2nd ed., CRC Press; Patek & Klomfar (2006) Int. J. Refrigeration 29, 566-578 (LiBr-H2O property correlations); Hellmann & Ziegler (1999) Int. J. Refrigeration 22, 552-560",
+    "unit": {
+        "name": "Generic 100 kW_th single-effect LiBr-H2O absorption heat pump — physics-lumped",
+        "Q_evap_design_kW": {"value": 60.0, "unit": "kW", "note": "Design evaporator (low-grade source) heat duty"},
+        "x_weak": {"value": 0.56, "unit": "kg LiBr / kg solution", "note": "Weak (refrigerant-rich) solution mass fraction leaving absorber"},
+        "x_strong": {"value": 0.62, "unit": "kg LiBr / kg solution", "note": "Strong (refrigerant-poor) solution mass fraction leaving generator"},
+        "eps_shx": {"value": 0.7, "unit": "-", "note": "Solution heat exchanger (SHX) effectiveness"},
+        "eta_pump": {"value": 0.5, "unit": "-", "note": "Solution pump isentropic-ish efficiency (work is tiny)"},
+        "UA_gen": {"value": 6.0, "unit": "kW/K", "note": "Generator overall conductance (driving-fluid side)"},
+        "m_gen_solution": {"value": 80.0, "unit": "kg", "note": "Solution hold-up mass in generator (lumped thermal capacitance node)"},
+        "cp_solution": {"value": 1.9, "unit": "kJ/(kg.K)", "note": "Approx. LiBr-H2O solution specific heat at ~58% / 90C (Patek & Klomfar 2006)"},
+        "T_gen_drive_C": {"value": 90.0, "unit": "degC", "note": "Driving heat source temperature into generator"},
+        "T_evap_C": {"value": 10.0, "unit": "degC", "note": "Evaporator refrigerant temperature (sets low pressure)"},
+        "T_cond_C": {"value": 40.0, "unit": "degC", "note": "Condenser refrigerant temperature (sets high pressure)"},
+        "T_abs_C": {"value": 35.0, "unit": "degC", "note": "Absorber outlet solution temperature (heat-delivery side)"},
+        "aux_power_kW": {"value": 0.5, "unit": "kW_e", "note": "Solution + refrigerant pump + controls electrical input"}
+    },
+    "valid_ranges": {
+        "T_gen_drive_C": {"min": 70.0, "max": 110.0, "unit": "degC"},
+        "T_evap_C": {"min": 2.0, "max": 25.0, "unit": "degC"},
+        "T_cond_C": {"min": 25.0, "max": 50.0, "unit": "degC"},
+        "T_abs_C": {"min": 25.0, "max": 45.0, "unit": "degC"},
+        "x_strong": {"min": 0.55, "max": 0.66, "unit": "-"},
+        "duration_s": {"min": 1.0, "max": 7200.0, "unit": "s"},
+        "dt": {"min": 0.5, "max": 60.0, "unit": "s"}
+    }
+}

@@ -1,0 +1,39 @@
+{
+    "component": "EC027 Solid-State Lithium Battery",
+    "fidelity": "F1b",
+    "description": "SOC-thermal voltage model: V = OCV(SOC) - I*R(T), with Arrhenius resistance and capacity correction",
+    "cell": {
+        "name": "Generic solid-state Li cell (LiCoO2 / sulfide solid electrolyte / Li metal)",
+        "source": "Janek & Zeier (2016), Nat. Energy 1, 16141; QuantumScape & Solid Power patents",
+        "nominal_voltage": {"value": 3.8, "unit": "V"},
+        "capacity_ref": {"value": 4.0, "unit": "Ah", "note": "Nominal capacity at T_ref (298.15 K)"},
+        "voltage_max": {"value": 4.3, "unit": "V"},
+        "voltage_min": {"value": 3.0, "unit": "V"},
+        "R_ref": {"value": 0.045, "unit": "Ohm", "note": "Internal resistance at T_ref; SSE contributes higher interfacial resistance than liquid electrolyte"}
+    },
+    "ocv_coefficients": {
+        "description": "OCV(SOC) = a0 + a1*SOC + a2*SOC^2 + a3*SOC^3 + a4*SOC^4 + a5*SOC^5",
+        "source": "Polynomial fit to representative solid-state Li cell discharge curve (similar to NMC with higher upper cut-off)",
+        "a0": 3.002779720279721,
+        "a1": 4.205224358974421,
+        "a2": -9.586465617716001,
+        "a3": 14.10329254079347,
+        "a4": -10.46765734265828,
+        "a5": 3.0448717948721176
+    },
+    "thermal": {
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 degC)"},
+        "E_a": {"value": 35000, "unit": "J/mol", "note": "Activation energy for SSE ionic conductivity is higher than liquid electrolytes; sulfide SSE ~ 30-40 kJ/mol",
+                "source": "Janek & Zeier (2016), Nat. Energy 1, 16141; Takada (2013), Acta Materialia 61, 759-770"},
+        "alpha_c": {"value": 0.004, "unit": "1/K", "note": "Linear capacity temperature coefficient; similar to NMC-class cells",
+                    "source": "Schmalstieg et al. (2014), J. Power Sources 257, 325-334"},
+        "dOCV_dT": {"value": -0.0004, "unit": "V/K", "note": "Entropic coefficient; similar to NMC with LiCoO2 cathode",
+                    "source": "Thomas & Newman (2003), J. Electrochem. Soc. 150(2), A176-A192"},
+        "R_gas": {"value": 8.314, "unit": "J/(mol*K)", "note": "Universal gas constant"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "current": {"min": -20.0, "max": 20.0, "unit": "A", "note": "Negative=charge, Positive=discharge"},
+        "temperature": {"min": 273.15, "max": 333.15, "unit": "K", "note": "0 to 60 degC; SSE cells sometimes operated slightly warm to improve ionic conductivity"}
+    }
+}

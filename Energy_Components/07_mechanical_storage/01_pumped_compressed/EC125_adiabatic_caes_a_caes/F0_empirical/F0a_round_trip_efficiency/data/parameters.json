@@ -1,0 +1,12 @@
+{
+    "component": "EC125 Adiabatic CAES (A-CAES)",
+    "fidelity": "F0a",
+    "description": "Empirical round-trip-efficiency curve vs part-load + self-discharge lookup",
+    "source": "Barbour et al. (2015), Renew. Sustain. Energy Rev. 45, 598-614; Wolf & Budt (2014), Applied Energy, 125, 158-164 (reused from F1a)",
+    "rte_rated": {"value": 0.6996, "unit": "dimensionless", "note": "rated round-trip efficiency from F1 datasheet efficiencies"},
+    "power_fraction_breakpoints": {"value": [0.1, 0.25, 0.5, 0.75, 1.0], "unit": "fraction_of_rated"},
+    "rte_breakpoints": {"value": [0.525, 0.612, 0.665, 0.692, 0.6996], "unit": "dimensionless", "note": "Part-load RTE; declines below best-efficiency point"},
+    "self_discharge_per_hr": {"value": 0.0, "unit": "1/h"},
+    "eta_tes": {"value": 0.90, "unit": "dimensionless", "note": "TES round-trip efficiency governing A-CAES vs diabatic gap"},
+    "heat_rate_kj_per_kwh_e": {"value": 0.0, "unit": "kJ/kWh_e", "note": "No supplemental fuel — adiabatic"}
+}

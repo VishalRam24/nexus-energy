@@ -1,0 +1,57 @@
+{
+  "component": "EC098 Organic Rankine Cycle (ORC), R245fa",
+  "fidelity": "F0a - empirical lookup",
+  "model": "1-D np.interp electrical-efficiency lookup over part-load ratio (PLR)",
+  "lookup": {
+    "plr_breakpoints": {
+      "value": [
+        0.0,
+        0.2,
+        0.3,
+        0.4,
+        0.5,
+        0.6,
+        0.7,
+        0.8,
+        0.9,
+        1.0
+      ],
+      "unit": "dimensionless",
+      "note": "Part-load ratio = P_out / P_rated"
+    },
+    "eta_breakpoints": {
+      "value": [
+        0.0,
+        0.0,
+        0.042525,
+        0.05145,
+        0.060375,
+        0.0693,
+        0.078225,
+        0.08715,
+        0.096075,
+        0.105
+      ],
+      "unit": "dimensionless",
+      "note": "Net electrical/cycle efficiency at each PLR (LHV basis)"
+    }
+  },
+  "rated": {
+    "P_rated": {
+      "value": 100000.0,
+      "unit": "W",
+      "note": "Rated electrical output"
+    },
+    "eta_rated": {
+      "value": 0.105,
+      "unit": "dimensionless",
+      "note": "Efficiency at PLR=1 (design point)"
+    },
+    "PLR_min": {
+      "value": 0.3,
+      "unit": "dimensionless",
+      "note": "Below this PLR the unit is off (eta=0)"
+    }
+  },
+  "source": "Quoilin et al. (2013), Ren. Sustain. Energy Rev. 22, 168-186"
+}

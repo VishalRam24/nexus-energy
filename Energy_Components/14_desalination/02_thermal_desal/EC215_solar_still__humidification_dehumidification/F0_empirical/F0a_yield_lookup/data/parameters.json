@@ -1,0 +1,22 @@
+{
+    "component": "EC215 Solar Still / Humidification-Dehumidification (HDH)",
+    "fidelity": "F0a",
+    "description": "Empirical yield-vs-solar-irradiance lookup for a passive solar still. Daily distillate productivity (L/m2/day) scales with incident irradiance. Rated 5 L/m2/day at 800 W/m2. HDH GOR reused from EC215 F1a.",
+    "unit": {
+        "name": "Generic solar still and HDH system",
+        "source": "Kaushal & Varun (2010) Renewable Sustainable Energy Rev.; Narayan et al. (2012)",
+        "irradiance_breakpoints": {"value": [400.0, 600.0, 800.0, 1000.0, 1200.0], "unit": "W/m2"},
+        "yield_breakpoints": {"value": [2.5, 3.75, 5.0, 6.25, 7.5], "unit": "L/(m2*day)", "note": "Productivity vs irradiance (4-6 band centered at 800 W/m2)"},
+        "irradiance_rated_W_m2": {"value": 800.0, "unit": "W/m2"},
+        "yield_rated_L_m2_day": {"value": 5.0, "unit": "L/(m2*day)", "note": "Solar still productivity midpoint (4-6)"},
+        "collector_area_m2": {"value": 10.0, "unit": "m2"},
+        "gor_hdh": {"value": 2.0, "unit": "dimensionless", "note": "HDH GOR midpoint (1-3)"},
+        "gor_min": {"value": 1.0, "unit": "dimensionless"},
+        "gor_max": {"value": 3.0, "unit": "dimensionless"},
+        "sec_solar_kWh_m3": {"value": 600.0, "unit": "kWh/m3", "note": "Equivalent solar SEC"}
+    },
+    "valid_ranges": {
+        "solar_irradiance_W_m2": {"min": 400.0, "max": 1200.0, "unit": "W/m2"},
+        "collector_area_m2": {"min": 1.0, "max": 1000.0, "unit": "m2"}
+    }
+}

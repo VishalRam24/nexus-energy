@@ -1,0 +1,23 @@
+{
+    "component": "EC221 Magnetohydrodynamic (MHD) Generator",
+    "fidelity": "F1a",
+    "description": "Faraday MHD generator: P = sigma * u^2 * B^2 * K*(1-K) * V_channel",
+    "unit": {
+        "name": "Open-cycle MHD generator (coal/gas, K2CO3 seeded plasma)",
+        "source": "Rosa, R.J. (1987) Magnetohydrodynamic Energy Conversion. McGraw-Hill; Way, S. et al. (1979) AIAA",
+        "sigma_plasma": {"value": 10.0, "unit": "S/m", "note": "Plasma electrical conductivity (seeded ~5-50 S/m)"},
+        "u_plasma": {"value": 800.0, "unit": "m/s", "note": "Plasma flow velocity (supersonic ~700-1000 m/s)"},
+        "B_field": {"value": 5.0, "unit": "T", "note": "Magnetic field strength (superconducting ~4-7 T)"},
+        "K_load": {"value": 0.5, "unit": "-", "note": "Load factor K = V_load / EMF; K=0.5 max power point"},
+        "channel_length": {"value": 5.0, "unit": "m", "note": "MHD channel length"},
+        "channel_width": {"value": 0.5, "unit": "m", "note": "MHD channel width (perpendicular to B and u)"},
+        "channel_height": {"value": 0.5, "unit": "m", "note": "MHD channel height (in B direction)"},
+        "eta_plant": {"value": 0.50, "unit": "-", "note": "Combined plant efficiency MHD + bottoming cycle ~50%"}
+    },
+    "valid_ranges": {
+        "sigma": {"min": 1.0, "max": 100.0, "unit": "S/m"},
+        "u": {"min": 100.0, "max": 2000.0, "unit": "m/s"},
+        "B": {"min": 0.5, "max": 10.0, "unit": "T"},
+        "K": {"min": 0.0, "max": 1.0, "unit": "-"}
+    }
+}

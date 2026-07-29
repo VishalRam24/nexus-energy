@@ -1,0 +1,22 @@
+{
+    "component": "EC058 Flat Plate Solar Collector",
+    "fidelity": "F1b",
+    "description": "Hottel-Whillier model with Incidence Angle Modifier: Q = A*F_R*[IAM*tau_alpha*G - U_L*(T_in - T_amb)]",
+    "unit": {
+        "name": "Generic 2m2 Flat-Plate Collector with IAM (Viessmann Vitosol 200-F class)",
+        "source": "Duffie & Beckman (2013), Ch.6; ASHRAE 93 test standard",
+        "area": {"value": 2.0, "unit": "m2", "note": "Gross aperture area"},
+        "F_R": {"value": 0.80, "unit": "dimensionless", "note": "Heat removal factor"},
+        "tau_alpha": {"value": 0.82, "unit": "dimensionless", "note": "Transmittance-absorptance product at normal incidence"},
+        "U_L": {"value": 3.5, "unit": "W/m2K", "note": "Overall heat loss coefficient"},
+        "b0": {"value": 0.15, "unit": "dimensionless", "note": "IAM coefficient: IAM(theta) = 1 - b0*(1/cos(theta) - 1)"},
+        "flow_rate": {"value": 0.02, "unit": "kg/s", "note": "Mass flow rate of heat transfer fluid"},
+        "cp": {"value": 4186.0, "unit": "J/kgK", "note": "Specific heat capacity (water)"}
+    },
+    "valid_ranges": {
+        "irradiance": {"min": 0.0, "max": 1200.0, "unit": "W/m2"},
+        "incidence_angle": {"min": 0.0, "max": 85.0, "unit": "deg"},
+        "T_inlet": {"min": 10.0, "max": 90.0, "unit": "degC"},
+        "T_ambient": {"min": -10.0, "max": 45.0, "unit": "degC"}
+    }
+}

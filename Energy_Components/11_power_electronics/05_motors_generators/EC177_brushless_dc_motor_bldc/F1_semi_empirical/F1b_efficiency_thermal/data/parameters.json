@@ -1,0 +1,32 @@
+{
+    "component": "EC177 Brushless DC Motor (BLDC)",
+    "fidelity": "F1b",
+    "description": "Loss-split efficiency model with temperature-dependent copper resistance and PM flux demagnetization. Iron+copper+stray loss separation. IEC 60034-1 ambient derating.",
+    "unit": {
+        "name": "Generic 1 kW BLDC Motor",
+        "source": "Hanselman (2006) Brushless Permanent Magnet Motor Design; IEC 60034-30-1; Gieras (2010)",
+        "P_rated_W": {"value": 1000.0, "unit": "W", "note": "Rated shaft output power"},
+        "T_rated_Nm": {"value": 3.18, "unit": "Nm", "note": "Rated torque at rated speed"},
+        "omega_rated_rpm": {"value": 3000.0, "unit": "rpm", "note": "Rated speed"},
+        "omega_max_rpm": {"value": 6000.0, "unit": "rpm", "note": "Maximum speed"},
+        "pole_pairs": {"value": 3, "unit": "dimensionless"},
+        "R_s_ref": {"value": 0.25, "unit": "ohm", "note": "Phase winding resistance per phase at T_ref"},
+        "T_ref": {"value": 25.0, "unit": "degC"},
+        "alpha_Cu": {"value": 0.00393, "unit": "1/K", "note": "Copper temperature coefficient"},
+        "Phi_m_ref": {"value": 0.02, "unit": "Wb", "note": "PM flux linkage at T_ref (NdFeB)"},
+        "alpha_Br": {"value": -0.0012, "unit": "1/K", "note": "NdFeB remanence temp coefficient (negative)"},
+        "T_demag": {"value": 150.0, "unit": "degC", "note": "Demagnetization risk threshold"},
+        "k_iron": {"value": 0.002, "unit": "W/(rpm^1.5)", "note": "Iron loss coefficient (eddy+hysteresis)"},
+        "k_mech": {"value": 0.0005, "unit": "W/rpm", "note": "Mechanical loss (friction+windage) coefficient"},
+        "k_stray": {"value": 0.005, "unit": "dimensionless", "note": "Stray loss fraction of output power"},
+        "V_dc": {"value": 48.0, "unit": "V", "note": "Nominal DC bus voltage"},
+        "ambient_derating_threshold": {"value": 40.0, "unit": "degC", "note": "IEC 60034-1 derating threshold"},
+        "derating_slope": {"value": 0.01, "unit": "1/K"}
+    },
+    "valid_ranges": {
+        "torque_nm": {"min": 0.0, "max": 4.8, "unit": "Nm"},
+        "speed_rpm": {"min": 0.0, "max": 6000.0, "unit": "rpm"},
+        "magnet_temperature": {"min": -20.0, "max": 160.0, "unit": "degC"},
+        "ambient_temperature": {"min": -20.0, "max": 60.0, "unit": "degC"}
+    }
+}

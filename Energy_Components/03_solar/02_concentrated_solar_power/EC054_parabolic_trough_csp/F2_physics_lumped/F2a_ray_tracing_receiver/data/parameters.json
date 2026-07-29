@@ -1,0 +1,51 @@
+{
+    "component": "EC054 Parabolic Trough CSP",
+    "fidelity": "F2a",
+    "description": "Lumped-parameter steady-state HCE thermal model: iterative energy balance on absorber tube and glass envelope to compute useful thermal power delivered to HTF",
+    "unit": {
+        "name": "LS-3 Parabolic Trough Collector — Schott PTR70 HCE",
+        "source": "Forristall (2003), NREL/TP-550-34169; Burkholder & Kutscher (2009), NREL/TP-550-45633",
+        "W_aperture": {"value": 5.77, "unit": "m", "note": "Collector aperture width (LS-3)"},
+        "L_collector": {"value": 100.0, "unit": "m", "note": "Single SCA (solar collector assembly) length"},
+        "focal_length": {"value": 1.71, "unit": "m", "note": "Parabolic trough focal length"},
+        "D_abs_outer": {"value": 0.070, "unit": "m", "note": "Absorber tube outer diameter"},
+        "D_abs_inner": {"value": 0.066, "unit": "m", "note": "Absorber tube inner diameter"},
+        "D_glass_outer": {"value": 0.115, "unit": "m", "note": "Glass envelope outer diameter"},
+        "D_glass_inner": {"value": 0.109, "unit": "m", "note": "Glass envelope inner diameter"},
+        "alpha_abs": {"value": 0.96, "unit": "dimensionless", "note": "Absorber solar absorptance (selective coating)"},
+        "eps_abs_ref": {"value": 0.10, "unit": "dimensionless", "note": "Absorber thermal emittance at reference T (selective coating at ~400C)"},
+        "eps_glass": {"value": 0.86, "unit": "dimensionless", "note": "Glass envelope thermal emittance"},
+        "mirror_reflectivity": {"value": 0.935, "unit": "dimensionless", "note": "Mirror reflectivity"},
+        "intercept_factor": {"value": 0.95, "unit": "dimensionless", "note": "Intercept factor"},
+        "glass_transmittance": {"value": 0.96, "unit": "dimensionless", "note": "Glass envelope solar transmittance"},
+        "k_abs": {"value": 54.0, "unit": "W/(m*K)", "note": "Absorber tube thermal conductivity (stainless steel)"},
+        "vacuum_intact": {"value": true, "note": "If true, annulus convection is negligible (evacuated receiver)"}
+    },
+    "htf": {
+        "name": "Therminol VP-1",
+        "operating_range_C": [12, 400],
+        "note": "Cp and viscosity from polynomial fits (Forristall 2003 Table 7)",
+        "Cp_coeffs": [1509.0, 2.496, 7.888e-4],
+        "mu_coeffs": [0.001, -2.154e-6],
+        "rho_coeffs": [1074.0, -0.6367, -7.074e-4],
+        "k_htf_coeffs": [0.1378, -8.07e-5, -1.82e-7]
+    },
+    "iam_coefficients": {
+        "description": "IAM(theta) = cos(theta) - 5.25097e-4*theta - 2.859621e-5*theta^2 (theta in degrees)",
+        "source": "Dudley et al. (1994), SAND94-1884",
+        "c1": {"value": -5.25097e-4, "unit": "1/deg"},
+        "c2": {"value": -2.859621e-5, "unit": "1/deg2"}
+    },
+    "wind": {
+        "h_wind_default": {"value": 10.0, "unit": "W/(m2*K)", "note": "Default external wind convection coefficient"},
+        "T_sky_offset": {"value": 10.0, "unit": "K", "note": "T_sky = T_amb - offset for radiative sky cooling"}
+    },
+    "valid_ranges": {
+        "DNI": {"min": 0.0, "max": 1100.0, "unit": "W/m2"},
+        "T_htf_in": {"min": 100.0, "max": 400.0, "unit": "degC"},
+        "T_ambient": {"min": -10.0, "max": 50.0, "unit": "degC"},
+        "incidence_angle": {"min": 0.0, "max": 80.0, "unit": "deg"},
+        "m_dot": {"min": 0.5, "max": 12.0, "unit": "kg/s"},
+        "wind_speed": {"min": 0.0, "max": 20.0, "unit": "m/s"}
+    }
+}

@@ -1,0 +1,32 @@
+{
+    "component_id": "EC223",
+    "component_name": "Radioisotope Thermoelectric Generator (RTG)",
+    "fidelity": "F2a — Physics-Lumped Decay-Heat + Thermoelectric Module with Hot-Side Thermal ODE",
+    "source": "Rowe, D.M. (1995/2006) CRC Handbook of Thermoelectrics; Bennett, G.L. (2006) Space Nuclear Power, AIAA 2006-4191; NASA GPHS-RTG / MMRTG specifications (rps.nasa.gov); El-Genk & Saber (2005) Energy Convers. Mgmt. 46(7-8) 1083",
+    "unit": {
+        "name": "GPHS-RTG (Pu-238, ~4.5kg fuel, SiGe unicouples — Voyager/Cassini/New Horizons class)",
+        "isotope": {"value": "Pu-238", "unit": "-", "note": "Plutonium-238 alpha emitter, 5.59 MeV alpha"},
+        "P_thermal_0_W": {"value": 4500.0, "unit": "W", "note": "Initial (BOL) decay thermal power per GPHS-RTG ~4.5 kW"},
+        "t_half_years": {"value": 87.7, "unit": "years", "note": "Pu-238 half-life 87.7 years (Rowe Handbook Ch.55)"},
+        "n_couples": {"value": 572, "unit": "-", "note": "Number of SiGe thermoelectric unicouples in GPHS-RTG"},
+        "seebeck_couple": {"value": 3.0e-4, "unit": "V/K", "note": "Effective Seebeck coefficient per couple (p+n SiGe), |S_p|+|S_n|; chosen with R,K so couple ZT=S^2*Tm/(R*K)=0.55"},
+        "R_couple": {"value": 0.010, "unit": "ohm", "note": "Internal electrical resistance per SiGe couple"},
+        "K_couple": {"value": 0.01509, "unit": "W/K", "note": "Thermal conductance per couple (Fourier leg conduction); set so couple ZT=0.55 at T_mean=749 K: K=S^2*Tm/(R*ZT)"},
+        "ZT": {"value": 0.55, "unit": "-", "note": "SiGe figure of merit ZT at mean operating temperature (~750-900 K)"},
+        "T_hot_0_K": {"value": 925.0, "unit": "K", "note": "BOL hot-junction temperature from decay-heat/conduction balance (~650 C); fuel centerline runs hotter ~1273 K"},
+        "T_cold_K": {"value": 573.0, "unit": "K", "note": "Cold-side junction / radiator-controlled interface ~300 C"},
+        "C_hot_J_per_K": {"value": 9000.0, "unit": "J/K", "note": "Lumped thermal capacitance of hot-side block (GPHS fuel + housing)"},
+        "emissivity": {"value": 0.85, "unit": "-", "note": "Radiator surface emissivity"},
+        "A_radiator_m2": {"value": 0.835, "unit": "m2", "note": "Effective radiating fin area sized so Stefan-Boltzmann rejection at T_cold balances BOL cold-side heat Q_c (eps*sigma*A*T_c^4 = Q_c)"},
+        "T_space_K": {"value": 4.0, "unit": "K", "note": "Deep-space sink temperature (CMB ~2.7 K, rounded)"},
+        "K_hot_to_cold_W_per_K": {"value": 2.0, "unit": "W/K", "note": "Parasitic structural/insulation conductance hot->cold bypassing couples"},
+        "eta_teg_0": {"value": 0.042, "unit": "-", "note": "BOL system thermoelectric conversion efficiency ~4.2% (ZT-limited at this dT)"},
+        "design_life_years": {"value": 50.0, "unit": "years", "note": "Voyager RTGs >45 years operational"}
+    },
+    "valid_ranges": {
+        "mission_years": {"min": 0.0, "max": 200.0, "unit": "years"},
+        "T_hot_K": {"min": 600.0, "max": 1400.0, "unit": "K"},
+        "T_cold_K": {"min": 300.0, "max": 700.0, "unit": "K"},
+        "R_load_ohm": {"min": 0.1, "max": 100.0, "unit": "ohm"}
+    }
+}

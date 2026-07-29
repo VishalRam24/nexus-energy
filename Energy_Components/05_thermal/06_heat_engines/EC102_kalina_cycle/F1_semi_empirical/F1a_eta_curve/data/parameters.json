@@ -1,0 +1,10 @@
+{
+  "default_parameters": {
+    "eta_2nd": 0.55,
+    "T_sink_K": 298.15,
+    "T_source_min_K": 373.15,
+    "T_source_max_K": 473.15,
+    "P_rated_kW": 500.0
+  },
+  "description": "Kalina cycle F1a: eta=eta_Carnot*eta_2nd. eta_Carnot=1-T_sink/T_source. eta_2nd=0.55. T_source=100-200degC (NH3/H2O mixture). P_rated=500kW."
+}

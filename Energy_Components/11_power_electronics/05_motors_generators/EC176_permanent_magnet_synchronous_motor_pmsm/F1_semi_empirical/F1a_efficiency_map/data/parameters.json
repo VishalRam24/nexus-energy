@@ -1,0 +1,22 @@
+{
+    "component": "EC176 Permanent Magnet Synchronous Motor (PMSM)",
+    "fidelity": "F1a",
+    "description": "Efficiency map via loss separation: copper + iron + mechanical losses",
+    "unit": {
+        "name": "Generic 50kW PMSM",
+        "source": "Gieras, J.F. (2010). Permanent Magnet Motor Technology, 3rd ed. CRC Press.",
+        "P_rated": {"value": 50000.0, "unit": "W", "note": "Rated output power"},
+        "T_rated": {"value": 160.0, "unit": "Nm", "note": "Rated torque"},
+        "omega_base": {"value": 3000.0, "unit": "rpm", "note": "Base speed (rated speed at rated torque)"},
+        "omega_max": {"value": 12000.0, "unit": "rpm", "note": "Maximum speed (field weakening region)"},
+        "eta_peak": {"value": 0.96, "unit": "dimensionless", "note": "Peak efficiency"},
+        "k_t": {"value": 0.5093, "unit": "Nm/A", "note": "Torque constant (T_rated / I_rated = 160/314 = 0.509)"},
+        "R_s": {"value": 0.008, "unit": "ohm", "note": "Stator resistance per phase"},
+        "k_e": {"value": 0.005559, "unit": "W/(rpm^1.5)", "note": "Iron loss coefficient (calibrated so eta=0.96 at rated T=160Nm, omega=3000rpm)"},
+        "k_f": {"value": 0.130484, "unit": "W/rpm", "note": "Mechanical loss coefficient (friction + windage, calibrated)"}
+    },
+    "valid_ranges": {
+        "torque": {"min": 0.0, "max": 200.0, "unit": "Nm"},
+        "speed_rpm": {"min": 0.0, "max": 12000.0, "unit": "rpm"}
+    }
+}

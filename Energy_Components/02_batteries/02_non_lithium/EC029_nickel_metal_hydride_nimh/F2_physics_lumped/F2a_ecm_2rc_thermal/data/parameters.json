@@ -1,0 +1,51 @@
+{
+    "component_id": "EC029",
+    "component_name": "Nickel-Metal Hydride (NiMH) Battery",
+    "fidelity": "F2a — Thevenin 2-RC ECM with Coulomb-counted SOC, self-discharge, and exothermic-overcharge thermal ODE",
+    "source": "Linden's Handbook of Batteries 4th ed. (2011) ch. 30-31; Bernardi & Carpenter (1995) J. Electrochem. Soc. 142(8) 2631; Khun et al. (2006) Electrochimica Acta 51 2877; Hu, Li & Peng (2012) J. Power Sources 198 359 (Thevenin ECM); Gao, Liu & Dougal (2002) IEEE Trans. Components 25(3) 495 (battery thermal); Notten & Hokkeling / Ten Haaf NiMH oxygen-recombination overcharge",
+    "unit": {
+        "name": "Generic NiMH AA-class cell — Thevenin 2-RC electrothermal (positive NiOOH/Ni(OH)2, negative AB5 metal hydride)",
+        "capacity_ref": {"value": 2.0, "unit": "Ah", "note": "Nominal capacity at T_ref (298.15 K)", "source": "Panasonic HHR-210AA datasheet; Linden ch. 31"},
+        "nominal_voltage": {"value": 1.2, "unit": "V", "note": "NiMH nominal cell voltage (flat plateau)"},
+        "voltage_max": {"value": 1.55, "unit": "V", "note": "Upper terminal clamp (allows charge/overcharge rise)"},
+        "voltage_min": {"value": 0.9, "unit": "V", "note": "Lower terminal clamp (deep discharge knee)"},
+
+        "R0_ref": {"value": 0.025, "unit": "Ohm", "note": "Ohmic (series) resistance at T_ref", "source": "Khun et al. (2006); Linden ch. 31 NiMH impedance"},
+        "R1_ref": {"value": 0.018, "unit": "Ohm", "note": "Charge-transfer RC resistance (fast) at T_ref", "source": "Hu et al. (2012) Thevenin ECM; impedance.py style EIS fit"},
+        "C1": {"value": 1200.0, "unit": "F", "note": "Charge-transfer RC capacitance (fast, tau~22 s)"},
+        "R2_ref": {"value": 0.012, "unit": "Ohm", "note": "Diffusion RC resistance (slow) at T_ref"},
+        "C2": {"value": 18000.0, "unit": "F", "note": "Diffusion RC capacitance (slow, tau~216 s)"},
+
+        "ocv_coefficients": {
+            "value": [0.9997552447552449, 1.2935606060606215, -3.3247377622378234, 5.185023310023421, -4.356060606060702, 1.6025641025641286],
+            "unit": "V",
+            "note": "OCV(SOC)=sum a_i*SOC^i, i=0..5. Flat ~1.2 V NiMH plateau. Reused from EC029 F1 fit.",
+            "source": "Polynomial fit to representative NiMH discharge curve (Linden ch. 31)"
+        },
+
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 degC)"},
+        "E_a": {"value": 20000.0, "unit": "J/mol", "note": "Arrhenius activation energy for NiMH resistances (proton-conducting NiOOH kinetics)", "source": "Khun et al. (2006), Electrochimica Acta 51, 2877"},
+        "R_gas": {"value": 8.314, "unit": "J/(mol*K)", "note": "Universal gas constant"},
+        "dOCV_dT": {"value": 0.0005, "unit": "V/K", "note": "Entropic coefficient; POSITIVE for NiMH (exothermic charging) unlike Li-ion", "source": "Bernardi & Carpenter (1995)"},
+
+        "k_self_discharge": {"value": 1.5e-6, "unit": "1/s", "note": "Self-discharge rate constant at T_ref; ~20-30%/month for NiMH (1.5e-6/s ~ 4%/month base, Arrhenius-amplified at high T)", "source": "Linden ch. 31; Panasonic NiMH self-discharge curves"},
+        "E_a_self": {"value": 50000.0, "unit": "J/mol", "note": "Activation energy for self-discharge (strongly temperature accelerated)", "source": "Linden ch. 31"},
+
+        "soc_oc_onset": {"value": 0.95, "unit": "-", "note": "SOC at which oxygen evolution / recombination begins during charge"},
+        "V_oc_threshold": {"value": 1.5, "unit": "V", "note": "OCV anchor near top-of-charge for overcharge logistic"},
+        "f_oc_max": {"value": 0.85, "unit": "-", "note": "Max fraction of charge current diverted to O2 recombination at full overcharge"},
+        "dH_recomb": {"value": 1.23, "unit": "V", "note": "Effective enthalpy voltage of O2 evolution+recombination loop (2H2O->O2+... ->2OH-); net strongly exothermic heat per recombined charge", "source": "Notten & Hokkeling NiMH overcharge; Linden ch. 30"},
+
+        "m_cell": {"value": 0.027, "unit": "kg", "note": "AA NiMH cell mass"},
+        "cp_cell": {"value": 900.0, "unit": "J/(kg*K)", "note": "Lumped specific heat of NiMH cell", "source": "Gao et al. (2002); Linden ch. 30"},
+        "hA_cell": {"value": 0.08, "unit": "W/K", "note": "Cell-to-ambient heat transfer coefficient * area (natural convection)", "source": "Gao et al. (2002)"},
+        "T_amb": {"value": 298.15, "unit": "K", "note": "Ambient temperature"}
+    },
+    "valid_ranges": {
+        "current_A": {"min": -20.0, "max": 20.0, "unit": "A", "note": "Negative=charge, Positive=discharge"},
+        "soc0": {"min": 0.0, "max": 1.05, "unit": "-", "note": "Can exceed 1.0 transiently before overcharge clamps it"},
+        "temperature": {"min": 253.15, "max": 333.15, "unit": "K", "note": "-20 to 60 degC"},
+        "dt": {"min": 0.1, "max": 10.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 36000.0, "unit": "s"}
+    }
+}

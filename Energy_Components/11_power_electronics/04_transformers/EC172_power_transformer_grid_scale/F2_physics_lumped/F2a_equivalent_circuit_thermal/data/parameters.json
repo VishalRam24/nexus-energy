@@ -1,0 +1,39 @@
+{
+    "component_id": "EC172",
+    "component_name": "Power Transformer (Grid-Scale)",
+    "fidelity": "F2a — Equivalent-Circuit + Lumped Oil/Winding Thermal ODE",
+    "source": "Fitzgerald, Kingsley & Umans (2003) Electric Machinery 6th ed., Ch.2; IEEE Std C57.91-2011 Loading Guide; IEC 60076-7:2018; Kulkarni & Khaparde (2004) Transformer Engineering",
+    "unit": {
+        "name": "Generic 100 MVA 110/20 kV ONAF Grid Transformer — Physics-Lumped Equivalent Circuit",
+        "S_rated_VA": {"value": 100.0e6, "unit": "VA", "note": "Rated apparent power"},
+        "V_primary_V": {"value": 110000.0, "unit": "V", "note": "Rated primary (HV) line-to-line voltage"},
+        "V_secondary_V": {"value": 20000.0, "unit": "V", "note": "Rated secondary (LV) line-to-line voltage"},
+        "freq_Hz": {"value": 50.0, "unit": "Hz", "note": "Rated frequency"},
+
+        "R_pu": {"value": 0.0030, "unit": "pu", "note": "Series equivalent resistance (copper) referred to rating; R_pu = P_load_loss/S_rated. Fitzgerald Ch.2"},
+        "X_pu": {"value": 0.105, "unit": "pu", "note": "Series leakage reactance (pu). Typical 100 MVA transformer 8-12%. Kulkarni & Khaparde"},
+        "Rc_pu": {"value": 2000.0, "unit": "pu", "note": "Shunt core-loss (magnetizing) resistance; large -> small no-load loss. Rc_pu = V_pu^2/P_core_pu"},
+        "Xm_pu": {"value": 400.0, "unit": "pu", "note": "Shunt magnetizing reactance; large -> small magnetizing current. Fitzgerald Ch.2"},
+
+        "P_no_load_W": {"value": 50000.0, "unit": "W", "note": "Core (no-load) loss at rated voltage (eddy + hysteresis, Steinmetz)"},
+        "P_load_loss_W": {"value": 300000.0, "unit": "W", "note": "Copper (load) loss at rated current and 75 degC reference"},
+        "core_voltage_exponent": {"value": 2.0, "unit": "-", "note": "Core loss ~ (V/Vrated)^n, n~2 for B^2 (V^2) dominance"},
+        "T_ref_winding": {"value": 75.0, "unit": "degC", "note": "Reference temperature for copper-loss spec (IEC 60076)"},
+        "alpha_Cu": {"value": 0.00393, "unit": "1/K", "note": "Copper resistivity temperature coefficient"},
+
+        "delta_theta_oil_rated_K": {"value": 55.0, "unit": "K", "note": "Top-oil temperature rise above ambient at rated load (IEEE C57.91 Table 4 ONAF)"},
+        "delta_theta_hs_gradient_K": {"value": 21.0, "unit": "K", "note": "Hot-spot-to-top-oil gradient at rated current (IEEE C57.91)"},
+        "n_oil": {"value": 0.9, "unit": "-", "note": "Top-oil rise exponent (IEEE C57.91: 0.8 ONAN, 0.9-1.0 ONAF/forced)"},
+        "m_wind": {"value": 0.8, "unit": "-", "note": "Winding exponent for hot-spot gradient (IEEE C57.91)"},
+        "tau_oil_min": {"value": 150.0, "unit": "min", "note": "Top-oil thermal time constant (IEEE C57.91 Annex G typical)"},
+        "tau_wind_min": {"value": 7.0, "unit": "min", "note": "Hot-spot (winding) thermal time constant (IEEE C57.91)"}
+    },
+    "valid_ranges": {
+        "load_fraction": {"min": 0.0, "max": 1.5, "unit": "-"},
+        "power_factor": {"min": 0.0, "max": 1.0, "unit": "-"},
+        "voltage_pu": {"min": 0.8, "max": 1.2, "unit": "pu"},
+        "ambient_temperature_C": {"min": -40.0, "max": 50.0, "unit": "degC"},
+        "duration_min": {"min": 1.0, "max": 2880.0, "unit": "min"},
+        "dt_min": {"min": 0.1, "max": 30.0, "unit": "min"}
+    }
+}

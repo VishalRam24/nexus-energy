@@ -1,0 +1,26 @@
+{
+    "component": "EC100 Brayton Cycle Gas Turbine (Simple Cycle)",
+    "fidelity": "F1b",
+    "description": "GT efficiency with quadratic PLR correction and ISO 2314 ambient temperature/pressure corrections",
+    "unit": {
+        "name": "GE 7F.04 class simple-cycle GT (185 MW ISO)",
+        "source": "Walsh & Fletcher (2004), Gas Turbine Performance; ISO 2314:2009; GE Power F-class data",
+        "P_rated_mw": {"value": 185.0, "unit": "MW", "note": "ISO net electrical output"},
+        "eta_rated": {"value": 0.385, "unit": "-", "note": "Net thermal efficiency at ISO (ambient 15C, 101.325 kPa)"},
+        "T_iso_ref_k": {"value": 288.15, "unit": "K", "note": "ISO reference temperature (15 degC)"},
+        "P_iso_ref_kpa": {"value": 101.325, "unit": "kPa", "note": "ISO reference pressure"},
+        "plr_a": {"value": 0.05, "unit": "-"},
+        "plr_b": {"value": 0.50, "unit": "-"},
+        "plr_c": {"value": 0.45, "unit": "-",
+                   "note": "PLR curve: f=a+b*PLR+c*PLR^2; at PLR=1: f=1.0; steeper drop at low load vs combined cycle"},
+        "PLR_min": {"value": 0.40, "unit": "-", "note": "Minimum stable load (combustion stability limit ~40%)"},
+        "T_exhaust_iso_k": {"value": 853.0, "unit": "K", "note": "Exhaust temperature at ISO full load (~580 degC)"},
+        "T_exh_partload_rise_k": {"value": 40.0, "unit": "K", "note": "Exhaust T rise at 0% load vs full load"},
+        "LHV_gas_mj_kg": {"value": 50.0, "unit": "MJ/kg", "note": "Lower heating value of natural gas"}
+    },
+    "valid_ranges": {
+        "PLR": {"min": 0.40, "max": 1.0, "unit": "-"},
+        "T_amb": {"min": 248.0, "max": 323.0, "unit": "K", "note": "-25 to +50 degC"},
+        "P_amb": {"min": 80.0, "max": 106.0, "unit": "kPa"}
+    }
+}

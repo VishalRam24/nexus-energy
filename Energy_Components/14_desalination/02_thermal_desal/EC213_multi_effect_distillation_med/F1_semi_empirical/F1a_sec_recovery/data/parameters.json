@@ -1,0 +1,20 @@
+{
+    "component": "EC213 Multi-Effect Distillation (MED)",
+    "fidelity": "F1a",
+    "description": "MED thermal desalination: GOR=10, SEC_thermal=200 kJ/kg, SEC_elec=1.5 kWh/m3, T_top=70C, 12 effects.",
+    "unit": {
+        "name": "Generic MED desalination plant",
+        "source": "El-Dessouky & Ettouney (2002); Al-Sahali & Ettouney (2007)",
+        "GOR": {"value": 10.0, "unit": "dimensionless", "note": "Higher GOR than MSF due to multiple effects"},
+        "SEC_thermal_kJ_kg": {"value": 200.0, "unit": "kJ/kg"},
+        "SEC_elec_kWh_m3": {"value": 1.5, "unit": "kWh/m3", "note": "Lower pumping than MSF"},
+        "T_top_C": {"value": 70.0, "unit": "degC", "note": "Lower T_top vs MSF -> less scaling"},
+        "N_effects": {"value": 12, "unit": "dimensionless"},
+        "recovery": {"value": 0.35, "unit": "dimensionless", "note": "Better recovery than MSF"},
+        "capacity_m3_h": {"value": 1000.0, "unit": "m3/h"}
+    },
+    "valid_ranges": {
+        "capacity_fraction": {"min": 0.1, "max": 1.0, "unit": "dimensionless"},
+        "T_top_C": {"min": 55.0, "max": 85.0, "unit": "degC"}
+    }
+}

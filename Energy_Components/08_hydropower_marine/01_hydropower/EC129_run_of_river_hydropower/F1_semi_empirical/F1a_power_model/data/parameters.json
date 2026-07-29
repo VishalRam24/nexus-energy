@@ -1,0 +1,24 @@
+{
+    "component": "EC129 Run-of-River Hydropower",
+    "fidelity": "F1a",
+    "description": "Power model: P = eta_overall * rho * g * Q * H_net / 1000 (kW); low-head run-of-river plant; Francis/Kaplan turbine parabolic eta curve",
+    "unit": {
+        "name": "Generic Run-of-River Hydropower Plant",
+        "source": "Penche (1998), Layman's Guidebook on How to Develop a Small Hydro Site; IEC 60041",
+        "H_design": {"value": 8.0, "unit": "m", "note": "Design net head (2-20 m typical for RoR)"},
+        "Q_design": {"value": 50.0, "unit": "m3/s", "note": "Design flow rate"},
+        "P_rated": {"value": 3200.0, "unit": "kW", "note": "Rated power output"},
+        "eta_peak": {"value": 0.88, "unit": "dimensionless", "note": "Peak turbine efficiency (Kaplan/Francis RoR)"},
+        "eta_generator": {"value": 0.96, "unit": "dimensionless", "note": "Generator efficiency"},
+        "k_efficiency": {"value": 0.25, "unit": "dimensionless", "note": "Efficiency drop coefficient for off-design flow"},
+        "q_min": {"value": 0.25, "unit": "dimensionless", "note": "Minimum flow ratio (fraction of Q_design) — run-of-river lower threshold"},
+        "q_max": {"value": 1.15, "unit": "dimensionless", "note": "Maximum flow ratio (fraction of Q_design)"},
+        "head_loss_fraction": {"value": 0.05, "unit": "dimensionless", "note": "Penstock head loss as fraction of gross head"},
+        "rho": {"value": 1000.0, "unit": "kg/m3", "note": "Water density"},
+        "g": {"value": 9.81, "unit": "m/s2", "note": "Gravitational acceleration"}
+    },
+    "valid_ranges": {
+        "flow_rate_m3s": {"min": 0.0, "max": 57.5, "unit": "m3/s"},
+        "gross_head_m": {"min": 2.0, "max": 20.0, "unit": "m"}
+    }
+}

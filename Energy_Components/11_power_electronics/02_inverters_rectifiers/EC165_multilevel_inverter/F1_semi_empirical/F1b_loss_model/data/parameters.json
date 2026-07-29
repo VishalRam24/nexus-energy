@@ -1,0 +1,34 @@
+{
+    "component": "EC165 Multilevel Inverter (3-level NPC)",
+    "fidelity": "F1b",
+    "description": "3-level NPC inverter: outer IGBT (V_dc) + inner IGBT (V_dc/2) + clamping diodes -- per-device loss model",
+    "unit": {
+        "name": "Generic 600V 3-level NPC Inverter (50 kW)",
+        "source": "Semikron Application Manual (2015); Nabae et al. (1981) IEEE Trans. Ind. Appl.",
+        "V_dc": {"value": 700.0, "unit": "V", "note": "Total DC bus voltage"},
+        "P_rated": {"value": 50000.0, "unit": "W", "note": "Rated output power"},
+        "n_levels": {"value": 3, "unit": "dimensionless", "note": "Number of output voltage levels"},
+        "V_ce0_outer": {"value": 1.65, "unit": "V", "note": "Outer IGBT threshold voltage (V_dc-rated)"},
+        "r_ce_outer": {"value": 0.0035, "unit": "Ohm", "note": "Outer IGBT slope resistance"},
+        "E_on_outer": {"value": 0.012, "unit": "J", "note": "Outer IGBT turn-on energy at V_ref/I_ref"},
+        "E_off_outer": {"value": 0.010, "unit": "J", "note": "Outer IGBT turn-off energy"},
+        "V_ce0_inner": {"value": 1.50, "unit": "V", "note": "Inner IGBT threshold (V_dc/2-rated, lower V_ce0)"},
+        "r_ce_inner": {"value": 0.0030, "unit": "Ohm", "note": "Inner IGBT slope resistance"},
+        "E_on_inner": {"value": 0.005, "unit": "J", "note": "Inner IGBT turn-on energy (lower voltage stress)"},
+        "E_off_inner": {"value": 0.004, "unit": "J", "note": "Inner IGBT turn-off energy"},
+        "V_f_clamp": {"value": 1.4, "unit": "V", "note": "Clamping diode forward voltage"},
+        "r_d_clamp": {"value": 0.0025, "unit": "Ohm", "note": "Clamping diode slope resistance"},
+        "E_rr_clamp": {"value": 0.004, "unit": "J", "note": "Clamping diode reverse recovery energy"},
+        "f_sw": {"value": 4000.0, "unit": "Hz", "note": "Switching frequency (4 kHz, typical for MLI)"},
+        "V_ref": {"value": 350.0, "unit": "V", "note": "Reference voltage for loss scaling (V_dc/2)"},
+        "I_ref": {"value": 100.0, "unit": "A", "note": "Reference current for loss scaling"},
+        "R_th_ja": {"value": 0.08, "unit": "K/W", "note": "Junction-to-ambient thermal resistance (module)"},
+        "T_a": {"value": 25.0, "unit": "degC", "note": "Ambient temperature"}
+    },
+    "valid_ranges": {
+        "v_dc": {"min": 300.0, "max": 900.0, "unit": "V"},
+        "p_load": {"min": 0.0, "max": 60000.0, "unit": "W"},
+        "m": {"min": 0.1, "max": 1.15, "unit": "dimensionless"},
+        "power_factor": {"min": 0.6, "max": 1.0, "unit": "dimensionless"}
+    }
+}

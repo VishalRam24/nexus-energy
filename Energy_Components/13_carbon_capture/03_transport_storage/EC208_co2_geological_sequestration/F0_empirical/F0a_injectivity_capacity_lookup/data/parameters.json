@@ -1,0 +1,50 @@
+{
+  "component": "EC208 CO2 Geological Sequestration",
+  "fidelity": "F0a -- empirical lookup",
+  "source": "van der Meer (1993); IPCC (2005) CCS Special Report Ch.5; Benson & Cole (2008) Elements.",
+  "reservoir": {
+    "P_reservoir_bar": {
+      "value": 200.0,
+      "unit": "bar"
+    },
+    "thickness_m": {
+      "value": 100.0,
+      "unit": "m"
+    },
+    "area_km2": {
+      "value": 100.0,
+      "unit": "km2"
+    },
+    "porosity": {
+      "value": 0.15,
+      "unit": "-"
+    },
+    "storage_efficiency": {
+      "value": 0.02,
+      "unit": "-"
+    }
+  },
+  "co2": {
+    "rho_injection": {
+      "value": 700.0,
+      "unit": "kg/m3"
+    }
+  },
+  "injectivity_curve": {
+    "overpressure_bar": [
+      0,
+      10,
+      20,
+      40,
+      60
+    ],
+    "injection_kg_s": [
+      0.0,
+      30.0,
+      60.0,
+      110.0,
+      150.0
+    ],
+    "note": "Injection rate ~proportional to wellhead overpressure (Darcy-like)."
+  }
+}

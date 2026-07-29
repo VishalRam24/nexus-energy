@@ -1,0 +1,36 @@
+{
+    "component": "EC011 Anion Exchange Membrane Electrolyser (AEM)",
+    "fidelity": "F1b",
+    "description": "Tafel + ohmic V-I polarization with thermal balance (cell temperature dynamics)",
+    "source": "Vincent & Bessarabov (2018) Renewable & Sustainable Energy Reviews, 81, 1690-1704; Henkensmeier et al. (2021) J. Electrochem. Energy Conv. Storage, 18, 024001; Schalenbach et al. (2016) J. Electrochem. Soc., 163(11), F3197",
+    "unit": {
+        "name": "Generic 2.5 kW AEM Electrolyser Stack",
+        "N_cells": {"value": 10, "unit": "dimensionless"},
+        "electrode_area": {"value": 0.01, "unit": "m2", "note": "100 cm2 active area per cell"},
+        "T_ref": {"value": 333.15, "unit": "K", "note": "Reference temperature (60 C)"},
+        "T_coolant": {"value": 333.15, "unit": "K", "note": "Coolant inlet temperature"},
+        "j0_anode": {"value": 1.0e-4, "unit": "A/cm2", "note": "Anode (OER) exchange current density at T_ref"},
+        "j0_cathode": {"value": 1.0e-2, "unit": "A/cm2", "note": "Cathode (HER) exchange current density at T_ref"},
+        "Ea_anode": {"value": 52000.0, "unit": "J/mol", "note": "OER activation energy (Arrhenius), Ni-based catalyst"},
+        "Ea_cathode": {"value": 30000.0, "unit": "J/mol", "note": "HER activation energy (Arrhenius)"},
+        "alpha_anode": {"value": 0.5, "unit": "dimensionless"},
+        "alpha_cathode": {"value": 0.5, "unit": "dimensionless"},
+        "r_membrane_ref": {"value": 0.25, "unit": "Ohm.cm2", "note": "ASR at T_ref; includes membrane + liquid electrolyte"},
+        "r_temp_coeff": {"value": -0.003, "unit": "1/K", "note": "Linear T coefficient of ASR; negative = resistance drops with T"},
+        "eta_F": {"value": 0.97, "unit": "dimensionless"},
+        "thermal_mass": {"value": 500.0, "unit": "J/K", "note": "Effective stack heat capacity (stack + electrolyte)"},
+        "UA_cool": {"value": 20.0, "unit": "W/K", "note": "Stack-to-coolant overall thermal conductance"}
+    },
+    "constants": {
+        "F": {"value": 96485.0, "unit": "C/mol"},
+        "R": {"value": 8.314, "unit": "J/(mol.K)"},
+        "E_rev_ref": {"value": 1.229, "unit": "V"},
+        "E_rev_T_coeff": {"value": 0.0009, "unit": "V/K", "note": "dE_rev/dT from Nernst, liquid water"},
+        "E_tn": {"value": 1.481, "unit": "V", "note": "Thermoneutral voltage (HHV basis) at 25 C"}
+    },
+    "valid_ranges": {
+        "current_density": {"min": 0.0, "max": 20000.0, "unit": "A/m2"},
+        "temperature": {"min": 303.15, "max": 363.15, "unit": "K"},
+        "T_coolant": {"min": 293.15, "max": 353.15, "unit": "K"}
+    }
+}

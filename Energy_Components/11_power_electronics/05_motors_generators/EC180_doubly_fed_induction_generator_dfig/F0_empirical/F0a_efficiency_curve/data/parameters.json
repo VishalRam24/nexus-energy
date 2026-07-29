@@ -1,0 +1,43 @@
+{
+    "component": "EC180 Doubly-Fed Induction Generator (DFIG)",
+    "fidelity": "F0a",
+    "description": "Empirical part-load efficiency curve (np.interp lookup) anchored at F1 rated efficiency",
+    "source": "Muller et al. (2002); IEC 61400-21 (reused from F1a)",
+    "eta_rated": {
+        "value": 0.95,
+        "unit": "dimensionless",
+        "note": "rated efficiency reused from F1a datasheet"
+    },
+    "p_rated": {
+        "value": 2.0,
+        "unit": "MW",
+        "note": "rated power from F1a"
+    },
+    "load_fraction_breakpoints": {
+        "value": [
+            0.1,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+        ],
+        "unit": "fraction_of_rated"
+    },
+    "efficiency_breakpoints": {
+        "value": [
+            0.84201,
+            0.92401,
+            0.94881,
+            0.95218,
+            0.95
+        ],
+        "unit": "dimensionless",
+        "note": "two-component loss split (c0 constant + c2*load^2) anchored to eta_rated at PLR=1"
+    },
+    "loss_split": {
+        "c0_constant": 0.018421,
+        "c2_variable": 0.034211,
+        "unit": "dimensionless",
+        "note": "eta(lf)=lf/(lf+c0+c2*lf^2)"
+    }
+}

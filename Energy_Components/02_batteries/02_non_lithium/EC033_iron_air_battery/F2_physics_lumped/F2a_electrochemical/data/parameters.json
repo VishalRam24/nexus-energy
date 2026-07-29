@@ -1,0 +1,50 @@
+{
+    "component_id": "EC033",
+    "component_name": "Iron-Air Battery (Fe-Air)",
+    "fidelity": "F2a — Physics-Lumped Electrochemical Model with Thermal ODE",
+    "source": "Manohar et al. (2012) J. Electrochem. Soc. 159(8) A1209; Trocino et al. (2022) J. Power Sources 523, 230999; McKerracher et al. (2015) Electrochim. Acta 184, 264; Form Energy (2022) iron-air long-duration storage technology report; Newman & Thomas-Alyea (2004) Electrochemical Systems, 3rd ed., Wiley",
+    "unit": {
+        "name": "Iron-Air Cell — Physics-Lumped (Fe/Fe(OH)2 anode + bifunctional air cathode)",
+
+        "A_cell":        {"value": 100.0,  "unit": "cm2",   "note": "Geometric electrode area (lab-scale Fe-air cell, McKerracher 2015)"},
+        "capacity_ref":  {"value": 1.0,    "unit": "Ah",    "note": "Normalized reference cell capacity"},
+
+        "E0_anode":      {"value": -0.877, "unit": "V",     "note": "Fe(OH)2/Fe standard potential vs SHE in alkaline. Fe + 2OH- -> Fe(OH)2 + 2e-. Manohar 2012"},
+        "E0_cathode":    {"value": 0.401,  "unit": "V",     "note": "O2 + 2H2O + 4e- -> 4OH- ORR standard potential vs SHE (alkaline). Newman 2004"},
+        "E0_HER":        {"value": -0.828, "unit": "V",     "note": "2H2O + 2e- -> H2 + 2OH- HER standard potential vs SHE (alkaline). Drives charge-side parasitic"},
+
+        "j0_anode":      {"value": 1.0e-3, "unit": "A/cm2", "note": "Fe/Fe(OH)2 exchange current density (sluggish, passivating). Manohar 2012"},
+        "j0_ORR":        {"value": 1.0e-6, "unit": "A/cm2", "note": "ORR exchange current density at bifunctional air cathode (slow ORR). McKerracher 2015"},
+        "j0_OER":        {"value": 1.0e-7, "unit": "A/cm2", "note": "OER exchange current density on charge (very slow -> large charge overpotential)"},
+        "j0_HER":        {"value": 5.0e-5, "unit": "A/cm2", "note": "HER exchange current density on Fe during charge (parasitic H2 evolution). Manohar 2012"},
+
+        "alpha_anode":   {"value": 0.5,    "unit": "-",     "note": "Fe anode charge-transfer coefficient"},
+        "alpha_ORR":     {"value": 0.5,    "unit": "-",     "note": "ORR cathode charge-transfer coefficient"},
+        "alpha_OER":     {"value": 0.5,    "unit": "-",     "note": "OER cathode charge-transfer coefficient"},
+        "alpha_HER":     {"value": 0.5,    "unit": "-",     "note": "HER charge-transfer coefficient"},
+
+        "j_L_O2":        {"value": 0.080,  "unit": "A/cm2", "note": "Air-cathode O2 limiting current density (gas-diffusion mass transport). McKerracher 2015"},
+
+        "R_ohmic":       {"value": 2.0,    "unit": "Ohm.cm2","note": "Area-specific ohmic resistance (KOH electrolyte + separator + GDL). Trocino 2022"},
+
+        "T_ref":         {"value": 298.15, "unit": "K",     "note": "Reference temperature"},
+        "E_act":         {"value": 35000.0,"unit": "J/mol", "note": "Activation energy for kinetics/ohmic Arrhenius temperature dependence. Trocino 2022"},
+        "dOCV_dT":       {"value": 0.0002, "unit": "V/K",   "note": "Entropic coefficient (mild). Trocino 2022"},
+
+        "m_cell":        {"value": 0.30,   "unit": "kg",    "note": "Cell thermal mass (electrodes + electrolyte)"},
+        "cp_cell":       {"value": 1200.0, "unit": "J/(kg.K)","note": "Effective specific heat (aqueous KOH dominated)"},
+        "hA_cool":       {"value": 0.15,   "unit": "W/K",   "note": "Heat-transfer coefficient * area to ambient"},
+        "T_amb":         {"value": 298.15, "unit": "K",     "note": "Ambient / coolant temperature"}
+    },
+    "constants": {
+        "R": {"value": 8.314,   "unit": "J/(mol.K)", "note": "Universal gas constant"},
+        "F": {"value": 96485.0, "unit": "C/mol",     "note": "Faraday constant"}
+    },
+    "valid_ranges": {
+        "current_density": {"min": -0.060, "max": 0.060, "unit": "A/cm2", "note": "positive=discharge, negative=charge. Slow Fe-air kinetics limit rate"},
+        "soc":             {"min": 0.0,    "max": 1.0,    "unit": "-"},
+        "temperature":     {"min": 273.15, "max": 333.15, "unit": "K"},
+        "dt":              {"min": 0.1,    "max": 60.0,   "unit": "s"},
+        "duration_s":      {"min": 1.0,    "max": 360000.0,"unit": "s", "note": "Long-duration storage: multi-hour to multi-day"}
+    }
+}

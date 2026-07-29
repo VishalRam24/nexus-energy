@@ -1,0 +1,51 @@
+{
+  "component_id": "EC089",
+  "component_name": "Hydrogen Boiler (100% H2 Combustion)",
+  "fidelity": "F1a — Constant Efficiency",
+  "source": "Hy4Heat WP6 (2021); BEIS Hydrogen Heating Trials (UK 2022); Cellek & Pinarbasi (2018) Int. J. Hydrogen Energy 43, 1194-1207.",
+  "default_parameters": {
+    "Q_rated": 30.0,
+    "eta_nom": 0.92,
+    "PLR_min": 0.10,
+    "LHV_H2_MJ_kg": 120.0,
+    "P_standby_kw": 0.05,
+    "co2_factor_g_per_kwh_th": 0.0
+  },
+  "parameter_metadata": {
+    "Q_rated": {
+      "description": "Rated thermal output",
+      "unit": "kW",
+      "default": 30.0,
+      "notes": "30 kW residential hydrogen-ready boiler (Hy4Heat baseline)"
+    },
+    "eta_nom": {
+      "description": "Nominal (full-load) thermal efficiency",
+      "unit": "-",
+      "default": 0.92,
+      "notes": "0.85-0.95; condensing operation similar to NG. H2 combustion produces only H2O so latent recovery improves eta."
+    },
+    "PLR_min": {
+      "description": "Minimum stable part-load ratio",
+      "unit": "-",
+      "default": 0.10,
+      "notes": "Modulation ratio similar to modern NG boilers"
+    },
+    "LHV_H2_MJ_kg": {
+      "description": "Lower heating value of hydrogen",
+      "unit": "MJ/kg",
+      "default": 120.0,
+      "notes": "Standard LHV for H2 (HHV ~141.8 MJ/kg)"
+    },
+    "P_standby_kw": {
+      "description": "Standby (parasitic) electrical draw for controls/fan",
+      "unit": "kW",
+      "default": 0.05
+    },
+    "co2_factor_g_per_kwh_th": {
+      "description": "Operational CO2 emission factor",
+      "unit": "g/kWh_th",
+      "default": 0.0,
+      "notes": "Combustion produces only H2O. Upstream H2 production CO2 is excluded (depends on green/blue/grey)."
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+    "component": "EC051 Dye-Sensitized Solar Cell (DSSC)",
+    "fidelity": "F1b",
+    "description": "De Soto 5-parameter single-diode + Faiman NOCT thermal + empirical DSSC tempco correction. N719 dye on TiO2/iodide electrolyte representative parameters.",
+    "module": {
+        "name": "DSSC N719/TiO2/iodide module (10cm x 10cm sub-module, 4 cells series)",
+        "source": "Snaith & Grätzel (2007) Adv. Mater.; Toivola et al. (2009) J. Photochem.; Cameron et al. (2005) J. Phys. Chem. B",
+        "technology": "Dye-sensitized (TiO2/N719/I3-/I- electrolyte)",
+        "cells_in_series": {"value": 4, "unit": "cells", "note": "Z-interconnect module"},
+        "area": {"value": 0.01, "unit": "m2", "note": "100 cm2 module active area"},
+        "alpha_sc": {"value": 0.00006, "unit": "A/K", "note": "+0.3%/K; DSSC Isc increases with T due to better electron injection"},
+        "gamma_pmp": {"value": -0.0025, "unit": "/K", "note": "-0.25%/K measured (Snaith & Grätzel 2007)"},
+        "NOCT": {"value": 38.0, "unit": "degC", "note": "Lower NOCT than Si (low thermal mass of glass/electrolyte)"},
+        "T_NOCT_amb": {"value": 20.0, "unit": "degC"},
+        "G_NOCT": {"value": 800.0, "unit": "W/m2"}
+    },
+    "desoto_params": {
+        "I_L_ref": {"value": 0.09, "unit": "A", "note": "Photocurrent (Jsc ~9 mA/cm2, area 100cm2 / 4 cells)"},
+        "I_o_ref": {"value": 1.0e-5, "unit": "A", "note": "High I_o due to TiO2/electrolyte recombination; much higher than Si"},
+        "R_s": {"value": 8.0, "unit": "Ohm", "note": "Series resistance: FTO glass + TiO2 + electrolyte transport; higher than Si"},
+        "R_sh_ref": {"value": 200.0, "unit": "Ohm", "note": "Shunt through electrolyte leakage and edge effects"},
+        "a_ref": {"value": 0.21, "unit": "V", "note": "n*N_s*kT/q = 1.6*4*0.02569 = 0.164 approx (n~1.6 for DSSC)"},
+        "EgRef": {"value": 0.90, "unit": "eV", "note": "Effective recombination barrier at TiO2/I3- interface (not optical Eg of dye ~1.8eV)"},
+        "dEgdT": {"value": -0.0001, "unit": "eV/K", "note": "Weak T-dependence of effective barrier"}
+    },
+    "tempco_correction": {
+        "correction_factor": {"value": 0.60, "note": "RATIONALE: DSSC gamma_desoto_est=-0.42%/K vs measured -0.25%/K. Factor=0.60. Root cause: TiO2/electrolyte recombination weaker T-dependence than semiconductor I_o. Validated vs Snaith & Grätzel (2007) and Toivola et al. (2009)."},
+        "gamma_desoto_approx": {"value": -0.0042, "unit": "/K"}
+    },
+    "valid_ranges": {
+        "irradiance": {"min": 0.0, "max": 1200.0, "unit": "W/m2"},
+        "T_ambient": {"min": -10.0, "max": 60.0, "unit": "degC"}
+    }
+}

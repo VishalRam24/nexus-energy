@@ -1,0 +1,75 @@
+{
+    "component": "EC120 Fast Breeder Reactor (FBR)",
+    "fidelity": "F0a - empirical lookup",
+    "description": "Net electrical power as a tabulated lookup over load factor (fraction of rated thermal power). Breakpoints from F1a power map P_elec = eta * P_thermal * load, with linear efficiency derate below minimum stable load.",
+    "unit": {
+        "name": "Generic Sodium-Cooled Fast Breeder Reactor (BN-800 class)",
+        "source": "Guidez & Prele (2017) Sodium Cooled Fast Reactors; IAEA TECDOC-1689 (2012); F1a EC120",
+        "P_thermal_mw": {
+            "value": 1500.0,
+            "unit": "MW_th",
+            "note": "Reactor thermal power at full load"
+        },
+        "eta_rated": {
+            "value": 0.4,
+            "unit": "dimensionless",
+            "note": "Net thermal-to-electric efficiency at rated load"
+        },
+        "load_min": {
+            "value": 0.25,
+            "unit": "dimensionless",
+            "note": "Minimum stable load factor"
+        },
+        "load_breakpoints": {
+            "value": [
+                0.25,
+                0.3,
+                0.35,
+                0.4,
+                0.45,
+                0.5,
+                0.55,
+                0.6,
+                0.65,
+                0.7,
+                0.75,
+                0.8,
+                0.85,
+                0.9,
+                0.95,
+                1.0
+            ],
+            "unit": "dimensionless",
+            "note": "Lookup x-axis (load factor)"
+        },
+        "pelec_breakpoints": {
+            "value": [
+                150.0,
+                180.0,
+                210.0,
+                240.0,
+                270.0,
+                300.0,
+                330.0,
+                360.0,
+                390.0,
+                420.0,
+                450.0,
+                480.0,
+                510.0,
+                540.0,
+                570.0,
+                600.0
+            ],
+            "unit": "MW_e",
+            "note": "Net electrical power at each load breakpoint"
+        }
+    },
+    "valid_ranges": {
+        "load_factor": {
+            "min": 0.25,
+            "max": 1.0,
+            "unit": "dimensionless"
+        }
+    }
+}

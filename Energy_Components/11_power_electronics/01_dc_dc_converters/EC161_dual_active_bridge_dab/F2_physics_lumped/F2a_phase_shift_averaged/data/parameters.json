@@ -1,0 +1,31 @@
+{
+    "component_id": "EC161",
+    "component_name": "Dual Active Bridge (DAB) DC-DC Converter",
+    "fidelity": "F2a — Phase-Shift Averaged Physics-Lumped Model",
+    "source": "De Doncker, R.W.A.A., Divan, D.M., Kheraluwala, M.H. (1991). A three-phase soft-switched high power density DC/DC converter for high power applications. IEEE Trans. Ind. Appl., 27(1), 63-73. Kheraluwala, M.H. et al. (1992). Performance characterization of a high-power dual active bridge DC-to-DC converter. IEEE Trans. Ind. Appl., 28(6), 1294-1301.",
+    "unit": {
+        "name": "Generic 400V/200V 10kW DAB — Physics-Lumped Phase-Shift Averaged",
+        "v_in_nominal": {"value": 400.0, "unit": "V", "note": "Primary DC-bus voltage (input bridge)"},
+        "v_out_nominal": {"value": 200.0, "unit": "V", "note": "Secondary DC-bus nominal voltage (output bridge)"},
+        "n_turns": {"value": 2.0, "unit": "-", "note": "Transformer turns ratio n = N1/N2 (primary/secondary)"},
+        "L_s": {"value": 5e-6, "unit": "H", "note": "Series inductance (transformer leakage + external) 5 uH — the DAB power-transfer element"},
+        "f_sw": {"value": 100000.0, "unit": "Hz", "note": "100 kHz switching frequency"},
+        "C_out": {"value": 470e-6, "unit": "F", "note": "Output DC-bus filter capacitance 470 uF"},
+        "R_load": {"value": 4.0, "unit": "Ohm", "note": "Nominal resistive load on output bus (200V/4ohm = 10kW)"},
+        "R_ds_on": {"value": 0.020, "unit": "Ohm", "note": "MOSFET Rds_on per device at T_ref (20 mohm)"},
+        "t_on": {"value": 2.5e-8, "unit": "s", "note": "MOSFET turn-on time (25 ns)"},
+        "t_off": {"value": 3.5e-8, "unit": "s", "note": "MOSFET turn-off time (35 ns)"},
+        "R_xfmr": {"value": 0.050, "unit": "Ohm", "note": "Transformer + inductor total winding resistance (50 mohm), referred to primary"},
+        "P_rated": {"value": 10000.0, "unit": "W", "note": "Rated power 10 kW"},
+        "alpha_rds": {"value": 0.004, "unit": "1/degC", "note": "MOSFET Rds_on positive tempco (used for nominal Tj=100C derate)"},
+        "T_ref": {"value": 25.0, "unit": "degC", "note": "Reference temperature for Rds_on"},
+        "T_j": {"value": 100.0, "unit": "degC", "note": "Assumed steady junction temperature for averaged-loss model"}
+    },
+    "valid_ranges": {
+        "v_in": {"min": 200.0, "max": 800.0, "unit": "V"},
+        "v_out_ref": {"min": 100.0, "max": 400.0, "unit": "V"},
+        "phi": {"min": -1.5707963, "max": 1.5707963, "unit": "rad", "note": "Single-phase-shift; sign sets power direction (bidirectional)"},
+        "dt": {"min": 1e-6, "max": 1e-3, "unit": "s"},
+        "duration_s": {"min": 1e-4, "max": 1.0, "unit": "s"}
+    }
+}

@@ -1,0 +1,31 @@
+{
+    "component_id": "EC081",
+    "component_name": "Thermochemical Energy Storage (CaO/Ca(OH)2)",
+    "fidelity": "F2a — Reaction Kinetics + Lumped Reactor Energy Balance ODE",
+    "description": "Arrhenius kinetics with equilibrium-driven conversion coupled to a 0D lumped reactor energy balance. Charge = endothermic dehydration Ca(OH)2 -> CaO + H2O; Discharge = exothermic hydration CaO + H2O -> Ca(OH)2.",
+    "source": "Schaube et al. (2012) Thermochim. Acta 538:9-20 (CaO/Ca(OH)2 kinetics & equilibrium); N'Tsoukpoe et al. (2009) Renew. Sust. Energy Rev. 13:2385 (long-term loss-free storage); Wentworth & Chen (1976) Solar Energy 18:205 (chemical heat pump/storage); Pardo et al. (2014) Renew. Sust. Energy Rev. 32:591.",
+    "unit": {
+        "name": "CaO/Ca(OH)2 Fixed-Bed Thermochemical Reactor — Physics-Lumped",
+        "m_active": {"value": 1000.0, "unit": "kg", "note": "Mass of reactive CaO/Ca(OH)2 storage material (Pardo 2014)"},
+        "M_active": {"value": 0.074093, "unit": "kg/mol", "note": "Molar mass of Ca(OH)2 (74.093 g/mol)"},
+        "dH_rxn": {"value": 104.4e3, "unit": "J/mol", "note": "Reaction enthalpy of hydration/dehydration (Schaube 2012, ~104 kJ/mol)"},
+        "dS_rxn": {"value": 144.5, "unit": "J/(mol.K)", "note": "Reaction entropy, sets equilibrium temperature via van't Hoff (Schaube 2012)"},
+        "A_pre_charge": {"value": 4.8e4, "unit": "1/s", "note": "Arrhenius pre-exponential factor, dehydration/charge; tuned so k~3e-3/s at 790K (Schaube 2012 Ea, lumped fit)"},
+        "E_act_charge": {"value": 109000.0, "unit": "J/mol", "note": "Activation energy for dehydration/charge (Schaube 2012)"},
+        "A_pre_discharge": {"value": 47.0, "unit": "1/s", "note": "Arrhenius pre-exponential factor, hydration/discharge; tuned so k~3e-3/s at 660K (Schaube 2012 Ea, lumped fit)"},
+        "E_act_discharge": {"value": 53000.0, "unit": "J/mol", "note": "Activation energy for hydration/discharge (Schaube 2012)"},
+        "cp_solid": {"value": 1530.0, "unit": "J/(kg.K)", "note": "Specific heat of CaO/Ca(OH)2 solid bed (Schaube 2013)"},
+        "cp_reactor": {"value": 500.0, "unit": "J/(kg.K)", "note": "Specific heat of reactor steel structure"},
+        "m_reactor": {"value": 200.0, "unit": "kg", "note": "Inert reactor wall/structure thermal mass"},
+        "hA_ext": {"value": 80.0, "unit": "W/K", "note": "Reactor-to-source heat exchange coefficient * area (HTF or heat loss)"},
+        "P_h2o": {"value": 100000.0, "unit": "Pa", "note": "Operating water-vapour partial pressure (1 bar)"},
+        "P_ref": {"value": 100000.0, "unit": "Pa", "note": "Reference pressure for equilibrium (1 bar)"}
+    },
+    "valid_ranges": {
+        "T_K": {"min": 573.15, "max": 873.15, "unit": "K"},
+        "X": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "P_h2o": {"min": 1000.0, "max": 500000.0, "unit": "Pa"},
+        "dt": {"min": 0.1, "max": 60.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 100000.0, "unit": "s"}
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "component": "EC190 LNG Regasification Terminal",
+    "fidelity": "F1b",
+    "description": "LNG regasification with ambient temperature correction, part-load SEC penalty, and seawater/SCV vaporiser selection",
+    "terminal": {
+        "sec_base": {"value": 50.0, "unit": "kWh/ton", "note": "Design-point specific energy consumption"},
+        "cold_energy_recovery_fraction": {"value": 0.15, "unit": "dimensionless"},
+        "LNG_density": {"value": 450.0, "unit": "kg/m3"},
+        "vaporisation_heat": {"value": 510.0, "unit": "kJ/kg"},
+        "PLR_coeffs": {"value": [1.25, -0.25], "unit": "dimensionless",
+                        "note": "SEC multiplier = a + b*PLR: at PLR=1 → 1.0, PLR=0.3 → 1.175"},
+        "T_amb_ref": {"value": 283.15, "unit": "K", "note": "Reference ambient temperature (10°C)"},
+        "sec_T_coeff": {"value": -0.5, "unit": "kWh/(ton.K)", "note": "SEC decreases as T_amb increases (warmer seawater)"}
+    },
+    "gas": {
+        "LHV": {"value": 50.0, "unit": "MJ/kg"},
+        "T_storage": {"value": 111.15, "unit": "K"},
+        "T_sendout": {"value": 278.15, "unit": "K"}
+    },
+    "valid_ranges": {
+        "sendout_rate": {"min": 10.0, "max": 5000.0, "unit": "ton/h"},
+        "PLR": {"min": 0.2, "max": 1.0, "unit": "dimensionless"},
+        "T_ambient_K": {"min": 263.0, "max": 308.0, "unit": "K"}
+    }
+}

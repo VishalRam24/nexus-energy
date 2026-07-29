@@ -1,0 +1,45 @@
+{
+    "component_id": "EC194",
+    "component_name": "Methanol Synthesis Reactor",
+    "fidelity": "F2a -- Kinetics + Equilibrium CSTR Model",
+    "source": "Graaf et al. (1986,1988) Chem. Eng. Sci.; Vanden Bussche & Froment (1996) J. Catal. 161, 1-10",
+    "description": "Cu/ZnO/Al2O3 low-pressure methanol synthesis CSTR with Vanden Bussche-Froment LHHW kinetics (CO2 hydrogenation + RWGS), equilibrium-limited conversion and exothermic energy balance with cooling.",
+    "unit": {
+        "name": "Cu/ZnO/Al2O3 Fixed-Bed Methanol Reactor (lumped CSTR)",
+        "V_reactor": {"value": 1.0, "unit": "m3", "note": "Reactor volume"},
+        "rho_cat": {"value": 1190.0, "unit": "kg/m3", "note": "Cu/ZnO/Al2O3 catalyst bed bulk density (VB&F 1996)"},
+        "cat_fraction": {"value": 0.5, "unit": "-", "note": "Catalyst volume fraction in reactor"},
+        "UA": {"value": 12000.0, "unit": "W/K", "note": "Overall heat transfer coeff x area (boiling-water cooled tubes)"},
+        "T_cool": {"value": 523.15, "unit": "K", "note": "Coolant (saturated steam) temperature, 250C"},
+        "m_thermal": {"value": 800.0, "unit": "kg", "note": "Thermal mass of reactor tubes + catalyst"},
+        "cp_thermal": {"value": 850.0, "unit": "J/(kg.K)", "note": "Effective specific heat of bed+wall"},
+        "T_in": {"value": 503.15, "unit": "K", "note": "Feed inlet temperature, 230C"},
+        "P_total": {"value": 50.0, "unit": "bar", "note": "Total pressure (VB&F base case; industrial 50-100 bar)"},
+        "GHSV": {"value": 10000.0, "unit": "1/h", "note": "Gas hourly space velocity"},
+        "cp_gas": {"value": 30.0, "unit": "J/(mol.K)", "note": "Average molar heat capacity of syngas mixture"},
+        "feed_fractions": {
+            "value": {"CO": 0.04, "CO2": 0.03, "H2": 0.82, "inert": 0.11},
+            "unit": "mole fraction",
+            "note": "VB&F (1996) representative H2-rich syngas feed; H2/(2CO2+3CO)~stoich"
+        },
+        "dH_MeOH": {"value": -49500.0, "unit": "J/mol", "note": "CO2 + 3H2 -> CH3OH + H2O, dH298 = -49.5 kJ/mol (exothermic)"},
+        "dH_RWGS": {"value": 41200.0, "unit": "J/mol", "note": "CO2 + H2 -> CO + H2O, dH298 = +41.2 kJ/mol (endothermic RWGS)"},
+        "kinetics": {
+            "value": {
+                "k1_A": 1.07,        "k1_E": 36696.0,
+                "k2_A": 1.22e10,     "k2_E": -94765.0,
+                "Ka_A": 0.499,       "Ka_E": 17197.0,
+                "Kb_A": 6.62e-11,    "Kb_E": 124119.0,
+                "Kc_A": 3453.38,     "Kc_E": 0.0
+            },
+            "unit": "A: mol/(kg_cat.s.bar) or bar^-n ; E: J/mol (in A*exp(E/RT))",
+            "note": "Vanden Bussche & Froment (1996) J.Catal.161 Table 2 LHHW rate/adsorption constants, written as A*exp(E/RT). k1=MeOH rate const, k2=RWGS rate const, Ka=sqrt(K_H2), Kb=K_H2O, Kc=K_H2O/K_H2."
+        }
+    },
+    "valid_ranges": {
+        "temperature": {"min": 473.15, "max": 573.15, "unit": "K", "note": "200-300C Cu/ZnO operating window"},
+        "pressure": {"min": 30.0, "max": 100.0, "unit": "bar"},
+        "GHSV": {"min": 2000.0, "max": 20000.0, "unit": "1/h"},
+        "T_cool": {"min": 490.0, "max": 540.0, "unit": "K"}
+    }
+}

@@ -1,0 +1,37 @@
+{
+    "component_id": "EC070",
+    "component_name": "Water-Source Heat Pump",
+    "fidelity": "F2a — Vapor-Compression Cycle (Steady-State Thermodynamics) + Lumped Water-Loop Thermal ODE",
+    "source": "Cengel & Boles (2015) Thermodynamics 8th ed. Ch.11; ASHRAE Handbook Fundamentals (2021) Ch.2 & Ch.30 (R410A); Hundy, Trott & Welch (2016) Refrigeration AC and Heat Pumps 5th ed.",
+    "unit": {
+        "name": "Generic 50kW Water-Source Heat Pump (R410A, reciprocating compressor)",
+        "T_ref_prop": {"value": 273.15, "unit": "K", "note": "Datum temperature for refrigerant enthalpy / h_fg anchor"},
+        "h_fg_ref": {"value": 221500.0, "unit": "J/kg", "note": "R410A latent heat at 273.15 K (NIST REFPROP / ASHRAE Fund. 2021 Ch.30)"},
+        "cp_liq": {"value": 1700.0, "unit": "J/(kg.K)", "note": "R410A saturated-liquid specific heat near 280 K (ASHRAE)"},
+        "cp_vap": {"value": 1050.0, "unit": "J/(kg.K)", "note": "R410A superheated-vapor specific heat (ASHRAE)"},
+        "T_crit": {"value": 344.5, "unit": "K", "note": "R410A critical temperature 71.34 degC (ASHRAE Fund. 2021)"},
+        "P_crit": {"value": 4901000.0, "unit": "Pa", "note": "R410A critical pressure 4.901 MPa (ASHRAE Fund. 2021)"},
+        "T_nbp": {"value": 221.7, "unit": "K", "note": "R410A normal boiling point at 1 atm -51.4 degC (ASHRAE)"},
+        "gamma": {"value": 1.18, "unit": "-", "note": "R410A vapor isentropic exponent cp/cv near operating range"},
+        "V_swept": {"value": 0.014, "unit": "m3/s", "note": "Compressor swept volume rate (displacement * speed) sized for 50 kW_th"},
+        "eta_isentropic": {"value": 0.72, "unit": "-", "note": "Compressor isentropic efficiency at design (Hundy 2016)"},
+        "eta_volumetric": {"value": 0.92, "unit": "-", "note": "Reference volumetric efficiency factor"},
+        "clearance_ratio": {"value": 0.045, "unit": "-", "note": "Reciprocating compressor clearance volume fraction"},
+        "dT_evap_approach": {"value": 5.0, "unit": "K", "note": "Source-water to evaporation temperature approach"},
+        "dT_cond_approach": {"value": 5.0, "unit": "K", "note": "Condensation to sink-water temperature approach"},
+        "superheat": {"value": 5.0, "unit": "K", "note": "Useful superheat at evaporator outlet"},
+        "subcool": {"value": 3.0, "unit": "K", "note": "Subcooling at condenser outlet"},
+        "m_water_loop": {"value": 400.0, "unit": "kg", "note": "Lumped thermal mass of condenser/load water loop"},
+        "cp_water": {"value": 4186.0, "unit": "J/(kg.K)", "note": "Specific heat of water"},
+        "UA_cond": {"value": 8000.0, "unit": "W/K", "note": "Condenser overall heat-transfer conductance"},
+        "auxiliary_power": {"value": 200.0, "unit": "W", "note": "Source/load pumps and controls parasitic power"}
+    },
+    "valid_ranges": {
+        "T_source": {"min": 5.0, "max": 30.0, "unit": "degC"},
+        "T_sink": {"min": 25.0, "max": 65.0, "unit": "degC"},
+        "T_load0": {"min": 5.0, "max": 65.0, "unit": "degC"},
+        "Q_demand_W": {"min": 0.0, "max": 60000.0, "unit": "W"},
+        "duration_s": {"min": 1.0, "max": 36000.0, "unit": "s"},
+        "dt": {"min": 0.5, "max": 300.0, "unit": "s"}
+    }
+}

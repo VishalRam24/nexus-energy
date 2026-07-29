@@ -1,0 +1,20 @@
+{
+    "component": "EC059 Evacuated Tube Solar Collector",
+    "fidelity": "F1a",
+    "description": "Hottel-Whillier-Bliss steady-state model for evacuated tube collector (very low U_L due to vacuum insulation)",
+    "unit": {
+        "name": "Generic 30-tube Evacuated Tube Collector (Apricus AP-30 style)",
+        "source": "Duffie & Beckman (2013), 'Solar Engineering of Thermal Processes', 4th ed., Wiley, Ch.6; SRCC OG-100 certified ETC ratings",
+        "area": {"value": 3.0, "unit": "m2", "note": "Gross aperture area (~30 tubes)"},
+        "F_R_tau_alpha": {"value": 0.72, "unit": "dimensionless", "note": "Heat removal factor * optical efficiency F_R*(tau*alpha) — slightly lower than flat-plate due to glass tube geometry but compensated by IAM"},
+        "F_R_U_L": {"value": 1.4, "unit": "W/m2K", "note": "Heat removal factor * loss coefficient F_R*U_L — very low due to vacuum insulation (~3-5x lower than flat plate)"},
+        "m_dot": {"value": 0.05, "unit": "kg/s", "note": "Mass flow rate of HTF (water)"},
+        "cp_fluid": {"value": 4182.0, "unit": "J/kgK", "note": "Specific heat capacity of water"}
+    },
+    "valid_ranges": {
+        "irradiance": {"min": 0.0, "max": 1200.0, "unit": "W/m2"},
+        "T_inlet":    {"min": 10.0, "max": 120.0, "unit": "degC"},
+        "T_ambient":  {"min": -20.0, "max": 45.0, "unit": "degC"},
+        "note": "ETCs operate well at higher T_in than flat plates due to low U_L"
+    }
+}

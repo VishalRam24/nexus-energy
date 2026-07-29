@@ -1,0 +1,27 @@
+{
+    "component": "EC190 LNG Regasification Terminal",
+    "fidelity": "F1a",
+    "description": "SEC-based LNG sendout model with optional cold energy recovery",
+    "source": "Mokhatab et al. (2014) Handbook of Liquefied Natural Gas, Elsevier; IEA (2017) LNG Market Trends and Their Implications",
+    "terminal": {
+        "name": "Generic FSRU / onshore LNG regasification terminal",
+        "sec_base": {"value": 50.0, "unit": "kWh/ton_LNG",
+                     "note": "Specific energy consumption for regas (20-100 kWh/ton LNG depending on heat source: seawater 20-30, ORV 30-50, SCV 60-100)"},
+        "cold_energy_recovery_fraction": {"value": 0.0, "unit": "dimensionless",
+                                           "note": "Fraction of cold exergy recovered (0 = none, 0.3-0.5 = power cycle recovery)"},
+        "sendout_rate_default": {"value": 500.0, "unit": "ton_LNG/h"},
+        "LNG_density": {"value": 450.0, "unit": "kg/m3", "note": "Typical LNG density at storage conditions"},
+        "vaporisation_heat": {"value": 510.0, "unit": "kJ/kg", "note": "Latent heat of vaporisation at -162°C"}
+    },
+    "gas": {
+        "LHV": {"value": 50.0, "unit": "MJ/kg", "note": "Typical NG LHV"},
+        "molar_mass": {"value": 0.01604, "unit": "kg/mol"},
+        "T_storage": {"value": 111.15, "unit": "K", "note": "LNG storage temperature at 1 atm (-162°C)"},
+        "T_sendout": {"value": 278.15, "unit": "K", "note": "Sendout gas temperature (5°C)"}
+    },
+    "valid_ranges": {
+        "sendout_rate_ton_per_h": {"min": 10.0, "max": 5000.0, "unit": "ton/h"},
+        "sec_kwh_per_ton": {"min": 20.0, "max": 120.0, "unit": "kWh/ton"},
+        "cold_recovery_fraction": {"min": 0.0, "max": 0.6, "unit": "-"}
+    }
+}

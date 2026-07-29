@@ -1,0 +1,25 @@
+{
+  "component": "EC141 Anaerobic Digester (Thermophilic)",
+  "fidelity": "F0a",
+  "description": "Empirical BMP (biochemical methane potential) lookup per feedstock with a thermophilic temperature de-rating curve. Numbers reused from EC141 F1b feedstock DB.",
+  "source": "Angelidaki et al. (2009); Mata-Alvarez et al. (2014); Labatut et al. (2011)",
+  "rated": {
+    "methane_content_base": {"value": 0.62, "unit": "-", "note": "CH4 fraction in biogas"},
+    "LHV_methane_kwh_m3": {"value": 9.97, "unit": "kWh/m3_CH4"},
+    "T_optimum_c": {"value": 55.0, "unit": "degC", "note": "Thermophilic optimum"}
+  },
+  "feedstock_table": {
+    "comment": "BMP in L CH4 / kg VS at thermophilic optimum, reused verbatim from EC141 F1b.",
+    "feedstocks": ["sewage_sludge", "cattle_manure", "corn_silage", "grass_silage", "food_waste"],
+    "BMP_L_CH4_kgVS": [220.0, 265.0, 355.0, 360.0, 420.0],
+    "methane_content": [0.67, 0.62, 0.54, 0.56, 0.64]
+  },
+  "temperature_curve": {
+    "comment": "Yield multiplier vs temperature (degC). Peak 1.0 at 55 C, drops outside thermophilic band 45-65.",
+    "T_degC": [45.0, 50.0, 53.0, 55.0, 58.0, 60.0, 63.0, 65.0],
+    "yield_multiplier": [0.50, 0.85, 0.97, 1.0, 0.96, 0.88, 0.65, 0.40]
+  },
+  "valid_ranges": {
+    "temperature": {"min": 45.0, "max": 65.0, "unit": "degC"}
+  }
+}

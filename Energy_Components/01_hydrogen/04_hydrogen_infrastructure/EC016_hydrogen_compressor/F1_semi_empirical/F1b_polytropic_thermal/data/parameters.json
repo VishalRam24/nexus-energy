@@ -1,0 +1,34 @@
+{
+    "component": "EC016 Hydrogen Compressor",
+    "fidelity": "F1b",
+    "description": "Multistage polytropic compression with T_inlet variation, intercooler effectiveness, and discharge temperature per stage",
+    "source": "Sdanghi et al. (2019) Renewable & Sustainable Energy Reviews, 102, 150; Bossel (2006) Proc. IEEE, 94(10), 1826; Aungier (2000) Centrifugal Compressors, ASME Press",
+    "compressor": {
+        "name": "Generic 4-stage reciprocating H2 compressor (50 kg/h)",
+        "n_stages": {"value": 4, "unit": "dimensionless"},
+        "polytropic_index": {"value": 1.38, "unit": "dimensionless"},
+        "eta_polytropic": {"value": 0.75, "unit": "dimensionless"},
+        "eta_mech": {"value": 0.92, "unit": "dimensionless"},
+        "T_inlet": {"value": 298.15, "unit": "K"},
+        "P_inlet": {"value": 20.0, "unit": "bar"},
+        "P_outlet_max": {"value": 900.0, "unit": "bar"},
+        "intercooled": {"value": true},
+        "intercooler_effectiveness": {"value": 0.85, "unit": "dimensionless",
+            "note": "Heat exchanger effectiveness; 1.0 = perfect cooling to T_inlet, 0 = no cooling"},
+        "T_coolant": {"value": 298.15, "unit": "K", "note": "Intercooler coolant inlet temperature"}
+    },
+    "hydrogen": {
+        "molar_mass": {"value": 0.002016, "unit": "kg/mol"},
+        "R_specific": {"value": 4124.2, "unit": "J/(kg.K)"},
+        "gamma": {"value": 1.41, "unit": "dimensionless"},
+        "LHV": {"value": 120.0, "unit": "MJ/kg"},
+        "cp": {"value": 14307.0, "unit": "J/(kg.K)", "note": "Specific heat at constant pressure, near ambient T"}
+    },
+    "valid_ranges": {
+        "P_inlet": {"min": 1.0, "max": 100.0, "unit": "bar"},
+        "P_outlet": {"min": 10.0, "max": 1000.0, "unit": "bar"},
+        "T_inlet": {"min": 263.0, "max": 333.0, "unit": "K"},
+        "mass_flow": {"min": 0.0, "max": 0.05, "unit": "kg/s"},
+        "intercooler_effectiveness": {"min": 0.0, "max": 1.0}
+    }
+}

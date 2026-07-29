@@ -1,0 +1,23 @@
+{
+    "component": "EC112 Micro Gas Turbine",
+    "fidelity": "F1a",
+    "description": "Part-load electrical efficiency for recuperated micro gas turbine",
+    "unit": {
+        "name": "Generic 200 kWe Recuperated Micro Gas Turbine",
+        "source": "Capstone C200 product data; US EPA CHP Catalog (2017) Section 5: Microturbines",
+        "P_el_rated": {"value": 200.0, "unit": "kW_e", "note": "Rated electrical output"},
+        "eta_el_rated": {"value": 0.30, "unit": "dimensionless", "note": "Net electrical efficiency at full load (LHV, ISO)"},
+        "PLR_min": {"value": 0.3, "unit": "dimensionless", "note": "Minimum stable part-load ratio"},
+        "LHV_gas_mjkg": {"value": 50.0, "unit": "MJ/kg", "note": "Lower heating value of natural gas"},
+        "rho_gas_kgm3": {"value": 0.717, "unit": "kg/m^3", "note": "Density of natural gas at STP"},
+        "b0": {"value": 0.05, "unit": "-", "note": "Electrical PLR curve constant term"},
+        "b1": {"value": 1.30, "unit": "-", "note": "Electrical PLR curve linear term"},
+        "b2": {"value": -0.35, "unit": "-", "note": "Electrical PLR curve quadratic term"},
+        "T_ref_c": {"value": 15.0, "unit": "degC", "note": "ISO reference ambient temperature"},
+        "f_amb_coeff": {"value": 0.010, "unit": "1/degC", "note": "Ambient derating coefficient (microturbines are sensitive)"}
+    },
+    "valid_ranges": {
+        "part_load_ratio": {"min": 0.3, "max": 1.0, "unit": "dimensionless"},
+        "ambient_temp_c":  {"min": -20.0, "max": 50.0, "unit": "degC"}
+    }
+}

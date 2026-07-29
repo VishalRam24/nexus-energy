@@ -1,0 +1,9 @@
+{
+  "default_parameters": {
+    "C": 500.0,
+    "R_esr": 0.005,
+    "V_max": 2.7,
+    "V_min": 0.0
+  },
+  "description": "Pseudocapacitor F1a: C=500F, R_esr=5mOhm, V_max=2.7V. V(t)=V0-I*t/C-I*R_esr. E=0.5*C*V^2."
+}

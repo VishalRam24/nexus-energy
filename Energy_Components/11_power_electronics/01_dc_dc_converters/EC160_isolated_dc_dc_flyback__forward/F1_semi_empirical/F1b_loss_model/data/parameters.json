@@ -1,0 +1,29 @@
+{
+    "component": "EC160 Isolated DC-DC Converter (Flyback/Forward)",
+    "fidelity": "F1b",
+    "description": "Detailed semiconductor loss model for isolated converters: MOSFET conduction + switching, diode conduction + reverse recovery, transformer copper losses, temperature-dependent Rds_on, thermal balance",
+    "unit": {
+        "name": "Generic 48V-to-12V Flyback Converter with Detailed Losses",
+        "source": "Erickson & Maksimovic (2020), Fundamentals of Power Electronics, 3rd ed., Springer",
+        "v_in_nominal": {"value": 48.0, "unit": "V"},
+        "v_out_nominal": {"value": 12.0, "unit": "V"},
+        "n_turns": {"value": 4.0, "unit": "dimensionless", "note": "Turns ratio n = N1/N2 (primary/secondary)"},
+        "f_sw": {"value": 100000.0, "unit": "Hz", "note": "100 kHz switching frequency"},
+        "R_ds_on": {"value": 0.015, "unit": "Ohm", "note": "Primary MOSFET Rds_on at T_ref (15 mohm)"},
+        "V_f": {"value": 0.6, "unit": "V", "note": "Output diode forward voltage"},
+        "t_on": {"value": 3.0e-8, "unit": "s", "note": "MOSFET turn-on time (30 ns)"},
+        "t_off": {"value": 4.0e-8, "unit": "s", "note": "MOSFET turn-off time (40 ns)"},
+        "R_pri": {"value": 0.030, "unit": "Ohm", "note": "Primary winding resistance (30 mohm)"},
+        "R_sec": {"value": 0.008, "unit": "Ohm", "note": "Secondary winding resistance (8 mohm)"},
+        "I_rated": {"value": 10.0, "unit": "A", "note": "Rated output current"},
+        "T_a": {"value": 25.0, "unit": "degC", "note": "Ambient temperature"},
+        "R_theta": {"value": 4.0, "unit": "degC/W", "note": "Junction-to-ambient thermal resistance"},
+        "T_ref": {"value": 25.0, "unit": "degC", "note": "Reference temperature for Rds_on"},
+        "alpha_rds": {"value": 0.004, "unit": "1/degC", "note": "MOSFET Rds_on positive tempco"}
+    },
+    "valid_ranges": {
+        "v_in": {"min": 20.0, "max": 100.0, "unit": "V"},
+        "v_out_target": {"min": 1.0, "max": 30.0, "unit": "V"},
+        "i_load": {"min": 0.0, "max": 15.0, "unit": "A"}
+    }
+}

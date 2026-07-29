@@ -1,0 +1,55 @@
+{
+  "component": "EC167 Active Front End Rectifier (PFC)",
+  "fidelity": "F0a",
+  "description": "Empirical part-load efficiency curve (peaks near mid-load) for a power-electronic converter.",
+  "model": {
+    "type": "efficiency_vs_load_lookup",
+    "load_fraction": {
+      "value": [
+        0.0,
+        0.05,
+        0.1,
+        0.2,
+        0.3,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "unit": "dimensionless",
+      "note": "Fraction of rated power p_rated"
+    },
+    "efficiency": {
+      "value": [
+        0.0,
+        0.91,
+        0.9407,
+        0.9605,
+        0.967,
+        0.97,
+        0.9692,
+        0.9677
+      ],
+      "unit": "dimensionless",
+      "note": "Conversion efficiency P_out/P_in"
+    },
+    "peak_efficiency": {
+      "value": 0.97,
+      "unit": "dimensionless",
+      "note": "Peak efficiency from F1 model/literature"
+    },
+    "peak_load_fraction": {
+      "value": 0.5,
+      "unit": "dimensionless"
+    },
+    "rated_efficiency": {
+      "value": 0.9677,
+      "unit": "dimensionless",
+      "note": "Efficiency at 100% load"
+    },
+    "p_rated": {
+      "value": 50000.0,
+      "unit": "W"
+    },
+    "source": "Mohan (2003), Power Electronics, Wiley; IEC 61000-3-2"
+  }
+}

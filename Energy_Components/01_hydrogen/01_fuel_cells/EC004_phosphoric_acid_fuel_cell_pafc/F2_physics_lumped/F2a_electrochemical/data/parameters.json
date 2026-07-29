@@ -1,0 +1,38 @@
+{
+    "component_id": "EC004",
+    "component_name": "Phosphoric Acid Fuel Cell (PAFC)",
+    "fidelity": "F2a — Full Electrochemical Model with Thermal ODE",
+    "source": "Razaq et al. (1989) JES 136(2) 385; Appleby & Foulkes (1989) Fuel Cell Handbook; Li et al. (2003) Chem. Mater. 15(26) 4896; Patel et al. (2012) IJHE 37(3) 2346; EG&G/DOE Fuel Cell Handbook 7th ed. (2004)",
+    "unit": {
+        "name": "Generic 50kW PAFC Stack — Physics-Lumped Electrochemical (UTC PC25-class)",
+        "N_cells": {"value": 100, "unit": "-", "note": "Number of cells in stack"},
+        "A_cell": {"value": 400.0, "unit": "cm2", "note": "Active cell area (PAFC ribbed-substrate cell)"},
+        "t_acid": {"value": 0.03, "unit": "cm", "note": "H3PO4-impregnated SiC matrix thickness (~300 um)"},
+        "sigma_ref_H3PO4": {"value": 0.15, "unit": "S/cm", "note": "Conc. (95-100%) H3PO4 conductivity at T_ref (Li 2003, Razaq 1989)"},
+        "E_act_sigma": {"value": 20000.0, "unit": "J/mol", "note": "Arrhenius activation energy for H3PO4 ionic conduction"},
+        "j_L": {"value": 0.7, "unit": "A/cm2", "note": "Limiting current density (lower than PEMFC; air cathode)"},
+        "alpha_cathode": {"value": 0.5, "unit": "-", "note": "Cathode charge transfer coefficient"},
+        "j0_cathode_ref": {"value": 5e-4, "unit": "A/cm2", "note": "Cathode (ORR) exchange current density at T_ref"},
+        "E_act_cathode": {"value": 70000.0, "unit": "J/mol", "note": "Activation energy for O2 reduction in H3PO4"},
+        "B_conc": {"value": 0.012, "unit": "V", "note": "Concentration loss coefficient"},
+        "T_ref": {"value": 453.15, "unit": "K", "note": "Reference temperature (180C)"},
+        "E_tn_ref": {"value": 1.481, "unit": "V", "note": "Thermoneutral voltage at 298K (HHV basis)"},
+        "k_tn": {"value": 0.000126, "unit": "V/K", "note": "Temperature coefficient of thermoneutral voltage"},
+        "m_stack": {"value": 60.0, "unit": "kg", "note": "Stack thermal mass (graphite plates + matrix)"},
+        "cp_stack": {"value": 900.0, "unit": "J/(kg.K)", "note": "Effective stack specific heat (graphite-dominated)"},
+        "hA_cool": {"value": 120.0, "unit": "W/K", "note": "Coolant (liquid/steam) heat-transfer coefficient * area"},
+        "T_coolant": {"value": 443.15, "unit": "K", "note": "Coolant inlet temperature (170C; raises process steam)"},
+        "CO_anode": {"value": 0.01, "unit": "mole_fraction", "note": "CO content in reformate (PAFC tolerates ~1-2%)"},
+        "k_CO_ref": {"value": 0.030, "unit": "V", "note": "Anode CO-poisoning penalty prefactor at T_ref"},
+        "E_act_CO": {"value": 25000.0, "unit": "J/mol", "note": "Activation energy: CO desorption (penalty falls as T rises)"}
+    },
+    "valid_ranges": {
+        "current_density": {"min": 0.0, "max": 0.7, "unit": "A/cm2"},
+        "temperature": {"min": 423.0, "max": 483.0, "unit": "K"},
+        "P_h2": {"min": 0.5, "max": 8.0, "unit": "atm"},
+        "P_o2": {"min": 0.1, "max": 1.0, "unit": "atm"},
+        "CO_fraction": {"min": 0.0, "max": 0.02, "unit": "-"},
+        "dt": {"min": 0.1, "max": 5.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 7200.0, "unit": "s"}
+    }
+}

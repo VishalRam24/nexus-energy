@@ -1,0 +1,43 @@
+{
+    "component_id": "EC121",
+    "component_name": "High Temperature Gas Reactor (HTGR)",
+    "fidelity": "F2a — Point Reactor Kinetics coupled to Lumped Fuel/Graphite/Helium Thermal Model",
+    "source": "Duderstadt & Hamilton (1976) Nuclear Reactor Analysis, Wiley; Hetrick (1971) Dynamics of Nuclear Reactors; Zhang et al. (2009) Nucl. Eng. Des. 239:2265 (HTR-PM); Dong (2011) Nucl. Eng. Des. 241:4755; Reitsma (2004) IAEA TRS-424; Strydom (2013) Nucl. Eng. Des. 263:516 (PBMR neutronics)",
+    "unit": {
+        "name": "Generic 250 MWth Pebble-Bed HTGR (HTR-PM / PBMR class), TRISO-fueled, helium-cooled",
+
+        "P_thermal_rated_MW": {"value": 250.0, "unit": "MW_th", "note": "Rated thermal power (HTR-PM module: 250 MWth)"},
+        "eta_thermal": {"value": 0.42, "unit": "-", "note": "Net thermal-to-electric efficiency at 750C outlet (Brayton/Rankine)"},
+
+        "Lambda_neutron_s": {"value": 1.0e-3, "unit": "s", "note": "Prompt neutron generation time; large in graphite-moderated thermal reactor (well-thermalized spectrum, long diffusion path) ~1 ms (Duderstadt 1976; Strydom 2013)"},
+        "beta_total": {"value": 0.0065, "unit": "-", "note": "Total delayed neutron fraction for U-235 thermal fission (Duderstadt 1976 Table)"},
+        "beta_i": {"value": [0.000215, 0.001424, 0.001274, 0.002568, 0.000748, 0.000273], "unit": "-", "note": "6-group delayed neutron fractions, U-235 thermal (Keepin/Duderstadt 1976)"},
+        "lambda_i_per_s": {"value": [0.0124, 0.0305, 0.111, 0.301, 1.14, 3.01], "unit": "1/s", "note": "6-group delayed neutron precursor decay constants, U-235 (Keepin/Duderstadt 1976)"},
+
+        "alpha_fuel_pcm_per_K": {"value": -4.5, "unit": "pcm/K", "note": "Fuel (Doppler) temperature reactivity coefficient; strongly negative, prompt, dominant in TRISO/UO2 fuel (Reitsma 2004; Strydom 2013)"},
+        "alpha_graphite_pcm_per_K": {"value": -1.0, "unit": "pcm/K", "note": "Graphite moderator temperature reactivity coefficient; negative, slow (acts through large graphite thermal mass)"},
+
+        "M_fuel_t": {"value": 200.0, "unit": "tonne", "note": "Fuel+pebble matrix effective mass that holds fission heat (TRISO kernels + SiC + graphite matrix of fuel spheres)"},
+        "cp_fuel_J_per_kgK": {"value": 1300.0, "unit": "J/(kg.K)", "note": "Effective specific heat of graphite-matrix fuel pebbles (graphite-dominated)"},
+        "M_graphite_t": {"value": 1400.0, "unit": "tonne", "note": "Graphite moderator/reflector mass (250 MWth core)"},
+        "cp_graphite_J_per_kgK": {"value": 1300.0, "unit": "J/(kg.K)", "note": "Graphite specific heat at HTGR operating temperature (~700C); ~1.3-1.9 kJ/kgK"},
+        "M_helium_kg": {"value": 600.0, "unit": "kg", "note": "Helium coolant inventory in core/primary loop"},
+        "cp_helium_J_per_kgK": {"value": 5193.0, "unit": "J/(kg.K)", "note": "Helium specific heat (monatomic ideal gas, 5R/2M), essentially constant"},
+
+        "hA_fuel_graphite_MW_per_K": {"value": 8.0, "unit": "MW/K", "note": "Fuel-to-graphite conductance (fission heat conducted from kernels into moderator/structure)"},
+        "hA_fuel_helium_MW_per_K": {"value": 4.0, "unit": "MW/K", "note": "Fuel pebble surface-to-helium convective conductance"},
+        "hA_graphite_helium_MW_per_K": {"value": 2.0, "unit": "MW/K", "note": "Graphite structure-to-helium convective conductance"},
+
+        "mdot_helium_kg_per_s": {"value": 96.0, "unit": "kg/s", "note": "Helium mass flow rate at rated power (HTR-PM ~96 kg/s)"},
+        "T_helium_inlet_C": {"value": 250.0, "unit": "degC", "note": "Helium core inlet temperature at rated power"},
+        "T_helium_outlet_C": {"value": 750.0, "unit": "degC", "note": "Helium core outlet temperature at rated power"},
+
+        "decay_heat_frac": {"value": 0.065, "unit": "-", "note": "Fission-product decay heat as fraction of operating power shortly after shutdown (~6.5%, ANS-5.1); enables passive decay-heat removal"}
+    },
+    "valid_ranges": {
+        "rho_ext_pcm": {"min": -2000.0, "max": 200.0, "unit": "pcm"},
+        "T_helium_inlet_C": {"min": 200.0, "max": 350.0, "unit": "degC"},
+        "duration_s": {"min": 1.0, "max": 100000.0, "unit": "s"},
+        "P0_fraction": {"min": 0.0, "max": 1.2, "unit": "-"}
+    }
+}

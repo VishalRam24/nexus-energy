@@ -1,0 +1,34 @@
+{
+    "component_id": "EC085",
+    "component_name": "Natural Gas Boiler",
+    "fidelity": "F2a — Dynamic Thermal Mass ODE",
+    "source": "Rasmussen (2012) Boiler Dynamics; EN 15502 condensing boiler standard",
+    "unit": {
+        "name": "Commercial Natural Gas Condensing Boiler — 500 kW",
+        "M_w": {"value": 500.0, "unit": "kg", "note": "Water mass in boiler"},
+        "cp_w": {"value": 4186.0, "unit": "J/(kg.K)", "note": "Specific heat of water"},
+        "Q_burner_max": {"value": 500000.0, "unit": "W", "note": "Maximum burner thermal input (500 kW)"},
+        "LHV": {"value": 36600000.0, "unit": "J/m3", "note": "Lower heating value of natural gas (36.6 MJ/m3)"},
+        "fuel_rate_max": {"value": 0.01366, "unit": "m3/s", "note": "Max fuel flow = Q_max / LHV"},
+        "eta_comb": {"value": 0.92, "unit": "-", "note": "Combustion efficiency at full load"},
+        "eta_comb_min": {"value": 0.88, "unit": "-", "note": "Combustion efficiency at minimum load"},
+        "modulation_min": {"value": 0.2, "unit": "-", "note": "Minimum burner modulation (20%)"},
+        "m_dot_design": {"value": 6.0, "unit": "kg/s", "note": "Design water flow rate"},
+        "cp_water": {"value": 4186.0, "unit": "J/(kg.K)", "note": "Water specific heat"},
+        "UA_loss": {"value": 15.0, "unit": "W/K", "note": "Standby heat loss coefficient"},
+        "T_amb": {"value": 293.15, "unit": "K", "note": "Ambient temperature (20 C)"},
+        "T_in_design": {"value": 333.15, "unit": "K", "note": "Design return water temperature (60 C)"},
+        "T_set": {"value": 353.15, "unit": "K", "note": "Setpoint temperature (80 C)"},
+        "T_init": {"value": 293.15, "unit": "K", "note": "Cold start temperature"},
+        "M_body": {"value": 200.0, "unit": "kg", "note": "Boiler body (metal) mass"},
+        "cp_body": {"value": 500.0, "unit": "J/(kg.K)", "note": "Boiler body specific heat (steel)"},
+        "flue_loss_frac": {"value": 0.05, "unit": "-", "note": "Flue gas loss fraction of burner input"},
+        "burner_cycle_deadband": {"value": 3.0, "unit": "K", "note": "On/off cycling deadband"}
+    },
+    "valid_ranges": {
+        "T_in": {"min": 283.15, "max": 363.15, "unit": "K"},
+        "m_dot": {"min": 0.0, "max": 12.0, "unit": "kg/s"},
+        "duration_s": {"min": 1.0, "max": 86400.0, "unit": "s"},
+        "dt": {"min": 0.1, "max": 60.0, "unit": "s"}
+    }
+}

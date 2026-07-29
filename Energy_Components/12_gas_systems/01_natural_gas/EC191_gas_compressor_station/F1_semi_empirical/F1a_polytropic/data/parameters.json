@@ -1,0 +1,30 @@
+{
+    "component": "EC191 Gas Compressor Station",
+    "fidelity": "F1a",
+    "description": "Multi-stage polytropic compressor with intercooling for natural gas pipeline service",
+    "source": "Menon (2005) Gas Pipeline Hydraulics, CRC Press; Campbell (2014) Gas Conditioning & Processing Vol.2",
+    "compressor": {
+        "name": "Typical pipeline centrifugal compressor station",
+        "n_stages": {"value": 2, "unit": "dimensionless", "note": "Typical station: 1-3 stages; single stage for CR 1.3-1.5"},
+        "polytropic_index": {"value": 1.38, "unit": "dimensionless", "note": "Effective polytropic exponent for NG (between isothermal and isentropic)"},
+        "eta_polytropic": {"value": 0.82, "unit": "dimensionless", "note": "Polytropic efficiency, centrifugal: 0.78-0.88"},
+        "eta_mech": {"value": 0.95, "unit": "dimensionless", "note": "Mechanical / driver efficiency"},
+        "T_inlet": {"value": 288.15, "unit": "K", "note": "Inlet temperature after scrubber"},
+        "P_inlet": {"value": 50.0, "unit": "bar", "note": "Typical pipeline suction pressure"},
+        "P_outlet_max": {"value": 150.0, "unit": "bar", "note": "Maximum discharge pressure"},
+        "intercooled": {"value": true, "note": "Stages assumed intercooled to T_inlet"}
+    },
+    "gas": {
+        "name": "Natural Gas (pipeline quality)",
+        "molar_mass": {"value": 0.01604, "unit": "kg/mol"},
+        "R_specific": {"value": 518.3, "unit": "J/(kg.K)", "note": "R_universal / M_NG = 8.314/0.01604"},
+        "gamma": {"value": 1.31, "unit": "dimensionless", "note": "cp/cv for NG at typical pipeline conditions"},
+        "LHV": {"value": 50.0, "unit": "MJ/kg"}
+    },
+    "valid_ranges": {
+        "P_inlet": {"min": 5.0, "max": 100.0, "unit": "bar"},
+        "P_outlet": {"min": 10.0, "max": 200.0, "unit": "bar"},
+        "T_inlet": {"min": 263.0, "max": 323.0, "unit": "K"},
+        "mass_flow": {"min": 0.0, "max": 500.0, "unit": "kg/s"}
+    }
+}

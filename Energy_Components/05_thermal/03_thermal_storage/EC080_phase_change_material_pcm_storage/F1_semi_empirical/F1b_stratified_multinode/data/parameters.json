@@ -1,0 +1,25 @@
+{
+    "component": "EC080 Phase-Change Material (PCM) Storage",
+    "fidelity": "F1b",
+    "description": "Enthalpy-method PCM model with proper mushy zone handling for paraffin RT58",
+    "pcm": {
+        "name": "Paraffin RT58 PCM Storage",
+        "source": "Rubitherm Technologies GmbH RT58 datasheet; Mehling & Cabeza (2008)",
+        "mass_pcm_kg": {"value": 5000.0, "unit": "kg"},
+        "T_pc_degC": {"value": 58.0, "unit": "degC", "note": "Phase change temperature"},
+        "delta_T_pc_degC": {"value": 2.0, "unit": "degC", "note": "Half-width of mushy zone"},
+        "L_kJ_kg": {"value": 180.0, "unit": "kJ/kg", "note": "Latent heat of fusion"},
+        "cp_solid_kJ_kgK": {"value": 2.0, "unit": "kJ/(kg*K)"},
+        "cp_liquid_kJ_kgK": {"value": 2.2, "unit": "kJ/(kg*K)"},
+        "UA_htf_W_K": {"value": 500.0, "unit": "W/K", "note": "HTF-to-PCM overall heat transfer coefficient"},
+        "UA_loss_W_K": {"value": 5.0, "unit": "W/K", "note": "PCM-to-ambient heat loss"},
+        "T_ambient_ref_C": {"value": 25.0, "unit": "degC"}
+    },
+    "valid_ranges": {
+        "T_htf_in_degC": {"min": 20.0, "max": 90.0, "unit": "degC"},
+        "flow_rate_kg_s": {"min": 0.0, "max": 10.0, "unit": "kg/s"},
+        "mode": {"values": ["charge", "discharge", "idle"]},
+        "duration_s": {"min": 0.0, "max": 86400.0, "unit": "s"},
+        "T_ambient_degC": {"min": -10.0, "max": 50.0, "unit": "degC"}
+    }
+}

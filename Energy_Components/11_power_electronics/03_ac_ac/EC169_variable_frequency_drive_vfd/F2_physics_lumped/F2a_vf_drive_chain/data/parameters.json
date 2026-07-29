@@ -1,0 +1,39 @@
+{
+    "component_id": "EC169",
+    "component_name": "Variable Frequency Drive (VFD)",
+    "fidelity": "F2a — Physics-Lumped V/f Drive Chain (DC-link + motor-speed ODE)",
+    "source": "Mohan, Undeland & Robbins (2003) Power Electronics 3rd ed., Wiley; Bose (2006) Power Electronics and Motor Drives, Academic Press; Krause, Wasynczuk & Sudhoff (2013) Analysis of Electric Machinery and Drive Systems.",
+    "unit": {
+        "name": "Generic 15 kW VFD (400 V AC supply) driving a 4-pole induction motor",
+
+        "V_ac_ll": {"value": 400.0, "unit": "V", "note": "AC supply line-to-line RMS voltage"},
+        "f_grid": {"value": 50.0, "unit": "Hz", "note": "Supply frequency"},
+        "V_dc_nom": {"value": 565.0, "unit": "V", "note": "Nominal DC-link voltage (≈ sqrt(2)*V_ac_ll for 6-pulse bridge)"},
+        "C_dc": {"value": 2.2e-3, "unit": "F", "note": "DC-link capacitance (bus capacitor bank)"},
+        "R_dc_load": {"value": 1.0e6, "unit": "Ohm", "note": "DC-link bleeder/leakage resistance (large)"},
+        "eta_rect": {"value": 0.985, "unit": "-", "note": "Diode-bridge rectifier efficiency (Mohan ch.5)"},
+        "eta_inv": {"value": 0.975, "unit": "-", "note": "PWM inverter efficiency (Mohan ch.8; conduction+switching)"},
+
+        "P_rated": {"value": 15000.0, "unit": "W", "note": "Rated mechanical motor power"},
+        "V_rated": {"value": 400.0, "unit": "V", "note": "Rated motor terminal line-to-line RMS voltage"},
+        "f_rated": {"value": 50.0, "unit": "Hz", "note": "Rated (base) electrical frequency"},
+        "f_out_max": {"value": 120.0, "unit": "Hz", "note": "Max inverter output frequency (field-weakening region)"},
+        "V_boost": {"value": 20.0, "unit": "V", "note": "Low-frequency voltage boost to offset stator IR drop (Bose)"},
+        "poles": {"value": 4, "unit": "-", "note": "Number of motor poles"},
+
+        "R_s": {"value": 0.40, "unit": "Ohm", "note": "Stator resistance per phase"},
+        "R_r": {"value": 0.30, "unit": "Ohm", "note": "Rotor resistance per phase (referred to stator)"},
+        "X_s": {"value": 0.80, "unit": "Ohm", "note": "Stator leakage reactance at f_rated"},
+        "X_r": {"value": 0.80, "unit": "Ohm", "note": "Rotor leakage reactance at f_rated (referred)"},
+        "J": {"value": 0.10, "unit": "kg.m2", "note": "Combined motor+load inertia"},
+        "B_visc": {"value": 0.01, "unit": "N.m.s/rad", "note": "Viscous friction coefficient"},
+        "T_load_rated": {"value": 95.5, "unit": "N.m", "note": "Rated load torque (≈ P_rated / omega_rated_mech)"}
+    },
+    "valid_ranges": {
+        "f_set": {"min": 0.0, "max": 120.0, "unit": "Hz"},
+        "T_load": {"min": 0.0, "max": 200.0, "unit": "N.m"},
+        "V_dc": {"min": 0.0, "max": 800.0, "unit": "V"},
+        "dt": {"min": 0.001, "max": 0.5, "unit": "s"},
+        "duration_s": {"min": 0.1, "max": 60.0, "unit": "s"}
+    }
+}

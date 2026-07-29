@@ -1,0 +1,42 @@
+{
+    "component_id": "EC141",
+    "component_name": "Anaerobic Digester (Thermophilic)",
+    "fidelity": "F2a — Simplified ADM1-style Biochemical Kinetics + Lumped Thermal ODE",
+    "source": "Batstone et al. (2002) ADM1, Water Sci. Technol. 45(10):65; Angelidaki et al. (1993) Biotechnol. Bioeng. 42:159; Angelidaki et al. (2009) Water Sci. Technol. 59(5):927; Donoso-Bravo et al. (2011) Water Res. 45:5347",
+    "unit": {
+        "name": "Generic Thermophilic CSTR Anaerobic Digester — Physics-Lumped (3-step Monod)",
+        "V_liq": {"value": 100.0, "unit": "m3", "note": "Active liquid (reactor) volume of CSTR"},
+
+        "k_hyd": {"value": 0.50, "unit": "1/day", "note": "First-order hydrolysis disintegration rate of particulate substrate (thermophilic, Batstone 2002 / Donoso-Bravo 2011)"},
+
+        "mu_max_aci": {"value": 4.0, "unit": "1/day", "note": "Max specific growth rate of acidogens (thermophilic, faster than mesophilic ~3)"},
+        "Ks_aci": {"value": 0.5, "unit": "kgCOD/m3", "note": "Monod half-saturation for soluble sugars/amino acids -> VFA (acidogenesis)"},
+        "Y_aci": {"value": 0.10, "unit": "kgCODx/kgCODs", "note": "Biomass yield coefficient for acidogens"},
+
+        "mu_max_met": {"value": 0.60, "unit": "1/day", "note": "Max specific growth rate of methanogens (thermophilic acetoclastic, Angelidaki 1993)"},
+        "Ks_met": {"value": 0.30, "unit": "kgCOD/m3", "note": "Monod half-saturation for acetate/VFA (methanogenesis)"},
+        "Y_met": {"value": 0.05, "unit": "kgCODx/kgCODs", "note": "Biomass yield coefficient for methanogens (low, slow growers)"},
+
+        "kdec": {"value": 0.02, "unit": "1/day", "note": "First-order biomass decay (endogenous respiration) rate"},
+
+        "KI_vfa": {"value": 8.0, "unit": "kgCOD/m3", "note": "Non-competitive VFA self-inhibition constant for methanogens (acidification protection)"},
+
+        "f_ch4_cod": {"value": 0.35, "unit": "m3CH4/kgCOD", "note": "Theoretical CH4 yield per kg COD removed at STP (0.35 m3/kgCOD, Batstone 2002)"},
+        "CH4_fraction": {"value": 0.65, "unit": "dimensionless", "note": "Methane volume fraction in biogas (thermophilic typical 0.6-0.7)"},
+        "LHV_methane_kWh_m3": {"value": 9.94, "unit": "kWh/m3", "note": "Lower heating value of methane (35.8 MJ/m3)"},
+
+        "rho_slurry": {"value": 1000.0, "unit": "kg/m3", "note": "Density of digester slurry (~water)"},
+        "cp_slurry": {"value": 4180.0, "unit": "J/(kg.K)", "note": "Specific heat of digester slurry (~water)"},
+        "UA_loss": {"value": 200.0, "unit": "W/K", "note": "Overall heat-loss conductance (wall U*A) to ambient"},
+        "T_set_degC": {"value": 55.0, "unit": "degC", "note": "Thermophilic temperature setpoint"},
+        "T_ambient_degC": {"value": 15.0, "unit": "degC", "note": "Ambient temperature around digester"},
+        "T_feed_degC": {"value": 20.0, "unit": "degC", "note": "Incoming feedstock temperature (sensible heating load)"}
+    },
+    "valid_ranges": {
+        "S_in_COD": {"min": 0.0, "max": 200.0, "unit": "kgCOD/m3"},
+        "Q_in": {"min": 0.0, "max": 50.0, "unit": "m3/day"},
+        "T0_degC": {"min": 10.0, "max": 70.0, "unit": "degC"},
+        "duration_days": {"min": 1.0, "max": 365.0, "unit": "days"},
+        "dt_days": {"min": 0.05, "max": 2.0, "unit": "days"}
+    }
+}

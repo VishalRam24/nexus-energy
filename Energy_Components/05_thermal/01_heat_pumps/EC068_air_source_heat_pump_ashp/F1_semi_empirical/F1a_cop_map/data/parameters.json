@@ -1,0 +1,22 @@
+{
+    "component": "EC068 Air-Source Heat Pump (ASHP)",
+    "fidelity": "F1a",
+    "description": "COP as f(T_source, T_sink) using Carnot fraction approach",
+    "unit": {
+        "name": "Generic 10kW ASHP (R410A)",
+        "source": "Staffell et al. (2012), Energy Environ. Sci., 5, 9291-9306",
+        "rated_capacity": {"value": 10.0, "unit": "kW_th"},
+        "rated_cop": {"value": 3.5, "unit": "dimensionless", "note": "At A7/W35 (EN 14511)"},
+        "carnot_fraction": {"value": 0.45, "unit": "dimensionless", "note": "eta_Carnot = COP/COP_Carnot"},
+        "min_source_temp": {"value": -20.0, "unit": "degC"},
+        "max_source_temp": {"value": 40.0, "unit": "degC"},
+        "min_sink_temp": {"value": 25.0, "unit": "degC"},
+        "max_sink_temp": {"value": 65.0, "unit": "degC"},
+        "auxiliary_power": {"value": 0.05, "unit": "kW", "note": "Fans, controls, standby"}
+    },
+    "valid_ranges": {
+        "T_source": {"min": -20.0, "max": 40.0, "unit": "degC"},
+        "T_sink": {"min": 25.0, "max": 65.0, "unit": "degC"},
+        "part_load_ratio": {"min": 0.0, "max": 1.0, "unit": "dimensionless"}
+    }
+}

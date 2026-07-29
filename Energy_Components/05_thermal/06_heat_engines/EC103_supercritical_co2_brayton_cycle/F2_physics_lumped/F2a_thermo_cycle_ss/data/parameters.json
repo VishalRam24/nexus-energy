@@ -1,0 +1,36 @@
+{
+    "component_id": "EC103",
+    "component_name": "Supercritical CO2 Brayton Cycle",
+    "fidelity": "F2a — Physics-Lumped Recompression Brayton Cycle with Thermal ODE",
+    "source": "Dostal, Driscoll & Hejzlar (2004) MIT-ANP-TR-100; Ahn et al. (2015) Nucl. Eng. Technol. 47, 647-661; Span & Wagner (1996) J. Phys. Chem. Ref. Data 25, 1509-1596; Crespi et al. (2017) Appl. Energy 195, 152-183.",
+    "unit": {
+        "name": "10 MWe Recompression sCO2 Brayton Cycle — Physics-Lumped State-Point Model",
+        "T_turb_in_K":   {"value": 973.15, "unit": "K",   "note": "Turbine inlet temperature (700 degC sCO2 design point); Dostal 2004"},
+        "T_comp_in_K":   {"value": 305.15, "unit": "K",   "note": "Main compressor inlet (32 degC, just above CO2 critical 30.98 degC) — near-critical operation is the key sCO2 advantage"},
+        "P_high_Pa":     {"value": 25.0e6, "unit": "Pa",  "note": "High-side pressure (~25 MPa typical sCO2); Ahn 2015"},
+        "P_low_Pa":      {"value": 7.7e6,  "unit": "Pa",  "note": "Low-side / compressor inlet pressure (above critical 7.377 MPa)"},
+        "eta_comp":      {"value": 0.85,   "unit": "-",   "note": "Isentropic efficiency, main + recompression compressor; Dostal 2004"},
+        "eta_turb":      {"value": 0.90,   "unit": "-",   "note": "Turbine isentropic efficiency; Dostal 2004"},
+        "eps_recup":     {"value": 0.95,   "unit": "-",   "note": "Recuperator effectiveness (high-temp + low-temp combined)"},
+        "recompression_fraction": {"value": 0.35, "unit": "-", "note": "Fraction of flow routed to recompression compressor (bypasses precooler); Dostal 2004 optimum ~0.3-0.4"},
+        "mdot":          {"value": 130.0,  "unit": "kg/s","note": "CO2 mass flow rate for ~10 MWe net"},
+        "P_crit_Pa":     {"value": 7.377e6,"unit": "Pa",  "note": "CO2 critical pressure; Span & Wagner 1996"},
+        "T_crit_K":      {"value": 304.13, "unit": "K",   "note": "CO2 critical temperature (30.98 degC); Span & Wagner 1996"},
+        "rho_crit":      {"value": 467.6,  "unit": "kg/m3","note": "CO2 critical density; Span & Wagner 1996"},
+        "M_CO2":         {"value": 0.0440095, "unit": "kg/mol", "note": "CO2 molar mass"},
+        "cp_ideal":      {"value": 845.0,  "unit": "J/(kg.K)", "note": "CO2 ideal-gas cp at ~700 degC (high-T limit, weak real-gas effect)"},
+        "gamma_ideal":   {"value": 1.28,   "unit": "-",   "note": "CO2 ratio of specific heats (high-T, near ideal)"},
+        "m_thermal":     {"value": 8000.0, "unit": "kg",  "note": "Lumped metal thermal mass of heater/turbine hot section"},
+        "cp_metal":      {"value": 500.0,  "unit": "J/(kg.K)", "note": "Specific heat of hot-section steel (Inconel/SS)"},
+        "UA_hot":        {"value": 2.5e5,  "unit": "W/K", "note": "Heater-side overall conductance (heat source to metal)"}
+    },
+    "valid_ranges": {
+        "T_turb_in_K": {"min": 773.15, "max": 1073.15, "unit": "K"},
+        "T_comp_in_K": {"min": 305.15, "max": 333.15,  "unit": "K"},
+        "P_high_Pa":   {"min": 18.0e6, "max": 30.0e6,  "unit": "Pa"},
+        "P_low_Pa":    {"min": 7.5e6,  "max": 12.0e6,  "unit": "Pa"},
+        "recompression_fraction": {"min": 0.0, "max": 0.6, "unit": "-"},
+        "dt":          {"min": 0.1,    "max": 10.0,    "unit": "s"},
+        "duration_s":  {"min": 1.0,    "max": 7200.0,  "unit": "s"}
+    }
+}

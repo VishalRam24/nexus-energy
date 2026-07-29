@@ -1,0 +1,38 @@
+{
+    "component": "EC111 Diesel Generator",
+    "fidelity": "F2a",
+    "description": "Diesel cycle thermodynamics (air-standard analysis) with generator coupling and BSFC curve. ODE-based dynamic model for load transients.",
+    "unit": {
+        "name": "Generic 500 kW Diesel Generator Set",
+        "source": "Heywood (2018), Internal Combustion Engine Fundamentals, 2nd ed., McGraw-Hill; Caterpillar C15 reference data",
+        "P_rated": {"value": 500000.0, "unit": "W", "note": "Rated electrical power output (500 kW)"},
+        "r_c": {"value": 18.0, "unit": "dimensionless", "note": "Compression ratio (typical 14-22)"},
+        "gamma": {"value": 1.35, "unit": "dimensionless", "note": "Ratio of specific heats for air-fuel mixture"},
+        "T1": {"value": 300.0, "unit": "K", "note": "Inlet air temperature (ambient)"},
+        "P1": {"value": 101325.0, "unit": "Pa", "note": "Inlet air pressure (ambient)"},
+        "V_displaced": {"value": 0.015, "unit": "m^3", "note": "Engine displaced volume (15 L)"},
+        "n_cylinders": {"value": 6, "unit": "dimensionless", "note": "Number of cylinders"},
+        "rpm_nominal": {"value": 1500.0, "unit": "rpm", "note": "Nominal engine speed (50 Hz grid)"},
+        "rpm_min": {"value": 600.0, "unit": "rpm"},
+        "rpm_max": {"value": 1800.0, "unit": "rpm"},
+        "J_engine": {"value": 15.0, "unit": "kg*m^2", "note": "Rotational inertia of engine+generator"},
+        "b_friction": {"value": 5.0, "unit": "N*m*s/rad", "note": "Friction damping coefficient"},
+        "eta_gen_rated": {"value": 0.96, "unit": "dimensionless", "note": "Generator electrical efficiency at rated load"},
+        "eta_gen_a": {"value": 0.005, "unit": "dimensionless", "note": "Generator efficiency curve coeff a (quadratic loss)"},
+        "eta_gen_b": {"value": 0.015, "unit": "dimensionless", "note": "Generator efficiency curve coeff b (linear loss)"},
+        "LHV_diesel": {"value": 42700000.0, "unit": "J/kg", "note": "Lower heating value of diesel fuel"},
+        "rho_diesel": {"value": 832.0, "unit": "kg/m^3", "note": "Diesel fuel density"},
+        "BSFC_rated": {"value": 5.833e-8, "unit": "kg/(W*s)", "note": "BSFC at rated load ~210 g/kWh = 210e-3/(1e3*3600)"},
+        "R_air": {"value": 287.0, "unit": "J/(kg*K)", "note": "Specific gas constant for air"},
+        "cv_air": {"value": 718.0, "unit": "J/(kg*K)", "note": "Specific heat at constant volume"},
+        "cp_air": {"value": 1005.0, "unit": "J/(kg*K)", "note": "Specific heat at constant pressure"},
+        "governor_Kp": {"value": 50.0, "unit": "N*m*s/rad", "note": "Governor proportional gain"},
+        "governor_Ki": {"value": 100.0, "unit": "N*m*s^2/rad", "note": "Governor integral gain"},
+        "governor_tau": {"value": 0.1, "unit": "s", "note": "Fuel actuator time constant"}
+    },
+    "valid_ranges": {
+        "load_fraction": {"min": 0.0, "max": 1.1, "unit": "dimensionless"},
+        "T_ambient": {"min": 233.0, "max": 328.0, "unit": "K"},
+        "altitude": {"min": 0.0, "max": 3000.0, "unit": "m"}
+    }
+}

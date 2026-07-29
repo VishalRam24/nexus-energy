@@ -1,0 +1,12 @@
+{
+  "default_parameters": {
+    "E0": 1.18,
+    "n": 1,
+    "T": 298.15,
+    "R_int_area": 1.5,
+    "N_cells": 40,
+    "A_cell": 1000.0,
+    "Q_nom_Ah": 100.0
+  },
+  "description": "Fe-Cr flow battery. E0=1.18 V (Fe3+/Fe2+ vs Cr3+/Cr2+). n=1. R_int_area=1.5 ohm*cm^2. N_cells=40 series cells. A_cell=1000 cm^2. Nernst OCV: E=E0+RT/(nF)*ln(SOC/(1-SOC))."
+}

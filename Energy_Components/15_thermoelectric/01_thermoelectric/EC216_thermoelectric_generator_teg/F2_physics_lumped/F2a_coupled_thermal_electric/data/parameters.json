@@ -1,0 +1,29 @@
+{
+    "component": "EC216 Thermoelectric Generator (TEG)",
+    "fidelity": "F2a",
+    "description": "Coupled thermal-electrical lumped model with temperature-dependent Bi2Te3 properties, Peltier/Thomson effects, and contact resistances",
+    "unit": {
+        "name": "Bi2Te3 TEG Module (40x40mm, 127 couples) — Coupled Thermal-Electrical",
+        "source": "Rowe (2006) Thermoelectrics Handbook; Snyder & Toberer (2008), Nature Materials, 7, 105-114",
+        "N_couples": {"value": 127, "unit": "-", "note": "Number of thermocouples in series"},
+        "A_te_m2": {"value": 1.96e-6, "unit": "m2", "note": "Cross-section area per TE element (1.4mm x 1.4mm)"},
+        "L_te_m": {"value": 1.5e-3, "unit": "m", "note": "Length of one TE element"},
+        "alpha_ref": {"value": 200e-6, "unit": "V/K", "note": "Seebeck coefficient at T_ref (per couple, p-n pair)"},
+        "rho_ref": {"value": 1.0e-5, "unit": "ohm*m", "note": "Electrical resistivity at T_ref"},
+        "kappa_ref": {"value": 1.5, "unit": "W/(m*K)", "note": "Thermal conductivity at T_ref"},
+        "T_ref": {"value": 300.0, "unit": "K", "note": "Reference temperature for property polynomials"},
+        "alpha_coeffs": {"value": [200e-6, -4e-8, 0.0], "unit": "V/K, V/K2, V/K3", "note": "Polynomial: alpha(T) = a0 + a1*(T-Tref) + a2*(T-Tref)^2"},
+        "rho_coeffs": {"value": [1.0e-5, 5e-9, 0.0], "unit": "ohm*m, ohm*m/K, ...", "note": "Polynomial: rho(T) = r0 + r1*(T-Tref) + r2*(T-Tref)^2"},
+        "kappa_coeffs": {"value": [1.5, 4.5e-4, 0.0], "unit": "W/(m*K), W/(m*K2), ...", "note": "Polynomial: kappa(T) = k0 + k1*(T-Tref) + k2*(T-Tref)^2"},
+        "R_contact_hot": {"value": 0.5, "unit": "K/W", "note": "Thermal contact resistance on hot side"},
+        "R_contact_cold": {"value": 0.5, "unit": "K/W", "note": "Thermal contact resistance on cold side"},
+        "R_electrical_contact": {"value": 0.0, "unit": "ohm", "note": "Additional electrical contact resistance (total module)"},
+        "max_iterations": {"value": 200, "unit": "-", "note": "Maximum iterations for coupled solver"},
+        "convergence_tol": {"value": 1e-4, "unit": "K", "note": "Convergence tolerance for junction temperatures"}
+    },
+    "valid_ranges": {
+        "T_hot_K": {"min": 300.0, "max": 600.0, "unit": "K"},
+        "T_cold_K": {"min": 250.0, "max": 350.0, "unit": "K"},
+        "R_load_ohm": {"min": 0.01, "max": 100.0, "unit": "ohm"}
+    }
+}

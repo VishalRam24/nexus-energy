@@ -1,0 +1,17 @@
+{
+    "component": "EC120 Fast Breeder Reactor (FBR)",
+    "fidelity": "F1a",
+    "description": "Simple power-map model: P_elec = eta * P_thermal * load_factor. Sodium-cooled fast reactor.",
+    "unit": {
+        "name": "Generic Sodium-Cooled Fast Breeder Reactor (BN-800 class)",
+        "source": "Guidez & Prele (2017) Sodium Cooled Fast Reactors; IAEA (2012) TECDOC-1689",
+        "P_thermal_mw":  {"value": 1500.0, "unit": "MW_th",        "note": "Thermal power at full load"},
+        "eta_thermal":   {"value": 0.40,   "unit": "dimensionless","note": "Net electrical efficiency (sodium fast cycle ~40%)"},
+        "T_out_degC":    {"value": 550.0,  "unit": "degC",         "note": "Core sodium outlet temperature"},
+        "load_min":      {"value": 0.25,   "unit": "dimensionless","note": "Minimum stable power fraction"},
+        "load_max":      {"value": 1.0,    "unit": "dimensionless"}
+    },
+    "valid_ranges": {
+        "load_factor": {"min": 0.25, "max": 1.0, "unit": "dimensionless"}
+    }
+}

@@ -1,0 +1,24 @@
+{
+    "component": "EC133 Tidal Lagoon",
+    "fidelity": "F0a",
+    "description": "Empirical mean-power lookup vs tidal-range amplitude h: P_avg = n_cycles*eta*0.5*rho*g*A*h^2/T (bidirectional ebb+flood). Tabulated P_avg(h) interpolated; zero below h_min.",
+    "rated": {
+        "A_lagoon": {"value": 11.5e6, "unit": "m2", "note": "Lagoon plan area (Swansea Bay ~11.5 km2)"},
+        "h_design": {"value": 4.5, "unit": "m", "note": "Mean tidal range amplitude (half peak-to-trough)"},
+        "T_tide": {"value": 44712.0, "unit": "s", "note": "Semidiurnal tidal period"},
+        "eta_plant": {"value": 0.25, "unit": "dimensionless", "note": "Overall plant efficiency (bidirectional turbines)"},
+        "n_cycles_per_period": {"value": 2.0, "unit": "dimensionless", "note": "Ebb AND flood generation"},
+        "P_avg_rated": {"value": 13.093, "unit": "MW", "note": "Mean power at design range h=4.5 m"},
+        "h_min_operation": {"value": 0.75, "unit": "m", "note": "Minimum range amplitude for generation"},
+        "rho": {"value": 1025.0, "unit": "kg/m3", "note": "Seawater density"},
+        "g": {"value": 9.81, "unit": "m/s2", "note": "Gravitational acceleration"}
+    },
+    "power_curve": {
+        "h_amplitude_m": {"value": [0.0, 0.75, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 6.0], "unit": "m", "note": "Tidal range amplitude breakpoints"},
+        "P_avg_mw": {"value": [0.0, 0.364, 0.647, 1.455, 2.586, 4.041, 5.819, 7.920, 10.345, 13.093, 16.164, 23.276], "unit": "MW", "note": "Mean electrical power (both generation directions)"}
+    },
+    "valid_ranges": {
+        "tidal_range_amplitude_m": {"min": 0.0, "max": 6.0, "unit": "m"}
+    },
+    "source": "Aggidis & Feather (2012) Tidal Lagoons; Xiao et al. (2020) Tidal Lagoon Power; reuses EC133 F1a parameters"
+}

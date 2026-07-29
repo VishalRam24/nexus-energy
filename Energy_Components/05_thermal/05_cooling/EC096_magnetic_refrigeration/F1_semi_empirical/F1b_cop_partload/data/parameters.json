@@ -1,0 +1,26 @@
+{
+    "component": "EC096 Magnetic Refrigeration",
+    "fidelity": "F1b",
+    "description": "Carnot-based COP with AMR efficiency, temperature correction, and part-load penalty",
+    "unit": {
+        "name": "Near-room-temperature AMR (Gadolinium-based, 10 kW cooling)",
+        "source": "Kitanovski et al. (2015), Magnetocaloric Energy Conversion; Yu et al. (2010), Int. J. Refrig. 33(6)",
+        "Q_rated_kw": {"value": 10.0, "unit": "kW", "note": "Rated cooling capacity"},
+        "T_hot_design_c": {"value": 35.0, "unit": "degC", "note": "Design hot-side reject temperature"},
+        "T_cold_design_c": {"value": 15.0, "unit": "degC", "note": "Design cold-side temperature"},
+        "eta_AMR": {"value": 0.30, "unit": "-", "note": "AMR system COP relative to Carnot (magnet + regen + cycle losses)"},
+        "k_T": {"value": 0.015, "unit": "1/K", "note": "Hot-temperature sensitivity: f_T = 1 - k_T*(T_hot - T_design)"},
+        "PLR_min": {"value": 0.30, "unit": "-", "note": "Minimum stable part-load ratio"},
+        "plr_p1": {"value": 0.20, "unit": "-"},
+        "plr_p2": {"value": 0.40, "unit": "-"},
+        "plr_p3": {"value": 0.40, "unit": "-",
+                    "note": "Part-load curve: f_PLR = p1+p2*PLR+p3*PLR^2; at PLR=1: f=1.0; quadratic peaks near 1"}
+    },
+    "valid_ranges": {
+        "T_hot":  {"min": 25.0, "max": 55.0, "unit": "degC"},
+        "T_cold": {"min": 5.0, "max": 25.0, "unit": "degC"},
+        "PLR":    {"min": 0.30, "max": 1.0, "unit": "-"},
+        "delta_T_span": {"min": 5.0, "max": 30.0, "unit": "K",
+                          "note": "Practical AMR span; wider spans reduce COP significantly"}
+    }
+}

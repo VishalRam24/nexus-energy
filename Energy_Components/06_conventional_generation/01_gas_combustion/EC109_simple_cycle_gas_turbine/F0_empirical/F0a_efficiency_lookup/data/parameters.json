@@ -1,0 +1,20 @@
+{
+    "component": "EC109 Simple Cycle Gas Turbine",
+    "fidelity": "F0a - empirical lookup",
+    "description": "Net LHV electrical efficiency as a tabulated part-load curve plus a linear ambient-temperature derate. Breakpoints generated from the F1a quadratic eta(PLR)=eta_rated*(b0+b1*PLR+b2*PLR^2).",
+    "unit": {
+        "name": "GE LM6000-class simple-cycle gas turbine (~43 MW)",
+        "source": "Walsh & Fletcher (2004), Gas Turbine Performance, 2nd ed., Blackwell; F1a EC109",
+        "P_rated": {"value": 43.0, "unit": "MW", "note": "Rated electrical output"},
+        "eta_rated": {"value": 0.41, "unit": "dimensionless", "note": "LHV net electrical efficiency at ISO (PLR=1, 15 C)"},
+        "T_amb_ref": {"value": 15.0, "unit": "degC", "note": "ISO ambient reference temperature"},
+        "f_amb_coeff": {"value": 0.007, "unit": "1/degC", "note": "Ambient derate: eta scaled by (1 - coeff*(T-T_ref))"},
+        "PLR_min": {"value": 0.3, "unit": "dimensionless", "note": "Minimum stable part-load ratio"},
+        "plr_breakpoints": {"value": [0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1.0], "unit": "dimensionless", "note": "Lookup x-axis"},
+        "eta_breakpoints": {"value": [0.16892, 0.1888, 0.20828, 0.22735, 0.246, 0.26424, 0.28208, 0.29951, 0.31652, 0.33312, 0.34932, 0.36511, 0.38048, 0.39544, 0.41], "unit": "dimensionless", "note": "Net LHV efficiency at each PLR breakpoint, 15 C"}
+    },
+    "valid_ranges": {
+        "part_load_ratio": {"min": 0.3, "max": 1.0, "unit": "dimensionless"},
+        "ambient_temp_c": {"min": -20.0, "max": 50.0, "unit": "degC"}
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "component": "EC180 Doubly-Fed Induction Generator (DFIG)",
+    "fidelity": "F1a",
+    "description": "Simple efficiency map: constant rated efficiency with slip-based correction. Variable speed ±30% around synchronous speed.",
+    "unit": {
+        "name": "Generic 2 MW DFIG wind turbine generator",
+        "source": "Muller et al. (2002); IEC 61400-21",
+        "P_rated_MW": {"value": 2.0, "unit": "MW"},
+        "eta_rated": {"value": 0.95, "unit": "dimensionless", "note": "Rated efficiency at full load, super-synchronous"},
+        "slip_min": {"value": -0.30, "unit": "dimensionless", "note": "Super-synchronous limit"},
+        "slip_max": {"value": 0.30, "unit": "dimensionless", "note": "Sub-synchronous limit"},
+        "omega_sync_rpm": {"value": 1500.0, "unit": "rpm"},
+        "eta_partload_coeff": {"value": 0.02, "unit": "dimensionless", "note": "Efficiency drop per unit PLR below 1"}
+    },
+    "valid_ranges": {
+        "load_fraction": {"min": 0.05, "max": 1.2, "unit": "dimensionless"},
+        "slip": {"min": -0.30, "max": 0.30, "unit": "dimensionless"}
+    }
+}

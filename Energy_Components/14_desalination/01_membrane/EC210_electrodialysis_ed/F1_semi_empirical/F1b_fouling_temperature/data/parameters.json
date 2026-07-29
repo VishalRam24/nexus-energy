@@ -1,0 +1,29 @@
+{
+    "component": "EC210 Electrodialysis (ED)",
+    "fidelity": "F1b",
+    "description": "ED model with current density vs desalination rate, Donnan T-dependence, and membrane aging",
+    "unit": {
+        "name": "Commercial ED stack (brackish water desalination)",
+        "source": "Strathmann (2010) Desalination 264 268-288; Campione et al. (2018) Desalination 434 121-160",
+        "i_design": {"value": 100.0, "unit": "A/m2", "note": "Design current density (Strathmann: 50-200 A/m2)"},
+        "i_lim_ref": {"value": 300.0, "unit": "A/m2", "note": "Limiting current density at T_ref and C_ref"},
+        "n_cell_pairs": {"value": 100, "unit": "count", "note": "Cell pairs in stack (typical: 50-500)"},
+        "A_mem_m2": {"value": 0.5, "unit": "m2", "note": "Active membrane area per cell pair"},
+        "t_transport": {"value": 0.95, "unit": "dimensionless", "note": "Counter-ion transport number in membrane"},
+        "z_ion": {"value": 1, "unit": "dimensionless", "note": "Ion charge (NaCl: z=1)"},
+        "R0_mem": {"value": 4e-4, "unit": "Ohm*m2", "note": "Fresh membrane area resistance (Neosepta: 2-6 Ohm*cm2 = 2-6e-4 Ohm*m2)"},
+        "k_age_R": {"value": 0.10, "unit": "1/year", "note": "Membrane resistance increase rate (~10%/yr)"},
+        "eta_0": {"value": 0.90, "unit": "dimensionless", "note": "Current efficiency at low i/i_lim"},
+        "phi_D_ref": {"value": -0.05, "unit": "V", "note": "Donnan potential at T_ref for co-ion exclusion (negative: membrane excludes anions). Higher |phi_D| = better exclusion."},
+        "T_ref_K": {"value": 298.15, "unit": "K"},
+        "C_feed_ref_mol_m3": {"value": 100.0, "unit": "mol/m3", "note": "Reference feed NaCl concentration (~5.8 g/L = 100 mol/m3)"},
+        "V_cell": {"value": 1.0, "unit": "V", "note": "Applied voltage per cell pair (design point)"}
+    },
+    "valid_ranges": {
+        "current_density": {"min": 10.0, "max": 280.0, "unit": "A/m2"},
+        "T_feed_degC": {"min": 5.0, "max": 45.0, "unit": "degC"},
+        "C_feed_mol_m3": {"min": 5.0, "max": 600.0, "unit": "mol/m3"},
+        "flow_rate_m3_h": {"min": 0.1, "max": 1000.0, "unit": "m3/h"},
+        "operating_hours": {"min": 0.0, "max": 87600.0, "unit": "hours"}
+    }
+}

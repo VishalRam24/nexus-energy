@@ -1,0 +1,28 @@
+{
+    "component": "EC189 Natural Gas Pipeline",
+    "fidelity": "F1b",
+    "description": "Weymouth pipeline model with temperature profile correction and Z-factor (Papay correlation) compressibility",
+    "pipeline": {
+        "efficiency_factor": {"value": 0.92, "unit": "dimensionless"},
+        "T_base": {"value": 288.15, "unit": "K"},
+        "P_base": {"value": 1.01325, "unit": "bar"},
+        "T_flow": {"value": 278.15, "unit": "K"},
+        "T_soil": {"value": 278.15, "unit": "K", "note": "Buried soil temperature"},
+        "U_overall": {"value": 1.5, "unit": "W/(m2.K)", "note": "Overall heat transfer coefficient pipeline-soil"}
+    },
+    "gas": {
+        "specific_gravity": {"value": 0.6, "unit": "dimensionless"},
+        "Z_avg": {"value": 0.9, "unit": "dimensionless"},
+        "Tc": {"value": 203.0, "unit": "K", "note": "Pseudo-critical temperature for NG (Kay mixing rule)"},
+        "Pc": {"value": 46.6, "unit": "bar", "note": "Pseudo-critical pressure for NG"},
+        "cp": {"value": 2300.0, "unit": "J/(kg.K)"},
+        "LHV": {"value": 47.1, "unit": "MJ/kg"},
+        "molar_mass": {"value": 17.4, "unit": "g/mol"}
+    },
+    "valid_ranges": {
+        "pressure": {"min": 10.0, "max": 200.0, "unit": "bar"},
+        "temperature": {"min": 240.0, "max": 330.0, "unit": "K"},
+        "length": {"min": 1.0, "max": 1000.0, "unit": "km"},
+        "diameter": {"min": 0.1, "max": 1.5, "unit": "m"}
+    }
+}

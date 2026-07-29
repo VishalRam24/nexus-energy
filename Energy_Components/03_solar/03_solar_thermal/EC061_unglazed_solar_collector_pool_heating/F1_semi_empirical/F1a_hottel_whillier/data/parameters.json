@@ -1,0 +1,18 @@
+{
+    "component": "EC061 Unglazed Solar Collector (Pool Heating)",
+    "fidelity": "F1a",
+    "description": "Hottel-Whillier: Q = A * [eta0*G - a1*(Tm-Ta)], no glazing, high a1",
+    "unit": {
+        "name": "Generic Unglazed EPDM/PP Pool Collector",
+        "source": "Duffie & Beckman (2013). Solar Engineering of Thermal Processes, ch.6.",
+        "eta0": {"value": 0.90, "unit": "dimensionless", "note": "High zero-loss efficiency (no glazing reflection loss)"},
+        "a1": {"value": 15.0, "unit": "W/m2K", "note": "High heat loss coefficient (no insulation)"},
+        "a2": {"value": 0.0, "unit": "W/m2K2", "note": "Second-order term neglected for unglazed"},
+        "A": {"value": 4.0, "unit": "m2", "note": "Typical residential pool collector area"}
+    },
+    "valid_ranges": {
+        "G": {"min": 0.0, "max": 1100.0, "unit": "W/m2"},
+        "Tm": {"min": 15.0, "max": 40.0, "unit": "degC"},
+        "Ta": {"min": 0.0, "max": 35.0, "unit": "degC"}
+    }
+}

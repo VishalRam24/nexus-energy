@@ -1,0 +1,34 @@
+{
+    "component_id": "EC187",
+    "component_name": "HVDC Converter Station (LCC, point-to-point link)",
+    "fidelity": "F2a — Physics-Lumped LCC 12-pulse converters + DC-link current ODE",
+    "source": "Kundur (1994) Power System Stability and Control, McGraw-Hill, Ch.10; Arrillaga (1998) High Voltage Direct Current Transmission, 2nd ed., IET; Cigre TB 388 (2009) LCC HVDC; ABB (2019) HVDC Reference Projects.",
+    "unit": {
+        "name": "Generic ±500 kV LCC-HVDC Bipole, 1000 MW, 500 km, 12-pulse",
+        "P_rated_MW": {"value": 1000.0, "unit": "MW", "note": "Rated DC power transfer"},
+        "V_dc_rated_kV": {"value": 500.0, "unit": "kV", "note": "Rated pole-to-ground DC voltage (±500 kV bipole)"},
+        "Id_rated_kA": {"value": 2.0, "unit": "kA", "note": "Rated DC current = P_rated/V_dc_rated"},
+        "n_bridges_series": {"value": 2, "unit": "-", "note": "Series 6-pulse bridges per pole (2 => 12-pulse converter)"},
+        "Vd0_rect_kV": {"value": 281.0, "unit": "kV", "note": "Ideal no-load DC voltage per 6-pulse bridge at rectifier; Vd0 = (3*sqrt(2)/pi)*VLL_sec. Tapped so 2 bridges at alpha~15deg hold ~512 kV (= inverter pole + line drop) at rated 2 kA."},
+        "Vd0_inv_kV": {"value": 245.5, "unit": "kV", "note": "Ideal no-load DC voltage per 6-pulse bridge at inverter; tapped so 2 bridges at gamma~17deg hold the ~500 kV pole counter-voltage at rated 2 kA (incl. commutation rise)."},
+        "Xc_ohm": {"value": 8.0, "unit": "Ohm", "note": "Per-bridge commutating reactance (converter transformer leakage), referred to valve side"},
+        "alpha_rect_deg": {"value": 15.0, "unit": "deg", "note": "Rectifier firing (delay) angle; nominal 15-18 deg for reactive economy with margin"},
+        "gamma_inv_deg": {"value": 17.0, "unit": "deg", "note": "Inverter extinction (advance) angle; held >= 15-18 deg to avoid commutation failure"},
+        "valve_drop_kV": {"value": 0.0, "unit": "kV", "note": "Thyristor forward drop per bridge (small, neglected at this fidelity)"},
+        "loss_factor_station": {"value": 0.007, "unit": "-", "note": "Total station loss as fraction of rated power (0.7% per LCC station; Cigre TB 388, ABB 2019)"},
+        "P_no_load_MW": {"value": 4.0, "unit": "MW", "note": "No-load / auxiliary station loss (cooling, controls, transformer no-load)"},
+        "line_length_km": {"value": 500.0, "unit": "km", "note": "DC line length"},
+        "line_R_ohm_per_km": {"value": 0.012, "unit": "Ohm/km", "note": "DC line resistance per km per pole (OHL/XLPE typical)"},
+        "line_L_mH_per_km": {"value": 0.85, "unit": "mH/km", "note": "DC line series inductance per km per pole"},
+        "L_smoothing_H": {"value": 0.30, "unit": "H", "note": "Smoothing reactor inductance per terminal (typical 0.1-0.5 H LCC)"},
+        "C_dc_uF": {"value": 12.0, "unit": "uF", "note": "Lumped DC-side capacitance (filters + line shunt); small for LCC current-source link"}
+    },
+    "valid_ranges": {
+        "P_order_MW": {"min": 0.0, "max": 1000.0, "unit": "MW"},
+        "alpha_deg": {"min": 5.0, "max": 90.0, "unit": "deg"},
+        "gamma_deg": {"min": 10.0, "max": 40.0, "unit": "deg"},
+        "T_line_degC": {"min": -20.0, "max": 80.0, "unit": "degC"},
+        "duration_s": {"min": 0.001, "max": 5.0, "unit": "s"},
+        "dt": {"min": 1e-5, "max": 0.01, "unit": "s"}
+    }
+}

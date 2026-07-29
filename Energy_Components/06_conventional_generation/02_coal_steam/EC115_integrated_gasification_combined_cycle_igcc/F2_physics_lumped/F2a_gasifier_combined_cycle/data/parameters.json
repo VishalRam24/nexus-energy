@@ -1,0 +1,45 @@
+{
+    "component_id": "EC115",
+    "component_name": "Integrated Gasification Combined Cycle (IGCC)",
+    "fidelity": "F2a — Physics-Lumped Gasifier + Combined Cycle with Thermal ODE",
+    "description": "First-principles lumped IGCC: entrained-flow coal gasifier (cold-gas efficiency) feeding a combined cycle (gas-turbine Brayton topping + HRSG + steam Rankine bottoming). Net plant LHV efficiency ~38-45%. Lumped transient ODE for the gas-turbine combustor/casing metal temperature via scipy.solve_ivp.",
+    "source": "Higman, C. & van der Burgt, M. (2008). Gasification, 2nd ed., Elsevier (cold-gas efficiency, syngas LHV); Cengel & Boles (2015) Thermodynamics 8th ed. (Brayton/Rankine, combined-cycle efficiency = 1-(1-eta_B)(1-eta_R)); Cormos (2012) Int. J. Hydrogen Energy 37(4):3083; IEA GHG (2003) IGCC with CO2 capture; Booras & Holt (2004) EPRI Gasification Technologies Conf.",
+    "unit": {
+        "name": "Generic 400 MW Coal IGCC (GE/Texaco-type entrained-flow gasifier, F-class GT combined cycle)",
+
+        "rated_power_mw": {"value": 400.0, "unit": "MW_e", "note": "Net rated electrical output"},
+
+        "LHV_coal": {"value": 25.0, "unit": "MJ/kg", "source": "Higman & van der Burgt (2008), Table for bituminous coal LHV ~25 MJ/kg", "note": "Feed coal (bituminous), lower heating value"},
+        "cp_coal": {"value": 1.3, "unit": "kJ/(kg.K)", "source": "Higman & van der Burgt (2008)", "note": "Coal specific heat (cited, used for sensible enthalpy of feed)"},
+
+        "syngas_lhv": {"value": 11.0, "unit": "MJ/Nm3", "source": "Higman & van der Burgt (2008), oxygen-blown coal syngas 10-12 MJ/Nm3 (CO+H2)", "note": "Clean syngas LHV after cleanup (H2+CO dominant)"},
+        "cp_syngas": {"value": 1.4, "unit": "kJ/(kg.K)", "source": "Higman & van der Burgt (2008)", "note": "Syngas (CO+H2 mix) mean specific heat, cited"},
+        "syngas_mw_kg_per_kmol": {"value": 20.0, "unit": "kg/kmol", "note": "Mean molar mass of CO/H2 syngas (~20 kg/kmol)"},
+
+        "cold_gas_efficiency": {"value": 0.80, "unit": "dimensionless", "source": "Higman & van der Burgt (2008): entrained-flow CGE 78-83%", "note": "Fraction of coal LHV chemically retained in cold syngas; must be < 1"},
+
+        "eta_brayton_design": {"value": 0.40, "unit": "dimensionless", "source": "Cengel & Boles (2015): modern F-class GT thermal eff 0.38-0.42", "note": "Gas-turbine (topping Brayton) thermal efficiency at design firing temperature"},
+        "eta_rankine_design": {"value": 0.33, "unit": "dimensionless", "source": "Cengel & Boles (2015): HRSG steam bottoming 0.30-0.35", "note": "Steam (bottoming Rankine) thermal efficiency on GT exhaust heat"},
+        "hrsg_effectiveness": {"value": 0.90, "unit": "dimensionless", "note": "Fraction of GT exhaust heat captured by HRSG into the Rankine bottoming cycle"},
+
+        "T_firing_design_K": {"value": 1700.0, "unit": "K", "source": "Cengel & Boles (2015): F-class turbine inlet ~1700 K", "note": "Design gas-turbine combustor (turbine-inlet) temperature"},
+        "T_compressor_exit_K": {"value": 700.0, "unit": "K", "note": "Compressor discharge / combustor inlet air temperature"},
+        "T_ambient_K": {"value": 288.15, "unit": "K", "note": "Cold-sink (ambient) temperature for Carnot bound"},
+
+        "m_metal": {"value": 8000.0, "unit": "kg", "note": "Lumped thermal mass of GT combustor + first-stage casing metal"},
+        "cp_metal": {"value": 500.0, "unit": "J/(kg.K)", "note": "Nickel-superalloy specific heat (~500 J/kg.K)"},
+        "hA_combustor": {"value": 90000.0, "unit": "W/K", "source": "Cengel & Boles (2015) convective scale", "note": "Effective gas->metal conductance (h*A) in the combustor"},
+
+        "aux_fraction": {"value": 0.10, "unit": "dimensionless", "source": "IEA GHG (2003): ASU + compressors ~8-12% gross", "note": "Auxiliary load (Air Separation Unit + pumps) as fraction of gross power"},
+
+        "coal_carbon_fraction": {"value": 0.70, "unit": "kg_C/kg_coal"},
+        "CO2_per_kg_coal": {"value": 2.57, "unit": "kg_CO2/kg_coal", "note": "Stoichiometric from 70% carbon (44/12 * 0.70)"}
+    },
+    "valid_ranges": {
+        "coal_rate_kgs": {"min": 5.0, "max": 60.0, "unit": "kg/s"},
+        "T_firing_K": {"min": 1200.0, "max": 1900.0, "unit": "K"},
+        "T_ambient_K": {"min": 263.15, "max": 318.15, "unit": "K"},
+        "dt": {"min": 0.1, "max": 10.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 3600.0, "unit": "s"}
+    }
+}

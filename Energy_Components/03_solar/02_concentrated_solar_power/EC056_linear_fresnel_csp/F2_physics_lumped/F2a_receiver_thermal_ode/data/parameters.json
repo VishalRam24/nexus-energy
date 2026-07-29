@@ -1,0 +1,46 @@
+{
+    "component_id": "EC056",
+    "component_name": "Linear Fresnel CSP",
+    "fidelity": "F2a — Physics-Lumped Receiver Thermal-Balance ODE",
+    "source": "Mills (2004) Solar Energy 76; Novatec Solar / Häberle et al. (2002) Eurosun; Zhu et al. (2014) Solar Energy 103; Forristall (2003) NREL/TP-550-34169; Incropera (2011) Fundamentals of Heat and Mass Transfer",
+    "unit": {
+        "name": "Compact Linear Fresnel Reflector (CLFR) — Novatec/Solarmundo-class, DSG receiver",
+        "note": "Reuses optical/receiver parameters from EC056 F1b (Häberle 2002 Solarmundo-type). F2 upgrade adds a lumped receiver-wall energy-balance ODE coupled to HTF/steam enthalpy.",
+
+        "total_mirror_width": {"value": 16.0, "unit": "m", "note": "Sum of all parallel flat mirror-row widths (aperture width). Mills (2004) CLFR rows.", "source": "Mills (2004); EC056 F1b"},
+        "L_collector": {"value": 100.0, "unit": "m", "note": "Collector / receiver module length", "source": "EC056 F1b"},
+        "focal_length": {"value": 4.5, "unit": "m", "note": "Height of elevated linear receiver above mirror field", "source": "EC056 F1b"},
+
+        "D_abs_outer": {"value": 0.070, "unit": "m", "note": "Absorber tube outer diameter", "source": "EC056 F1b"},
+        "D_abs_inner": {"value": 0.060, "unit": "m", "note": "Absorber tube inner diameter (HTF flow bore)", "source": "Forristall (2003)"},
+
+        "rho_mirror": {"value": 0.94, "unit": "dimensionless", "note": "Flat-glass mirror reflectance", "source": "EC056 F1b"},
+        "intercept_factor": {"value": 0.90, "unit": "dimensionless", "note": "Fraction of reflected DNI intercepted by receiver", "source": "EC056 F1b"},
+        "tau_secondary": {"value": 0.92, "unit": "dimensionless", "note": "Trapezoidal secondary CPC reflector throughput", "source": "EC056 F1b"},
+        "abs_absorptance": {"value": 0.96, "unit": "dimensionless", "note": "Selective-coating solar absorptance", "source": "EC056 F1b"},
+        "b_T": {"value": 0.000125, "unit": "1/deg2", "note": "Transversal IAM polynomial coeff: IAM_T = 1 - b_T*theta_T^2", "source": "Häberle (2002); Zhu (2014)"},
+
+        "eps_abs": {"value": 0.14, "unit": "dimensionless", "note": "Absorber selective-coating thermal emissivity (evacuated/cavity receiver)", "source": "EC056 F1b"},
+        "h_conv_cavity": {"value": 5.0, "unit": "W/m2K", "note": "Cavity convective loss coefficient (receiver wall to ambient)", "source": "EC056 F1b"},
+        "T_sky_offset": {"value": 20.0, "unit": "K", "note": "T_sky = T_amb - offset", "source": "EC056 F1b"},
+
+        "h_htf": {"value": 1200.0, "unit": "W/m2K", "note": "Internal convective coefficient, receiver wall to HTF/steam (forced convection in tube)", "source": "Incropera (2011), Dittus-Boelter order of magnitude"},
+        "m_wall_per_m": {"value": 12.0, "unit": "kg/m", "note": "Receiver-tube + selective-coating thermal mass per metre", "source": "steel tube, rho~7850, wall ~5mm"},
+        "cp_wall": {"value": 490.0, "unit": "J/(kg.K)", "note": "Receiver-wall (steel) specific heat", "source": "Incropera (2011)"},
+
+        "mdot_htf": {"value": 0.8, "unit": "kg/s", "note": "Design HTF mass flow through receiver", "source": "Novatec DSG order of magnitude"},
+        "cp_htf": {"value": 2400.0, "unit": "J/(kg.K)", "note": "Effective HTF/feedwater specific heat (thermal-oil / pressurised-water surrogate)", "source": "Therminol-VP1 / water mid-range, Incropera (2011)"},
+        "T_htf_in_design": {"value": 200.0, "unit": "degC", "note": "Design receiver inlet temperature", "source": "Novatec DSG"},
+
+        "eta_powerblock": {"value": 0.33, "unit": "dimensionless", "note": "Rankine power-block conversion efficiency (optional electric output)", "source": "Mills (2004)"}
+    },
+    "valid_ranges": {
+        "dni": {"min": 0.0, "max": 1200.0, "unit": "W/m2"},
+        "theta_L": {"min": 0.0, "max": 80.0, "unit": "deg"},
+        "theta_T": {"min": 0.0, "max": 60.0, "unit": "deg"},
+        "T_htf_in_C": {"min": 100.0, "max": 400.0, "unit": "degC"},
+        "T_ambient_C": {"min": -10.0, "max": 50.0, "unit": "degC"},
+        "dt": {"min": 0.1, "max": 30.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 7200.0, "unit": "s"}
+    }
+}

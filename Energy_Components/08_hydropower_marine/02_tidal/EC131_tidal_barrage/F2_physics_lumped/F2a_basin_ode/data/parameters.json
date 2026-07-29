@@ -1,0 +1,29 @@
+{
+    "component_id": "EC131",
+    "component_name": "Tidal Barrage",
+    "fidelity": "F2a — Physics-Lumped Basin Water-Level ODE (Bulb Turbine)",
+    "source": "Baker (1991), Tidal Power, Peter Peregrinus; Prandle (1984), Simple theory of tidal power, Phys. Chem. Earth 9:217-228; Charlier (2003), Tidal Energy, Springer",
+    "unit": {
+        "name": "Generic Tidal Barrage (La Rance-class, ebb+flood generation)",
+        "A_basin": {"value": 22.0e6, "unit": "m2", "note": "Basin/estuary plan area (La Rance ~22 km2); assumed prismatic (constant with level)"},
+        "tidal_amplitude": {"value": 4.0, "unit": "m", "note": "Sea tide amplitude (half of peak-to-trough range); range = 2*amplitude"},
+        "mean_sea_level": {"value": 0.0, "unit": "m", "note": "Datum: mean sea level reference"},
+        "T_tide": {"value": 44712.0, "unit": "s", "note": "Semidiurnal tidal period (12.42 h = 44712 s)"},
+        "N_turbines": {"value": 24, "unit": "-", "note": "Number of bulb turbines (La Rance: 24 x 10 MW)"},
+        "Cd_turbine": {"value": 1.0, "unit": "-", "note": "Turbine discharge coefficient (effective)"},
+        "A_turbine": {"value": 38.5, "unit": "m2", "note": "Flow throat area per turbine unit (5.35 m runner dia, La Rance)"},
+        "Cd_sluice": {"value": 1.0, "unit": "-", "note": "Sluice gate discharge coefficient (~0.8-1.0)"},
+        "A_sluice": {"value": 3000.0, "unit": "m2", "note": "Total sluice gate flow area (used for fast fill/empty)"},
+        "eta_turbine": {"value": 0.90, "unit": "-", "note": "Bulb (Kaplan) turbine+generator efficiency at design low head, 0.85-0.92"},
+        "h_min_gen": {"value": 1.0, "unit": "m", "note": "Minimum head for power generation (below this turbine idles); typical 1 m"},
+        "h_start_gen": {"value": 3.0, "unit": "m", "note": "Head built up by holding before ebb generation starts"},
+        "rho": {"value": 1025.0, "unit": "kg/m3", "note": "Seawater density, 15C, 35 PSU (UNESCO/Fofonoff 1985)"},
+        "g": {"value": 9.81, "unit": "m/s2", "note": "Standard gravitational acceleration (CODATA/ISO 80000)"}
+    },
+    "valid_ranges": {
+        "tidal_amplitude_m": {"min": 0.5, "max": 8.0, "unit": "m", "note": "Sea tide amplitude; full range = 2x"},
+        "A_basin_m2": {"min": 1.0e5, "max": 1.0e9, "unit": "m2"},
+        "eta_turbine": {"min": 0.5, "max": 0.95, "unit": "-"},
+        "n_cycles": {"min": 1, "max": 30, "unit": "-"}
+    }
+}

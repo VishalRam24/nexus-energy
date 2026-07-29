@@ -1,0 +1,38 @@
+{
+    "component_id": "EC011",
+    "component_name": "Anion Exchange Membrane Electrolyser (AEM)",
+    "fidelity": "F2a — Full Electrochemical Model with Thermal ODE",
+    "source": "Vincent & Bessarabov (2018) Renew. Sustain. Energy Rev. 81, 1690-1704; Henkensmeier et al. (2021) J. Electrochem. Energy Conv. Storage 18, 024001; Liu et al. (2022) J. Power Sources 524, 231087; Ulleberg (2003) Int. J. Hydrogen Energy 28, 21-33 (thermal lumped balance)",
+    "unit": {
+        "name": "Generic 2.5 kW AEM Electrolyser Stack — Physics-Lumped Electrochemical",
+        "N_cells": {"value": 10, "unit": "-", "note": "Number of cells in series"},
+        "A_cell": {"value": 100.0, "unit": "cm2", "note": "Active electrode area per cell"},
+        "t_mem": {"value": 0.0050, "unit": "cm", "note": "AEM membrane thickness (50 um, e.g. Sustainion / FAA-3)"},
+        "sigma_mem_ref": {"value": 0.040, "unit": "S/cm", "note": "OH- ionic conductivity of AEM at T_ref in 1 M KOH (Vincent 2018; lower than Nafion H+ transport)"},
+        "Ea_sigma": {"value": 11000.0, "unit": "J/mol", "note": "Activation energy for OH- conduction (Arrhenius temperature dependence of membrane conductivity)"},
+        "r_electrolyte": {"value": 0.060, "unit": "Ohm.cm2", "note": "Area-specific resistance of circulating KOH electrolyte + bubbles"},
+        "j0_anode_ref": {"value": 1.0e-4, "unit": "A/cm2", "note": "Anode OER exchange current density on non-noble Ni/NiFe catalyst at T_ref (alkaline)"},
+        "j0_cathode_ref": {"value": 1.0e-2, "unit": "A/cm2", "note": "Cathode HER exchange current density on Ni-based catalyst at T_ref (alkaline)"},
+        "Ea_anode": {"value": 52000.0, "unit": "J/mol", "note": "Activation energy for OER kinetics"},
+        "Ea_cathode": {"value": 30000.0, "unit": "J/mol", "note": "Activation energy for HER kinetics"},
+        "alpha_anode": {"value": 0.5, "unit": "-", "note": "Anode (OER) charge transfer coefficient"},
+        "alpha_cathode": {"value": 0.5, "unit": "-", "note": "Cathode (HER) charge transfer coefficient"},
+        "j_L": {"value": 3.0, "unit": "A/cm2", "note": "Mass-transport limiting current density (OH- / bubble removal limit)"},
+        "T_ref": {"value": 333.15, "unit": "K", "note": "Reference temperature (60C)"},
+        "eta_F_max": {"value": 0.97, "unit": "-", "note": "Max Faradaic efficiency (gas crossover lower than PEM)"},
+        "f1_cross": {"value": 250.0, "unit": "(mA/cm2)^2", "note": "Ulleberg (2003) Faraday-efficiency parameter f1"},
+        "f2_cross": {"value": 0.96, "unit": "-", "note": "Ulleberg (2003) Faraday-efficiency parameter f2"},
+        "m_stack": {"value": 8.0, "unit": "kg", "note": "Stack thermal mass"},
+        "cp_stack": {"value": 900.0, "unit": "J/(kg.K)", "note": "Stack effective specific heat"},
+        "hA_cool": {"value": 6.0, "unit": "W/K", "note": "Coolant/ambient heat transfer coefficient * area"},
+        "T_coolant": {"value": 313.15, "unit": "K", "note": "Coolant/ambient reference temperature (40C)"}
+    },
+    "valid_ranges": {
+        "current_density": {"min": 0.0, "max": 3.0, "unit": "A/cm2"},
+        "temperature": {"min": 300.0, "max": 353.15, "unit": "K"},
+        "P_h2": {"min": 1.0, "max": 30.0, "unit": "bar"},
+        "P_o2": {"min": 1.0, "max": 30.0, "unit": "bar"},
+        "dt": {"min": 0.01, "max": 5.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 7200.0, "unit": "s"}
+    }
+}

@@ -1,0 +1,77 @@
+{
+    "component": "EC118 Small Modular Reactor (SMR)",
+    "fidelity": "F0a - empirical lookup",
+    "description": "Net electrical power as a tabulated lookup over load factor (fraction of rated thermal power). Breakpoints from F1a power map P_elec = eta * P_thermal * load, with linear efficiency derate below minimum stable load.",
+    "unit": {
+        "name": "Generic 540 MWth / 180 MWe Integral PWR SMR (NuScale-class)",
+        "source": "IAEA SMR Booklet (2022); NuScale VOYGR design docs; F1a EC118",
+        "P_thermal_mw": {
+            "value": 540.0,
+            "unit": "MW_th",
+            "note": "Reactor thermal power at full load"
+        },
+        "eta_rated": {
+            "value": 0.3366,
+            "unit": "dimensionless",
+            "note": "Net thermal-to-electric efficiency at rated load"
+        },
+        "load_min": {
+            "value": 0.2,
+            "unit": "dimensionless",
+            "note": "Minimum stable load factor"
+        },
+        "load_breakpoints": {
+            "value": [
+                0.2,
+                0.25,
+                0.3,
+                0.35,
+                0.4,
+                0.45,
+                0.5,
+                0.55,
+                0.6,
+                0.65,
+                0.7,
+                0.75,
+                0.8,
+                0.85,
+                0.9,
+                0.95,
+                1.0
+            ],
+            "unit": "dimensionless",
+            "note": "Lookup x-axis (load factor)"
+        },
+        "pelec_breakpoints": {
+            "value": [
+                24.2352,
+                37.8675,
+                54.5292,
+                63.6174,
+                72.7056,
+                81.7938,
+                90.882,
+                99.9702,
+                109.0584,
+                118.1466,
+                127.2348,
+                136.323,
+                145.4112,
+                154.4994,
+                163.5876,
+                172.6758,
+                181.764
+            ],
+            "unit": "MW_e",
+            "note": "Net electrical power at each load breakpoint"
+        }
+    },
+    "valid_ranges": {
+        "load_factor": {
+            "min": 0.2,
+            "max": 1.0,
+            "unit": "dimensionless"
+        }
+    }
+}

@@ -1,0 +1,26 @@
+{
+  "component": "EC140 Anaerobic Digester (Mesophilic)",
+  "fidelity": "F0a",
+  "description": "Empirical specific-methane-yield lookup per feedstock with a temperature de-rating curve. Numbers reused from EC140 F1a + EC141/EC142 feedstock DBs.",
+  "source": "Buswell & Mueller (1952); Batstone et al. (2002) IWA ADM1; Labatut et al. (2011)",
+  "rated": {
+    "Y_max_m3_kgVS": {"value": 0.35, "unit": "m3_CH4/kgVS", "note": "Max specific methane yield (datasheet rated point)"},
+    "methane_fraction": {"value": 0.60, "unit": "-", "note": "CH4 fraction in biogas"},
+    "LHV_methane_kwh_m3": {"value": 9.97, "unit": "kWh/m3_CH4", "note": "LHV of methane at STP"},
+    "T_optimal_c": {"value": 37.0, "unit": "degC", "note": "Mesophilic optimum"}
+  },
+  "feedstock_table": {
+    "comment": "Specific CH4 yield (m3 CH4 / kg VS destroyed) at mesophilic optimum, per feedstock.",
+    "feedstocks": ["sewage_sludge", "cattle_manure", "grass_silage", "corn_silage", "food_waste"],
+    "CH4_yield_m3_kgVS": [0.22, 0.265, 0.30, 0.355, 0.42],
+    "methane_fraction": [0.67, 0.62, 0.56, 0.54, 0.64]
+  },
+  "temperature_curve": {
+    "comment": "Yield multiplier vs temperature (degC). Peak 1.0 at 37 C, drops outside mesophilic band.",
+    "T_degC": [25.0, 30.0, 35.0, 37.0, 40.0, 42.0, 45.0, 50.0, 55.0],
+    "yield_multiplier": [0.55, 0.78, 0.96, 1.0, 0.95, 0.85, 0.60, 0.35, 0.20]
+  },
+  "valid_ranges": {
+    "temperature": {"min": 25.0, "max": 55.0, "unit": "degC"}
+  }
+}

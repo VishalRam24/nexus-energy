@@ -1,0 +1,29 @@
+{
+    "component": "EC037 Zinc-Bromine Flow Battery (ZBFB)",
+    "fidelity": "F1b",
+    "description": "SOC-thermal Nernst + Arrhenius-R model for ZBFB stack. Extends F1a with temperature-dependent R and Nernst thermal factor.",
+    "unit": {
+        "name": "Generic 60-cell ZBFB stack, 1000 cm2 electrode area",
+        "source": "Lim, H. S., Lackner, A. M., Knechtli, R. C. (1977). J. Electrochem. Soc. 124, 1154; Skyllas-Kazacos et al. (2011), J. Electrochem. Soc. 158, R55",
+        "N_cells": {"value": 60, "unit": "dimensionless"},
+        "electrode_area_cm2": {"value": 1000.0, "unit": "cm2"},
+        "E0": {"value": 1.85, "unit": "V", "note": "Standard cell potential"},
+        "R_cell_ohm_cm2_ref": {"value": 1.5, "unit": "Ohm.cm2", "note": "Area-specific resistance at T_ref"},
+        "n": {"value": 2, "unit": "dimensionless"},
+        "electrolyte_conc_M": {"value": 3.0, "unit": "mol/L"}
+    },
+    "thermal": {
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 degC)"},
+        "E_a": {"value": 18000, "unit": "J/mol", "note": "Activation energy for ZBFB membrane/electrolyte resistance; Zn-Br complexing agent affects kinetics",
+                "source": "Lim et al. (1977); Skyllas-Kazacos et al. (2011); Islam et al. (2017), J. Power Sources 349, 139"},
+        "dOCV_dT": {"value": -0.00015, "unit": "V/K per cell", "note": "Temperature coefficient of standard potential for Zn/Br2; dE0/dT = -dS_rxn/(n*F). For Zn(s)+Br2(l)->ZnBr2, delta_S is small negative (-30 J/mol/K), giving dE0/dT ~ -0.00016 V/K. Smaller than many Li-ion systems.",
+                    "source": "Atkins Physical Chemistry (2014) thermodynamic data; Lim et al. (1977) J. Electrochem. Soc. 124, 1154"},
+        "R_gas": {"value": 8.314, "unit": "J/(mol*K)"},
+        "F": {"value": 96485.0, "unit": "C/mol"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.05, "max": 0.95, "unit": "dimensionless"},
+        "current": {"min": -150.0, "max": 150.0, "unit": "A", "note": "positive=discharge"},
+        "temperature": {"min": 288.15, "max": 313.15, "unit": "K", "note": "15 to 40 degC; ZBFB electrolyte stability range"}
+    }
+}

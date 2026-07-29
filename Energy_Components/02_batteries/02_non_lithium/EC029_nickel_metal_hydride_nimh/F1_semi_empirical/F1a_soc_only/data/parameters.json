@@ -1,0 +1,29 @@
+{
+    "component": "EC029 Nickel-Metal Hydride (NiMH) Battery",
+    "fidelity": "F1a",
+    "description": "Simple SOC-voltage model: V = OCV(SOC) - I*R_internal",
+    "cell": {
+        "name": "Generic NiMH AA cell (positive: NiOOH/Ni(OH)2; negative: AB5 metal hydride)",
+        "source": "Linden's Handbook of Batteries (4th ed., 2011), ch. 31; Panasonic NiMH datasheets",
+        "nominal_voltage": {"value": 1.2, "unit": "V"},
+        "capacity": {"value": 2.0, "unit": "Ah"},
+        "voltage_max": {"value": 1.4, "unit": "V"},
+        "voltage_min": {"value": 1.0, "unit": "V"},
+        "internal_resistance": {"value": 0.030, "unit": "Ohm", "note": "Approximate DC resistance at 25C, 50% SOC"}
+    },
+    "ocv_coefficients": {
+        "description": "OCV(SOC) polynomial fit: OCV = a0 + a1*SOC + a2*SOC^2 + a3*SOC^3 + a4*SOC^4 + a5*SOC^5",
+        "source": "Polynomial fit to representative NiMH discharge curve (~1.2 V plateau)",
+        "a0": 0.9997552447552449,
+        "a1": 1.2935606060606215,
+        "a2": -3.3247377622378234,
+        "a3": 5.185023310023421,
+        "a4": -4.356060606060702,
+        "a5": 1.6025641025641286
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "current": {"min": -10.0, "max": 10.0, "unit": "A", "note": "Negative=charge, Positive=discharge"},
+        "temperature": {"min": -20.0, "max": 50.0, "unit": "degC", "note": "F1a ignores temperature effects"}
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "component": "EC122 Pumped Hydro Storage (PHS)",
+    "fidelity": "F1a",
+    "description": "Round-trip efficiency model: generation, pumping, and energy capacity",
+    "unit": {
+        "name": "Generic Large-Scale PHS",
+        "source": "Rehman et al. (2015), Renewable and Sustainable Energy Reviews, 44, 586-598",
+        "head": {"value": 300.0, "unit": "m", "note": "Net hydraulic head"},
+        "flow_rate": {"value": 50.0, "unit": "m3/s", "note": "Design flow rate"},
+        "eta_turbine": {"value": 0.90, "unit": "dimensionless"},
+        "eta_pump": {"value": 0.88, "unit": "dimensionless"},
+        "eta_generator": {"value": 0.97, "unit": "dimensionless"},
+        "eta_motor": {"value": 0.97, "unit": "dimensionless"},
+        "reservoir_volume": {"value": 5000000.0, "unit": "m3", "note": "Upper reservoir volume"},
+        "rho_water": {"value": 1000.0, "unit": "kg/m3"},
+        "g": {"value": 9.81, "unit": "m/s2"}
+    },
+    "valid_ranges": {
+        "flow_rate": {"min": 1.0, "max": 500.0, "unit": "m3/s"},
+        "head": {"min": 10.0, "max": 1000.0, "unit": "m"},
+        "mode": {"values": ["generate", "pump"]}
+    }
+}

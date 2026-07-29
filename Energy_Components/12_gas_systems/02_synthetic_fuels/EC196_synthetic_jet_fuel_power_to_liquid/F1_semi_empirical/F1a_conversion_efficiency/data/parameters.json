@@ -1,0 +1,27 @@
+{
+    "component": "EC196 Synthetic Jet Fuel (Power-to-Liquid)",
+    "fidelity": "F1a",
+    "description": "Fischer-Tropsch low-temperature (LTFT) reactor equilibrium conversion model with ASF chain-growth distribution for C8-C16 jet fuel selectivity.",
+    "unit": {
+        "name": "Generic LTFT Co/Al2O3 Reactor, 200-230 degC, 20-30 bar",
+        "source": "Dry (2002) Catalysis Today; Schulz (1999) Applied Catalysis A; Anderson (1956); De Klerk (2011) Fischer-Tropsch Refining, Wiley-VCH.",
+        "T_opt":             {"value": 220.0,  "unit": "degC", "note": "Optimal FT reactor temperature (LTFT Co catalyst: 200-230 C)"},
+        "X_max":             {"value": 0.90,   "unit": "-",    "note": "Maximum per-pass CO conversion (LTFT with recycle: 0.80-0.92, Dry 2002)"},
+        "k_T":               {"value": 8.0,    "unit": "-",    "note": "Gaussian width for temperature sensitivity (narrow for LTFT)"},
+        "P_ref":             {"value": 25.0,   "unit": "bar",  "note": "Reference pressure (typical LTFT operating pressure)"},
+        "P_exp":             {"value": 0.5,    "unit": "-",    "note": "Pressure exponent (positive: higher P favors FT, Le Chatelier)"},
+        "alpha_ASF":         {"value": 0.90,   "unit": "-",    "note": "ASF chain-growth probability (LTFT Co: 0.85-0.92 gives high C5+ fraction)"},
+        "n_CO_in":           {"value": 1.0,    "unit": "mol/s","note": "Default CO feed rate"},
+        "H2_CO_ratio":       {"value": 2.1,    "unit": "mol/mol","note": "H2/CO ratio in syngas feed (stoichiometric FT: ~2.0-2.15)"},
+        "LHV_FT_kJ_mol":     {"value": 7800.0, "unit": "kJ/mol","note": "LHV per mol C12H26 (C12 surrogate for jet fuel, LHV=44 MJ/kg * 170 g/mol = 7480 kJ/mol; ~7800 for isoparaffins)"},
+        "LHV_H2":            {"value": 241.8,  "unit": "kJ/mol","note": "LHV of H2"},
+        "LHV_CO":            {"value": 283.0,  "unit": "kJ/mol","note": "LHV of CO (combustion to CO2)"},
+        "DH_reaction":       {"value": -165.0, "unit": "kJ/mol_CO","note": "FT exotherm ~165 kJ/mol CO (Dry 2002, Table 1)"}
+    },
+    "valid_ranges": {
+        "temperature_C":   {"min": 150.0, "max": 300.0, "unit": "degC"},
+        "pressure_bar":    {"min": 10.0,  "max": 50.0,  "unit": "bar"},
+        "H2_CO_ratio":     {"min": 1.5,   "max": 3.0,   "unit": "mol/mol"},
+        "n_CO_in":         {"min": 0.01,  "max": 100.0, "unit": "mol/s"}
+    }
+}

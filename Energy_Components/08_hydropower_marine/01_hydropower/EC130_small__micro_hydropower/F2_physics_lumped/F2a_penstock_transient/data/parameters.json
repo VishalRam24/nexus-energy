@@ -1,0 +1,32 @@
+{
+    "component_id": "EC130",
+    "component_name": "Small/Micro Hydropower",
+    "fidelity": "F2a — Physics-Lumped Penstock Transient (rigid water-column ODE)",
+    "source": "Harvey et al. (1993) Micro-Hydro Design Manual, IT Publications; Penche (1998) Layman's Guidebook on How to Develop a Small Hydro Site, EC DGXVII; Chaudhry (2014) Applied Hydraulic Transients, 3rd ed., Springer; White (2011) Fluid Mechanics, 7th ed.",
+    "unit": {
+        "name": "Generic 450 kW Francis Micro-Hydro Plant — Physics-Lumped Penstock Transient",
+        "H_gross": {"value": 45.0, "unit": "m", "note": "Gross static head, forebay to tailrace (Francis range 20-300 m)"},
+        "Q_design": {"value": 1.5, "unit": "m3/s", "note": "Design (rated) flow rate"},
+        "P_rated": {"value": 450.0, "unit": "kW", "note": "Rated electrical power output"},
+        "eta_generator": {"value": 0.95, "unit": "-", "note": "Generator + drive-train electrical efficiency"},
+        "eta_turbine_peak": {"value": 0.89, "unit": "-", "note": "Peak hydraulic turbine efficiency (Francis); Harvey 1993 Table"},
+        "k_eff": {"value": 0.25, "unit": "-", "note": "Parabolic part-load efficiency curvature for Francis"},
+        "q_min": {"value": 0.20, "unit": "-", "note": "Minimum flow ratio for stable operation"},
+        "q_max": {"value": 1.10, "unit": "-", "note": "Maximum flow ratio"},
+        "L_penstock": {"value": 120.0, "unit": "m", "note": "Penstock length, forebay to turbine"},
+        "D_penstock": {"value": 0.75, "unit": "m", "note": "Penstock internal diameter"},
+        "f_darcy": {"value": 0.018, "unit": "-", "note": "Darcy-Weisbach friction factor (welded steel, fully rough turbulent)"},
+        "K_minor": {"value": 1.5, "unit": "-", "note": "Sum of minor loss coefficients (entrance, bends, valve)"},
+        "A_forebay": {"value": 25.0, "unit": "m2", "note": "Forebay / surge-tank free surface area (mass-oscillation buffer)"},
+        "tau_nozzle": {"value": 2.0, "unit": "s", "note": "Guide-vane / nozzle actuator time constant (first-order servo)"},
+        "rho": {"value": 998.0, "unit": "kg/m3", "note": "Water density at 20 C, 1 atm; White (2011) Table A.1"},
+        "g": {"value": 9.81, "unit": "m/s2", "note": "Standard gravitational acceleration"}
+    },
+    "valid_ranges": {
+        "flow_rate_m3s": {"min": 0.0, "max": 1.65, "unit": "m3/s"},
+        "gross_head_m": {"min": 5.0, "max": 300.0, "unit": "m"},
+        "gate_command": {"min": 0.0, "max": 1.0, "unit": "-"},
+        "dt": {"min": 0.01, "max": 1.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 3600.0, "unit": "s"}
+    }
+}

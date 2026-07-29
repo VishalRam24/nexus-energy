@@ -1,0 +1,19 @@
+{
+    "component": "EC148 Bioethanol Fermentation",
+    "fidelity": "F1a",
+    "description": "Simple yield model: ethanol = sugars_available * yield * eta_conversion. T=32 degC fermentation.",
+    "unit": {
+        "name": "Generic Bioethanol Fermentation Unit",
+        "source": "Balat (2011) Energy Convers. Manage. 52:858; Renewable Fuels Association (2020); Mosier et al. (2005) Bioresour. Technol. 96:673",
+        "ethanol_yield_L_per_kg_sugar": {"value": 0.45, "unit": "L/kg_sugar",      "note": "Ethanol yield per kg fermentable sugar (theoretical max ~0.511 L/kg)"},
+        "eta_conversion":               {"value": 0.90, "unit": "dimensionless",   "note": "Sugar-to-ethanol conversion efficiency"},
+        "T_fermentation_degC":          {"value": 32.0, "unit": "degC",            "note": "Optimal fermentation temperature (Saccharomyces cerevisiae)"},
+        "fermentation_time_h":          {"value": 48.0, "unit": "hours",           "note": "Typical batch fermentation time"},
+        "ethanol_density_kg_per_L":     {"value": 0.789,"unit": "kg/L",            "note": "Ethanol density at 20 degC"},
+        "LHV_ethanol_MJ_kg":            {"value": 26.8, "unit": "MJ/kg",           "note": "Lower heating value of ethanol"},
+        "CO2_per_ethanol_kg_per_kg":    {"value": 0.957,"unit": "kg_CO2/kg_ethanol","note": "Stoichiometric CO2 co-product (fermentation)"}
+    },
+    "valid_ranges": {
+        "sugar_input_kg_per_h": {"min": 0.0, "max": 1e5, "unit": "kg/h"}
+    }
+}

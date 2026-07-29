@@ -1,0 +1,19 @@
+{
+    "component": "EC060 Solar Pond",
+    "fidelity": "F1a",
+    "description": "Hottel-Whillier model: Q = A * [eta0*G - a1*(Tm-Ta) - a2*(Tm-Ta)^2]",
+    "unit": {
+        "name": "Non-Convecting Salt-Gradient Solar Pond",
+        "source": "Tabor (1981). Solar ponds. Solar Energy. Hull et al. (1988). The cost effectiveness of salt gradient solar ponds.",
+        "eta0": {"value": 0.05, "unit": "dimensionless", "note": "Zero-loss efficiency (low due to turbidity)"},
+        "a1": {"value": 0.5, "unit": "W/m2K", "note": "First-order heat loss coefficient"},
+        "a2": {"value": 0.001, "unit": "W/m2K2", "note": "Second-order heat loss coefficient"},
+        "A": {"value": 10000.0, "unit": "m2", "note": "Pond surface area"},
+        "T_design": {"value": 80.0, "unit": "degC", "note": "Design storage zone temperature"}
+    },
+    "valid_ranges": {
+        "G": {"min": 0.0, "max": 1100.0, "unit": "W/m2"},
+        "Tm": {"min": 30.0, "max": 100.0, "unit": "degC"},
+        "Ta": {"min": -10.0, "max": 40.0, "unit": "degC"}
+    }
+}

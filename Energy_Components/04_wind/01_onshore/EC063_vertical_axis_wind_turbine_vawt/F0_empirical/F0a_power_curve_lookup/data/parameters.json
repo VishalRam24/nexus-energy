@@ -1,0 +1,85 @@
+{
+    "component": "EC063 Vertical Axis Wind Turbine (Generic 10kW Darrieus H-rotor)",
+    "fidelity": "F0a -- empirical power-curve lookup",
+    "description": "Tabulated power curve (power vs wind speed) via np.interp with cut-in/rated/cut-out limits",
+    "turbine": {
+        "name": "Vertical Axis Wind Turbine (Generic 10kW Darrieus H-rotor)",
+        "rated_power": {
+            "value": 10.0,
+            "unit": "kW"
+        },
+        "cut_in_speed": {
+            "value": 3.0,
+            "unit": "m/s"
+        },
+        "rated_speed": {
+            "value": 11.0,
+            "unit": "m/s"
+        },
+        "cut_out_speed": {
+            "value": 22.0,
+            "unit": "m/s"
+        }
+    },
+    "power_curve": {
+        "description": "Reference power curve at standard air density (1.225 kg/m3)",
+        "source": "Tjiu et al. (2015) Renew. Energy 75:50-67; Sutherland et al. SAND2012-0304",
+        "wind_speeds_ms": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+        ],
+        "power_kw": [
+            0,
+            0,
+            0,
+            0,
+            0.55,
+            1.1,
+            1.95,
+            3.15,
+            4.8,
+            6.85,
+            9.05,
+            10.0,
+            10.0,
+            10.0,
+            10.0,
+            10.0,
+            10.0,
+            10.0,
+            10.0,
+            10.0,
+            10.0,
+            10.0,
+            10.0
+        ]
+    },
+    "valid_ranges": {
+        "wind_speed": {
+            "min": 0.0,
+            "max": 30.0,
+            "unit": "m/s"
+        }
+    }
+}

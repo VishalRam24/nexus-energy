@@ -1,0 +1,42 @@
+{
+    "component_id": "EC038",
+    "component_name": "Iron-Chromium Flow Battery (ICFB / Fe-Cr RFB)",
+    "fidelity": "F2a — Physics-Lumped Stack Model (Nernst + Butler-Volmer + ohmic + concentration, SOC ODE, H2 parasitic, crossover, thermal ODE)",
+    "source": "Thaller, L.H. (NASA, 1974) US Patent 3,996,064 Redox Flow Cell; Hagedorn, N.H. (1984) NASA TM-83677 'NASA Redox Storage System Development Project'; Gahn, R.F. et al. (1985) NASA TM-87034; Hruska, L.W. & Savinell, R.F. (1981) J. Electrochem. Soc. 128, 18; Zeng, Y.K. et al. (2015) J. Power Sources 278, 294; Wang, W. et al. (2013) Adv. Funct. Mater. 23, 970 (review)",
+    "unit": {
+        "name": "Generic NASA-class 40-cell Fe-Cr (ICFB) stack, 500 cm2 electrode area",
+        "N_cells":      {"value": 40,      "unit": "-",        "note": "Cells in series in the stack"},
+        "A_cell":       {"value": 500.0,   "unit": "cm2",      "note": "Active electrode area per cell (NASA Redox single-cell scale)"},
+        "E0_Fe":        {"value": 0.77,    "unit": "V",        "note": "Standard potential Fe3+ + e- <-> Fe2+ vs SHE (positive)"},
+        "E0_Cr":        {"value": -0.41,   "unit": "V",        "note": "Standard potential Cr3+ + e- <-> Cr2+ vs SHE (negative). Cell E0 = 0.77-(-0.41)=1.18 V"},
+        "n":            {"value": 1,       "unit": "-",        "note": "Electrons transferred per ion (single-electron couples)"},
+        "c_Fe_total":   {"value": 1000.0,  "unit": "mol/m3",   "note": "Total Fe ion concentration in posolyte (1.0 M, NASA used ~1 M FeCl2/CrCl3 in HCl)"},
+        "c_Cr_total":   {"value": 1000.0,  "unit": "mol/m3",   "note": "Total Cr ion concentration in negolyte (1.0 M)"},
+        "j0_Fe":        {"value": 0.012,   "unit": "A/cm2",    "note": "Exchange current density Fe3+/Fe2+ at T_ref (fast couple, on carbon)"},
+        "j0_Cr":        {"value": 0.00015, "unit": "A/cm2",    "note": "Exchange current density Cr3+/Cr2+ at T_ref (SLUGGISH couple, ~100x slower; needs Pb/Au/Bi catalyst). Hagedorn 1984"},
+        "alpha":        {"value": 0.5,     "unit": "-",        "note": "Charge-transfer (symmetry) coefficient, both electrodes"},
+        "E_act_Fe":     {"value": 20000.0, "unit": "J/mol",    "note": "Arrhenius activation energy for Fe kinetics"},
+        "E_act_Cr":     {"value": 45000.0, "unit": "J/mol",    "note": "Arrhenius activation energy for Cr kinetics (high -> strong T sensitivity; warm electrolyte essential, NASA ran ~65 C)"},
+        "R_area_ref":   {"value": 2.5,     "unit": "ohm.cm2",  "note": "Area-specific ohmic resistance (membrane+electrolyte+contact) at T_ref"},
+        "E_act_R":      {"value": 15000.0, "unit": "J/mol",    "note": "Arrhenius activation energy for ohmic resistance (ionic conduction)"},
+        "j_L":          {"value": 0.45,    "unit": "A/cm2",    "note": "Limiting current density (mass transport) at nominal flow"},
+        "i_H2_ref":     {"value": 0.0012,  "unit": "A/cm2",    "note": "Reference parasitic H2-evolution current density on Cr side at T_ref, SOC=1 (HER competes with Cr3+ reduction during charge)"},
+        "E_act_H2":     {"value": 30000.0, "unit": "J/mol",    "note": "Arrhenius activation energy for hydrogen evolution"},
+        "k_cross":      {"value": 3.0e-12, "unit": "m2/s",     "note": "Effective crossover diffusion coefficient of active species through membrane (slow self-discharge, ~%/h). Wang 2013 review reports VRFB/Fe-Cr permeabilities O(1e-11..1e-12 m2/s)"},
+        "t_mem":        {"value": 1.78e-4, "unit": "m",        "note": "Membrane thickness (Nafion-class, 178 um)"},
+        "V_tank":       {"value": 0.02,    "unit": "m3",       "note": "Electrolyte tank volume per side (20 L; lab/pilot 40-cell stack). Q_cap = nF c V ~ 1.93e6 C (~0.54 kAh) so 50 A moves SOC ~0.09/h"},
+        "Q_flow":       {"value": 2.0e-4,  "unit": "m3/s",     "note": "Volumetric electrolyte flow rate per side (nominal)"},
+        "m_thermal":    {"value": 1100.0,  "unit": "kg",       "note": "Lumped thermal mass (stack + 2 tanks of aqueous electrolyte ~ 1000 kg)"},
+        "cp_thermal":   {"value": 3500.0,  "unit": "J/(kg.K)", "note": "Effective specific heat (aqueous HCl electrolyte ~ 3.5 kJ/kg/K)"},
+        "hA_loss":      {"value": 25.0,    "unit": "W/K",      "note": "Heat-loss coefficient to ambient (hA)"},
+        "T_amb":        {"value": 298.15,  "unit": "K",        "note": "Ambient temperature (25 C)"},
+        "T_ref":        {"value": 298.15,  "unit": "K",        "note": "Reference temperature for Arrhenius terms (25 C)"}
+    },
+    "valid_ranges": {
+        "soc":        {"min": 0.05, "max": 0.95,  "unit": "-",   "note": "Usable SOC window"},
+        "current":    {"min": -200.0, "max": 200.0, "unit": "A", "note": "Stack current; >0 = discharge, <0 = charge"},
+        "temperature":{"min": 288.15, "max": 338.15, "unit": "K", "note": "15-65 C operating window (Cr kinetics fail below ~10 C)"},
+        "dt":         {"min": 0.1, "max": 60.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 86400.0, "unit": "s"}
+    }
+}

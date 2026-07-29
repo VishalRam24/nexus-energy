@@ -1,0 +1,45 @@
+{
+    "component": "EC091 Vapor Compression Chiller",
+    "fidelity": "F1b",
+    "description": "Part-load COP with IPLV methodology and condenser water temperature correction (DOE-2 curves)",
+    "unit": {
+        "name": "Generic 500kW Vapor Compression Chiller (R134a)",
+        "source": "Gordon & Ng (2000); AHRI 550/590; DOE-2 Reference Manual; EnergyPlus Chiller:Electric:EIR",
+        "Q_rated": {"value": 500.0, "unit": "kW", "note": "Rated cooling capacity"},
+        "COP_rated": {"value": 5.5, "unit": "dimensionless", "note": "Rated COP at standard conditions"},
+        "T_chw_rated": {"value": 6.7, "unit": "degC", "note": "Rated chilled water supply temperature"},
+        "T_cw_rated": {"value": 29.4, "unit": "degC", "note": "Rated condenser water entering temperature"},
+        "plr_curve": {
+            "note": "DOE-2 EIR-fPLR curve: EIR/EIR_ref = d1 + d2*PLR + d3*PLR^2",
+            "d1": {"value": 0.10, "unit": "-"},
+            "d2": {"value": 0.60, "unit": "-"},
+            "d3": {"value": 0.30, "unit": "-"}
+        },
+        "temp_curve": {
+            "note": "COP correction for condenser water temp: f_T = e1 + e2*T_cw + e3*T_cw^2",
+            "e1": {"value": 1.45, "unit": "-"},
+            "e2": {"value": -0.015, "unit": "1/degC"},
+            "e3": {"value": 0.0, "unit": "1/degC^2"}
+        },
+        "iplv_weights": {
+            "note": "AHRI 550/590 IPLV weighting: 1%@100%, 42%@75%, 45%@50%, 12%@25%",
+            "w100": 0.01,
+            "w75": 0.42,
+            "w50": 0.45,
+            "w25": 0.12
+        },
+        "iplv_temps": {
+            "note": "Condenser water temps at each IPLV bin (AHRI unloading)",
+            "T_cw_100": {"value": 29.4, "unit": "degC"},
+            "T_cw_75": {"value": 23.9, "unit": "degC"},
+            "T_cw_50": {"value": 18.3, "unit": "degC"},
+            "T_cw_25": {"value": 18.3, "unit": "degC"}
+        },
+        "PLR_min": {"value": 0.10, "unit": "-"}
+    },
+    "valid_ranges": {
+        "T_chw": {"min": 4.0, "max": 12.0, "unit": "degC"},
+        "T_cw": {"min": 15.0, "max": 45.0, "unit": "degC"},
+        "PLR": {"min": 0.0, "max": 1.0, "unit": "-"}
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "component": "EC211 Forward Osmosis (FO)",
+    "fidelity": "F1b",
+    "description": "FO model with draw reconcentration energy, ICP correction, temperature correction, and membrane fouling",
+    "unit": {
+        "name": "Thin-film composite FO membrane module",
+        "source": "McGinnis & Elimelech (2008) Environ. Sci. Technol.; Cath et al. (2006) J. Membrane Sci.",
+        "A_ref": {"value": 1.2, "unit": "L/(m2*h*bar)", "note": "Water permeability at 25C (TFC-ES: 1-2 L/(m2*h*bar))"},
+        "B": {"value": 0.3, "unit": "L/(m2*h)", "note": "Salt permeability coefficient (NaCl)"},
+        "membrane_area_m2": {"value": 10.0, "unit": "m2"},
+        "k_mass": {"value": 5e-5, "unit": "m/s", "note": "External concentration polarization mass transfer coefficient"},
+        "D_eff": {"value": 1.5e-9, "unit": "m2/s", "note": "Effective solute diffusivity in support layer"},
+        "tau_mem": {"value": 2.0, "unit": "dimensionless", "note": "Membrane structural parameter tortuosity factor (effective: S=t*tau/eps; using combined t*tau here)"},
+        "thickness_m": {"value": 80e-6, "unit": "m", "note": "Support layer effective thickness (80 micron; structural parameter S=t*tau~160 micron)"},
+        "E_a_w_kJ_mol": {"value": 20.0, "unit": "kJ/mol", "note": "Activation energy for water permeation (Zhao 2012: ~20 kJ/mol)"},
+        "T_ref_K": {"value": 298.15, "unit": "K"},
+        "k_foul": {"value": 0.08, "unit": "1/year", "note": "Fouling-driven permeability decline (~8%/yr linear)"},
+        "pi_draw_ref": {"value": 60.0, "unit": "bar", "note": "Reference draw osmotic pressure at design"},
+        "SEC_regen": {"value": 2.0, "unit": "kWh/m3", "note": "Draw reconcentration SEC at design recovery (McGinnis 2008 estimate)"},
+        "recovery": {"value": 0.50, "unit": "dimensionless", "note": "Design water recovery"}
+    },
+    "valid_ranges": {
+        "pi_draw_bar": {"min": 10.0, "max": 120.0, "unit": "bar"},
+        "pi_feed_bar": {"min": 0.5, "max": 40.0, "unit": "bar"},
+        "T_feed_degC": {"min": 5.0, "max": 45.0, "unit": "degC"},
+        "operating_hours": {"min": 0.0, "max": 87600.0, "unit": "hours"}
+    }
+}

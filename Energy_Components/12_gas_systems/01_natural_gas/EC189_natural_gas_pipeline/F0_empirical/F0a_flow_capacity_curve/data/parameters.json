@@ -1,0 +1,46 @@
+{
+  "component_id": "EC189",
+  "component_name": "Natural Gas Pipeline",
+  "fidelity": "F0a \u2014 empirical lookup",
+  "version": "1.0.0",
+  "source": "Weymouth (1912); Menon (2005) Gas Pipeline Hydraulics, CRC Press (F1a params reused)",
+  "metric": "flow_capacity_vs_pressure_ratio",
+  "note": "Weymouth steady flow capacity (Msm3/day) vs outlet/inlet pressure ratio P_out/P_in for a 24-in, 100-km transmission line at P_in=70 bar, efficiency 0.92. Q ~ sqrt(1 - r^2).",
+  "lookup": {
+    "pressure_ratio": {
+      "value": [
+        0.7,
+        0.8,
+        0.875,
+        0.93,
+        0.97,
+        0.99
+      ],
+      "unit": "-",
+      "note": "P_out/P_in (P_in=70 bar fixed)"
+    },
+    "flow_capacity_Msm3_per_day": {
+      "value": [
+        12.0,
+        10.082,
+        8.135,
+        6.176,
+        4.085,
+        2.37
+      ],
+      "unit": "Msm3/day",
+      "note": "Weymouth throughput"
+    }
+  },
+  "rated": {
+    "pressure_ratio": {
+      "value": 0.7,
+      "unit": "-"
+    },
+    "flow_capacity_Msm3_per_day": {
+      "value": 12.0,
+      "unit": "Msm3/day",
+      "note": "Rated point"
+    }
+  }
+}

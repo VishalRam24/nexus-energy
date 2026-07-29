@@ -1,0 +1,23 @@
+{
+    "component": "EC127 Gravity Energy Storage",
+    "fidelity": "F1a",
+    "description": "Potential energy storage: E = m*g*h, lift mass with motor, lower with generator",
+    "unit": {
+        "name": "Generic Solid-Mass Gravity Storage (e.g., Energy Vault / mineshaft)",
+        "source": "Botha & Kamper (2019), J. Energy Storage, 23, 159-174; Berrada et al. (2017), Energy Conversion and Management, 137, 191-200",
+        "mass_kg": {"value": 1.0e7, "unit": "kg", "note": "Total moveable mass (10,000 t)"},
+        "h_max_m": {"value": 500.0, "unit": "m", "note": "Maximum lift height"},
+        "h_min_m": {"value": 0.0, "unit": "m"},
+        "g": {"value": 9.81, "unit": "m/s2"},
+        "P_rated_kw": {"value": 5000.0, "unit": "kW", "note": "Motor/generator rated power"},
+        "eta_motor": {"value": 0.96, "unit": "dimensionless"},
+        "eta_drive": {"value": 0.95, "unit": "dimensionless", "note": "Mechanical drive train (cable, gearbox)"},
+        "eta_generator": {"value": 0.96, "unit": "dimensionless"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "-"},
+        "power_command_kw": {"min": -5000.0, "max": 5000.0, "unit": "kW"},
+        "duration_hours": {"min": 0.0, "max": 24.0, "unit": "h"},
+        "mode": {"values": ["charge", "discharge", "idle"]}
+    }
+}

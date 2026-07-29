@@ -1,0 +1,50 @@
+{
+  "component_id": "EC013",
+  "component_name": "Liquid Hydrogen (LH2) Storage",
+  "fidelity": "F0a \u2014 empirical lookup",
+  "version": "1.0.0",
+  "source": "Sherif et al. (1997) IJHE; Petitpas (2018) NREL (F1a params reused)",
+  "metric": "boiloff_rate_vs_ambient",
+  "note": "Daily boil-off (% of full inventory) vs ambient T for 1 m3 MLI LH2 dewar. ~0.4 %/day at 25 C. Capacity 67.3 kg (95% fill).",
+  "lookup": {
+    "T_ambient_K": {
+      "value": [
+        233.0,
+        253.0,
+        273.0,
+        298.15,
+        313.0,
+        333.0
+      ],
+      "unit": "K",
+      "note": "Independent-variable breakpoints"
+    },
+    "boiloff_pct_per_day": {
+      "value": [
+        0.176,
+        0.246,
+        0.316,
+        0.404,
+        0.456,
+        0.526
+      ],
+      "unit": "%/day",
+      "note": "Tabulated empirical value"
+    }
+  },
+  "rated": {
+    "T_ambient_K": {
+      "value": 298.15,
+      "unit": "K"
+    },
+    "boiloff_pct_per_day": {
+      "value": 0.404,
+      "unit": "%/day",
+      "note": "Datasheet/nominal point"
+    },
+    "capacity_kg": {
+      "value": 67.3,
+      "unit": "kg_H2"
+    }
+  }
+}

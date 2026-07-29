@@ -1,0 +1,34 @@
+{
+    "component": "EC039 Organic Flow Battery (OFB)",
+    "fidelity": "F1b",
+    "description": "SOC-thermal Nernst + Arrhenius-R model for organic aqueous redox flow battery stack. Representative of AQDS/ferricyanide and TEMPO/viologen chemistry. Temperature range 10-40 degC.",
+    "unit": {
+        "name": "Generic 20-cell organic RFB stack, 100 cm2 electrode area",
+        "source": "Lin, K. et al. (2015). Science 349, 1529; Janoschka, T. et al. (2015). Nature 527, 78; Huskinson, B. et al. (2014). Nature 505, 195",
+        "N_cells": {"value": 20, "unit": "dimensionless"},
+        "electrode_area_cm2": {"value": 100.0, "unit": "cm2"},
+        "E0": {"value": 0.70, "unit": "V", "note": "Representative standard cell potential for AQDS/ferricyanide couple (~0.7 V); TEMPO/viologen ~1.1 V. Using AQDS as reference."},
+        "R_cell_ohm_cm2_ref": {"value": 6.0, "unit": "Ohm.cm2", "note": "Area-specific resistance at T_ref; organic RFBs typically 5-8 Ohm.cm2 due to larger molecule transport limitations"},
+        "n": {"value": 2, "unit": "dimensionless", "note": "2-electron quinone reduction: AQDS + 2H+ + 2e- <-> H2AQDS"},
+        "electrolyte_conc_M": {"value": 0.5, "unit": "mol/L", "note": "Typical organic RFB concentration; solubility-limited relative to vanadium"},
+        "pump_loss_coefficient": {"value": 0.015, "unit": "W/(A^2)", "note": "Pump parasitic: small stack, lower flow requirement"}
+    },
+    "thermal": {
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 degC)"},
+        "E_a": {"value": 16000, "unit": "J/mol",
+                "note": "Activation energy for organic RFB resistance; slightly lower than VRFB due to smaller molecules but higher than EDLC. Representative value.",
+                "source": "Huskinson et al. (2014) Nature 505, 195; Kwabi, D. G. et al. (2020) Chem. Rev. 120, 6467"},
+        "dOCV_dT": {"value": -0.0003, "unit": "V/K per cell",
+                    "note": "Temperature coefficient of standard potential for quinone/ferricyanide couple. Quinone E0 temperature dependence dominated by proton-coupled electron transfer entropy. dE0/dT estimated -0.2 to -0.4 mV/K for AQDS-type quinones at pH 0.",
+                    "source": "Kwabi, D. G. et al. (2020) Chem. Rev. 120, 6467; Yang, Z. et al. (2011) Chem. Sus. Chem. 4, 1338"},
+        "T_min": {"value": 283.15, "unit": "K", "note": "10 degC lower limit (electrolyte viscosity, limited kinetics)"},
+        "T_max": {"value": 313.15, "unit": "K", "note": "40 degC upper limit (molecular degradation of organic active species above ~40-50 degC)"},
+        "R_gas": {"value": 8.314, "unit": "J/(mol*K)"},
+        "F": {"value": 96485.0, "unit": "C/mol"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.05, "max": 0.95, "unit": "dimensionless"},
+        "current": {"min": -50.0, "max": 50.0, "unit": "A", "note": "positive=discharge; small stack"},
+        "temperature": {"min": 283.15, "max": 313.15, "unit": "K", "note": "10 to 40 degC"}
+    }
+}

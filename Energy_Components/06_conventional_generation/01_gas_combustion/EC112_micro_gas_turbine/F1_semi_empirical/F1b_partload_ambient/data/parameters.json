@@ -1,0 +1,26 @@
+{
+    "component": "EC112 Micro Gas Turbine",
+    "fidelity": "F1b",
+    "description": "Part-load efficiency + strong ambient temperature sensitivity + altitude derating",
+    "unit": {
+        "name": "Generic 200 kWe Recuperated Micro Gas Turbine (Capstone C200-class)",
+        "source": "Capstone C200 product data sheet; US EPA CHP Catalog (2017) Section 5: Microturbines; ISO 2314:2009",
+        "P_el_rated_kw": {"value": 200.0, "unit": "kW_e", "note": "ISO-rated output at 15 degC, 101.325 kPa, sea level"},
+        "eta_el_rated": {"value": 0.30, "unit": "-", "note": "Net electrical efficiency at full load (LHV, ISO conditions)"},
+        "PLR_min": {"value": 0.3, "unit": "-", "note": "Minimum stable part-load ratio"},
+        "LHV_gas_mjkg": {"value": 50.0, "unit": "MJ/kg", "note": "Lower heating value of natural gas"},
+        "rho_gas_kgm3": {"value": 0.717, "unit": "kg/m^3", "note": "Density of natural gas at STP"},
+        "b0": {"value": 0.05, "unit": "-", "note": "Electrical PLR curve constant"},
+        "b1": {"value": 1.30, "unit": "-", "note": "Electrical PLR curve linear"},
+        "b2": {"value": -0.35, "unit": "-", "note": "Electrical PLR curve quadratic"},
+        "T_ref_k": {"value": 288.15, "unit": "K", "note": "ISO reference ambient temperature (15 degC)"},
+        "P_ref_kpa": {"value": 101.325, "unit": "kPa", "note": "ISO reference ambient pressure"},
+        "f_amb_coeff": {"value": 0.010, "unit": "1/K", "note": "Ambient temperature efficiency sensitivity (~0.01/K, 1%/K); microturbines are highly sensitive because small compressor has less pressure ratio margin"},
+        "altitude_derating_pct_per_100m": {"value": 1.0, "unit": "%/100m", "note": "Power derating per 100m altitude (air density effect, slightly higher than reciprocating engines due to no turbocharger compensation)"}
+    },
+    "valid_ranges": {
+        "PLR": {"min": 0.3, "max": 1.0, "unit": "-"},
+        "T_ambient_k": {"min": 248.15, "max": 323.15, "unit": "K"},
+        "altitude_m": {"min": 0.0, "max": 3000.0, "unit": "m"}
+    }
+}

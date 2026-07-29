@@ -1,0 +1,43 @@
+{
+    "component_id": "EC153",
+    "component_name": "Binary Cycle Geothermal Plant",
+    "fidelity": "F2a -- ORC-Brine Coupling with Thermal ODE",
+    "source": "DiPippo (2012) Geothermal Power Plants, Franco & Villani (2009) Optimal design of binary cycle, NREL geothermal data",
+    "unit": {
+        "name": "Generic 5 MW Binary Cycle Geothermal Plant -- ORC with Isobutane",
+
+        "working_fluid": {"value": "isobutane", "unit": "-", "note": "ORC working fluid (isobutane / R600a)"},
+        "m_dot_brine": {"value": 80.0, "unit": "kg/s", "note": "Geothermal brine mass flow rate"},
+        "T_brine_in": {"value": 443.15, "unit": "K", "note": "Brine inlet temperature (170 C)"},
+        "cp_brine": {"value": 4100.0, "unit": "J/(kg.K)", "note": "Brine specific heat (slightly saline)"},
+        "T_brine_min": {"value": 343.15, "unit": "K", "note": "Minimum brine reinjection temperature (70 C)"},
+
+        "m_dot_wf": {"value": 40.0, "unit": "kg/s", "note": "Working fluid mass flow rate"},
+        "T_cond": {"value": 308.15, "unit": "K", "note": "Condenser saturation temperature (35 C)"},
+        "P_cond": {"value": 4.5e5, "unit": "Pa", "note": "Condenser pressure (isobutane at ~35 C)"},
+        "T_evap": {"value": 393.15, "unit": "K", "note": "Evaporator saturation temperature (120 C)"},
+        "P_evap": {"value": 2.8e6, "unit": "Pa", "note": "Evaporator pressure (isobutane at ~120 C)"},
+        "dT_pinch": {"value": 5.0, "unit": "K", "note": "Pinch point temperature difference in HX"},
+        "dT_superheat": {"value": 5.0, "unit": "K", "note": "Superheating above evap temperature"},
+
+        "eta_turbine": {"value": 0.82, "unit": "-", "note": "Turbine isentropic efficiency"},
+        "eta_pump_wf": {"value": 0.75, "unit": "-", "note": "Working fluid pump isentropic efficiency"},
+        "eta_pump_brine": {"value": 0.80, "unit": "-", "note": "Brine circulation pump efficiency"},
+        "eta_generator": {"value": 0.96, "unit": "-", "note": "Generator efficiency"},
+        "dp_brine": {"value": 2.0e5, "unit": "Pa", "note": "Brine-side pressure drop through HX"},
+
+        "m_thermal": {"value": 50000.0, "unit": "kg", "note": "Effective thermal mass of plant (fluid inventory + metal)"},
+        "cp_thermal": {"value": 1500.0, "unit": "J/(kg.K)", "note": "Effective specific heat of thermal mass"},
+        "UA_evap": {"value": 150000.0, "unit": "W/K", "note": "Evaporator overall heat transfer coefficient * area"},
+        "UA_cond": {"value": 200000.0, "unit": "W/K", "note": "Condenser overall heat transfer coefficient * area"},
+        "T_cooling": {"value": 298.15, "unit": "K", "note": "Cooling water / air temperature (25 C)"},
+
+        "brine_decline_rate": {"value": 0.005, "unit": "K/year", "note": "Brine temperature decline rate per year"}
+    },
+    "valid_ranges": {
+        "T_brine_in": {"min": 373.15, "max": 523.15, "unit": "K"},
+        "m_dot_brine": {"min": 10.0, "max": 200.0, "unit": "kg/s"},
+        "T_cond": {"min": 293.15, "max": 323.15, "unit": "K"},
+        "duration_s": {"min": 1.0, "max": 86400.0, "unit": "s"}
+    }
+}

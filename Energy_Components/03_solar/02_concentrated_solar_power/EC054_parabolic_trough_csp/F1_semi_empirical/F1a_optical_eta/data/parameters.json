@@ -1,0 +1,23 @@
+{
+    "component": "EC054 Parabolic Trough CSP",
+    "fidelity": "F1a",
+    "description": "Useful heat from parabolic trough: optical efficiency * IAM(theta) - receiver heat loss",
+    "unit": {
+        "name": "Generic 150m Parabolic Trough Loop — Schott PTR70 Receiver",
+        "source": "Forristall (2003), 'Heat Transfer Analysis and Modeling of a Parabolic Trough Solar Receiver Implemented in Engineering Equation Solver', NREL/TP-550-34169",
+        "aperture_width": {"value": 5.76, "unit": "m", "note": "Mirror aperture width (e.g. LS-3 collector)"},
+        "L_collector": {"value": 150.0, "unit": "m", "note": "Total receiver tube length per loop"},
+        "A_aperture": {"value": 864.0, "unit": "m2", "note": "Total aperture area = aperture_width * L_collector"},
+        "eta_optical": {"value": 0.75, "unit": "dimensionless", "note": "Peak optical efficiency = reflectivity * intercept_factor * transmissivity * absorptivity (0.93 * 0.92 * 0.95 * 0.92 ~ 0.75)"},
+        "IAM_coeff": {"value": 0.0003, "unit": "1/deg2", "note": "Incidence angle modifier coefficient: IAM(theta) = 1 - IAM_coeff * theta^2"},
+        "a0": {"value": 0.0, "unit": "W/m", "note": "Heat loss coefficient a0 (constant term per receiver length)"},
+        "a1": {"value": 0.06, "unit": "W/(mK)", "note": "Linear heat loss coefficient (Schott PTR70 receiver)"},
+        "a2": {"value": 0.0001, "unit": "W/(mK2)", "note": "Quadratic heat loss coefficient"}
+    },
+    "valid_ranges": {
+        "dni": {"min": 0.0, "max": 1000.0, "unit": "W/m2"},
+        "T_absorber": {"min": 100.0, "max": 400.0, "unit": "degC"},
+        "T_ambient": {"min": 0.0, "max": 50.0, "unit": "degC"},
+        "incidence_angle": {"min": 0.0, "max": 80.0, "unit": "deg"}
+    }
+}

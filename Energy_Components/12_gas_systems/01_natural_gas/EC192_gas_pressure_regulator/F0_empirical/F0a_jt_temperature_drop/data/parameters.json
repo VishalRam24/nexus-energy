@@ -1,0 +1,46 @@
+{
+  "component_id": "EC192",
+  "component_name": "Gas Pressure Regulator",
+  "fidelity": "F0a \u2014 empirical lookup",
+  "version": "1.0.0",
+  "source": "ANSI/ISA-75.01.01 (2012); Burnett (1999) Joule-Thomson Coefficients (F1a params reused)",
+  "metric": "jt_temperature_drop_vs_pressure_drop",
+  "note": "Joule-Thomson isenthalpic cooling: outlet temperature drop (K) vs pressure drop across the regulator (bar). NG JT coefficient ~0.45 K/bar at ~50 bar, 288 K.",
+  "lookup": {
+    "pressure_drop_bar": {
+      "value": [
+        5.0,
+        10.0,
+        20.0,
+        40.0,
+        60.0,
+        80.0
+      ],
+      "unit": "bar",
+      "note": "P_up - P_down"
+    },
+    "temperature_drop_K": {
+      "value": [
+        2.25,
+        4.5,
+        9.0,
+        18.0,
+        27.0,
+        36.0
+      ],
+      "unit": "K",
+      "note": "JT cooling on expansion"
+    }
+  },
+  "rated": {
+    "pressure_drop_bar": {
+      "value": 40.0,
+      "unit": "bar"
+    },
+    "temperature_drop_K": {
+      "value": 18.0,
+      "unit": "K",
+      "note": "Rated point"
+    }
+  }
+}

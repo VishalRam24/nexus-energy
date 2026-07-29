@@ -1,0 +1,23 @@
+{
+    "component": "EC128 Conventional Hydroelectric Dam",
+    "fidelity": "F1a",
+    "description": "Power model: P = eta_overall * rho * g * Q * H / 1000 (kW)",
+    "unit": {
+        "name": "Generic Francis Turbine Hydropower Plant",
+        "source": "Dixon & Hall (2014), Fluid Mechanics and Thermodynamics of Turbomachinery",
+        "H_design": {"value": 100.0, "unit": "m", "note": "Design head"},
+        "Q_design": {"value": 30.0, "unit": "m3/s", "note": "Design flow rate"},
+        "P_rated": {"value": 27000.0, "unit": "kW", "note": "Rated power output"},
+        "eta_peak": {"value": 0.93, "unit": "dimensionless", "note": "Peak turbine efficiency at design flow"},
+        "eta_generator": {"value": 0.98, "unit": "dimensionless", "note": "Generator efficiency"},
+        "k_efficiency": {"value": 0.3, "unit": "dimensionless", "note": "Efficiency drop coefficient for off-design flow"},
+        "q_min": {"value": 0.3, "unit": "dimensionless", "note": "Minimum flow ratio (fraction of Q_design)"},
+        "q_max": {"value": 1.1, "unit": "dimensionless", "note": "Maximum flow ratio (fraction of Q_design)"},
+        "rho": {"value": 1000.0, "unit": "kg/m3", "note": "Water density"},
+        "g": {"value": 9.81, "unit": "m/s2", "note": "Gravitational acceleration"}
+    },
+    "valid_ranges": {
+        "flow_rate_m3s": {"min": 0.0, "max": 33.0, "unit": "m3/s"},
+        "head_m": {"min": 50.0, "max": 150.0, "unit": "m"}
+    }
+}

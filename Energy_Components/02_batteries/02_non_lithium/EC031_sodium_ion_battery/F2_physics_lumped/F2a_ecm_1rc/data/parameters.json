@@ -1,0 +1,32 @@
+{
+    "component": "EC031 Sodium-Ion Battery",
+    "fidelity": "F2a",
+    "description": "1-RC Equivalent Circuit Model with SOC-dependent parameters",
+    "source": "CATL first-gen Na-ion data; Tremblay & Dessaint (2009) framework adapted",
+    "cell": {
+        "name": "CATL-inspired Na-ion Prismatic Cell",
+        "chemistry": "Na-ion (layered oxide / hard carbon)",
+        "capacity": {"value": 3.0, "unit": "Ah"},
+        "voltage_max": {"value": 3.9, "unit": "V"},
+        "voltage_min": {"value": 1.5, "unit": "V"},
+        "R0": {"value": 0.020, "unit": "Ohm", "note": "Series resistance at 25C, 50% SOC"},
+        "R1": {"value": 0.012, "unit": "Ohm", "note": "Polarization resistance at 25C, 50% SOC"},
+        "C1": {"value": 2500.0, "unit": "F", "note": "Polarization capacitance, tau1 = R1*C1 = 30s"}
+    },
+    "ocv_coefficients": {
+        "description": "OCV(SOC) = a0 + a1*SOC + a2*SOC^2 + a3*SOC^3 + a4*SOC^4 + a5*SOC^5",
+        "source": "Fitted to Na-ion OCV data from CATL press release and literature",
+        "a0": 2.2, "a1": 3.0, "a2": -9.0, "a3": 18.0, "a4": -16.0, "a5": 5.6
+    },
+    "soc_dependent_params": {
+        "description": "SOC-dependent multipliers for R0, R1, C1.",
+        "note": "factor(SOC) = b0 + b1*SOC + b2*SOC^2",
+        "R0_coeffs": [1.6, -1.4, 0.8],
+        "R1_coeffs": [2.1, -2.6, 1.5],
+        "C1_coeffs": [0.55, 1.1, -0.65]
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "current": {"min": -30.0, "max": 30.0, "unit": "A", "note": "positive=discharge"}
+    }
+}

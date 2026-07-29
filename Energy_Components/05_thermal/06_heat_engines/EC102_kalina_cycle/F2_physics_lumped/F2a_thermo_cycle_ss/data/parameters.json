@@ -1,0 +1,31 @@
+{
+    "component_id": "EC102",
+    "component_name": "Kalina Cycle (KCS, NH3-H2O)",
+    "fidelity": "F2a — Physics-Lumped Thermodynamic Cycle with Transient Drum ODE",
+    "source": "Kalina (1984) J. Eng. Gas Turbines Power 106(4); DiPippo (2012) Geothermal Power Plants 3rd ed.; Patek & Klomfar (2008) Int. J. Refrig. 31; Ibrahim & Klein (1993) ASHRAE Trans. 99(1); Bombarda et al. (2010) Appl. Thermal Eng. 30(2)",
+    "unit": {
+        "name": "Kalina KCS-34 geothermal/waste-heat unit (100 kW class)",
+        "P_rated_kw": {"value": 100.0, "unit": "kW", "note": "Rated net electrical output"},
+        "x_NH3_basic": {"value": 0.82, "unit": "-", "note": "Basic-solution ammonia mass fraction (KCS optimal for ~150C source)"},
+        "p_high_bar": {"value": 30.0, "unit": "bar", "note": "Boiler/separator (high-side) pressure"},
+        "p_low_bar": {"value": 6.0, "unit": "bar", "note": "Condenser/absorber (low-side) pressure"},
+        "T_source_c": {"value": 150.0, "unit": "degC", "note": "Heat-source temperature (geothermal/waste heat)"},
+        "T_sink_c": {"value": 25.0, "unit": "degC", "note": "Heat-sink (cooling water) temperature"},
+        "eta_turbine": {"value": 0.85, "unit": "-", "note": "Turbine isentropic efficiency"},
+        "eta_pump": {"value": 0.75, "unit": "-", "note": "Feed-pump isentropic efficiency"},
+        "eps_recuperator": {"value": 0.80, "unit": "-", "note": "Recuperator (HT regenerator) effectiveness"},
+        "pinch_c": {"value": 10.0, "unit": "K", "note": "Boiler pinch: flash temperature is pinch below source"},
+        "C_thermal_J_K": {"value": 4.0e6, "unit": "J/K", "note": "Lumped boiler/separator thermal capacitance (metal+fluid)"},
+        "UA_loss_W_K": {"value": 200.0, "unit": "W/K", "note": "Ambient heat-loss conductance of the drum"},
+        "T_amb_c": {"value": 20.0, "unit": "degC", "note": "Ambient temperature for loss term"}
+    },
+    "valid_ranges": {
+        "T_source_c": {"min": 80.0, "max": 220.0, "unit": "degC"},
+        "T_sink_c":   {"min": 5.0,  "max": 45.0,  "unit": "degC"},
+        "x_NH3_basic":{"min": 0.30, "max": 0.95, "unit": "-"},
+        "p_high_bar": {"min": 5.0,  "max": 100.0, "unit": "bar"},
+        "p_low_bar":  {"min": 1.0,  "max": 30.0,  "unit": "bar"},
+        "Q_in_kw":    {"min": 10.0, "max": 5000.0, "unit": "kW"},
+        "duration_s": {"min": 1.0,  "max": 86400.0, "unit": "s"}
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "component": "EC083 Borehole Thermal Energy Storage (BTES)",
+    "fidelity": "F1a",
+    "description": "Fully-mixed ground store: E = m*Cp*dT, Q_loss = UA*(T-T_amb)",
+    "unit": {
+        "name": "Generic BTES Field",
+        "source": "Nordell (1994). Borehole Heat Store Design Optimization. Luleå University.",
+        "V_ground": {"value": 10000.0, "unit": "m3", "note": "Ground volume of BTES field"},
+        "rho": {"value": 2500.0, "unit": "kg/m3", "note": "Ground density (rock/soil)"},
+        "Cp": {"value": 800.0, "unit": "J/kgK", "note": "Ground specific heat"},
+        "UA_loss": {"value": 50.0, "unit": "W/K", "note": "Total thermal conductance to surroundings"},
+        "T_initial": {"value": 10.0, "unit": "degC", "note": "Initial/undisturbed ground temperature"},
+        "T_max": {"value": 90.0, "unit": "degC", "note": "Maximum storage temperature"}
+    },
+    "valid_ranges": {
+        "T_store": {"min": 5.0, "max": 95.0, "unit": "degC"},
+        "T_amb": {"min": 0.0, "max": 20.0, "unit": "degC"},
+        "Q_charge": {"min": 0.0, "max": 500000.0, "unit": "W"}
+    }
+}

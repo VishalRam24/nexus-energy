@@ -1,0 +1,60 @@
+{
+    "component_id": "EC027",
+    "component_name": "Solid-State Lithium Battery",
+    "fidelity": "F2a — Thevenin Equivalent-Circuit Model (1-RC/2-RC) with Solid-Electrolyte Arrhenius Resistance and Lumped Thermal ODE",
+    "description": "Thevenin ECM: Coulomb-counted SOC, OCV(SOC) for a Li-metal/cathode cell, series solid-electrolyte ionic resistance R0(T) (dominant, strong Arrhenius), interfacial charge-transfer RC branches R1/C1 (+ optional R2/C2), and a lumped thermal ODE integrated with scipy.solve_ivp.",
+    "source": "Janek & Zeier (2016), Nat. Energy 1, 16141; Takada (2013), Acta Materialia 61, 759-770; Murugan et al. (2007), Angew. Chem. (LLZO garnet); Kato et al. (2016), Nat. Energy 1, 16030 (Li10GeP2S12 sulfide); Plett (2015), Battery Management Systems Vol. I.",
+    "cell": {
+        "name": "Generic solid-state Li-metal cell (LiCoO2 cathode / sulfide-or-garnet solid electrolyte / Li metal anode)",
+        "source": "Janek & Zeier (2016), Nat. Energy 1, 16141; QuantumScape & Solid Power technology disclosures",
+        "nominal_voltage": {"value": 3.8, "unit": "V", "note": "Reused from EC027 F1"},
+        "capacity_ref": {"value": 4.0, "unit": "Ah", "note": "Nominal capacity at T_ref (298.15 K); reused from EC027 F1b"},
+        "voltage_max": {"value": 4.3, "unit": "V"},
+        "voltage_min": {"value": 3.0, "unit": "V"}
+    },
+    "ocv_coefficients": {
+        "description": "OCV(SOC) = a0 + a1*SOC + a2*SOC^2 + a3*SOC^3 + a4*SOC^4 + a5*SOC^5 (monotonic increasing on [0,1])",
+        "source": "Polynomial fit to representative solid-state Li-metal cell discharge curve; reused verbatim from EC027 F1b",
+        "a0": 3.002779720279721,
+        "a1": 4.205224358974421,
+        "a2": -9.586465617716001,
+        "a3": 14.10329254079347,
+        "a4": -10.46765734265828,
+        "a5": 3.0448717948721176
+    },
+    "ecm": {
+        "description": "Series solid-electrolyte ionic resistance R0 (Arrhenius, dominant) + interfacial charge-transfer RC branches. Decomposition of the F1b lumped R_ref=0.045 Ohm into a bulk-ionic and an interfacial part.",
+        "R0_ref": {"value": 0.030, "unit": "Ohm", "note": "Series solid-electrolyte ionic (bulk + grain-boundary) resistance at T_ref. Dominant term in solid-state cells; carries the high activation energy.",
+                   "source": "Janek & Zeier (2016) Nat. Energy 1,16141; Murugan et al. (2007) LLZO; Kato et al. (2016) Li10GeP2S12"},
+        "E_a_R0": {"value": 38000, "unit": "J/mol", "note": "Activation energy for solid-electrolyte ionic conduction. Higher than liquid electrolytes (~15-20 kJ/mol): LLZO garnet ~30-40 kJ/mol, sulfide LGPS ~25-37 kJ/mol. Drives strong cold-temperature penalty.",
+                   "source": "Murugan et al. (2007) Angew. Chem. 46,7778 (LLZO ~0.30 eV); Kato et al. (2016) Nat. Energy 1,16030; Takada (2013) Acta Mat. 61,759"},
+        "R1_ref": {"value": 0.012, "unit": "Ohm", "note": "Interfacial (charge-transfer / SE|electrode contact) resistance at T_ref, first RC branch.",
+                   "source": "Takada (2013) Acta Materialia 61,759-770; Janek & Zeier (2016)"},
+        "E_a_R1": {"value": 50000, "unit": "J/mol", "note": "Activation energy of interfacial charge-transfer; typically even higher than bulk ionic transport (~40-60 kJ/mol).",
+                   "source": "Takada (2013) Acta Mat. 61,759; Wenzel et al. (2016) Solid State Ionics 286,24"},
+        "C1": {"value": 8000.0, "unit": "F", "note": "First RC capacitance -> tau1 = R1*C1 ~ 96 s, slow interfacial relaxation typical of solid-state interphases."},
+        "R2_ref": {"value": 0.004, "unit": "Ohm", "note": "Second (fast) RC interfacial branch at T_ref; optional, used when n_rc=2.",
+                   "source": "Plett (2015) BMS Vol.I (2-RC Thevenin)"},
+        "E_a_R2": {"value": 45000, "unit": "J/mol", "note": "Activation energy of fast interfacial branch."},
+        "C2": {"value": 600.0, "unit": "F", "note": "Second RC capacitance -> tau2 = R2*C2 ~ 2.4 s, fast double-layer relaxation."},
+        "n_rc": {"value": 2, "unit": "-", "note": "Number of RC branches (1 or 2). Default 2-RC Thevenin."}
+    },
+    "thermal": {
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 degC)"},
+        "R_gas": {"value": 8.314, "unit": "J/(mol*K)", "note": "Universal gas constant"},
+        "dOCV_dT": {"value": -0.0004, "unit": "V/K", "note": "Entropic coefficient (reversible heat); reused from EC027 F1b.",
+                    "source": "Thomas & Newman (2003), J. Electrochem. Soc. 150(2), A176-A192"},
+        "m_cell": {"value": 0.090, "unit": "kg", "note": "Cell mass (single pouch/cylindrical solid-state cell)."},
+        "cp_cell": {"value": 800.0, "unit": "J/(kg*K)", "note": "Lumped cell specific heat (Li-ion class ~800-1000).",
+                    "source": "Bernardi et al. (1985) J. Electrochem. Soc. 132,5; typical Li-ion value"},
+        "hA": {"value": 0.45, "unit": "W/K", "note": "Convective heat-transfer coefficient times surface area (natural convection, single cell)."},
+        "T_amb": {"value": 298.15, "unit": "K", "note": "Default ambient temperature."}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "current_A": {"min": -20.0, "max": 20.0, "unit": "A", "note": "Negative=charge, Positive=discharge (load convention)."},
+        "temperature_K": {"min": 263.15, "max": 333.15, "unit": "K", "note": "-10 to 60 degC. Solid-state cells perform very poorly cold (strong R Arrhenius)."},
+        "dt": {"min": 0.01, "max": 10.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 36000.0, "unit": "s"}
+    }
+}

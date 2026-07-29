@@ -1,0 +1,27 @@
+{
+    "component_id": "EC177",
+    "component_name": "Brushless DC Motor (BLDC)",
+    "fidelity": "F2a — dq / phase-domain electrical + mechanical ODE",
+    "source": "Krishnan, R. (2010) Permanent Magnet Synchronous and Brushless DC Motor Drives, CRC Press; Hanselman (2006) Brushless Permanent Magnet Motor Design",
+    "unit": {
+        "name": "Generic 1kW BLDC Motor — Physics-Lumped dq/phase Model",
+        "rated_power_W": {"value": 1000.0, "unit": "W", "note": "Rated mechanical output (reused from F1a)"},
+        "omega_rated_rpm": {"value": 3000.0, "unit": "rpm", "note": "Rated mechanical speed (reused from F1a)"},
+        "Vdc": {"value": 48.0, "unit": "V", "note": "DC-bus / inverter supply voltage"},
+        "Kt": {"value": 0.1, "unit": "Nm/A", "note": "Torque constant T_e = Kt*i (reused from F1a)"},
+        "Ke": {"value": 0.1, "unit": "V/(rad/s)", "note": "Back-EMF constant e = Ke*omega; Ke=Kt in SI for ideal PM machine"},
+        "poles": {"value": 4, "unit": "-", "note": "Number of magnetic poles (reused from F1a)"},
+        "Rs": {"value": 0.5, "unit": "ohm", "note": "Per-phase (line-to-neutral) stator winding resistance"},
+        "Ls": {"value": 1.5e-3, "unit": "H", "note": "Per-phase synchronous inductance (L - M)"},
+        "J": {"value": 1.5e-4, "unit": "kg.m2", "note": "Rotor + load inertia"},
+        "B": {"value": 1.0e-4, "unit": "N.m.s/rad", "note": "Viscous friction coefficient"},
+        "Tc": {"value": 0.02, "unit": "N.m", "note": "Coulomb (static) friction torque"}
+    },
+    "valid_ranges": {
+        "Vdc": {"min": 12.0, "max": 60.0, "unit": "V"},
+        "T_load_Nm": {"min": 0.0, "max": 4.0, "unit": "Nm"},
+        "speed_rpm": {"min": 0.0, "max": 5000.0, "unit": "rpm"},
+        "dt": {"min": 1e-5, "max": 1e-2, "unit": "s"},
+        "duration_s": {"min": 0.001, "max": 5.0, "unit": "s"}
+    }
+}

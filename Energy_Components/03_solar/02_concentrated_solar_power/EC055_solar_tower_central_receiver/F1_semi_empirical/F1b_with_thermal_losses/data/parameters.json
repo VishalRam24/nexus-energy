@@ -1,0 +1,31 @@
+{
+    "component": "EC055 Solar Tower Central Receiver",
+    "fidelity": "F1b",
+    "description": "Heliostat field optical model + explicit receiver thermal losses (radiative Stefan-Boltzmann + convective). F1b adds T_amb variability and DNI variability effects on net receiver output absent from F1a.",
+    "unit": {
+        "name": "Generic 100 MW_th Solar Tower (Gemasolar-like central receiver)",
+        "source": "Wagner & Wendelin (2018), Solar Energy 171, 185-196; Falcone (1986) SAND86-8009; Kolb (2011) SAND2011-2419",
+        "n_heliostats": {"value": 2650, "unit": "count"},
+        "A_heliostat": {"value": 120.0, "unit": "m2"},
+        "A_field": {"value": 318000.0, "unit": "m2"},
+        "eta_field_peak": {"value": 0.65, "unit": "dimensionless", "note": "Peak optical efficiency at zenith"},
+        "atm_atten_coeff": {"value": 0.001, "unit": "1/deg"},
+        "cosine_loss_coeff": {"value": 0.00018, "unit": "1/deg2"},
+        "A_receiver": {"value": 510.0, "unit": "m2"},
+        "absorptivity": {"value": 0.94, "unit": "dimensionless"},
+        "emissivity": {"value": 0.88, "unit": "dimensionless"},
+        "h_conv_base": {"value": 10.0, "unit": "W/m2K", "note": "Natural convection coefficient at wind_speed=0"},
+        "h_conv_wind_coeff": {"value": 3.5, "unit": "W/m2K/(m/s)^0.5", "note": "Forced convection coefficient: h = h_base + h_wind*sqrt(v_wind)"},
+        "stefan_boltzmann": {"value": 5.670374419e-8, "unit": "W/m2K4"},
+        "T_HTF_in": {"value": 290.0, "unit": "degC", "note": "Inlet HTF temperature (cold molten salt)"},
+        "T_HTF_out": {"value": 565.0, "unit": "degC", "note": "Outlet HTF temperature (hot molten salt)"},
+        "T_receiver_design": {"value": 600.0, "unit": "degC", "note": "Typical receiver surface temperature at design point"}
+    },
+    "valid_ranges": {
+        "dni":          {"min": 0.0,  "max": 1100.0, "unit": "W/m2"},
+        "solar_zenith": {"min": 0.0,  "max": 85.0,   "unit": "deg"},
+        "T_receiver":   {"min": 200.0,"max": 800.0,   "unit": "degC"},
+        "T_ambient":    {"min": -15.0,"max": 55.0,    "unit": "degC"},
+        "wind_speed":   {"min": 0.0,  "max": 20.0,    "unit": "m/s"}
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "component_id": "EC132",
+    "component_name": "Tidal Stream Turbine",
+    "fidelity": "F2a — Physics-Lumped Rotor Dynamics (Cp-lambda + J*dw/dt ODE)",
+    "source": "Bahaj & Myers (2003) Renewable Energy 28(14); Bahaj et al. (2007) Renewable Energy 32(3); Fraenkel (2002, 2007) SeaGen / Marine Current Turbines, Proc. IMechE Part A",
+    "unit": {
+        "name": "Generic 1 MW Horizontal-Axis Tidal Stream Turbine (SeaGen-class)",
+        "rated_power": {"value": 1000.0, "unit": "kW", "note": "Rated electrical output; SeaGen rotor ~ 600-1200 kW per rotor (Fraenkel 2007)"},
+        "rotor_diameter": {"value": 20.0, "unit": "m", "note": "Rotor diameter; SeaGen used 16 m twin rotors, IEC-class 15-20 m"},
+        "Cp_max": {"value": 0.45, "unit": "dimensionless", "note": "Peak power coefficient; Bahaj & Myers (2003) measured 0.40-0.45 in cavitation tunnel; Betz limit = 0.593"},
+        "lambda_opt": {"value": 4.5, "unit": "dimensionless", "note": "Optimal tip-speed ratio (R*omega/v); Bahaj et al. (2007) BEM peak ~ TSR 4-6"},
+        "lambda_zero": {"value": 9.0, "unit": "dimensionless", "note": "TSR at which Cp falls back to zero (windmill runaway end of usable curve)"},
+        "rho_water": {"value": 1025.0, "unit": "kg/m3", "note": "Seawater density at S=35 PSU, T=10C; Bahaj & Myers (2003), IEC TS 62600-200. ~837x air (1.225)"},
+        "eta_drivetrain": {"value": 0.92, "unit": "dimensionless", "note": "Gearbox + generator + power-electronics efficiency"},
+        "cut_in_speed": {"value": 0.8, "unit": "m/s", "note": "Minimum current speed for net generation; Fraenkel (2007)"},
+        "rated_speed": {"value": 2.5, "unit": "m/s", "note": "Current speed at which rated power is reached; SeaGen rated ~ 2.4 m/s"},
+        "cut_out_speed": {"value": 4.0, "unit": "m/s", "note": "Maximum operating current speed (storm / structural protection)"},
+        "J_rotor": {"value": 2.5e6, "unit": "kg.m2", "note": "Lumped rotor + drivetrain inertia (rotor inertia ~ 0.5*m_blades*R^2 scale for 20 m rotor)"},
+        "omega_rated": {"value": 1.125, "unit": "rad/s", "note": "Rated rotor angular speed = lambda_opt*v_rated/R = 4.5*2.5/10 = 1.125 rad/s (~10.7 rpm)"},
+        "K_gen_gain": {"value": 795094.0, "unit": "N.m.s2/rad2", "note": "Below-rated optimal torque-control gain T_gen = K*omega^2, K=0.5*rho*A*R^3*Cp_max/lambda_opt^3 (Burton et al. wind-analogue optimal-mode-gain)"}
+    },
+    "valid_ranges": {
+        "current_speed_ms": {"min": 0.0, "max": 4.5, "unit": "m/s"},
+        "water_density": {"min": 1000.0, "max": 1035.0, "unit": "kg/m3"},
+        "tidal_period_s": {"min": 3600.0, "max": 90000.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 90000.0, "unit": "s"},
+        "dt": {"min": 0.5, "max": 600.0, "unit": "s"}
+    }
+}

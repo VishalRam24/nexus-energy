@@ -1,0 +1,32 @@
+{
+    "component": "EC156 Geothermal Heat Pump (GHP)",
+    "fidelity": "F0a",
+    "description": "Empirical heating-COP map vs ground-loop source temperature and sink (supply) temperature. COP tabulated from COP = carnot_fraction * T_sink/(T_sink - T_source) at the F1a design Carnot fraction; bilinear lookup over the breakpoint grid.",
+    "source": "Staffell et al. (2012). Energy Environ. Sci., 5, 9291-9306. ASHRAE (2011). Geothermal Heating and Cooling Applications. Carnot fraction and ratings reuse EC156 F1a cop-map design numbers.",
+    "carnot_fraction": {"value": 0.55, "unit": "dimensionless", "note": "GHP Carnot fraction reused from F1a (higher than ASHP due to stable ground source)"},
+    "auxiliary_power": {"value": 0.1, "unit": "kW", "note": "Circulation pump and auxiliary power, reused from F1a"},
+    "rated_capacity": {"value": 10.0, "unit": "kW_th", "note": "Thermal capacity at rated conditions"},
+    "rated": {
+        "T_source_design": {"value": 9.0, "unit": "degC", "note": "Ground-loop fluid: mean ground 12 degC minus 3 degC loop offset (F1a)"},
+        "T_sink_design": {"value": 45.0, "unit": "degC", "note": "Typical low-temperature hydronic supply"},
+        "COP_rated": {"value": 4.861, "unit": "dimensionless", "note": "Heating COP at T_source=9, T_sink=45 degC"}
+    },
+    "map": {
+        "note": "Heating COP grid. COP = 0.55 * (Tsink+273.15)/((Tsink+273.15)-(Tsource+273.15)). Rows index T_source_degC, cols index T_sink_degC.",
+        "T_source_degC": [0.0, 5.0, 10.0, 15.0, 20.0, 25.0],
+        "T_sink_degC": [35.0, 45.0, 55.0, 65.0],
+        "COP": [
+            [4.842, 3.888, 3.282, 2.861],
+            [5.649, 4.375, 3.610, 3.100],
+            [6.779, 4.999, 4.011, 3.382],
+            [8.474, 5.833, 4.512, 3.720],
+            [11.299, 6.999, 5.157, 4.133],
+            [16.948, 8.749, 6.016, 4.650]
+        ]
+    },
+    "valid_ranges": {
+        "T_source": {"min": 0.0, "max": 25.0, "unit": "degC", "note": "Ground-loop fluid temperature"},
+        "T_sink": {"min": 25.0, "max": 65.0, "unit": "degC"},
+        "part_load_ratio": {"min": 0.0, "max": 1.0, "unit": "dimensionless"}
+    }
+}

@@ -1,0 +1,53 @@
+{
+  "model": "roundtrip_efficiency_curve",
+  "V_nominal": {
+    "value": 20.0,
+    "unit": "V",
+    "note": "stack nominal voltage"
+  },
+  "R_series": {
+    "value": 0.08,
+    "unit": "Ohm",
+    "note": "ohmic series resistance"
+  },
+  "Q_nominal": {
+    "value": 50.0,
+    "unit": "Ah"
+  },
+  "c_rate_breakpoints": {
+    "value": [
+      0.0,
+      0.1,
+      0.2,
+      0.5,
+      1.0,
+      2.0,
+      5.0
+    ],
+    "unit": "1/h",
+    "note": "discharge/charge C-rate breakpoints"
+  },
+  "roundtrip_efficiency": {
+    "value": [
+      0.7035,
+      0.6766,
+      0.65,
+      0.5761,
+      0.4694,
+      0.3018,
+      0.01
+    ],
+    "unit": "fraction",
+    "note": "DC round-trip efficiency at each C-rate"
+  },
+  "eta_rated": {
+    "value": 0.65,
+    "unit": "fraction",
+    "note": "literature rated round-trip eff at C=0.2"
+  },
+  "c_rated": {
+    "value": 0.2,
+    "unit": "1/h"
+  },
+  "source": "EC039 F1a (E0=1.0 V, ASR=2.0 Ohm.cm2, 500 cm2, 20 cells); Aqueous organic RFB round-trip eff ~60-70% (Huskinson et al. Nature 2014)."
+}

@@ -1,0 +1,39 @@
+{
+    "component": "EC020 NCA Battery (Nickel-Cobalt-Aluminum)",
+    "fidelity": "F1b",
+    "description": "SOC-thermal voltage model: V = OCV(SOC) - I*R(T), with Arrhenius resistance and capacity correction",
+    "cell": {
+        "name": "Panasonic NCR18650B (NCA)",
+        "source": "Tremblay & Dessaint (2009), IEEE Trans. Veh. Technol.; Panasonic NCR18650B datasheet",
+        "nominal_voltage": {"value": 3.6, "unit": "V"},
+        "capacity_ref": {"value": 3.5, "unit": "Ah", "note": "Nominal capacity at T_ref"},
+        "voltage_max": {"value": 4.2, "unit": "V"},
+        "voltage_min": {"value": 2.5, "unit": "V"},
+        "R_ref": {"value": 0.022, "unit": "Ohm", "note": "Internal resistance at T_ref (298.15 K)"}
+    },
+    "ocv_coefficients": {
+        "description": "OCV(SOC) = a0 + a1*SOC + a2*SOC^2 + a3*SOC^3 + a4*SOC^4 + a5*SOC^5",
+        "source": "Fitted to NCA OCV data from Tremblay & Dessaint (2009); Panasonic NCR18650B",
+        "a0": 2.7,
+        "a1": 3.8,
+        "a2": -14.0,
+        "a3": 28.0,
+        "a4": -25.0,
+        "a5": 8.7
+    },
+    "thermal": {
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 degC)"},
+        "E_a": {"value": 28000, "unit": "J/mol", "note": "Activation energy for internal resistance (NCA more temp-sensitive)",
+                "source": "Ecker et al. (2015); Schuster et al. (2015), J. Power Sources, 286, 580-589"},
+        "alpha_c": {"value": 0.005, "unit": "1/K", "note": "Linear capacity temperature coefficient",
+                    "source": "Schmalstieg et al. (2014), J. Power Sources, 257, 325-334"},
+        "dOCV_dT": {"value": -0.0005, "unit": "V/K", "note": "Entropic coefficient (NCA slightly larger)",
+                    "source": "Viswanathan et al. (2010), J. Electrochem. Soc., 157(10), A1040-A1046"},
+        "R_gas": {"value": 8.314, "unit": "J/(mol*K)", "note": "Universal gas constant"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "current": {"min": -15.0, "max": 15.0, "unit": "A", "note": "Negative=charge, Positive=discharge"},
+        "temperature": {"min": 253.15, "max": 333.15, "unit": "K", "note": "-20 to 60 degC"}
+    }
+}

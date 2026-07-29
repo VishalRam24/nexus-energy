@@ -1,0 +1,61 @@
+{
+    "component_id": "EC086",
+    "component_name": "Electric Boiler / Resistance Heater",
+    "fidelity": "F1b — Standby Loss + Ambient Dependence",
+    "source": "ASHRAE Handbook HVAC Systems & Equipment (2020) Ch.32; IEA Task 44; BS EN 12828:2012 Heating systems in buildings.",
+    "default_parameters": {
+        "P_rated_kw": 30.0,
+        "eta_nom": 0.99,
+        "PLR_min": 0.05,
+        "thermal_mass_kj_per_k": 12.0,
+        "standby_ua_w_per_k": 8.0,
+        "T_ambient_design": 20.0,
+        "T_fluid_design": 70.0,
+        "P_controls_kw": 0.02
+    },
+    "parameter_metadata": {
+        "P_rated_kw": {
+            "description": "Rated electrical input power",
+            "unit": "kW",
+            "default": 30.0
+        },
+        "eta_nom": {
+            "description": "Nominal conversion efficiency (electrical-to-thermal) during firing",
+            "unit": "-",
+            "default": 0.99,
+            "notes": "Resistance heating ~99%; remainder is jacket radiation"
+        },
+        "PLR_min": {
+            "description": "Minimum stable part-load ratio",
+            "unit": "-",
+            "default": 0.05
+        },
+        "thermal_mass_kj_per_k": {
+            "description": "Effective thermal mass of boiler body (water + casing)",
+            "unit": "kJ/K",
+            "default": 12.0,
+            "notes": "30 kW unit: ~12 kJ/K typical (IEA Task 44)"
+        },
+        "standby_ua_w_per_k": {
+            "description": "Overall heat-transfer coefficient * area for standby jacket loss",
+            "unit": "W/K",
+            "default": 8.0,
+            "notes": "UA * (T_fluid - T_ambient); 8 W/K -> ~0.4 kW at dT=50 K"
+        },
+        "T_ambient_design": {
+            "description": "Design ambient air temperature",
+            "unit": "degC",
+            "default": 20.0
+        },
+        "T_fluid_design": {
+            "description": "Design mean fluid temperature in the boiler vessel",
+            "unit": "degC",
+            "default": 70.0
+        },
+        "P_controls_kw": {
+            "description": "Parasitic electrical draw for controls/pump/fan (always-on)",
+            "unit": "kW",
+            "default": 0.02
+        }
+    }
+}

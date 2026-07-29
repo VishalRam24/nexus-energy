@@ -1,0 +1,34 @@
+{
+    "component": "EC040 Hydrogen-Bromine Flow Battery (HBrFB)",
+    "fidelity": "F1b",
+    "description": "SOC-thermal Nernst + Arrhenius-R model for hydrogen-bromine flow battery stack. Positive: Br2/Br- redox; negative: H+/H2. Temperature range 20-60 degC.",
+    "unit": {
+        "name": "Generic 30-cell H2-Br2 flow battery stack, 200 cm2 electrode area",
+        "source": "Livshits, V. et al. (2006). J. Power Sources 160, 1298; Cho, K. T. et al. (2012). J. Electrochem. Soc. 159, A1806; Tucker, M. C. et al. (2015). J. Electrochem. Soc. 162, A2159",
+        "N_cells": {"value": 30, "unit": "dimensionless"},
+        "electrode_area_cm2": {"value": 200.0, "unit": "cm2"},
+        "E0": {"value": 1.09, "unit": "V", "note": "Standard cell potential Br2/Br- vs H+/H2: 1.065-1.09 V. Using 1.09 V at 25 degC."},
+        "R_cell_ohm_cm2_ref": {"value": 2.5, "unit": "Ohm.cm2", "note": "Area-specific resistance at T_ref; HBrFB has fast H2/H+ kinetics (Pt/C), resistance dominated by membrane (Nafion) ~ 2-3 Ohm.cm2"},
+        "n": {"value": 2, "unit": "dimensionless", "note": "2-electron bromine reduction: Br2 + 2e- <-> 2Br-"},
+        "electrolyte_conc_M": {"value": 3.0, "unit": "mol/L", "note": "HBr electrolyte concentration; Br2 concentration 0.1-1 M"},
+        "pump_loss_coefficient": {"value": 0.025, "unit": "W/(A^2)", "note": "Pump parasitic for electrolyte side; H2 side pump is also included in this coefficient"}
+    },
+    "thermal": {
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 degC)"},
+        "E_a": {"value": 14000, "unit": "J/mol",
+                "note": "Activation energy for HBrFB cell resistance; Nafion membrane proton conductivity E_a ~ 10-20 kJ/mol; using representative 14 kJ/mol.",
+                "source": "Cho et al. (2012) J. Electrochem. Soc. 159, A1806; Tucker et al. (2015) J. Electrochem. Soc. 162, A2159"},
+        "dOCV_dT": {"value": -0.00050, "unit": "V/K per cell",
+                    "note": "Temperature coefficient of standard potential for Br2/Br- vs H2/H+. dE0/dT = -delta_S/(n*F). For Br2(aq)+H2(g)->2HBr(aq): delta_S ~ -97 J/mol/K -> dE0/dT = 97/(2*96485) ~ 0.00050 V/K. Experimental values: -0.4 to -0.6 mV/K cell, using -0.50 mV/K.",
+                    "source": "Livshits et al. (2006) J. Power Sources 160, 1298; Atkins Physical Chemistry (2014) thermodynamic data for HBr(aq) formation"},
+        "T_min": {"value": 293.15, "unit": "K", "note": "20 degC lower limit (Br2 vapor pressure and dissolution constraints)"},
+        "T_max": {"value": 333.15, "unit": "K", "note": "60 degC upper limit (membrane degradation, Br2 volatility above 60 degC)"},
+        "R_gas": {"value": 8.314, "unit": "J/(mol*K)"},
+        "F": {"value": 96485.0, "unit": "C/mol"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.05, "max": 0.95, "unit": "dimensionless"},
+        "current": {"min": -150.0, "max": 150.0, "unit": "A", "note": "positive=discharge; HBrFB supports high current density due to fast H2 kinetics"},
+        "temperature": {"min": 293.15, "max": 333.15, "unit": "K", "note": "20 to 60 degC"}
+    }
+}

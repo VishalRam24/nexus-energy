@@ -1,0 +1,44 @@
+{
+    "component_id": "EC016",
+    "component_name": "Hydrogen Compressor",
+    "fidelity": "F2a — Real-Gas Multistage Reciprocating Compression with Lumped Thermal ODE",
+    "source": "Sdanghi et al. (2019) Renew. Sustain. Energy Rev. 102, 150; Bloch (2006) A Practical Guide to Compressor Technology, 2nd ed., Wiley; Bossel (2006) Proc. IEEE 94(10), 1826; Leachman et al. (2009) J. Phys. Chem. Ref. Data 38(3), 721 (normal-H2 EoS); Aungier (2000) Centrifugal Compressors, ASME Press (intercooler effectiveness)",
+    "unit": {
+        "name": "Generic 4-stage reciprocating H2 compressor (50 kg/h, 20->900 bar)",
+        "n_stages": {"value": 4, "unit": "-", "note": "Number of compression stages in series"},
+        "polytropic_index": {"value": 1.38, "unit": "-", "note": "Polytropic exponent n for real H2 (< gamma due to irreversibility/cooling)"},
+        "eta_isentropic": {"value": 0.78, "unit": "-", "note": "Stage isentropic (adiabatic) efficiency, reciprocating H2"},
+        "eta_polytropic": {"value": 0.75, "unit": "-", "note": "Stage polytropic efficiency"},
+        "eta_mech": {"value": 0.92, "unit": "-", "note": "Mechanical efficiency (bearings, crank, friction)"},
+        "clearance_volume_ratio": {"value": 0.08, "unit": "-", "note": "c = V_clearance/V_swept, sets volumetric efficiency"},
+        "T_inlet": {"value": 298.15, "unit": "K", "note": "First-stage suction temperature"},
+        "P_inlet": {"value": 20.0, "unit": "bar", "note": "Suction pressure"},
+        "P_outlet_max": {"value": 900.0, "unit": "bar", "note": "Final discharge pressure"},
+        "intercooler_effectiveness": {"value": 0.85, "unit": "-", "note": "HX effectiveness; 1.0=cool to coolant T, 0=no cooling"},
+        "T_coolant": {"value": 298.15, "unit": "K", "note": "Intercooler coolant inlet temperature"},
+        "m_thermal": {"value": 120.0, "unit": "kg", "note": "Lumped cylinder + intercooler metal thermal mass"},
+        "cp_metal": {"value": 470.0, "unit": "J/(kg.K)", "note": "Steel specific heat (cast/forged cylinder body)"},
+        "hA_ambient": {"value": 80.0, "unit": "W/K", "note": "Metal-to-ambient heat transfer coefficient x area"},
+        "T_ambient": {"value": 298.15, "unit": "K", "note": "Ambient air temperature"},
+        "frac_heat_to_metal": {"value": 0.35, "unit": "-", "note": "Fraction of compression+friction heat absorbed by metal mass"}
+    },
+    "hydrogen": {
+        "molar_mass": {"value": 0.002016, "unit": "kg/mol", "note": "H2 molar mass"},
+        "R_specific": {"value": 4124.2, "unit": "J/(kg.K)", "note": "Specific gas constant R/M"},
+        "gamma": {"value": 1.41, "unit": "-", "note": "Isentropic exponent cp/cv near ambient"},
+        "cp": {"value": 14307.0, "unit": "J/(kg.K)", "note": "Specific heat at constant P, near ambient"},
+        "LHV": {"value": 120.0, "unit": "MJ/kg", "note": "Lower heating value"},
+        "T_crit": {"value": 33.145, "unit": "K", "note": "Critical temperature (Leachman 2009)"},
+        "P_crit": {"value": 12.964, "unit": "bar", "note": "Critical pressure (Leachman 2009)"},
+        "omega": {"value": -0.219, "unit": "-", "note": "Acentric factor of H2"}
+    },
+    "valid_ranges": {
+        "P_inlet": {"min": 1.0, "max": 100.0, "unit": "bar"},
+        "P_outlet": {"min": 10.0, "max": 1000.0, "unit": "bar"},
+        "T_inlet": {"min": 263.0, "max": 333.0, "unit": "K"},
+        "mass_flow": {"min": 0.0, "max": 0.05, "unit": "kg/s"},
+        "intercooler_effectiveness": {"min": 0.0, "max": 1.0},
+        "dt": {"min": 0.1, "max": 60.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 36000.0, "unit": "s"}
+    }
+}

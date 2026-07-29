@@ -1,0 +1,29 @@
+{
+    "component": "EC163 Single-Phase DC-AC Inverter",
+    "fidelity": "F1b",
+    "description": "Detailed IGBT/diode loss model for single-phase H-bridge inverter: 4 IGBT conduction + switching, 4 freewheeling diode losses, temperature-dependent Vce, thermal balance",
+    "unit": {
+        "name": "Generic 400V/230Vrms Single-Phase Inverter with Detailed Losses",
+        "source": "Semikron Application Manual (2015). Power Semiconductors.",
+        "V_dc": {"value": 400.0, "unit": "V", "note": "DC bus voltage"},
+        "P_rated": {"value": 5000.0, "unit": "W", "note": "Rated output power 5 kW"},
+        "V_ce0": {"value": 1.0, "unit": "V", "note": "IGBT threshold voltage"},
+        "r_ce": {"value": 0.020, "unit": "Ohm", "note": "IGBT slope resistance (20 mohm)"},
+        "E_on": {"value": 5.0e-4, "unit": "J", "note": "IGBT turn-on energy (0.5 mJ)"},
+        "E_off": {"value": 3.0e-4, "unit": "J", "note": "IGBT turn-off energy (0.3 mJ)"},
+        "V_f": {"value": 0.9, "unit": "V", "note": "Freewheeling diode forward voltage"},
+        "r_d": {"value": 0.010, "unit": "Ohm", "note": "Diode slope resistance (10 mohm)"},
+        "E_rr": {"value": 1.0e-4, "unit": "J", "note": "Diode reverse recovery energy (0.1 mJ)"},
+        "f_sw": {"value": 10000.0, "unit": "Hz", "note": "10 kHz PWM switching frequency"},
+        "V_ref": {"value": 400.0, "unit": "V", "note": "Reference voltage for switching energy scaling"},
+        "I_ref": {"value": 15.0, "unit": "A", "note": "Reference current for switching energy scaling"},
+        "T_a": {"value": 25.0, "unit": "degC", "note": "Ambient temperature"},
+        "R_theta": {"value": 3.0, "unit": "degC/W", "note": "Junction-to-ambient thermal resistance"}
+    },
+    "valid_ranges": {
+        "V_dc": {"min": 200.0, "max": 800.0, "unit": "V"},
+        "p_load": {"min": 0.0, "max": 8000.0, "unit": "W"},
+        "m": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "power_factor": {"min": 0.0, "max": 1.0, "unit": "dimensionless"}
+    }
+}

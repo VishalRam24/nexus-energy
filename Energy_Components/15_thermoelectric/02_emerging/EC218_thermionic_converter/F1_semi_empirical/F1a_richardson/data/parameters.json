@@ -1,0 +1,20 @@
+{
+    "component": "EC218 Thermionic Converter",
+    "fidelity": "F1a",
+    "description": "Richardson-Dushman emission model for thermionic converter",
+    "unit": {
+        "name": "Cesium-vapor thermionic diode (typical lab/space unit)",
+        "source": "Hatsopoulos & Gyftopoulos (1979) Thermionic Energy Conversion; Angrist (1982) Direct Energy Conversion",
+        "phi_emitter": {"value": 2.0, "unit": "eV", "note": "Emitter work function (Cs-coated W ~1.8-2.1 eV)"},
+        "phi_collector": {"value": 1.5, "unit": "eV", "note": "Collector work function (Cs-coated surface)"},
+        "A_richardson": {"value": 1200000.0, "unit": "A/(m^2*K^2)", "note": "Richardson constant for W (~120 A/(cm^2*K^2))"},
+        "emitter_area": {"value": 0.0001, "unit": "m^2", "note": "Emitter area 1 cm^2"},
+        "interelectrode_gap": {"value": 0.0001, "unit": "m", "note": "Electrode gap 100 um"},
+        "T_emitter_default": {"value": 1700.0, "unit": "K"},
+        "T_collector_default": {"value": 900.0, "unit": "K"}
+    },
+    "valid_ranges": {
+        "T_emitter": {"min": 1200.0, "max": 2000.0, "unit": "K"},
+        "T_collector": {"min": 400.0, "max": 1200.0, "unit": "K"}
+    }
+}

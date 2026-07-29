@@ -1,0 +1,23 @@
+{
+    "component": "EC158 Boost Converter (Step-Up)",
+    "fidelity": "F2a",
+    "description": "Averaged state-space model (ODE-based dynamics). States: [i_L, v_C].",
+    "unit": {
+        "name": "Generic 12V-to-48V Boost Converter -- Averaged SSM",
+        "source": "Erickson & Maksimovic (2020), Fundamentals of Power Electronics, 3rd ed., Springer",
+        "L": {"value": 200e-6, "unit": "H", "note": "Inductance (200 uH)"},
+        "C": {"value": 220e-6, "unit": "F", "note": "Output capacitance (220 uF)"},
+        "R_L": {"value": 0.1, "unit": "Ohm", "note": "Inductor ESR (100 mohm)"},
+        "f_sw": {"value": 100000.0, "unit": "Hz", "note": "Switching frequency (100 kHz)"},
+        "v_in_nominal": {"value": 12.0, "unit": "V"},
+        "v_out_nominal": {"value": 48.0, "unit": "V"},
+        "R_load_nominal": {"value": 48.0, "unit": "Ohm", "note": "Nominal load resistance (48V/1A)"}
+    },
+    "valid_ranges": {
+        "v_in": {"min": 5.0, "max": 60.0, "unit": "V"},
+        "duty_cycle": {"min": 0.05, "max": 0.90, "unit": "dimensionless"},
+        "R_load": {"min": 5.0, "max": 500.0, "unit": "Ohm"},
+        "dt": {"min": 1e-7, "max": 1e-3, "unit": "s"},
+        "duration_s": {"min": 1e-4, "max": 1.0, "unit": "s"}
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "component": "EC041 Electric Double-Layer Capacitor (EDLC) Supercapacitor",
+    "fidelity": "F1a",
+    "description": "Simple linear-RC model: V_term = Q/C - I*ESR; charge state evolves via dQ/dt = I_cap = I_terminal - V/R_leak",
+    "cell": {
+        "name": "Generic 3000 F EDLC cell (carbon/carbon, ~2.7 V class)",
+        "source": "Maxwell BCAP3000 datasheet; Conway, B. E. (1999), Electrochemical Supercapacitors, Plenum",
+        "capacitance": {"value": 3000.0, "unit": "F"},
+        "esr": {"value": 0.00029, "unit": "Ohm", "note": "Equivalent series resistance ~0.29 mOhm"},
+        "v_max": {"value": 2.7, "unit": "V", "note": "Rated charge voltage"},
+        "v_min": {"value": 0.0, "unit": "V"},
+        "leakage_resistance": {"value": 5500.0, "unit": "Ohm", "note": "Self-discharge resistance, typically ~1 microA/F leakage"}
+    },
+    "valid_ranges": {
+        "voltage": {"min": 0.0, "max": 2.7, "unit": "V"},
+        "current": {"min": -400.0, "max": 400.0, "unit": "A", "note": "Negative=charge, Positive=discharge"}
+    }
+}

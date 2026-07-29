@@ -1,0 +1,22 @@
+{
+  "component": "EC103 Supercritical CO2 Brayton Cycle",
+  "fidelity": "F1a",
+  "description": "Recuperated sCO2 Brayton cycle: eta = eta_rated * (1 - a*(1-PLR)^2), Carnot capped.",
+  "cycle": {
+    "name": "Recompression sCO2 Brayton (Allam-style not modelled here)",
+    "source": "Dostal, Driscoll & Hejzlar (2004) MIT-ANP-TR-100; Crespi et al. (2017) Appl. Energy 195, 152-183; Wright et al. (2010) SAND2010-0171.",
+    "P_rated":     {"value": 10e6,   "unit": "W",    "note": "Rated electrical output (10 MWe demonstrator class)"},
+    "eta_rated":   {"value": 0.48,   "unit": "-",    "note": "Rated cycle thermal efficiency at design point (~0.45-0.50 typical)"},
+    "a_partload":  {"value": 0.10,   "unit": "-",    "note": "Part-load loss coefficient (sCO2 is relatively flat)"},
+    "T_in":        {"value": 700.0,  "unit": "degC", "note": "Turbine inlet temperature (sCO2 design point)"},
+    "T_reject":    {"value": 32.0,   "unit": "degC", "note": "Compressor inlet (near critical point, 31.1°C)"},
+    "P_high":      {"value": 25.0,   "unit": "MPa",  "note": "High-side pressure (typical sCO2 ~20-30 MPa)"},
+    "P_low":       {"value": 7.5,    "unit": "MPa",  "note": "Low-side pressure (above critical 7.38 MPa)"},
+    "PLR_min":     {"value": 0.25,   "unit": "-",    "note": "Minimum stable part-load ratio"}
+  },
+  "valid_ranges": {
+    "power_output": {"min": 0.0,   "max": 1e9,   "unit": "W"},
+    "T_in":         {"min": 500.0, "max": 800.0, "unit": "degC"},
+    "T_reject":     {"min": 25.0,  "max": 60.0,  "unit": "degC"}
+  }
+}

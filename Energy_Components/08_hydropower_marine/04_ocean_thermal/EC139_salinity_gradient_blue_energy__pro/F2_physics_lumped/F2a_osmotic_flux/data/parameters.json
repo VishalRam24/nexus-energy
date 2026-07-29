@@ -1,0 +1,34 @@
+{
+    "component_id": "EC139",
+    "component_name": "Salinity Gradient Blue Energy (Pressure-Retarded Osmosis, PRO)",
+    "fidelity": "F2a — Osmotic Flux Lumped Module (Jw / Js with concentration polarization + module ODE)",
+    "source": "Loeb (1976) J. Membr. Sci. 1:49; Lee, Baker, Lonsdale (1981) J. Membr. Sci. 8:141; Achilli, Cath & Childress (2009) J. Membr. Sci. 343:42; Yip & Elimelech (2011) Environ. Sci. Technol. 45:10273; Straub, Deshmukh & Elimelech (2016) Energy Environ. Sci. 9:31; Statkraft Tofte pilot (2009).",
+    "unit": {
+        "name": "Seawater(draw)/River(feed) PRO module — physics-lumped osmotic flux",
+        "A_perm": {"value": 5.0e-12, "unit": "m/(s.Pa)", "note": "Water permeability coefficient (A). 5e-12 m/s/Pa ~= 1.8 L/m2/h/bar, typical TFC PRO membrane (Yip & Elimelech 2011)"},
+        "B_salt": {"value": 1.0e-7, "unit": "m/s", "note": "Salt (NaCl) permeability coefficient (B). Reverse salt flux driver (Achilli 2009)"},
+        "S_struct": {"value": 3.0e-4, "unit": "m", "note": "Membrane support layer structural parameter S = t*tau/eps (300 um). Governs internal concentration polarization (Lee et al. 1981)"},
+        "k_ecp": {"value": 4.0e-5, "unit": "m/s", "note": "External (draw-side) mass-transfer coefficient for concentration polarization (Achilli 2009)"},
+        "D_salt": {"value": 1.5e-9, "unit": "m2/s", "note": "NaCl diffusion coefficient in water at 25 C (CRC Handbook)"},
+        "A_mem": {"value": 100.0, "unit": "m2", "note": "Total membrane area of the lumped module"},
+        "C_draw_g_per_L": {"value": 35.0, "unit": "g/L", "note": "Draw (seawater) salt concentration"},
+        "C_feed_g_per_L": {"value": 0.5, "unit": "g/L", "note": "Feed (river water) salt concentration"},
+        "T_K": {"value": 298.15, "unit": "K", "note": "Operating temperature"},
+        "M_NaCl": {"value": 58.44, "unit": "g/mol", "note": "Molar mass NaCl"},
+        "nu_NaCl": {"value": 2, "unit": "-", "note": "van't Hoff dissociation factor (Na+ + Cl-)"},
+        "V_draw": {"value": 1.0, "unit": "m3", "note": "Lumped draw-side volume for module concentration ODE"},
+        "Q_draw": {"value": 0.02, "unit": "m3/s", "note": "Draw-side volumetric throughput (sets residence time)"},
+        "eta_turbine": {"value": 0.90, "unit": "-", "note": "Hydro-turbine efficiency converting pressurized permeate to electricity (Statkraft)"},
+        "eta_pump": {"value": 0.80, "unit": "-", "note": "Feed/draw pump efficiency"},
+        "eta_px": {"value": 0.95, "unit": "-", "note": "Pressure exchanger (energy recovery device) efficiency"},
+        "dP_pump_feed_Pa": {"value": 1.0e5, "unit": "Pa", "note": "Feed-side pumping head (filtration + circulation, 1 bar)"}
+    },
+    "valid_ranges": {
+        "delta_P_bar": {"min": 0.0, "max": 30.0, "unit": "bar"},
+        "C_draw_g_per_L": {"min": 20.0, "max": 70.0, "unit": "g/L"},
+        "C_feed_g_per_L": {"min": 0.1, "max": 5.0, "unit": "g/L"},
+        "T_K": {"min": 278.15, "max": 313.15, "unit": "K"},
+        "duration_s": {"min": 1.0, "max": 36000.0, "unit": "s"},
+        "dt": {"min": 0.1, "max": 60.0, "unit": "s"}
+    }
+}

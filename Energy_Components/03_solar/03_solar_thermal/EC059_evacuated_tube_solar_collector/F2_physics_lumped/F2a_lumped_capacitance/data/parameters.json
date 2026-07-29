@@ -1,0 +1,30 @@
+{
+    "component_id": "EC059",
+    "component_name": "Evacuated Tube Solar Collector",
+    "fidelity": "F2a — Lumped-Capacitance Dynamic Energy Balance ODE",
+    "source": "Duffie & Beckman (2013) 'Solar Engineering of Thermal Processes', 4th ed., Wiley, Ch.6 & Ch.10; EN 12975 / ISO 9806:2017 quasi-dynamic test method; SRCC OG-100 certified ETC ratings",
+    "unit": {
+        "name": "Generic 30-tube Evacuated Tube Collector (Apricus AP-30 style) — physics-lumped",
+        "area": {"value": 3.0, "unit": "m2", "note": "Gross aperture area (~30 tubes)"},
+        "optical_eff": {"value": 0.72, "unit": "-", "note": "Zero-loss optical efficiency eta_0 = (tau*alpha)_eff at normal incidence; equals F1 eta_0. Fraction of incident beam absorbed by selective absorber."},
+        "emissivity": {"value": 0.08, "unit": "-", "note": "Hemispherical emissivity of selective absorber coating (e.g. sputtered AlN/Al cermet). Low-e drives radiation-dominated loss in evacuated annulus."},
+        "absorber_area_ratio": {"value": 0.78, "unit": "-", "note": "Ratio of absorber radiating area to gross aperture area (cylindrical absorber tubes vs flat aperture)."},
+        "U_residual": {"value": 0.55, "unit": "W/m2K", "note": "Residual non-radiative conduction loss coefficient: end-cap / header conduction + residual gas conduction in the vacuum annulus. Small because vacuum suppresses convection. Duffie & Beckman Ch.6; SRCC ETC data."},
+        "b0": {"value": 0.18, "unit": "-", "note": "Incidence angle modifier coefficient (Duffie & Beckman Eq. 6.17.6) for tubular geometry."},
+        "C_thermal": {"value": 18000.0, "unit": "J/K", "note": "Lumped thermal capacitance of absorber + manifold fluid (effective heat capacity). EN 12975 effective thermal capacity ~5-7 kJ/m2K * area + fluid hold-up."},
+        "m_dot": {"value": 0.05, "unit": "kg/s", "note": "Mass flow rate of HTF (water)"},
+        "cp_fluid": {"value": 4182.0, "unit": "J/kgK", "note": "Specific heat capacity of water"},
+        "T_in_default": {"value": 40.0, "unit": "degC", "note": "Default collector inlet (return) temperature"}
+    },
+    "constants": {
+        "sigma": {"value": 5.670374419e-8, "unit": "W/m2K4", "note": "Stefan-Boltzmann constant"}
+    },
+    "valid_ranges": {
+        "irradiance": {"min": 0.0, "max": 1200.0, "unit": "W/m2"},
+        "T_inlet":    {"min": 10.0, "max": 180.0, "unit": "degC", "note": "ETCs operate at higher T than flat plate"},
+        "T_ambient":  {"min": -20.0, "max": 45.0, "unit": "degC"},
+        "incidence_angle": {"min": 0.0, "max": 80.0, "unit": "deg"},
+        "dt": {"min": 1.0, "max": 600.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 86400.0, "unit": "s"}
+    }
+}

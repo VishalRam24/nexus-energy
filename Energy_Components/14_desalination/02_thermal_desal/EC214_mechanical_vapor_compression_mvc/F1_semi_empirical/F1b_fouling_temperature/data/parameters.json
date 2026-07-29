@@ -1,0 +1,25 @@
+{
+    "component": "EC214 Mechanical Vapor Compression (MVC)",
+    "fidelity": "F1b",
+    "description": "MVC model with SEC vs recovery, BPE correction, compressor model, evaporator fouling",
+    "unit": {
+        "name": "Single-stage MVC unit for seawater",
+        "source": "Mistry et al. (2011) J. Membr. Sci.; Darwish (1988) Desalination",
+        "T_evap_ref": {"value": 70.0, "unit": "degC", "note": "Reference evaporation temperature"},
+        "S_feed": {"value": 35.0, "unit": "g/kg", "note": "Feed seawater salinity (35 g/kg = 35 ppt)"},
+        "eta_comp": {"value": 0.75, "unit": "dimensionless", "note": "Compressor isentropic efficiency (Darwish: 0.7-0.8)"},
+        "eta_HX": {"value": 0.85, "unit": "dimensionless", "note": "Feed preheater effectiveness"},
+        "dT_comp": {"value": 2.5, "unit": "degC", "note": "Compressor temperature lift at design (Darwish: 2-5 degC)"},
+        "gamma_steam": {"value": 1.13, "unit": "dimensionless", "note": "Cp/Cv for steam at evaporation conditions"},
+        "U0": {"value": 3000.0, "unit": "W/(m2*K)", "note": "Clean evaporator overall heat transfer coefficient"},
+        "k_foul": {"value": 0.10, "unit": "1/year", "note": "HX fouling rate (~10% U-reduction per year due to scaling)"},
+        "A_HX_m2": {"value": 500.0, "unit": "m2", "note": "Evaporator heat transfer area"},
+        "k_BPE": {"value": 0.0162, "unit": "degC/(g/kg)", "note": "BPE coefficient for NaCl solution"}
+    },
+    "valid_ranges": {
+        "recovery": {"min": 0.30, "max": 0.75, "unit": "dimensionless"},
+        "T_evap_degC": {"min": 50.0, "max": 80.0, "unit": "degC"},
+        "operating_hours": {"min": 0.0, "max": 87600.0, "unit": "hours"},
+        "feed_flow_m3_h": {"min": 1.0, "max": 1000.0, "unit": "m3/h"}
+    }
+}

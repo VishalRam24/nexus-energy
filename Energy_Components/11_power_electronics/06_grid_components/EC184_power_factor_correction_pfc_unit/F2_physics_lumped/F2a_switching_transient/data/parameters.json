@@ -1,0 +1,27 @@
+{
+    "component": "EC184 Power Factor Correction Unit",
+    "fidelity": "F2a",
+    "description": "Physics-lumped shunt capacitor bank PFC. Steady-state reactive compensation Qc = P*(tan(phi1)-tan(phi2)) with achieved PF, released capacity and voltage rise; detuned-reactor resonance/series-resonant frequency; lumped RLC energization-transient ODE (inrush) via scipy.solve_ivp.",
+    "unit": {
+        "name": "Generic 11 kV Shunt Capacitor Bank, 1 MVAR (optionally detuned)",
+        "source": "IEEE Std 1036-2010 (Guide for Application of Shunt Power Capacitors); Grainger & Stevenson (1994) Power System Analysis, McGraw-Hill; IEC 60871-1.",
+        "Q_rated_kVAR": {"value": 1000.0, "unit": "kVAR", "note": "Total capacitor bank reactive rating at rated voltage"},
+        "V_rated_kV": {"value": 11.0, "unit": "kV", "note": "Line-to-line rated voltage"},
+        "f_system_Hz": {"value": 50.0, "unit": "Hz", "note": "System fundamental frequency"},
+        "C_uF": {"value": 26.31, "unit": "uF", "note": "Per-phase delta bank capacitance: C = Q/(2*pi*f*V_LL^2) = 1e6/(2*pi*50*11000^2) per phase grouping; documented value is the lumped single-phase-equivalent used in the energization ODE."},
+        "n_stages": {"value": 4, "unit": "count", "note": "Number of switched/automatic capacitor stages (250 kVAR each)"},
+        "detuning_pct": {"value": 7.0, "unit": "percent", "note": "Detuned-reactor tuning p (e.g. p=7% => series resonance at 1/sqrt(p)=3.78x fundamental, below 5th harmonic)"},
+        "loss_factor": {"value": 0.003, "unit": "dimensionless", "note": "Bank dielectric+switching losses as fraction of Qc (0.3%)"},
+        "esr_ohm": {"value": 0.05, "unit": "Ohm", "note": "Lumped equivalent series resistance of bank+reactor loop, damps energization transient (IEEE 1036 inrush)"},
+        "Lsys_mH": {"value": 9.55, "unit": "mH", "note": "System (source) inductance seen at the bank, per-phase equivalent; X = 2*pi*f*L = 3.0 Ohm => SCC ~ 40 MVA at 11 kV"},
+        "pf_target": {"value": 0.95, "unit": "dimensionless", "note": "Default target (lagging) power factor"}
+    },
+    "valid_ranges": {
+        "P_kW": {"min": 0.0, "max": 10000.0, "unit": "kW"},
+        "pf_initial": {"min": 0.5, "max": 0.99, "unit": "dimensionless"},
+        "pf_target": {"min": 0.8, "max": 1.0, "unit": "dimensionless"},
+        "Q_comp_kVAR": {"min": 0.0, "max": 2000.0, "unit": "kVAR"},
+        "Lsys_mH": {"min": 0.1, "max": 200.0, "unit": "mH"},
+        "duration_s": {"min": 0.001, "max": 1.0, "unit": "s"}
+    }
+}

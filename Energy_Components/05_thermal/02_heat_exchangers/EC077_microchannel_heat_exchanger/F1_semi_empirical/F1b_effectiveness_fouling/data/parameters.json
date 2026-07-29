@@ -1,0 +1,26 @@
+{
+    "component": "EC077 Microchannel Heat Exchanger",
+    "fidelity": "F1b",
+    "description": "epsilon-NTU with fouling resistances and part-load LMTD correction for cross-flow microchannels",
+    "unit": {
+        "name": "Aluminum microchannel HX (HVAC condenser class, 0.5 mm Dh)",
+        "source": "Incropera & DeWitt (2006) Ch.11; TEMA 10th ed.; Kandlikar & Shah (2012)",
+        "U_clean": {"value": 2500.0, "unit": "W/m2K", "note": "Clean overall HTC — high due to small Dh (~0.5 mm), forced convection both sides"},
+        "A": {"value": 2.0, "unit": "m2", "note": "Total heat transfer surface area"},
+        "cp_hot": {"value": 1006.0, "unit": "J/kgK", "note": "Specific heat of hot-side fluid (air)"},
+        "cp_cold": {"value": 4186.0, "unit": "J/kgK", "note": "Specific heat of cold-side fluid (water/glycol)"},
+        "Rf_hot_default": {"value": 0.0001, "unit": "m2K/W", "note": "Fouling resistance hot-side (air: clean)"},
+        "Rf_cold_default": {"value": 0.0002, "unit": "m2K/W", "note": "Fouling resistance cold-side (treated water, TEMA)"},
+        "flow_config": {"value": "crossflow", "note": "One-pass cross-flow, unmixed-unmixed"},
+        "f_lmtd_a": {"value": 0.92, "unit": "-", "note": "LMTD correction at full load (F for cross-flow vs counter-flow)"},
+        "f_lmtd_b": {"value": 0.05, "unit": "-", "note": "LMTD correction magnitude of decrease per unit drop in PLR: F = f_a - f_b*(1-PLR)"}
+    },
+    "valid_ranges": {
+        "T_h_in": {"min": 30.0, "max": 120.0, "unit": "degC"},
+        "T_c_in": {"min": 5.0, "max": 40.0, "unit": "degC"},
+        "m_dot_hot": {"min": 0.01, "max": 2.0, "unit": "kg/s"},
+        "m_dot_cold": {"min": 0.01, "max": 1.0, "unit": "kg/s"},
+        "Rf": {"min": 0.0, "max": 0.005, "unit": "m2K/W", "note": "Up to dirty industrial (TEMA)"},
+        "PLR": {"min": 0.5, "max": 1.0, "unit": "-"}
+    }
+}

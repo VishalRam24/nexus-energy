@@ -1,0 +1,46 @@
+{
+    "component_id": "EC047",
+    "component_name": "Thin-Film CIGS PV",
+    "fidelity": "F2a — Physics-Lumped Single-Diode (De Soto) + Lambert-W I-V + Thermal ODE",
+    "source": "De Soto, Klein & Beckman (2006) Solar Energy 80(1) 78-88; Jain & Kapoor (2004) Sol. Energy Mater. Sol. Cells 81(2) 269-277 (Lambert-W I-V); Faiman (2008) Prog. Photovolt. 16(4) 307-315; Jordan & Kurtz (2013) Prog. Photovolt. 21(1) 12-29; Green et al. (2019) Prog. Photovolt. 27(1); Solar Frontier SF170-S datasheet",
+    "unit": {
+        "name": "Solar Frontier SF170-S (CIGS thin-film, ~170 W) — Physics-Lumped",
+        "technology": "CIGS (Cu(In,Ga)Se2)",
+        "p_mp_stc": {"value": 170.0, "unit": "W", "note": "Rated max power at STC"},
+        "v_oc_stc": {"value": 112.0, "unit": "V"},
+        "i_sc_stc": {"value": 2.20, "unit": "A"},
+        "v_mp_stc": {"value": 87.5, "unit": "V"},
+        "i_mp_stc": {"value": 1.95, "unit": "A"},
+
+        "cells_in_series": {"value": 144, "unit": "cells", "note": "Ns for module"},
+        "area": {"value": 1.232, "unit": "m2", "note": "Module aperture area"},
+        "alpha_sc": {"value": 0.0002, "unit": "A/K", "note": "Isc temperature coefficient"},
+        "gamma_pmp": {"value": -0.0031, "unit": "1/K", "note": "Power tempco -0.31 %/K for CIGS; lower magnitude than poly-Si (-0.39 %/K), reflecting low-temp-coefficient advantage"},
+
+        "I_L_ref": {"value": 1.85, "unit": "A", "note": "Light-generated (photo) current at STC"},
+        "I_o_ref": {"value": 5.0e-12, "unit": "A", "note": "Diode reverse-saturation current at STC"},
+        "R_s": {"value": 2.5, "unit": "Ohm", "note": "Lumped series resistance"},
+        "R_sh_ref": {"value": 1000.0, "unit": "Ohm", "note": "Shunt resistance at STC; scales as G_ref/G"},
+        "a_ref": {"value": 4.5, "unit": "V", "note": "Modified ideality factor a = n*Ns*k*T/q at STC"},
+        "EgRef": {"value": 1.15, "unit": "eV", "note": "CIGS bandgap at STC; tunable 1.0-1.7 eV via Ga/(In+Ga) ratio (CuInSe2 ~1.0 eV -> CuGaSe2 ~1.7 eV)"},
+        "dEgdT": {"value": -0.00011, "unit": "eV/K", "note": "Bandgap temperature coefficient"},
+
+        "NOCT": {"value": 45.0, "unit": "degC", "note": "Nominal operating cell temperature (thin-film)"},
+        "T_NOCT_amb": {"value": 20.0, "unit": "degC", "note": "Ambient at NOCT rating"},
+        "G_NOCT": {"value": 800.0, "unit": "W/m2", "note": "Irradiance at NOCT rating"},
+
+        "thermal_mass": {"value": 11000.0, "unit": "J/(m2.K)", "note": "Areal heat capacity of glass/CIGS/glass laminate (~ Cglass*t); Jones & Underwood (2001) typical 11-13 kJ/m2K"},
+        "U_const": {"value": 25.0, "unit": "W/(m2.K)", "note": "Faiman/Sandia U0 constant-wind heat-loss coefficient"},
+        "U_wind": {"value": 1.2, "unit": "W.s/(m3.K)", "note": "Faiman U1 wind-dependent heat-loss coefficient"},
+        "absorptance": {"value": 0.9, "unit": "-", "note": "Effective solar absorptance (tau*alpha) of module"}
+    },
+    "valid_ranges": {
+        "irradiance": {"min": 0.0, "max": 1200.0, "unit": "W/m2"},
+        "T_ambient": {"min": -20.0, "max": 50.0, "unit": "degC"},
+        "wind_speed": {"min": 0.0, "max": 20.0, "unit": "m/s"},
+        "cell_temperature": {"min": -20.0, "max": 95.0, "unit": "degC"},
+        "dt": {"min": 1.0, "max": 600.0, "unit": "s"},
+        "duration_s": {"min": 60.0, "max": 86400.0, "unit": "s"},
+        "note": "STC = 1000 W/m2, 25 degC cell. Efficiency physically bounded 0 < eff < 0.21 (lab CIGS record ~23.4%; commercial module ~14-16%)."
+    }
+}

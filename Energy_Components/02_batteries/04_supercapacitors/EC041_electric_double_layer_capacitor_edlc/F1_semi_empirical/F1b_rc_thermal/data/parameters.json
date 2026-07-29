@@ -1,0 +1,27 @@
+{
+    "component": "EC041 Electric Double-Layer Capacitor (EDLC) Supercapacitor",
+    "fidelity": "F1b",
+    "description": "RC thermal model: V_term = V_cap - I*ESR(T). Extends F1a with Arrhenius ESR(T), temperature-dependent capacitance, and heat generation.",
+    "cell": {
+        "name": "Generic 3000 F EDLC cell (carbon/carbon, ~2.7 V class)",
+        "source": "Maxwell BCAP3000 datasheet; Conway (1999), Electrochemical Supercapacitors, Plenum; Berrueta et al. (2019), IEEE Trans. Ind. Electron.",
+        "capacitance_ref": {"value": 3000.0, "unit": "F", "note": "Capacitance at T_ref (298.15 K)"},
+        "esr_ref": {"value": 0.00029, "unit": "Ohm", "note": "ESR at T_ref (298.15 K), ~0.29 mOhm"},
+        "v_max": {"value": 2.7, "unit": "V", "note": "Rated charge voltage"},
+        "v_min": {"value": 0.0, "unit": "V"},
+        "leakage_resistance": {"value": 5500.0, "unit": "Ohm", "note": "Self-discharge resistance (T_ref); weakly temperature dependent, approximated constant"}
+    },
+    "thermal": {
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 degC)"},
+        "E_a_esr": {"value": 8000, "unit": "J/mol", "note": "Activation energy for ESR; EDLC ionic transport in porous carbon is weakly activated compared to batteries",
+                    "source": "Berrueta et al. (2019), IEEE Trans. Ind. Electron. 66(6), 4750; Rafik et al. (2007), J. Power Sources 165, 928"},
+        "alpha_C": {"value": 0.003, "unit": "1/K", "note": "Capacitance temperature coefficient; EDL capacitance increases ~0.3%/K due to electrolyte dielectric and ion mobility",
+                    "source": "Rafik et al. (2007), J. Power Sources 165, 928-934; Maxwell application note AN-1006"},
+        "R_gas": {"value": 8.314, "unit": "J/(mol*K)"}
+    },
+    "valid_ranges": {
+        "v_cap": {"min": 0.0, "max": 2.7, "unit": "V"},
+        "current": {"min": -400.0, "max": 400.0, "unit": "A", "note": "Negative=charge, Positive=discharge"},
+        "temperature": {"min": 233.15, "max": 338.15, "unit": "K", "note": "-40 to 65 degC; EDLC operates over very wide temperature range"}
+    }
+}

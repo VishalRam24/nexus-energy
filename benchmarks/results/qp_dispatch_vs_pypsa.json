@@ -1,0 +1,42 @@
+{
+  "T": 24,
+  "seed": 0,
+  "rows": [
+    {
+      "framework": "pypsa_highs_qp",
+      "status": "optimal",
+      "objective": 230451.27230400743,
+      "build_ms": 25.88570900002196,
+      "solve_ms": 126.50287500002833
+    },
+    {
+      "framework": "nexus_highs",
+      "status": "optimal",
+      "objective": 230451.27230400743,
+      "build_ms": 0.20050000000537693,
+      "solve_ms": 0.9195830000408023
+    },
+    {
+      "framework": "nexus_osqp",
+      "status": "optimal",
+      "objective": 230451.27229310226,
+      "build_ms": 0.06533299995226116,
+      "solve_ms": 5.305417000045054
+    },
+    {
+      "framework": "nexus_clarabel",
+      "status": "optimal",
+      "objective": 230451.27230879854,
+      "build_ms": 0.06966699993427028,
+      "solve_ms": 4.08066600004986
+    },
+    {
+      "framework": "nexus_ipopt",
+      "status": "optimal",
+      "objective": 230451.27160192808,
+      "build_ms": 0.06695799993394758,
+      "solve_ms": 19.613875000004555
+    }
+  ],
+  "rel_spread": 3.067331549125178e-09
+}

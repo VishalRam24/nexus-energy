@@ -1,0 +1,54 @@
+{
+    "component": "EC187 HVDC Converter Station",
+    "fidelity": "F0a",
+    "description": "Empirical loss-fraction lookup vs loading (np.interp); power_out = power_in*(1-loss)",
+    "source": "Cigre TB 492 (2012), VSC Transmission; ABB HVDC Reference Projects (reused from F1a)",
+    "load_fraction_breakpoints": {
+        "value": [
+            0.1,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+        ],
+        "unit": "fraction_of_rating",
+        "note": "S_actual / S_rated (or P/P_rated)"
+    },
+    "loss_fraction_breakpoints": {
+        "value": [
+            0.0505,
+            0.02125,
+            0.0125,
+            0.010417,
+            0.01
+        ],
+        "unit": "dimensionless",
+        "note": "loss / throughput at each loading point"
+    },
+    "p_rated": {
+        "value": 1000.0,
+        "unit": "MW",
+        "note": "rated throughput from F1a"
+    },
+    "loss_fraction_rated": {
+        "value": 0.01,
+        "unit": "dimensionless",
+        "note": "loss fraction at full load (reused from F1a)"
+    },
+    "V_dc_kV": {
+        "value": 320.0,
+        "unit": "kV"
+    },
+    "type": {
+        "value": "VSC"
+    },
+    "P_no_load_MW": {
+        "value": 5.0,
+        "unit": "MW",
+        "note": "no-load losses (reused from F1a)"
+    },
+    "Q_capability_MVAR": {
+        "value": 400.0,
+        "unit": "MVAR"
+    }
+}

@@ -1,0 +1,34 @@
+{
+    "component": "EC169 Variable Frequency Drive (VFD)",
+    "fidelity": "F1b",
+    "description": "VFD loss model: diode bridge rectifier + DC link ESR + IGBT inverter (conduction+switching+diode recovery)",
+    "unit": {
+        "name": "Generic 3-phase VFD (15 kW, 400V AC supply)",
+        "source": "IEC 61800-9-2:2017; Semikron Application Manual (2015)",
+        "V_dc": {"value": 565.0, "unit": "V", "note": "DC link voltage (≈ √2 * 400 V)"},
+        "P_rated": {"value": 15000.0, "unit": "W", "note": "Rated motor power"},
+        "V_ac_ll": {"value": 400.0, "unit": "V", "note": "AC supply line-to-line RMS voltage"},
+        "f_base": {"value": 50.0, "unit": "Hz", "note": "Motor base frequency"},
+        "V_f_rect": {"value": 0.85, "unit": "V", "note": "Rectifier diode forward voltage"},
+        "r_d_rect": {"value": 0.006, "unit": "Ohm", "note": "Rectifier diode slope resistance"},
+        "R_esr": {"value": 0.010, "unit": "Ohm", "note": "DC link capacitor ESR"},
+        "k_ripple": {"value": 0.15, "unit": "dimensionless", "note": "Ripple current fraction"},
+        "V_ce0": {"value": 1.65, "unit": "V", "note": "IGBT threshold voltage"},
+        "r_ce": {"value": 0.007, "unit": "Ohm", "note": "IGBT slope resistance"},
+        "E_on": {"value": 0.003, "unit": "J", "note": "IGBT turn-on energy at V_ref/I_ref"},
+        "E_off": {"value": 0.0025, "unit": "J", "note": "IGBT turn-off energy"},
+        "V_f_inv": {"value": 1.3, "unit": "V", "note": "Inverter freewheeling diode Vf"},
+        "r_d_inv": {"value": 0.006, "unit": "Ohm", "note": "Inverter diode slope resistance"},
+        "E_rr": {"value": 0.0015, "unit": "J", "note": "Inverter diode reverse recovery energy"},
+        "f_sw": {"value": 8000.0, "unit": "Hz", "note": "Inverter switching frequency"},
+        "V_ref": {"value": 400.0, "unit": "V", "note": "Reference voltage for switching loss scaling"},
+        "I_ref": {"value": 40.0, "unit": "A", "note": "Reference current"},
+        "R_th_ja": {"value": 0.25, "unit": "K/W", "note": "IGBT junction-to-ambient thermal resistance"},
+        "T_a": {"value": 40.0, "unit": "degC", "note": "Ambient temperature (inside drive enclosure)"}
+    },
+    "valid_ranges": {
+        "p_motor": {"min": 0.0, "max": 18000.0, "unit": "W"},
+        "speed_pu": {"min": 0.0, "max": 1.0, "unit": "pu"},
+        "power_factor": {"min": 0.6, "max": 1.0, "unit": "dimensionless"}
+    }
+}

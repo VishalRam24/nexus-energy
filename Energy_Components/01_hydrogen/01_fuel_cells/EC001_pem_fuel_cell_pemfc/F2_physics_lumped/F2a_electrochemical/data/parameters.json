@@ -1,0 +1,30 @@
+{
+    "component_id": "EC001",
+    "component_name": "PEM Fuel Cell (PEMFC)",
+    "fidelity": "F2a — Full Electrochemical Model with Thermal ODE",
+    "source": "Springer et al. (1991), Amphlett et al. (1995), Barbir (2005) PEM Fuel Cells: Theory and Practice",
+    "unit": {
+        "name": "Generic 5kW PEMFC Stack — Physics-Lumped Electrochemical",
+        "N_cells": {"value": 40, "unit": "-", "note": "Number of cells in stack"},
+        "A_cell": {"value": 232.0, "unit": "cm2", "note": "Active cell area (Ballard Mark IV)"},
+        "t_mem": {"value": 0.0178, "unit": "cm", "note": "Nafion 117 membrane thickness (178 um)"},
+        "lambda_mem": {"value": 14.0, "unit": "-", "note": "Membrane water content (fully humidified)"},
+        "j_L": {"value": 1.5, "unit": "A/cm2", "note": "Limiting current density"},
+        "alpha_cathode": {"value": 0.5, "unit": "-", "note": "Cathode charge transfer coefficient"},
+        "j0_cathode_ref": {"value": 1e-6, "unit": "A/cm2", "note": "Exchange current density at cathode (ref T)"},
+        "E_act_cathode": {"value": 66000.0, "unit": "J/mol", "note": "Activation energy for cathode kinetics"},
+        "T_ref": {"value": 353.15, "unit": "K", "note": "Reference temperature (80C)"},
+        "m_stack": {"value": 10.0, "unit": "kg", "note": "Stack thermal mass"},
+        "cp_stack": {"value": 1000.0, "unit": "J/(kg.K)", "note": "Stack specific heat"},
+        "hA_cool": {"value": 50.0, "unit": "W/K", "note": "Coolant heat transfer coefficient * area"},
+        "T_coolant": {"value": 333.15, "unit": "K", "note": "Coolant inlet temperature (60C)"}
+    },
+    "valid_ranges": {
+        "current_density": {"min": 0.0, "max": 1.5, "unit": "A/cm2"},
+        "temperature": {"min": 300.0, "max": 373.15, "unit": "K"},
+        "P_h2": {"min": 0.5, "max": 3.0, "unit": "atm"},
+        "P_o2": {"min": 0.1, "max": 1.0, "unit": "atm"},
+        "dt": {"min": 0.01, "max": 1.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 3600.0, "unit": "s"}
+    }
+}

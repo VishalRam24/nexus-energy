@@ -1,0 +1,35 @@
+{
+  "component_id": "EC091",
+  "component_name": "Vapor Compression Chiller (R134a)",
+  "fidelity": "F0a \u2014 empirical lookup",
+  "source": "Gordon & Ng (2000) Cool Thermodynamics, Cambridge Intl Science",
+  "Q_rated": {
+    "value": 500.0,
+    "unit": "kW",
+    "note": "Rated cooling capacity"
+  },
+  "COP_rated": {
+    "value": 5.5,
+    "unit": "-",
+    "note": "COP at rated conditions"
+  },
+  "table": {
+    "x_key": "T_cond_C",
+    "x": [
+      25.0,
+      30.0,
+      35.0,
+      40.0,
+      45.0
+    ],
+    "cop": [
+      6.6,
+      6.0,
+      5.5,
+      5.0,
+      4.5
+    ],
+    "x_rated": 35.0,
+    "note": "COP vs T_cond_C (np.interp); COP at x_rated = COP_rated"
+  }
+}

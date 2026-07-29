@@ -1,0 +1,31 @@
+{
+    "component_id": "EC136",
+    "component_name": "Overtopping Device WEC (Wave Dragon)",
+    "fidelity": "F2a — Physics-Lumped Reservoir Dynamics with Overtopping + Kaplan Turbine ODE",
+    "source": "Kofoed (2002) PhD Thesis Aalborg; Kofoed et al. (2006) Coastal Eng. 53:859-867 (Wave Dragon prototype); Van der Meer & Janssen (1995) overtopping; TAW (2002) / EurOtop (2018) overtopping manual; Tedd & Kofoed (2009) Renew. Energy 34:711.",
+    "unit": {
+        "name": "Wave Dragon-class Overtopping WEC — Physics-Lumped Reservoir",
+        "ramp_width_m": {"value": 150.0, "unit": "m", "note": "Effective overtopping crest width (Wave Dragon w/ reflectors ~ 150 m)", "source": "Kofoed et al. (2006)"},
+        "A_reservoir_m2": {"value": 8000.0, "unit": "m2", "note": "Plan area of elevated reservoir (Wave Dragon ~ 5000-8000 m2)", "source": "Wave Dragon AS technical data"},
+        "crest_freeboard_m": {"value": 1.0, "unit": "m", "note": "Rc — ramp crest height (freeboard) above mean sea level; equals nominal reservoir head", "source": "Kofoed (2002)"},
+        "reservoir_depth_max_m": {"value": 3.0, "unit": "m", "note": "Maximum reservoir water depth above crest before spillage (storage capacity)", "source": "design assumption"},
+        "n_turbines": {"value": 16, "unit": "-", "note": "Number of low-head Kaplan turbines (Wave Dragon multi-turbine array)", "source": "Kofoed et al. (2006)"},
+        "turbine_K_m2": {"value": 24.5, "unit": "m^2", "note": "Lumped turbine discharge coefficient: Q_turb = K*sqrt(2 g H) per the orifice/turbine flow law, sized so the full 16-turbine array passes the design overtopping inflow at the mid-reservoir operating head (self-regulating equilibrium ~0.5 m above crest at Hs=3 m)", "source": "calibrated to Q_in=Q_out mass balance at design sea state"},
+        "eta_turbine": {"value": 0.88, "unit": "-", "note": "Low-head Kaplan turbine hydraulic efficiency", "source": "Tedd & Kofoed (2009); Kaplan turbine practice"},
+        "eta_generator": {"value": 0.95, "unit": "-", "note": "Generator + power-take-off electrical efficiency", "source": "Wave Dragon AS"},
+        "Hs_design_m": {"value": 3.0, "unit": "m", "note": "Design significant wave height", "source": "Wave Dragon North Sea deployment"},
+        "Tz_design_s": {"value": 7.0, "unit": "s", "note": "Design mean zero-crossing wave period", "source": "Wave Dragon North Sea deployment"},
+        "slope_alpha": {"value": 0.5, "unit": "rad", "note": "Mean ramp/run-up slope angle (~ tan(alpha)=0.55, doubly-curved Wave Dragon ramp)", "source": "Kofoed (2002)"},
+        "vdm_a": {"value": 0.2, "unit": "-", "note": "Van der Meer/EurOtop overtopping pre-factor a in q* = a*exp(-b*Rc*)", "source": "Van der Meer & Janssen (1995); EurOtop (2018)"},
+        "vdm_b": {"value": 2.6, "unit": "-", "note": "Van der Meer/EurOtop overtopping decay coefficient b (dimensionless freeboard)", "source": "EurOtop (2018) eq. 5.10 (a=0.2,b=2.6 deep-water mean form)"},
+        "rho_water": {"value": 1025.0, "unit": "kg/m3", "note": "Seawater density (S=35 psu, T=15 C)", "source": "UNESCO (1981) seawater EOS; ITTC standard"},
+        "g": {"value": 9.81, "unit": "m/s2", "note": "Standard gravitational acceleration", "source": "ISO 80000-3 / CODATA standard gravity 9.80665, rounded 9.81"}
+    },
+    "valid_ranges": {
+        "Hs_m": {"min": 0.5, "max": 7.0, "unit": "m"},
+        "Tz_s": {"min": 4.0, "max": 12.0, "unit": "s"},
+        "level0_m": {"min": 0.0, "max": 3.0, "unit": "m"},
+        "dt": {"min": 0.5, "max": 30.0, "unit": "s"},
+        "duration_s": {"min": 60.0, "max": 7200.0, "unit": "s"}
+    }
+}

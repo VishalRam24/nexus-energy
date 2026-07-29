@@ -1,0 +1,28 @@
+{
+    "component": "EC189 Natural Gas Pipeline",
+    "fidelity": "F1a",
+    "description": "Weymouth equation for isothermal steady-state gas flow with friction and efficiency corrections",
+    "source": "Weymouth (1912); Menon (2005) Gas Pipeline Hydraulics, CRC Press",
+    "pipeline": {
+        "name": "Typical onshore NG transmission pipeline",
+        "length_default": {"value": 100.0, "unit": "km"},
+        "diameter_default": {"value": 0.6096, "unit": "m", "note": "24-inch nominal pipe"},
+        "efficiency_factor": {"value": 0.92, "unit": "dimensionless", "note": "Panhandle/Weymouth efficiency, 0.85-0.95 typical"},
+        "T_flow": {"value": 288.15, "unit": "K", "note": "Average gas temperature"},
+        "T_base": {"value": 288.15, "unit": "K", "note": "Base (standard) temperature"},
+        "P_base": {"value": 1.01325, "unit": "bar", "note": "Base (standard) pressure"}
+    },
+    "gas": {
+        "name": "Natural Gas (typical pipeline quality)",
+        "specific_gravity": {"value": 0.6, "unit": "dimensionless", "note": "Relative to air; pure methane ~0.554, typical NG 0.58-0.65"},
+        "Z_avg": {"value": 0.9, "unit": "dimensionless", "note": "Average compressibility factor for transmission conditions"},
+        "molar_mass": {"value": 0.01604, "unit": "kg/mol"},
+        "gamma": {"value": 1.31, "unit": "dimensionless"}
+    },
+    "valid_ranges": {
+        "length_km": {"min": 1.0, "max": 2000.0, "unit": "km"},
+        "diameter_m": {"min": 0.1, "max": 1.5, "unit": "m"},
+        "P_in_bar": {"min": 5.0, "max": 150.0, "unit": "bar"},
+        "P_out_bar": {"min": 1.0, "max": 140.0, "unit": "bar"}
+    }
+}

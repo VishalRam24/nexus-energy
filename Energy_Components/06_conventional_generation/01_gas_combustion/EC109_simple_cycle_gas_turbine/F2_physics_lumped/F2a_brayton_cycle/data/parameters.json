@@ -1,0 +1,30 @@
+{
+    "component_id": "EC109",
+    "component_name": "Simple Cycle Gas Turbine",
+    "fidelity": "F2a — Brayton Cycle with Temperature-Dependent Properties",
+    "source": "Saravanamuttoo et al. (2017) Gas Turbine Theory; Walsh & Fletcher (2004) Gas Turbine Performance",
+    "unit": {
+        "name": "Generic 40 MW Industrial Gas Turbine (LM6000 class)",
+        "m_dot_air": {"value": 130.0, "unit": "kg/s", "note": "Air mass flow rate"},
+        "P_amb": {"value": 101325.0, "unit": "Pa", "note": "Ambient pressure"},
+        "T_amb": {"value": 288.15, "unit": "K", "note": "ISO ambient temperature (15 C)"},
+        "PR": {"value": 30.0, "unit": "-", "note": "Compressor pressure ratio"},
+        "eta_comp": {"value": 0.87, "unit": "-", "note": "Compressor isentropic efficiency"},
+        "eta_turb": {"value": 0.89, "unit": "-", "note": "Turbine isentropic efficiency"},
+        "TIT": {"value": 1523.15, "unit": "K", "note": "Turbine inlet temperature (1250 C)"},
+        "LHV": {"value": 50000000.0, "unit": "J/kg", "note": "Natural gas LHV (50 MJ/kg)"},
+        "eta_combustor": {"value": 0.995, "unit": "-", "note": "Combustor efficiency"},
+        "dp_combustor_frac": {"value": 0.04, "unit": "-", "note": "Combustor pressure drop fraction"},
+        "eta_mech": {"value": 0.99, "unit": "-", "note": "Mechanical efficiency"},
+        "eta_gen": {"value": 0.98, "unit": "-", "note": "Generator efficiency"},
+        "dp_inlet_frac": {"value": 0.01, "unit": "-", "note": "Inlet filter pressure drop fraction"},
+        "dp_exhaust_frac": {"value": 0.01, "unit": "-", "note": "Exhaust duct pressure drop fraction"}
+    },
+    "valid_ranges": {
+        "TIT": {"min": 1073.15, "max": 1873.15, "unit": "K"},
+        "PR": {"min": 5.0, "max": 40.0, "unit": "-"},
+        "m_dot_air": {"min": 20.0, "max": 500.0, "unit": "kg/s"},
+        "T_amb": {"min": 253.15, "max": 323.15, "unit": "K"},
+        "load_fraction": {"min": 0.3, "max": 1.0, "unit": "-"}
+    }
+}

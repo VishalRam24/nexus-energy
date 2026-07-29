@@ -1,0 +1,45 @@
+{
+    "component": "EC204 Calcium Looping",
+    "fidelity": "F2a",
+    "description": "Physics-lumped (0D) dual-fluidised-bed calcium looping. Carbonator (650C, exothermic) CaO+CO2->CaCO3 captures CO2; calciner (900C, endothermic) CaCO3->CaO+CO2 regenerates sorbent and yields a concentrated CO2 stream. Sorbent maximum carrying capacity decays with cycle number (Grasa & Abanades 2006). Coupled molar inventory + energy-balance ODE integrated with scipy.solve_ivp.",
+    "unit": {
+        "name": "Generic limestone-derived CaO dual-bed calcium looping system",
+        "source": "Abanades (2002) Chem. Eng. J. 90:303; Abanades et al. (2004) AIChE J. 50(7):1614; Grasa & Abanades (2006) Ind. Eng. Chem. Res. 45:8846; Blamey et al. (2010) Prog. Energy Combust. Sci. 36:260; Dean et al. (2011) Chem. Eng. Res. Des. 89:836",
+
+        "X_max1": {"value": 0.782, "unit": "dimensionless",
+                   "note": "Grasa-Abanades a-factor: fresh-sorbent maximum conversion fast-stage limit; X_N -> X_r as N->inf"},
+        "k_deact": {"value": 0.52, "unit": "dimensionless",
+                    "note": "Grasa-Abanades deactivation constant k for CaO from limestone (650C, 0.01 atm CO2)"},
+        "X_r": {"value": 0.075, "unit": "dimensionless",
+                "note": "Residual (asymptotic) carrying capacity after many cycles"},
+
+        "k_s_carb": {"value": 0.012, "unit": "1/s",
+                     "note": "Lumped first-order fast-stage carbonation rate constant toward X_N"},
+        "T_carbonator_C": {"value": 650.0, "unit": "degC", "note": "Carbonation favoured below ~700C at flue-gas pCO2"},
+        "T_calciner_C": {"value": 900.0, "unit": "degC", "note": "Calcination above equilibrium T at 1 atm CO2 (~895C)"},
+
+        "dH_carb_kJ_mol": {"value": -178.0, "unit": "kJ/mol",
+                           "note": "Exothermic carbonation enthalpy CaO+CO2->CaCO3 at 298K; calcination is +178"},
+        "cp_solid_J_molK": {"value": 95.0, "unit": "J/(mol.K)",
+                            "note": "Mean molar heat capacity of CaO/CaCO3 solids inventory"},
+
+        "F_CaO_mol_s": {"value": 100.0, "unit": "mol/s",
+                        "note": "Circulating molar flow of CaO (sorbent looping rate) between beds"},
+        "F_CO2_in_mol_s": {"value": 15.0, "unit": "mol/s",
+                           "note": "CO2 molar flow entering carbonator with the flue gas"},
+        "F_makeup_mol_s": {"value": 0.5, "unit": "mol/s",
+                           "note": "Fresh limestone make-up to offset deactivation and purge"},
+
+        "N_inventory_mol": {"value": 2000.0, "unit": "mol",
+                            "note": "Total solids molar inventory in carbonator (lumped)"},
+        "hA_carb_W_K": {"value": 8000.0, "unit": "W/K",
+                        "note": "Lumped heat-removal/exchange coefficient for carbonator thermal balance"}
+    },
+    "valid_ranges": {
+        "cycle_number": {"min": 1, "max": 1000, "unit": "dimensionless"},
+        "F_CO2_in_mol_s": {"min": 1.0, "max": 100.0, "unit": "mol/s"},
+        "F_CaO_mol_s": {"min": 10.0, "max": 1000.0, "unit": "mol/s"},
+        "T_carbonator_C": {"min": 550.0, "max": 700.0, "unit": "degC"},
+        "duration_s": {"min": 1.0, "max": 3600.0, "unit": "s"}
+    }
+}

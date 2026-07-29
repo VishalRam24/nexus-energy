@@ -1,0 +1,133 @@
+{
+  "component": "EC070 Water-Source Heat Pump",
+  "fidelity": "F0a \u2014 empirical COP lookup map",
+  "description": "Tabulated COP map vs (T_source, T_sink); bilinear np.interp. Map generated from Carnot-fraction relation COP = eta_c * Th/(Th-Tc).",
+  "lookup": {
+    "T_source_breakpoints": {
+      "value": [
+        5.0,
+        9.17,
+        13.33,
+        17.5,
+        21.67,
+        25.83,
+        30.0
+      ],
+      "unit": "degC",
+      "note": "Evaporator-side source temperature axis"
+    },
+    "T_sink_breakpoints": {
+      "value": [
+        25.0,
+        35.0,
+        45.0,
+        55.0,
+        65.0
+      ],
+      "unit": "degC",
+      "note": "Condenser-side sink (delivery) temperature axis"
+    },
+    "COP_table": {
+      "value": [
+        [
+          7.029,
+          8.878,
+          10.0,
+          10.0,
+          10.0,
+          1.05,
+          1.05
+        ],
+        [
+          4.843,
+          5.624,
+          6.705,
+          8.302,
+          10.0,
+          10.0,
+          10.0
+        ],
+        [
+          3.75,
+          4.186,
+          4.737,
+          5.455,
+          6.429,
+          7.826,
+          10.0
+        ],
+        [
+          3.094,
+          3.376,
+          3.713,
+          4.126,
+          4.641,
+          5.305,
+          6.189
+        ],
+        [
+          2.657,
+          2.855,
+          3.086,
+          3.356,
+          3.679,
+          4.071,
+          4.555
+        ]
+      ],
+      "unit": "dimensionless",
+      "note": "rows index T_sink, cols index T_source"
+    }
+  },
+  "rated": {
+    "rated_cop": {
+      "value": 5.0,
+      "unit": "dimensionless",
+      "note": "W15/W45 (EN 14511)"
+    },
+    "rated_T_source": {
+      "value": 15.0,
+      "unit": "degC"
+    },
+    "rated_T_sink": {
+      "value": 45.0,
+      "unit": "degC"
+    },
+    "carnot_fraction": {
+      "value": 0.4715,
+      "unit": "dimensionless",
+      "note": "Effective fraction anchored to datasheet rated COP"
+    },
+    "rated_capacity": {
+      "value": 50.0,
+      "unit": "kW_th"
+    },
+    "auxiliary_power": {
+      "value": 0.2,
+      "unit": "kW"
+    },
+    "cop_at_rated_point_from_map": {
+      "value": 5.0,
+      "unit": "dimensionless",
+      "note": "Carnot-fraction COP at rated point; matches rated_cop within tolerance"
+    }
+  },
+  "valid_ranges": {
+    "T_source": {
+      "min": 5.0,
+      "max": 30.0,
+      "unit": "degC"
+    },
+    "T_sink": {
+      "min": 25.0,
+      "max": 65.0,
+      "unit": "degC"
+    },
+    "part_load_ratio": {
+      "min": 0.0,
+      "max": 1.0,
+      "unit": "dimensionless"
+    }
+  },
+  "source": "ASHRAE Handbook \u2014 HVAC Systems (2020); EN 14511"
+}

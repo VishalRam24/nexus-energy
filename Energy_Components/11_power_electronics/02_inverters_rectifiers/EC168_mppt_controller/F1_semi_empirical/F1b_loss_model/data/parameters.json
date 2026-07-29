@@ -1,0 +1,23 @@
+{
+    "component": "EC168 MPPT Controller",
+    "fidelity": "F1b",
+    "description": "P&O algorithm tracking model with static/dynamic efficiency, convergence oscillation, and converter losses",
+    "unit": {
+        "name": "10 kW MPPT Controller with P&O Algorithm",
+        "source": "Hohm & Ropp (2003), Prog. Photovoltaics, 11, 47-62; Femia et al. (2005), IEEE Trans. Power Electron.",
+        "V_step": {"value": 0.5, "unit": "V", "note": "P&O voltage perturbation step"},
+        "T_mppt": {"value": 0.050, "unit": "s", "note": "MPPT update period (50 ms)"},
+        "P_max": {"value": 10000.0, "unit": "W", "note": "Maximum PV array power at STC"},
+        "eta_static": {"value": 0.995, "unit": "dimensionless", "note": "Static tracking efficiency at steady MPP"},
+        "eta_converter": {"value": 0.97, "unit": "dimensionless", "note": "DC-DC converter efficiency (from F1b buck/boost)"},
+        "V_mpp_ref": {"value": 30.0, "unit": "V", "note": "MPP voltage at STC for reference array"},
+        "dPdV_mpp": {"value": -50.0, "unit": "W/V", "note": "Slope dP/dV at MPP (negative, steepness of P-V peak)"},
+        "G_ref": {"value": 1000.0, "unit": "W/m2", "note": "Reference irradiance (STC)"},
+        "tau_track": {"value": 0.2, "unit": "s", "note": "Tracking time constant for dynamic response"}
+    },
+    "valid_ranges": {
+        "irradiance": {"min": 0.0, "max": 1200.0, "unit": "W/m2"},
+        "p_mpp_available": {"min": 0.0, "max": 12000.0, "unit": "W"},
+        "dG_dt": {"min": -500.0, "max": 500.0, "unit": "W/m2/s"}
+    }
+}

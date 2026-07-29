@@ -1,0 +1,43 @@
+{
+    "component_id": "EC072",
+    "component_name": "CO2 Transcritical Heat Pump (R744)",
+    "fidelity": "F2a — Transcritical Thermodynamic Cycle + Lumped Gas-Cooler/Water Thermal ODE",
+    "source": "Lorentzen, G. (1994). Revival of carbon dioxide as a refrigerant. Int. J. Refrigeration 17(5), 292-301. Kim, M.-H., Pettersen, J., Bullard, C.W. (2004). Fundamental process and system design issues in CO2 vapor compression systems. Progress in Energy and Combustion Science 30(2), 119-174. Sarkar, J., Bhattacharyya, S., Ram Gopal, M. (2004). Int. J. Refrigeration 27, 830-838. Liao, S.M., Zhao, T.S., Jakobsen, A. (2000). Appl. Thermal Eng. 20, 831-841.",
+    "unit": {
+        "name": "Generic 50 kW_th transcritical CO2 (R744) heat pump for high-temperature water heating",
+        "rated_heating_capacity": {"value": 50.0, "unit": "kW_th", "note": "Gas-cooler heat rejection at design point"},
+        "eta_isentropic": {"value": 0.70, "unit": "-", "note": "Compressor isentropic efficiency (Kim 2004 typical reciprocating CO2 compressor 0.6-0.75)"},
+        "eta_mech_elec": {"value": 0.92, "unit": "-", "note": "Combined mechanical + electric motor efficiency"},
+        "pinch_gc": {"value": 3.0, "unit": "K", "note": "Pinch between CO2 gas-cooler outlet and water inlet"},
+        "pinch_evap": {"value": 5.0, "unit": "K", "note": "Evaporator approach: T_evap = T_source - pinch_evap"},
+        "superheat": {"value": 5.0, "unit": "K", "note": "Suction superheat at compressor inlet"},
+        "T_crit": {"value": 304.13, "unit": "K", "note": "CO2 critical temperature 30.98 C (NIST / Span & Wagner 1996)"},
+        "P_crit": {"value": 73.77, "unit": "bar", "note": "CO2 critical pressure (NIST / Span & Wagner 1996)"},
+        "cp_co2_gas": {"value": 0.95, "unit": "kJ/(kg.K)", "note": "CO2 vapor cp near suction, low-pressure approx (NIST ~0.85-1.0)"},
+        "cp_water": {"value": 4.18, "unit": "kJ/(kg.K)", "note": "Liquid water specific heat"},
+        "rho_water": {"value": 1000.0, "unit": "kg/m3"},
+        "P_high_opt_a": {"value": 2.778, "unit": "bar/K", "note": "Liao et al. (2000) optimum P_high linear coefficient on T_gc_out"},
+        "P_high_opt_b": {"value": 0.0157, "unit": "bar/K2", "note": "Liao et al. (2000) quadratic coefficient"},
+        "P_high_opt_c": {"value": 32.0, "unit": "bar", "note": "Liao-style intercept tuned to transcritical regime (>= ~74 bar)"},
+        "m_water_tank": {"value": 50.0, "unit": "kg", "note": "Lumped thermal mass of gas-cooler water side / buffer"},
+        "UA_gc": {"value": 5.0, "unit": "kW/K", "note": "Gas-cooler overall conductance (water heating side)"},
+        "aux_power": {"value": 0.1, "unit": "kW", "note": "Fans/pumps/controls parasitic"},
+        "h_fg_evap_ref": {"value": 230.0, "unit": "kJ/kg", "note": "CO2 latent heat at ~0 C / 35 bar (NIST ~230 kJ/kg; declines toward critical)"}
+    },
+    "co2_property_correlations": {
+        "note": "Hardcoded R744 correlations replacing CoolProp. Real-gas enthalpy along the supercritical gas-cooler isobar and the gliding-temperature behavior are captured by a temperature-dependent supercritical cp(T,P).",
+        "source": "Fitted to Span, R. & Wagner, W. (1996). A New Equation of State for Carbon Dioxide. J. Phys. Chem. Ref. Data 25(6), 1509-1596; trends per Kim, Pettersen & Bullard (2004).",
+        "cp_super_base": {"value": 1.25, "unit": "kJ/(kg.K)", "note": "Baseline supercritical cp far from pseudocritical point"},
+        "cp_super_peak": {"value": 6.0, "unit": "kJ/(kg.K)", "note": "Peak cp amplitude at the pseudocritical temperature (cp spikes near critical, Span-Wagner)"},
+        "T_pseudocrit_ref": {"value": 308.15, "unit": "K", "note": "Pseudocritical temperature at ~90 bar (rises with pressure above T_crit)"},
+        "pseudocrit_width": {"value": 12.0, "unit": "K", "note": "Gaussian width of the cp hump around pseudocritical T"},
+        "dTpc_dP": {"value": 0.30, "unit": "K/bar", "note": "Shift of pseudocritical temperature with high-side pressure"}
+    },
+    "valid_ranges": {
+        "T_source":    {"min": -20.0, "max": 25.0, "unit": "degC"},
+        "T_water_in":  {"min": 5.0,   "max": 50.0, "unit": "degC"},
+        "T_water_out": {"min": 40.0,  "max": 90.0, "unit": "degC"},
+        "P_high":      {"min": 74.0,  "max": 130.0, "unit": "bar"},
+        "duration_s":  {"min": 1.0,   "max": 7200.0, "unit": "s"}
+    }
+}

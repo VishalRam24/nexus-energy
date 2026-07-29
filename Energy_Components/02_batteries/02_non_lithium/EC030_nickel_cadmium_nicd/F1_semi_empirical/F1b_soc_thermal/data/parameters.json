@@ -1,0 +1,41 @@
+{
+    "component": "EC030 Nickel-Cadmium Battery (NiCd)",
+    "fidelity": "F1b",
+    "description": "SOC-thermal voltage model: V = OCV(SOC) - I*R(T), with Arrhenius resistance and capacity correction",
+    "cell": {
+        "name": "Standard NiCd D-cell (sintered plate)",
+        "source": "Berndt (2003), Maintenance-Free Batteries, Wiley; Shepherd (1965), J. Electrochem. Soc. 112, 657",
+        "nominal_voltage": {"value": 1.2, "unit": "V"},
+        "capacity_ref": {"value": 10.0, "unit": "Ah", "note": "Nominal capacity at T_ref (C/5 rate)"},
+        "voltage_max": {"value": 1.45, "unit": "V"},
+        "voltage_min": {"value": 0.9, "unit": "V"},
+        "R_ref": {"value": 0.010, "unit": "Ohm", "note": "Internal resistance at T_ref; NiCd has very low R due to sintered plates"}
+    },
+    "ocv_coefficients": {
+        "description": "OCV(SOC) = a0 + a1*SOC + a2*SOC^2 + a3*SOC^3 + a4*SOC^4 + a5*SOC^5",
+        "source": "Fitted to NiCd OCV discharge curve; relatively flat plateau at 1.2-1.25V (NiOOH/Ni(OH)2 couple)",
+        "a0": 0.95,
+        "a1": 0.65,
+        "a2": -1.0,
+        "a3": 1.5,
+        "a4": -1.0,
+        "a5": 0.25
+    },
+    "thermal": {
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 degC)"},
+        "E_a": {"value": 20000, "unit": "J/mol",
+                "note": "Activation energy for NiCd; lower than Li-ion because aqueous electrolyte has higher conductivity with less T sensitivity",
+                "source": "Berndt (2003), Maintenance-Free Batteries; Plett (2015), Battery Management Systems Vol.2"},
+        "alpha_c": {"value": 0.003, "unit": "1/K", "note": "NiCd capacity temperature coefficient; moderate compared to Li-ion",
+                    "source": "Berndt (2003), Maintenance-Free Batteries"},
+        "dOCV_dT": {"value": -0.00060, "unit": "V/K",
+                    "note": "NiCd entropic coefficient dOCV/dT ~ -0.60 mV/K; among the most negative for aqueous battery systems. The NiOOH + H2O + e- -> Ni(OH)2 + OH- reaction has large negative entropy. This makes NiCd warm significantly during discharge.",
+                    "source": "Berndt (2003), Maintenance-Free Batteries, Wiley; Thomas & Newman (2003), J. Electrochem. Soc. 150, A176"},
+        "R_gas": {"value": 8.314, "unit": "J/(mol*K)", "note": "Universal gas constant"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "current": {"min": -50.0, "max": 50.0, "unit": "A", "note": "Negative=charge, Positive=discharge; NiCd tolerates very high rates"},
+        "temperature": {"min": 243.15, "max": 333.15, "unit": "K", "note": "-30 to 60 degC; NiCd has excellent low-T performance"}
+    }
+}

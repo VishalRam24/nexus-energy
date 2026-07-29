@@ -1,0 +1,41 @@
+{
+    "component": "EC023 LMO Battery (Lithium Manganese Oxide)",
+    "fidelity": "F1b",
+    "description": "SOC-thermal voltage model: V = OCV(SOC) - I*R(T), with Arrhenius resistance and capacity correction",
+    "cell": {
+        "name": "Generic LMO 18650 cell",
+        "source": "Liaw et al. (2003), J. Power Sources, 119-121, 874-882; Jalkanen et al. (2015), Applied Energy 154, 160-172",
+        "nominal_voltage": {"value": 3.9, "unit": "V"},
+        "capacity_ref": {"value": 3.0, "unit": "Ah", "note": "Nominal capacity at T_ref"},
+        "voltage_max": {"value": 4.2, "unit": "V"},
+        "voltage_min": {"value": 3.0, "unit": "V"},
+        "R_ref": {"value": 0.030, "unit": "Ohm", "note": "Internal resistance at T_ref (298.15 K)"}
+    },
+    "ocv_coefficients": {
+        "description": "OCV(SOC) = a0 + a1*SOC + a2*SOC^2 + a3*SOC^3 + a4*SOC^4 + a5*SOC^5",
+        "source": "Fitted to LMO OCV data from Liaw et al. (2003); spinel LiMn2O4 plateau near 4.0 V",
+        "a0": 3.35,
+        "a1": 1.80,
+        "a2": -5.5,
+        "a3": 9.0,
+        "a4": -7.5,
+        "a5": 2.2
+    },
+    "thermal": {
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 degC)"},
+        "E_a": {"value": 23000, "unit": "J/mol",
+                "note": "Activation energy for internal resistance, LMO spinel slightly lower than NMC",
+                "source": "Ecker et al. (2015), J. Electrochem. Soc., 162(9), A1836-A1848"},
+        "alpha_c": {"value": 0.004, "unit": "1/K", "note": "Linear capacity temperature coefficient",
+                    "source": "Jalkanen et al. (2015), Applied Energy 154, 160-172"},
+        "dOCV_dT": {"value": -0.00018, "unit": "V/K",
+                    "note": "Entropic coefficient; LMO spinel cathode dOCV/dT ~ -0.18 mV/K (less negative than NMC)",
+                    "source": "Forgez et al. (2010), J. Power Sources 195, 2961; Thomas & Newman (2003), J. Electrochem. Soc. 150, A176"},
+        "R_gas": {"value": 8.314, "unit": "J/(mol*K)", "note": "Universal gas constant"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "current": {"min": -15.0, "max": 15.0, "unit": "A", "note": "Negative=charge, Positive=discharge"},
+        "temperature": {"min": 253.15, "max": 333.15, "unit": "K", "note": "-20 to 60 degC"}
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "component": "EC220 Triboelectric Nanogenerator (TENG)",
+    "fidelity": "F1b",
+    "description": "TENG with surface charge density dynamics: charge decay (leakage), dielectric loss, frequency-dependent charge transfer, and multi-layer dielectric stack",
+    "unit": {
+        "name": "PTFE-Al contact-separation TENG — surface charge dynamics",
+        "source": "Niu, S. & Wang, Z.L. (2015) Nano Energy 14, 161-192; Wang, Z.L. (2013) ACS Nano; Zi, Y. et al. (2015) ACS Nano",
+        "sigma0": {"value": 50e-6, "unit": "C/m^2", "note": "Peak surface charge density (PTFE-Al: 20-100 uC/m^2 from charged PTFE)"},
+        "electrode_area": {"value": 0.0025, "unit": "m^2", "note": "50mm x 50mm electrode"},
+        "gap_max": {"value": 0.002, "unit": "m", "note": "Maximum separation gap 2 mm"},
+        "eps_r1": {"value": 2.1, "unit": "-", "note": "PTFE relative permittivity"},
+        "eps_r2": {"value": 2.7, "unit": "-", "note": "Nylon relative permittivity (second dielectric layer)"},
+        "d1": {"value": 1e-4, "unit": "m", "note": "PTFE layer thickness 100 um"},
+        "d2": {"value": 5e-5, "unit": "m", "note": "Nylon layer thickness 50 um"},
+        "tau_decay_s": {"value": 1000.0, "unit": "s", "note": "Surface charge decay time constant (leakage, ~100s-hours for PTFE)"},
+        "tan_delta": {"value": 0.002, "unit": "-", "note": "Dielectric loss tangent (PTFE ~0.0002, use 0.002 conservative)"},
+        "R_load_default": {"value": 1e7, "unit": "ohm"},
+        "cycle_frequency_default": {"value": 3.0, "unit": "Hz"}
+    },
+    "valid_ranges": {
+        "frequency": {"min": 0.1, "max": 100.0, "unit": "Hz"},
+        "R_load": {"min": 1e4, "max": 1e10, "unit": "ohm"},
+        "time_s": {"min": 0.0, "max": 1e5, "unit": "s"}
+    }
+}

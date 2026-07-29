@@ -1,0 +1,25 @@
+{
+    "component": "EC139 Salinity Gradient (Blue Energy, PRO)",
+    "fidelity": "F0a",
+    "description": "Empirical specific-energy and power lookup vs seawater concentration Csw (freshwater fixed at 0.5 g/L). Osmotic pressure dpi = nu*(C/M)*1000*R*T extracted at efficiency eta_membrane; specific energy SE=eta_m*dpi; net power = SE*Q_permeate*eta_turbine*eta_pressure_exchanger. Tabulated and interpolated.",
+    "rated": {
+        "C_freshwater_g_per_L": {"value": 0.5, "unit": "g/L", "note": "River water concentration (fixed low-salinity feed)"},
+        "C_seawater_design_g_per_L": {"value": 35.0, "unit": "g/L", "note": "Design seawater concentration"},
+        "eta_membrane": {"value": 0.45, "unit": "dimensionless", "note": "PRO membrane efficiency (fraction of osmotic pressure extracted)"},
+        "eta_turbine": {"value": 0.85, "unit": "dimensionless", "note": "Hydro-turbine efficiency"},
+        "eta_pressure_exchanger": {"value": 0.95, "unit": "dimensionless", "note": "Pressure exchanger (energy recovery) efficiency"},
+        "Q_permeate_m3_per_s": {"value": 0.20, "unit": "m3/s", "note": "Permeate flow = recovery_ratio*freshwater feed (0.40*0.5)"},
+        "T_K": {"value": 298.15, "unit": "K", "note": "Operating temperature"},
+        "SE_design_kWh_per_m3": {"value": 0.3658, "unit": "kWh/m3", "note": "Extractable specific energy at design (Csw=35 g/L)"},
+        "P_net_design_kw": {"value": 212.70, "unit": "kW", "note": "Net power at design seawater concentration"}
+    },
+    "energy_curve": {
+        "C_seawater_g_per_L": {"value": [25.0, 27.5, 30.0, 32.5, 35.0, 37.5, 40.0], "unit": "g/L", "note": "Seawater concentration breakpoints"},
+        "specific_energy_kWh_per_m3": {"value": [0.2598, 0.2863, 0.3128, 0.3393, 0.3658, 0.3924, 0.4189], "unit": "kWh/m3", "note": "Extractable specific energy per m3 permeate"},
+        "net_power_kw": {"value": [151.05, 166.46, 181.87, 197.29, 212.70, 228.11, 243.53], "unit": "kW", "note": "Net electrical power"}
+    },
+    "valid_ranges": {
+        "C_seawater_g_per_L": {"min": 25.0, "max": 40.0, "unit": "g/L"}
+    },
+    "source": "Yip & Elimelech (2012) Environ. Sci. Technol. 46:5230; Straub et al. (2016) Nature Energy 1:16090; REDstack BV data; reuses EC139 F1a parameters"
+}

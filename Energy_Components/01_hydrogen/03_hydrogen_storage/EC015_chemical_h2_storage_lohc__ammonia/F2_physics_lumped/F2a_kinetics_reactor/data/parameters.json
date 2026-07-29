@@ -1,0 +1,50 @@
+{
+    "component_id": "EC015",
+    "component_name": "Chemical H2 Storage (LOHC / Ammonia)",
+    "fidelity": "F2a — Lumped Kinetics + Energy-Balance Reactor (Arrhenius + conversion ODE via solve_ivp)",
+    "source": "Preuster et al. (2017) Acc. Chem. Res. 50(1) 74-85; Dürr et al. (2021) Int. J. Hydrogen Energy 46 32583; Jorschick et al. (2017) Energy Environ. Sci. 10 1652; Lamb et al. (2019) Int. J. Hydrogen Energy 44 3580; Di Carlo et al. (2014) Int. J. Hydrogen Energy 39 808 (NH3 cracking kinetics); Fogler (2016) Elements of Chemical Reaction Engineering, 5th ed.",
+
+    "lohc_dbt": {
+        "name": "Dibenzyltoluene dehydrogenation (H18-DBT -> H0-DBT + 9 H2)",
+        "gravimetric_capacity_wt_pct": {"value": 6.2, "unit": "wt%", "note": "H2 by mass of DBT. Niermann et al. 2021"},
+        "delta_H_dehydrogenation": {"value": 65000.0, "unit": "J/mol_H2", "note": "Endothermic (positive). Preuster et al. 2017: ~65 kJ/mol_H2"},
+        "molar_mass_carrier_kg_per_mol": {"value": 0.2723, "unit": "kg/mol", "note": "Molar mass of H0-DBT. Bruckner et al. 2014"},
+        "H2_mol_per_mol_carrier": {"value": 9.0, "unit": "mol_H2/mol_carrier", "note": "9 H2 per DBT (H18-DBT)"},
+        "A_pre_exp": {"value": 2.5e7, "unit": "1/s", "note": "Pre-exponential factor, first-order in remaining hydrogenated carrier. Fitted to Pt/Al2O3 dehydrogenation rates, order-of-magnitude from Dürr et al. 2021"},
+        "E_act": {"value": 120000.0, "unit": "J/mol", "note": "Apparent activation energy for DBT dehydrogenation on Pt/Al2O3, ~110-130 kJ/mol. Dürr et al. 2021"},
+        "T_reactor_K": {"value": 593.0, "unit": "K", "note": "Dehydrogenation 320C. Preuster et al. 2017"},
+        "reaction_order": {"value": 1.0, "unit": "-", "note": "First order in hydrogenated carrier fraction"}
+    },
+
+    "ammonia": {
+        "name": "Ammonia cracking (2 NH3 -> N2 + 3 H2)",
+        "gravimetric_capacity_wt_pct": {"value": 17.6, "unit": "wt%", "note": "H2 by mass of NH3. Lamb et al. 2019"},
+        "delta_H_cracking": {"value": 46000.0, "unit": "J/mol_H2", "note": "Endothermic per mol H2 produced. Lamb et al. 2019"},
+        "molar_mass_nh3_kg_per_mol": {"value": 0.017031, "unit": "kg/mol"},
+        "H2_mol_per_mol_carrier": {"value": 1.5, "unit": "mol_H2/mol_NH3", "note": "NH3 -> 0.5 N2 + 1.5 H2"},
+        "A_pre_exp": {"value": 4.0e6, "unit": "1/s", "note": "Pre-exponential factor, first-order in NH3. Order-of-magnitude from Ru/Al2O3 cracking. Di Carlo et al. 2014"},
+        "E_act": {"value": 100000.0, "unit": "J/mol", "note": "Apparent activation energy for NH3 cracking on Ru catalyst, ~90-180 kJ/mol depending on catalyst; Ru ~100 kJ/mol. Di Carlo et al. 2014"},
+        "T_reactor_K": {"value": 773.0, "unit": "K", "note": "Cracking ~500C. Lamb et al. 2019"},
+        "reaction_order": {"value": 1.0, "unit": "-", "note": "First order in NH3 fraction (apparent, Temkin-Pyzhev simplified)"}
+    },
+
+    "reactor": {
+        "m_reactor_kg": {"value": 50.0, "unit": "kg", "note": "Lumped thermal mass of reactor bed + catalyst + vessel"},
+        "cp_reactor": {"value": 900.0, "unit": "J/(kg.K)", "note": "Effective specific heat (steel + alumina catalyst bed)"},
+        "hA_heater": {"value": 400.0, "unit": "W/K", "note": "Heater/jacket heat-transfer coefficient * area"},
+        "n_carrier_mol": {"value": 100.0, "unit": "mol", "note": "Initial moles of hydrogenated carrier charged to batch reactor"}
+    },
+
+    "thermodynamics": {
+        "M_H2": {"value": 0.002016, "unit": "kg/mol"},
+        "R_universal": {"value": 8.314, "unit": "J/mol/K"},
+        "LHV_H2": {"value": 120.0e6, "unit": "J/kg", "note": "Lower heating value of H2"}
+    },
+
+    "valid_ranges": {
+        "T_reactor_K": {"min": 423.0, "max": 873.0, "unit": "K"},
+        "mode": {"values": ["lohc", "ammonia"]},
+        "duration_s": {"min": 1.0, "max": 20000.0, "unit": "s"},
+        "dt": {"min": 0.1, "max": 60.0, "unit": "s"}
+    }
+}

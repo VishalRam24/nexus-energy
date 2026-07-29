@@ -1,0 +1,46 @@
+{
+    "component": "EC124 Liquid Air Energy Storage (LAES / CES)",
+    "fidelity": "F2a",
+    "description": "Physics-lumped LAES: charge = air liquefaction (specific liquefaction work, Claude/Linde cycle); store = cryogenic liquid-air tank with boil-off heat ingress (0D thermal/mass ODE); discharge = cryo-pump -> evaporate (cold recycle + waste-heat superheat) -> turbine expansion. RTE 50-60% (higher with cold/hot recycle).",
+    "source": "Morgan, R., Nelmes, S., Gibson, E., Brett, G. (2015), Applied Energy 137, 845-853 (Highview pilot plant); Guizzi, G.L., Manno, M., Tolomei, L.M., Vitali, R.M. (2015), Energy 93(1), 1382-1394; Sciacovelli, A., Vecchi, A., Ding, Y. (2017), Applied Energy 190, 84-98; Highview Power CRYOBattery technical data.",
+    "unit": {
+        "name": "Generic Stand-alone LAES (Highview-class), 1500 t liquid-air tank",
+
+        "specific_liquefaction_kwh_per_kg": {"value": 0.40, "unit": "kWh/kg", "note": "Electrical work to liquefy air, Claude/Linde cycle (~0.36-0.50). Morgan 2015 pilot ~0.40-0.45 kWh/kg."},
+        "w_liq_floor_kwh_per_kg": {"value": 0.21, "unit": "kWh/kg", "note": "Minimum (ideal-cold-recycle) liquefaction work; reversible isothermal limit ~0.2 kWh/kg air. Used as lower bound when cold recycle perfect."},
+
+        "eta_liquefier": {"value": 0.95, "unit": "dimensionless", "note": "Compressor/motor drive-train mechanical efficiency on charge"},
+        "eta_pump": {"value": 0.85, "unit": "dimensionless", "note": "Cryogenic pump isentropic-ish efficiency"},
+        "eta_expander": {"value": 0.85, "unit": "dimensionless", "note": "Turbine (expander train) isentropic efficiency"},
+        "eta_generator": {"value": 0.97, "unit": "dimensionless", "note": "Generator electrical efficiency"},
+
+        "specific_exergy_liquid_kwh_per_kg": {"value": 0.2800, "unit": "kWh/kg", "note": "Usable specific shaft work of the discharge train (cryo-pump pressurisation + cold-recycled evaporation + expansion) per kg liquid air, before pump/expander/generator efficiencies. ~0.27-0.29 kWh/kg; physical exergy floor of liquid air is ~0.205 kWh/kg (739 kJ/kg, Guizzi 2015 / Ameel 2013), cold recycle to the high-pressure air stream raises usable expansion work."},
+
+        "tank_capacity_kg": {"value": 1.5e6, "unit": "kg", "note": "Liquid-air tank ~1500 t"},
+        "T_storage": {"value": 78.0, "unit": "K", "note": "Saturated liquid air at ~1 atm (between N2 77.4 K and O2 90.2 K)"},
+        "rho_liquid_air": {"value": 870.0, "unit": "kg/m3", "note": "Liquid air density ~0.87 g/cm3 at 78 K (Vecchi 2021)"},
+
+        "cp_liquid_air_kJ_kgK": {"value": 1.68, "unit": "kJ/(kg.K)", "note": "Liquid-air specific heat near 80 K (~1.6-1.7)"},
+        "cp_gas_air_kJ_kgK": {"value": 1.005, "unit": "kJ/(kg.K)", "note": "Gaseous air cp at near-ambient (ideal-gas value)"},
+        "h_vap_air_kJ_kg": {"value": 205.0, "unit": "kJ/kg", "note": "Latent heat of vaporisation of air ~199-213 kJ/kg at 1 atm (N2 199, O2 213)"},
+
+        "UA_tank_W_per_K": {"value": 90.0, "unit": "W/K", "note": "Overall tank heat-leak conductance (vacuum/perlite insulated 1500 t tank). Tuned so BOR(298K) ~0.5%/day."},
+        "T_amb_ref": {"value": 298.15, "unit": "K"},
+
+        "cold_recycle_eff_ref": {"value": 0.60, "unit": "dimensionless", "note": "Cold recycle effectiveness: fraction of stored cold (high-grade) recovered to assist next liquefaction. Highview/Sciacovelli ~0.5-0.7."},
+        "hot_recycle_dT_K": {"value": 0.0, "unit": "K", "note": "Default no external/waste heat. If >0, superheats air before turbine (raises discharge work)."},
+        "T_superheat_max_K": {"value": 400.0, "unit": "K", "note": "Max turbine inlet temperature with waste-heat integration"},
+
+        "P_charge_rated_kW": {"value": 50000.0, "unit": "kW", "note": "Rated charging (liquefier) electrical power, ~50 MW class"},
+        "P_discharge_rated_kW": {"value": 50000.0, "unit": "kW", "note": "Rated discharge (turbine) electrical power"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "-"},
+        "T_amb_K": {"min": 253.15, "max": 323.15, "unit": "K"},
+        "cold_recycle_eff": {"min": 0.0, "max": 0.95, "unit": "-"},
+        "hot_recycle_dT_K": {"min": 0.0, "max": 320.0, "unit": "K"},
+        "m_dot_liquid_kgs": {"min": 0.0, "max": 200.0, "unit": "kg/s"},
+        "duration_hours": {"min": 0.0, "max": 336.0, "unit": "h"},
+        "mode": {"values": ["charge", "store", "discharge"]}
+    }
+}

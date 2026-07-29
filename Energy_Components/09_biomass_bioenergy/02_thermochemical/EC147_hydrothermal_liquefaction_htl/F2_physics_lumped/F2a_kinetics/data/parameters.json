@@ -1,0 +1,50 @@
+{
+    "component_id": "EC147",
+    "component_name": "Hydrothermal Liquefaction (HTL)",
+    "fidelity": "F2a — Lumped Reaction-Network Kinetics + Reactor Energy-Balance ODE",
+    "source": "Toor et al. (2011) Energy 36:2328 (HTL review); Valdez & Savage (2013) Algal Research 2:416 (lumped kinetic network); Valdez et al. (2014) ACS Sustain. Chem. Eng. 2:1841; Sheehan & Savage (2017) Bioresour. Technol. 239:144 (temperature-dependent rate constants)",
+    "description": "Physics-lumped HTL model. Wet biomass is liquefied in hot compressed (subcritical) water (~300-350 C, 15-20 MPa). A 4-lump reaction network (biomass -> biocrude / aqueous / gas / solid) with first-order Arrhenius rates, including secondary biocrude decomposition, is integrated together with a stirred-reactor energy-balance ODE via scipy.solve_ivp. Biocrude yield peaks at intermediate severity (time x temperature).",
+    "unit": {
+        "name": "Generic batch HTL reactor (microalgae/lignocellulose surrogate), subcritical water",
+
+        "A_BC": {"value": 2.2113e3, "unit": "1/s", "note": "Pre-exponential: biomass -> biocrude (primary liquefaction). Calibrated so k=0.18 1/min at 350C, matching Valdez & Savage 2013 lumped-network primary-liquefaction rates"},
+        "Ea_BC": {"value": 70000.0, "unit": "J/mol", "note": "Activation energy biomass->biocrude (Valdez & Savage 2013: 30-100 kJ/mol range for primary liquefaction lumps)"},
+
+        "A_BA": {"value": 8.3510e2, "unit": "1/s", "note": "Pre-exponential: biomass -> aqueous (hydrolysis/solubilisation). k=0.10 1/min at 350C"},
+        "Ea_BA": {"value": 68000.0, "unit": "J/mol", "note": "Activation energy biomass->aqueous"},
+
+        "A_BG": {"value": 1.2055e5, "unit": "1/s", "note": "Pre-exponential: biomass -> gas (decarboxylation). k=0.03 1/min at 350C; higher Ea so gas favoured at high severity"},
+        "Ea_BG": {"value": 100000.0, "unit": "J/mol", "note": "Activation energy biomass->gas (gasification competes at high T)"},
+
+        "A_BS": {"value": 4.9295e0, "unit": "1/s", "note": "Pre-exponential: biomass -> solid residue (char/unconverted). k=0.05 1/min at 350C; low Ea -> weakly T-dependent"},
+        "Ea_BS": {"value": 45000.0, "unit": "J/mol", "note": "Activation energy biomass->solid residue"},
+
+        "A_CG": {"value": 1.1074e5, "unit": "1/s", "note": "Pre-exponential: biocrude -> gas (secondary cracking). k=0.004 1/min at 350C; drives the intermediate-severity biocrude yield peak"},
+        "Ea_CG": {"value": 110000.0, "unit": "J/mol", "note": "Activation energy biocrude->gas secondary decomposition (high Ea: only at high severity)"},
+
+        "A_CA": {"value": 4.5925e3, "unit": "1/s", "note": "Pre-exponential: biocrude -> aqueous (secondary repolymerisation/dissolution). k=0.003 1/min at 350C"},
+        "Ea_CA": {"value": 95000.0, "unit": "J/mol", "note": "Activation energy biocrude->aqueous secondary loss"},
+
+        "T_ref": {"value": 623.15, "unit": "K", "note": "Reference temperature 350 C for rate normalisation"},
+
+        "dH_rxn": {"value": -250000.0, "unit": "J/kg_biomass_reacted", "note": "Net reaction enthalpy of liquefaction; mildly exothermic per Toor 2011 / Peterson 2008 energetics"},
+
+        "m_slurry": {"value": 1.0, "unit": "kg", "note": "Total slurry mass in reactor (water + biomass) basis"},
+        "cp_slurry": {"value": 4500.0, "unit": "J/(kg.K)", "note": "Effective slurry heat capacity; near subcritical water cp (water cp rises to ~5-8 kJ/kg.K near critical point, IAPWS-IF97)"},
+        "UA_heater": {"value": 30.0, "unit": "W/K", "note": "Overall heater conductance (electric jacket) driving reactor to setpoint"},
+
+        "rho_water": {"value": 700.0, "unit": "kg/m3", "note": "Liquid water density at 320 C, 16 MPa subcritical (IAPWS-IF97), confirms compressed-liquid (not vapour) regime"},
+        "Psat_350C_MPa": {"value": 16.5, "unit": "MPa", "note": "Saturation pressure of water at 350 C; operating P must exceed this to keep water subcritical liquid"},
+        "Tc_water_C": {"value": 374.0, "unit": "C", "note": "Critical temperature of water; HTL is subcritical (T < 374 C)"},
+        "Pc_water_MPa": {"value": 22.06, "unit": "MPa", "note": "Critical pressure of water"},
+
+        "LHV_biocrude": {"value": 33.0, "unit": "MJ/kg", "note": "Lower heating value of HTL biocrude (Toor 2011: 30-36 MJ/kg)"}
+    },
+    "valid_ranges": {
+        "T_setpoint_C":   {"min": 250.0, "max": 374.0, "unit": "C",   "note": "Subcritical HTL window; capped below water Tc"},
+        "P_MPa":          {"min": 10.0,  "max": 25.0,  "unit": "MPa"},
+        "residence_min":  {"min": 0.0,   "max": 120.0, "unit": "min"},
+        "T0_C":           {"min": 20.0,  "max": 374.0, "unit": "C"},
+        "biomass0":       {"min": 0.0,   "max": 1.0,   "unit": "mass_fraction"}
+    }
+}

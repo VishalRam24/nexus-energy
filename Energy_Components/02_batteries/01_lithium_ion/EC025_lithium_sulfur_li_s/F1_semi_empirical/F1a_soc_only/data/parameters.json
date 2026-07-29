@@ -1,0 +1,12 @@
+{
+  "default_parameters": {
+    "Q_nom": 5.0,
+    "R_int": 0.100,
+    "V_min": 1.7,
+    "V_max": 2.45,
+    "V_high_plateau": 2.3,
+    "V_low_plateau": 2.1,
+    "soc_transition": 0.25
+  },
+  "description": "Li-S SOC-only model with two-plateau OCV. High plateau ~2.3 V (SOC > 0.25, S8->Li2S4), low plateau ~2.1 V (SOC <= 0.25, Li2S4->Li2S). R_int=100 mOhm, Q_nom=5.0 Ah."
+}

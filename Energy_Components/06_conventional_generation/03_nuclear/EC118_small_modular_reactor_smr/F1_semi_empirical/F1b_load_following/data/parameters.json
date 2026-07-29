@@ -1,0 +1,30 @@
+{
+    "component": "EC118 Small Modular Reactor (SMR)",
+    "fidelity": "F1b",
+    "description": "Deep load-following (20-100%) with faster ramp rates (~5%/min) and thermal inertia model",
+    "unit": {
+        "name": "Generic 540 MWth / 180 MWe Integral PWR SMR (NuScale VOYGR-class)",
+        "source": "IAEA (2022). Advances in SMR Technology Developments; NuScale VOYGR DCA (2020); Ingersoll & Carelli (2020) Handbook of Small Modular Nuclear Reactors",
+        "P_thermal_mw": {"value": 540.0, "unit": "MW_th", "note": "Reactor module thermal power at full load"},
+        "eta_thermal": {"value": 0.33, "unit": "-", "note": "Net thermal-to-electrical efficiency"},
+        "sigma_Xe_cm2": {"value": 2.65e-18, "unit": "cm2", "note": "Xe-135 microscopic absorption cross-section"},
+        "lambda_Xe_per_s": {"value": 2.09e-5, "unit": "1/s", "note": "Xe-135 decay constant (t_1/2 = 9.17 h)"},
+        "lambda_I_per_s": {"value": 2.87e-5, "unit": "1/s", "note": "I-135 decay constant (t_1/2 = 6.7 h)"},
+        "gamma_I": {"value": 0.064, "unit": "-", "note": "I-135 cumulative fission yield"},
+        "gamma_Xe": {"value": 0.003, "unit": "-", "note": "Direct Xe-135 fission yield"},
+        "ramp_rate_limit_pct_min": {"value": 5.0, "unit": "%/min", "note": "Maximum allowed power ramp rate; SMRs designed for fast load-following (vs PWR 5%/min, BWR 1%/min, same as PWR but deeper range)"},
+        "PLR_min": {"value": 0.2, "unit": "-", "note": "Minimum stable PLR for SMR (designed for deep load-following, down to 20%)"},
+        "PLR_max": {"value": 1.0, "unit": "-"},
+        "total_reactivity_margin_pcm": {"value": 5500.0, "unit": "pcm", "note": "Total control rod reactivity margin (SMR designed with higher margin to enable deep load-following)"},
+        "xenon_reactivity_coeff_pcm": {"value": -2500.0, "unit": "pcm", "note": "Reactivity penalty at equilibrium Xe at full power (smaller core, lower burnup -> smaller Xe worth)"},
+        "thermal_time_constant_min": {"value": 8.0, "unit": "min", "note": "Primary coolant thermal inertia time constant; integral design with no separate steam generator -> faster thermal response than large PWR"},
+        "primary_cp_mj_per_k": {"value": 450.0, "unit": "MJ/K", "note": "Total primary loop heat capacity (integrated: water mass * cp); governs temperature transient during ramp"},
+        "T_inlet_c": {"value": 258.0, "unit": "degC", "note": "Primary coolant cold-leg temperature"},
+        "T_outlet_rated_c": {"value": 321.0, "unit": "degC", "note": "Primary coolant hot-leg temperature at full power"}
+    },
+    "valid_ranges": {
+        "power_fraction": {"min": 0.2, "max": 1.0},
+        "time_at_power_hours": {"min": 0.0, "max": 168.0},
+        "previous_power_fraction": {"min": 0.0, "max": 1.0}
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "component": "EC091 Vapor Compression Chiller",
+    "fidelity": "F2a",
+    "model": "Steady-state vapor compression cycle for cooling (R134a)",
+    "refrigerant": "R134a",
+    "unit": {
+        "name": "Generic 100kW Vapor Compression Chiller (R134a)",
+        "source": "ASHRAE Handbook — HVAC Systems and Equipment (2020)",
+        "capacity_nominal_kw": {"value": 100.0, "unit": "kW_cooling"},
+        "eta_isentropic": {"value": 0.78, "unit": "dimensionless"},
+        "eta_motor": {"value": 0.95, "unit": "dimensionless"},
+        "superheat_K": {"value": 5.0, "unit": "K"},
+        "subcool_K": {"value": 3.0, "unit": "K"}
+    },
+    "valid_ranges": {
+        "T_evap_degC": {"min": -5.0, "max": 15.0, "unit": "degC"},
+        "T_cond_degC": {"min": 25.0, "max": 55.0, "unit": "degC"}
+    }
+}

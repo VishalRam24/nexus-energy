@@ -1,0 +1,27 @@
+{
+    "component": "EC184 Power Factor Correction Unit",
+    "fidelity": "F1b",
+    "description": "ESR-thermal model: P_loss = ESR(T)*I_cap^2 + dielectric_loss_factor*Q_comp; ESR(T) follows Arrhenius correction; reactive power derated above rated temperature per IEC 60831-1.",
+    "unit": {
+        "name": "Generic 11 kV Shunt Capacitor Bank, 1 MVAR",
+        "source": "IEEE Std 1036-2010: Guide for Shunt Capacitors; IEC 60831-1:2014; Tan, X. et al. (2016) capacitor bank losses; ABB Power Capacitors product data.",
+        "Q_rated_kVAR": {"value": 1000.0, "unit": "kVAR", "note": "Total capacitor bank rating"},
+        "V_rated_kV": {"value": 11.0, "unit": "kV"},
+        "C_uF": {"value": 263.1, "unit": "uF", "note": "Equivalent bank capacitance at 50 Hz: C = Q/(2*pi*f*V^2) = 1e6/(2*pi*50*11e3^2)"},
+        "ESR_ref_ohm": {"value": 0.005, "unit": "Ohm", "note": "Equivalent Series Resistance at T_ref=25 C (polypropylene film, ~0.005 Ohm per unit)"},
+        "T_ref": {"value": 25.0, "unit": "degC", "note": "Reference temperature for ESR"},
+        "ESR_alpha": {"value": -0.003, "unit": "1/K", "note": "ESR temperature coefficient (negative: PP film ESR decreases slightly with T, typical -0.3%/K below 70C)"},
+        "tan_delta_ref": {"value": 0.0002, "unit": "dimensionless", "note": "Dissipation factor at T_ref (0.02% = 0.0002 typical for PP film capacitors per IEC 60831-1)"},
+        "tan_delta_alpha": {"value": 5.0e-6, "unit": "1/K", "note": "Increase in tan_delta per K above T_ref"},
+        "T_max_C": {"value": 70.0, "unit": "degC", "note": "IEC 60831-1 max operating temperature for PP film"},
+        "derating_slope": {"value": 0.015, "unit": "1/K", "note": "Q output derating above T_max: ~1.5%/K above T_max"},
+        "f_system_Hz": {"value": 50.0, "unit": "Hz", "note": "System frequency"},
+        "pf_target": {"value": 0.95, "unit": "dimensionless", "note": "Default target power factor"}
+    },
+    "valid_ranges": {
+        "P_kW": {"min": 0.0, "max": 10000.0, "unit": "kW"},
+        "pf_initial": {"min": 0.5, "max": 0.99, "unit": "dimensionless"},
+        "T_cap": {"min": -10.0, "max": 80.0, "unit": "degC"},
+        "Q_comp_kVAR": {"min": 0.0, "max": 2000.0, "unit": "kVAR"}
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "component": "EC151 Dry Steam Geothermal Plant",
+    "fidelity": "F1a",
+    "description": "Exergy efficiency model: eta = eta_utilization * eta_Carnot, direct steam to turbine",
+    "unit": {
+        "name": "Generic Dry Steam Geothermal Plant",
+        "source": "DiPippo, R. (2015). Geothermal Power Plants, 4th ed. Butterworth-Heinemann.",
+        "T_geo_design": {"value": 200.0, "unit": "degC"},
+        "T_reject_design": {"value": 50.0, "unit": "degC"},
+        "m_dot_steam_design": {"value": 50.0, "unit": "kg/s"},
+        "cp_steam": {"value": 2010.0, "unit": "J/kgK", "note": "Approx specific heat of steam at geothermal conditions"},
+        "eta_utilization": {"value": 0.55, "unit": "dimensionless", "note": "Higher than binary due to direct steam cycle; typical 0.50-0.65"},
+        "P_rated": {"value": 10000.0, "unit": "kW"},
+        "T_condenser_offset": {"value": 5.0, "unit": "degC", "note": "Condenser temperature above rejection temperature"}
+    },
+    "valid_ranges": {
+        "T_geothermal": {"min": 180.0, "max": 280.0, "unit": "degC"},
+        "T_rejection": {"min": 10.0, "max": 50.0, "unit": "degC"},
+        "flow_rate_kgs": {"min": 10.0, "max": 200.0, "unit": "kg/s"}
+    }
+}

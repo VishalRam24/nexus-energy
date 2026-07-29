@@ -1,0 +1,25 @@
+{
+    "component": "EC221 Magnetohydrodynamic (MHD) Generator",
+    "fidelity": "F0a",
+    "description": "Empirical power-density vs plasma-velocity lookup for a Faraday MHD channel. Breakpoints from P_density = sigma*u^2*B^2*K*(1-K) at sigma=10 S/m, B=5 T, K=0.5 (max-power load). Total power = density * channel volume (5x0.5x0.5 m).",
+    "source": "Rosa, R.J. (1987) Magnetohydrodynamic Energy Conversion. McGraw-Hill; Way, S. et al. (1979) AIAA",
+    "sigma_plasma": {"value": 10.0, "unit": "S/m", "note": "Plasma electrical conductivity (reused from EC221 F1a)"},
+    "B_field": {"value": 5.0, "unit": "T", "note": "Magnetic field strength (reused from F1a)"},
+    "K_load": {"value": 0.5, "unit": "-", "note": "Load factor at max power (reused from F1a)"},
+    "channel_volume_m3": {"value": 1.25, "unit": "m^3", "note": "Channel volume 5x0.5x0.5 m (reused from F1a)"},
+    "lookup": {
+        "note": "Breakpoints: plasma flow velocity (m/s) -> electrical power density (W/m^3)",
+        "u_m_s": {"value": [200.0, 400.0, 600.0, 800.0, 1000.0, 1500.0, 2000.0], "unit": "m/s"},
+        "power_density_W_m3": {"value": [2500000.0, 10000000.0, 22500000.0, 40000000.0, 62500000.0, 140625000.0, 250000000.0], "unit": "W/m^3"}
+    },
+    "rated_point": {
+        "u": {"value": 800.0, "unit": "m/s"},
+        "B": {"value": 5.0, "unit": "T"},
+        "K": {"value": 0.5, "unit": "-"},
+        "power_density_W_m3": {"value": 40000000.0, "unit": "W/m^3", "note": "40 MW/m^3 at 800 m/s; ~50 MW total over the 1.25 m^3 channel"}
+    },
+    "valid_ranges": {
+        "u": {"min": 100.0, "max": 2000.0, "unit": "m/s"},
+        "B": {"min": 0.5, "max": 10.0, "unit": "T"}
+    }
+}

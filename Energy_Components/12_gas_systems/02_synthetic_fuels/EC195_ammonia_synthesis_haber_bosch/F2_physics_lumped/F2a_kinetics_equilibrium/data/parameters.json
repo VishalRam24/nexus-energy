@@ -1,0 +1,32 @@
+{
+    "component_id": "EC195",
+    "component_name": "Ammonia Synthesis (Haber-Bosch)",
+    "fidelity": "F2a -- Temkin-Pyzhev Kinetics + CSTR with Recycle",
+    "source": "Temkin & Pyzhev (1940); Gillespie & Beattie (1930); Appl (1999) Ammonia: Principles and Industrial Practice",
+    "unit": {
+        "name": "Generic Haber-Bosch Ammonia Synthesis Reactor with Recycle",
+        "V_reactor": {"value": 5.0, "unit": "m3", "note": "Reactor volume (single bed)"},
+        "rho_cat": {"value": 2500.0, "unit": "kg/m3", "note": "Iron catalyst bulk density"},
+        "cat_fraction": {"value": 0.55, "unit": "-", "note": "Catalyst volume fraction"},
+        "A_f": {"value": 8.85e14, "unit": "mol/(m3.s.atm)", "note": "Forward rate pre-exponential"},
+        "Ea_f": {"value": 170000.0, "unit": "J/mol", "note": "Forward activation energy"},
+        "delta_H": {"value": -92000.0, "unit": "J/mol", "note": "Reaction enthalpy per mol N2"},
+        "UA": {"value": 15000.0, "unit": "W/K", "note": "Heat transfer coefficient * area"},
+        "T_cool": {"value": 673.15, "unit": "K", "note": "Coolant temperature (400C)"},
+        "m_thermal": {"value": 10000.0, "unit": "kg", "note": "Reactor thermal mass"},
+        "cp_thermal": {"value": 500.0, "unit": "J/(kg.K)", "note": "Effective specific heat"},
+        "T_in": {"value": 673.15, "unit": "K", "note": "Feed inlet temperature (400C)"},
+        "P_total": {"value": 200.0, "unit": "atm", "note": "Total pressure"},
+        "GHSV": {"value": 10000.0, "unit": "1/h", "note": "Gas hourly space velocity"},
+        "feed_H2_N2_ratio": {"value": 3.0, "unit": "mol/mol", "note": "H2/N2 feed ratio (stoichiometric)"},
+        "cp_gas": {"value": 30.0, "unit": "J/(mol.K)", "note": "Average gas molar heat capacity"},
+        "recycle_ratio": {"value": 0.85, "unit": "-", "note": "Fraction of unconverted gas recycled"},
+        "separator_efficiency": {"value": 0.95, "unit": "-", "note": "NH3 separator efficiency"}
+    },
+    "valid_ranges": {
+        "temperature": {"min": 573.15, "max": 873.15, "unit": "K"},
+        "pressure": {"min": 100.0, "max": 350.0, "unit": "atm"},
+        "GHSV": {"min": 5000.0, "max": 30000.0, "unit": "1/h"},
+        "H2_N2_ratio": {"min": 2.5, "max": 3.5, "unit": "mol/mol"}
+    }
+}

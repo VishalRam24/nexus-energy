@@ -1,0 +1,33 @@
+{
+    "component": "EC193 Methanation Reactor (Power-to-Gas)",
+    "fidelity": "F1b",
+    "description": "Part-load conversion + exothermic heat recovery model: CO2 + 4H2 -> CH4 + 2H2O",
+    "unit": {
+        "name": "Ni/Al2O3 Catalytic Methanation Reactor",
+        "source": "Gao, J. et al. (2012). RSC Advances, 2, 2358-2368.",
+        "T_design": {"value": 300.0, "unit": "degC"},
+        "P_design": {"value": 10.0, "unit": "bar"},
+        "H2_CO2_ratio_design": {"value": 4.0, "unit": "mol/mol"},
+        "catalyst": {"value": "Ni/Al2O3", "unit": "-"},
+        "catalyst_mass_kg": {"value": 100.0, "unit": "kg"},
+        "GHSV": {"value": 5000.0, "unit": "1/h"},
+        "n_CO2_in": {"value": 1.0, "unit": "mol/s"},
+        "X_max": {"value": 0.98, "unit": "dimensionless"},
+        "T_opt": {"value": 300.0, "unit": "degC"},
+        "k_T": {"value": 10.0, "unit": "dimensionless"},
+        "P_ref": {"value": 10.0, "unit": "bar"},
+        "P_exp": {"value": 0.1, "unit": "dimensionless"},
+        "LHV_CH4": {"value": 802.3, "unit": "kJ/mol"},
+        "LHV_H2": {"value": 241.8, "unit": "kJ/mol"},
+        "DH_reaction": {"value": -165.0, "unit": "kJ/mol_CO2"},
+        "f_recovery": {"value": 0.85, "unit": "dimensionless", "note": "Fraction of exothermic heat recovered"},
+        "PLR_coeffs": {"value": [0.2, 1.2, -0.4], "unit": "dimensionless", "note": "Quadratic PLR correction: a0 + a1*PLR + a2*PLR^2"},
+        "selectivity_design": {"value": 0.95, "unit": "dimensionless", "note": "CH4 selectivity at design conditions"}
+    },
+    "valid_ranges": {
+        "temperature": {"min": 200.0, "max": 500.0, "unit": "degC"},
+        "pressure": {"min": 1.0, "max": 30.0, "unit": "bar"},
+        "h2_co2_ratio": {"min": 3.5, "max": 5.0, "unit": "mol/mol"},
+        "PLR": {"min": 0.3, "max": 1.0, "unit": "dimensionless"}
+    }
+}

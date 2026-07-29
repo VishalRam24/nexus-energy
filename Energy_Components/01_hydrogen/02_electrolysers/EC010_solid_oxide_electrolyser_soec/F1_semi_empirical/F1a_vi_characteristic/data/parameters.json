@@ -1,0 +1,26 @@
+{
+    "component": "EC010 Solid Oxide Electrolyser (SOEC)",
+    "fidelity": "F1a",
+    "description": "ASR-based V-I characteristic for solid oxide electrolysis",
+    "source": "Ni et al. (2007), Chem. Eng. Tech., 29(6), 636-642",
+    "unit": {
+        "name": "Generic SOEC Stack (30-cell, 100 cm2)",
+        "N_cells": {"value": 30, "unit": "dimensionless", "note": "Number of cells in series"},
+        "electrode_area": {"value": 100.0, "unit": "cm2", "note": "Active electrode area per cell"},
+        "T_nominal": {"value": 1073.15, "unit": "K", "note": "Nominal operating temperature (800 C)"},
+        "T_ref": {"value": 1073.15, "unit": "K", "note": "ASR reference temperature"},
+        "ASR_ref": {"value": 0.3, "unit": "Ohm.cm2", "note": "Area-specific resistance at T_ref"},
+        "E_act": {"value": 60000.0, "unit": "J/mol", "note": "Activation energy for Arrhenius ASR"},
+        "E_thermo_neutral": {"value": 1.285, "unit": "V", "note": "Thermo-neutral voltage at 800 C (approx)"}
+    },
+    "constants": {
+        "F": {"value": 96485.0, "unit": "C/mol", "note": "Faraday constant"},
+        "R": {"value": 8.314, "unit": "J/(mol.K)", "note": "Universal gas constant"},
+        "E_rev_ref": {"value": 1.253, "unit": "V", "note": "Reversible potential reference at 298 K"},
+        "E_rev_T_coeff": {"value": 0.00024, "unit": "V/K", "note": "Temperature coefficient (dE_rev/dT) for steam electrolysis"}
+    },
+    "valid_ranges": {
+        "current_density": {"min": 0.0, "max": 2.0, "unit": "A/cm2"},
+        "temperature": {"min": 600.0, "max": 900.0, "unit": "degC"}
+    }
+}

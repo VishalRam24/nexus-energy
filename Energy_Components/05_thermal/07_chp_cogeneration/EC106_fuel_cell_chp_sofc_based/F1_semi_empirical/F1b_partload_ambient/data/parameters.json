@@ -1,0 +1,26 @@
+{
+    "component": "EC106 Fuel Cell CHP (SOFC-based)",
+    "fidelity": "F1b",
+    "description": "Part-load electrical + thermal efficiency curves with ambient temperature derating; heat-to-power ratio derived from efficiency split",
+    "unit": {
+        "name": "Generic 200 kW SOFC-based CHP unit",
+        "source": "US DOE NETL, SOFC Program Review (2020); US EPA CHP Catalog (2017); Larminie & Dicks (2003), Fuel Cell Systems Explained, 2nd ed.",
+        "P_el_rated_kw": {"value": 200.0, "unit": "kW_e", "note": "Rated electrical output at 25 degC"},
+        "eta_el_rated": {"value": 0.47, "unit": "-", "note": "Electrical efficiency at rated load (SOFC: 45-60% LHV); conservative mid-range"},
+        "eta_th_rated": {"value": 0.35, "unit": "-", "note": "Thermal (waste heat) efficiency at rated load; total ~82%"},
+        "PLR_min": {"value": 0.3, "unit": "-", "note": "SOFC minimum stable PLR (gas reformer minimum flow)"},
+        "LHV_gas_mj_kg": {"value": 50.0, "unit": "MJ/kg", "note": "Natural gas LHV"},
+        "el_plr_a": {"value": 0.50, "unit": "-", "note": "Electrical PLR constant: SOFC maintains higher part-load eta than heat engines"},
+        "el_plr_b": {"value": 0.60, "unit": "-", "note": "Electrical PLR linear term"},
+        "el_plr_c": {"value": -0.10, "unit": "-", "note": "Electrical PLR quadratic term; slight peaking near PLR=0.9-1.0"},
+        "th_plr_a": {"value": 0.70, "unit": "-", "note": "Thermal PLR constant; heat loss proportionally larger at part load"},
+        "th_plr_b": {"value": 0.30, "unit": "-", "note": "Thermal PLR linear term"},
+        "T_ref_c": {"value": 25.0, "unit": "degC", "note": "Reference ambient temperature"},
+        "temp_derating_pct_per_degC": {"value": 0.15, "unit": "%/degC", "note": "Power derating above 25 degC (small effect for SOFC — electrochemistry, not air-density)"},
+        "temp_derating_start_c": {"value": 25.0, "unit": "degC", "note": "Temperature above which derating starts"}
+    },
+    "valid_ranges": {
+        "PLR": {"min": 0.3, "max": 1.0, "unit": "-"},
+        "T_ambient_c": {"min": -20.0, "max": 45.0, "unit": "degC"}
+    }
+}

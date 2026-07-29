@@ -1,0 +1,34 @@
+{
+    "component": "EC054 Parabolic Trough CSP",
+    "fidelity": "F1b",
+    "description": "Detailed receiver heat loss model with convective + radiative losses, polynomial IAM, and end loss factor",
+    "unit": {
+        "name": "Generic Parabolic Trough — Schott PTR70 Receiver, LS-3 Collector",
+        "source": "Forristall (2003), NREL/TP-550-34169; Kalogirou (2012), Solar Energy 86(1)",
+        "aperture_width": {"value": 5.77, "unit": "m", "note": "Mirror aperture width (LS-3)"},
+        "L_collector": {"value": 150.0, "unit": "m", "note": "SCA length (single collector assembly)"},
+        "D_abs": {"value": 0.07, "unit": "m", "note": "Absorber tube outer diameter"},
+        "eps_abs": {"value": 0.95, "unit": "dimensionless", "note": "Absorber absorptivity / emissivity"},
+        "eps_glass": {"value": 0.86, "unit": "dimensionless", "note": "Glass envelope emissivity"},
+        "tau_glass": {"value": 0.96, "unit": "dimensionless", "note": "Glass envelope transmissivity"},
+        "rho_mirror": {"value": 0.94, "unit": "dimensionless", "note": "Mirror reflectivity"},
+        "intercept_factor": {"value": 0.95, "unit": "dimensionless", "note": "Intercept factor (fraction of reflected light hitting absorber)"},
+        "h_conv": {"value": 10.0, "unit": "W/m2K", "note": "External convective heat transfer coefficient (wind-dependent)"},
+        "T_sky_offset": {"value": 10.0, "unit": "K", "note": "T_sky = T_amb - T_sky_offset for radiative sky loss"},
+        "focal_length": {"value": 1.71, "unit": "m", "note": "Focal length for end-loss calculation"}
+    },
+    "iam_coefficients": {
+        "description": "IAM(theta) = cos(theta) - 5.25097e-4*theta - 2.859621e-5*theta^2 (theta in degrees)",
+        "source": "Dudley et al. (1994), SAND94-1884, Sandia National Laboratories",
+        "c0": {"value": 1.0, "note": "cos(theta) term"},
+        "c1": {"value": -5.25097e-4, "unit": "1/deg"},
+        "c2": {"value": -2.859621e-5, "unit": "1/deg2"}
+    },
+    "valid_ranges": {
+        "DNI": {"min": 0.0, "max": 1000.0, "unit": "W/m2"},
+        "T_htf_in": {"min": 100.0, "max": 400.0, "unit": "degC"},
+        "T_htf_out": {"min": 100.0, "max": 400.0, "unit": "degC"},
+        "T_ambient": {"min": 0.0, "max": 50.0, "unit": "degC"},
+        "incidence_angle": {"min": 0.0, "max": 80.0, "unit": "deg"}
+    }
+}

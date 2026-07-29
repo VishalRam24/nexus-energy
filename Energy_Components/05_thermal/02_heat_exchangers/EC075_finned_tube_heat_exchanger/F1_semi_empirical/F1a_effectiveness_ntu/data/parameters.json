@@ -1,0 +1,19 @@
+{
+    "component": "EC075 Finned-Tube Heat Exchanger",
+    "fidelity": "F1a",
+    "description": "Cross-flow e-NTU with constant U, no fouling",
+    "unit": {
+        "name": "Generic finned-tube HX (air-water)",
+        "source": "Incropera & DeWitt (2006), ch.11; Kays & London (1984)",
+        "U_overall": {"value": 45.0, "unit": "W/m2K", "note": "Air-side dominant resistance"},
+        "A": {"value": 25.0, "unit": "m2", "note": "Total external finned area"},
+        "cp_hot": {"value": 4180.0, "unit": "J/kgK", "note": "Water (hot side)"},
+        "cp_cold": {"value": 1006.0, "unit": "J/kgK", "note": "Air (cold side)"}
+    },
+    "valid_ranges": {
+        "T_h_in": {"min": 20.0, "max": 120.0, "unit": "degC"},
+        "T_c_in": {"min": -20.0, "max": 50.0, "unit": "degC"},
+        "m_dot_hot": {"min": 0.05, "max": 5.0, "unit": "kg/s"},
+        "m_dot_cold": {"min": 0.1, "max": 10.0, "unit": "kg/s"}
+    }
+}

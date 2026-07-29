@@ -1,0 +1,58 @@
+{
+    "component": "EC150 Fischer-Tropsch Synthesis (BtL)",
+    "fidelity": "F1b",
+    "description": "Feedstock-specific FT-BtL with syngas quality, ASF chain growth, H2/CO ratio, temperature effects, moisture-LHV coupling",
+    "feedstock_db": {
+        "wood_chips": {
+            "LHV_dry_MJ_kg": 18.5,
+            "C_frac": 0.50,
+            "syngas_H2CO_ratio": 1.8,
+            "syngas_yield_nm3_kg_dry": 2.5,
+            "note": "Hardwood — standard BtL feedstock (van der Laan 1999)"
+        },
+        "pine": {
+            "LHV_dry_MJ_kg": 19.5,
+            "C_frac": 0.52,
+            "syngas_H2CO_ratio": 1.9,
+            "syngas_yield_nm3_kg_dry": 2.6,
+            "note": "Softwood pine — slightly higher C content"
+        },
+        "agricultural_residue": {
+            "LHV_dry_MJ_kg": 16.5,
+            "C_frac": 0.44,
+            "syngas_H2CO_ratio": 1.5,
+            "syngas_yield_nm3_kg_dry": 2.2,
+            "note": "Straw/residue — lower H2/CO, lower LHV"
+        },
+        "municipal_solid_waste": {
+            "LHV_dry_MJ_kg": 14.0,
+            "C_frac": 0.35,
+            "syngas_H2CO_ratio": 1.3,
+            "syngas_yield_nm3_kg_dry": 1.8,
+            "note": "MSW — heterogeneous, low H2/CO (Davis 2009)"
+        },
+        "torrefied_wood": {
+            "LHV_dry_MJ_kg": 22.0,
+            "C_frac": 0.58,
+            "syngas_H2CO_ratio": 2.0,
+            "syngas_yield_nm3_kg_dry": 2.8,
+            "note": "Torrefied biomass — higher energy density, better H2/CO"
+        }
+    },
+    "unit": {
+        "T_ref_degC":          {"value": 230.0, "unit": "degC",         "note": "LTFT reference T (Co catalyst, Dry 2002)"},
+        "P_design_MPa":        {"value": 2.5,   "unit": "MPa",          "note": "Typical FT operating pressure"},
+        "alpha_ref":           {"value": 0.88,  "unit": "dimensionless","note": "ASF chain growth probability at design (LTFT, high diesel+wax)"},
+        "CO_conversion_ref":   {"value": 0.85,  "unit": "dimensionless","note": "Reference CO conversion (van der Laan 1999)"},
+        "PLR_min":             {"value": 0.30,  "unit": "dimensionless"},
+        "a0":                  {"value": 0.50,  "unit": "dimensionless"},
+        "a1":                  {"value": 0.40,  "unit": "dimensionless"},
+        "a2":                  {"value": -0.10, "unit": "dimensionless"}
+    },
+    "valid_ranges": {
+        "temperature_degC":  {"min": 180.0, "max": 350.0, "unit": "degC"},
+        "moisture_fraction": {"min": 0.0,   "max": 0.60,  "unit": "dimensionless"},
+        "PLR":               {"min": 0.30,  "max": 1.0,   "unit": "dimensionless"},
+        "feed_rate_kg_h":    {"min": 100.0, "max": 10000.0,"unit": "kg/h"}
+    }
+}

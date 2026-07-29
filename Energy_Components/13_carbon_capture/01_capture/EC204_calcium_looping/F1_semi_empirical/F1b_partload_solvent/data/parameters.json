@@ -1,0 +1,28 @@
+{
+    "component": "EC204 Calcium Looping (CaL)",
+    "fidelity": "F1b",
+    "description": "Calcium looping CO2 capture with part-load sorbent utilisation and cyclic degradation",
+    "unit": {
+        "name": "Calcium Looping Post-Combustion Unit",
+        "source": "Charitos et al. (2011) Ind. Eng. Chem. Res. 50(17); Romano (2012) Int. J. Greenhouse Gas Control 10",
+        "capture_rate_design": {"value": 0.90, "unit": "dimensionless"},
+        "carbonation_T_degC": {"value": 650.0, "unit": "degC"},
+        "calcination_T_degC": {"value": 910.0, "unit": "degC"},
+        "CaO_activity_fresh": {"value": 0.80, "unit": "mol_CO2/mol_CaO", "note": "Sorbent activity at cycle 0"},
+        "k_deactivation": {"value": 0.0002, "unit": "per_cycle", "note": "Activity loss per carbonation-calcination cycle"},
+        "sorbent_makeup_rate": {"value": 0.01, "unit": "dimensionless", "note": "Fraction of CaO replaced per cycle"},
+        "heat_carbonation_design": {"value": 178.0, "unit": "kJ/mol_CO2", "note": "Exothermic heat released at carbonation"},
+        "heat_calcination_design": {"value": 3.2, "unit": "GJ/tCO2", "note": "Thermal energy for calcination at design"},
+        "electrical_design": {"value": 25.0, "unit": "kWh/tCO2", "note": "Fans, conveyors, heat exchangers"},
+        "PLR_calcination_coeffs": {"value": [1.25, -0.25], "unit": "dimensionless", "note": "q_calc(PLR) = (a+b*PLR)*q_design"},
+        "MW_CO2": {"value": 44.01, "unit": "g/mol"},
+        "MW_CaO": {"value": 56.08, "unit": "g/mol"}
+    },
+    "valid_ranges": {
+        "flue_gas_flow_mol_s": {"min": 10.0, "max": 1000.0, "unit": "mol/s"},
+        "co2_concentration": {"min": 0.04, "max": 0.15, "unit": "mol/mol"},
+        "capture_rate": {"min": 0.5, "max": 0.95, "unit": "dimensionless"},
+        "PLR": {"min": 0.3, "max": 1.0, "unit": "dimensionless"},
+        "n_cycles": {"min": 0.0, "max": 100000.0, "unit": "cycles"}
+    }
+}

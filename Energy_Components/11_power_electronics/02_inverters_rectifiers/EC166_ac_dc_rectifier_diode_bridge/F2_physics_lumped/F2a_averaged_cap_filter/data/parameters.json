@@ -1,0 +1,24 @@
+{
+    "component_id": "EC166",
+    "component_name": "AC-DC Rectifier (Diode Bridge)",
+    "fidelity": "F2a — Physics-Lumped Averaged Diode Bridge with Output-Cap Voltage ODE",
+    "source": "Mohan, Undeland & Robbins (2003), Power Electronics: Converters, Applications and Design, 3rd ed., Wiley, ch. 5; Rashid (2014), Power Electronics, 4th ed., Pearson, ch. 3",
+    "unit": {
+        "name": "Generic 3-phase 6-pulse Diode Bridge Rectifier with Capacitive Filter (20 kW)",
+        "n_phases": {"value": 3, "unit": "dimensionless", "note": "1 (full-bridge 2-pulse) or 3 (6-pulse) phase"},
+        "f_line": {"value": 50.0, "unit": "Hz", "note": "AC line frequency (50 or 60 Hz)"},
+        "C_out": {"value": 0.0047, "unit": "F", "note": "DC output filter capacitance (4700 uF)"},
+        "L_source": {"value": 0.00015, "unit": "H", "note": "Per-phase AC source/line inductance (drives commutation overlap)"},
+        "V_f": {"value": 0.9, "unit": "V", "note": "Diode forward threshold voltage (one device); 2 in conduction path"},
+        "r_d": {"value": 0.005, "unit": "Ohm", "note": "Diode on-state slope resistance per device"},
+        "R_load": {"value": 8.0, "unit": "Ohm", "note": "DC-side load resistance (constant-R model)"},
+        "valid_note": {"value": 0, "unit": "-", "note": "Vdc_3ph = 3*sqrt(2)/pi * V_LL = 1.3505*V_LL; Vdc_1ph = 2*sqrt(2)/pi * V_rms = 0.9003*V_rms"}
+    },
+    "valid_ranges": {
+        "v_ac_rms": {"min": 100.0, "max": 690.0, "unit": "V", "note": "V_LL for 3-phase, V_phase for 1-phase"},
+        "R_load": {"min": 1.0, "max": 1000.0, "unit": "Ohm"},
+        "C_out": {"min": 1e-4, "max": 0.05, "unit": "F"},
+        "dt": {"min": 1e-5, "max": 1e-3, "unit": "s"},
+        "duration_s": {"min": 0.005, "max": 2.0, "unit": "s"}
+    }
+}

@@ -1,0 +1,34 @@
+{
+    "component": "EC050 Organic Photovoltaic (OPV)",
+    "fidelity": "F1b",
+    "description": "De Soto 5-parameter single-diode + Faiman NOCT thermal + empirical OPV tempco correction. Based on non-fullerene acceptor (NFA) OPV module representative parameters.",
+    "module": {
+        "name": "OPV NFA module representative (PM6:Y6-type, n~1.7)",
+        "source": "Kawano et al. (2006) J. Appl. Phys.; Zhang et al. (2018) Adv. Energy Mater.; Brabec et al. (2010) Adv. Mater.",
+        "technology": "Organic thin-film (bulk heterojunction, non-fullerene acceptor)",
+        "cells_in_series": {"value": 50, "unit": "cells", "note": "Series-connected sub-cells in OPV module"},
+        "area": {"value": 0.08, "unit": "m2", "note": "Module active area (800 cm2 typical for commercial format)"},
+        "alpha_sc": {"value": 0.00012, "unit": "A/K", "note": "+0.12 mA/K; OPV Isc has slight positive tempco"},
+        "gamma_pmp": {"value": -0.0021, "unit": "/K", "note": "-0.21%/K measured for PM6:Y6 NFA devices (Zhang et al. 2018)"},
+        "NOCT": {"value": 40.0, "unit": "degC", "note": "Lower NOCT than Si due to lightweight thin-film substrate"},
+        "T_NOCT_amb": {"value": 20.0, "unit": "degC"},
+        "G_NOCT": {"value": 800.0, "unit": "W/m2"}
+    },
+    "desoto_params": {
+        "I_L_ref": {"value": 0.58, "unit": "A", "note": "Photocurrent at STC for 800cm2, 50 cells in series (Jsc ~7.25 mA/cm2)"},
+        "I_o_ref": {"value": 2.5e-8, "unit": "A", "note": "Saturation current; high for organic due to defect recombination"},
+        "R_s": {"value": 15.0, "unit": "Ohm", "note": "High series resistance due to low mobility organics"},
+        "R_sh_ref": {"value": 500.0, "unit": "Ohm", "note": "Moderate shunt resistance for morphological defects"},
+        "a_ref": {"value": 2.15, "unit": "V", "note": "n*N_s*kT/q = 1.7*50*0.02569 = 2.18V; n~1.7 for recombination-dominated OPV"},
+        "EgRef": {"value": 1.35, "unit": "eV", "note": "Effective charge-transfer state energy (lower than optical bandgap ~1.6eV)"},
+        "dEgdT": {"value": -0.0002, "unit": "eV/K", "note": "Temperature coefficient of effective CT-state Eg"}
+    },
+    "tempco_correction": {
+        "correction_factor": {"value": 0.70, "note": "RATIONALE: OPV gamma_desoto_est=-0.30%/K vs measured -0.21%/K. Factor=0.70. Validated vs Kawano (2006) and Zhang (2018)."},
+        "gamma_desoto_approx": {"value": -0.0030, "unit": "/K"}
+    },
+    "valid_ranges": {
+        "irradiance": {"min": 0.0, "max": 1200.0, "unit": "W/m2"},
+        "T_ambient": {"min": -10.0, "max": 60.0, "unit": "degC"}
+    }
+}

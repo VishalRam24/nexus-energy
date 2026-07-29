@@ -1,0 +1,67 @@
+{
+    "component": "EC146 Torrefaction Reactor",
+    "fidelity": "F1b",
+    "description": "Feedstock-specific torrefaction with moisture-LHV coupling, temperature/residence-time mass yield, and energy densification",
+    "feedstock_db": {
+        "wood_chips": {
+            "LHV_dry_MJ_kg": 18.5,
+            "cellulose_frac": 0.42,
+            "hemicellulose_frac": 0.30,
+            "lignin_frac": 0.25,
+            "ash_frac": 0.01,
+            "note": "Generic hardwood chips"
+        },
+        "pine": {
+            "LHV_dry_MJ_kg": 19.5,
+            "cellulose_frac": 0.44,
+            "hemicellulose_frac": 0.28,
+            "lignin_frac": 0.26,
+            "ash_frac": 0.005,
+            "note": "Softwood pine, higher LHV"
+        },
+        "wheat_straw": {
+            "LHV_dry_MJ_kg": 16.5,
+            "cellulose_frac": 0.38,
+            "hemicellulose_frac": 0.32,
+            "lignin_frac": 0.18,
+            "ash_frac": 0.06,
+            "note": "Agricultural residue, high hemicellulose"
+        },
+        "bamboo": {
+            "LHV_dry_MJ_kg": 17.8,
+            "cellulose_frac": 0.45,
+            "hemicellulose_frac": 0.25,
+            "lignin_frac": 0.27,
+            "ash_frac": 0.02,
+            "note": "Fast-growing energy crop"
+        },
+        "miscanthus": {
+            "LHV_dry_MJ_kg": 17.5,
+            "cellulose_frac": 0.43,
+            "hemicellulose_frac": 0.28,
+            "lignin_frac": 0.20,
+            "ash_frac": 0.03,
+            "note": "Perennial energy grass"
+        }
+    },
+    "unit": {
+        "Q_rated_kw":  {"value": 5000.0, "unit": "kW",           "note": "Reactor rated thermal capacity"},
+        "T_ref_degC":  {"value": 220.0,  "unit": "degC",         "note": "Reference temperature below which minimal degradation occurs"},
+        "t_ref_min":   {"value": 30.0,   "unit": "min",          "note": "Reference residence time"},
+        "k_m":         {"value": 2.5e-4, "unit": "1/(degC^n * min^p)", "note": "Mass yield rate coefficient (Bach 2017)"},
+        "n_m":         {"value": 1.5,    "unit": "dimensionless", "note": "Temperature exponent"},
+        "p_m":         {"value": 0.40,   "unit": "dimensionless", "note": "Residence time exponent"},
+        "a_edr":       {"value": 0.0025, "unit": "1/degC",        "note": "EDR linear temperature coefficient"},
+        "PLR_min":     {"value": 0.20,   "unit": "dimensionless", "note": "Minimum turndown"},
+        "a0":          {"value": 0.60,   "unit": "dimensionless", "note": "Efficiency polynomial constant"},
+        "a1":          {"value": 0.30,   "unit": "dimensionless", "note": "Efficiency polynomial linear"},
+        "a2":          {"value": -0.10,  "unit": "dimensionless", "note": "Efficiency polynomial quadratic"}
+    },
+    "valid_ranges": {
+        "temperature_degC":   {"min": 200.0, "max": 300.0, "unit": "degC"},
+        "residence_time_min": {"min": 5.0,   "max": 120.0, "unit": "min"},
+        "moisture_fraction":  {"min": 0.0,   "max": 0.30,  "unit": "dimensionless"},
+        "PLR":                {"min": 0.20,  "max": 1.0,   "unit": "dimensionless"},
+        "feed_rate_kg_h":     {"min": 10.0,  "max": 10000.0,"unit": "kg/h"}
+    }
+}

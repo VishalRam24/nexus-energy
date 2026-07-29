@@ -1,0 +1,28 @@
+{
+    "component": "EC156 Geothermal Heat Pump (GHP)",
+    "fidelity": "F1b",
+    "description": "GHP with ground thermal saturation, brine fouling, part-load correction, and condenser temperature sensitivity",
+    "unit": {
+        "rated_capacity":   {"value": 10.0,   "unit": "kW_th",         "note": "Thermal capacity at rated conditions"},
+        "carnot_fraction":  {"value": 0.55,   "unit": "dimensionless", "note": "GHP Carnot fraction (Staffell 2012): 0.50-0.60"},
+        "auxiliary_power":  {"value": 0.1,    "unit": "kW",            "note": "Ground loop pump + controls"},
+        "T_ground_ref":     {"value": 12.0,   "unit": "degC",          "note": "Undisturbed ground temperature (10-15 degC typical UK/Europe)"},
+        "tau_ground_h":     {"value": 800.0,  "unit": "hours",         "note": "Ground thermal time constant (Kavanaugh 2014: 500-2000 h)"},
+        "R_th_ground_KkW":  {"value": 0.20,   "unit": "K/kW",          "note": "Ground thermal resistance per kW extracted"},
+        "k_fouling_m2KkW":  {"value": 0.002,  "unit": "m^2*K/(kW*h^0.3)", "note": "Fouling rate coefficient (Yang 2010)"},
+        "TDS_ref_ppm":      {"value": 500.0,  "unit": "ppm",           "note": "Reference TDS for fouling normalization"},
+        "PLR_min":          {"value": 0.20,   "unit": "dimensionless"}
+    },
+    "part_load_curve": {
+        "PLR_points":  [0.20, 0.30, 0.40, 0.50, 0.60, 0.70, 0.80, 0.90, 1.00],
+        "cop_ratio":   [0.72, 0.80, 0.86, 0.90, 0.93, 0.96, 0.98, 0.99, 1.00],
+        "note": "COP ratio vs full load — below 30% PLR cycling losses significant (ASHRAE 2011)"
+    },
+    "valid_ranges": {
+        "T_sink_c":          {"min": 25.0, "max": 65.0,   "unit": "degC"},
+        "PLR":               {"min": 0.20, "max": 1.0,    "unit": "dimensionless"},
+        "operation_hours":   {"min": 0.0,  "max": 8760.0, "unit": "hours"},
+        "TDS_ppm":           {"min": 0.0,  "max": 3000.0, "unit": "ppm"},
+        "heat_rate_kw":      {"min": 0.0,  "max": 200.0,  "unit": "kW"}
+    }
+}

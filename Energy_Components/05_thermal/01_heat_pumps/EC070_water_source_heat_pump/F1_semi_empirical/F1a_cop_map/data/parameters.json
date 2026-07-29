@@ -1,0 +1,22 @@
+{
+    "component": "EC070 Water-Source Heat Pump",
+    "fidelity": "F1a",
+    "description": "COP as f(T_source, T_sink) using Carnot fraction approach — water source",
+    "unit": {
+        "name": "Generic 50kW Water-Source Heat Pump (R410A)",
+        "source": "ASHRAE Handbook — HVAC Systems (2020); EN 14511",
+        "rated_capacity": {"value": 50.0, "unit": "kW_th"},
+        "rated_cop": {"value": 5.0, "unit": "dimensionless", "note": "At W15/W45 (EN 14511)"},
+        "carnot_fraction": {"value": 0.50, "unit": "dimensionless", "note": "eta_Carnot = COP/COP_Carnot, 0.45-0.55 typical"},
+        "min_source_temp": {"value": 5.0, "unit": "degC"},
+        "max_source_temp": {"value": 30.0, "unit": "degC"},
+        "min_sink_temp": {"value": 25.0, "unit": "degC"},
+        "max_sink_temp": {"value": 65.0, "unit": "degC"},
+        "auxiliary_power": {"value": 0.2, "unit": "kW", "note": "Pumps, controls"}
+    },
+    "valid_ranges": {
+        "T_source": {"min": 5.0, "max": 30.0, "unit": "degC"},
+        "T_sink": {"min": 25.0, "max": 65.0, "unit": "degC"},
+        "part_load_ratio": {"min": 0.0, "max": 1.0, "unit": "dimensionless"}
+    }
+}

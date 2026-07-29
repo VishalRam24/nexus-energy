@@ -1,0 +1,77 @@
+{
+  "component": "EC058 Flat Plate Solar Collector",
+  "fidelity": "F0a",
+  "model": "Empirical efficiency curve (Hottel-Whillier / collector form): eta = eta0 - a1*dT/G - a2*dT^2/G ; output = eta * G",
+  "source": "Duffie & Beckman (2013) Solar Engineering of Thermal Processes, Ch.6",
+  "rated": {
+    "eta0": {
+      "value": 0.75,
+      "unit": "dimensionless",
+      "note": "Peak (zero-loss) optical/thermal efficiency at dT=0"
+    },
+    "a1": {
+      "value": 4.5,
+      "unit": "W/m2K",
+      "note": "First-order heat-loss coefficient"
+    },
+    "a2": {
+      "value": 0.0,
+      "unit": "W/m2K2",
+      "note": "Second-order heat-loss coefficient"
+    },
+    "irradiance_key": {
+      "value": "G",
+      "unit": "-",
+      "note": "Irradiance input name (G or DNI)"
+    },
+    "output_type": {
+      "value": "thermal",
+      "unit": "-",
+      "note": "thermal (useful heat) or electric"
+    },
+    "ref_irradiance": {
+      "value": 1000.0,
+      "unit": "W/m2"
+    }
+  },
+  "delta_T_breakpoints": {
+    "value": [
+      0.0,
+      25.0,
+      50.0,
+      100.0,
+      150.0,
+      200.0,
+      300.0,
+      400.0
+    ],
+    "unit": "K",
+    "note": "Tabulated (T_mean - T_ambient) breakpoints for the efficiency lookup at ref irradiance"
+  },
+  "efficiency_at_ref": {
+    "value": [
+      0.75,
+      0.6375,
+      0.525,
+      0.3,
+      0.075,
+      -0.15,
+      -0.6,
+      -1.05
+    ],
+    "unit": "dimensionless",
+    "note": "Efficiency vs dT at reference irradiance 1000 W/m2"
+  },
+  "valid_ranges": {
+    "irradiance": {
+      "min": 0.0,
+      "max": 1100.0,
+      "unit": "W/m2"
+    },
+    "delta_T": {
+      "min": 0.0,
+      "max": 500.0,
+      "unit": "K"
+    }
+  }
+}

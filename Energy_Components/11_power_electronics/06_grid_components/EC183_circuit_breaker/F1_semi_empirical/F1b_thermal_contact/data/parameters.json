@@ -1,0 +1,25 @@
+{
+    "component": "EC183 Circuit Breaker",
+    "fidelity": "F1b",
+    "description": "Thermal contact model: R(T) = R_ref*(1+alpha_contact*(T-T_ref)); ampacity limit from IEC 62271-1; standby heating from auxiliary draw; skin-effect correction at HV.",
+    "unit": {
+        "name": "Generic 11 kV Vacuum Circuit Breaker (VCB), 630 A",
+        "source": "ABB Circuit Breaker Application Guide (2021); IEC 62271-100:2021; IEC 62271-1; Greenwood (1991) Electrical Transients in Power Systems. Wiley.",
+        "R_cb_ohm": {"value": 1.0e-4, "unit": "Ohm", "note": "Closed-state contact resistance at T_ref=20 C (100 uOhm, MV VCB typical)"},
+        "I_rated_A": {"value": 630.0, "unit": "A", "note": "Continuous current rating per IEC 62271-1"},
+        "I_interrupt_kA": {"value": 25.0, "unit": "kA", "note": "Short-circuit interrupting rating (symmetrical RMS)"},
+        "t_clear_ms": {"value": 60.0, "unit": "ms", "note": "Fault-clearing time (relay + breaker)"},
+        "V_rated_kV": {"value": 11.0, "unit": "kV"},
+        "T_ref": {"value": 20.0, "unit": "degC", "note": "Reference temperature for R_cb (IEC ambient)"},
+        "alpha_contact": {"value": 0.00393, "unit": "1/K", "note": "Copper contacts: same as bulk Cu, 0.00393 /K"},
+        "T_max_contact": {"value": 105.0, "unit": "degC", "note": "IEC 62271-1 Cl.4.4: 105 C max contact temperature for Cu contacts"},
+        "P_aux_W": {"value": 15.0, "unit": "W", "note": "Standby auxiliary power (control coil, cubicle heater, indicator lamps)"},
+        "f_system_Hz": {"value": 50.0, "unit": "Hz", "note": "System frequency for skin-effect correction"},
+        "r_conductor_mm": {"value": 8.0, "unit": "mm", "note": "Approximate conductor radius for skin effect (busbars in VCB)"}
+    },
+    "valid_ranges": {
+        "I_A": {"min": 0.0, "max": 800.0, "unit": "A", "note": "Up to 125% rated for short-time overload"},
+        "T_contact": {"min": -10.0, "max": 130.0, "unit": "degC"},
+        "I_fault_kA": {"min": 0.0, "max": 25.0, "unit": "kA"}
+    }
+}

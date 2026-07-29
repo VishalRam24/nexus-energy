@@ -1,0 +1,28 @@
+{
+    "component_id": "EC079",
+    "component_name": "Molten Salt TES",
+    "fidelity": "F2a — 1D Transient Stratified Model (20-node) with T-dependent Properties",
+    "source": "Zavoico (2001) SAND2001-2100; Ferri et al. (2008) ASME J. Solar Energy Eng.; Pacheco (2002) Final Report SAND2002-0120",
+    "unit": {
+        "name": "Generic CSP Two-Tank Molten Salt TES (Solar Salt 60/40 NaNO3/KNO3)",
+        "n_nodes": {"value": 20, "unit": "-", "note": "Number of vertical discretization nodes"},
+        "V_tank": {"value": 500.0, "unit": "m3", "note": "Single tank volume (hot or cold tank modeled)"},
+        "H_tank": {"value": 12.0, "unit": "m", "note": "Tank height"},
+        "D_tank": {"value": 7.3, "unit": "m", "note": "Tank diameter"},
+        "T_cold": {"value": 563.15, "unit": "K", "note": "Cold tank temperature (290 C)"},
+        "T_hot": {"value": 838.15, "unit": "K", "note": "Hot tank temperature (565 C)"},
+        "U_loss": {"value": 0.35, "unit": "W/(m2.K)", "note": "Tank wall heat loss coefficient (insulated)"},
+        "T_ambient": {"value": 308.15, "unit": "K", "note": "Ambient temperature (35 C, desert)"},
+        "wall_thickness": {"value": 0.04, "unit": "m", "note": "Steel wall thickness"},
+        "insulation_thickness": {"value": 0.3, "unit": "m", "note": "Insulation thickness"},
+        "k_eff_multiplier": {"value": 5.0, "unit": "-", "note": "Effective conductivity multiplier (turbulent mixing)"}
+    },
+    "valid_ranges": {
+        "m_dot_charge": {"min": 0.0, "max": 500.0, "unit": "kg/s"},
+        "m_dot_discharge": {"min": 0.0, "max": 500.0, "unit": "kg/s"},
+        "T_charge_in": {"min": 563.15, "max": 873.15, "unit": "K"},
+        "T_discharge_in": {"min": 533.15, "max": 573.15, "unit": "K"},
+        "temperature": {"min": 533.15, "max": 873.15, "unit": "K"},
+        "duration_s": {"min": 1.0, "max": 86400.0, "unit": "s"}
+    }
+}

@@ -1,0 +1,18 @@
+{
+  "device": {
+    "length_m":             {"value": 150.0, "unit": "m",  "description": "Total device length (e.g. Pelamis ~150m)"},
+    "segment_width_m":      {"value": 3.5,   "unit": "m",  "description": "Tube diameter / body width"},
+    "n_joints":             {"value": 4,     "unit": "-",  "description": "Number of PTO joints"},
+    "cwr":                  {"value": 0.25,  "unit": "-",  "description": "Capture width ratio (0.20-0.35 for attenuators)"},
+    "eta_pto":              {"value": 0.80,  "unit": "-",  "description": "PTO (hydraulic) efficiency per joint"},
+    "eta_electrical":       {"value": 0.95,  "unit": "-",  "description": "Electrical generator efficiency"},
+    "rho_water":            {"value": 1025.0,"unit": "kg/m3","description": "Seawater density"}
+  },
+  "limits": {
+    "H_s_min_m": 0.0,
+    "H_s_max_m": 8.0,
+    "T_e_min_s": 5.0,
+    "T_e_max_s": 20.0
+  },
+  "source": "Henderson (2006) Appl. Ocean Res. 28:297-307; Yemm et al. (2012) Phil. Trans. R. Soc. A 370:365-380 (Pelamis P2)."
+}

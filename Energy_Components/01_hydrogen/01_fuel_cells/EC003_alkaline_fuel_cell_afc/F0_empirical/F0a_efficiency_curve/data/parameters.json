@@ -1,0 +1,52 @@
+{
+  "component_id": "EC003",
+  "component_name": "Alkaline Fuel Cell (AFC)",
+  "fidelity": "F0a \u2014 empirical lookup",
+  "version": "1.0.0",
+  "source": "Larminie & Dicks (2003); Appleby & Foulkes (1989) (F1a params reused)",
+  "metric": "electrical_efficiency_LHV",
+  "note": "AFC efficiency ~50-60%, lower j_L than PEMFC so steeper high-load droop.",
+  "lookup": {
+    "load_fraction": {
+      "value": [
+        0.0,
+        0.1,
+        0.2,
+        0.4,
+        0.6,
+        0.8,
+        1.0
+      ],
+      "unit": "-",
+      "note": "Breakpoints: fraction of rated power"
+    },
+    "efficiency": {
+      "value": [
+        0.0,
+        0.6,
+        0.59,
+        0.55,
+        0.5,
+        0.44,
+        0.38
+      ],
+      "unit": "-",
+      "note": "Empirical efficiency at each load (LHV basis)"
+    }
+  },
+  "rated": {
+    "load_fraction": {
+      "value": 0.6,
+      "unit": "-"
+    },
+    "efficiency": {
+      "value": 0.5,
+      "unit": "-",
+      "note": "Datasheet rated efficiency"
+    },
+    "P_rated": {
+      "value": 5000.0,
+      "unit": "W"
+    }
+  }
+}

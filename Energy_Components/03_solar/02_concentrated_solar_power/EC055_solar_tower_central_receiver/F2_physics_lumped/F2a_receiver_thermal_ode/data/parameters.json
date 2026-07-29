@@ -1,0 +1,46 @@
+{
+    "component_id": "EC055",
+    "component_name": "Solar Tower Central Receiver (CSP)",
+    "fidelity": "F2a — Physics-Lumped Heliostat Optics + Receiver Thermal ODE",
+    "source": "Stine & Geyer (2001) Power From The Sun (ch. on central receivers); Wagner & Wendelin (2018) SolarPILOT, Solar Energy 171:185-196; Falcone (1986) SAND86-8009; Kolb (2011) SAND2011-2419 (Gemasolar); Zavoico (2001) SAND2001-2120 (Solar Two receiver); Wagner (2008) MS thesis 'Simulation and Predictive Performance Modeling of Utility-Scale Central Receiver System Power Plants'.",
+    "unit": {
+        "name": "Generic 100 MW_th Molten-Salt Solar Tower (Gemasolar-like external cylindrical receiver)",
+        "n_heliostats": {"value": 2650, "unit": "count", "note": "Number of heliostats in field", "source": "Kolb (2011) SAND2011-2419"},
+        "A_heliostat": {"value": 120.0, "unit": "m2", "note": "Mirror (reflective) area per heliostat"},
+        "A_field": {"value": 318000.0, "unit": "m2", "note": "Total field reflective area = n_heliostats * A_heliostat"},
+
+        "eta_field_peak": {"value": 0.65, "unit": "-", "note": "Peak annual heliostat-field optical efficiency at solar noon (cosine*shading*blocking*reflectivity*atten*spillage product, at design)", "source": "Wagner & Wendelin (2018)"},
+        "reflectivity": {"value": 0.90, "unit": "-", "note": "Clean mirror reflectivity x soiling/availability factor", "source": "Stine & Geyer (2001)"},
+        "atm_atten_coeff": {"value": 0.001, "unit": "1/deg", "note": "Atmospheric attenuation loss slope vs solar zenith angle (slant-path proxy)"},
+        "cosine_loss_coeff": {"value": 0.00018, "unit": "1/deg2", "note": "Field-averaged cosine loss, parabolic in zenith angle"},
+        "spillage_frac": {"value": 0.04, "unit": "-", "note": "Beam spillage past the receiver aperture at design point", "source": "Wagner (2008) thesis"},
+
+        "A_receiver": {"value": 510.0, "unit": "m2", "note": "External cylindrical receiver lateral surface area", "source": "Zavoico (2001) SAND2001-2120"},
+        "absorptivity": {"value": 0.94, "unit": "-", "note": "Pyromark 2500 solar absorptivity of receiver tubes"},
+        "emissivity": {"value": 0.88, "unit": "-", "note": "Pyromark thermal IR emissivity (drives T^4 re-radiation loss)"},
+        "h_conv_base": {"value": 10.0, "unit": "W/m2K", "note": "Natural-convection coefficient at zero wind", "source": "Siebers & Kraabel (1984) SAND84-8717"},
+        "h_conv_wind_coeff": {"value": 3.5, "unit": "W/m2K/(m/s)^0.5", "note": "Forced-convection term: h = h_base + coeff*sqrt(v_wind)"},
+        "view_factor": {"value": 1.0, "unit": "-", "note": "Receiver-to-sky radiative view factor (external receiver ~ open to hemisphere)"},
+        "stefan_boltzmann": {"value": 5.670374419e-8, "unit": "W/m2K4"},
+
+        "m_receiver_metal": {"value": 18000.0, "unit": "kg", "note": "Lumped thermal mass of receiver tube/panel steel (Incoloy/SS) wetted by salt", "source": "Order-of-magnitude from Zavoico (2001) Solar Two receiver"},
+        "cp_receiver_metal": {"value": 500.0, "unit": "J/kgK", "note": "Specific heat of stainless/Incoloy receiver tubing"},
+        "m_salt_holdup": {"value": 9000.0, "unit": "kg", "note": "Molten-salt inventory resident in receiver tubes (lumped with metal mass)"},
+        "cp_salt": {"value": 1520.0, "unit": "J/kgK", "note": "Solar salt (60% NaNO3 / 40% KNO3) mean specific heat", "source": "Zavoico (2001) SAND2001-2120; Bradshaw & Siegel (2009)"},
+
+        "T_HTF_in_C": {"value": 290.0, "unit": "degC", "note": "Cold molten-salt inlet temperature from cold tank"},
+        "T_HTF_out_design_C": {"value": 565.0, "unit": "degC", "note": "Hot-tank target outlet temperature at design"},
+        "mdot_salt_design": {"value": 290.0, "unit": "kg/s", "note": "Design HTF mass flow giving ~275 K rise at 100 MWth"},
+        "eta_powerblock": {"value": 0.40, "unit": "-", "note": "Rankine power-block gross thermal-to-electric efficiency at design", "source": "Stine & Geyer (2001)"}
+    },
+    "valid_ranges": {
+        "dni":            {"min": 0.0,   "max": 1100.0, "unit": "W/m2"},
+        "solar_zenith":   {"min": 0.0,   "max": 85.0,   "unit": "deg"},
+        "T_amb_C":        {"min": -15.0, "max": 55.0,   "unit": "degC"},
+        "wind_speed":     {"min": 0.0,   "max": 25.0,   "unit": "m/s"},
+        "mdot_salt":      {"min": 10.0,  "max": 600.0,  "unit": "kg/s"},
+        "T_HTF_in_C":     {"min": 250.0, "max": 350.0,  "unit": "degC"},
+        "dt":             {"min": 1.0,   "max": 120.0,  "unit": "s"},
+        "duration_s":     {"min": 60.0,  "max": 86400.0,"unit": "s"}
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "component": "EC178 Switched Reluctance Motor (SRM)",
+    "fidelity": "F1a",
+    "description": "eta(PLR) = PLR/(PLR + c0 + c2*PLR^2); eta_peak=0.88; high torque ripple",
+    "unit": {
+        "name": "Generic 5kW Switched Reluctance Motor",
+        "source": "Krishnan, R. (2001). Switched Reluctance Motor Drives. CRC Press.",
+        "rated_power": {"value": 5.0, "unit": "kW"},
+        "eta_rated": {"value": 0.88, "unit": "dimensionless", "note": "Peak efficiency (lower than PMSM due to higher iron losses)"},
+        "omega_rated": {"value": 1500.0, "unit": "rpm"},
+        "torque_ripple_factor": {"value": 0.15, "unit": "dimensionless", "note": "Typical ripple ~15% peak-to-peak"},
+        "poles_stator": {"value": 12, "unit": "dimensionless", "note": "12/8 SRM"},
+        "poles_rotor": {"value": 8, "unit": "dimensionless"},
+        "constant_loss_fraction": {"value": 0.35, "unit": "dimensionless"},
+        "variable_loss_fraction": {"value": 0.65, "unit": "dimensionless"}
+    },
+    "valid_ranges": {
+        "load_fraction": {"min": 0.05, "max": 1.2, "unit": "dimensionless"},
+        "speed_rpm": {"min": 0.0, "max": 3000.0, "unit": "rpm"}
+    }
+}

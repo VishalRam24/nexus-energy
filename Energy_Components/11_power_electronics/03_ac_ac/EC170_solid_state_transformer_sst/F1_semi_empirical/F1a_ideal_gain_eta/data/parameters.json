@@ -1,0 +1,19 @@
+{
+    "component": "EC170 Solid State Transformer (SST)",
+    "fidelity": "F1a",
+    "description": "V_out = N * V_in; bidirectional; medium voltage AC-AC; fixed efficiency eta",
+    "unit": {
+        "name": "Generic SST (10kV to 400V, 100kVA)",
+        "source": "Huang, A.Q. et al. (2011). IEEE Trans. Ind. Electron., 58(7), 2799-2809.",
+        "n_turns": {"value": 0.04, "unit": "dimensionless", "note": "N2/N1 = 400/10000"},
+        "eta": {"value": 0.96, "unit": "dimensionless", "note": "SST efficiency (AC-DC-HF-DC-AC chain)"},
+        "p_rated": {"value": 100000.0, "unit": "W", "note": "100 kW / 100 kVA"},
+        "v_in_nominal": {"value": 10000.0, "unit": "V", "note": "MV primary (10 kV)"},
+        "v_out_nominal": {"value": 400.0, "unit": "V", "note": "LV secondary"},
+        "bidirectional": {"value": true, "unit": "boolean"}
+    },
+    "valid_ranges": {
+        "v_in": {"min": 5000.0, "max": 15000.0, "unit": "V"},
+        "p_in": {"min": -110000.0, "max": 110000.0, "unit": "W", "note": "Negative = reverse flow"}
+    }
+}

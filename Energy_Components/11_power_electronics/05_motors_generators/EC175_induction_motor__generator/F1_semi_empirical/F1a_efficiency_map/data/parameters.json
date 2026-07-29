@@ -1,0 +1,26 @@
+{
+    "component": "EC175 Induction Motor/Generator",
+    "fidelity": "F1a",
+    "description": "IEC 60034-30-1 efficiency map as function of part-load ratio (two-component loss model)",
+    "unit": {
+        "name": "Generic 15 kW 4-pole IE3 Induction Motor",
+        "source": "IEC 60034-30-1:2014; Boldea & Nasar (2010), The Induction Machine Handbook",
+        "rated_power": {"value": 15.0, "unit": "kW"},
+        "eta_rated": {"value": 0.917, "unit": "dimensionless", "note": "IE3 at 100% load per IEC 60034-30-1"},
+        "power_factor": {"value": 0.86, "unit": "dimensionless"},
+        "poles": {"value": 4, "unit": "dimensionless"},
+        "frequency": {"value": 50.0, "unit": "Hz"},
+        "sync_speed": {"value": 1500.0, "unit": "rpm"},
+        "rated_speed": {"value": 1460.0, "unit": "rpm"},
+        "rated_slip": {"value": 0.0267, "unit": "dimensionless", "note": "(1500-1460)/1500"},
+        "a0": {"value": 0.02, "unit": "dimensionless", "note": "Legacy IEC polynomial coefficient (not used in F1a; see c0/c2)"},
+        "a1": {"value": 0.05, "unit": "dimensionless", "note": "Legacy IEC polynomial coefficient (not used in F1a)"},
+        "a2": {"value": 0.93, "unit": "dimensionless", "note": "Legacy IEC polynomial coefficient (not used in F1a)"},
+        "constant_loss_fraction": {"value": 0.35, "unit": "dimensionless", "note": "c0 = 0.35*(1/eta_rated-1); iron+friction share"},
+        "variable_loss_fraction": {"value": 0.65, "unit": "dimensionless", "note": "c2 = 0.65*(1/eta_rated-1); copper share at PLR=1"}
+    },
+    "valid_ranges": {
+        "load_fraction": {"min": 0.05, "max": 1.2, "unit": "dimensionless"},
+        "speed_rpm": {"min": 0.0, "max": 1500.0, "unit": "rpm"}
+    }
+}

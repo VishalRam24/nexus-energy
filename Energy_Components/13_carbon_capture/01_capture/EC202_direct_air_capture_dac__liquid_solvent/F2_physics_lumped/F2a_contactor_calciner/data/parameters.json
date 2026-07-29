@@ -1,0 +1,44 @@
+{
+    "component_id": "EC202",
+    "component_name": "Direct Air Capture (DAC) — Liquid Solvent (KOH/Ca caustic loop)",
+    "fidelity": "F2a — Lumped Contactor + Calciner ODE (physics)",
+    "source": "Keith et al. (2018) Joule 2(8) 1573-1594 (Carbon Engineering); Sabatino et al. (2021) Joule 5(8) 2047-2076; Holmes & Keith (2012) Phil. Trans. R. Soc. A 370 4380-4403",
+    "unit": {
+        "name": "1 MtCO2/yr Carbon Engineering-style KOH/Ca caustic-loop DAC module",
+
+        "CO2_ppm_air": {"value": 420.0, "unit": "ppm_v", "note": "Ambient atmospheric CO2 mole fraction"},
+        "T_air_K": {"value": 293.15, "unit": "K", "note": "Ambient air temperature (20C)"},
+        "P_atm": {"value": 101325.0, "unit": "Pa", "note": "Atmospheric pressure"},
+        "rho_air": {"value": 1.204, "unit": "kg/m3", "note": "Air density at 20C, 1 atm"},
+        "air_molar_mass": {"value": 0.02897, "unit": "kg/mol", "note": "Molar mass of dry air"},
+        "CO2_molar_mass": {"value": 0.04401, "unit": "kg/mol", "note": "Molar mass of CO2"},
+
+        "area_contactor_m2": {"value": 40000.0, "unit": "m2", "note": "Total contactor frontal area (Keith 2018: ~1 MtCO2/yr packed-bed slab contactor)"},
+        "air_velocity_m_s": {"value": 2.0, "unit": "m/s", "note": "Face velocity of air through packing (Holmes & Keith 2012)"},
+        "KgA_contactor": {"value": 0.045, "unit": "1/s", "note": "Volumetric mass-transfer coefficient Kg*a for CO2 into 1M KOH; sets single-pass capture (Holmes & Keith 2012)"},
+        "contactor_depth_m": {"value": 7.0, "unit": "m", "note": "Packing depth in air-flow direction"},
+        "V_solution_m3": {"value": 200.0, "unit": "m3", "note": "Lumped hydroxide solution hold-up in contactor sump"},
+        "OH_conc_mol_m3": {"value": 1000.0, "unit": "mol/m3", "note": "Hydroxide concentration ~1 M KOH (large excess vs dilute CO2)"},
+
+        "m_calciner_kg": {"value": 5.0e6, "unit": "kg", "note": "Calciner + circulating CaCO3/CaO solids thermal mass"},
+        "cp_solids": {"value": 900.0, "unit": "J/(kg.K)", "note": "Specific heat of CaCO3/CaO solids"},
+        "T_calciner_K": {"value": 1173.15, "unit": "K", "note": "Calciner operating temperature (~900C) for CaCO3 -> CaO + CO2"},
+        "T_calciner_setpoint_K": {"value": 1173.15, "unit": "K", "note": "Target calciner temperature held by burner"},
+        "dH_calcination_J_mol": {"value": 178000.0, "unit": "J/mol", "note": "Endothermic enthalpy of CaCO3 -> CaO + CO2 (178 kJ/mol)"},
+        "A_calc_pre": {"value": 50.0, "unit": "1/s", "note": "Arrhenius pre-exponential for lumped calcination rate"},
+        "Ea_calc_J_mol": {"value": 165000.0, "unit": "J/mol", "note": "Activation energy for CaCO3 decomposition (~165 kJ/mol)"},
+        "UA_calciner_W_K": {"value": 2.0e6, "unit": "W/K", "note": "Burner heat-delivery conductance to solids"},
+        "T_flame_K": {"value": 1500.0, "unit": "K", "note": "Effective burner/flame temperature driving heat into calciner"},
+        "heat_loss_frac": {"value": 0.12, "unit": "dimensionless", "note": "Wall + flue-gas heat loss as fraction of burner duty"},
+        "T_feed_solids_K": {"value": 573.15, "unit": "K", "note": "Temperature of CaCO3 pellets entering calciner (~300C after preheat)"},
+
+        "loop_efficiency": {"value": 0.94, "unit": "dimensionless", "note": "Fraction of contactor-captured CO2 that survives causticization+slaking and reaches the calciner"}
+    },
+    "valid_ranges": {
+        "CO2_ppm_air": {"min": 350.0, "max": 1000.0, "unit": "ppm_v"},
+        "T_calciner_K": {"min": 1023.15, "max": 1223.15, "unit": "K"},
+        "air_velocity_m_s": {"min": 0.5, "max": 4.0, "unit": "m/s"},
+        "duration_s": {"min": 1.0, "max": 1.0e6, "unit": "s"},
+        "dt": {"min": 0.1, "max": 600.0, "unit": "s"}
+    }
+}

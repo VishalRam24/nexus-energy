@@ -1,0 +1,21 @@
+{
+    "component": "EC220 Triboelectric Nanogenerator (TENG)",
+    "fidelity": "F1a",
+    "description": "Contact-separation mode TENG: V_oc = sigma*d/epsilon_0, P_peak ~ mW/cm^2",
+    "unit": {
+        "name": "PTFE-Al contact-separation TENG (typical lab device)",
+        "source": "Wang, Z.L. et al. (2012) Nano Lett.; Fan et al. (2012) Nano Energy; Wang et al. (2015) Mater. Today",
+        "sigma": {"value": 5e-6, "unit": "C/m^2", "note": "Surface charge density (typical PTFE-Al: 5-50 uC/m^2)"},
+        "electrode_area": {"value": 0.0025, "unit": "m^2", "note": "Electrode area 50mm x 50mm"},
+        "gap_max": {"value": 0.002, "unit": "m", "note": "Maximum separation gap 2 mm"},
+        "epsilon_r_dielectric": {"value": 2.1, "unit": "-", "note": "PTFE relative permittivity"},
+        "dielectric_thickness": {"value": 0.0001, "unit": "m", "note": "PTFE dielectric thickness 100 um"},
+        "R_load_default": {"value": 1e7, "unit": "ohm", "note": "Optimal load ~10 MOhm for TENG"},
+        "cycle_frequency_default": {"value": 3.0, "unit": "Hz", "note": "Contact-separation frequency 3 Hz"}
+    },
+    "valid_ranges": {
+        "gap": {"min": 0.0, "max": 0.01, "unit": "m"},
+        "frequency": {"min": 0.1, "max": 100.0, "unit": "Hz"},
+        "R_load": {"min": 1e4, "max": 1e10, "unit": "ohm"}
+    }
+}

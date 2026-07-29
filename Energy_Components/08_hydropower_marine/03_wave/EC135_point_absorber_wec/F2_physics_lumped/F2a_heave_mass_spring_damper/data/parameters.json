@@ -1,0 +1,28 @@
+{
+    "component_id": "EC135",
+    "component_name": "Point Absorber Wave Energy Converter (WEC)",
+    "fidelity": "F2a — Heaving-Buoy Linear Hydrodynamic Mass-Spring-Damper ODE",
+    "source": "Falnes, J. (2002) Ocean Waves and Oscillating Systems, Cambridge UP; Babarit, A. et al. (2012) Renew. Energy 41:44-63; Babarit, A. (2015) Renew. Energy 80:610-628; Pecher & Kofoed (2017) Handbook of Ocean Wave Energy, Springer.",
+    "unit": {
+        "name": "Cylindrical Heaving Point Absorber (6 m float, ~10 s natural period)",
+        "radius_m":        {"value": 3.0,    "unit": "m",        "note": "Float radius (diameter 6 m, mirrors F1 device)"},
+        "draft_m":         {"value": 4.0,    "unit": "m",        "note": "Equilibrium submerged draft of cylindrical float"},
+        "mass_kg":         {"value": 4.8e5,  "unit": "kg",      "note": "Structural + ballast + reaction mass; tuned with added mass so heave T_n ~= 10 s (mirrors F1 device resonance period)"},
+        "added_mass_kg":   {"value": 2.4e5,   "unit": "kg",      "note": "Heave added mass m_a at the working frequency (Falnes ch.5); combined M=m+m_a sets T_n=2pi sqrt(M/C_hyd)"},
+        "B_rad_Ns_per_m":  {"value": 9.0e4,   "unit": "N.s/m",   "note": "Radiation (hydrodynamic) damping coefficient at design frequency (Falnes eq. 5.x)"},
+        "rho_water":       {"value": 1025.0,  "unit": "kg/m3",   "note": "Seawater density"},
+        "A_wp_m2":         {"value": 28.274,  "unit": "m2",      "note": "Water-plane area = pi*r^2 (sets hydrostatic stiffness rho*g*A_wp)"},
+        "F_exc_coeff_N_per_m": {"value": 3.0e5, "unit": "N/m",   "note": "Excitation-force coefficient |F_e|/A wave amplitude at design frequency (Falnes Haskind/Froude-Krylov)"},
+        "B_pto_Ns_per_m":  {"value": 1.7e5,   "unit": "N.s/m",   "note": "PTO (generator) linear damping coefficient; default near optimum |Z_i|"},
+        "C_pto_N_per_m":   {"value": 0.0,     "unit": "N/m",     "note": "PTO reactive (spring) stiffness; 0 = pure resistive PTO"},
+        "eta_pto":         {"value": 0.80,    "unit": "-",       "note": "Mechanical-to-electrical PTO conversion efficiency"},
+        "x_max_m":         {"value": 4.0,     "unit": "m",       "note": "Maximum stroke (heave displacement) before end-stop"}
+    },
+    "valid_ranges": {
+        "H_s":        {"min": 0.25, "max": 8.0,  "unit": "m"},
+        "T_e":        {"min": 4.0,  "max": 20.0, "unit": "s"},
+        "B_pto":      {"min": 0.0,  "max": 1.0e6, "unit": "N.s/m"},
+        "dt":         {"min": 0.01, "max": 1.0,  "unit": "s"},
+        "duration_s": {"min": 10.0, "max": 1200.0, "unit": "s"}
+    }
+}

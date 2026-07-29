@@ -1,0 +1,33 @@
+{
+    "component": "EC057 Stirling Dish CSP",
+    "fidelity": "F1b",
+    "description": "Optical + receiver thermal loss + Stirling engine efficiency model",
+    "unit": {
+        "name": "25 kW Stirling Dish Unit (SunCatcher / EuroDish class)",
+        "source": "Mancini et al. (2003), J. Sol. Energy Eng. 125(2), 135-151; Nepveu et al. (2009), Sol. Energy 83(1), 81-89",
+        "A_dish": {"value": 91.0, "unit": "m2", "note": "Dish reflective aperture area (11m rim diameter)"},
+        "eta_optical": {"value": 0.88, "unit": "-", "note": "Peak optical efficiency (reflectance * shading * cleanliness)"},
+        "A_rec": {"value": 0.5, "unit": "m2", "note": "Receiver aperture area"},
+        "eps_rec": {"value": 0.85, "unit": "-", "note": "Receiver cavity emissivity"},
+        "h_cav": {"value": 10.0, "unit": "W/m2K", "note": "Natural convection coefficient in receiver cavity"},
+        "U_cond": {"value": 2.0, "unit": "W/m2K", "note": "Conduction loss coefficient through insulation"},
+        "T_sky_offset": {"value": 20.0, "unit": "K", "note": "Sky temperature = T_amb - T_sky_offset"},
+        "T_rec_design": {"value": 720.0, "unit": "degC", "note": "Design receiver temperature"},
+        "dT_receiver": {"value": 20.0, "unit": "K", "note": "Temperature drop: receiver wall to Stirling hot end"},
+        "T_approach": {"value": 15.0, "unit": "K", "note": "Stirling cold-end approach above ambient"},
+        "eta_internal": {"value": 0.40, "unit": "-", "note": "Stirling engine internal efficiency relative to Carnot"},
+        "eta_alt": {"value": 0.92, "unit": "-", "note": "Alternator/generator efficiency"},
+        "plr_a": {"value": 0.10, "unit": "-", "note": "Part-load curve coefficient a"},
+        "plr_b": {"value": 0.65, "unit": "-", "note": "Part-load curve coefficient b"},
+        "plr_c": {"value": 0.25, "unit": "-", "note": "Part-load curve coefficient c (a+b+c=1 at PLR=1)"},
+        "PLR_min": {"value": 0.30, "unit": "-", "note": "Minimum stable part-load ratio"},
+        "P_rated_kw": {"value": 25.0, "unit": "kW", "note": "Rated electrical output per dish"}
+    },
+    "valid_ranges": {
+        "DNI": {"min": 0.0, "max": 1100.0, "unit": "W/m2"},
+        "theta": {"min": 0.0, "max": 10.0, "unit": "deg", "note": "Residual tracking error angle"},
+        "T_rec": {"min": 400.0, "max": 800.0, "unit": "degC"},
+        "T_amb": {"min": -10.0, "max": 45.0, "unit": "degC"},
+        "PLR": {"min": 0.30, "max": 1.0, "unit": "-"}
+    }
+}

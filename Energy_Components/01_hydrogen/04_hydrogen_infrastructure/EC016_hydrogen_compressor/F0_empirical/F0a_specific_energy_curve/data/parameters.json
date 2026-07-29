@@ -1,0 +1,46 @@
+{
+  "component_id": "EC016",
+  "component_name": "Hydrogen Compressor",
+  "fidelity": "F0a \u2014 empirical lookup",
+  "version": "1.0.0",
+  "source": "Sdanghi et al. (2019) RSER, 102, 150; Bossel (2006) (F1a params reused)",
+  "metric": "specific_energy_vs_pressure_ratio",
+  "note": "Specific compression energy (kWh/kg H2) vs ratio P_out/P_in, 4-stage intercooled, eta_poly 0.75, eta_mech 0.92. 20->900 bar (ratio 45) -> ~4 kWh/kg.",
+  "lookup": {
+    "pressure_ratio": {
+      "value": [
+        2.0,
+        5.0,
+        10.0,
+        20.0,
+        35.0,
+        45.0
+      ],
+      "unit": "-",
+      "note": "Pressure ratio P_out/P_in breakpoints"
+    },
+    "specific_energy_kWh_per_kg": {
+      "value": [
+        0.95,
+        1.78,
+        2.45,
+        3.15,
+        3.78,
+        4.05
+      ],
+      "unit": "kWh/kg_H2",
+      "note": "Specific compression energy"
+    }
+  },
+  "rated": {
+    "pressure_ratio": {
+      "value": 45.0,
+      "unit": "-"
+    },
+    "specific_energy_kWh_per_kg": {
+      "value": 4.05,
+      "unit": "kWh/kg_H2",
+      "note": "Rated specific energy"
+    }
+  }
+}

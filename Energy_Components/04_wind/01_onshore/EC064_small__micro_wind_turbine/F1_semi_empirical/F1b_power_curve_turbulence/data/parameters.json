@@ -1,0 +1,32 @@
+{
+    "component": "EC064 Small/Micro Wind Turbine",
+    "fidelity": "F1b",
+    "description": "Power curve with turbulence correction: P_corr = P(V) + 0.5*d2P/dV2*sigma_v^2, where sigma_v = TI*V. Air-density correction for temperature, pressure, humidity.",
+    "turbine": {
+        "name": "Generic 10 kW Small Wind Turbine (Bergey Excel 10 class)",
+        "source": "IEC 61400-12-1; IEC 61400-2 (small turbines); Bergey Excel 10 kW datasheet; NREL small wind database",
+        "rated_power": {"value": 10.0, "unit": "kW"},
+        "hub_height": {"value": 30.0, "unit": "m"},
+        "rotor_diameter": {"value": 7.0, "unit": "m"},
+        "cut_in_speed": {"value": 2.5, "unit": "m/s"},
+        "rated_speed": {"value": 11.0, "unit": "m/s"},
+        "cut_out_speed": {"value": 20.0, "unit": "m/s"}
+    },
+    "power_curve": {
+        "description": "Manufacturer power curve at 1.225 kg/m3. 21 points from 0 to 20 m/s.",
+        "source": "Bergey Excel 10 kW datasheet; NREL small wind dataset; IEC 61400-2",
+        "wind_speeds_ms": [0, 1, 2, 2.5, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20],
+        "power_kw":       [0, 0, 0, 0,   0.2, 0.8, 1.8, 3.2, 5.0, 6.8, 8.2, 9.3, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0]
+    },
+    "atmosphere": {
+        "Rd": {"value": 287.058, "unit": "J/kgK", "note": "Specific gas constant for dry air"},
+        "P_ref": {"value": 101325.0, "unit": "Pa", "note": "Reference (standard) atmospheric pressure"}
+    },
+    "valid_ranges": {
+        "wind_speed": {"min": 0.0, "max": 25.0, "unit": "m/s"},
+        "turbulence_intensity": {"min": 0.0, "max": 0.40, "unit": "dimensionless"},
+        "air_temperature": {"min": -20.0, "max": 50.0, "unit": "degC"},
+        "pressure_pa": {"min": 70000.0, "max": 110000.0, "unit": "Pa"},
+        "relative_humidity": {"min": 0.0, "max": 1.0, "unit": "dimensionless"}
+    }
+}

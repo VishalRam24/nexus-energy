@@ -1,0 +1,18 @@
+{
+  "device": {
+    "diameter_m":        {"value": 6.0,   "unit": "m",    "description": "Buoy diameter"},
+    "T_n_s":             {"value": 10.0,  "unit": "s",    "description": "Natural resonance period of heaving buoy"},
+    "cwr_peak":          {"value": 0.25,  "unit": "-",    "description": "Peak capture width ratio at resonance (T_e = T_n)"},
+    "bandwidth_s":       {"value": 4.0,   "unit": "s",    "description": "Half-power bandwidth of resonance peak (Gaussian sigma)"},
+    "eta_pto":           {"value": 0.80,  "unit": "-",    "description": "Power take-off (linear generator) efficiency"},
+    "eta_electrical":    {"value": 0.95,  "unit": "-",    "description": "Power electronics efficiency"},
+    "rho_water":         {"value": 1025.0,"unit": "kg/m3","description": "Seawater density"}
+  },
+  "limits": {
+    "H_s_min_m": 0.0,
+    "H_s_max_m": 8.0,
+    "T_e_min_s": 4.0,
+    "T_e_max_s": 20.0
+  },
+  "source": "Falnes (2002); Babarit et al. (2012) Renew. Energy 41:44-63; CorPower Ocean datasheet."
+}

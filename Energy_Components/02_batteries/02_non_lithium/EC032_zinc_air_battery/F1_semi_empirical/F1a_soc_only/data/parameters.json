@@ -1,0 +1,11 @@
+{
+  "default_parameters": {
+    "Q_nom": 3.0,
+    "R_int": 0.050,
+    "V_min": 1.0,
+    "V_max": 1.9,
+    "ocv_flat": 1.65,
+    "ocv_droop": 0.1
+  },
+  "description": "Zinc-Air SOC-only model. Nearly flat OCV ~1.65 V (Zn + O2 -> ZnO). R_int=50 mOhm, Q_nom=3.0 Ah. ocv_droop: small OCV decrease near empty."
+}

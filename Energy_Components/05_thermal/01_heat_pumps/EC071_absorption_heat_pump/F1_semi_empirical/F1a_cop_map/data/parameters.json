@@ -1,0 +1,25 @@
+{
+    "component": "EC071 Absorption Heat Pump",
+    "fidelity": "F1a",
+    "description": "Thermally driven (single-effect LiBr-H2O) heat pump; COP_h = f(T_gen, T_evap, T_cond/abs) via characteristic equation (Hellmann/Ziegler form)",
+    "unit": {
+        "name": "Generic 100 kW_th single-effect LiBr-H2O absorption heat pump",
+        "source": "Hellmann & Ziegler (1999), Int. J. Refrigeration; Herold, Radermacher & Klein (2016), Absorption Chillers and Heat Pumps, 2nd ed., CRC Press",
+        "rated_heating_capacity": {"value": 100.0, "unit": "kW_th"},
+        "rated_cop_heating": {"value": 1.7, "unit": "dimensionless", "note": "Single-effect Type-I AHP at T_gen=90C, T_evap=10C, T_abs/cond=35C"},
+        "carnot_fraction": {"value": 0.55, "unit": "dimensionless", "note": "Fraction of reversible AHP COP"},
+        "T_gen_min": {"value": 70.0, "unit": "degC"},
+        "T_gen_max": {"value": 110.0, "unit": "degC"},
+        "T_evap_min": {"value": 0.0, "unit": "degC"},
+        "T_evap_max": {"value": 25.0, "unit": "degC"},
+        "T_cond_min": {"value": 25.0, "unit": "degC"},
+        "T_cond_max": {"value": 50.0, "unit": "degC"},
+        "auxiliary_power": {"value": 0.5, "unit": "kW", "note": "Solution + refrigerant pumps + controls"},
+        "fluid_pair": {"value": "LiBr-H2O", "unit": "-"}
+    },
+    "valid_ranges": {
+        "T_gen": {"min": 70.0, "max": 110.0, "unit": "degC"},
+        "T_evap": {"min": 0.0, "max": 25.0, "unit": "degC"},
+        "T_cond": {"min": 25.0, "max": 50.0, "unit": "degC"}
+    }
+}

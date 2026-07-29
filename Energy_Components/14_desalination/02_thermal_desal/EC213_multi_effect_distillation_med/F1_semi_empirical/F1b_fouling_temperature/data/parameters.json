@@ -1,0 +1,22 @@
+{
+    "component": "EC213 Multi-Effect Distillation (MED)",
+    "fidelity": "F1b",
+    "description": "MED model with GOR vs TBT and N_effects, scaling limits, BPE correction",
+    "unit": {
+        "name": "Low-temperature MED plant (LT-MED, 12-effect)",
+        "source": "El-Dessouky et al. (2000) Chem. Eng. J. 79 165-183; Ettouney (2006) Desalination",
+        "N_effects": {"value": 12, "unit": "count", "note": "Number of evaporation effects (typical: 8-16)"},
+        "TBT_ref": {"value": 70.0, "unit": "degC", "note": "Reference TBT for LT-MED (55-75 degC)"},
+        "T_last_effect": {"value": 38.0, "unit": "degC", "note": "Last-effect condensation temperature"},
+        "T_scale_limit": {"value": 70.0, "unit": "degC", "note": "CaCO3 scale onset for MED (lower than MSF; El-Dessouky 2000)"},
+        "k_scale": {"value": 0.02, "unit": "1/degC", "note": "SEC penalty per degC above scale limit (2% per degC)"},
+        "eta_eff": {"value": 0.80, "unit": "dimensionless", "note": "Per-effect efficiency (accounts for BPE, NEA, heat losses)"},
+        "BPE_per_effect": {"value": 0.5, "unit": "degC", "note": "Boiling point elevation per effect (NaCl solution, ~35 g/L)"},
+        "pump_SEC_ref": {"value": 1.5, "unit": "kWh_e/m3", "note": "Reference pumping SEC (MED lower than MSF; El-Dessouky: 1-2 kWh/m3)"}
+    },
+    "valid_ranges": {
+        "TBT_degC": {"min": 55.0, "max": 75.0, "unit": "degC"},
+        "plr": {"min": 0.3, "max": 1.0, "unit": "dimensionless"},
+        "steam_temperature_degC": {"min": 65.0, "max": 90.0, "unit": "degC"}
+    }
+}

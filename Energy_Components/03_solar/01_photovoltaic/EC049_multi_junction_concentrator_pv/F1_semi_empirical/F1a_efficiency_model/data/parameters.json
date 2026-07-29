@@ -1,0 +1,19 @@
+{
+    "component": "EC049 Multi-Junction Concentrator PV",
+    "fidelity": "F1a",
+    "description": "Simplified efficiency model: P = eta * DNI * C_ratio * A_cell",
+    "unit": {
+        "name": "III-V Multi-Junction CPV Cell",
+        "source": "Luque & Hegedus (2011). Handbook of Photovoltaic Science and Engineering",
+        "eta": {"value": 0.40, "unit": "dimensionless", "note": "Cell efficiency under concentration"},
+        "C_ratio": {"value": 500.0, "unit": "dimensionless", "note": "Concentration ratio (suns)"},
+        "A_cell": {"value": 1e-4, "unit": "m2", "note": "Cell area 1 cm²"},
+        "T_ref": {"value": 25.0, "unit": "degC", "note": "STC reference temperature"},
+        "beta_T": {"value": -0.001, "unit": "1/K", "note": "Temperature coefficient of efficiency"}
+    },
+    "valid_ranges": {
+        "DNI": {"min": 0.0, "max": 1100.0, "unit": "W/m2"},
+        "T_cell": {"min": -20.0, "max": 100.0, "unit": "degC"},
+        "theta_incidence": {"min": 0.0, "max": 60.0, "unit": "deg"}
+    }
+}

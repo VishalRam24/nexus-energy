@@ -1,0 +1,23 @@
+{
+    "component": "EC158 Boost Converter (Step-Up)",
+    "fidelity": "F1a",
+    "description": "Ideal gain V_out=V_in/(1-D) with conduction and switching loss model",
+    "unit": {
+        "name": "Generic 12V-to-48V Boost Converter",
+        "source": "Erickson & Maksimovic (2020), Fundamentals of Power Electronics, 3rd ed., Springer",
+        "v_in_nominal": {"value": 12.0, "unit": "V"},
+        "v_out_nominal": {"value": 48.0, "unit": "V"},
+        "f_sw": {"value": 100000.0, "unit": "Hz", "note": "100 kHz switching frequency"},
+        "Rds_on": {"value": 0.015, "unit": "Ohm", "note": "MOSFET on-state resistance (15 mOhm)"},
+        "R_L": {"value": 0.080, "unit": "Ohm", "note": "Inductor DCR (80 mOhm)"},
+        "V_diode": {"value": 0.5, "unit": "V", "note": "Output diode forward voltage"},
+        "t_on": {"value": 3.0e-8, "unit": "s", "note": "MOSFET turn-on transition time (30 ns)"},
+        "t_off": {"value": 3.0e-8, "unit": "s", "note": "MOSFET turn-off transition time (30 ns)"},
+        "I_rated": {"value": 5.0, "unit": "A", "note": "Rated output current"}
+    },
+    "valid_ranges": {
+        "v_in": {"min": 5.0, "max": 40.0, "unit": "V"},
+        "v_out_target": {"min": 10.0, "max": 200.0, "unit": "V"},
+        "i_load": {"min": 0.1, "max": 15.0, "unit": "A", "note": "Output-side current"}
+    }
+}

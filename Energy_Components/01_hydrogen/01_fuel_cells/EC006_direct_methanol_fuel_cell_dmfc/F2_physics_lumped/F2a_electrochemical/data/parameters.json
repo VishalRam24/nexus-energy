@@ -1,0 +1,40 @@
+{
+    "component_id": "EC006",
+    "component_name": "Direct Methanol Fuel Cell (DMFC)",
+    "fidelity": "F2a — Full Electrochemical Model with Methanol Crossover + Thermal ODE",
+    "source": "Scott et al. (1999) J. Power Sources 79:43; Kulikovsky (2002) Electrochem. Comm. 4:939; Nordlund & Lindbergh (2002) J. Electrochem. Soc. 149:A1107; Springer et al. (1991) JES 138:2334; Larminie & Dicks (2003) Fuel Cell Systems Explained, Wiley",
+    "unit": {
+        "name": "Generic 20-cell Pt-Ru/Pt DMFC Stack — Physics-Lumped Electrochemical",
+        "N_cells": {"value": 20, "unit": "-", "note": "Number of cells in stack"},
+        "A_cell": {"value": 25.0, "unit": "cm2", "note": "Active cell area (lab-scale DMFC)"},
+        "t_mem": {"value": 0.0183, "unit": "cm", "note": "Nafion 117 membrane thickness (183 um)"},
+        "lambda_mem": {"value": 12.0, "unit": "-", "note": "Membrane water content (liquid-fed, fully hydrated)"},
+        "j_L": {"value": 0.4, "unit": "A/cm2", "note": "Methanol mass-transport limiting current density"},
+        "alpha_anode": {"value": 0.5, "unit": "-", "note": "Anodic charge-transfer coefficient (MeOH oxidation)"},
+        "alpha_cathode": {"value": 1.0, "unit": "-", "note": "Cathodic charge-transfer coefficient (ORR)"},
+        "n_rds_anode": {"value": 1.0, "unit": "-", "note": "Electrons in rate-determining step of MeOH oxidation (sets Tafel slope, NOT overall n=6)"},
+        "n_rds_cathode": {"value": 1.0, "unit": "-", "note": "Electrons in rate-determining step of ORR (sets Tafel slope)"},
+        "j0_anode_ref": {"value": 5e-5, "unit": "A/cm2", "note": "Anode exchange current density at T_ref (slow MeOH oxidation, Pt-Ru)"},
+        "j0_cathode_ref": {"value": 1e-6, "unit": "A/cm2", "note": "Cathode ORR exchange current density at T_ref"},
+        "E_act_anode": {"value": 60000.0, "unit": "J/mol", "note": "Activation energy MeOH oxidation at Pt-Ru (Scott 1999)"},
+        "E_act_cathode": {"value": 66000.0, "unit": "J/mol", "note": "Activation energy for ORR kinetics"},
+        "j_cross_ref": {"value": 0.05, "unit": "A/cm2", "note": "Equivalent methanol crossover current at T_ref (Nafion 117, 1M, 80C)"},
+        "E_act_cross": {"value": 25000.0, "unit": "J/mol", "note": "Activation energy for MeOH crossover diffusion through membrane"},
+        "c_MeOH_ref": {"value": 1.0, "unit": "mol/L", "note": "Reference methanol feed concentration"},
+        "T_ref": {"value": 353.15, "unit": "K", "note": "Reference temperature (80C)"},
+        "E_ref_std": {"value": 1.214, "unit": "V", "note": "Standard reversible cell potential MeOH/O2 at 298K"},
+        "dEdT": {"value": -1.4e-4, "unit": "V/K", "note": "Temperature coefficient of reversible potential"},
+        "m_stack": {"value": 1.2, "unit": "kg", "note": "Stack thermal mass (incl. liquid hold-up)"},
+        "cp_stack": {"value": 2500.0, "unit": "J/(kg.K)", "note": "Effective specific heat (water-dominated liquid feed)"},
+        "hA_cool": {"value": 1.5, "unit": "W/K", "note": "Heat-loss coefficient * area to ambient/coolant"},
+        "T_coolant": {"value": 343.15, "unit": "K", "note": "Coolant / ambient sink temperature (70C)"}
+    },
+    "valid_ranges": {
+        "current_density": {"min": 0.0, "max": 0.4, "unit": "A/cm2"},
+        "temperature": {"min": 313.15, "max": 383.15, "unit": "K"},
+        "c_MeOH_molar": {"min": 0.25, "max": 2.0, "unit": "mol/L"},
+        "P_o2_atm": {"min": 0.1, "max": 1.0, "unit": "atm"},
+        "dt": {"min": 0.01, "max": 2.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 3600.0, "unit": "s"}
+    }
+}

@@ -1,0 +1,10 @@
+{
+  "default_parameters": {
+    "Q_nom": 2.5,
+    "R_int": 0.030,
+    "V_min": 3.0,
+    "V_max": 4.2,
+    "ocv_coeffs": [4.2, -0.8, 0.4, -0.2, 0.1]
+  },
+  "description": "LMO SOC-only model. Q_nom in Ah, R_int in ohms, OCV polynomial coeffs [a0,a1,...] for V = sum(a_i * SOC^i), SOC in [0,1]."
+}

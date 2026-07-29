@@ -1,0 +1,23 @@
+{
+    "component": "EC223 Radioisotope Thermoelectric Generator (RTG)",
+    "fidelity": "F0a",
+    "description": "Empirical electrical-power vs time lookup for a Pu-238 GPHS-RTG. P_elec(t) = P_thermal_0*exp(-ln2*t/t_half) * eta_teg(t), where eta_teg degrades linearly ~0.1%/yr. Combines isotope decay heat drop and thermoelectric efficiency fade.",
+    "source": "Bennett (2006) Acta Astronautica; El-Genk & Saber (2005) Energy Convers. Mgmt.; NASA GPHS-RTG spec",
+    "isotope": {"value": "Pu-238", "unit": "-", "note": "Plutonium-238 alpha emitter (reused from EC223 F1a)"},
+    "P_thermal_0_W": {"value": 4500.0, "unit": "W", "note": "Initial thermal power (reused from F1a)"},
+    "t_half_years": {"value": 87.7, "unit": "years", "note": "Pu-238 half-life (reused from F1a)"},
+    "eta_teg_0": {"value": 0.065, "unit": "-", "note": "Initial TEG conversion efficiency (reused from F1a)"},
+    "eta_teg_degradation_rate": {"value": 0.001, "unit": "1/year", "note": "TEG efficiency degrades ~0.1%/yr (reused from F1a)"},
+    "lookup": {
+        "note": "Breakpoints: mission time (years) -> net electrical power (W). Reflects both thermal decay and TEG efficiency fade; reaches 0 W near 65 yr as eta_teg -> 0.",
+        "t_years": {"value": [0.0, 5.0, 10.0, 20.0, 30.0, 45.0, 60.0, 65.0], "unit": "years"},
+        "power_W": {"value": [292.5, 259.5382, 228.6916, 172.8921, 124.2526, 63.0638, 14.0034, 0.0], "unit": "W"}
+    },
+    "rated_point": {
+        "t": {"value": 0.0, "unit": "years"},
+        "power_W": {"value": 292.5, "unit": "W", "note": "Beginning-of-life ~292 W electrical (GPHS-RTG class, Voyager/Cassini)"}
+    },
+    "valid_ranges": {
+        "t_years": {"min": 0.0, "max": 65.0, "unit": "years"}
+    }
+}

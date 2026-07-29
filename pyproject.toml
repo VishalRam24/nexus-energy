@@ -1,0 +1,46 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "nexus-energy"
+version = "0.1.0"
+description = "Energy system optimisation library — 15 sectors, 223 components, multi-fidelity, built on the nexus-opt Rust solver core"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+authors = [{ name = "Vishal Ram Sanmuga Magesh" }]
+keywords = ["energy-system", "optimisation", "optimization", "capacity-expansion", "unit-commitment", "opf", "pypsa"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Mathematics",
+]
+dependencies = [
+    # The Rust solver core. Installing nexus-energy pulls this in automatically.
+    "nexus-opt>=0.1.0",
+    "numpy>=1.24",
+    "pandas>=2.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/VishalRam24/nexus-energy"
+Repository = "https://github.com/VishalRam24/nexus-energy"
+Documentation = "https://github.com/VishalRam24/nexus-energy/blob/main/WIKI.md"
+"Solver core" = "https://github.com/VishalRam24/nexus-opt"
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "pytest-cov"]
+viz = ["plotly>=5.0"]
+# Optional columnar input-table fast path (io_tables); pandas is the fallback.
+duckdb = ["duckdb>=0.9"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/nexus_energy"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

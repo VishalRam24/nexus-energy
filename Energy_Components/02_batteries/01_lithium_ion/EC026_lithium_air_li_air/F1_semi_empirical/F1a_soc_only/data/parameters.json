@@ -1,0 +1,11 @@
+{
+  "default_parameters": {
+    "Q_nom": 10.0,
+    "R_int": 0.200,
+    "V_min": 2.0,
+    "V_max": 3.2,
+    "ocv_flat": 2.96,
+    "ocv_droop": 0.3
+  },
+  "description": "Li-Air SOC-only model. OCV nearly flat at ~2.96 V (O2 reduction). R_int=200 mOhm (high due to Li2O2 buildup). Q_nom=10 Ah. ocv_droop controls small linear decrease near end of discharge."
+}

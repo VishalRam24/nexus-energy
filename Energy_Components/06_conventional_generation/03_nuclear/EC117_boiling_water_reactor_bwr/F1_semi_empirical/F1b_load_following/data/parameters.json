@@ -1,0 +1,27 @@
+{
+    "component": "EC117 Boiling Water Reactor (BWR)",
+    "fidelity": "F1b",
+    "description": "Load-following model with xenon-135 dynamics and ramp rate constraints (~1%/min, slightly slower than PWR)",
+    "unit": {
+        "name": "Generic 3300 MWth / 1100 MWe BWR (BWR/6 class)",
+        "source": "Todreas & Kazimi (2012), Nuclear Systems, 2nd ed., CRC Press; GE BWR/6 reference; Aron (1969), Nucl. Sci. Eng.; NEA/CSNI (2011) BWR Load-Following",
+        "P_thermal_mw": {"value": 3300.0, "unit": "MW_th", "note": "Reactor core thermal power at full load"},
+        "eta_thermal": {"value": 0.33, "unit": "-", "note": "Net thermal-to-electrical efficiency (P_el / P_th)"},
+        "sigma_Xe_cm2": {"value": 2.65e-18, "unit": "cm2", "note": "Xe-135 microscopic absorption cross-section"},
+        "lambda_Xe_per_s": {"value": 2.09e-5, "unit": "1/s", "note": "Xe-135 decay constant (t_1/2 = 9.17 h)"},
+        "lambda_I_per_s": {"value": 2.87e-5, "unit": "1/s", "note": "I-135 decay constant (t_1/2 = 6.7 h)"},
+        "gamma_I": {"value": 0.064, "unit": "-", "note": "I-135 cumulative fission yield"},
+        "gamma_Xe": {"value": 0.003, "unit": "-", "note": "Direct Xe-135 fission yield"},
+        "ramp_rate_limit_pct_min": {"value": 1.0, "unit": "%/min", "note": "Maximum allowed power ramp rate for BWR (~1%/min, slower than PWR due to two-phase flow stability constraints and void fraction feedback)"},
+        "PLR_min": {"value": 0.6, "unit": "-", "note": "Minimum stable BWR PLR (limited by recirculation flow and void fraction stability)"},
+        "PLR_max": {"value": 1.0, "unit": "-"},
+        "total_reactivity_margin_pcm": {"value": 4500.0, "unit": "pcm", "note": "Total control rod + recirculation flow reactivity margin (BWR somewhat lower than PWR)"},
+        "xenon_reactivity_coeff_pcm": {"value": -2800.0, "unit": "pcm", "note": "Reactivity penalty at equilibrium Xe at full power (BWR slightly lower than PWR due to different spectrum)"},
+        "void_coeff_pcm_per_pct_void": {"value": -200.0, "unit": "pcm/%void", "note": "Void reactivity coefficient (negative -- inherent safety feedback, unique to BWR)"}
+    },
+    "valid_ranges": {
+        "power_fraction": {"min": 0.6, "max": 1.0},
+        "time_at_power_hours": {"min": 0.0, "max": 168.0},
+        "previous_power_fraction": {"min": 0.0, "max": 1.0}
+    }
+}

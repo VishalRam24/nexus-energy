@@ -1,0 +1,28 @@
+{
+    "component_id": "EC152",
+    "component_name": "Flash Steam Geothermal Plant",
+    "fidelity": "F2a — Flash Thermodynamics with Lumped Separator/Turbine ODE",
+    "source": "DiPippo, R. (2015). Geothermal Power Plants, 4th ed., Butterworth-Heinemann, Ch. 5-6 (single/double flash). Water/steam saturation & enthalpy correlations: IAPWS-IF97 simplified region-4 fits (Wagner & Pruss 2002).",
+    "unit": {
+        "name": "Generic Single-Flash Geothermal Plant — Physics-Lumped Flash Thermodynamics",
+        "T_geo_design": {"value": 240.0, "unit": "degC", "note": "Geothermal brine wellhead temperature (saturated liquid)"},
+        "T_flash_design": {"value": 160.0, "unit": "degC", "note": "Flash separator temperature; optimum ~ geometric mean of source/condenser T"},
+        "T_reject_design": {"value": 50.0, "unit": "degC", "note": "Cooling tower / ambient rejection temperature"},
+        "T_condenser_offset": {"value": 5.0, "unit": "degC", "note": "Condenser saturation T above rejection T (pinch)"},
+        "m_dot_brine_design": {"value": 100.0, "unit": "kg/s", "note": "Total geofluid mass flow from production wells"},
+        "cp_brine": {"value": 4300.0, "unit": "J/(kg.K)", "note": "Approx specific heat of liquid geothermal brine at ~200 C"},
+        "eta_turbine_isentropic": {"value": 0.80, "unit": "-", "note": "Steam turbine isentropic efficiency (DiPippo Ch.5 typical 0.75-0.85)"},
+        "eta_generator": {"value": 0.97, "unit": "-", "note": "Mechanical + generator electrical efficiency"},
+        "P_rated": {"value": 12000.0, "unit": "kW", "note": "Nameplate net electrical capacity at design"},
+        "tau_separator": {"value": 8.0, "unit": "s", "note": "Lumped separator pressure/level first-order time constant"},
+        "tau_turbine": {"value": 3.0, "unit": "s", "note": "Lumped turbine power (rotor/steam-chest) time constant"}
+    },
+    "valid_ranges": {
+        "T_geothermal": {"min": 180.0, "max": 320.0, "unit": "degC"},
+        "T_flash": {"min": 100.0, "max": 250.0, "unit": "degC"},
+        "T_rejection": {"min": 10.0, "max": 60.0, "unit": "degC"},
+        "flow_rate_kgs": {"min": 10.0, "max": 500.0, "unit": "kg/s"},
+        "dt": {"min": 0.05, "max": 2.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 3600.0, "unit": "s"}
+    }
+}

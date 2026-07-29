@@ -1,0 +1,24 @@
+{
+  "component": "EC145 Pyrolysis Reactor",
+  "fidelity": "F0a",
+  "description": "Empirical product-yield curves (bio-oil / char / gas) vs reactor temperature, np.interp breakpoints peaking near 500 C for bio-oil. Numbers reused from EC145 F1b (Bridgwater 2012).",
+  "source": "Bridgwater (2012) Biomass & Bioenergy 38:68 — reused from EC145 F1b",
+  "rated": {
+    "T_bio_oil_peak_degC": {"value": 500.0, "unit": "degC", "note": "Temperature of max bio-oil yield"},
+    "bio_oil_peak_yield": {"value": 0.72, "unit": "mass frac", "note": "Fast-pyrolysis bio-oil yield at peak (Bridgwater 2012)"},
+    "LHV_bio_oil_MJ_kg": {"value": 17.5, "unit": "MJ/kg", "note": "Bio-oil LHV (wood)"},
+    "LHV_char_MJ_kg": {"value": 30.0, "unit": "MJ/kg"},
+    "LHV_gas_MJ_kg": {"value": 7.5, "unit": "MJ/kg"}
+  },
+  "yield_curves": {
+    "comment": "Mass-fraction yields vs temperature (degC). Rows sum to ~1.0 at each breakpoint.",
+    "T_degC": [300.0, 400.0, 500.0, 600.0, 700.0],
+    "bio_oil_frac": [0.30, 0.55, 0.72, 0.55, 0.40],
+    "char_frac":    [0.50, 0.28, 0.13, 0.15, 0.12],
+    "gas_frac":     [0.20, 0.17, 0.15, 0.30, 0.48]
+  },
+  "valid_ranges": {
+    "temperature_degC": {"min": 300.0, "max": 700.0, "unit": "degC"},
+    "moisture_fraction": {"min": 0.0, "max": 0.60, "unit": "-"}
+  }
+}

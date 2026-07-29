@@ -1,0 +1,32 @@
+{
+    "component_id": "EC014",
+    "component_name": "Metal Hydride H2 Storage",
+    "fidelity": "F2a — Coupled Reaction Kinetics + Lumped Thermal ODE",
+    "source": "Sandrock (1999) J. Alloys Compd. 293-295:877; Jemni & Ben Nasrallah (1995) IJHE 20(1):43; Mayer, Groll & Supper (1987) J. Less-Common Met. 131:235; Chung & Ho (2009) IJHE 34:4351; van't Hoff (1886)",
+    "material_name": "LaNi5",
+    "unit": {
+        "name": "Generic LaNi5 Metal-Hydride Bed — Physics-Lumped Kinetics + Thermal",
+        "delta_H": {"value": -30100.0, "unit": "J/mol_H2", "note": "Enthalpy of hydride formation (absorption, exothermic). Sandrock (1999): LaNi5 dH = -30.1 kJ/mol H2"},
+        "delta_S": {"value": -108.0, "unit": "J/mol_H2/K", "note": "Entropy of hydride formation (absorption). Sandrock (1999): LaNi5 dS = -108 J/mol/K (dominated by lost H2 gas entropy)"},
+        "H_max_wt_pct": {"value": 1.4, "unit": "wt%", "note": "Max gravimetric H2 capacity LaNi5H6. Sakintuna et al. (2007)"},
+        "HM_max": {"value": 6.0, "unit": "atoms_H/formula", "note": "Max H/M loading: LaNi5 -> LaNi5H6, 6 H atoms per formula unit (Sandrock 1999)"},
+        "bed_mass_kg": {"value": 10.0, "unit": "kg", "note": "Reference metal-hydride bed (alloy) mass"},
+        "M_alloy": {"value": 0.4327, "unit": "kg/mol", "note": "Molar mass of LaNi5 (La 138.9 + 5*58.69 g/mol = 432.7 g/mol)"},
+        "Ca": {"value": 59.187, "unit": "1/s", "note": "Absorption rate pre-exponential constant. Jemni & Ben Nasrallah (1995), Mayer et al. (1987) for LaNi5"},
+        "Ea_abs": {"value": 21179.6, "unit": "J/mol", "note": "Absorption activation energy. Jemni & Ben Nasrallah (1995): Ea = 21.17 kJ/mol for LaNi5"},
+        "Cd": {"value": 9.57, "unit": "1/s", "note": "Desorption rate pre-exponential constant. Jemni & Ben Nasrallah (1995) for LaNi5"},
+        "Ea_des": {"value": 16420.0, "unit": "J/mol", "note": "Desorption activation energy. Jemni & Ben Nasrallah (1995): Ea = 16.42 kJ/mol for LaNi5"},
+        "P_ref": {"value": 1.01325, "unit": "bar", "note": "Standard reference pressure (1 atm) for van't Hoff plateau"},
+        "hysteresis_factor": {"value": 1.2, "unit": "-", "note": "P_abs_plateau = hf * P_des_plateau. Lototskyy et al. (2014)"},
+        "cp_bed": {"value": 419.0, "unit": "J/(kg.K)", "note": "Effective heat capacity of LaNi5 hydride bed. Herbst & Hector (2005); Jemni & Ben Nasrallah (1995): cp ~ 419 J/kg/K"},
+        "hA_cool": {"value": 25.0, "unit": "W/K", "note": "Overall bed-to-coolant heat transfer coefficient * area (h*A). Chung & Ho (2009) embedded-tube bed"},
+        "T_coolant": {"value": 293.15, "unit": "K", "note": "Coolant/ambient temperature (20C)"}
+    },
+    "valid_ranges": {
+        "P_supply_bar": {"min": 0.1, "max": 50.0, "unit": "bar"},
+        "T_bed_K": {"min": 253.0, "max": 373.0, "unit": "K"},
+        "HM_ratio": {"min": 0.0, "max": 6.0, "unit": "atoms_H/formula"},
+        "dt": {"min": 0.1, "max": 10.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 36000.0, "unit": "s"}
+    }
+}

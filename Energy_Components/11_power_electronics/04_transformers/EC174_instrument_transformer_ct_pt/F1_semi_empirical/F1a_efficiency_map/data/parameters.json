@@ -1,0 +1,24 @@
+{
+    "component": "EC174 Instrument Transformer (CT/PT)",
+    "fidelity": "F1a",
+    "description": "Ideal ratio: I_sec=I_pri/N (CT), V_sec=V_pri*N (PT); accuracy class 0.2; ratio_error<0.1%",
+    "unit": {
+        "name": "Measurement CT & PT (Accuracy Class 0.2)",
+        "source": "IEC 61869-2:2012 (CT); IEC 61869-3:2011 (PT); IEEE C57.13-2016",
+        "ct_ratio": {"value": 100.0, "unit": "dimensionless", "note": "Current ratio N: 1000A/10A CT"},
+        "pt_ratio": {"value": 0.001, "unit": "dimensionless", "note": "Voltage ratio 1/N: 11kV/11V PT"},
+        "ratio_error_pct": {"value": 0.1, "unit": "%", "note": "Max ratio error per IEC Class 0.2"},
+        "phase_error_min": {"value": 5.0, "unit": "arcmin", "note": "Max phase error per IEC Class 0.2"},
+        "accuracy_class": {"value": "0.2", "unit": "string"},
+        "ct_burden": {"value": 5.0, "unit": "VA", "note": "Rated burden (VA)"},
+        "pt_burden": {"value": 25.0, "unit": "VA", "note": "Rated burden (VA)"},
+        "ct_primary_current": {"value": 1000.0, "unit": "A", "note": "CT rated primary current"},
+        "ct_secondary_current": {"value": 10.0, "unit": "A", "note": "CT rated secondary current"},
+        "pt_primary_voltage": {"value": 11000.0, "unit": "V", "note": "PT rated primary voltage"},
+        "pt_secondary_voltage": {"value": 110.0, "unit": "V", "note": "PT rated secondary voltage"}
+    },
+    "valid_ranges": {
+        "ct_current_fraction": {"min": 0.01, "max": 2.0, "unit": "dimensionless", "note": "I_primary/I_rated"},
+        "pt_voltage_fraction": {"min": 0.8, "max": 1.2, "unit": "dimensionless", "note": "V_primary/V_rated"}
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "component": "EC073 Shell-and-Tube Heat Exchanger",
+    "fidelity": "F1a",
+    "description": "Shell-and-tube HX (1 shell pass / 2 tube passes — TEMA E) using effectiveness-NTU with the standard 1-2 correction. LMTD diagnostics also reported.",
+    "unit": {
+        "name": "Generic 1-shell, 2-tube-pass shell-and-tube HX (water-water, TEMA E)",
+        "source": "Incropera & DeWitt (2006), Fundamentals of Heat and Mass Transfer, ch.11; Kakac & Liu (2002), Heat Exchangers: Selection, Rating, and Thermal Design, 2nd ed., CRC Press; TEMA standards (2007).",
+        "U": {"value": 1500.0, "unit": "W/m2K", "note": "Overall heat-transfer coefficient, water-water shell-and-tube"},
+        "A": {"value": 25.0, "unit": "m2", "note": "Total external tube heat-transfer area"},
+        "cp_hot":  {"value": 4186.0, "unit": "J/kgK"},
+        "cp_cold": {"value": 4186.0, "unit": "J/kgK"},
+        "n_shell_passes": {"value": 1, "unit": "-"},
+        "n_tube_passes":  {"value": 2, "unit": "-"}
+    },
+    "valid_ranges": {
+        "T_h_in":     {"min": 30.0, "max": 200.0, "unit": "degC"},
+        "T_c_in":     {"min": 5.0,  "max": 80.0,  "unit": "degC"},
+        "m_dot_hot":  {"min": 0.1,  "max": 50.0,  "unit": "kg/s"},
+        "m_dot_cold": {"min": 0.1,  "max": 50.0,  "unit": "kg/s"}
+    }
+}

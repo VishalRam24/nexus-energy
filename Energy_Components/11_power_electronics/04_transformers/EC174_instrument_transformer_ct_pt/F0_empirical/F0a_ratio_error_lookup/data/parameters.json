@@ -1,0 +1,48 @@
+{
+    "component": "EC174 Instrument Transformer (CT/PT)",
+    "fidelity": "F0a",
+    "description": "Empirical ratio-error lookup vs burden/loading fraction (np.interp); accuracy class 0.2",
+    "source": "IEC 61869-2:2012 (CT); IEC 61869-3:2011 (PT); IEEE C57.13-2016 (reused from F1a)",
+    "ct_ratio": {
+        "value": 100.0,
+        "unit": "dimensionless",
+        "note": "1000A/10A CT (reused from F1a)"
+    },
+    "pt_ratio": {
+        "value": 0.01,
+        "unit": "dimensionless",
+        "note": "11kV/110V PT (reused from F1a)"
+    },
+    "load_fraction_breakpoints": {
+        "value": [
+            0.05,
+            0.2,
+            0.5,
+            1.0,
+            1.2,
+            2.0
+        ],
+        "unit": "fraction_of_rated_burden_or_current"
+    },
+    "ratio_error_pct_breakpoints": {
+        "value": [
+            0.2,
+            0.12,
+            0.08,
+            0.05,
+            0.06,
+            0.1
+        ],
+        "unit": "%",
+        "note": "Class 0.2: |error| <= 0.2% across rated range; best near 100%"
+    },
+    "accuracy_class": {
+        "value": "0.2",
+        "unit": "string"
+    },
+    "max_ratio_error_pct": {
+        "value": 0.2,
+        "unit": "%",
+        "note": "Class 0.2 limit"
+    }
+}

@@ -1,0 +1,38 @@
+{
+    "component": "EC063 Vertical Axis Wind Turbine (VAWT)",
+    "fidelity": "F1b",
+    "description": "Power curve with air density correction rho(T, P, altitude), turbulence-intensity effect on effective Cp",
+    "turbine": {
+        "name": "Generic 10 kW Darrieus H-rotor VAWT",
+        "source": "Tjiu et al. (2015) Renew. Energy 75:50-67; Sutherland et al. SAND2012-0304",
+        "rated_power": {"value": 10.0, "unit": "kW"},
+        "hub_height": {"value": 18.0, "unit": "m"},
+        "rotor_diameter": {"value": 6.0, "unit": "m", "note": "Swept width (H-rotor)"},
+        "rotor_height": {"value": 8.0, "unit": "m"},
+        "swept_area": {"value": 48.0, "unit": "m2", "note": "D * H for H-rotor"},
+        "cut_in_speed": {"value": 3.0, "unit": "m/s"},
+        "rated_speed": {"value": 11.0, "unit": "m/s"},
+        "cut_out_speed": {"value": 22.0, "unit": "m/s"},
+        "max_cp": {"value": 0.32, "unit": "dimensionless", "note": "VAWT typical 0.20-0.35"},
+        "tip_speed_ratio_opt": {"value": 4.0, "unit": "dimensionless"},
+        "ti_cp_sensitivity": {"value": -0.40, "unit": "dimensionless/TI", "note": "dCp_eff/dTI: partial-load Cp degrades ~40% per unit TI due to unsteady blade incidence in VAWT"}
+    },
+    "power_curve": {
+        "description": "Synthetic VAWT power curve at rho=1.225 kg/m3 using Cp(v) profile",
+        "source": "Derived from P = 0.5*rho*A*Cp*v^3, generic Darrieus H-rotor",
+        "wind_speeds_ms": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22],
+        "power_kw":       [0,0,0,0,0.55,1.10,1.95,3.15,4.80,6.85,9.05,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0]
+    },
+    "atmosphere": {
+        "Rd": {"value": 287.058, "unit": "J/kgK", "note": "Specific gas constant for dry air"},
+        "P_sea_level": {"value": 101325.0, "unit": "Pa"},
+        "lapse_rate": {"value": 0.0065, "unit": "K/m"},
+        "T_std": {"value": 288.15, "unit": "K"}
+    },
+    "valid_ranges": {
+        "wind_speed": {"min": 0.0, "max": 30.0, "unit": "m/s"},
+        "turbulence_intensity": {"min": 0.0, "max": 0.50, "unit": "dimensionless"},
+        "air_temperature_degC": {"min": -20.0, "max": 50.0, "unit": "degC"},
+        "altitude_m": {"min": 0.0, "max": 3000.0, "unit": "m"}
+    }
+}

@@ -1,0 +1,30 @@
+{
+    "component": "EC035 Sodium-Sulfur (NaS) Battery",
+    "fidelity": "F1a",
+    "description": "Simple SOC-voltage model: V = OCV(SOC) - I*R_internal",
+    "cell": {
+        "name": "Generic high-temperature NaS cell (NGK PS-class T~320 C)",
+        "source": "Wen, Z. et al. (2008), Mater. Sci. Eng. B 154-155, 73; NGK Insulators NAS battery technical brochure",
+        "nominal_voltage": {"value": 2.0, "unit": "V"},
+        "capacity": {"value": 100.0, "unit": "Ah"},
+        "voltage_max": {"value": 2.08, "unit": "V"},
+        "voltage_min": {"value": 1.78, "unit": "V"},
+        "internal_resistance": {"value": 0.005, "unit": "Ohm", "note": "Approximate DC resistance per cell at 320 C, 50% SOC"},
+        "operating_temperature_C": {"value": 320.0, "unit": "degC", "note": "Required to keep Na and S molten and beta-alumina conductive"}
+    },
+    "ocv_coefficients": {
+        "description": "OCV(SOC) polynomial fit: OCV = a0 + a1*SOC + a2*SOC^2 + a3*SOC^3 + a4*SOC^4 + a5*SOC^5",
+        "source": "Polynomial fit to representative NaS discharge curve (two-plateau, 1.78-2.08 V)",
+        "a0": 1.7793531468531478,
+        "a1": 0.6101194638694872,
+        "a2": -2.45651223776239,
+        "a3": 7.180215617716007,
+        "a4": -8.078379953380372,
+        "a5": 3.044871794871948
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "current": {"min": -200.0, "max": 200.0, "unit": "A", "note": "Negative=charge, Positive=discharge"},
+        "temperature": {"min": 300.0, "max": 350.0, "unit": "degC", "note": "F1a ignores temperature effects but cell only works in this window"}
+    }
+}

@@ -1,0 +1,88 @@
+{
+    "component": "EC113 Subcritical Pulverized Coal Plant",
+    "fidelity": "F0a - empirical lookup",
+    "description": "Net LHV electrical efficiency as a tabulated part-load curve plus a linear ambient-temperature derate. Breakpoints generated from the F1a semi-empirical part-load curve.",
+    "unit": {
+        "name": "Generic 500 MW Subcritical PC Plant (540 C / 160 bar)",
+        "source": "Booras & Holt (2004), EPRI; IEA CCC/168 (2010); F1a EC113",
+        "P_rated": {
+            "value": 500.0,
+            "unit": "MW_e",
+            "note": "Rated electrical output"
+        },
+        "eta_rated": {
+            "value": 0.37,
+            "unit": "dimensionless",
+            "note": "Net LHV efficiency at rated load (PLR=1, T_ref)"
+        },
+        "T_amb_ref": {
+            "value": 15.0,
+            "unit": "degC",
+            "note": "Reference ambient temperature"
+        },
+        "f_amb_coeff": {
+            "value": 0.0003,
+            "unit": "1/degC",
+            "note": "Ambient derate: eta scaled by (1 - coeff*(T-T_ref))"
+        },
+        "PLR_min": {
+            "value": 0.3,
+            "unit": "dimensionless",
+            "note": "Minimum stable part-load ratio"
+        },
+        "plr_breakpoints": {
+            "value": [
+                0.3,
+                0.35,
+                0.4,
+                0.45,
+                0.5,
+                0.55,
+                0.6,
+                0.65,
+                0.7,
+                0.75,
+                0.8,
+                0.85,
+                0.9,
+                0.95,
+                1.0
+            ],
+            "unit": "dimensionless",
+            "note": "Lookup x-axis"
+        },
+        "eta_breakpoints": {
+            "value": [
+                0.1369,
+                0.15355,
+                0.1702,
+                0.18685,
+                0.2035,
+                0.22015,
+                0.2368,
+                0.25345,
+                0.2701,
+                0.28675,
+                0.3034,
+                0.32005,
+                0.3367,
+                0.35335,
+                0.37
+            ],
+            "unit": "dimensionless",
+            "note": "Net LHV efficiency at each PLR breakpoint, T_ref"
+        }
+    },
+    "valid_ranges": {
+        "part_load_ratio": {
+            "min": 0.3,
+            "max": 1.0,
+            "unit": "dimensionless"
+        },
+        "ambient_temp_c": {
+            "min": -10.0,
+            "max": 45.0,
+            "unit": "degC"
+        }
+    }
+}

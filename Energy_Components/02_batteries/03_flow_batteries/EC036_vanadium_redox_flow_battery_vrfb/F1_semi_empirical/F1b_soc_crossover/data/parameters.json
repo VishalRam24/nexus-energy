@@ -1,0 +1,26 @@
+{
+    "component": "EC036 Vanadium Redox Flow Battery (VRFB)",
+    "fidelity": "F1b",
+    "description": "Nernst + Ohmic + Vanadium crossover through membrane",
+    "unit": {
+        "name": "Generic 40-cell VRFB stack, 600 cm2 electrode area",
+        "source": "Blanc & Rufer (2010); Skyllas-Kazacos et al. (2011) crossover model",
+        "N_cells": {"value": 40, "unit": "dimensionless"},
+        "electrode_area_cm2": {"value": 600.0, "unit": "cm2"},
+        "E0": {"value": 1.26, "unit": "V"},
+        "R_cell_ohm_cm2": {"value": 0.8, "unit": "Ohm.cm2"},
+        "T_K": {"value": 298.0, "unit": "K"},
+        "n": {"value": 1, "unit": "dimensionless"},
+        "electrolyte_conc_M": {"value": 1.6, "unit": "mol/L"},
+        "D_v": {"value": 1.0e-11, "unit": "m2/s", "note": "Vanadium diffusion coeff through Nafion membrane"},
+        "d_membrane": {"value": 1.8e-4, "unit": "m", "note": "Nafion 117 thickness ~180 um"},
+        "A_membrane_cm2": {"value": 600.0, "unit": "cm2"},
+        "V_electrolyte_L": {"value": 200.0, "unit": "L", "note": "Electrolyte volume per half-cell"},
+        "Q_nominal_Ah": {"value": 85.6, "unit": "Ah", "note": "Nominal capacity = conc*V*F/3600"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.01, "max": 0.99, "unit": "dimensionless"},
+        "current": {"min": -100.0, "max": 100.0, "unit": "A"},
+        "cycle_number": {"min": 0, "max": 10000, "unit": "cycles"}
+    }
+}

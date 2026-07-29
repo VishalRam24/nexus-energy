@@ -1,0 +1,30 @@
+{
+    "component": "EC179 Wound Rotor Synchronous Generator",
+    "fidelity": "F1b",
+    "description": "Loss-split generator model: stator copper + rotor excitation copper (both temperature-dependent), iron, mechanical and stray losses. Temperature-dependent resistance for both stator and rotor windings.",
+    "unit": {
+        "name": "Generic 500 kVA Wound Rotor Synchronous Generator",
+        "source": "Kundur (1994) Power System Stability and Control; Chapman (2012) Electric Machinery Fundamentals; IEC 60034-30-1",
+        "S_rated_kVA": {"value": 500.0, "unit": "kVA"},
+        "P_rated_kW": {"value": 450.0, "unit": "kW", "note": "Rated active output at pf=0.9"},
+        "V_line_kV": {"value": 0.4, "unit": "kV", "note": "Line-to-line terminal voltage"},
+        "pf_rated": {"value": 0.9, "unit": "dimensionless", "note": "Rated power factor (lagging)"},
+        "omega_sync_rpm": {"value": 1500.0, "unit": "rpm", "note": "Synchronous speed (50 Hz, 2 pole pairs)"},
+        "R_s_ref": {"value": 0.005, "unit": "ohm", "note": "Stator resistance per phase at T_ref"},
+        "R_f_ref": {"value": 0.8, "unit": "ohm", "note": "Field (rotor) winding resistance at T_ref"},
+        "T_ref": {"value": 25.0, "unit": "degC"},
+        "alpha_Cu": {"value": 0.00393, "unit": "1/K"},
+        "I_f_rated": {"value": 120.0, "unit": "A", "note": "Rated field excitation current"},
+        "k_iron": {"value": 500.0, "unit": "W", "note": "Base iron loss at rated speed"},
+        "k_mech": {"value": 200.0, "unit": "W", "note": "Friction+windage at rated speed"},
+        "k_stray": {"value": 0.005, "unit": "dimensionless", "note": "Stray loss fraction of rated output"},
+        "ambient_derating_threshold": {"value": 40.0, "unit": "degC"},
+        "derating_slope": {"value": 0.01, "unit": "1/K"}
+    },
+    "valid_ranges": {
+        "load_fraction": {"min": 0.05, "max": 1.2, "unit": "dimensionless"},
+        "stator_temperature": {"min": -20.0, "max": 180.0, "unit": "degC"},
+        "rotor_temperature": {"min": -20.0, "max": 180.0, "unit": "degC"},
+        "ambient_temperature": {"min": -20.0, "max": 60.0, "unit": "degC"}
+    }
+}

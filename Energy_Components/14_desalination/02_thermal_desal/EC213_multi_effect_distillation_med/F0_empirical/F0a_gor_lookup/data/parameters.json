@@ -1,0 +1,23 @@
+{
+    "component": "EC213 Multi-Effect Distillation (MED)",
+    "fidelity": "F0a",
+    "description": "Empirical GOR-vs-top-temperature lookup for MED. GOR rises with T_top (wider temperature range over the effects). Rated GOR=10 at 70C. SEC_thermal/elec reused from EC213 F1a.",
+    "unit": {
+        "name": "Generic MED desalination plant",
+        "source": "El-Dessouky & Ettouney (2002); Al-Sahali & Ettouney (2007)",
+        "T_top_breakpoints": {"value": [55.0, 65.0, 70.0, 75.0, 85.0], "unit": "degC"},
+        "gor_breakpoints": {"value": [8.0, 9.3, 10.0, 10.7, 12.0], "unit": "dimensionless", "note": "kg distillate / kg steam vs top temp"},
+        "T_top_rated_C": {"value": 70.0, "unit": "degC"},
+        "gor_rated": {"value": 10.0, "unit": "dimensionless"},
+        "sec_thermal_kJ_kg": {"value": 200.0, "unit": "kJ/kg"},
+        "sec_elec_kWh_m3": {"value": 1.5, "unit": "kWh/m3", "note": "Lower pumping than MSF"},
+        "recovery": {"value": 0.35, "unit": "dimensionless"},
+        "N_effects": {"value": 12, "unit": "dimensionless"},
+        "capacity_m3_h": {"value": 1000.0, "unit": "m3/h"},
+        "h_latent_kJ_kg": {"value": 2330.0, "unit": "kJ/kg", "note": "Latent heat for thermal-from-GOR cross-check"}
+    },
+    "valid_ranges": {
+        "T_top_C": {"min": 55.0, "max": 85.0, "unit": "degC"},
+        "capacity_fraction": {"min": 0.1, "max": 1.0, "unit": "dimensionless"}
+    }
+}

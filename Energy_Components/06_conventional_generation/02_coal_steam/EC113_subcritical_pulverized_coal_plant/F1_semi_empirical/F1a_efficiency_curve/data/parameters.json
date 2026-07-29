@@ -1,0 +1,29 @@
+{
+    "component": "EC113 Subcritical Pulverized Coal Plant",
+    "fidelity": "F1a",
+    "description": "Net LHV efficiency as f(PLR, T_amb) with Rankine cycle basis; coal mass flow and CO2 emission rate derived from efficiency.",
+    "unit": {
+        "name": "Generic 500 MW Subcritical PC Plant (540 C / 160 bar)",
+        "source": "Booras, G. & Holt, N. (2004). Pulverized coal and IGCC plant cost and performance estimates. Gasification Technologies Conference. EPRI; IEA CCC/168 (2010).",
+        "rated_power_mw": {"value": 500.0, "unit": "MW_e"},
+        "eta_iso": {"value": 0.37, "unit": "dimensionless", "note": "Net LHV efficiency at rated load (PLR=1, T_amb=15C); typical subcritical 35-38%"},
+        "T_amb_ref": {"value": 15.0, "unit": "degC", "note": "ISO reference ambient temperature"},
+        "k_amb": {"value": 0.0003, "unit": "1/K", "note": "Efficiency derating per K; condenser back-pressure effect (~0.03%/K)"},
+        "plr_coeffs": {
+            "a0": {"value": 0.10, "unit": "dimensionless"},
+            "a1": {"value": 0.90, "unit": "dimensionless"},
+            "a2": {"value": 0.0, "unit": "dimensionless"}
+        },
+        "LHV_coal": {"value": 25.0, "unit": "MJ/kg", "note": "Bituminous coal lower heating value; range 23-29 MJ/kg"},
+        "coal_carbon_fraction": {"value": 0.70, "unit": "kg_C/kg_coal", "note": "Mass fraction of carbon in coal (bituminous)"},
+        "CO2_per_kg_coal": {"value": 2.57, "unit": "kg_CO2/kg_coal", "note": "Stoichiometric CO2 from 70% C: 0.70 * 44/12 = 2.567"},
+        "min_plr": {"value": 0.30, "unit": "dimensionless"},
+        "max_plr": {"value": 1.0, "unit": "dimensionless"},
+        "steam_temp_c": {"value": 540.0, "unit": "degC", "note": "Main steam temperature (subcritical limit)"},
+        "steam_pressure_bar": {"value": 160.0, "unit": "bar", "note": "Main steam pressure (subcritical: <221 bar)"}
+    },
+    "valid_ranges": {
+        "part_load_ratio": {"min": 0.30, "max": 1.0, "unit": "dimensionless"},
+        "ambient_temp": {"min": -10.0, "max": 45.0, "unit": "degC"}
+    }
+}

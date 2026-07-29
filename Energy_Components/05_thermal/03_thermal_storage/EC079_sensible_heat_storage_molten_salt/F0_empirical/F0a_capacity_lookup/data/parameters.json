@@ -1,0 +1,64 @@
+{
+  "component": "EC079 Molten Salt TES",
+  "fidelity": "F0a \u2014 empirical capacity lookup",
+  "description": "Linear capacity lookup: usable stored energy = SOC * E_capacity. Round-trip efficiency and self-discharge are constant empirical ratings.",
+  "lookup": {
+    "SOC_breakpoints": {
+      "value": [
+        0.0,
+        0.1,
+        0.2,
+        0.30000000000000004,
+        0.4,
+        0.5,
+        0.6000000000000001,
+        0.7000000000000001,
+        0.8,
+        0.9,
+        1.0
+      ],
+      "unit": "dimensionless"
+    },
+    "usable_energy_table": {
+      "value": [
+        0.0,
+        20625.0,
+        41250.0,
+        61875.0,
+        82500.0,
+        103125.0,
+        123750.0,
+        144375.0,
+        165000.0,
+        185625.0,
+        206250.0
+      ],
+      "unit": "kWh_th",
+      "note": "Stored thermal energy available at each SOC"
+    }
+  },
+  "rated": {
+    "E_capacity": {
+      "value": 206250.0,
+      "unit": "kWh_th",
+      "note": "1.8e6 kg * 1500 J/kgK * 275 K / 3.6e9 = 206.25 MWh"
+    },
+    "round_trip_efficiency": {
+      "value": 0.98,
+      "unit": "dimensionless"
+    },
+    "self_discharge_per_day": {
+      "value": 1.0,
+      "unit": "%/day",
+      "note": "Standing thermal loss"
+    }
+  },
+  "valid_ranges": {
+    "soc": {
+      "min": 0.0,
+      "max": 1.0,
+      "unit": "dimensionless"
+    }
+  },
+  "source": "Herrmann et al. (2004), Energy, 29, 883-893"
+}

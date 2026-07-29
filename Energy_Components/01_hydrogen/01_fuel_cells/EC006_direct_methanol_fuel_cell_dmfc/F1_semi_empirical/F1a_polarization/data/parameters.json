@@ -1,0 +1,14 @@
+{
+  "default_parameters": {
+    "T": 343.15,
+    "E_rev": 1.21,
+    "OCV": 0.6,
+    "i0": 1e-5,
+    "R_ohm": 0.4,
+    "j_L": 0.4,
+    "alpha": 0.5,
+    "n_cells": 1,
+    "area": 100.0
+  },
+  "description": "DMFC polarization parameters. OCV~0.6 V due to methanol crossover. 6e- reaction (n=6). T in K, R_ohm in ohm*cm^2, j_L in A/cm^2."
+}

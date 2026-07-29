@@ -1,0 +1,26 @@
+{
+    "component": "EC108 Steam Turbine CHP",
+    "fidelity": "F1b",
+    "description": "Part-load electrical + thermal extraction efficiency with ambient temperature derating for backpressure/extraction steam turbine CHP",
+    "unit": {
+        "name": "Generic 10 MW Extraction/Backpressure Steam Turbine CHP",
+        "source": "US EPA CHP Catalog (2017); Kehlhofer, R. et al. (2009). Combined-Cycle Gas & Steam Turbine Power Plants, 3rd ed. PennWell; IEA (2008). Combined Heat and Power — Evaluating the Benefits of Greater Global Investment.",
+        "P_el_rated_kw": {"value": 10000.0, "unit": "kW_e", "note": "Rated electrical output at ISO conditions"},
+        "eta_el_rated": {"value": 0.24, "unit": "-", "note": "Electrical efficiency at full load (backpressure steam turbine: 20-30%)"},
+        "eta_th_rated": {"value": 0.65, "unit": "-", "note": "Thermal (steam extraction / exhaust) efficiency at full load; total ~89%"},
+        "PLR_min": {"value": 0.3, "unit": "-", "note": "Minimum stable PLR (sliding pressure operation limit)"},
+        "LHV_gas_mj_kg": {"value": 50.0, "unit": "MJ/kg", "note": "Natural gas LHV (fired boiler)"},
+        "el_plr_a": {"value": 0.15, "unit": "-", "note": "Electrical PLR constant term"},
+        "el_plr_b": {"value": 1.10, "unit": "-", "note": "Electrical PLR linear term"},
+        "el_plr_c": {"value": -0.25, "unit": "-", "note": "Electrical PLR quadratic term; peaks near PLR=0.85"},
+        "th_plr_a": {"value": 0.55, "unit": "-", "note": "Thermal PLR constant (heat extraction decreases proportionally less than electrical at part load)"},
+        "th_plr_b": {"value": 0.45, "unit": "-", "note": "Thermal PLR linear term"},
+        "T_ref_c": {"value": 15.0, "unit": "degC", "note": "ISO reference ambient temperature (15 degC for steam plant condenser)"},
+        "temp_derating_pct_per_degC": {"value": 0.3, "unit": "%/degC", "note": "Power derating above 15 degC (condenser back-pressure rises with ambient)"},
+        "temp_derating_start_c": {"value": 15.0, "unit": "degC", "note": "Temperature above which derating starts"}
+    },
+    "valid_ranges": {
+        "PLR": {"min": 0.3, "max": 1.0, "unit": "-"},
+        "T_ambient_c": {"min": -20.0, "max": 45.0, "unit": "degC"}
+    }
+}

@@ -1,0 +1,51 @@
+{
+  "component": "EC200 Oxy-Fuel Combustion Capture",
+  "fidelity": "F0a -- empirical lookup",
+  "source": "Buhre et al. (2005) PECS 31(4) 283-307; Toftegaard et al. (2010) 36(5) 581-625.",
+  "unit": {
+    "source": "Buhre et al. (2005) PECS 31(4); Toftegaard et al. (2010).",
+    "fuel_C": {
+      "value": 0.72,
+      "unit": "kg/kg"
+    },
+    "fuel_H": {
+      "value": 0.05,
+      "unit": "kg/kg"
+    },
+    "fuel_S": {
+      "value": 0.01,
+      "unit": "kg/kg"
+    },
+    "asu_specific_energy": {
+      "value": 220.0,
+      "unit": "kWh/tO2"
+    },
+    "compression_specific_energy": {
+      "value": 100.0,
+      "unit": "kWh/tCO2"
+    },
+    "o2_purity": {
+      "value": 0.95,
+      "unit": "mol/mol"
+    },
+    "excess_o2_ratio": {
+      "value": 0.05,
+      "unit": "-"
+    }
+  },
+  "capture_curve": {
+    "load": [
+      0.4,
+      0.6,
+      0.8,
+      1.0
+    ],
+    "capture_rate": [
+      0.9,
+      0.92,
+      0.94,
+      0.95
+    ],
+    "note": "Oxy-fuel near-complete capture; mild part-load derate."
+  }
+}

@@ -1,0 +1,31 @@
+{
+    "component": "EC105 Gas Turbine CHP",
+    "fidelity": "F1b",
+    "description": "Part-load + ambient temperature derating + HRSG exhaust temperature effect on heat output",
+    "unit": {
+        "name": "Generic 5 MW Gas Turbine CHP with HRSG",
+        "source": "US EPA CHP Catalog (2017); Kehlhofer et al. (2009), Combined-Cycle Gas & Steam Turbine Power Plants; Walsh & Fletcher (2004), Gas Turbine Performance",
+        "P_el_rated_kw": {"value": 5000.0, "unit": "kW_e", "note": "ISO-rated electrical output at 15 degC, 101.325 kPa"},
+        "eta_el_rated": {"value": 0.32, "unit": "-", "note": "Electrical efficiency at full load, ISO conditions"},
+        "eta_th_rated": {"value": 0.50, "unit": "-", "note": "Thermal (HRSG) efficiency at full load, rated exhaust T"},
+        "PLR_min": {"value": 0.4, "unit": "-", "note": "Minimum part-load ratio for stable combustion"},
+        "LHV_gas_mjkg": {"value": 50.0, "unit": "MJ/kg", "note": "Lower heating value of natural gas"},
+        "el_plr_a": {"value": 0.15, "unit": "-", "note": "Electrical PLR curve constant term"},
+        "el_plr_b": {"value": 1.05, "unit": "-", "note": "Electrical PLR curve linear term"},
+        "el_plr_c": {"value": -0.20, "unit": "-", "note": "Electrical PLR curve quadratic term"},
+        "th_plr_a": {"value": 0.40, "unit": "-", "note": "Thermal PLR curve constant (HRSG captures more at part load relative to electrical output)"},
+        "th_plr_b": {"value": 0.60, "unit": "-", "note": "Thermal PLR curve linear term"},
+        "T_amb_ref_k": {"value": 288.15, "unit": "K", "note": "ISO reference ambient temperature (15 degC)"},
+        "P_amb_ref_kpa": {"value": 101.325, "unit": "kPa", "note": "ISO reference ambient pressure"},
+        "temp_derate_pct_per_k": {"value": 0.65, "unit": "%/K", "note": "Power derating above ISO reference (gas turbine air-density effect, ~0.6-0.7%/K)"},
+        "T_exhaust_rated_k": {"value": 798.15, "unit": "K", "note": "HRSG inlet exhaust gas temperature at full load (525 degC typical)"},
+        "T_exhaust_partload_offset_k": {"value": 30.0, "unit": "K", "note": "Exhaust temp rise when dropping from PLR=1 to PLR=0 (gas turbines run hotter at part load)"},
+        "T_stack_min_k": {"value": 423.15, "unit": "K", "note": "Minimum stack temperature (acid dew point, ~150 degC)"},
+        "hrsg_eff_T_coeff": {"value": 0.0015, "unit": "1/K", "note": "HRSG effectiveness sensitivity to exhaust inlet temperature (higher T_exh = more heat recovered)"}
+    },
+    "valid_ranges": {
+        "PLR": {"min": 0.4, "max": 1.0, "unit": "-"},
+        "T_ambient_k": {"min": 248.15, "max": 323.15, "unit": "K"},
+        "P_ambient_kpa": {"min": 85.0, "max": 107.0, "unit": "kPa"}
+    }
+}

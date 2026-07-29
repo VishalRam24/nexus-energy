@@ -1,0 +1,21 @@
+{
+    "component": "EC217 Thermoelectric Cooler (TEC)",
+    "fidelity": "F1a",
+    "description": "Peltier cooler using Bi2Te3. ZT=0.7, COP = Tc/(Th-Tc)*eta_zt. Q_cool via Peltier-Joule-conduction balance.",
+    "unit": {
+        "name": "Generic Bi2Te3 thermoelectric cooler module",
+        "source": "Rowe (2006) Thermoelectrics Handbook; Goldsmid (2010)",
+        "ZT": {"value": 0.7, "unit": "dimensionless", "note": "Figure of merit Z*T_mean for Bi2Te3 at ~300K"},
+        "N_couples": {"value": 127, "unit": "dimensionless", "note": "Thermoelectric couples per module (typical)"},
+        "alpha_Seebeck": {"value": 0.0002, "unit": "V/K", "note": "Seebeck coefficient per couple (200 uV/K)"},
+        "R_module": {"value": 2.0, "unit": "ohm", "note": "Module electrical resistance"},
+        "K_module": {"value": 0.5, "unit": "W/K", "note": "Module thermal conductance"},
+        "T_ref": {"value": 300.0, "unit": "K", "note": "Reference temperature for ZT"},
+        "I_max": {"value": 5.0, "unit": "A", "note": "Maximum operating current"}
+    },
+    "valid_ranges": {
+        "Tc_K": {"min": 233.0, "max": 320.0, "unit": "K"},
+        "Th_K": {"min": 280.0, "max": 360.0, "unit": "K"},
+        "I_A": {"min": 0.1, "max": 5.0, "unit": "A"}
+    }
+}

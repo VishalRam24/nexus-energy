@@ -1,0 +1,12 @@
+{
+  "default_parameters": {
+    "Q_nom": 2.0,
+    "R_int": 0.020,
+    "V_min": 1.0,
+    "V_max": 1.55,
+    "ocv_flat": 1.2,
+    "ocv_rise": 0.08,
+    "ocv_droop": 0.12
+  },
+  "description": "NiCd SOC-only model. Flat OCV profile (1.0-1.35 V). Very low R_int=20 mOhm. Q_nom=2.0 Ah. OCV = ocv_flat + ocv_rise*SOC^0.5 - ocv_droop*(1-SOC)^3 (flat in middle)."
+}

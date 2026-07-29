@@ -1,0 +1,45 @@
+{
+    "component": "EC201 Direct Air Capture (DAC) -- Solid Sorbent",
+    "fidelity": "F2a",
+    "description": "Lumped-parameter TSA (Temperature Swing Adsorption) cycle model for amine-on-silica sorbent DAC",
+    "unit": {
+        "name": "Climeworks-type Solid Sorbent DAC Unit",
+        "source": "Fasihi et al. (2019); Sinha et al. (2017); Wurzbacher et al. (2012)",
+        "sorbent": {
+            "q_max":        {"value": 2.0,   "unit": "mmol/g",  "note": "Maximum adsorption capacity (amine-on-silica)"},
+            "K_ads_ref":    {"value": 500.0,  "unit": "1/bar",   "note": "Langmuir affinity constant at T_ref"},
+            "T_ref_K":      {"value": 298.15, "unit": "K",       "note": "Reference temperature for K_ads"},
+            "delta_H_ads":  {"value": 70.0,   "unit": "kJ/mol",  "note": "Enthalpy of adsorption (exothermic, magnitude)"},
+            "Cp_sorbent":   {"value": 1000.0, "unit": "J/(kg*K)","note": "Specific heat capacity of sorbent bed"},
+            "m_sorbent":    {"value": 1000.0, "unit": "kg",      "note": "Total sorbent mass in one contactor"}
+        },
+        "cycle": {
+            "T_ads_degC":       {"value": 20.0,  "unit": "degC", "note": "Adsorption temperature (ambient)"},
+            "T_des_degC":       {"value": 100.0, "unit": "degC", "note": "Desorption temperature"},
+            "P_CO2_ambient_kPa":{"value": 0.042, "unit": "kPa",  "note": "Ambient CO2 partial pressure (~420 ppm)"},
+            "P_vac_atm":        {"value": 0.2,   "unit": "atm",  "note": "Vacuum pressure during desorption"},
+            "t_ads_s":          {"value": 1800,  "unit": "s",     "note": "Adsorption phase duration (30 min)"},
+            "t_des_s":          {"value": 1800,  "unit": "s",     "note": "Desorption phase duration (30 min)"},
+            "heat_recovery":    {"value": 0.5,   "unit": "dimensionless", "note": "Fraction of sensible heat recovered between cycles"}
+        },
+        "bed": {
+            "porosity":         {"value": 0.4,   "unit": "dimensionless", "note": "Bed void fraction"},
+            "cross_section_m2": {"value": 10.0,  "unit": "m2",   "note": "Bed cross-sectional area for air flow"},
+            "v_air_m_s":        {"value": 2.0,   "unit": "m/s",  "note": "Superficial air velocity through bed"},
+            "delta_P_bed_Pa":   {"value": 200.0, "unit": "Pa",   "note": "Pressure drop across sorbent bed"}
+        },
+        "fan": {
+            "eta_fan":          {"value": 0.7,   "unit": "dimensionless", "note": "Fan + motor efficiency"}
+        },
+        "constants": {
+            "R":                {"value": 8.314, "unit": "J/(mol*K)", "note": "Universal gas constant"},
+            "M_CO2":            {"value": 44.01, "unit": "g/mol", "note": "CO2 molar mass"}
+        }
+    },
+    "valid_ranges": {
+        "T_ads_degC": {"min": -10.0, "max": 45.0, "unit": "degC"},
+        "T_des_degC": {"min": 60.0, "max": 150.0, "unit": "degC"},
+        "P_CO2_ambient_kPa": {"min": 0.03, "max": 0.06, "unit": "kPa"},
+        "P_vac_atm": {"min": 0.05, "max": 1.0, "unit": "atm"}
+    }
+}

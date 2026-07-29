@@ -1,0 +1,37 @@
+{
+    "component": "EC140 Anaerobic Digester (Mesophilic)",
+    "fidelity": "F2a",
+    "description": "Simplified ADM1 with Monod kinetics for substrate, biomass, and methane production. Includes temperature (Arrhenius) and pH inhibition effects.",
+    "unit": {
+        "name": "Generic Mesophilic CSTR Anaerobic Digester (Dairy Manure)",
+        "source": "Batstone et al. (2002), IWA ADM1; Rittmann & McCarty (2001), Environmental Biotechnology; Tchobanoglous et al. (2003), Wastewater Engineering",
+        "V_reactor": {"value": 1000.0, "unit": "m^3", "note": "Reactor volume (1000 m^3)"},
+        "HRT": {"value": 20.0, "unit": "d", "note": "Hydraulic retention time (20 days)"},
+        "S_in": {"value": 40.0, "unit": "gCOD/L", "note": "Influent substrate concentration (dairy manure)"},
+        "X_in": {"value": 0.1, "unit": "gVSS/L", "note": "Influent biomass concentration"},
+
+        "mu_max": {"value": 0.4, "unit": "1/d", "note": "Maximum specific growth rate at 35C"},
+        "K_s": {"value": 3.0, "unit": "gCOD/L", "note": "Half-saturation constant"},
+        "Y_xs": {"value": 0.1, "unit": "gVSS/gCOD", "note": "Biomass yield coefficient"},
+        "k_d": {"value": 0.02, "unit": "1/d", "note": "Endogenous decay rate"},
+        "Y_ch4": {"value": 0.35, "unit": "L_CH4/gCOD", "note": "Methane yield per COD removed (at STP)"},
+
+        "T_ref": {"value": 308.15, "unit": "K", "note": "Reference temperature (35 C, mesophilic)"},
+        "E_a": {"value": 50000.0, "unit": "J/mol", "note": "Activation energy for Arrhenius correction"},
+        "R_gas": {"value": 8.314, "unit": "J/(mol*K)", "note": "Universal gas constant"},
+
+        "pH_opt": {"value": 7.0, "unit": "dimensionless", "note": "Optimal pH"},
+        "pH_low": {"value": 6.0, "unit": "dimensionless", "note": "Lower pH inhibition threshold"},
+        "pH_high": {"value": 8.5, "unit": "dimensionless", "note": "Upper pH inhibition threshold"},
+
+        "T_operating": {"value": 308.15, "unit": "K", "note": "Operating temperature (35 C)"},
+        "S0": {"value": 20.0, "unit": "gCOD/L", "note": "Initial substrate concentration (startup)"},
+        "X0": {"value": 2.0, "unit": "gVSS/L", "note": "Initial biomass (inoculum)"}
+    },
+    "valid_ranges": {
+        "S_in": {"min": 0.0, "max": 100.0, "unit": "gCOD/L"},
+        "HRT": {"min": 5.0, "max": 60.0, "unit": "d"},
+        "T_operating": {"min": 293.15, "max": 328.15, "unit": "K", "note": "20-55 C"},
+        "pH": {"min": 5.5, "max": 9.0, "unit": "dimensionless"}
+    }
+}

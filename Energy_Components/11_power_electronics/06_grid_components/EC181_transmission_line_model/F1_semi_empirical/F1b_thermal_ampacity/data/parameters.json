@@ -1,0 +1,37 @@
+{
+    "component": "EC181 Transmission Line",
+    "fidelity": "F1b",
+    "description": "Pi-model with temperature-dependent R(T), skin-effect correction, and IEEE 738 thermal ampacity limit.",
+    "unit": {
+        "name": "Generic 230 kV ACSR 'Drake' Overhead Transmission Line",
+        "source": "IEEE Std 738-2012; IEC 60287-1-1 (2006); Glover, Sarma, Overbye (2012) 5th ed.; Morgan (1978).",
+        "V_base_kV":       {"value": 230.0,  "unit": "kV",          "note": "Base voltage (line-to-line)"},
+        "S_base_MVA":      {"value": 100.0,  "unit": "MVA",         "note": "Base apparent power"},
+        "R_dc_pu_per_km":  {"value": 0.0001, "unit": "pu/km",       "note": "DC resistance at 20 degC per km (ACSR Drake, 230 kV base)"},
+        "X_pu_per_km":     {"value": 0.0004, "unit": "pu/km",       "note": "Series reactance per km"},
+        "B_pu_per_km":     {"value": 0.00003,"unit": "pu/km",       "note": "Shunt susceptance per km"},
+        "length_km":       {"value": 200.0,  "unit": "km",          "note": "Default line length"},
+        "alpha_R_per_K":   {"value": 0.00403,"unit": "1/K",         "note": "Aluminium temp coefficient of resistance (IEC 60228, Class 2)"},
+        "T_ref_C":         {"value": 20.0,   "unit": "degC",        "note": "Reference temperature for R_dc"},
+        "frequency_Hz":    {"value": 50.0,   "unit": "Hz",          "note": "System frequency"},
+        "skin_factor":     {"value": 1.02,   "unit": "dimensionless","note": "R_ac/R_dc ratio at 50 Hz for stranded ACSR (typical 1.01-1.04, Glover 2012 Table 4.1)"}
+    },
+    "thermal": {
+        "D_conductor_m":       {"value": 0.02814, "unit": "m",     "note": "ACSR Drake outer diameter = 28.14 mm (IEEE 738 Table B.1)"},
+        "T_conductor_max_C":   {"value": 75.0,    "unit": "degC",  "note": "Continuous max conductor temperature (standard ACSR limit; 100 degC high-temp)"},
+        "T_conductor_rated_C": {"value": 75.0,    "unit": "degC",  "note": "Conductor temperature at rated current"},
+        "emissivity":          {"value": 0.5,     "unit": "-",     "note": "Surface emissivity (weathered ACSR, IEEE 738 Table 2 range 0.23-0.91)"},
+        "absorptivity":        {"value": 0.5,     "unit": "-",     "note": "Solar absorptivity (weathered, IEEE 738 Table 2)"},
+        "solar_irradiance_W_m2":{"value": 1000.0, "unit": "W/m^2","note": "Clear sky solar irradiance (global horizontal, summer)"},
+        "wind_speed_m_s":      {"value": 0.61,    "unit": "m/s",   "note": "IEEE 738 standard reference wind (2 ft/s perpendicular)"},
+        "I_rated_A":           {"value": 900.0,   "unit": "A",     "note": "ACSR Drake rated current at 75 degC, 25 degC ambient, wind=0.61 m/s (IEEE 738)"}
+    },
+    "valid_ranges": {
+        "V_s_pu":       {"min": 0.8,   "max": 1.2,   "unit": "pu"},
+        "delta_rad":    {"min": -0.524,"max": 0.524,  "unit": "rad"},
+        "length_km":    {"min": 10.0,  "max": 1000.0, "unit": "km"},
+        "P_load_pu":    {"min": 0.0,   "max": 2.0,   "unit": "pu"},
+        "T_cond_C":     {"min": -10.0, "max": 100.0,  "unit": "degC"},
+        "T_amb_C":      {"min": -20.0, "max": 50.0,  "unit": "degC"}
+    }
+}

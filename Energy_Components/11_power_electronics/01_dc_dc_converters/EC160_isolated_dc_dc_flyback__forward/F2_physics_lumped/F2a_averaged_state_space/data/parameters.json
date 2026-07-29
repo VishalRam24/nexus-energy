@@ -1,0 +1,30 @@
+{
+    "component_id": "EC160",
+    "component_name": "Isolated DC-DC Converter (Flyback)",
+    "fidelity": "F2a -- Averaged State-Space Model with Parasitic Losses",
+    "description": "State-space averaged ODE model of an isolated flyback converter. States: [i_m, v_C] (primary-referred magnetizing current, output capacitor voltage). Continuous-time averaged over one switching cycle (CCM). Galvanic isolation via transformer turns ratio n = N1/N2. Ideal gain V_out = (d/(1-d))*(V_in/n). Parasitic Rds_on, diode Vf and winding resistance give efficiency in (0,1).",
+    "source": "Erickson & Maksimovic (2020), Fundamentals of Power Electronics, 3rd ed., Springer (Ch. 7 AC equivalent circuit modeling; Ch. 6 converter circuits / flyback)",
+    "unit": {
+        "name": "Generic 48V-to-12V Isolated Flyback Converter -- Averaged SSM",
+        "source": "Erickson & Maksimovic (2020), Fundamentals of Power Electronics, 3rd ed., Springer",
+        "n_turns": {"value": 4.0, "unit": "dimensionless", "note": "Turns ratio n = N1/N2 (primary/secondary). Reflected ratio i_m/n appears on secondary."},
+        "Lm": {"value": 200e-6, "unit": "H", "note": "Primary-side magnetizing inductance (200 uH)"},
+        "C": {"value": 220e-6, "unit": "F", "note": "Output capacitance (220 uF)"},
+        "R_ds_on": {"value": 0.015, "unit": "Ohm", "note": "Primary MOSFET on-resistance (15 mohm)"},
+        "V_f": {"value": 0.6, "unit": "V", "note": "Output rectifier diode forward voltage"},
+        "R_pri": {"value": 0.030, "unit": "Ohm", "note": "Primary winding resistance (30 mohm)"},
+        "R_sec": {"value": 0.008, "unit": "Ohm", "note": "Secondary winding resistance (8 mohm)"},
+        "R_C": {"value": 0.020, "unit": "Ohm", "note": "Output capacitor ESR (20 mohm)"},
+        "f_sw": {"value": 100000.0, "unit": "Hz", "note": "Switching frequency (100 kHz)"},
+        "v_in_nominal": {"value": 48.0, "unit": "V"},
+        "v_out_nominal": {"value": 12.0, "unit": "V"},
+        "R_load_nominal": {"value": 1.2, "unit": "Ohm", "note": "Nominal load resistance (12V / 10A)"}
+    },
+    "valid_ranges": {
+        "v_in": {"min": 20.0, "max": 100.0, "unit": "V"},
+        "duty_cycle": {"min": 0.05, "max": 0.90, "unit": "dimensionless"},
+        "R_load": {"min": 0.5, "max": 100.0, "unit": "Ohm"},
+        "dt": {"min": 1e-7, "max": 1e-3, "unit": "s"},
+        "duration_s": {"min": 1e-4, "max": 1.0, "unit": "s"}
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "component": "EC143 Biomass Gasifier",
+    "fidelity": "F1b",
+    "description": "Feedstock-specific gasification model with ultimate analysis and ER-dependent syngas composition",
+    "feedstock_db": {
+        "wood": {
+            "C": 0.50, "H": 0.06, "O": 0.42, "N": 0.01, "S": 0.01, "ash": 0.01,
+            "HHV_MJ_kg": 20.0,
+            "note": "Generic hardwood chips"
+        },
+        "rice_husk": {
+            "C": 0.38, "H": 0.05, "O": 0.36, "N": 0.01, "S": 0.01, "ash": 0.19,
+            "HHV_MJ_kg": 15.0,
+            "note": "Rice husk (high ash)"
+        },
+        "pine": {
+            "C": 0.52, "H": 0.06, "O": 0.40, "N": 0.01, "S": 0.005, "ash": 0.005,
+            "HHV_MJ_kg": 21.0,
+            "note": "Pine wood pellets"
+        },
+        "corn_stover": {
+            "C": 0.44, "H": 0.06, "O": 0.42, "N": 0.01, "S": 0.005, "ash": 0.055,
+            "HHV_MJ_kg": 17.5,
+            "note": "Corn stover"
+        },
+        "sewage_sludge": {
+            "C": 0.30, "H": 0.05, "O": 0.20, "N": 0.04, "S": 0.02, "ash": 0.35,
+            "HHV_MJ_kg": 12.0,
+            "note": "Dried sewage sludge"
+        }
+    },
+    "unit": {
+        "T_gasification_degC": {"value": 800.0, "unit": "degC"},
+        "ER_design": {"value": 0.25, "unit": "dimensionless"},
+        "LHV_CO_MJ_Nm3": {"value": 12.63, "unit": "MJ/Nm3"},
+        "LHV_H2_MJ_Nm3": {"value": 10.78, "unit": "MJ/Nm3"},
+        "LHV_CH4_MJ_Nm3": {"value": 35.88, "unit": "MJ/Nm3"}
+    },
+    "valid_ranges": {
+        "equivalence_ratio": {"min": 0.15, "max": 0.45},
+        "moisture_content": {"min": 0.0, "max": 0.5},
+        "feed_rate_kg_h": {"min": 10.0, "max": 10000.0, "unit": "kg/h"}
+    }
+}

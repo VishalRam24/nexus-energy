@@ -1,0 +1,33 @@
+{
+  "component_id": "EC084",
+  "component_name": "Aquifer Thermal Energy Storage (ATES)",
+  "fidelity": "F0a \u2014 empirical lookup",
+  "source": "Bloemendal et al. (2014) ATES systems performance review, Geothermics",
+  "eta_rated": {
+    "value": 0.7,
+    "unit": "-",
+    "note": "Recovery efficiency at rated cycle"
+  },
+  "capacity_kWh": {
+    "value": 750000.0,
+    "unit": "kWh",
+    "note": "Nominal energy capacity"
+  },
+  "table": {
+    "x_key": "T_warm_C",
+    "x": [
+      15.0,
+      20.0,
+      25.0,
+      30.0
+    ],
+    "eta": [
+      0.62,
+      0.66,
+      0.7,
+      0.73
+    ],
+    "x_rated": 25.0,
+    "note": "Recovery efficiency vs T_warm_C (np.interp)"
+  }
+}

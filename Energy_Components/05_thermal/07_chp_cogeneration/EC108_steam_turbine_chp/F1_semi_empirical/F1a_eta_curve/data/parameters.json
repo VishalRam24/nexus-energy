@@ -1,0 +1,17 @@
+{
+    "component": "EC108 Steam Turbine CHP",
+    "fidelity": "F1a",
+    "description": "Simple efficiency-curve model for back-pressure steam turbine CHP. Constant rated efficiencies applied at rated power.",
+    "unit": {
+        "name": "Generic 10 MW Back-Pressure Steam Turbine CHP",
+        "source": "US EPA CHP Catalog (2017); IEA (2008) Combined Heat and Power",
+        "P_el_rated_kw":  {"value": 10000.0, "unit": "kW_e",        "note": "Rated electrical output at ISO conditions"},
+        "eta_el_rated":   {"value": 0.30,    "unit": "dimensionless","note": "Electrical efficiency at full load (back-pressure, 10 MW class)"},
+        "eta_th_rated":   {"value": 0.45,    "unit": "dimensionless","note": "Thermal (exhaust steam) efficiency at full load"},
+        "PLR_min":        {"value": 0.3,     "unit": "dimensionless","note": "Minimum stable part-load ratio"},
+        "PLR_max":        {"value": 1.0,     "unit": "dimensionless"}
+    },
+    "valid_ranges": {
+        "PLR": {"min": 0.3, "max": 1.0, "unit": "dimensionless"}
+    }
+}

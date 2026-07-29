@@ -1,0 +1,22 @@
+{
+    "component": "EC092 Absorption Chiller (LiBr-Water)",
+    "fidelity": "F2a",
+    "model": "Single-effect LiBr-water absorption cycle",
+    "working_pair": "LiBr-Water",
+    "unit": {
+        "name": "Generic 350kW Single-Effect Absorption Chiller",
+        "source": "Herold et al. (2016) Absorption Chillers and Heat Pumps, 2nd ed.",
+        "capacity_nominal_kw": {"value": 350.0, "unit": "kW_cooling"},
+        "x_strong": {"value": 0.62, "unit": "kg/kg", "note": "Strong solution LiBr concentration"},
+        "x_weak": {"value": 0.57, "unit": "kg/kg", "note": "Weak solution LiBr concentration"},
+        "eta_shx": {"value": 0.70, "unit": "dimensionless", "note": "Solution heat exchanger effectiveness"},
+        "eta_pump": {"value": 0.50, "unit": "dimensionless", "note": "Solution pump efficiency"},
+        "dp_solution_kPa": {"value": 5.0, "unit": "kPa", "note": "Solution circuit pressure drop"}
+    },
+    "valid_ranges": {
+        "T_gen_degC": {"min": 75.0, "max": 120.0, "unit": "degC"},
+        "T_cond_degC": {"min": 25.0, "max": 45.0, "unit": "degC"},
+        "T_evap_degC": {"min": 3.0, "max": 15.0, "unit": "degC"},
+        "T_abs_degC": {"min": 25.0, "max": 42.0, "unit": "degC"}
+    }
+}

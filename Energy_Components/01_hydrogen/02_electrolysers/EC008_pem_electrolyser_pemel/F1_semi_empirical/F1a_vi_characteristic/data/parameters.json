@@ -1,0 +1,52 @@
+{
+  "component_id": "EC008",
+  "component_name": "PEM Electrolyser (PEMEL)",
+  "fidelity": "F1a — V-I Characteristic (semi-empirical)",
+  "source": "Garcia-Valverde et al. (2012), Int. J. Hydrogen Energy, 37(2), 1927-1938",
+  "default_parameters": {
+    "T": 353.15,
+    "N_cells": 20,
+    "electrode_area": 100.0,
+    "j0": 1e-4,
+    "alpha": 0.5,
+    "R_membrane": 0.2
+  },
+  "parameter_metadata": {
+    "T": {
+      "description": "Operating temperature",
+      "unit": "K",
+      "default": 353.15,
+      "notes": "80 °C typical PEMEL operating temperature"
+    },
+    "N_cells": {
+      "description": "Number of cells in stack",
+      "unit": "-",
+      "default": 20,
+      "notes": "Typical small-stack configuration"
+    },
+    "electrode_area": {
+      "description": "Active electrode area",
+      "unit": "cm²",
+      "default": 100.0,
+      "notes": "100 cm² (10×10 cm) — laboratory/pilot scale"
+    },
+    "j0": {
+      "description": "Exchange current density",
+      "unit": "A/cm²",
+      "default": 1e-4,
+      "notes": "Typical Pt/IrO2 catalysts on Nafion; Garcia-Valverde (2012) Table 1"
+    },
+    "alpha": {
+      "description": "Charge transfer coefficient",
+      "unit": "-",
+      "default": 0.5,
+      "notes": "Symmetric Butler-Volmer assumption"
+    },
+    "R_membrane": {
+      "description": "Membrane area resistance",
+      "unit": "Ω·cm²",
+      "default": 0.2,
+      "notes": "Nafion 117 (178 µm) at 80 °C; ~0.18-0.22 Ω·cm² from literature"
+    }
+  }
+}

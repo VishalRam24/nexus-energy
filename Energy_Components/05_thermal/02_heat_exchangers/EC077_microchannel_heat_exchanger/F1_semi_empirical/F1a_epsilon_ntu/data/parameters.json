@@ -1,0 +1,19 @@
+{
+    "component": "EC077 Microchannel Heat Exchanger",
+    "fidelity": "F1a",
+    "description": "Crossflow e-NTU (both fluids unmixed): Q = eps * C_min * (T_h_in - T_c_in)",
+    "unit": {
+        "name": "Aluminum Microchannel HX (MCHX)",
+        "source": "Webb & Kim (2005). Principles of Enhanced Heat Transfer. Kays & London (1984).",
+        "UA": {"value": 10000.0, "unit": "W/K", "note": "High UA due to large surface area"},
+        "C_h": {"value": 3000.0, "unit": "W/K", "note": "Hot side heat capacity rate"},
+        "C_c": {"value": 2500.0, "unit": "W/K", "note": "Cold side heat capacity rate"},
+        "flow_config": {"value": "crossflow_both_unmixed", "note": "Both fluids unmixed"}
+    },
+    "valid_ranges": {
+        "T_h_in": {"min": 30.0, "max": 150.0, "unit": "degC"},
+        "T_c_in": {"min": -20.0, "max": 40.0, "unit": "degC"},
+        "C_h": {"min": 500.0, "max": 15000.0, "unit": "W/K"},
+        "C_c": {"min": 500.0, "max": 15000.0, "unit": "W/K"}
+    }
+}

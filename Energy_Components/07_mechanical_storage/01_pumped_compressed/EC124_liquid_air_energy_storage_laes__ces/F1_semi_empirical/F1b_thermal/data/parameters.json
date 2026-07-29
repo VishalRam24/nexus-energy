@@ -1,0 +1,31 @@
+{
+    "component": "EC124 Liquid Air Energy Storage (LAES / CES)",
+    "fidelity": "F1b",
+    "description": "Extends F1a with cold loss during storage (BOR ~0.5%/day T_amb dependent), ambient T effect on cold recycle effectiveness, and discharge efficiency vs T_amb",
+    "source": "Morgan et al. (2015), Applied Energy, 137, 845-853; Sciacovelli et al. (2017), Applied Energy, 190, 84-98; Guizzi et al. (2015), Energy, 93, 1, 1382-1394",
+    "unit": {
+        "name": "Generic Stand-alone LAES (Highview-class) + Thermal",
+        "specific_liquefaction_kwh_per_kg": {"value": 0.40, "unit": "kWh/kg"},
+        "specific_discharge_kwh_per_kg": {"value": 0.36, "unit": "kWh/kg"},
+        "eta_liquefier": {"value": 0.95, "unit": "dimensionless"},
+        "eta_pump": {"value": 0.85, "unit": "dimensionless"},
+        "eta_expander": {"value": 0.85, "unit": "dimensionless"},
+        "eta_generator": {"value": 0.97, "unit": "dimensionless"},
+        "tank_capacity_kg": {"value": 1.5e6, "unit": "kg"},
+        "T_storage": {"value": 77.0, "unit": "K", "note": "Cryogenic storage at -196°C"},
+        "boil_off_per_day_ref": {"value": 0.005, "unit": "fraction/day", "note": "BOR at T_amb_ref=298.15 K"},
+        "T_amb_ref": {"value": 298.15, "unit": "K"},
+        "rho_liquid_air": {"value": 870.0, "unit": "kg/m3"},
+        "boil_off_T_coeff": {"value": 0.0001, "unit": "1/K", "note": "BOR increases by 0.01%/day per 1K above T_amb_ref: BOR(T) = BOR_ref*(1 + k*(T_amb - T_ref))"},
+        "cold_recycle_eff_ref": {"value": 0.60, "unit": "dimensionless", "note": "Cold recycle effectiveness at T_amb_ref"},
+        "cold_recycle_T_coeff": {"value": -0.003, "unit": "1/K", "note": "Cold recycle eff changes by -0.3%/K above T_ref: eps(T) = eps_ref*(1 + k*(T_amb - T_ref))"},
+        "discharge_work_T_coeff": {"value": -0.002, "unit": "1/K", "note": "Discharge specific work decreases 0.2%/K above T_ref due to reduced cold recovery"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "-"},
+        "T_amb_K": {"min": 253.15, "max": 323.15, "unit": "K"},
+        "m_dot_liquid_kgs": {"min": 0.0, "max": 200.0, "unit": "kg/s"},
+        "duration_hours": {"min": 0.0, "max": 168.0, "unit": "h"},
+        "mode": {"values": ["charge", "discharge", "idle"]}
+    }
+}

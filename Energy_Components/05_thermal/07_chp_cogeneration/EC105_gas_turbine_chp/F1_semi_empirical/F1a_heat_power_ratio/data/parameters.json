@@ -1,0 +1,22 @@
+{
+    "component": "EC105 Gas Turbine CHP",
+    "fidelity": "F1a",
+    "description": "Heat-to-power ratio model: gas turbine + HRSG cogeneration",
+    "unit": {
+        "name": "Generic 5 MW Gas Turbine CHP with HRSG",
+        "source": "US EPA CHP Catalog (2017); Kehlhofer et al. (2009), Combined-Cycle Gas & Steam Turbine Power Plants",
+        "P_el_rated": {"value": 5000.0, "unit": "kW_e", "note": "Rated electrical output"},
+        "eta_el_rated": {"value": 0.32, "unit": "dimensionless", "note": "Electrical efficiency at full load"},
+        "eta_th_rated": {"value": 0.50, "unit": "dimensionless", "note": "Thermal (HRSG) efficiency at full load"},
+        "PLR_min": {"value": 0.4, "unit": "dimensionless", "note": "Minimum part-load ratio"},
+        "LHV_gas": {"value": 50.0, "unit": "MJ/kg", "note": "Lower heating value of natural gas"},
+        "b0": {"value": 0.15, "unit": "-", "note": "Electrical PLR curve constant term"},
+        "b1": {"value": 1.05, "unit": "-", "note": "Electrical PLR curve linear term"},
+        "b2": {"value": -0.20, "unit": "-", "note": "Electrical PLR curve quadratic term"},
+        "c0": {"value": 0.40, "unit": "-", "note": "Thermal PLR curve constant term"},
+        "c1": {"value": 0.60, "unit": "-", "note": "Thermal PLR curve linear term"}
+    },
+    "valid_ranges": {
+        "part_load_ratio": {"min": 0.4, "max": 1.0, "unit": "dimensionless"}
+    }
+}

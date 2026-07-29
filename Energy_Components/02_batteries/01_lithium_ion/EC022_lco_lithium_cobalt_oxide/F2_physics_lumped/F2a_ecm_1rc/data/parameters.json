@@ -1,0 +1,42 @@
+{
+    "component_id": "EC022",
+    "component_name": "LCO Battery (Lithium Cobalt Oxide)",
+    "fidelity": "F2a -- Thevenin 1-RC Equivalent Circuit + Coulomb-counted SOC + Lumped Bernardi Thermal ODE",
+    "source": "Reimers & Dahn (1992) J. Electrochem. Soc. 139, 2091; Hu, Li & Peng (2012) J. Power Sources 198, 359-367; Bernardi, Pawlikowski & Newman (1985) J. Electrochem. Soc. 132(1), 5-12; Forgez et al. (2010) J. Power Sources 195, 2961-2968; Thomas & Newman (2003) J. Electrochem. Soc. 150(2), A176-A192",
+    "unit": {
+        "name": "Generic LCO 18650 cell (LiCoO2 cathode / graphite anode) -- Physics-Lumped Thevenin 1-RC",
+        "capacity_ref": {"value": 2.6, "unit": "Ah", "note": "Nominal capacity at T_ref (reused from F1b)"},
+        "voltage_max": {"value": 4.2, "unit": "V", "note": "Upper cutoff (fully charged LCO/graphite)"},
+        "voltage_min": {"value": 3.0, "unit": "V", "note": "Lower cutoff (fully discharged)"},
+        "R0_ref": {"value": 0.045, "unit": "Ohm", "note": "Series ohmic resistance at T_ref; instantaneous IR jump (Hu et al. 2012). Reused split of F1b R_ref=0.060: R0+R1~=R_total"},
+        "R1_ref": {"value": 0.020, "unit": "Ohm", "note": "Charge-transfer / diffusion polarization resistance of the RC pair at T_ref"},
+        "C1_ref": {"value": 1500.0, "unit": "F", "note": "Polarization capacitance; tau1 = R1*C1 ~ 30 s, typical Li-ion mid-frequency relaxation (Hu et al. 2012)"},
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 degC), reused from F1b"},
+        "E_a_R0": {"value": 28000.0, "unit": "J/mol", "note": "Arrhenius activation energy for R0; LCO higher E_a than NMC (Jalkanen et al. 2015; Forgez et al. 2010)"},
+        "E_a_R1": {"value": 35000.0, "unit": "J/mol", "note": "Arrhenius activation energy for R1; charge-transfer polarization more thermally activated than ohmic term"},
+        "dOCV_dT": {"value": -0.0005, "unit": "V/K", "note": "Entropic coefficient (reversible heat); LCO/graphite (Thomas & Newman 2003)"},
+        "R_gas": {"value": 8.314, "unit": "J/(mol*K)", "note": "Universal gas constant"},
+        "coulombic_eff": {"value": 0.995, "unit": "-", "note": "Coulombic efficiency on charge (0<eff<1); LCO/graphite consumer cell"},
+        "m_cell": {"value": 0.045, "unit": "kg", "note": "Mass of an 18650 LCO cell (~45 g)"},
+        "cp_cell": {"value": 900.0, "unit": "J/(kg*K)", "note": "Lumped specific heat of 18650 cell (Forgez et al. 2010 measured ~830-900)"},
+        "hA_cell": {"value": 0.085, "unit": "W/K", "note": "Convective heat-transfer coeff x surface area for natural convection of an 18650 (Forgez et al. 2010)"},
+        "T_amb": {"value": 298.15, "unit": "K", "note": "Ambient temperature for Newton cooling"}
+    },
+    "ocv_coefficients": {
+        "description": "OCV(SOC) = a0 + a1*SOC + a2*SOC^2 + a3*SOC^3 + a4*SOC^4 + a5*SOC^5 (sloping 3.0-4.2 V, layered LiCoO2)",
+        "source": "Reused from EC022 F1b; polynomial fit to representative LCO discharge curve (Reimers & Dahn 1992)",
+        "a0": 3.0047027972027953,
+        "a1": 6.030136946387021,
+        "a2": -20.907124125874486,
+        "a3": 38.548222610723336,
+        "a4": -33.53001165501228,
+        "a5": 11.05769230769248
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "current": {"min": -10.0, "max": 10.0, "unit": "A", "note": "Sign convention: positive=discharge, negative=charge"},
+        "temperature": {"min": 273.15, "max": 318.15, "unit": "K", "note": "0 to 45 degC; LCO normal Li-ion operating range"},
+        "dt": {"min": 0.01, "max": 10.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 36000.0, "unit": "s"}
+    }
+}

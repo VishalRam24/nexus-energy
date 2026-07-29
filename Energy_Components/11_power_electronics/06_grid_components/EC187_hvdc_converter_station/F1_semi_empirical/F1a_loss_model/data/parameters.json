@@ -1,0 +1,19 @@
+{
+    "component": "EC187 HVDC Converter Station",
+    "fidelity": "F1a",
+    "description": "VSC-HVDC: conversion loss per station ~1%; LCC: ~0.7% plus reactive demand.",
+    "unit": {
+        "name": "Generic ±320 kV VSC-HVDC Converter Station, 1000 MW",
+        "source": "Cigre TB 492 (2012), VSC Transmission. Cigre WG B4-37. ABB HVDC Reference Projects.",
+        "P_rated_MW": {"value": 1000.0, "unit": "MW", "note": "Rated power transfer"},
+        "V_dc_kV": {"value": 320.0, "unit": "kV", "note": "DC voltage (one pole, bipole = ±320 kV)"},
+        "loss_factor_station": {"value": 0.010, "unit": "dimensionless", "note": "1% per converter station (VSC-HVDC)"},
+        "type": {"value": "VSC", "note": "VSC (Voltage Source Converter) or LCC"},
+        "P_no_load_MW": {"value": 5.0, "unit": "MW", "note": "No-load losses (cooling, auxiliary)"},
+        "Q_capability_MVAR": {"value": 400.0, "unit": "MVAR", "note": "VSC reactive power capability (±)"}
+    },
+    "valid_ranges": {
+        "P_transfer_MW": {"min": 0.0, "max": 1000.0, "unit": "MW"},
+        "direction": {"values": ["rectifier", "inverter"]}
+    }
+}

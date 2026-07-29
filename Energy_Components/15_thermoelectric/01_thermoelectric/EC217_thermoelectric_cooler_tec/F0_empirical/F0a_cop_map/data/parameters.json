@@ -1,0 +1,26 @@
+{
+    "component": "EC217 Thermoelectric Cooler (TEC)",
+    "fidelity": "F0a",
+    "description": "Empirical COP-vs-deltaT lookup for a Bi2Te3 Peltier cooler (ZT~0.7) with hot side fixed at 300 K. COP_max = Tc/(Th-Tc) * (sqrt(1+ZT)-Th/Tc)/(sqrt(1+ZT)+1).",
+    "source": "Rowe (2006) Thermoelectrics Handbook; Goldsmid (2010)",
+    "ZT": {"value": 0.7, "unit": "dimensionless", "note": "Figure of merit Z*T_mean for Bi2Te3 (reused from EC217 F1a)"},
+    "Th_ref": {"value": 300.0, "unit": "K", "note": "Hot-side reference temperature for the lookup table"},
+    "N_couples": {"value": 127, "unit": "-", "note": "Couples per module (reused from F1a)"},
+    "alpha_Seebeck": {"value": 0.0002, "unit": "V/K", "note": "Seebeck coefficient per couple (reused from F1a)"},
+    "I_max": {"value": 5.0, "unit": "A", "note": "Maximum operating current (reused from F1a)"},
+    "lookup": {
+        "note": "Breakpoints: temperature lift deltaT=Th-Tc (K) -> coefficient of performance (max-COP operating point), Th=300K",
+        "delta_T_K": {"value": [5.0, 10.0, 20.0, 30.0, 40.0, 50.0, 60.0, 67.0], "unit": "K"},
+        "COP": {"value": [7.3471, 3.3906, 1.4123, 0.7529, 0.4232, 0.2254, 0.0935, 0.0246], "unit": "dimensionless"}
+    },
+    "rated_point": {
+        "delta_T": {"value": 30.0, "unit": "K"},
+        "Th": {"value": 300.0, "unit": "K"},
+        "Tc": {"value": 270.0, "unit": "K"},
+        "COP": {"value": 0.7529, "unit": "dimensionless", "note": "Rated COP ~0.75 at 30K lift for ZT=0.7 Bi2Te3"}
+    },
+    "dT_max": {"value": 67.0, "unit": "K", "note": "Maximum achievable temperature lift (COP -> 0)"},
+    "valid_ranges": {
+        "delta_T": {"min": 0.0, "max": 67.0, "unit": "K"}
+    }
+}

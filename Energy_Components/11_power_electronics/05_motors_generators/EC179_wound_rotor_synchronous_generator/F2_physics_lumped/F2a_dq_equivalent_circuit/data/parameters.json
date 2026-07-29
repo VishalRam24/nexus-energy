@@ -1,0 +1,36 @@
+{
+    "component_id": "EC179",
+    "component_name": "Wound Rotor Synchronous Generator",
+    "fidelity": "F2a — dq-frame (Park) machine with field excitation and swing-equation rotor dynamics",
+    "source": "Kundur, P. (1994) Power System Stability and Control, McGraw-Hill; Fitzgerald, Kingsley & Umans (2003) Electric Machinery 6th ed., McGraw-Hill; Boldea, I. (2015) Synchronous Generators 2nd ed., CRC Press",
+    "unit": {
+        "name": "Generic 50 MVA Wound-Rotor Synchronous Generator — dq Physics-Lumped",
+        "S_base_VA": {"value": 50e6, "unit": "VA", "note": "Rated apparent power (50 MVA)"},
+        "V_terminal_LL": {"value": 13800.0, "unit": "V", "note": "Rated line-to-line terminal voltage (13.8 kV)"},
+        "P_rated_W": {"value": 50e6, "unit": "W", "note": "Rated active power at pf=0.85 -> ~42.5 MW; capability quoted on MVA base"},
+        "pf_rated": {"value": 0.85, "unit": "-", "note": "Rated lagging power factor"},
+        "frequency_Hz": {"value": 50.0, "unit": "Hz", "note": "Grid frequency"},
+        "poles": {"value": 2, "unit": "-", "note": "2-pole -> 3000 rpm synchronous speed"},
+        "Xs_pu": {"value": 1.0, "unit": "pu", "note": "Synchronous (direct-axis) reactance Xd, round-rotor approx (Kundur Ch.3)"},
+        "Xd_pu": {"value": 1.0, "unit": "pu", "note": "d-axis synchronous reactance"},
+        "Xq_pu": {"value": 0.6, "unit": "pu", "note": "q-axis synchronous reactance (salient-pole)"},
+        "Ra_pu": {"value": 0.005, "unit": "pu", "note": "Armature (stator) resistance"},
+        "H_s": {"value": 4.0, "unit": "s", "note": "Inertia constant H = 0.5*J*omega_m^2/S_base (Kundur eq 3.60)"},
+        "D_pu": {"value": 2.0, "unit": "pu_torque/pu_speed", "note": "Damping coefficient (damper windings)"},
+        "Ef_rated_pu": {"value": 1.7, "unit": "pu", "note": "Internal EMF behind Xs at rated load (field excitation)"},
+        "If_rated_A": {"value": 500.0, "unit": "A", "note": "Rated DC field current"},
+        "kf_EMF_per_A": {"value": 0.0034, "unit": "pu/A", "note": "EMF constant: Ef_pu = kf * If (linear, unsaturated)"},
+        "T_field_s": {"value": 0.5, "unit": "s", "note": "Field-circuit time constant Td0' lumped for AVR dynamics"},
+        "AVR_Ka": {"value": 50.0, "unit": "-", "note": "AVR proportional gain (IEEE Type DC1A-like)"},
+        "AVR_Ta_s": {"value": 0.05, "unit": "s", "note": "AVR amplifier time constant"}
+    },
+    "valid_ranges": {
+        "P_pu": {"min": 0.0, "max": 1.0, "unit": "pu", "note": "Active power on MVA base"},
+        "Q_pu": {"min": -0.6, "max": 0.8, "unit": "pu", "note": "Reactive power; negative=under-excited (absorbing)"},
+        "Ef_pu": {"min": 0.0, "max": 2.5, "unit": "pu", "note": "Internal EMF / field excitation"},
+        "delta_deg": {"min": 0.0, "max": 90.0, "unit": "deg", "note": "Power angle; >90 deg = loss of synchronism"},
+        "If_A": {"min": 0.0, "max": 750.0, "unit": "A", "note": "Field current"},
+        "duration_s": {"min": 0.1, "max": 60.0, "unit": "s"},
+        "dt": {"min": 0.0001, "max": 0.05, "unit": "s"}
+    }
+}

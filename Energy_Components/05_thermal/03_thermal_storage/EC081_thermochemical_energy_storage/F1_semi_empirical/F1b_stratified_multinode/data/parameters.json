@@ -1,0 +1,16 @@
+{
+  "default_parameters": {
+    "unit": {
+      "capacity_kwh":           {"value": 500.0,  "unit": "kWh"},
+      "dH_rxn_kj_kg":          {"value": 2400.0, "unit": "kJ/kg",  "note": "MgSO4·7H2O dehydration ~2400 kJ/kg"},
+      "mass_sorbent_kg":        {"value": 750.0,  "unit": "kg"},
+      "Q_charge_max_kw":        {"value": 200.0,  "unit": "kW"},
+      "Q_discharge_max_kw":     {"value": 150.0,  "unit": "kW"},
+      "UA_loss_w_per_k":        {"value": 15.0,   "unit": "W/K",   "note": "Well-insulated reactor vessel"},
+      "T_ambient_default":      {"value": 20.0,   "unit": "degC"},
+      "N_nodes":                {"value": 8,      "unit": "-"},
+      "k_axial_w_per_k":        {"value": 0.2,    "unit": "W/K"},
+      "eta_rt":                 {"value": 0.85,   "unit": "-",    "note": "Round-trip efficiency — applied CHARGE SIDE only"}
+    }
+  }
+}

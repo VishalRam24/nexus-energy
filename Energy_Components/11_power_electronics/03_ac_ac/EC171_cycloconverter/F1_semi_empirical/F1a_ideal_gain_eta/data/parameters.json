@@ -1,0 +1,20 @@
+{
+    "component": "EC171 Cycloconverter",
+    "fidelity": "F1a",
+    "description": "V_out = V_in * cos(alpha); f_out < f_in/3; fixed efficiency eta",
+    "unit": {
+        "name": "Generic 3-Phase Cycloconverter",
+        "source": "Mohan, N. (2003). Power Electronics. Wiley.; Sen, P.C. (1997). Principles of Electric Machines.",
+        "eta": {"value": 0.94, "unit": "dimensionless", "note": "Lower than other converters due to commutation losses"},
+        "p_rated": {"value": 1000000.0, "unit": "W", "note": "1 MW (typical for large drive applications)"},
+        "v_in_rms": {"value": 6000.0, "unit": "V", "note": "Input AC line-to-line RMS"},
+        "f_in": {"value": 50.0, "unit": "Hz", "note": "Input frequency"},
+        "f_out_max": {"value": 16.67, "unit": "Hz", "note": "f_in/3 = 50/3 Hz"},
+        "alpha_max": {"value": 1.5707963, "unit": "rad", "note": "Max firing angle pi/2"}
+    },
+    "valid_ranges": {
+        "alpha_rad": {"min": 0.0, "max": 1.5707963, "unit": "rad", "note": "Firing angle"},
+        "f_out": {"min": 0.0, "max": 16.67, "unit": "Hz"},
+        "p_out": {"min": 0.0, "max": 1100000.0, "unit": "W"}
+    }
+}

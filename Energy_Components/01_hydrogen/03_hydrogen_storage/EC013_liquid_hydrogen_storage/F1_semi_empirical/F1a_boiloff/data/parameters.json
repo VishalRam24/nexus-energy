@@ -1,0 +1,30 @@
+{
+    "component": "EC013 Liquid Hydrogen (LH2) Storage",
+    "fidelity": "F1a",
+    "description": "Heat-leak driven boil-off model for cryogenic liquid hydrogen storage",
+    "source": "Sherif et al. (1997) Int. J. Hydrogen Energy, 22(7), 683; Petitpas (2018) NREL; Notardonato et al. (2017) IOP Conf. Series 278, 012012",
+    "tank": {
+        "name": "Generic 1 m3 vacuum-jacketed multi-layer-insulation LH2 dewar",
+        "volume": {"value": 1.0, "unit": "m3", "note": "Internal liquid volume"},
+        "surface_area": {"value": 5.0, "unit": "m2", "note": "Outer surface area"},
+        "mass_empty": {"value": 250.0, "unit": "kg"},
+        "U_overall": {"value": 0.0015, "unit": "W/(m2.K)", "note": "Effective overall heat transfer coefficient (vacuum + 30-layer MLI), Petitpas (2018)"},
+        "max_pressure": {"value": 6.0, "unit": "bar", "note": "Vent / max working pressure"},
+        "fill_fraction_max": {"value": 0.95, "unit": "dimensionless", "note": "Maximum allowable fill (ullage)"}
+    },
+    "hydrogen": {
+        "T_sat": {"value": 20.28, "unit": "K", "note": "Normal boiling point of H2 at 1 atm"},
+        "rho_liquid": {"value": 70.85, "unit": "kg/m3", "note": "LH2 density at NBP"},
+        "rho_vapor": {"value": 1.34, "unit": "kg/m3", "note": "GH2 density at NBP"},
+        "h_vap": {"value": 445.6, "unit": "kJ/kg", "note": "Latent heat of vaporization at NBP"},
+        "cp_liquid": {"value": 9.69, "unit": "kJ/(kg.K)", "note": "Specific heat of LH2"},
+        "LHV": {"value": 120.0, "unit": "MJ/kg", "note": "Lower heating value"}
+    },
+    "ambient": {
+        "T_ambient_default": {"value": 298.15, "unit": "K", "note": "Default surrounding air temperature"}
+    },
+    "valid_ranges": {
+        "fill_fraction": {"min": 0.0, "max": 0.95},
+        "T_ambient": {"min": 233.0, "max": 333.0, "unit": "K"}
+    }
+}

@@ -1,0 +1,30 @@
+{
+    "component_id": "EC219",
+    "component_name": "Piezoelectric Energy Harvester",
+    "fidelity": "F2a — Coupled Electromechanical ODE (time-domain, lumped 1-DOF)",
+    "source": "Erturk & Inman (2011) Piezoelectric Energy Harvesting, Wiley; duToit, Wardle & Kim (2005) Integr. Ferroelectr. 71:121-160; Roundy, Wright & Rabaey (2003) Smart Mater. Struct. / (2005) JIMSS 16(10):809-823",
+    "unit": {
+        "name": "PZT-5A bimorph cantilever — physics-lumped coupled mass-spring-damper + piezo branch",
+        "d31": {"value": -1.71e-10, "unit": "m/V", "note": "Piezoelectric strain constant PZT-5A (Erturk & Inman 2011 Table)"},
+        "Y_piezo": {"value": 61e9, "unit": "Pa", "note": "Young's modulus PZT-5A"},
+        "Y_substrate": {"value": 200e9, "unit": "Pa", "note": "Substrate Young's modulus (steel)"},
+        "epsilon_33_T": {"value": 1.506e-8, "unit": "F/m", "note": "Permittivity at constant stress: eps_r=1700 * eps_0"},
+        "beam_length": {"value": 0.03, "unit": "m", "note": "Cantilever overhang length"},
+        "beam_width": {"value": 0.01, "unit": "m", "note": "Beam width"},
+        "beam_thickness_piezo": {"value": 0.0002, "unit": "m", "note": "Single PZT layer thickness (bimorph has 2)"},
+        "beam_thickness_substrate": {"value": 0.0001, "unit": "m", "note": "Steel substrate (shim) thickness"},
+        "rho_piezo": {"value": 7800.0, "unit": "kg/m^3", "note": "PZT-5A density"},
+        "rho_substrate": {"value": 7800.0, "unit": "kg/m^3", "note": "Steel substrate density"},
+        "mass_tip": {"value": 0.001, "unit": "kg", "note": "Proof / tip mass"},
+        "zeta_mech": {"value": 0.02, "unit": "-", "note": "Mechanical (structural) damping ratio"},
+        "resonance_freq_hz": {"value": 100.0, "unit": "Hz", "note": "Short-circuit fundamental resonance (defines k_eff)"},
+        "k31": {"value": 0.34, "unit": "-", "note": "Electromechanical coupling factor k31 for PZT-5A"},
+        "base_acceleration_default": {"value": 9.81, "unit": "m/s^2", "note": "Default base RMS-equivalent acceleration (1 g)"}
+    },
+    "valid_ranges": {
+        "frequency": {"min": 10.0, "max": 1000.0, "unit": "Hz"},
+        "acceleration": {"min": 0.01, "max": 100.0, "unit": "m/s^2"},
+        "R_load": {"min": 100.0, "max": 1e7, "unit": "ohm"},
+        "duration_s": {"min": 0.001, "max": 10.0, "unit": "s"}
+    }
+}

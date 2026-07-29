@@ -1,0 +1,23 @@
+{
+    "component": "EC155 Geothermal District Heating",
+    "fidelity": "F1a",
+    "description": "Heat extraction model for direct-use geothermal district heating network",
+    "unit": {
+        "name": "Generic Geothermal District Heating System",
+        "source": "Lund, J.W. & Toth, A.N. (2021). Direct Utilization of Geothermal Energy 2020 Worldwide Review. Geothermics.",
+        "T_source_design": {"value": 80.0, "unit": "degC", "note": "Geothermal water supply temperature"},
+        "T_return_design": {"value": 40.0, "unit": "degC", "note": "Return temperature to reinjection well"},
+        "T_network_supply": {"value": 70.0, "unit": "degC", "note": "District heating network supply temperature"},
+        "T_network_return": {"value": 35.0, "unit": "degC", "note": "District heating network return temperature"},
+        "m_dot_geo_design": {"value": 50.0, "unit": "kg/s"},
+        "cp_geo": {"value": 4100.0, "unit": "J/kgK"},
+        "heat_transfer_efficiency": {"value": 0.90, "unit": "dimensionless", "note": "Heat exchanger efficiency (geothermal → network side); typical 0.85-0.95"},
+        "distribution_losses": {"value": 0.05, "unit": "dimensionless", "note": "Pipeline thermal loss fraction; 5% typical for well-insulated networks"},
+        "pump_power_fraction": {"value": 0.02, "unit": "dimensionless", "note": "Circulation pump power as fraction of Q_extracted"}
+    },
+    "valid_ranges": {
+        "T_source": {"min": 50.0, "max": 150.0, "unit": "degC"},
+        "T_return": {"min": 20.0, "max": 60.0, "unit": "degC"},
+        "flow_rate_kgs": {"min": 5.0, "max": 500.0, "unit": "kg/s"}
+    }
+}

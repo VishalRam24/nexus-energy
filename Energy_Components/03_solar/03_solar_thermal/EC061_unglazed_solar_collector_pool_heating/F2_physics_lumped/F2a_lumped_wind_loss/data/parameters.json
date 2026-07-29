@@ -1,0 +1,29 @@
+{
+    "component_id": "EC061",
+    "component_name": "Unglazed Solar Collector (Pool Heating)",
+    "fidelity": "F2a — Physics-Lumped Dynamic Energy Balance (wind-dependent losses)",
+    "source": "Duffie & Beckman (2013) Solar Engineering of Thermal Processes ch.6; ISO 9806:2017 (unglazed test method); Bohren & Albrecht / Soltau (1992) Heat loss coefficients for unglazed collectors, Solar Energy 49(2)",
+    "unit": {
+        "name": "Generic EPDM/PP Unglazed Pool Collector — Physics-Lumped",
+        "eta0": {"value": 0.90, "unit": "-", "note": "Zero-loss (optical) efficiency F'(tau*alpha); high, no glazing reflection (Duffie & Beckman ch.6)"},
+        "b0": {"value": 8.0, "unit": "W/m2K", "note": "Still-air loss coefficient at zero wind (radiative + free convection)"},
+        "b1": {"value": 2.8, "unit": "W*s/m3*K", "note": "Wind-speed loss slope; total a1 = b0 + b1*u (ISO 9806 unglazed wind term)"},
+        "bu": {"value": 0.06, "unit": "s/m", "note": "Wind dependence of optical/effective gain (eta0_eff = eta0*(1 - bu*u)), ISO 9806 unglazed"},
+        "A": {"value": 4.0, "unit": "m2", "note": "Collector aperture area (residential pool panel)"},
+        "C_th": {"value": 18000.0, "unit": "J/m2K", "note": "Effective lumped thermal capacitance per unit area (absorber + fluid hold-up, EPDM panel)"},
+        "mdot": {"value": 0.05, "unit": "kg/s/m2", "note": "Specific pool water mass flow rate per unit area (high-flow pool loop)"},
+        "cp_water": {"value": 4182.0, "unit": "J/kgK", "note": "Specific heat of water at ~25 C (Duffie & Beckman App.)"},
+        "epsilon": {"value": 0.95, "unit": "-", "note": "Long-wave emissivity of EPDM/PP absorber surface"},
+        "sigma": {"value": 5.670374e-8, "unit": "W/m2K4", "note": "Stefan-Boltzmann constant"},
+        "h_evap": {"value": 0.0, "unit": "W/m2K", "note": "Evaporative loss coefficient for wetted/uncovered surface (0 for dry-back panel; set >0 for wetted absorber)"}
+    },
+    "valid_ranges": {
+        "G": {"min": 0.0, "max": 1100.0, "unit": "W/m2"},
+        "Ta": {"min": 0.0, "max": 40.0, "unit": "degC"},
+        "Tsky": {"min": -20.0, "max": 40.0, "unit": "degC"},
+        "u_wind": {"min": 0.0, "max": 12.0, "unit": "m/s"},
+        "Tf_in": {"min": 10.0, "max": 40.0, "unit": "degC"},
+        "dt": {"min": 1.0, "max": 600.0, "unit": "s"},
+        "duration_s": {"min": 60.0, "max": 86400.0, "unit": "s"}
+    }
+}

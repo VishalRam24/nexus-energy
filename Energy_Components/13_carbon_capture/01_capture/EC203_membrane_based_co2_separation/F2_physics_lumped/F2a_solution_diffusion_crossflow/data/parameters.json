@@ -1,0 +1,27 @@
+{
+    "component_id": "EC203",
+    "component_name": "Membrane-Based CO2 Separation",
+    "fidelity": "F2a — Solution-Diffusion Cross-Flow Module (lumped 1D area ODE)",
+    "source": "Merkel et al. (2010) J. Membr. Sci. 359:126-139; Baker (2012) Membrane Technology and Applications 3rd ed., Wiley; Geankoplis (2003) Transport Processes Ch.13",
+    "unit": {
+        "name": "Polymeric CO2/N2 gas separation membrane module (flue-gas post-combustion duty)",
+        "Q_CO2_GPU": {"value": 1000.0, "unit": "GPU", "note": "CO2 permeance. 1 GPU = 1e-6 cm3(STP)/(cm2.s.cmHg). Merkel (2010) target >1000 GPU; Polaris membrane"},
+        "selectivity_CO2_N2": {"value": 50.0, "unit": "dimensionless", "note": "alpha = Q_CO2/Q_N2 ideal selectivity (Merkel 2010 Polaris ~50)"},
+        "area_m2": {"value": 1000.0, "unit": "m2", "note": "Total membrane area of module"},
+        "feed_flow_mol_s": {"value": 1.0, "unit": "mol/s", "note": "Total molar feed flow rate"},
+        "y_CO2_feed": {"value": 0.13, "unit": "mol_fraction", "note": "CO2 mole fraction in coal flue gas feed (~13 vol%)"},
+        "P_feed_bar": {"value": 1.1, "unit": "bar", "note": "Feed-side total pressure (slight compression of flue gas)"},
+        "P_perm_bar": {"value": 0.2, "unit": "bar", "note": "Permeate-side total pressure (vacuum pump)"},
+        "T_K": {"value": 313.15, "unit": "K", "note": "Operating temperature (40 C)"}
+    },
+    "valid_ranges": {
+        "area_m2": {"min": 1.0, "max": 100000.0, "unit": "m2"},
+        "feed_flow_mol_s": {"min": 0.001, "max": 1000.0, "unit": "mol/s"},
+        "y_CO2_feed": {"min": 0.001, "max": 0.99, "unit": "mol_fraction"},
+        "selectivity_CO2_N2": {"min": 1.0, "max": 500.0, "unit": "dimensionless"},
+        "P_feed_bar": {"min": 0.5, "max": 80.0, "unit": "bar"},
+        "P_perm_bar": {"min": 0.05, "max": 10.0, "unit": "bar"},
+        "Q_CO2_GPU": {"min": 1.0, "max": 10000.0, "unit": "GPU"},
+        "pressure_ratio": {"min": 1.5, "max": 100.0, "unit": "dimensionless"}
+    }
+}

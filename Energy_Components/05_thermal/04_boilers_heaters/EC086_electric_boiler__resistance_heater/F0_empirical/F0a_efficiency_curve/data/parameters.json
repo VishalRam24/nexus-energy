@@ -1,0 +1,36 @@
+{
+  "component_id": "EC086",
+  "component_name": "Electric Boiler / Resistance Heater",
+  "fidelity": "F0a \u2014 empirical lookup",
+  "source": "ASHRAE Handbook HVAC Systems & Equipment (2020) Ch.32; IEA Task 44",
+  "Q_rated": {
+    "value": 30.0,
+    "unit": "kW",
+    "note": "Rated thermal output"
+  },
+  "eta_nom": {
+    "value": 0.99,
+    "unit": "-",
+    "note": "Full-load efficiency"
+  },
+  "PLR_min": {
+    "value": 0.0,
+    "unit": "-",
+    "note": "Min part-load ratio (clamped)"
+  },
+  "table": {
+    "plr": [
+      0.0,
+      0.1,
+      0.5,
+      1.0
+    ],
+    "eta": [
+      0.99,
+      0.99,
+      0.99,
+      0.99
+    ],
+    "note": "Part-load efficiency breakpoints; eta at PLR=1.0 = eta_nom"
+  }
+}

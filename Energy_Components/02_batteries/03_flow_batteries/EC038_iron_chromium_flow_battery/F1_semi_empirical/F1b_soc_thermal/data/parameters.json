@@ -1,0 +1,34 @@
+{
+    "component": "EC038 Iron-Chromium Flow Battery (ICFB)",
+    "fidelity": "F1b",
+    "description": "SOC-thermal Nernst + Arrhenius-R model for ICFB stack. Temperature range 15-65 degC. Extends F1a with temperature-dependent resistance and Nernst thermal factor.",
+    "unit": {
+        "name": "Generic 40-cell ICFB stack, 500 cm2 electrode area",
+        "source": "Shibata, S., Sumino, M. P. (1988). J. Power Sources 25, 177; Hruska, L. W., Savinell, R. F. (1981). J. Electrochem. Soc. 128, 18; Zeng, Y. K. et al. (2015). J. Power Sources 278, 294",
+        "N_cells": {"value": 40, "unit": "dimensionless"},
+        "electrode_area_cm2": {"value": 500.0, "unit": "cm2"},
+        "E0": {"value": 1.18, "unit": "V", "note": "Standard cell potential Fe3+/Fe2+ vs Cr3+/Cr2+ (0.77 - (-0.41) = 1.18 V at 25 degC)"},
+        "R_cell_ohm_cm2_ref": {"value": 4.0, "unit": "Ohm.cm2", "note": "Area-specific resistance at T_ref; ICFB uses Nafion-style membrane, typical 4 Ohm.cm2 at 25 degC"},
+        "n": {"value": 1, "unit": "dimensionless", "note": "Single electron transfer: Fe3++e-<->Fe2+ and Cr3++e-<->Cr2+"},
+        "electrolyte_conc_M": {"value": 1.5, "unit": "mol/L"},
+        "pump_loss_coefficient": {"value": 0.02, "unit": "W/(A^2)", "note": "Pump parasitic power ~ k_pump * I^2 (approximate scaling with flow rate)"}
+    },
+    "thermal": {
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 degC)"},
+        "E_a": {"value": 20000, "unit": "J/mol",
+                "note": "Activation energy for membrane/electrode resistance; Cr kinetics are sluggish, typical E_a 18-25 kJ/mol",
+                "source": "Zeng et al. (2015) J. Power Sources 278, 294; Hruska & Savinell (1981) J. Electrochem. Soc. 128, 18"},
+        "dOCV_dT": {"value": -0.0004, "unit": "V/K per cell",
+                    "note": "Temperature coefficient of standard potential. For Fe3+/Fe2+ + Cr3+/Cr2+: dE0/dT = -delta_S/(n*F). delta_S for Fe3+/Fe2+ ~ -134 J/mol/K, Cr3+/Cr2+ ~ 20 J/mol/K -> net ~ -154 J/mol/K -> dE0/dT ~ -0.00160 V/K for Fe half, -0.00021 V/K for Cr half; combined ~-0.0004 V/K at cell level. Operationally confirmed warmer = lower E0 for Fe/Cr redox couple.",
+                    "source": "Atkins Physical Chemistry (2014) thermodynamic data; Shibata & Sumino (1988) J. Power Sources 25, 177"},
+        "T_min": {"value": 288.15, "unit": "K", "note": "15 degC lower limit (Cr kinetics unacceptably slow below 10-15 degC)"},
+        "T_max": {"value": 338.15, "unit": "K", "note": "65 degC upper limit (ICFB tolerates elevated temperature; electrolyte stable to ~65 degC)"},
+        "R_gas": {"value": 8.314, "unit": "J/(mol*K)"},
+        "F": {"value": 96485.0, "unit": "C/mol"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.05, "max": 0.95, "unit": "dimensionless"},
+        "current": {"min": -100.0, "max": 100.0, "unit": "A", "note": "positive=discharge"},
+        "temperature": {"min": 288.15, "max": 338.15, "unit": "K", "note": "15 to 65 degC"}
+    }
+}

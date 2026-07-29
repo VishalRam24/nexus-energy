@@ -1,0 +1,29 @@
+{
+    "component": "EC212 Multi-Stage Flash Distillation (MSF)",
+    "fidelity": "F2a",
+    "description": "Physics-lumped MSF brine-recirculation (MSF-BR) model: stage-by-stage mass & energy balance with flashing, non-equilibrium allowance (NEA), brine-heater steam consumption, GOR / performance ratio, and a lumped stage-temperature transient ODE.",
+    "unit": {
+        "name": "Generic MSF-BR desalination plant (24-stage recovery section)",
+        "source": "El-Dessouky, H.T. & Ettouney, H.M. (2002) Fundamentals of Salt Water Desalination, Elsevier, Ch. 7 (MSF).",
+        "N_stages": {"value": 24, "unit": "dimensionless", "note": "Number of flashing (recovery) stages"},
+        "T_top_brine_C": {"value": 110.0, "unit": "degC", "source": "El-Dessouky & Ettouney (2002) Tbl 7", "note": "Top brine temperature leaving brine heater (TBT)"},
+        "T_last_stage_C": {"value": 40.0, "unit": "degC", "source": "El-Dessouky & Ettouney (2002)", "note": "Brine temperature in last/coldest stage"},
+        "T_seawater_C": {"value": 25.0, "unit": "degC", "note": "Intake seawater temperature"},
+        "T_steam_C": {"value": 116.0, "unit": "degC", "source": "El-Dessouky & Ettouney (2002)", "note": "Heating steam saturation temperature in brine heater (TBT + terminal diff)"},
+        "M_recirc_kg_s": {"value": 1000.0, "unit": "kg/s", "note": "Recirculating brine mass flow through the stages"},
+        "salinity_feed_ppm": {"value": 42000.0, "unit": "ppm", "source": "El-Dessouky & Ettouney (2002)", "note": "Recirculating brine feed salinity (Gulf seawater ~ 42000 ppm)"},
+        "salinity_max_ppm": {"value": 70000.0, "unit": "ppm", "note": "Max allowable brine salinity (scaling limit)"},
+        "cp_brine_kJ_kgK": {"value": 4.0, "unit": "kJ/kg.K", "source": "El-Dessouky & Ettouney (2002) seawater cp ~ 3.9-4.0 at 40-110 C", "note": "Specific heat of brine"},
+        "hfg_kJ_kg": {"value": 2333.0, "unit": "kJ/kg", "source": "El-Dessouky & Ettouney (2002); IAPWS at ~75 C mean stage temp", "note": "Mean latent heat of vaporisation across stages"},
+        "hfg_steam_kJ_kg": {"value": 2222.0, "unit": "kJ/kg", "source": "IAPWS-IF97 at 116 C / 1.75 bar", "note": "Latent heat of heating steam in brine heater"},
+        "NEA_coeff": {"value": 0.15, "unit": "dimensionless", "note": "Non-equilibrium allowance scaling factor (El-Dessouky & Ettouney 2002 Eq. 7). NEA per stage ~ deltaT_stage * coeff (degC), typically 0.2-0.8 degC; reduces effective flash range."},
+        "tau_stage_s": {"value": 30.0, "unit": "s", "source": "Estimated from stage brine holdup / flow", "note": "Lumped thermal time constant of a stage (residence time of brine)"},
+        "U_heater_kW_m2K": {"value": 2.5, "unit": "kW/m2.K", "source": "El-Dessouky & Ettouney (2002) typical MSF overall U", "note": "Brine-heater overall heat-transfer coefficient"}
+    },
+    "valid_ranges": {
+        "T_top_brine_C": {"min": 90.0, "max": 120.0, "unit": "degC", "note": "Above ~120 C CaSO4 scaling becomes severe"},
+        "N_stages": {"min": 4, "max": 40, "unit": "dimensionless"},
+        "M_recirc_kg_s": {"min": 100.0, "max": 5000.0, "unit": "kg/s"},
+        "T_last_stage_C": {"min": 30.0, "max": 50.0, "unit": "degC"}
+    }
+}

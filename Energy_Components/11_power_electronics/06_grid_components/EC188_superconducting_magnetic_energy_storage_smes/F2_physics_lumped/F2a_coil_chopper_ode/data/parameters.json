@@ -1,0 +1,28 @@
+{
+    "component": "EC188 Superconducting Magnetic Energy Storage (SMES)",
+    "fidelity": "F2a",
+    "description": "Physics-lumped SMES: magnetic energy E=0.5*L*I^2 stored in a superconducting coil, charged/discharged through a power-conditioning chopper that imposes the coil terminal voltage V_L = L*dI/dt. Coil-current ODE integrated with scipy.solve_ivp. Near-lossless coil (tiny equivalent series resistance in superconducting state) plus converter conduction/switching losses and continuous cryogenic refrigeration parasitic load.",
+    "unit": {
+        "name": "Generic HTS SMES Unit, 10 MJ / 2 MW",
+        "source": "Hassenzahl, W.V. (2001) 'Superconducting magnetic energy storage', IEEE Trans. Appl. Supercond. 11(1):1447-1453. Buckles & Hassenzahl (2000) IEEE Power Eng. Rev. 20(5):16-20. Ali, M.H., Wu, B. & Dougal, R.A. (2010) 'An overview of SMES applications in power and energy systems', IEEE Trans. Sustain. Energy 1(1):38-47.",
+        "L_H":            {"value": 100.0,   "unit": "H",     "note": "Coil inductance (E=0.5*L*I^2; 0.5*100*447^2 = ~10 MJ)"},
+        "I_max_A":        {"value": 447.0,   "unit": "A",     "note": "Maximum coil current at E_max = 10 MJ (critical-current limited)"},
+        "I_min_A":        {"value": 0.0,     "unit": "A",     "note": "Minimum coil current (0 = fully discharged)"},
+        "P_rated_MW":     {"value": 2.0,     "unit": "MW",    "note": "Rated chopper charge/discharge power"},
+        "V_dc_max_V":     {"value": 5000.0,  "unit": "V",     "note": "Max DC-link / chopper terminal voltage magnitude applied to coil"},
+        "R_coil_ohm":     {"value": 1.0e-7,  "unit": "ohm",   "note": "Equivalent series resistance of coil+leads in superconducting state (joint+lead residual; ~0.1 microohm)"},
+        "eta_converter":  {"value": 0.97,    "unit": "-",     "note": "Power-conditioning chopper efficiency per pass (VSC/IGBT chopper)"},
+        "P_conv_loss_frac": {"value": 0.0,   "unit": "-",     "note": "Reserved; converter loss derived from eta_converter"},
+        "T_op_K":         {"value": 20.0,    "unit": "K",     "note": "Coil operating temperature (HTS REBCO/MgB2 with GM cooler)"}
+    },
+    "cryo": {
+        "P_cryo_MW":      {"value": 0.03,    "unit": "MW",    "note": "Continuous cryogenic refrigeration electrical input (heat leak removal via GM/pulse-tube cooler, ~30 kW for 10 MJ HTS, Hassenzahl 2001)"}
+    },
+    "valid_ranges": {
+        "I0_A":           {"min": 0.0,   "max": 447.0,  "unit": "A"},
+        "P_request_MW":   {"min": -2.0,  "max": 2.0,    "unit": "MW", "note": "Positive = discharge to grid, negative = charge from grid"},
+        "V_command_V":    {"min": -5000.0, "max": 5000.0, "unit": "V"},
+        "dt_s":           {"min": 1.0e-4, "max": 60.0,  "unit": "s"},
+        "duration_s":     {"min": 1.0e-3, "max": 3600.0, "unit": "s"}
+    }
+}

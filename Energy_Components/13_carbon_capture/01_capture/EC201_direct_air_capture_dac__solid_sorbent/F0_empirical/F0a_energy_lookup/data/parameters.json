@@ -1,0 +1,47 @@
+{
+  "component": "EC201 Direct Air Capture (DAC) -- Solid Sorbent",
+  "fidelity": "F0a -- empirical lookup",
+  "source": "Fasihi et al. (2019), J. Cleaner Production 224, 957-980.",
+  "unit": {
+    "source": "Fasihi et al. (2019), J. Cleaner Production 224, 957-980.",
+    "E_el_base": {
+      "value": 250.0,
+      "unit": "kWh_e/tCO2"
+    },
+    "capture_efficiency": {
+      "value": 0.75,
+      "unit": "-"
+    },
+    "CO2_concentration_ppm": {
+      "value": 415.0,
+      "unit": "ppm_v"
+    },
+    "rho_air": {
+      "value": 1.225,
+      "unit": "kg/m3"
+    },
+    "CO2_molar_mass": {
+      "value": 44.0,
+      "unit": "g/mol"
+    },
+    "air_molar_mass": {
+      "value": 29.0,
+      "unit": "g/mol"
+    }
+  },
+  "thermal_curve": {
+    "ambient_C": [
+      -10,
+      0,
+      25,
+      45
+    ],
+    "E_th_kWh_tCO2": [
+      1650,
+      1580,
+      1500,
+      1470
+    ],
+    "note": "Regeneration thermal demand vs ambient; colder air slightly higher."
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "version": "0.2.0",
+  "rows": [
+    {
+      "name": "01_baseline_lp",
+      "status": "optimal",
+      "wall_seconds": 0.005707832999178208,
+      "cost": 201913.02355500133,
+      "note": "T=168",
+      "extras": {}
+    },
+    {
+      "name": "02_dc_opf_loop",
+      "status": "optimal",
+      "wall_seconds": 0.00027091700030723587,
+      "cost": 7400.0,
+      "note": "KVL on 3-bus loop, bottleneck l13@40",
+      "extras": {}
+    },
+    {
+      "name": "03_unit_commitment",
+      "status": "optimal",
+      "wall_seconds": 0.06818754199775867,
+      "cost": 892456.4167208154,
+      "note": "3-bin UC, T=168",
+      "extras": {
+        "committable": 3
+      }
+    },
+    {
+      "name": "04_storage_repdays",
+      "status": "optimal",
+      "wall_seconds": 0.002154334004444536,
+      "cost": 870060.9593411372,
+      "note": "3 rep-days, storage 40MW/160MWh",
+      "extras": {
+        "n_periods": 3
+      }
+    },
+    {
+      "name": "05_benders",
+      "status": "optimal",
+      "wall_seconds": 0.004565375005768146,
+      "cost": 504000.0,
+      "note": "6 scenarios, 2 iters",
+      "extras": {
+        "n_iterations": 2
+      }
+    },
+    {
+      "name": "06_stochastic_cvar",
+      "status": "optimal",
+      "wall_seconds": 0.003005124999617692,
+      "cost": 888000.0,
+      "note": "CVaR_0.1, 4 scenarios",
+      "extras": {}
+    },
+    {
+      "name": "07_ml_warmstart",
+      "status": "optimal",
+      "wall_seconds": 0.005744165995565709,
+      "cost": 160881.22825834728,
+      "note": "cold=3ms warm=3ms speedup=0.99\u00d7 \u0394cost=0.00",
+      "extras": {
+        "cold_wall": 0.002857874998881016,
+        "warm_wall": 0.002886290996684693,
+        "speedup": 0.9901548396068461
+      }
+    },
+    {
+      "name": "08_rolling_horizon",
+      "status": "optimal",
+      "wall_seconds": 0.0008562500006519258,
+      "cost": 140360.24599604227,
+      "note": "T=48, window=12, solver=highs, warm_start=True",
+      "extras": {}
+    },
+    {
+      "name": "09_differentiable",
+      "status": "optimal",
+      "wall_seconds": 0.00019237500237068161,
+      "cost": 3700.0,
+      "note": "max analytic-numerical grad err = 2.21e-11",
+      "extras": {
+        "grad_err": 2.2130963728272945e-11
+      }
+    }
+  ]
+}

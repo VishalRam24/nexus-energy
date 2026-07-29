@@ -1,0 +1,51 @@
+{
+    "component": "EC007 Reversible Fuel Cell (RFC)",
+    "fidelity": "F1b",
+    "description": "Temperature-dependent polarization model for RFC in both FC and electrolyser modes",
+    "source": "Grigoriev et al. (2020) Int. J. Hydrogen Energy; Ito et al. (2012) Int. J. Hydrogen Energy; Amphlett et al. (1995) J. Electrochem. Soc.",
+
+    "cell": {
+        "N_cells":      {"value": 50,      "unit": "dimensionless", "note": "Number of cells in stack"},
+        "A_cell":       {"value": 100.0,   "unit": "cm2",           "note": "Active cell area"},
+        "T_ref":        {"value": 353.15,  "unit": "K",             "note": "Reference temperature (80 degC)"},
+        "pH2":          {"value": 1.0,     "unit": "bar",           "note": "H2 partial pressure"},
+        "pO2":          {"value": 0.21,    "unit": "bar",           "note": "O2 partial pressure (air)"},
+        "j_L_fc":       {"value": 2.0,     "unit": "A/cm2",         "note": "Limiting current density in FC mode"},
+        "j_L_el":       {"value": 3.0,     "unit": "A/cm2",         "note": "Limiting current density in electrolyser mode"}
+    },
+
+    "fuel_cell_mode": {
+        "note": "FC mode: H2 + 0.5 O2 -> H2O + electricity + heat",
+        "i0_ref":           {"value": 1e-4,   "unit": "A/cm2",  "note": "Exchange current density at T_ref; Amphlett 1995"},
+        "E_act_fc":         {"value": 66000,  "unit": "J/mol",  "note": "Activation energy for ORR; Amphlett 1995"},
+        "sigma_ref":        {"value": 0.1,    "unit": "S/cm",   "note": "Nafion conductivity at T_ref"},
+        "t_mem":            {"value": 0.0183, "unit": "cm",     "note": "Nafion 117 membrane thickness"},
+        "lambda_mem":       {"value": 14.0,   "unit": "dimensionless", "note": "Membrane water content"},
+        "alpha_fc":         {"value": 0.5,    "unit": "dimensionless", "note": "Charge transfer coefficient"},
+        "B_conc_fc":        {"value": 0.016,  "unit": "V",      "note": "Concentration loss coefficient"}
+    },
+
+    "electrolyser_mode": {
+        "note": "Electrolyser mode: H2O + electricity -> H2 + 0.5 O2",
+        "i0_el_ref":        {"value": 1e-7,   "unit": "A/cm2",  "note": "Exchange current density for OER at T_ref; lower than ORR"},
+        "E_act_el":         {"value": 76000,  "unit": "J/mol",  "note": "Activation energy for OER; Grigoriev 2020"},
+        "alpha_el":         {"value": 0.5,    "unit": "dimensionless", "note": "Charge transfer coefficient for electrolyser"},
+        "B_conc_el":        {"value": 0.010,  "unit": "V",      "note": "Concentration overpotential coefficient for electrolyser"},
+        "R_ohm_el":         {"value": 0.15,   "unit": "ohm_cm2","note": "Area-specific ohmic resistance in electrolyser mode (includes ionomer, contact)"}
+    },
+
+    "thermal": {
+        "E_tn":             {"value": 1.481,  "unit": "V",      "note": "Thermoneutral voltage (HHV basis) for FC mode"},
+        "E_tn_el":          {"value": 1.481,  "unit": "V",      "note": "Thermoneutral voltage for electrolyser mode (same basis)"},
+        "m_stack_kg":       {"value": 2.0,    "unit": "kg",     "note": "Stack thermal mass"},
+        "cp_stack":         {"value": 900.0,  "unit": "J/kg/K", "note": "Stack specific heat (Al + polymer composite)"},
+        "UA_cool":          {"value": 15.0,   "unit": "W/K",    "note": "Overall heat transfer coefficient to coolant"},
+        "T_cool":           {"value": 333.15, "unit": "K",      "note": "Coolant inlet temperature"}
+    },
+
+    "valid_ranges": {
+        "temperature":        {"min": 313.15, "max": 363.15, "unit": "K",     "note": "40-90 degC"},
+        "current_density":    {"min": 0.0,    "max": 2.5,    "unit": "A/cm2"},
+        "mode":               {"values": ["fc", "electrolyser"]}
+    }
+}

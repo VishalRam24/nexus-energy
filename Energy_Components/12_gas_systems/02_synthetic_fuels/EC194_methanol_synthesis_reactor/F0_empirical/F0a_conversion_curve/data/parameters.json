@@ -1,0 +1,44 @@
+{
+  "component_id": "EC194",
+  "component_name": "Methanol Synthesis Reactor",
+  "fidelity": "F0a \u2014 empirical lookup",
+  "version": "1.0.0",
+  "source": "Graaf et al. (1988) Chem. Eng. Sci. 43:3185 (F1b params reused)",
+  "metric": "conversion_vs_temperature",
+  "note": "Cu/ZnO/Al2O3 methanol per-pass CO conversion vs temperature (rising branch to optimum). X_max 0.75 at T_opt 250 degC, 80 bar, H2/CO=2.1.",
+  "lookup": {
+    "temperature_C": {
+      "value": [
+        190.0,
+        210.0,
+        230.0,
+        245.0,
+        250.0
+      ],
+      "unit": "degC",
+      "note": "Reactor temperature"
+    },
+    "conversion": {
+      "value": [
+        0.4273,
+        0.5841,
+        0.7046,
+        0.7471,
+        0.75
+      ],
+      "unit": "-",
+      "note": "Per-pass CO conversion"
+    }
+  },
+  "rated": {
+    "temperature_C": {
+      "value": 250.0,
+      "unit": "degC"
+    },
+    "conversion": {
+      "value": 0.75,
+      "unit": "-",
+      "note": "Rated point"
+    }
+  }
+}

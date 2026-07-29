@@ -1,0 +1,1392 @@
+International Journal of Hydrogen Energy 141 (2025) 536–549
+Available online 20 November 2024
+0360-3199/© 2024 Published by Elsevier Ltd on behalf of Hydrogen Energy Publications LLC.
+A novel method of long-term aging prediction for proton exchange
+membrane fuel cell under the dynamic load cycling condition
+Xiaoran Yu a, Yang Yang a,b,*, Yanjun Liu a, Wenchao Zhu c, Changjun Xie a,b,**
+a School of Automation, Wuhan University of Technology, Wuhan, 430070, China
+b Hubei Key Laboratory of Advanced Technology for Automotive Components, Wuhan University of Technology, Wuhan, 430070, China
+c State Key Laboratory of Advanced Technology for Materials Synthesis and Processing, Wuhan, Hubei, 430073, China
+A R T I C L E I N F O
+Handling Editor: Ibrahim Dincer
+Keywords:
+Proton exchange membrane fuel cell
+Model uncertainty and state estimation
+CNN-LSTM
+Long-term prediction
+Dynamic load cycling condition
+A B S T R A C T
+Estimating the remaining useful life (RUL) of proton exchange membrane fuel cell (PEMFC) is beneficial for
+deploying control strategies. Long-term aging prediction forms the foundation for RUL estimation, but currently
+long-term aging prediction and RUL estimation for dynamic load cycling conditions have not been achieved, and
+uncertainty during the prediction and estimation processes has not been considered. Therefore, in this study, a
+novel hybrid prediction framework based on Bayesian gated recurrent unit, model uncertainty and state esti-
+mation (MUSE), and convolutional neural network-long short-term memory (CNN-LSTM) is proposed. First,
+MUSE is used to simultaneously quantify the state of health (SOH) and predict aging trend to generate a guiding
+sequence Next, based on the sequence and historical experimental data, CNN-LSTM is trained and multi-step
+prediction is performed. Subsequently, Bayesian gated recurrent unit is employed to fuse the MUSE-based pre-
+diction sequence with the CNN-LSTM-based prediction, and confidence interval is provided. This results in a
+novel model and data-driven long-term aging prediction structure. Finally, SOH during the prediction stage is
+evaluated by MUSE and RUL is estimated. The proposed method is validated using experimental data under a
+dynamic load cycling condition, demonstrating accurate long-term aging prediction and RUL estimation while
+considering uncertainty.
+1. Introduction
+In the context of energy scarcity and the pressing issue of climate
+change, the development and utilization of clean energy sources have
+assumed paramount importance. Power to hydrogen is a promising so-
+lution for storing variable renewable energy [1]. Hydrogen energy in-
+volves four aspects: production, transportation, storage, and utilization
+[2]. Fuel cell is one kind of technologies of hydrogen utilization.
+Hydrogen can be fed to the fuel cells to provide electric power to drive
+vehicles [3]. Proton exchange membrane fuel cells (PEMFCs), as envi-
+ronmentally friendly energy conversion devices, are employed in
+diverse fields such as distributed power generation and automotive
+technology [4]. However, short lifespan and high-cost act as limitations
+that hinder its commercialization [5]. Estimating the remaining useful
+life (RUL) can provide guidance for maintenance strategies, reduce
+consumption [6]. This is significant in extending the service life of
+PEMFCs [7].
+Model-based method is one kind of the methods to estimating RUL
+[8]. Mechanistic or empirical models are combined with estimators like
+filtering algorithms to assess the state of health (SOH) of PEMFCs, and
+prediction for the degradation trend is provided. Extended Kalman filter
+(EKF) [9] and unscented Kalman filter (UKF) [10] were proposed for
+evaluating SOH of PEMFCs. Ao et al. proposed a frequency domain
+Kalman filter to process data in the frequency domain, ensuring pre-
+diction accuracy while reducing runtime [11]. In addition to accuracy
+and runtime, stability is also a crucial evaluation criterion, so Zhang
+et al. combined multi-point estimation with the square root central
+difference Kalman filter to create a new algorithm SR-CDKF. This inte-
+gration aims to address the challenges posed by observer mobility and
+system noise, ensuring a more stable approach to assess SOH [12].
+Particle filter is also used [13]. Its variants have been widely used [14,
+15]. As for aging model, Ou et al. proposed a semi-empirical model that
+considers polarization behavior in different polarization zones to make
+degradation prediction of PEMFC systems under vehicle operating
+* Corresponding author. School of Automation, No.122, Luoshi Road, HongShan District, Wuhan City, Hubei Prov. China.
+** Corresponding author. School of Automation, Wuhan University of Technology, Wuhan, 430070, China.
+E-mail addresses: whutyangyang@whut.edu.cn (Y. Yang), jackxie@whut.edu.cn (C. Xie).
+Contents lists available at ScienceDirect
+International Journal of Hydrogen Energy
+journal homepage: www.elsevier.com/locate/he
+https://doi.org/10.1016/j.ijhydene.2024.11.194
+Received 3 July 2024; Received in revised form 25 October 2024; Accepted 11 November 2024
+International Journal of Hydrogen Energy 141 (2025) 536–549
+537
+conditions [16]. In Ref. [17], an empirical model for lifetime prediction
+coupled with electrical load distribution is built. In this model, the
+voltage degradation rate is modeled as a linear function of the charac-
+teristics of the load profile which is defined by voltage and current.
+However, model-based method can only provide aging trends [7]. A
+comprehensive aging model requires a complete understanding of the
+degradation mechanisms and characterization of the degradation pa-
+rameters [18]. Semi-empirical model is usually used.
+With the enhancement of machine learning, data-driven method gets
+unprecedented development. Data-driven method directly provides
+prediction by learning from historical data [9]. Various algorithms have
+been applied, such as backpropagation neural network [19], convolu-
+tional neural network (CNN) [20], long-short-term memory (LSTM)
+neural network [21], echo state network (ESN) [22], gated recurrent
+unit [23] and Transformer [24]. Jia et al. developed a novel model that
+fuses multi-head self-attention mechanism and bi-directional LSTM
+[25]. The preprocessed historical voltage data and PEMFC system
+operating parameters are fed to the model and the global information
+modeling is achieved. It demonstrates good performance of short-term
+prediction. According to Ref. [26], long-term prediction whose predic-
+tion horizon (PH) exceeds 168h holds practical significance for PEMFC
+operational strategies. However, achieving accurate long-term predic-
+tion remains one of the challenges in the field of fuel cell aging pre-
+diction. The distinguishing feature of long-term prediction is the
+independence from actual data during forecasting. Wang et al. employed
+an autoregressive integrated moving average (ARIMA) model to provide
+a navigation sequence for LSTM, creating navigation sequence navi-
+gated LSTM (NSD-LSTM) to achieving long-term prediction [21]. But it
+can be found ARIMA tends to deviate from actual data when faced with
+obvious
+fluctuations.
+In
+Datasets
+with
+disturbances,
+data-driven
+methods often capture more nonlinear information while ignoring
+aging trends.
+Multiple hybrid strategies can also achieve long-term prediction. In
+Ref. [27], EKF-LSTM is constructed. In this method, EKF and LSTM
+mutually provide observation values to get rid of the reliance of actual
+data. EKF-LSTM can achieve long-term prediction for internal parame-
+ters and voltage. SOH estimation based on the prediction of data-driven
+method can also make prediction [28]. Decomposition is also a solution.
+For example, some researchers decomposed voltage data into linear and
+nonlinear parts and then appropriated methods were used to process
+these parts [29]. In Ref. [13], voltage data is decomposed into trend,
+recovery and disturbance parts, and then PF, equivalent circuit model
+and random forest algorithm are used to process them, improving pre-
+diction accuracy. While the complexity of the hybrid methods is much
+higher, they significantly improve the accuracy of prediction compared
+to one prediction method [18].
+It can be found the methods in Refs. [27,28] can only provide
+degradation trends. The methods in Refs. [13,27,28] are tested in static
+operation condition and EKF-LSTM in Ref. [27] is tested under the
+condition that is made by extracting a certain current from the dynamic
+condition. It is not similar to the real world. Due to the periodicity of
+data from the dynamic load cycling condition [30], it is difficult to
+extract
+an
+aging
+trend
+of
+voltage.
+Therefore,
+the
+methods
+in
+Ref. [13.27–29] are ineffective for long-term prediction of the dynamic
+load operating condition which has a clear cyclical variation. And there
+are few methods to make long-term prediction for dynamic load cycling
+conditions. Lv et al. proposed a Transformer based long-term prognosis
+to predict relative power-loss rate, but measurement is used in its
+structure and RUL estimation is not made [24].
+Additionally, There are few long-term aging prediction methods that
+consider uncertainty quantification under dynamic load cycling condi-
+tions. Uncertainty objectively exists, and existing hybrid methods lack
+consideration of the uncertainty [26]. The existing one-sidedness of
+aging models makes it difficult to comprehensively reflect the aging
+behavior of PEMFCs [31]. The parameters of aging models are affected
+by measurement noise, dynamic model drift, and other factors [32].
+During establishing aging models through experiments, the state of fuel
+cells can also be influenced. Water management state is highly suscep-
+tible to its control strategies [33]. Membrane dry faults hinder the
+transfer of proton and lead to irreversible membrane degradation [34].
+The possibility of fuel shortage and low gas pressure cannot be ignored
+[35]. The model uncertainty caused by these factors may affects SOH
+estimation. Uncertainty also exists in prediction results [36]. It can lead
+to different results from the same neural network trained on the same
+data [37]. Quantifying uncertainty is beneficial for evaluating the us-
+ability of results [37] and extracting aging information [38].
+Attempts to consider uncertainty exist. In Ref. [21], the prediction
+results of NSD-LSTM are assumed to follow a standard Gaussian distri-
+bution, the mean of multiple results is taken as the final outcome.
+Although this method can provide confidence intervals, uncertainty in
+the neural network is not explored. Zhu et al. combined Bayesian theory
+with gated recurrent unit (GRU) to propose Bayesian GRU. But it is
+verified in short-term prediction of constant operating condition [36].
+It can be found that the internal parameters characterizing SOH of
+fuel cells do not exhibit as drastic changes throughout the entire aging
+experiment as voltage does [27]. It is possible to extract aging trends
+from these parameters. To achieve long-term prediction and RUL esti-
+mation under the dynamic load cycling condition, it is necessary to
+consider the internal parameters. For model-based PEMFC aging pre-
+diction, the authors have proposed the model uncertainty and state
+estimation (MUSE) method [7]. Compared to other model-based
+methods, MUSE has shown superior accuracy and robustness. In
+data-driven methods, CNN-LSTM has demonstrated good performance
+in predicting the lifespan of PEMFCs [39]. CNN is a traditional deep
+learning model. It is made up of input layer, convolutional layer, pooling
+layer, fully connected layer and output layer [40]. It is a good helper in
+feature extraction. LSTM is an improved version of recurrent neural
+network. LSTM addresses long-term dependency by adding a gating
+mechanism [41]. To make CNN-LSTM more suitable for extracting aging
+information from data of the dynamic load cycling condition, one can
+incorporate sequences generated by MUSE into experimental data to
+achieve guided prediction. So RUL estimation under the dynamic load
+cycling condition can be made by estimating SOH based on prediction
+results.
+For uncertainty quantification, Ref. [36] has shown that Bayesian
+GRU has good performance in uncertainty quantification. Since MUSE
+and CNN-LSTM give deterministic results from which it is difficult to
+analyze uncertainty, Bayesian GRU can be used to fuse the prediction
+results of MUSE and CNN-LSTM to explore the mapping relationship
+between MUSE-generated guidance sequence, CNN-LSTM prediction
+and actual data and to give confidence intervals.
+Therefore, a novel Bayesian GRU fused MUSE and CNN-LSTM hybrid
+prediction framework for long-term prediction and RUL estimation of
+PEMFCs under the dynamic load cycling condition is proposed. The
+main innovations of this work include:
+1) A new structure of long-term aging prediction for PEMFC is pro-
+posed. MUSE is used to capture the aging trends and generate a
+sequence which is added to experimental data to guide the prediction
+of CNN-LSTM. Compared with other methods, such as CNN-LSTM,
+EKF-LSTM, NSD-LSTM and so on, the proposed method shows
+higher accuracy of long-term prediction.
+2) The uncertainty of long-term aging prediction under the dynamic
+load cycling condition is quantified and the confidence interval of
+long-term prediction is provided. The capacity of uncertainty quan-
+tification of the proposed method is analyzed.
+3) SOH during the prediction stage is obtained and RUL estimation for
+PEMFC under the dynamic load cycling condition is achieved. The
+proposed method demonstrates excellent performance on full life-
+cycle RUL estimation.
+The rest of the paper is organized as follows. Section 2 presents the
+X. Yu et al.
+International Journal of Hydrogen Energy 141 (2025) 536–549
+538
+experimental setup and data. The details of the Bayesian GRU fused
+MUSE and CNN-LSTM hybrid method is described in Section 3. The
+experiment results, comparisons, and discussion are included in Section
+4. Section 5 concludes the results of this work.
+2. Experimental setup and data analysis
+The data of the dynamic load cycling condition is from Ref. [30].
+Greenlight Innovation G20 test bench is used. A single PEMFC is tested.
+Original durability data and polarization curve data are directly ob-
+tained. The full load current is 35.6A, and the experiment runs for
+approximately 1008h, including 3076 dynamic cycling loads. Each cycle
+consists of 35 current loads. 16-dimensional data including current,
+voltage, and power is stored. Polarization curve tests are conducted at
+100-h intervals. The primary control parameters for the experiment are
+shown in Table 1. The durability experimental data are depicted in
+Fig. 1.
+In Fig. 1, it is evident that periodicity of voltage is obvious, making it
+challenging to extract the information of aging trend, disturbance and
+recovery. However, the polarization curve exhibits a downward trend
+over time, which allows for the extraction of SOH using aging models
+and polarization curves.
+3. Methodology
+In this section, the overall framework of the proposed method is
+introduced, focusing on key components such as aging model estab-
+lishment, MUSE, CNN-LSTM, and the Bayesian GRU.
+As Fig. 2 shows, first, MUSE is integrated with an aging model and it
+generates a guiding sequence. Next, the sequence and historical data are
+input to CNN-LSTM to fit the voltage and make long-term prediction.
+Then Bayesian GRU is used to explore the mapping relationship between
+the guided sequence, CNN-LSTM voltage fitting, and experimental data.
+This step allows to fuse prediction results from both model-based and
+data-driven methods while quantifying uncertainty. This approach
+provides long-term prediction with confidence intervals under the dy-
+namic load cycling condition. Finally, based on the fused prediction
+result, MUSE is used again to quantify SOH during the prediction stage,
+enabling to estimate RUL.
+3.1. Establish of the aging model
+In a PEMFC, hydrogen gas is delivered to the anode, where it in-
+teracts with a catalyst and splits into protons and electrons. The protons
+pass through the exchange membrane to the cathode, while the elec-
+trons flow through an external circuit, generating electric energy. At the
+cathode, oxygen molecules react with the protons to form water,
+releasing heat [40]. The output voltage of a fuel cell can be depicted as
+[27]:
+Vst = ncell × (Ecell −Eact −Eohm −Econ)
+(1)
+where ncell is the number of fuel cells. Ecell is the reversible voltage (V).
+Eact, Eohm and Econ represent the voltage drop of the activation loss,
+ohmic loss and concentration loss. These voltage drops can be calculated
+as follows [41]:
+Eact = jRact + RT
+αa+c
+ln
+(j + jloss
+jex
+)
+(2)
+Eohm = jRohm
+(3)
+Table 1
+Control parameters.
+Items
+Values
+Active surface (cm2)
+25
+Hydrogen inlet-pressure (kPa)
+110
+Air inlet-pressure (kPa)
+110
+Operating temperature (◦C)
+85
+Hydrogen relative humidity (%)
+50
+Air relative humidity (%)
+50
+Fig. 1. Experimental data of the durability test (a) Voltage and current in one dynamic load cycle (b) Overall voltage (c) Polarization curve.
+X. Yu et al.
+International Journal of Hydrogen Energy 141 (2025) 536–549
+539
+Econ = jRcon + RT
+βa+c
+ln
+(jmax −j
+jmax
+)
+(4)
+where j is the current density of PEMFC, jloss represents the crossover
+current density, jex represents exchange current density and jmax repre-
+sents the limiting current density. R is gas constant (8.3145J/mol/K), F
+is Faraday constant (96485C/mol). αa + c is the transfer coefficient, βa + c
+is a parameter related to the number of electrons transferred in the re-
+action, ‘a+c’ means that reactions on both cathode and anode are
+considered. T is temperature. Ract is the activation resistance. Rcon is the
+concentration resistance. Rohm is the ohmic resistance. Ract, Rcon and
+Rohm can be combined as the equivalent resistance (Requ)), reflecting the
+overall resistance of the PEMFC, as [41]:
+Requ = Ract + Rohm + Rcon
+(5)
+Then, combined with Eqs. (2)–(5), Eq. (1) can be changed into
+Vst = Ecell −jRequ −
+RT
+αa+cF ln
+(j + jloss
+jex
+)
+−
+RT
+βa+cF ln
+(jmax −j
+jmax
+)
+(6)
+Except for j, R, T, F, the other parameters should be identified to get
+their evolution in the entire durability test. Among these parameters, jex
+exhibits a decreasing trend and Requ exhibits an increasing trend, so they
+can be utilized to express SOH of the PEMFC. Between 300h and 700h,
+the change in Requ is twice the change in jex, as shown in Fig. 3 (a). For
+the sake of clarity, only the fitting result at t = 0h is shown in Fig. 3(b).
+The results of parameter identification of some other parameters are
+shown in Fig. 4.
+Fig. 2. The structure of the proposed method.
+Fig. 3. Results of polarization curve fitting
+(a) Identified value of jex and Requ (b) Polarization curve fitting at t = 0h
+X. Yu et al.
+International Journal of Hydrogen Energy 141 (2025) 536–549
+540
+The overall trend of parameters characterizing SOH of fuel cells can
+be considered as a linear trend [6] so jex and Requ can be expressed as
+functions of time. The variable g can be introduced to reset the trends of
+jex and Requ, which can be considered as SOH, as follows:
+{ jex = jex0(1 −g(t))
+Requ = Requ0(1 + 2g(t))
+(7)
+where jex0 is the initial value of jex and Requ0 is the initial value of Requ.
+Therefore, the aging model is established as follows:
+Ecell = Erev −jRequ0(1 + 2g(t)) −
+RT
+αa+cF ln
+(
+j + jloss
+jex0(1 −g(t))
+)
+−
+RT
+βa+cF ln
+(jmax −j
+jmax
+)
+(8)
+3.2. MUSE based guidance sequence generation
+3.2.1. MUSE
+MUSE is a unique method that quantifies the uncertainty by quan-
+tifying the form of the role of model uncertainty on the system state
+transfer. A parameter δ and a matrix d are introduced into the process
+equation. δ represents the amplitude of the influence and d represents
+the mode of action of the uncertainty. Thus, the state space model is as
+follows:
+{
+xk+1 = (A + diδ)xk + wk
+yk = h(xk, uk) + vk
+(9)
+where xk represents the system state, xk = [gk, gk′]T. A represents the
+state transition matrix, A = [1, Ts; 0, 1]T. yk is voltage. h( ) represents
+observation equation. wk and vk represent process noise and measure-
+ment noise, respectively. The elements of d is either 1 or 0. δ is initialized
+to 1. 15 possible positions are set, i.e. d1 = [1, 0; 0, 0], d2 = [0, 1; 0, 0],
+…, d14 = [0, 1; 1, 1], d15 = [1, 1; 1, 1], d∈{di, i = 1, 2, …, 15}. Concise
+steps of MUSE are as below [7]:
+(1) Prediction
+̂δi,k|k−1 = ̂δi,k−1|k−1
+(10)
+̂xi,k|k−1 =
+(
+A + ̂δi,k−1|k−1di
+)̂xi,k−1|k−1
+(11)
+Pδ
+i,k|k−1 = Pδ
+i,k|k−1
+(12)
+Pδx
+i,k|k−1 =
+[
+Pδ
+i,k−1|k−1
+Pδx
+i,k−1|k−1
+][ dîxi,k−1|k−1
+A + ̂δi,k−1|k−1di
+]
+(14)
+(2) Update
+Newton iteration method is used. ζi,k|k = [δ, xk|k]T. The boundary
+condition is set as | ζiter+1 i,k|k-ζiter i,k|k |< 0.01
+ζiter+1
+i,k|k
+= ζiter
+i,k|k −
+[
+∇T
+ζ ei
+(
+ζiter
+i,k|k
+)
+⋅∇ζei
+(
+ζiter
+i,k|k
+)
++ Si
+(
+ζiter
+i,k|k
+)]−1
+∇T
+ζ ei⋅ei
+(
+ζiter
+i,k|k
+)
+(15)
+(3) d estimation
+For di, when k is given, its possibility is calculated by
+μi,k = λi,kμi,k−1
+∑
+15
+i=1
+λi,kμi,k−1
+(16)
+Fig. 4. Results of identification of some other parameters
+(a) Identification value of jloss and β (b) Identification value of jmax and Erev.
+Fig. 5. Flowchart of MUSE
+Px
+i,k|k−1 =
+[
+dîxi,k−1|k−1
+A + ̂δi,k−1|k−1di
+]
+⎡
+⎣
+Pδ
+i,k−1|k−1
+Pδx
+i,k−1|k−1
+(
+Pδ
+i,k−1|k−1
+)T
+Px
+i,k−1|k−1
+⎤
+⎦
+[ dîxi,k−1|k−1
+A + ̂δi,k−1|k−1di
+]
++ Qk
+(13)
+X. Yu et al.
+International Journal of Hydrogen Energy 141 (2025) 536–549
+541
+λi,k = (2π)−0.5⃒⃒Γi,k
+⃒⃒× exp
+[
+−0.5
+(
+Yk −h
+(
+uk, ̂xi,k|k−1
+))TΓi,k
+−1(
+Yk −h
+(
+uk, ̂xi,k|k−1
+))]
+(17)
+Γi,k = ∇xg|ˆxi,k|k−1Px
+i,k|k−1∇T
+xg|ˆxi,k|k−1 + Rk
+(18)
+(4) Final estimation
+̂ζk|k =
+∑
+15
+i=1
+μi,k̂ζi,k|k
+(19)
+In the historical stage, xk can be gotten by MUSE. For the prediction
+stage, xk is gotten by the equation below:
+xk+1 = Axk
+(20)
+xk in the both historical and prediction parts are plugged into the
+observation equation to get the guidance sequence. The flow chart of
+MUSE is shown in Fig. 5.
+3.2.2. The principle of CNN-LSTM prediction guided by MUSE
+In CNN-LSTM, data is input to the CNN, where the convolutional
+layers are used for feature extraction. The pooling layers explore hidden
+information. Next, the extracted feature sequence is input to the LSTM
+layer for modeling. CNN acts as the front-end feature extractor, while
+LSTM captures time dependency. This model effectively enhances the
+performance of time series prediction [33].
+The structure of prediction used in this work is different from NSD-
+LSTM in Ref. [21]. In the training stage, a set of slices is constructed:
+{(tm+1,Vgui,m+1), (t1,V1), (t2,V2), …, (tm, Vm), (tm+1,Vm+1)}, {(tm+2, Vgui,
+m+2), (t2, V2), (t3, V3), …, (tm+1, Vm+1), (tm+2, Vm+2)}, …, {(ts, Vgui,s),
+(ts-m-1, Vs-m-1), (ts-m, Vs-m), …, (ts-1, Vs-1), (ts, Vs)}. This set is used for
+training CNN-LSTM. m+2 is the width of slice.
+In the prediction stage, at ts+1, {(ts+1, Vgui,s+1) (ts-m, Vs-m),(ts-m+1, Vs-
+m+1), …,(ts-1, Vs-1),(ts, Vs)} is input to CNN-LSTM to obtain (ts+1, Vpre,
+s+1). At ts+2, {(ts+2, Vgui,s+2), (ts-m+1, Vs-m+1), (ts-m+2, Vs-m+2), …, (ts, Vs),
+(ts+1, Vpre,s+1)}is input to CNN-LSTM to obtain (ts+3, Vpre,s+3). Repeat
+this process to obtain the predicted values (Vpre,s+1, Vpre,s+2, …, Vpre,s +
+PH). The process is illustrated in Fig. 6. Vgui,s+1 is the (s+1)th element in
+guidance sequence.
+3.3. Bayesian GRU based fusion
+In traditional deep learning, model parameters are usually gotten
+through maximum likelihood estimation, and model weights and biases
+are restricted to point estimates [42]. In a Bayesian context, it works
+with probability distribution. This approach helps Bayesian networks
+capture the uncertainty associated with network weights. The Bayesian
+GRU follows a similar structure to GRU but represents its weights as
+distributions. During training, Bayesian GRU leverages variational
+inference to obtain posterior distributions for model parameters. In this
+study, guiding sequence and CNN-LSTM prediction results are regarded
+as inputs and experimental data is regarded as the target. Bayesian GRU
+is trained to explore the mapping relationship between the guiding
+sequence, CNN-LSTM prediction, and experimental data. This can give a
+long-term prediction with confidence interval.
+3.3.1. GRU
+Compared to LSTM, GRU has a simpler structure and fewer weight
+parameters, which reduces the risk of overfitting [43]. A GRU consists of
+an update gate zt and a reset gate rt. The reset gate directly affects the
+hidden state. The update equation for GRU is as follows [43]:
+rt = σ(Wrx ⋅Xt + Wrh ⋅ht−1 + br)
+(26)
+zt = σ(Wzx ⋅Xt + Wzh ⋅ht−1 + bz)
+(27)
+̃ht = tanh(W˜hh ⋅rt ⊙ht−1 + Whx ⋅xt + b˜h)
+(28)
+ht = (1 −zt) ⊙ht−1 + zt ⊙̃ht
+(29)
+where Xt is the input of current step, ht is the output of current step, σ is
+the activation function, br is the deviation vector. The matrix W with
+different subscripts belongs to the weight matrix.
+3.3.2. Variational inference
+The goal of variational inference is to create a variational distribu-
+tion q0(ω) that closely approximates the true posterior p(ω|D). Typically,
+q0(ω) is defined by a series of simpler and tractable distributions. To
+achieve this estimation, the difference between the two probability
+distributions is computed using the Kullback-Leibler (KL) divergence,
+defined as follows [44]:
+KL[q(x)‖p(x)] = Еq(x)
+[
+log q(x)
+p(x)
+]
+=
+∫
+q(x)log q(x)
+p(x) dx
+(30)
+After that, the minimization of KL divergence between q0(ω) and p
+(ω|D) can be calculated as follows:
+KL[q0(ω)‖p(ω|D)] = Еq0(ω)
+[
+log q0(ω)
+p(ω|D)
+]
+= KL
+[
+[q0(ω)‖p(ω)] −Еq0(ω)[log p(D|ω)] + log p(D)
+(31)
+where KL[q0(ω)||p(ω|D)] is used to represent the similarity between
+q0(ω) and p(ω). Eq0(ω)[log p(D|ω)] is the loss of probability, representing
+the degree of model fitting to the data. The minimum of KL[q0(ω)||p(ω|
+D)] can be optimized by evidence lower bound (ELBO):
+L ELBO(D, θ) = = Еq0(ω)[log p(D|ω)] −KL[q0(ω)‖p(ω)]
+= Еq0(ω)[log p(D|ω)] −Еq0(ω)[log q0(ω)] + Еq0(ω)[log p(ω)]
+(32)
+To reduce computational complexity, ELBO is estimated using un-
+biased Monte Carlo sample from the variational distribution. The
+expression then becomes:
+L ELBO(D, θ) ≈
+∑
+K
+k=1
+log p
+(
+D
+⃒⃒ω(k))
+−log qθ
+( ω(k))
++ log p
+( ω(k))
+.
+(33)
+where K is the number of samples from q0(ω). θ is the optimized
+Fig. 6. Guided long-term prediction.
+X. Yu et al.
+International Journal of Hydrogen Energy 141 (2025) 536–549
+542
+parameter in backpropagation.
+4. Result and discussion
+The proposed method is compared with MUSE, CNN-LSTM, EKF-
+LSTM, NSD-LSTM and adaptive EKF- nonlinear autoregressive exoge-
+nous neural network (AEKF-NARX). Among these methods, MUSE was
+previously proposed by the authors, and CNN-LSTM was built by open-
+source code. EKF-LSTM, NSD-LSTM and AEKF-NARX are obtained by
+compiling and debugging the code according to the algorithm structure
+in the relevant papers [27,28,45]. The performance of long-term pre-
+diction of these methods is discussed. Three metrics are used: root mean
+square error (RMSE), mean absolute percentage error (MAPE) and per-
+centage error of RUL estimation (%ErFT) [4]. Smaller absolute value of
+these metrics indicates higher prediction precision. Accuracy (Acc) is
+used to evaluate the overall performance of RUL estimation over the
+entire lifecycle [28]. Higher Acc means better overall estimation
+performance.
+RMSE =
+̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅̅
+∑n
+i=1
+(
+ypred,i −yact,i
+)2
+n
+√
+√
+√
+√
+(34)
+MAPE = 1
+n
+∑n
+i
+⃒⃒⃒⃒⃒
+ypred,i −yact,i
+yact,i
+⃒⃒⃒⃒⃒
+(35)
+%ErFT,i = RULest,i −RULact,i
+RULact,i
+× 100
+(36)
+Acc = 1 −1
+n
+∑n
+i
+⃒⃒%ErRUL,i
+⃒⃒
+(37)
+where ypred,i is the prediction value, yact,i means the actual value, RULest,i
+means the estimated RUL and RULact,i denotes the actual RUL. n is the
+total amount of data. For this study, the fuel cell is considered to have a
+constant aging rate, so its actual RUL is linear [28].
+To validate the uncertainty quantification capability of the proposed
+method, these metrics are used: Gaussian negative log-likelihood (G-
+NLL), prediction interval coverage probability (PICP), and prediction
+interval average width (PINAW). G-NLL characterizes the accuracy of
+the prediction by measuring the cumulative error between the predic-
+tion distribution and the distribution of actual data. PINAW is the
+average width of the confidence interval. Small G-NLL indicates accu-
+rate prediction. PICP is used to assess how well the confidence interval
+covers the actual data.
+Fig. 7. Datasets (a) Dataset 1, voltage (b) Dataset 1, current density (c) Dataset 2, voltage (d) Dataset 2, current density (e) Dataset 3, voltage (f) Dataset 3, cur-
+rent density.
+X. Yu et al.
+International Journal of Hydrogen Energy 141 (2025) 536–549
+543
+G-NLL =
+∑
+n
+i=1
+log σ2
+i + log 2 π +
+(
+yact,i −ypred,i
+)2/
+σ2
+i
+2
+(38)
+PICP = m
+n × 100
+(39)
+PINAW = 1
+n
+∑
+n
+i=1
+(
+yupper
+pred,i −ylower
+pred,i
+)
+(40)
+where μi and σi represent the mean and variance of prediction, respec-
+tively. m represents denotes the number of true values within the con-
+fidence interval. yupper pred, iandylower pred, irepresent represent the
+upper and lower bounds of the confidence interval, respectively.
+4.1. Data preprocessing
+The quantity of original data is too huge to deploy algorithm, so it is
+necessary to take samples. Interval is set as 1h and a new Dataset is
+constructed, called Dataset 1. Moreover, load current exhibits an
+apparent hierarchical pattern. There are 9 current levels: 0A, 1.78A,
+4.45A, 9.51A, 10.4A, 14.85A, 20.75A, 29.65A and 35.6A [41]. A
+pseudo-steady condition can be obtained by extracting the data at a
+current level [21]. To comprehensively validate the performance of the
+proposed method, two levels with the largest proportion are chosen:
+1.78A and 14.85A. They are called Dataset 2 and Dataset 3. Dataset 1
+contains the original features. It is a full current dataset. Dataset 2 and
+Dataset3 seem to show decreasing trends, belonging to constant current
+Fig. 8. (a) Long-term prediction of Dataset 1 (a) PH = 300h (b) Partial enlargement, PH = 300h (c) PH = 200h (d) Partial enlargement, PH = 200h (e) PH = 100h (f)
+Partial enlargement, PH = 100h
+Table 2
+Long-term prediction metrics of different methods in Dataset 1.
+Metrics
+Method
+PH = 300h
+PH = 200h
+PH = 100h
+RMSE
+MUSE
+0.1006
+0.0266
+0.0223
+CNN-LSTM
+0.0211
+0.0151
+0.0156
+EKF-LSTM
+0.0879
+0.0911
+0.0620
+AEKF-NARX
+0.0753
+0.0643
+0.0295
+NSD-LSTM
+0.1126
+0.1159
+0.1196
+The proposed method
+0.0138
+0.0103
+0.0113
+MAPE
+MUSE
+0.1021
+0.0268
+0.0247
+CNN-LSTM
+0.0250
+0.0171
+0.0180
+EKF-LSTM
+0.1115
+0.1140
+0.0808
+AEKF-NARX
+0.0829
+0.0700
+0.0276
+NSD-LSTM
+0.1299
+0.1357
+0.1402
+The proposed method
+0.0156
+0.0117
+0.0133
+X. Yu et al.
+International Journal of Hydrogen Energy 141 (2025) 536–549
+544
+dataset, as shown in Fig. 7.
+4.2. Comparison of long-term prediction
+To validate the long-term prediction performance of the proposed
+method, the Datasets are split into historical data and validation data.
+The historical data is used for training, while the validation data is used
+to assess prediction accuracy. Three different PHs are set: 300h, 200h,
+and 100h. Fig. 8 shows the results for different methods in Dataset 1.
+According to the 3σ rule, the confidence interval for long-term predic-
+tion is chosen to be within three standard deviations (±3σ) of the mean.
+This means that there is a 99.7% probability that the predicted results
+will fall within this interval.
+It can be observed that the prediction of the proposed method is
+closest to the actual data. Despite the deviation between the guidance
+sequence provided by MUSE and the real data, the Bayesian GRU fusion
+measures effectively reduce this deviation. And the actual values
+consistently fall within the confidence interval. In contrast, other
+methods exhibit significant deviation from the actual data. NSD-LSTM is
+unable to track the actual data because it is difficult for ARIMA to
+capture the periodicity of data. CNN-LSTM cannot provide prediction
+with periodicity. It can be concluded that the prediction structure in the
+Fig. 9. Cumulative error of Dataset 1 (a) RMSE (b) MAPE.
+Fig. 10. long-term prediction of Dataset 2 and Dataset 3 (a) Dataset 2, PH = 300h (b) Dataset 3, PH = 300h (c) Dataset 2, PH = 200h (d) Dataset 3, PH = 200h (e)
+Dataset 2, PH = 100h (f) Dataset 3, PH = 100h
+X. Yu et al.
+International Journal of Hydrogen Energy 141 (2025) 536–549
+545
+proposed method helps to improve the performance of long-term pre-
+diction. EKF-LSTM and AEKF-NARX cannot provide good prediction.
+Metrics for these methods in Dataset 1 are summarized in Table 2.
+It is evident that the proposed method exhibits significant advan-
+tages in accuracy compared to the other methods in Dataset 1. When
+comparing RMSE, at PH = 300h, the proposed method reduces the error
+by 86.28%, 34.60%, 84.3%, 81.67%, and 87.74% compared to MUSE,
+CNN-LSTM, EKF-LSTM, AEKF-NARX and NSD-LSTM, respectively.
+When comparing the cumulative errors of these methods shown in
+Fig. 9, the proposed method has the smallest value, indicating that
+guided information and uncertainty consideration help to improve the
+performance of long-term prediction. The proposed method has the best
+performance of long-term prediction in Dataset 1. To comprehensively
+validate the performance of the proposed method, the comparison in
+Dataset 2 and Dataset 3 is shown in Fig. 10. The accumulative errors are
+shown in Fig. 11.
+In Fig. 10(a), it is evident that the prediction of AEKF-NARX and
+CNN-LSTM deviates from the actual data. The curve of EKF-LSTM in
+Dataset 2 is difficult to exhibit a declining trend. And the prediction of
+NSD-LSTM deviates from the actual data, likely due to significant
+discrepancy in the trend extracted by ARIMA, consistent with findings in
+Ref. [21]. Its prediction is difficult to consistently exhibit nonlinear
+variations in both Dataset 2 and Dataset 3. In Fig. 10(a), (c), (e),
+EKF-LSTM provides a result with a declining trend. In Fig. 10(b)–(f), it
+can be found that the prediction results of MUSE are located in the
+middle of the actual data trend, and the prediction curves given by the
+proposed method have a similar trend with MUSE. In Fig. 10(a), it can be
+seen that the prediction curve of MUSE deviates from the actual data but
+the prediction result of the proposed method is located in the middle of
+the actual data and has an aging trend similar to that of the actual data,
+which demonstrates that the prediction framework proposed in Section
+4.3.2 can effectively consider the aging trend and the nonlinear varia-
+tion. In Fig. 10, the prediction of the proposed method reflects a
+decreasing trend while preserving certain nonlinear variations. This
+characteristic is particularly pronounced in Dataset 3. Because the
+voltage and current density of Dataset 2 and Dataset 3 do not show
+apparent regularity, the fuel cell can be considered to be operating under
+the condition of time-varying loads. The proposed method shows good
+performance under these conditions, indicating that it has good uni-
+versality under different conditions. And the prediction of the proposed
+method closely aligns with the actual data. Metrics for these methods in
+Dataset 2 and Dataset 3 are summarized in Table 3.
+It can be known in Table 3, when comparing MAPE, compared with
+MUSE, CNN-LSTM, EKF-LSTM, AEKF-NARX, and NSD-LSTM, the pro-
+posed method reduces cumulative errors by 21.82%, 57.74%, 2.27%,
+46.42%, and 29.8%, respectively. Notably, in Dataset 2, it is evident that
+Fig. 11. Accumulated errors of Dataset 2 and Dataset 3 (a) RMSE, Dataset 2 (b)
+MAPE, Dataset 3 (c) RMSE, Dataset 2 (d) MAPE, Dataset 3.
+Table 3
+Long-term prediction of Dataset 2 and Dataset 3.
+Dataset 2
+Dataset 3
+Metrics
+Method
+PH = 300h
+PH = 200h
+PH = 100h
+PH = 300h
+PH = 200h
+PH = 100h
+RMSE
+MUSE
+0.0112
+0.0065
+0.0052
+0.0210
+0.0209
+0.0203
+CNN-LSTM
+0.0113
+0.0095
+0.0117
+0.0319
+0.0406
+0.0215
+EKF-LSTM
+0.0065
+0.0063
+0.0057
+0.0223
+0.0213
+0.0306
+AEKF-NARX
+0.0148
+0.014
+0.0088
+0.0317
+0.0680
+0.0203
+NSD-LSTM
+0.0099
+0.0092
+0.0060
+0.0268
+0.0286
+0.0224
+The proposed method
+0.0065
+0.0060
+0.0064
+0.0191
+0.0179
+0.0172
+MAPE
+MUSE
+0.0109
+0.0060
+0.0051
+0.0268
+0.0277
+0.0264
+CNN-LSTM
+0.0115
+0.0093
+0.0113
+0.0427
+0.0508
+0.0279
+EKF-LSTM
+0.0065
+0.0059
+0.0052
+0.0275
+0.0252
+0.0373
+AEKF-NARX
+0.0145
+0.0174
+0.0088
+0.0400
+0.0908
+0.0259
+NSD-LSTM
+0.0099
+0.0091
+0.0055
+0.0344
+0.0369
+0.0289
+The proposed method
+0.0064
+0.0056
+0.0052
+0.0227
+0.0369
+0.0196
+Table 4
+Metrics of uncertainty quantification.
+Metrics
+Dataset
+PH = 300h
+PH = 200h
+PH = 100h
+​
+1
+94.0555
+61.8399
+30.8184
+G-NLL
+2
+219.8467
+146.6081
+73.2850
+​
+3
+139.8390
+90.6945
+45.2205
+​
+1
+100
+100
+100
+PICP (%)
+2
+59.33
+69.50
+63
+​
+3
+67
+74
+63
+PINAW
+1
+0.1351
+0.1205
+0.1219
+2
+0.0120
+0.0114
+0.0109
+3
+0.0368
+0.0402
+0.0344
+X. Yu et al.
+International Journal of Hydrogen Energy 141 (2025) 536–549
+546
+the curve of EKF-LSTM first decreases and then increases, failing to
+reflect the degradation of PEMFCs. However, due to its prediction falling
+within the range of actual data, its precision remains high. Considering
+both accuracy metrics and prediction results, the performance of EKF-
+LSTM falls short of the proposed method. In Dataset 3, the precision
+advantage of the proposed method is similarly significant, with MAPE
+cumulative errors reduced by 2.1%, 34.76%, 12%, 49.46%, and 20.96%
+compared to MUSE, CNN-LSTM, EKF-LSTM, AEKF-NARX, and NSD-
+LSTM, respectively (see Fig. 11). It can be concluded that the pro-
+posed method can achieve excellent long-term prediction in pseudo-
+steady conditions. It can not only provide aging trends but also reflect
+nonlinear variations.
+To analyze the uncertainty quantification capability of the proposed
+method, G-NLL, PICP and PINAW were calculated as shown in Table 4.
+It can be known in Table 4 that in one Dataset, with PH decreasing,
+G-NLL decreases. This suggests that the uncertainty in the prediction is
+gradually decreasing as more training data are available. When
+comparing the same PH value, the G-NLL on Dataset 1 is significantly
+lower than that on the other Datasets. From Figs. 8 and 10, it can also be
+seen that the prediction results of the proposed method is close to the
+actual data in Dataset 1, resulting in a small G-NLL with a small (yact,i-
+ypred,i)2, while for Dataset 2, the prediction result mainly reflect the
+aging trend, and do not reach the coincidence of prediction results with
+the real data in the corresponding time. For Dataset 3, at PH = 200h and
+PH = 100h, the prediction results have similar cyclic variations as the
+actual data, resulting in smaller G-NLL and larger PICP than that of
+Dataset 2. The actual data in Dataset 1 and Dataset 2 have more pro-
+nounced cyclic variations than that of Dataset 2, and it can be summa-
+rized that the proposed method has a better performance in quantifying
+uncertainty in cyclically varying datasets. Uncertainty quantification
+performance. For Dataset 1, PICP always reaches 100% and PINAW is
+always biggest, indicating that the proposed method has the best un-
+certainty quantification performance in Dataset 1. Comparing Dataset 2
+and Dataset 3, it can be found that higher PICP and larger PINAW occur
+simultaneously. For pseudo-steady-state conditions with strong fluctu-
+ations, wider confidence intervals can cover more real data.
+4.3. RUL estimation
+RUL estimation requires the prior knowledge of failure threshold.
+Failure threshold is determined and then RUL is estimated.
+4.3.1. Verification of MUSE and determination of failure threshold
+MUSE is used to quantify SOH and uncertainty, and the results of
+uncertainty quantification are shown in Figs. 12 and 13.
+It can be observed that δ exhibits a stable trend, indicating that the
+uncertainty of the aging model has a consistent impact on state transi-
+tion. Additionally, it can be found that in Fig. 13, the values of δ in these
+conditions are different. In Fig. 13, the probability of d2 rapidly ap-
+proaches 1. According to the process equation in Eq. (9), it indicates that
+uncertainty has an impact on state transition and it causes a tiny drift in
+SOH estimation. This indicates that the method can quantify uncertainty
+quickly. SOH estimated by MUSE is shown in Fig. 14.
+Selecting different data will result in different failure thresholds. It
+can be found in Fig. 14 that estimated voltage of MUSE in Dataset 1
+achieves a high level of fit with the experimental data. For the Dataset 2
+and Dataset 3, the estimated voltage constantly follows the experimental
+data, located in the middle of the experimental data. The good perfor-
+mance of voltage fitting means excellent estimation of SOH. And the
+curve of SOH reflects an obvious trend which is useful for determination
+of failure threshold. The effectiveness of MUSE in estimating SOH and
+model uncertainty is validated.
+The curves of SOH in Fig. 14 are regarded as the reference curve. Its
+maximum SOHmax is regarded as the failure threshold, and then the time
+of end of life (tEoL) can be determined [11]. For Dataset 1, SOHmax is
+0.6283, tEoL is 745h. For Dataset 2, SOHmax is 0.8010, tEoL is 647h. For
+Dataset 3, SOHmax is 0.7473, tEoL is 698h.
+4.3.2. SOH prediction and RUL estimation
+RUL estimation requires information about SOH prediction. Among
+Fig. 12. Estimated δ (a) Dataset 1 (b) Dataset 2 (c) Dataset 3.
+Fig. 13. Estimated d (a) Dataset 1 (b) Partial enlargement, Dataset 1 (c) Dataset
+2 (d) Partial enlargement, Dataset 2 (e) Dataset 3 (f) Partial enlargement,
+Dataset 3.
+X. Yu et al.
+International Journal of Hydrogen Energy 141 (2025) 536–549
+547
+all the compared methods, only MUSE and EKF-LSTM can obtain SOH.
+Therefore, in Fig. 15, Table 5, and Table 6, the proposed method is
+compared with MUSE and EKF-LSTM. SOH prediction when PH = 300h
+is shown in Fig. 15. %ErFT is listed in Table 4.
+It can be observed in Fig. 15 that SOH prediction of the proposed
+method is close to the SOH reference. And the estimated RUL is closest to
+300h. Predicted SOH has a good fitting with the SOH reference. It is
+necessary to explain that EKF-LSTM cannot provide effective SOH pre-
+diction because it is difficult for EKF to estimate SOH accurately. It can
+be seen in Fig. 15 that the curve of EKF-LSTM at PH = 300h deviates
+from the reference so its %ErFT is not listed in Table 5.
+In Dataset 1, the proposed method exhibits significantly low cumu-
+lative errors. Compared with MUSE, it reduces %ErFT by 79.63%. This
+indicates that only the proposed method can achieve RUL estimation for
+Fig. 14. Estimation of voltage and SOH (a) SOH estimation in Dataset 1 (b) Voltage estimation in Dataset 1 (c) SOH estimation in Dataset 2 (d) Voltage estimation in
+Dataset 2 (e) SOH estimation in Dataset 3 (f) Voltage estimation in Dataset 3.
+Fig. 15. SOH prediction when PH = 300h (a) Dataset 1 (b) Dataset 2 (c) Dataset 3.
+X. Yu et al.
+International Journal of Hydrogen Energy 141 (2025) 536–549
+548
+the full current dataset. For Dataset 2, compared with MUSE and EKF-
+LSTM, the proposed method reduces RUL estimation cumulative errors
+by 77.66%, and 75.98%, respectively. In Dataset 3, at PH = 300h, the
+proposed method outperforms MUSE in RUL estimation accuracy with
+improvement of 90.91%. The accuracy enhancement highlights the
+significant advantage of the proposed method in RUL estimation, mak-
+ing it deployable for monitoring PEMFC. The data from the last 400h of
+lifetime is used to validate performance of RUL estimation on the full
+lifecycle. Acc is computed and satisfactory horizon (SH) is used. SH
+means the duration in which the estimated RUL falls within an error
+range [26]. Bigger SH means stronger performance to give satisfactory
+results. In this validation, the PEMFC is considered to undergo uniform
+aging over time, resulting in a linear decrease in its lifespan. Its actual
+RUL is linear. This viewpoint is also supported by Ref. [28]. The result of
+RUL estimation is shown in Fig. 16.
+In Fig. 16, it is evident that RUL estimation for Dataset 2 exhibits
+obvious fluctuation. The reason may lie in the presence of multiple
+anomalous data points in the experimental data, causing the SOH esti-
+mation at those specific data points to deviate from the normal data. For
+Dataset 1 and Dataset 3, the curves of RUL estimation are almost entirely
+within the boundary. For Dataset 3, it can be observed that the estimated
+RUL significantly decreases between 470 hours and 530 hours. By
+comparing Fig. 7(e), it is evident that around 500 hours, the voltage of
+the fuel cell is quite low, approximately 0.62. This low voltage may lead
+to a transient fault at that moment. According to Table 5, the proposed
+method demonstrates superior accuracy in full-life-cycle RUL estima-
+tion. Compared to MUSE, the proposed method achieves a 73.07% in-
+crease in Acc for Dataset 1. Furthermore, even under the constant
+current conditions, the proposed method maintains a substantial
+advantage of accuracy, indicating its superior full lifecycle RUL esti-
+mation accuracy in scenarios with high uncertainty.
+5. Conclusions
+In order to realize long-term aging prediction and RUL estimation of
+PEMFC under the dynamic load cycle condition, a Bayesian GRU fused
+MUSE and CNN-LSTM hybrid method is proposed. In this method, MUSE
+is used to generate guidance sequences to guide the training and pre-
+diction of CNN-LSTM. Bayesian GRU is utilized to fuse the prediction
+results of MUSE and CNN-LSTM. The main conclusions are as follows:
+1) Under the dynamic load cycling condition, the proposed method
+shows excellent performance of long-term aging prediction. The
+prediction curve of Dataset 1 is close to the actual curve. For the
+pseudo-steady conditions used in this paper, the results of the pro-
+posed method not only can show the aging trends but also reflect the
+nonlinear variations. For Dataset 1, compared with MUSE, CNN-
+LSTM, EKF-LSTM, AEKF-NARX and NSD-LSTM, the proposed
+method reduces under the full current dataset the cumulative RMSE
+76.32%, 31.36%, 85.31%, 79.07% and 89.83%, respectively.
+2) The capacity of uncertainty quantification of the proposed method in
+Dataset 1 is best. Bayesian GRU fuses the prediction results of MUSE
+and CNN-LSTM, providing confidence intervals for long-term
+Table 5
+%ErFT of different methods.
+Method
+PH = 300h
+PH = 200h
+PH = 100h
+Dataset 1
+MUSE
+−72.67
+–66
+−64
+EKF-LSTM
+–
+–
+–
+The proposed method
+3.33
+19
+23
+Dataset 2
+MUSE
+−42
+−6.50
+88
+EKF-LSTM
+50
+25
+52
+The proposed method
+7
+3.50
+23
+Dataset 3
+MUSE
+¡22
+−65.50
+−29
+EKF-LSTM
+¡25
+10.50
+99
+The proposed method
+2
+¡56
+11
+Table 6
+Acc and SH for the last 400h
+Dataset
+Metrics
+MUSE
+EKF-LSTM
+The proposed method
+1
+Acc
+0.3958
+−5.1500
+0.6850
+SH/h
+162
+–
+341
+2
+Acc
+0.4513
+−0.4322
+0.6374
+SH/h
+247
+–
+286
+3
+Acc
+0.7128
+−0.4287
+0.8125
+SH/h
+243
+–
+379
+Fig. 16. RUL on the full life cycle (a) Dataset 1 (b) Dataset 2 (c) Dataset 3.
+X. Yu et al.
+International Journal of Hydrogen Energy 141 (2025) 536–549
+549
+prediction. It is the first time to quantify the uncertainty of long-term
+aging prediction under the dynamic load cycle condition. The veri-
+fication of Dataset 1 shows that PICP of the long-term prediction
+result is 100%, indicating that the proposed method has strong
+ability of uncertainty quantification.
+3) The proposed method can realize high-precision estimation of RUL.
+The highest Acc obtained in the full lifecycle estimation of RUL is
+0.8125. This method can be used to estimate RUL on the full lifecycle
+of PEMFC.
+CRediT authorship contribution statement
+Xiaoran Yu: Writing – review & editing, Writing – original draft,
+Validation, Software, Methodology, Formal analysis, Data curation,
+Conceptualization. Yang Yang: Writing – review & editing, Validation.
+Yanjun Liu: Methodology. Wenchao Zhu: Supervision. Changjun Xie:
+Resources, Project administration, Funding acquisition.
+Declaration of competing interest
+The authors declare that they have no known competing financial
+interests or personal relationships that could have appeared to influence
+the work reported in this paper.
+Acknowledgements
+This work was supported by the National Key Research and Devel-
+opment Project of China (2020YFB1506802); and the Key Research and
+Development Project of Guangdong Province (2020B0909040004).
+References
+[1] Dawood F, Anda M, Shafiullah GM. Hydrogen production for energy: an overview.
+Int J Hydrogen Energy 2020;45:3847–69.
+[2] Sikiru S, Oladosu TL, Amosa TI, Olutoki JO, Ansari MNM, Abioye KJ, et al.
+Hydrogen-powered horizons: transformative technologies in clean energy
+generation, distribution, and storage for sustainable innovation. Int J Hydrogen
+Energy 2024;56:1152–82.
+[3] Pramuanjaroenkij A, Kakaç S. The fuel cell electric vehicles: the highlight review.
+Int J Hydrogen Energy 2023;48:9401–25.
+[4] Hua Z, Zheng Z, P´era M-C, Gao F. Remaining useful life prediction of PEMFC
+systems based on the multi-input echo state network. Appl Energy 2020;265:
+114791.
+[5] Sahajpal K, Rana KPS, Kumar V. Accurate long-term prognostics of proton
+exchange membrane fuel cells using recurrent and convolutional neural networks.
+Int J Hydrogen Energy 2023;48:30532–55.
+[6] Yue M, Jemei S, Zerhouni N, Gouriveau R. Proton exchange membrane fuel cell
+system prognostics and decision making: current status and perspectives. Renew
+Energy 2021;179:2277.
+[7] Yang Y, Yu X, Zhu W, Xie C, Zhao B, Zhang L, et al. Degradation prediction of
+proton exchange membrane fuel cells with model uncertainty quantification.
+Renew Energy 2023;219:119525.
+[8] He W, Liu T, Ming W, Li Z, Du J, Li X, et al. Progress in prediction of remaining
+useful life of hydrogen fuel cells based on deep learning. Renew Sustain Energy Rev
+2024;192:114193.
+[9] Bressel M, Hilairet M, Hissel D, Ould Bouamama B. Extended Kalman filter for
+prognostic of proton exchange membrane fuel cell. Appl Energy 2016;164:220–7.
+[10] Chen K, Laghrouche S, Djerdir A. Fuel cell health prognosis using Unscented
+Kalman Filter: postal fuel cell electric vehicles case study. Int J Hydrogen Energy
+2019;44:1930–9.
+[11] Ao Y, Laghrouche S, Depernet D, Chen K. Proton exchange membrane fuel cell
+prognosis based on frequency-domain Kalman filter. IEEE Trans Transp Electrific
+2021;7:2332–43.
+[12] Zhang Z, He H, Wang Y, Quan S, Chen J, Han R. A novel generalized prognostic
+method of proton exchange membrane fuel cell using multi-point estimation under
+various operating conditions. Appl Energy 2024;357:122519.
+[13] Peng W, Wei Z, Huang C-G, Feng G, Li J. A hybrid health prognostics method for
+proton exchange membrane fuel cells with internal health recovery. IEEE Trans
+Transp Electrific 2023;9:4406–17.
+[14] Cheng Y, Zerhouni N, Lu C. A hybrid remaining useful life prognostic method for
+proton exchange membrane fuel cell. Int J Hydrogen Energy 2018;43:12314–27.
+[15] Wang P, Liu H, Chen J, Qin X, Lehnert W, Shao Z, et al. A novel degradation model
+of proton exchange membrane fuel cells for state of health estimation and
+prognostics. Int J Hydrogen Energy 2021;46:31353–61.
+[16] Ou M. A novel approach based on semi-empirical model for degradation prediction
+of fuel cells. J Power Sources 2021;488:229435.
+[17] Zhang X, Yang D, Luo M, Dong Z. Load profile based empirical model for the
+lifetime prediction of an automotive PEM fuel cell. Int J Hydrogen Energy 2017;42:
+11868–78.
+[18] Li K. Health state monitoring and predicting of proton exchange membrane fuel
+cells: a review. J Power Sources 2024;612:234828.
+[19] Yang J, Wang L, Zhang B, Zhang H, Wu X, Xu X, et al. Remaining useful life
+prediction of vehicle-oriented PEMFC systems based on IGWO-BP neural network
+under real-world traffic conditions. Energy 2024;291:130334.
+[20] Huo W, Li W, Zhang Z, Sun C, Zhou F, Gong G. Performance prediction of proton-
+exchange membrane fuel cell based on convolutional neural network and random
+forest feature selection. Energy Convers Manag 2021;243:114367.
+[21] Wang C, Li Z, Outbib R, Dou M, Zhao D. A novel long short-term memory networks-
+based data-driven prognostic strategy for proton exchange membrane fuel cells. Int
+J Hydrogen Energy 2022;47:10395–408.
+[22] Hua Z, Zheng Z, Pahon E, P´era M-C, Gao F. Remaining useful life prediction of
+PEMFC systems under dynamic operating conditions. Energy Convers Manag 2021;
+231:113825.
+[23] Zhang J, Jiang Y, Wu S, Li X, Luo H, Yin S. Prediction of remaining useful life based
+on bidirectional gated recurrent unit with temporal self-attention mechanism.
+Reliab Eng Syst Saf 2022;221:108297.
+[24] Lv J, Yu Z, Zhang H, Sun G, Muhl P, Liu J. Transformer based long-term prognostics
+for dynamic operating PEM fuel cells. IEEE Trans Transp Electr 2024;10(1):
+1747–57.
+[25] Jia C, He H, Zhou J, Li K, Li J, Wei Z. A performance degradation prediction model
+for PEMFC based on bi-directional long short-term memory and multi-head self-
+attention mechanism. Int J Hydrogen Energy 2024;60:133–46.
+[26] Hua Z, Zheng Z, Pahon E, P´era M-C, Gao F. A review on lifetime prediction of
+proton exchange membrane fuel cells system. J Power Sources 2022;529:231256.
+[27] Ma R, Xie R, Xu L, Huangfu Y, Li Y. A hybrid prognostic method for PEMFC with
+aging parameter prediction. IEEE Trans Transp Electrific 2021;7:2318–31.
+[28] Liu H, Chen J, Hissel D, Su H. Remaining useful life estimation for proton exchange
+membrane fuel cells using a hybrid method. Appl Energy 2019;237:910–9.
+[29] Zhou D, Al-Durra A, Zhang K, Ravey A, Gao F. Online remaining useful lifetime
+prediction of proton exchange membrane fuel cells using a novel robust
+methodology. J Power Sources 2018;399:314–28.
+[30] Zuo J, Lv H, Zhou D, Xue Q, Jin L, Zhou W, et al. Long-term dynamic durability test
+Datasets for single proton exchange membrane fuel cell. Data Brief 2021;35:
+106775.
+[31] Vichard L, Steiner NY, Zerhouni N, Hissel D. Hybrid fuel cell system degradation
+modeling methods: a comprehensive review. J Power Sources 2021;506:230071.
+[32] Geng H, Haile MA, Fang H. SSUE: simultaneous state and uncertainty estimation
+for dynamical systems. Int J Robust Nonlinear Control 2021;31:1068–83.
+[33] Wan W, Yang Y, Li Y, Xie C, Song J, Deng Z, et al. Operating conditions
+combination analysis method of optimal water management state for PEM fuel cell.
+Green Energy Intelli Transp 2023:100105.
+[34] Zhou S, Shearing PR, Brett DJL, Jervis R. Machine learning as an online diagnostic
+tool for proton exchange membrane fuel cells. Curr Opin Electrochem 2022;31:
+100867.
+[35] Liu Z, Sun Y, Mao L, Zhang H, Jackson L, Wu Q, et al. Efficient fault diagnosis of
+proton exchange membrane fuel cell using external magnetic field measurement.
+Energy Convers Manag 2022;266:115809.
+[36] Zhu W, Guo B, Li Y, Yang Y, Xie C, Jin J, et al. Uncertainty quantification of proton-
+exchange-membrane fuel cells degradation prediction based on Bayesian-Gated
+Recurrent Unit. eTransportation 2023;16:100230.
+[37] Ghahramani Z. Probabilistic machine learning and artificial intelligence. Nature
+2015;521:452–9.
+[38] Deng H, Hu W, Cao D, Chen W, Huang Q, Chen Z, et al. Degradation trajectories
+prognosis for PEM fuel cell systems based on Gaussian process regression. Energy
+2022;244:122569.
+[39] Shi H, Wei A, Xu X, Zhu Y, Hu H, Tang S. A CNN-LSTM based deep learning model
+with high accuracy and robustness for carbon price forecasting: a case of
+Shenzhen’s carbon market in China. J Environ Manag 2024;352:120131.
+[40] Liu C, Shen J, Dong Z, He Q, Zhao X. Accuracy improvement of fuel cell prognostics
+based on voltage prediction. Int J Hydrogen Energy 2024;58:839–51.
+[41] Wang C, Dou M, Li Z, Outbib R, Zhao D, Liang B. A fusion prognostics strategy for
+fuel cells operating under dynamic conditions. eTransportation 2022;12:100166.
+[42] Sagheer A, Kotb M. Time series forecasting of petroleum production using deep
+LSTM recurrent networks. Neurocomputing 2019;323:203–13.
+[43] Li S, Luan W, Wang C, Chen Y, Zhuang Z. Degradation prediction of proton
+exchange membrane fuel cell based on Bi-LSTM-GRU and ESN fusion prognostic
+framework. Int J Hydrogen Energy 2022;47:33466–78.
+[44] Zhou T, Han T, Droguett EL. Towards trustworthy machine fault diagnosis: a
+probabilistic Bayesian deep learning framework. Reliab Eng Syst Saf 2022;224:
+108525.
+[45] Pan R, Yang D, Wang Y, Chen Z. Performance degradation prediction of proton
+exchange membrane fuel cell using a hybrid prognostic approach. Int J Hydrogen
+Energy 2020;45:30994–1008.
+X. Yu et al.

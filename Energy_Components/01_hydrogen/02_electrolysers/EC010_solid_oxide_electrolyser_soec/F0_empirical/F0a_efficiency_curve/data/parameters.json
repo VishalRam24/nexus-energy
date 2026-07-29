@@ -1,0 +1,52 @@
+{
+  "component_id": "EC010",
+  "component_name": "Solid Oxide Electrolyser (SOEC)",
+  "fidelity": "F0a \u2014 empirical lookup",
+  "version": "1.0.0",
+  "source": "Ni et al. (2007), Chem. Eng. Tech., 29(6), 636-642 (F1a params reused)",
+  "metric": "h2_production_efficiency_LHV",
+  "note": "SOEC very high electrical efficiency (~80-95%) at high T; thermoneutral V=1.285 V. Excludes heat input.",
+  "lookup": {
+    "load_fraction": {
+      "value": [
+        0.0,
+        0.1,
+        0.2,
+        0.4,
+        0.6,
+        0.8,
+        1.0
+      ],
+      "unit": "-",
+      "note": "Breakpoints: fraction of rated power"
+    },
+    "efficiency": {
+      "value": [
+        0.0,
+        0.95,
+        0.94,
+        0.9,
+        0.85,
+        0.8,
+        0.75
+      ],
+      "unit": "-",
+      "note": "Empirical efficiency at each load (LHV basis)"
+    }
+  },
+  "rated": {
+    "load_fraction": {
+      "value": 0.6,
+      "unit": "-"
+    },
+    "efficiency": {
+      "value": 0.85,
+      "unit": "-",
+      "note": "Datasheet rated efficiency"
+    },
+    "P_rated": {
+      "value": 5000.0,
+      "unit": "W"
+    }
+  }
+}

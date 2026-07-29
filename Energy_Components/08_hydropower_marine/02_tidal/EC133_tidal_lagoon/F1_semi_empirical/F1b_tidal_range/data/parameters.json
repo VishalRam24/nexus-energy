@@ -1,0 +1,28 @@
+{
+    "component": "EC133 Tidal Lagoon",
+    "fidelity": "F1b",
+    "description": "Extends F1a basin model with turbine efficiency vs head ratio, seawater density (T/S) correction, tidal range variability (spring/neap cycle), and pumping mode energy gain.",
+    "unit": {
+        "name": "Generic Tidal Lagoon — Bidirectional (Swansea Bay class)",
+        "source": "Aggidis & Feather (2012) Ocean Eng. 40:10-17; Xiao et al. (2020) Renew. Energy; Tidal Lagoon Power (2015) Scoping Report; Baker (1991) Tidal Power, Peter Peregrinus.",
+        "A_lagoon": {"value": 11.5e6, "unit": "m2", "note": "Lagoon plan area (Swansea Bay ~11.5 km2)"},
+        "h_tidal": {"value": 4.5, "unit": "m", "note": "Design tidal amplitude (half peak-to-trough range)"},
+        "T_tide": {"value": 44712.0, "unit": "s", "note": "Tidal period (12.42 h semidiurnal)"},
+        "eta_peak": {"value": 0.27, "unit": "dimensionless", "note": "Peak plant efficiency at design head; bidirectional lagoon turbines ~25-30%"},
+        "h_min_operation": {"value": 0.75, "unit": "m", "note": "Minimum head differential for turbine operation"},
+        "rho_ref": {"value": 1025.0, "unit": "kg/m3", "note": "Reference seawater density"},
+        "g": {"value": 9.81, "unit": "m/s2"},
+        "k_head_efficiency": {"value": 0.4, "unit": "dimensionless", "note": "Head-efficiency curvature coefficient; eta(h) = eta_peak*(1 - k*(h/h_design-1)^2)"},
+        "S_ref": {"value": 35.0, "unit": "psu", "note": "Reference salinity for density correction"},
+        "T_ref": {"value": 12.0, "unit": "degC", "note": "Reference seawater temperature (typical estuary/coastal)"},
+        "n_cycles_per_period": {"value": 2.0, "unit": "dimensionless", "note": "Both ebb and flood generation (bidirectional)"},
+        "pumping_gain_fraction": {"value": 0.07, "unit": "dimensionless", "note": "Energy gain fraction from pumping water into lagoon at high tide (~7% additional energy)"},
+        "spring_neap_amplitude": {"value": 0.30, "unit": "dimensionless", "note": "Relative amplitude variation from spring (max) to neap (min): h_spring = h_design*(1+0.30), h_neap = h_design*(1-0.30)"}
+    },
+    "valid_ranges": {
+        "tidal_range_m": {"min": 0.0, "max": 15.0, "unit": "m"},
+        "T_C": {"min": 0.0, "max": 25.0, "unit": "degC"},
+        "S_psu": {"min": 20.0, "max": 40.0, "unit": "psu"},
+        "lagoon_area_m2": {"min": 1.0e5, "max": 5.0e8, "unit": "m2"}
+    }
+}

@@ -1,0 +1,50 @@
+{
+    "component_id": "EC052",
+    "component_name": "Bifacial PV Module",
+    "fidelity": "F2a — Physics-Lumped Bifacial Single-Diode + Lumped Thermal ODE",
+    "source": "De Soto et al. (2006), Solar Energy 80(1); Marion et al. (2017) NREL bifacial view-factor model; Faiman (2008) module thermal model; Jain & Kapoor (2004) Lambert-W single-diode solution",
+    "module": {
+        "name": "LG NeON 2 BiFacial 400W (n-type mono-Si bifacial)",
+        "source": "Typical n-type mono-Si bifacial module datasheet",
+        "technology": "Mono-c-Si bifacial",
+        "p_mp_stc": {"value": 400.0, "unit": "W", "note": "Front-side STC nameplate power"},
+        "v_oc_stc": {"value": 41.6, "unit": "V"},
+        "i_sc_stc": {"value": 12.40, "unit": "A"},
+        "v_mp_stc": {"value": 34.8, "unit": "V"},
+        "i_mp_stc": {"value": 11.49, "unit": "A"},
+        "alpha_sc": {"value": 0.0050, "unit": "A/K", "note": "Short-circuit current temp coeff"},
+        "cells_in_series": {"value": 60, "unit": "cells"},
+        "area": {"value": 2.0, "unit": "m2", "note": "Module front aperture area"},
+        "bifaciality_factor": {"value": 0.80, "unit": "dimensionless", "note": "phi = rear/front nameplate ratio (typical 0.7-0.85)"},
+        "rear_view_factor": {"value": 0.45, "unit": "dimensionless", "note": "Geometric view factor: fraction of albedo-reflected light reaching rear (tilt/height/layout dependent), Marion 2017"}
+    },
+    "desoto_params": {
+        "description": "De Soto 5-parameter single-diode coefficients at STC (front-side equivalent)",
+        "source": "Fitted from LG NeON 2 BiFacial 400W datasheet",
+        "I_L_ref": {"value": 12.40, "unit": "A", "note": "Light-generated current at STC (front-only nameplate)"},
+        "I_o_ref": {"value": 2.5e-11, "unit": "A", "note": "Diode saturation current at STC"},
+        "R_s": {"value": 0.30, "unit": "Ohm", "note": "Series resistance"},
+        "R_sh_ref": {"value": 450.0, "unit": "Ohm", "note": "Shunt resistance at STC"},
+        "a_ref": {"value": 1.55, "unit": "V", "note": "Modified ideality factor n*Ns*Vt at STC"},
+        "EgRef": {"value": 1.121, "unit": "eV", "note": "Bandgap energy at STC"},
+        "dEgdT": {"value": -0.0002677, "unit": "eV/K", "note": "Bandgap temperature coefficient"}
+    },
+    "thermal": {
+        "description": "Lumped (0D) module thermal mass for transient cell-temperature ODE",
+        "source": "Faiman (2008) Prog. Photovolt. 16; Jones & Underwood (2001) Solar Energy 70",
+        "C_thermal": {"value": 22000.0, "unit": "J/(m2.K)", "note": "Areal heat capacity of glass-cell-backsheet stack (~11 kg/m2 glass-dominated, cp~840)"},
+        "U0": {"value": 25.0, "unit": "W/(m2.K)", "note": "Faiman constant convective+radiative loss coefficient"},
+        "U1": {"value": 6.84, "unit": "W.s/(m3.K)", "note": "Faiman wind-dependent loss coefficient"},
+        "absorptance": {"value": 0.90, "unit": "dimensionless", "note": "Effective solar absorptance of module (fraction of G converted to heat budget)"}
+    },
+    "valid_ranges": {
+        "irradiance_front": {"min": 0.0, "max": 1200.0, "unit": "W/m2"},
+        "irradiance_rear":  {"min": 0.0, "max": 600.0, "unit": "W/m2"},
+        "albedo":           {"min": 0.0, "max": 0.9, "unit": "dimensionless"},
+        "ambient_temperature": {"min": -20.0, "max": 50.0, "unit": "degC"},
+        "wind_speed":       {"min": 0.0, "max": 25.0, "unit": "m/s"},
+        "dt":               {"min": 1.0, "max": 600.0, "unit": "s"},
+        "duration_s":       {"min": 1.0, "max": 86400.0, "unit": "s"},
+        "note": "STC = 1000 W/m2 front, 25C cell temp. Rear irradiance given directly OR computed as albedo*G_front*rear_view_factor (Marion 2017 view-factor approximation)."
+    }
+}

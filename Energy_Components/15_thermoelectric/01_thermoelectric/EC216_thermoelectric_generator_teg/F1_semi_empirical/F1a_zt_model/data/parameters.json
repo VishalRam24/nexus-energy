@@ -1,0 +1,22 @@
+{
+    "component": "EC216 Thermoelectric Generator (TEG)",
+    "fidelity": "F1a",
+    "description": "Power output and efficiency from ZT figure of merit (Bi2Te3 module)",
+    "unit": {
+        "name": "Generic Bi2Te3 TEG Module (40x40mm, 127 couples)",
+        "source": "Rowe (2006) Thermoelectrics Handbook; Snyder & Toberer (2008), Nature Materials, 7, 105-114",
+        "ZT": {"value": 1.0, "unit": "dimensionless", "note": "Average ZT for Bi2Te3 at ~100C"},
+        "N_couples": {"value": 127, "unit": "-", "note": "Number of thermoelectric couples per module"},
+        "module_area": {"value": 0.0016, "unit": "m2", "note": "40mm x 40mm module face area"},
+        "module_thickness": {"value": 0.004, "unit": "m", "note": "Typical module thickness 4mm"},
+        "k_eff": {"value": 1.5, "unit": "W/(m*K)", "note": "Effective thermal conductivity of module"},
+        "alpha_seebeck": {"value": 0.0002, "unit": "V/K", "note": "Seebeck coefficient per couple (~200 uV/K)"},
+        "R_internal": {"value": 2.0, "unit": "ohm", "note": "Internal electrical resistance per module at matched load"},
+        "T_hot_default": {"value": 200.0, "unit": "degC"},
+        "T_cold_default": {"value": 30.0, "unit": "degC"}
+    },
+    "valid_ranges": {
+        "T_hot": {"min": 50.0, "max": 300.0, "unit": "degC"},
+        "T_cold": {"min": 0.0, "max": 50.0, "unit": "degC"}
+    }
+}

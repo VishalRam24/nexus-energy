@@ -1,0 +1,30 @@
+{
+    "component": "EC143 Biomass Gasifier",
+    "fidelity": "F1a",
+    "description": "Syngas composition from equivalence ratio — simplified equilibrium model",
+    "unit": {
+        "name": "Downdraft Biomass Gasifier (Wood Chips)",
+        "source": "Zainal et al. (2001), Energy Conversion and Management, 42(12), 1499-1515",
+        "T_gasification": {"value": 800.0, "unit": "degC"},
+        "biomass_type": {"value": "wood_chips", "unit": "-"},
+        "LHV_biomass": {"value": 18.0, "unit": "MJ/kg"},
+        "biomass_formula": {"value": "CH1.44O0.66", "unit": "-"},
+        "ER_design": {"value": 0.25, "unit": "dimensionless"},
+        "LHV_CO": {"value": 4.2, "unit": "MJ/Nm3"},
+        "LHV_H2": {"value": 10.8, "unit": "MJ/Nm3"},
+        "LHV_CH4": {"value": 35.8, "unit": "MJ/Nm3"},
+        "V_syngas_per_kg": {"value": 2.5, "unit": "Nm3/kg_biomass", "note": "Typical downdraft yield at ER=0.25"},
+        "CO_ref": {"value": 0.22, "unit": "mol_fraction", "note": "At ER=0.25"},
+        "H2_ref": {"value": 0.18, "unit": "mol_fraction", "note": "At ER=0.25"},
+        "CO2_ref": {"value": 0.10, "unit": "mol_fraction", "note": "At ER=0.25"},
+        "CH4_ref": {"value": 0.03, "unit": "mol_fraction", "note": "At ER=0.25"},
+        "dCO_dER": {"value": -0.15, "unit": "per_ER"},
+        "dH2_dER": {"value": -0.12, "unit": "per_ER"},
+        "dCO2_dER": {"value": 0.10, "unit": "per_ER"},
+        "dCH4_dER": {"value": -0.02, "unit": "per_ER"}
+    },
+    "valid_ranges": {
+        "equivalence_ratio": {"min": 0.2, "max": 0.5, "unit": "dimensionless"},
+        "temperature": {"min": 700.0, "max": 1000.0, "unit": "degC"}
+    }
+}

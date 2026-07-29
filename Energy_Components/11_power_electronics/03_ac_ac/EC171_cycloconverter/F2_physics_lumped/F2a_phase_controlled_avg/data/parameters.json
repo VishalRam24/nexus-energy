@@ -1,0 +1,26 @@
+{
+    "component": "EC171 Cycloconverter",
+    "fidelity": "F2a",
+    "description": "Physics-lumped phase-controlled cycloconverter: averaged output voltage vs firing angle, direct AC-AC synthesis of a low output frequency, lumped first-order output-current ODE driven into an R-L load, input displacement power factor (lagging) and harmonic content.",
+    "source": "Pelly, B.R. (1971) Thyristor Phase-Controlled Converters and Cycloconverters, Wiley; Bose, B.K. (2002) Modern Power Electronics and AC Drives, Prentice Hall, ch. 4; Mohan, Undeland & Robbins (2003) Power Electronics 3rd ed., ch. 12.",
+    "unit": {
+        "name": "Generic 3-phase-to-3-phase 6-pulse Cycloconverter (500 kW, 690 V input)",
+        "n_phase_out": {"value": 3, "unit": "dimensionless", "note": "Number of output phases"},
+        "p_pulse": {"value": 6, "unit": "dimensionless", "note": "Pulse number per converter group (6-pulse dual converter per output phase)"},
+        "f_line": {"value": 50.0, "unit": "Hz", "note": "Input/supply line frequency"},
+        "V_in_ll": {"value": 690.0, "unit": "V", "note": "Input line-to-line RMS voltage"},
+        "P_rated": {"value": 500000.0, "unit": "W", "note": "Rated output power"},
+        "R_load": {"value": 0.8, "unit": "Ohm", "note": "Per-phase load resistance"},
+        "L_load": {"value": 0.0025, "unit": "H", "note": "Per-phase load inductance"},
+        "V_T0": {"value": 1.5, "unit": "V", "note": "SCR on-state threshold voltage (conduction loss)"},
+        "r_T": {"value": 0.0008, "unit": "Ohm", "note": "SCR on-state slope resistance (conduction loss)"},
+        "Lc_commutation": {"value": 5.0e-05, "unit": "H", "note": "Source/commutation inductance per phase (overlap voltage drop)"},
+        "alpha_min": {"value": 0.087, "unit": "rad", "note": "Minimum firing angle (~5 deg) to guarantee successful firing"},
+        "alpha_max": {"value": 2.792, "unit": "rad", "note": "Maximum firing angle (~160 deg) inverter-limit to avoid commutation failure"}
+    },
+    "valid_ranges": {
+        "f_out": {"min": 0.5, "max": 16.0, "unit": "Hz", "note": "Output frequency, must stay below ~1/3 of f_line for low harmonics"},
+        "r_mod": {"min": 0.0, "max": 1.0, "unit": "dimensionless", "note": "Output voltage modulation ratio (fraction of max fundamental)"},
+        "v_out_ll_rms": {"min": 0.0, "max": 650.0, "unit": "V"}
+    }
+}

@@ -1,0 +1,25 @@
+{
+  "component": "EC142 Biogas Upgrading / Biomethane",
+  "fidelity": "F0a",
+  "description": "Empirical upgrading lookup: per-feedstock raw biogas CH4 content -> biomethane CH4 recovery, product CH4 purity, and parasitic upgrading energy. PSA constant-performance lookup. Numbers reused from EC142 F1b.",
+  "source": "Bauer et al. (2013) Bioresource Technology 148:597; Ryckebosch et al. (2011) Biomass Bioenergy 35:1633",
+  "rated": {
+    "methane_slip_pct": {"value": 2.0, "unit": "%", "note": "CH4 lost to atmosphere (PSA typical) -> recovery = 1 - slip"},
+    "upgrading_energy_kwh_m3_biogas": {"value": 0.25, "unit": "kWh/m3_biogas", "note": "Parasitic electricity"},
+    "product_CH4_pct": {"value": 97.5, "unit": "%", "note": "Biomethane grid-injection purity (spec >= 96)"},
+    "LHV_methane_kwh_m3": {"value": 9.97, "unit": "kWh/m3_CH4"}
+  },
+  "feedstock_table": {
+    "comment": "Raw biogas CH4 content (%) by feedstock, reused verbatim from EC142 F1b feedstock_db.",
+    "feedstocks": ["corn_silage", "grass_silage", "cattle_manure", "food_waste", "sewage_sludge"],
+    "raw_CH4_pct": [52.0, 54.0, 60.0, 62.0, 65.0]
+  },
+  "biomethane_spec": {
+    "CH4_min_pct": 96.0,
+    "CO2_max_pct": 3.0,
+    "H2S_max_ppm": 5.0
+  },
+  "valid_ranges": {
+    "biogas_flow_m3_h": {"min": 10.0, "max": 5000.0, "unit": "m3/h"}
+  }
+}

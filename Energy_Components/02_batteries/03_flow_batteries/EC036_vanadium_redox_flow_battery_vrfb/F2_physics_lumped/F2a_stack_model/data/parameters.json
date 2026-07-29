@@ -1,0 +1,27 @@
+{
+    "component": "EC036 Vanadium Redox Flow Battery (VRFB)",
+    "fidelity": "F2a",
+    "description": "Stack electrochemical model with Nernst + activation + ohmic + concentration overpotentials, tank SOC dynamics, and pump hydraulics",
+    "unit": {
+        "name": "Generic 40-cell VRFB stack with 1000L tanks",
+        "source": "Blanc & Rufer (2010); Shah et al. (2011)",
+        "N_cells": {"value": 40, "unit": "dimensionless"},
+        "electrode_area_cm2": {"value": 600.0, "unit": "cm2"},
+        "E0": {"value": 1.26, "unit": "V"},
+        "R_ohm_cm2": {"value": 0.5, "unit": "Ohm.cm2"},
+        "T_K": {"value": 298.0, "unit": "K"},
+        "n": {"value": 1, "unit": "dimensionless"},
+        "c_total_mol_L": {"value": 1.6, "unit": "mol/L"},
+        "V_tank_L": {"value": 1000.0, "unit": "L"},
+        "alpha": {"value": 0.5, "unit": "dimensionless", "note": "charge transfer coefficient"},
+        "j0_A_m2": {"value": 10.0, "unit": "A/m2", "note": "exchange current density"},
+        "k_hydraulic_Pa_s_m3": {"value": 5e6, "unit": "Pa/(m3/s)", "note": "hydraulic resistance coefficient"},
+        "eta_pump": {"value": 0.70, "unit": "dimensionless"},
+        "Q_flow_nom_L_min": {"value": 10.0, "unit": "L/min"}
+    },
+    "valid_ranges": {
+        "current_A": {"min": -120.0, "max": 120.0, "unit": "A"},
+        "soc": {"min": 0.1, "max": 0.9, "unit": "dimensionless"},
+        "flow_rate_L_min": {"min": 1.0, "max": 30.0, "unit": "L/min"}
+    }
+}

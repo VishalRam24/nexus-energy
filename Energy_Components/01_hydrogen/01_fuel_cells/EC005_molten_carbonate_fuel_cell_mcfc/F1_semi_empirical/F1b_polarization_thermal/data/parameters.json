@@ -1,0 +1,52 @@
+{
+  "component_id": "EC005",
+  "component_name": "Molten Carbonate Fuel Cell (MCFC)",
+  "fidelity": "F1b — Polarization-Thermal (carbonate conductivity, CO2 Nernst, Arrhenius kinetics)",
+  "source": "Uchida et al. (1983) Electrochim. Acta; Lu & Selman (1984) J. Electrochem. Soc.; Yuh & Selman (1991)",
+  "default_parameters": {
+    "T_ref": 923.15,
+    "N_cells": 300,
+    "A_cell": 1000.0,
+    "pH2": 0.7,
+    "pO2": 0.15,
+    "pH2O": 0.20,
+    "pCO2_cathode": 0.15,
+    "pCO2_anode": 0.10,
+    "j_L": 0.6,
+    "i0_anode_ref": 0.02,
+    "E_act_anode": 50000.0,
+    "i0_cathode_ref": 0.005,
+    "E_act_cathode": 60000.0,
+    "alpha": 0.5,
+    "B_conc": 0.008,
+    "A_mc": 200000.0,
+    "E_act_mc": 28000.0,
+    "t_mc": 0.06,
+    "E_tn": 1.21
+  },
+  "parameter_metadata": {
+    "T_ref":           {"description": "Reference temperature (650C)", "unit": "K", "default": 923.15},
+    "N_cells":         {"description": "Number of cells in stack", "unit": "-", "default": 300},
+    "A_cell":          {"description": "Active cell area", "unit": "cm2", "default": 1000.0, "notes": "Large MCFC cells (0.1 m2)"},
+    "pH2":             {"description": "Hydrogen partial pressure at anode", "unit": "atm", "default": 0.7},
+    "pO2":             {"description": "Oxygen partial pressure at cathode (air)", "unit": "atm", "default": 0.15},
+    "pH2O":            {"description": "Water vapor partial pressure at anode", "unit": "atm", "default": 0.20},
+    "pCO2_cathode":    {"description": "CO2 partial pressure at cathode (must be supplied)", "unit": "atm", "default": 0.15},
+    "pCO2_anode":      {"description": "CO2 partial pressure at anode (reformed gas)", "unit": "atm", "default": 0.10},
+    "j_L":             {"description": "Limiting current density", "unit": "A/cm2", "default": 0.6},
+    "i0_anode_ref":    {"description": "Anode exchange current density at T_ref", "unit": "A/cm2", "default": 0.02},
+    "E_act_anode":     {"description": "Anode activation energy", "unit": "J/mol", "default": 50000.0},
+    "i0_cathode_ref":  {"description": "Cathode exchange current density at T_ref", "unit": "A/cm2", "default": 0.005},
+    "E_act_cathode":   {"description": "Cathode activation energy (ORR in carbonate)", "unit": "J/mol", "default": 60000.0},
+    "alpha":           {"description": "Charge transfer coefficient", "unit": "-", "default": 0.5},
+    "B_conc":          {"description": "Concentration loss coefficient", "unit": "V", "default": 0.008},
+    "A_mc":            {"description": "Arrhenius pre-factor for carbonate conductivity", "unit": "S/cm", "default": 200000.0},
+    "E_act_mc":        {"description": "Activation energy for molten carbonate ionic conductivity", "unit": "J/mol", "default": 28000.0, "notes": "Uchida 1983 Li2CO3/K2CO3"},
+    "t_mc":            {"description": "Molten carbonate electrolyte thickness", "unit": "cm", "default": 0.06, "notes": "0.6 mm SiC matrix"},
+    "E_tn":            {"description": "Thermoneutral voltage at operating T (HHV - CO2 penalty)", "unit": "V", "default": 1.21}
+  },
+  "valid_ranges": {
+    "current_density": {"min": 0.0, "max": 0.6, "unit": "A/cm2"},
+    "temperature":     {"min": 873.0, "max": 973.0, "unit": "K"}
+  }
+}

@@ -1,0 +1,42 @@
+{
+    "component": "EC130 Small/Micro Hydropower",
+    "fidelity": "F1a",
+    "description": "Power model: P = eta_overall * rho * g * Q * H_net / 1000 (kW); turbine type selected by head/flow (Pelton >100m, Francis 20-300m, Kaplan <50m); scale 1 kW to 10 MW",
+    "unit": {
+        "name": "Generic Small/Micro Hydropower Plant",
+        "source": "Penche (1998), Layman's Guidebook; Harvey et al. (1993) Micro-Hydro Design Manual; IEC 60041",
+        "H_design": {"value": 40.0, "unit": "m", "note": "Design net head (Francis turbine range 20-300 m)"},
+        "Q_design": {"value": 1.5, "unit": "m3/s", "note": "Design flow rate"},
+        "P_rated": {"value": 450.0, "unit": "kW", "note": "Rated power output"},
+        "head_loss_fraction": {"value": 0.08, "unit": "dimensionless", "note": "Penstock/intake head loss fraction"},
+        "eta_generator": {"value": 0.95, "unit": "dimensionless", "note": "Generator efficiency"},
+        "q_min": {"value": 0.30, "unit": "dimensionless", "note": "Minimum flow ratio for operation"},
+        "q_max": {"value": 1.10, "unit": "dimensionless", "note": "Maximum flow ratio"},
+        "rho": {"value": 1000.0, "unit": "kg/m3", "note": "Water density"},
+        "g": {"value": 9.81, "unit": "m/s2", "note": "Gravitational acceleration"},
+        "turbine_types": {
+            "pelton": {
+                "head_range_m": [100, 1800],
+                "eta_peak": 0.91,
+                "k_efficiency": 0.20,
+                "note": "Impulse turbine; high head, low flow"
+            },
+            "francis": {
+                "head_range_m": [20, 300],
+                "eta_peak": 0.89,
+                "k_efficiency": 0.25,
+                "note": "Mixed-flow reaction turbine; medium head"
+            },
+            "kaplan": {
+                "head_range_m": [2, 50],
+                "eta_peak": 0.87,
+                "k_efficiency": 0.22,
+                "note": "Axial reaction turbine; low head, high flow"
+            }
+        }
+    },
+    "valid_ranges": {
+        "flow_rate_m3s": {"min": 0.0, "max": 1.65, "unit": "m3/s"},
+        "net_head_m": {"min": 2.0, "max": 1800.0, "unit": "m"}
+    }
+}

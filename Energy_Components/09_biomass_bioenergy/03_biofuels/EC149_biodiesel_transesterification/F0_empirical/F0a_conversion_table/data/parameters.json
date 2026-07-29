@@ -1,0 +1,30 @@
+{
+  "component": "EC149 Biodiesel Transesterification",
+  "fidelity": "F0a",
+  "description": "Empirical conversion model: base alkali conversion x FFA penalty (np.interp vs feedstock FFA%) x reaction-temperature multiplier (peak 60 C). Per-feedstock oil content gives biodiesel mass per tonne feed. Numbers reused from EC149 F1b.",
+  "source": "Freedman et al. (1984); Meher et al. (2006); Rashid et al. (2008) — reused from EC149 F1b",
+  "rated": {
+    "base_conversion": {"value": 0.98, "unit": "-", "note": "Max alkali conversion at design conditions (low FFA)"},
+    "T_optimum_degC": {"value": 60.0, "unit": "degC", "note": "Methanol reflux optimum"},
+    "LHV_biodiesel_MJ_kg": {"value": 37.5, "unit": "MJ/kg", "note": "FAME LHV"}
+  },
+  "ffa_penalty_curve": {
+    "comment": "Conversion multiplier vs feedstock FFA (%). Base-catalysed yield drops ~2% per %FFA above 1% (Rashid 2008). Clamped to 1.0 at low FFA.",
+    "ffa_pct": [0.0, 1.0, 3.0, 6.0, 10.0],
+    "conversion_multiplier": [1.0, 1.0, 0.96, 0.90, 0.82]
+  },
+  "feedstock_table": {
+    "comment": "Oil content (mass frac of feed) and FFA% per feedstock, reused verbatim from EC149 F1b.",
+    "feedstocks": ["soybean_oil", "palm_oil", "jatropha", "rapeseed_oil", "waste_cooking_oil"],
+    "oil_content_frac": [0.18, 0.22, 0.35, 0.40, 0.90],
+    "ffa_pct": [0.5, 1.0, 3.0, 0.3, 6.0]
+  },
+  "temperature_curve": {
+    "comment": "Conversion multiplier vs reaction temperature (degC), peak at 60 C.",
+    "T_degC": [40.0, 50.0, 60.0, 70.0, 80.0],
+    "temp_multiplier": [0.85, 0.95, 1.0, 0.96, 0.88]
+  },
+  "valid_ranges": {
+    "temperature_degC": {"min": 40.0, "max": 80.0, "unit": "degC"}
+  }
+}

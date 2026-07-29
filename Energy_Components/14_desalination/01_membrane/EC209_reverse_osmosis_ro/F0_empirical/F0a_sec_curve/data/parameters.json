@@ -1,0 +1,19 @@
+{
+    "component": "EC209 Reverse Osmosis (RO)",
+    "fidelity": "F0a",
+    "description": "Empirical SEC-vs-recovery lookup curve for seawater RO at S_feed=35 g/L. SEC rises with recovery as brine concentrates. Reused from EC209 F1a osmotic-pressure physics.",
+    "unit": {
+        "name": "Generic SWRO Module",
+        "source": "Elimelech & Phillip (2011), Science, 333, 712-717",
+        "S_feed": {"value": 35.0, "unit": "g/L", "note": "Seawater salinity (reuse F1a default)"},
+        "recovery_breakpoints": {"value": [0.20, 0.30, 0.40, 0.45, 0.50, 0.60], "unit": "dimensionless"},
+        "sec_breakpoints": {"value": [2.45, 2.70, 3.05, 3.30, 3.65, 4.55], "unit": "kWh/m3", "note": "SEC at each recovery, S_feed=35 g/L, eta_pump=0.85, eta_ERD=0.95"},
+        "recovery_rated": {"value": 0.45, "unit": "dimensionless"},
+        "sec_rated": {"value": 3.30, "unit": "kWh/m3", "note": "Datasheet design point at 45% recovery"},
+        "permeate_salinity_rejection": {"value": 0.995, "unit": "dimensionless"}
+    },
+    "valid_ranges": {
+        "recovery": {"min": 0.20, "max": 0.60, "unit": "dimensionless"},
+        "feed_flow_m3h": {"min": 10.0, "max": 1000.0, "unit": "m3/hr"}
+    }
+}

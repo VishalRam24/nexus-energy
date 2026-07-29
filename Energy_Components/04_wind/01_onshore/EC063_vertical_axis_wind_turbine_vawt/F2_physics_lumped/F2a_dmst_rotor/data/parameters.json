@@ -1,0 +1,40 @@
+{
+    "component_id": "EC063",
+    "component_name": "Vertical Axis Wind Turbine (VAWT)",
+    "fidelity": "F2a — Double-Multiple-Streamtube (DMST) aerodynamics + rotor dynamics ODE",
+    "source": "Paraschivoiu (2002) Wind Turbine Design with Emphasis on Darrieus Concept; Strickland (1975) SAND75-0431 multiple-streamtube; Templin (1974) NRC LTR-LA-160; Sheldahl & Klimas (1981) SAND80-2114 NACA0018 polars",
+    "turbine": {
+        "name": "Generic 10 kW Darrieus H-rotor VAWT (3-blade NACA0018)",
+        "source": "Tjiu et al. (2015) Renew. Energy 75:50-67; Sutherland et al. SAND2012-0304",
+        "rated_power": {"value": 10.0, "unit": "kW", "note": "Electrical rated power"},
+        "rotor_radius": {"value": 3.0, "unit": "m", "note": "R = D/2, D=6 m swept width"},
+        "rotor_height": {"value": 8.0, "unit": "m", "note": "Blade span H"},
+        "swept_area": {"value": 48.0, "unit": "m2", "note": "2*R*H for H-rotor (=D*H)"},
+        "n_blades": {"value": 3, "unit": "-", "note": "Three straight blades (H-rotor)"},
+        "chord": {"value": 0.24, "unit": "m", "note": "Blade chord; gives solidity sigma=N*c/R=0.24"},
+        "airfoil": {"value": "NACA0018", "unit": "-", "note": "Symmetric airfoil, common for Darrieus"},
+        "cl_alpha": {"value": 6.28, "unit": "1/rad", "note": "Lift-curve slope 2*pi (thin-airfoil)"},
+        "alpha_stall": {"value": 0.2618, "unit": "rad", "note": "15 deg static stall angle (NACA0018, Re~3e5)"},
+        "cl_max": {"value": 1.2, "unit": "-", "note": "Max lift coefficient before stall"},
+        "cd0": {"value": 0.012, "unit": "-", "note": "Zero-lift profile drag (Sheldahl & Klimas 1981)"},
+        "cd_stall": {"value": 1.6, "unit": "-", "note": "Drag plateau in deep stall (flat-plate ~2*sin)"},
+        "tip_speed_ratio_opt": {"value": 4.0, "unit": "-", "note": "Optimal TSR for this solidity"},
+        "max_cp": {"value": 0.59, "unit": "-", "note": "Betz limit safeguard; natural DMST aero peak ~0.57 at TSR~4 (electrical peak lower after drivetrain losses, vs 0.32 measured power-curve Cp)"}
+    },
+    "drivetrain": {
+        "inertia": {"value": 250.0, "unit": "kg.m2", "note": "Rotor + drivetrain moment of inertia about vertical axis"},
+        "gen_efficiency": {"value": 0.92, "unit": "-", "note": "Generator + converter electrical efficiency"},
+        "loss_torque": {"value": 8.0, "unit": "N.m", "note": "Constant bearing/seal friction torque"}
+    },
+    "environment": {
+        "air_density": {"value": 1.225, "unit": "kg/m3", "note": "Sea-level ISA"}
+    },
+    "valid_ranges": {
+        "wind_speed": {"min": 0.5, "max": 30.0, "unit": "m/s"},
+        "tip_speed_ratio": {"min": 0.5, "max": 8.0, "unit": "-"},
+        "air_density": {"min": 0.9, "max": 1.4, "unit": "kg/m3"},
+        "omega": {"min": 0.0, "max": 60.0, "unit": "rad/s"},
+        "duration_s": {"min": 1.0, "max": 600.0, "unit": "s"},
+        "dt": {"min": 0.01, "max": 2.0, "unit": "s"}
+    }
+}

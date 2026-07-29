@@ -1,0 +1,35 @@
+{
+    "component_id": "EC180",
+    "component_name": "Doubly-Fed Induction Generator (DFIG)",
+    "fidelity": "F2a — dq-Frame Doubly-Fed Induction Machine with Rotor-Side Converter Control",
+    "source": "Pena, R., Clare, J.C., Asher, G.M. (1996), IEE Proc. Electr. Power Appl. 143(3):231-241; Abad, G. et al. (2011), Doubly Fed Induction Machine: Modeling and Control for Wind Energy Generation, Wiley-IEEE Press; Krause (2013), Analysis of Electric Machinery.",
+    "unit": {
+        "name": "Generic 2 MW / 690 V DFIG wind-turbine generator (Abad 2011 reference machine)",
+        "source": "Abad et al. (2011), Table 7.1; Pena et al. (1996)",
+        "P_rated_MW": {"value": 2.0, "unit": "MW", "note": "Rated active power"},
+        "S_rated_MVA": {"value": 2.2, "unit": "MVA", "note": "Rated apparent power"},
+        "V_stator_LL_V": {"value": 690.0, "unit": "V", "note": "Stator line-to-line RMS voltage (grid)"},
+        "f_grid_Hz": {"value": 50.0, "unit": "Hz", "note": "Grid frequency"},
+        "P": {"value": 2, "unit": "pole_pairs", "note": "Pole pairs -> 1500 rpm synchronous"},
+        "Rs": {"value": 0.00257, "unit": "Ohm", "note": "Stator resistance per phase (0.0108 pu)"},
+        "Rr": {"value": 0.00288, "unit": "Ohm", "note": "Rotor resistance referred to stator (0.0121 pu)"},
+        "Lls": {"value": 7.73e-5, "unit": "H", "note": "Stator leakage inductance (0.102 pu)"},
+        "Llr": {"value": 8.34e-5, "unit": "H", "note": "Rotor leakage inductance referred to stator (0.11 pu)"},
+        "Lm": {"value": 2.548e-3, "unit": "H", "note": "Magnetizing inductance (3.362 pu)"},
+        "u_ratio": {"value": 0.34, "unit": "dimensionless", "note": "Rotor/stator turns ratio (stator-referred model uses 1.0)"},
+        "J": {"value": 127.0, "unit": "kg.m2", "note": "Combined generator+drivetrain inertia (referred to generator)"},
+        "B": {"value": 0.5, "unit": "N.m.s/rad", "note": "Viscous friction coefficient"},
+        "slip_min": {"value": -0.30, "unit": "dimensionless", "note": "Super-synchronous limit (rotor 1950 rpm)"},
+        "slip_max": {"value": 0.30, "unit": "dimensionless", "note": "Sub-synchronous limit (rotor 1050 rpm)"},
+        "eta_converter": {"value": 0.97, "unit": "dimensionless", "note": "Back-to-back converter efficiency"}
+    },
+    "valid_ranges": {
+        "slip": {"min": -0.30, "max": 0.30, "unit": "dimensionless", "note": "Negative = super-synchronous"},
+        "P_stator_ref_W": {"min": -2.2e6, "max": 0.0, "unit": "W", "note": "Generating convention: negative power delivered to grid"},
+        "Q_stator_ref_VAr": {"min": -1.0e6, "max": 1.0e6, "unit": "VAr", "note": "Reactive power set-point via rotor-side converter"},
+        "v_dr": {"min": -400.0, "max": 400.0, "unit": "V", "note": "Rotor d-axis voltage (stator-referred)"},
+        "v_qr": {"min": -400.0, "max": 400.0, "unit": "V", "note": "Rotor q-axis voltage (stator-referred)"},
+        "dt": {"min": 1e-5, "max": 1e-3, "unit": "s"},
+        "duration_s": {"min": 0.01, "max": 10.0, "unit": "s"}
+    }
+}

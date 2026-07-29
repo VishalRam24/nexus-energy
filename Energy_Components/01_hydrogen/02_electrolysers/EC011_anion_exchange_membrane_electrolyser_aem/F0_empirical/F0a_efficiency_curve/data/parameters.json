@@ -1,0 +1,52 @@
+{
+  "component_id": "EC011",
+  "component_name": "Anion Exchange Membrane Electrolyser (AEM)",
+  "fidelity": "F0a \u2014 empirical lookup",
+  "version": "1.0.0",
+  "source": "Vincent & Bessarabov (2018) RSER, 81, 1690 (F1a params reused)",
+  "metric": "h2_production_efficiency_LHV",
+  "note": "AEM efficiency ~55-70%; Faraday eff 0.97 (gas crossover). Between PEM and alkaline.",
+  "lookup": {
+    "load_fraction": {
+      "value": [
+        0.0,
+        0.1,
+        0.2,
+        0.4,
+        0.6,
+        0.8,
+        1.0
+      ],
+      "unit": "-",
+      "note": "Breakpoints: fraction of rated power"
+    },
+    "efficiency": {
+      "value": [
+        0.0,
+        0.72,
+        0.71,
+        0.67,
+        0.63,
+        0.58,
+        0.53
+      ],
+      "unit": "-",
+      "note": "Empirical efficiency at each load (LHV basis)"
+    }
+  },
+  "rated": {
+    "load_fraction": {
+      "value": 0.6,
+      "unit": "-"
+    },
+    "efficiency": {
+      "value": 0.63,
+      "unit": "-",
+      "note": "Datasheet rated efficiency"
+    },
+    "P_rated": {
+      "value": 2500.0,
+      "unit": "W"
+    }
+  }
+}

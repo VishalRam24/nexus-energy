@@ -1,0 +1,18 @@
+{
+    "component": "EC185 Static VAR Compensator (SVC)",
+    "fidelity": "F1a",
+    "description": "TCR/TSC SVC: dynamic Q_out in [-Q_max, +Q_max]; losses ~1% of rated.",
+    "unit": {
+        "name": "Generic 100 MVAR SVC (TCR+TSC)",
+        "source": "Hingorani & Gyugyi (2000), Understanding FACTS. IEEE Press.",
+        "Q_max_MVAR": {"value": 100.0, "unit": "MVAR", "note": "Maximum capacitive output (+Q)"},
+        "Q_min_MVAR": {"value": -50.0, "unit": "MVAR", "note": "Maximum inductive output (-Q, TCR)"},
+        "V_rated_kV": {"value": 132.0, "unit": "kV"},
+        "loss_factor": {"value": 0.01, "unit": "dimensionless", "note": "~1% losses of |Q_out| (thyristor + reactor + cooling)"},
+        "response_time_ms": {"value": 30.0, "unit": "ms", "note": "Dynamic response (single cycle at 50 Hz)"}
+    },
+    "valid_ranges": {
+        "Q_demand_MVAR": {"min": -50.0, "max": 100.0, "unit": "MVAR"},
+        "V_pu": {"min": 0.85, "max": 1.15, "unit": "pu"}
+    }
+}

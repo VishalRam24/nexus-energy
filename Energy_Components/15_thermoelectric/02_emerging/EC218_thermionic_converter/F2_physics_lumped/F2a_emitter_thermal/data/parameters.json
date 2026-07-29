@@ -1,0 +1,34 @@
+{
+    "component_id": "EC218",
+    "component_name": "Thermionic Converter",
+    "fidelity": "F2a — Physics-Lumped with Emitter-Temperature ODE",
+    "source": "Hatsopoulos & Gyftopoulos (1973/1979) Thermionic Energy Conversion Vol. I & II, MIT Press; Rasor (1991) IEEE Trans. Plasma Sci. 19(6) 1191-1208; Angrist (1982) Direct Energy Conversion",
+    "unit": {
+        "name": "Cesium-vapor thermionic diode — physics-lumped emitter thermal model",
+        "phi_emitter_0": {"value": 2.0, "unit": "eV", "note": "Emitter (hot electrode) work function at T0 (Cs/O-coated W)", "source": "Hatsopoulos & Gyftopoulos (1973)"},
+        "phi_collector_0": {"value": 1.5, "unit": "eV", "note": "Collector (cool electrode) work function at T0 (Cs-coated)", "source": "Rasor (1991)"},
+        "A_richardson": {"value": 1200000.0, "unit": "A/(m^2*K^2)", "note": "Richardson-Dushman constant A0 = 120 A/(cm^2*K^2) = 1.2e6 A/(m^2*K^2)", "source": "Richardson-Dushman; Hatsopoulos & Gyftopoulos (1973)"},
+        "emitter_area": {"value": 0.0001, "unit": "m^2", "note": "1 cm^2 emitter active area"},
+        "interelectrode_gap": {"value": 0.0001, "unit": "m", "note": "100 um inter-electrode gap"},
+        "T0_K": {"value": 1700.0, "unit": "K", "note": "Reference temperature for work-function fit"},
+        "dphi_dT_emitter": {"value": -1e-4, "unit": "eV/K", "note": "phi_e(T) = phi_e0 + dphi/dT*(T-T0)", "source": "Hatsopoulos & Gyftopoulos (1973)"},
+        "dphi_dT_collector": {"value": -5e-5, "unit": "eV/K", "note": "Collector work-function temperature dependence"},
+        "space_charge_factor": {"value": 0.85, "unit": "-", "note": "Net output-current reduction from space-charge / plasma barrier (~0.7-0.95 for Cs ignited mode)", "source": "Rasor (1991); Langmuir space-charge theory"},
+        "plasma_drop_V": {"value": 0.4, "unit": "V", "note": "Arc/plasma voltage drop in ignited Cs discharge subtracted from output", "source": "Rasor (1991)"},
+        "lead_resistance_ohm": {"value": 1e-5, "unit": "ohm", "note": "External lead + contact resistance (10 uohm; high-current electrode delivers ~1000s A)"},
+        "emissivity": {"value": 0.3, "unit": "-", "note": "Effective emitter-to-collector radiation emissivity (gray-body)"},
+        "stefan_boltzmann": {"value": 5.670374419e-8, "unit": "W/(m^2*K^4)", "note": "Stefan-Boltzmann constant for radiation loss"},
+        "emitter_heat_capacity": {"value": 2.0, "unit": "J/K", "note": "Lumped emitter thermal mass m*cp (refractory emitter block)"},
+        "T_collector_default": {"value": 900.0, "unit": "K", "note": "Collector held at fixed sink temperature"},
+        "T_emitter_default": {"value": 1800.0, "unit": "K", "note": "Nominal emitter operating temperature"},
+        "Q_external_default": {"value": 60.0, "unit": "W", "note": "Default external heat power delivered to emitter (combustion/solar/nuclear)"}
+    },
+    "valid_ranges": {
+        "T_emitter": {"min": 1200.0, "max": 2200.0, "unit": "K"},
+        "T_collector": {"min": 400.0, "max": 1200.0, "unit": "K"},
+        "Q_external_w": {"min": 0.0, "max": 300.0, "unit": "W"},
+        "load_voltage_V": {"min": 0.0, "max": 1.0, "unit": "V"},
+        "dt": {"min": 0.001, "max": 1.0, "unit": "s"},
+        "duration_s": {"min": 0.1, "max": 600.0, "unit": "s"}
+    }
+}

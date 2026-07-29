@@ -1,0 +1,19 @@
+{
+    "component": "EC169 Variable Frequency Drive (VFD)",
+    "fidelity": "F1a",
+    "description": "V_out = V_rated * f_out/f_rated (V/Hz control); fixed efficiency eta",
+    "unit": {
+        "name": "Generic VFD (V/Hz Control) for Induction Motor",
+        "source": "Mohan, N. (2003). Power Electronics. Wiley.; IEC 61800-9-2",
+        "eta": {"value": 0.96, "unit": "dimensionless", "note": "Typical VFD efficiency including rectifier+inverter"},
+        "p_rated": {"value": 15000.0, "unit": "W", "note": "15 kW motor rated"},
+        "v_rated": {"value": 400.0, "unit": "V", "note": "Rated output line-to-line voltage"},
+        "f_rated": {"value": 50.0, "unit": "Hz", "note": "Rated (base) frequency"},
+        "f_out_min": {"value": 0.0, "unit": "Hz"},
+        "f_out_max": {"value": 120.0, "unit": "Hz", "note": "Overfrequency up to 2x base"}
+    },
+    "valid_ranges": {
+        "f_out": {"min": 0.0, "max": 120.0, "unit": "Hz"},
+        "p_out": {"min": 0.0, "max": 18000.0, "unit": "W"}
+    }
+}

@@ -1,0 +1,38 @@
+{
+    "component_id": "EC005",
+    "component_name": "Molten Carbonate Fuel Cell (MCFC)",
+    "fidelity": "F2a — Full Electrochemical Model with Thermal ODE (carbonate CO3^2- transport, CO2 Nernst, Arrhenius kinetics, solve_ivp thermal lump)",
+    "source": "Uchida et al. (1983) Electrochim. Acta 28(10):1423; Lu & Selman (1984) J. Electrochem. Soc. 131(12):2827; Yuh & Selman (1991) J. Electrochem. Soc. 138(12):3649; Bischoff & Huppmann (2002) J. Power Sources 105:216; Larminie & Dicks (2003) Fuel Cell Systems Explained, Wiley",
+    "unit": {
+        "name": "Generic 250kW-class MCFC Stack — Physics-Lumped Electrochemical+Thermal",
+        "N_cells": {"value": 300, "unit": "-", "note": "Number of cells in stack (FuelCell Energy DFC-class)"},
+        "A_cell": {"value": 1000.0, "unit": "cm2", "note": "Active cell area (0.1 m2 large-format MCFC plate)"},
+        "t_mc": {"value": 0.06, "unit": "cm", "note": "Molten Li2CO3/K2CO3 electrolyte thickness in SiC matrix (0.6 mm)"},
+        "A_mc": {"value": 100.0, "unit": "S/cm", "note": "Arrhenius pre-factor for carbonate ionic conductivity (Uchida 1983, 62/38 Li/K eutectic); calibrated so sigma~2.6 S/cm at 923 K"},
+        "E_act_mc": {"value": 28000.0, "unit": "J/mol", "note": "Activation energy for molten carbonate conductivity (Uchida 1983)"},
+        "j_L": {"value": 0.6, "unit": "A/cm2", "note": "Limiting current density"},
+        "alpha": {"value": 0.5, "unit": "-", "note": "Charge transfer coefficient"},
+        "i0_anode_ref": {"value": 0.02, "unit": "A/cm2", "note": "Anode exchange current density at T_ref (H2 oxidation in carbonate)"},
+        "E_act_anode": {"value": 50000.0, "unit": "J/mol", "note": "Anode activation energy"},
+        "i0_cathode_ref": {"value": 0.005, "unit": "A/cm2", "note": "Cathode exchange current density at T_ref (ORR in carbonate, rate-limiting)"},
+        "E_act_cathode": {"value": 60000.0, "unit": "J/mol", "note": "Cathode activation energy (Yuh & Selman 1991)"},
+        "B_conc": {"value": 0.008, "unit": "V", "note": "Concentration loss coefficient"},
+        "E_tn": {"value": 1.21, "unit": "V", "note": "Thermoneutral voltage at ~650C (HHV of H2, CO2-cycle adjusted)"},
+        "T_ref": {"value": 923.15, "unit": "K", "note": "Reference temperature (650C)"},
+        "m_stack": {"value": 800.0, "unit": "kg", "note": "Stack thermal mass (300-cell MCFC incl. matrix/manifolds)"},
+        "cp_stack": {"value": 850.0, "unit": "J/(kg.K)", "note": "Effective stack specific heat (Ni/ceramic/carbonate average)"},
+        "hA_cool": {"value": 1500.0, "unit": "W/K", "note": "Cathode-air cooling-flow heat transfer coefficient * area"},
+        "T_coolant": {"value": 873.15, "unit": "K", "note": "Cathode process-air inlet temperature (600C)"}
+    },
+    "valid_ranges": {
+        "current_density": {"min": 0.0, "max": 0.6, "unit": "A/cm2"},
+        "temperature": {"min": 823.15, "max": 973.15, "unit": "K"},
+        "pH2": {"min": 0.1, "max": 1.0, "unit": "atm"},
+        "pO2": {"min": 0.05, "max": 0.5, "unit": "atm"},
+        "pH2O": {"min": 0.05, "max": 0.5, "unit": "atm"},
+        "pCO2_cathode": {"min": 0.05, "max": 0.5, "unit": "atm"},
+        "pCO2_anode": {"min": 0.05, "max": 0.5, "unit": "atm"},
+        "dt": {"min": 0.1, "max": 10.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 7200.0, "unit": "s"}
+    }
+}

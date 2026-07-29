@@ -1,0 +1,36 @@
+{
+  "component_id": "EC088",
+  "component_name": "Oil-Fired Boiler",
+  "fidelity": "F0a \u2014 empirical lookup",
+  "source": "EC088 F1a oil-fired boiler params; ASHRAE Handbook HVAC Systems & Equipment (2020)",
+  "Q_rated": {
+    "value": 500.0,
+    "unit": "kW",
+    "note": "Rated thermal output"
+  },
+  "eta_nom": {
+    "value": 0.87,
+    "unit": "-",
+    "note": "Full-load efficiency"
+  },
+  "PLR_min": {
+    "value": 0.2,
+    "unit": "-",
+    "note": "Min part-load ratio (clamped)"
+  },
+  "table": {
+    "plr": [
+      0.2,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "eta": [
+      0.84,
+      0.88,
+      0.88,
+      0.87
+    ],
+    "note": "Part-load efficiency breakpoints; eta at PLR=1.0 = eta_nom"
+  }
+}

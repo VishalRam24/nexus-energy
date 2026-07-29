@@ -1,0 +1,35 @@
+{
+    "component_id": "EC101",
+    "component_name": "Combined Cycle Gas Turbine (CCGT)",
+    "fidelity": "F2a — Steady-State Thermodynamic Cycle (Brayton + Rankine)",
+    "source": "Boyce (2012) Gas Turbine Engineering Handbook; Kehlhofer et al. (2009) Combined-Cycle Gas & Steam Turbine Power Plants",
+    "unit": {
+        "name": "Generic 400 MW Class CCGT (F-class GT + HRSG + ST)",
+        "m_dot_air": {"value": 450.0, "unit": "kg/s", "note": "Compressor air mass flow"},
+        "P_amb": {"value": 101325.0, "unit": "Pa", "note": "Ambient pressure"},
+        "T_amb": {"value": 288.15, "unit": "K", "note": "ISO ambient temperature (15 C)"},
+        "PR_comp": {"value": 18.0, "unit": "-", "note": "Compressor pressure ratio"},
+        "eta_comp": {"value": 0.88, "unit": "-", "note": "Compressor isentropic efficiency"},
+        "eta_turb_gas": {"value": 0.90, "unit": "-", "note": "Gas turbine isentropic efficiency"},
+        "TIT": {"value": 1573.15, "unit": "K", "note": "Turbine inlet temperature (1300 C)"},
+        "LHV_fuel": {"value": 50000000.0, "unit": "J/kg", "note": "Natural gas LHV (50 MJ/kg)"},
+        "eta_combustor": {"value": 0.995, "unit": "-", "note": "Combustor efficiency"},
+        "dp_combustor_frac": {"value": 0.03, "unit": "-", "note": "Combustor pressure drop fraction"},
+        "eta_mech_gt": {"value": 0.99, "unit": "-", "note": "Gas turbine mechanical efficiency"},
+        "HRSG_effectiveness": {"value": 0.85, "unit": "-", "note": "HRSG heat recovery effectiveness"},
+        "T_exhaust_min": {"value": 363.15, "unit": "K", "note": "Minimum stack temperature (90 C)"},
+        "P_steam_HP": {"value": 12000000.0, "unit": "Pa", "note": "HP steam pressure (120 bar)"},
+        "T_steam_HP": {"value": 838.15, "unit": "K", "note": "HP steam temperature (565 C)"},
+        "P_condenser": {"value": 5000.0, "unit": "Pa", "note": "Condenser pressure (0.05 bar)"},
+        "eta_turb_steam": {"value": 0.88, "unit": "-", "note": "Steam turbine isentropic efficiency"},
+        "eta_pump": {"value": 0.85, "unit": "-", "note": "Feed pump isentropic efficiency"},
+        "eta_mech_st": {"value": 0.99, "unit": "-", "note": "Steam turbine mechanical efficiency"},
+        "eta_gen": {"value": 0.985, "unit": "-", "note": "Generator efficiency"}
+    },
+    "valid_ranges": {
+        "TIT": {"min": 1273.15, "max": 1873.15, "unit": "K"},
+        "PR_comp": {"min": 8.0, "max": 35.0, "unit": "-"},
+        "m_dot_air": {"min": 100.0, "max": 800.0, "unit": "kg/s"},
+        "load_fraction": {"min": 0.3, "max": 1.0, "unit": "-"}
+    }
+}

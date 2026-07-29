@@ -1,0 +1,23 @@
+{
+    "component": "EC129 Run-of-River Hydropower",
+    "fidelity": "F0a",
+    "description": "Empirical power-rating lookup: tabulated overall efficiency vs flow ratio q=Q/Q_design at design net head; P = eta(q)*rho*g*Q*H_net/1000 kW (low-head Kaplan/Francis)",
+    "rated": {
+        "H_design": {"value": 8.0, "unit": "m", "note": "Design net head (gross minus 5% penstock loss)"},
+        "Q_design": {"value": 50.0, "unit": "m3/s", "note": "Design flow rate"},
+        "P_rated": {"value": 3200.0, "unit": "kW", "note": "Rated power output at design point"},
+        "eta_overall_rated": {"value": 0.8448, "unit": "dimensionless", "note": "eta_peak*eta_gen = 0.88*0.96 at q=1"},
+        "head_loss_fraction": {"value": 0.05, "unit": "dimensionless", "note": "Penstock head loss fraction (already in H_design)"},
+        "rho": {"value": 1000.0, "unit": "kg/m3", "note": "Water density"},
+        "g": {"value": 9.81, "unit": "m/s2", "note": "Gravitational acceleration"}
+    },
+    "efficiency_curve": {
+        "q_ratio": {"value": [0.25, 0.40, 0.55, 0.70, 0.85, 1.00, 1.15], "unit": "dimensionless", "note": "Flow ratio Q/Q_design (Kaplan turbine has flat curve)"},
+        "eta_overall": {"value": [0.640, 0.730, 0.795, 0.830, 0.844, 0.8448, 0.838], "unit": "dimensionless", "note": "Overall efficiency at each flow ratio"}
+    },
+    "valid_ranges": {
+        "flow_rate_m3s": {"min": 0.0, "max": 57.5, "unit": "m3/s"},
+        "head_m": {"min": 2.0, "max": 20.0, "unit": "m"}
+    },
+    "source": "Penche (1998), Layman's Guidebook on How to Develop a Small Hydro Site; IEC 60041; reuses EC129 F1a parameters"
+}

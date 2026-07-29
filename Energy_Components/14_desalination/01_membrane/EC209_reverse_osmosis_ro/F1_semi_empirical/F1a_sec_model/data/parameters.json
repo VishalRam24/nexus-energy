@@ -1,0 +1,21 @@
+{
+    "component": "EC209 Reverse Osmosis (RO)",
+    "fidelity": "F1a",
+    "description": "Specific Energy Consumption (SEC) model as f(recovery, feed_salinity)",
+    "unit": {
+        "name": "Generic SWRO Module",
+        "source": "Elimelech & Phillip (2011), Science, 333, 712-717",
+        "S_feed_default": {"value": 35.0, "unit": "g/L", "note": "Seawater salinity"},
+        "recovery_default": {"value": 0.45, "unit": "dimensionless"},
+        "eta_pump": {"value": 0.85, "unit": "dimensionless", "note": "High-pressure pump efficiency"},
+        "eta_ERD": {"value": 0.95, "unit": "dimensionless", "note": "Energy recovery device efficiency"},
+        "dP_membrane": {"value": 2.0, "unit": "bar", "note": "Pressure drop across membrane"},
+        "osmotic_pressure_coeff": {"value": 0.7, "unit": "bar/(g/L)", "note": "Simplified van't Hoff: pi = 0.7 * S [g/L]"},
+        "permeate_salinity_rejection": {"value": 0.995, "unit": "dimensionless", "note": "Salt rejection fraction"}
+    },
+    "valid_ranges": {
+        "feed_salinity": {"min": 1.0, "max": 45.0, "unit": "g/L"},
+        "recovery": {"min": 0.2, "max": 0.6, "unit": "dimensionless"},
+        "feed_flow_m3h": {"min": 10.0, "max": 1000.0, "unit": "m3/hr"}
+    }
+}

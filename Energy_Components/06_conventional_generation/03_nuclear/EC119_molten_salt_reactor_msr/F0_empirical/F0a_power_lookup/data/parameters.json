@@ -1,0 +1,73 @@
+{
+    "component": "EC119 Molten Salt Reactor (MSR)",
+    "fidelity": "F0a - empirical lookup",
+    "description": "Net electrical power as a tabulated lookup over load factor (fraction of rated thermal power). Breakpoints from F1a power map P_elec = eta * P_thermal * load, with linear efficiency derate below minimum stable load.",
+    "unit": {
+        "name": "Generic Molten Salt Reactor (MSRE/MSFR class)",
+        "source": "Haubenreich & Engel (1970); MacPherson (1985); NEA (2021) MSR Handbook; F1a EC119",
+        "P_thermal_mw": {
+            "value": 2250.0,
+            "unit": "MW_th",
+            "note": "Reactor thermal power at full load"
+        },
+        "eta_rated": {
+            "value": 0.45,
+            "unit": "dimensionless",
+            "note": "Net thermal-to-electric efficiency at rated load"
+        },
+        "load_min": {
+            "value": 0.3,
+            "unit": "dimensionless",
+            "note": "Minimum stable load factor"
+        },
+        "load_breakpoints": {
+            "value": [
+                0.3,
+                0.35,
+                0.4,
+                0.45,
+                0.5,
+                0.55,
+                0.6,
+                0.65,
+                0.7,
+                0.75,
+                0.8,
+                0.85,
+                0.9,
+                0.95,
+                1.0
+            ],
+            "unit": "dimensionless",
+            "note": "Lookup x-axis (load factor)"
+        },
+        "pelec_breakpoints": {
+            "value": [
+                303.75,
+                354.375,
+                405.0,
+                455.625,
+                506.25,
+                556.875,
+                607.5,
+                658.125,
+                708.75,
+                759.375,
+                810.0,
+                860.625,
+                911.25,
+                961.875,
+                1012.5
+            ],
+            "unit": "MW_e",
+            "note": "Net electrical power at each load breakpoint"
+        }
+    },
+    "valid_ranges": {
+        "load_factor": {
+            "min": 0.3,
+            "max": 1.0,
+            "unit": "dimensionless"
+        }
+    }
+}

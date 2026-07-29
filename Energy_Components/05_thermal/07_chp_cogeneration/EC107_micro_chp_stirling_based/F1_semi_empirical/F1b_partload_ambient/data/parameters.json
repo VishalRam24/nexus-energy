@@ -1,0 +1,26 @@
+{
+    "component": "EC107 Micro-CHP Stirling-Based",
+    "fidelity": "F1b",
+    "description": "Part-load electrical + thermal efficiency with ambient temperature derating for Stirling engine micro-CHP",
+    "unit": {
+        "name": "Generic 1 kW Stirling Engine Micro-CHP (e.g. WhisperGen / Remeha eVita class)",
+        "source": "Lund, H. et al. (2016). Smart energy and flexibility. Elsevier; Hawkes, A. & Leach, M. (2007). Cost-effective operating strategy for residential micro-CHP. Energy, 32(5), 711-723; Kongtragool, B. & Wongwises, S. (2003). A review of solar-powered Stirling engines. Renew. Sustain. Energy Rev., 7(2), 131-154.",
+        "P_el_rated_kw": {"value": 1.0, "unit": "kW_e", "note": "Rated electrical output at 25 degC"},
+        "eta_el_rated": {"value": 0.12, "unit": "-", "note": "Stirling electrical efficiency ~10-15% (lower than SOFC, limited by Carnot for T_hot/T_cold)"},
+        "eta_th_rated": {"value": 0.80, "unit": "-", "note": "High thermal efficiency (total ~92%): Stirling optimised for heat output"},
+        "PLR_min": {"value": 0.4, "unit": "-", "note": "Stirling engine minimum stable operation PLR"},
+        "LHV_gas_mj_kg": {"value": 50.0, "unit": "MJ/kg", "note": "Natural gas LHV"},
+        "el_plr_a": {"value": 0.30, "unit": "-", "note": "Electrical PLR constant: Stirling has moderate part-load drop"},
+        "el_plr_b": {"value": 0.85, "unit": "-", "note": "Electrical PLR linear term"},
+        "el_plr_c": {"value": -0.15, "unit": "-", "note": "Electrical PLR quadratic term"},
+        "th_plr_a": {"value": 0.75, "unit": "-", "note": "Thermal PLR constant: Stirling heat output relatively constant (burner-modulated)"},
+        "th_plr_b": {"value": 0.25, "unit": "-", "note": "Thermal PLR linear term"},
+        "T_ref_c": {"value": 25.0, "unit": "degC", "note": "Reference ambient temperature"},
+        "temp_derating_pct_per_degC": {"value": 0.2, "unit": "%/degC", "note": "Power derating above 25 degC (Stirling T_cold increase reduces Carnot efficiency)"},
+        "temp_derating_start_c": {"value": 25.0, "unit": "degC", "note": "Temperature above which derating starts"}
+    },
+    "valid_ranges": {
+        "PLR": {"min": 0.4, "max": 1.0, "unit": "-"},
+        "T_ambient_c": {"min": -20.0, "max": 45.0, "unit": "degC"}
+    }
+}

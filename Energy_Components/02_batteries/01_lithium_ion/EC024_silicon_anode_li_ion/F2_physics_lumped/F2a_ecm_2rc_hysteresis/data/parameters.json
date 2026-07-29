@@ -1,0 +1,47 @@
+{
+    "component_id": "EC024",
+    "component_name": "Silicon-Anode Li-ion Battery (Si/NMC)",
+    "fidelity": "F2a — Thevenin ECM (1/2-RC) + Coulomb SOC + Si hysteresis + thermal ODE",
+    "source": "Plett (2015) Battery Management Systems Vol. 2 (ESC/ECM + one-state hysteresis); Hu et al. (2012) J. Power Sources 198, 359 (Thevenin n-RC comparison); McDowell et al. (2013) Adv. Mater. 25, 4966 (Si swelling); Obrovac & Christensen (2004) Electrochem. Solid-State Lett. 7, A93 (Si lithiation/delithiation OCV hysteresis); Bernardi et al. (1985) J. Electrochem. Soc. 132, 5 (lumped thermal energy balance)",
+    "unit": {
+        "name": "Si/NMC pouch cell (10% Si blend anode) — Thevenin ECM physics-lumped",
+        "capacity_ref": {"value": 3.5, "unit": "Ah", "note": "Nominal capacity at T_ref; elevated vs pure graphite due to Si (3579 mAh/g vs 372 mAh/g graphite). McDowell et al. (2013)"},
+        "voltage_max": {"value": 4.2, "unit": "V", "note": "Upper cutoff"},
+        "voltage_min": {"value": 2.7, "unit": "V", "note": "Lower cutoff"},
+        "R0_ref": {"value": 0.020, "unit": "Ohm", "note": "Series ohmic resistance at T_ref; Plett (2015) ESC R0"},
+        "R1_ref": {"value": 0.012, "unit": "Ohm", "note": "Fast RC charge-transfer resistance at T_ref"},
+        "C1": {"value": 2200.0, "unit": "F", "note": "Fast RC capacitance, tau1=R1*C1~26 s"},
+        "R2_ref": {"value": 0.018, "unit": "Ohm", "note": "Slow RC diffusion resistance at T_ref"},
+        "C2": {"value": 40000.0, "unit": "F", "note": "Slow RC capacitance, tau2=R2*C2~720 s (Si solid-state diffusion is slow)"},
+        "M_hyst": {"value": 0.060, "unit": "V", "note": "Max hysteresis voltage envelope; large for Si (lithiation/delithiation OCV split ~50-120 mV). Obrovac & Christensen (2004)"},
+        "gamma_hyst": {"value": 80.0, "unit": "1/(fractional SOC)", "note": "Hysteresis approach rate vs charge throughput; Plett (2015) one-state hysteresis"},
+        "n_rc": {"value": 2, "unit": "-", "note": "Number of RC pairs (1 or 2). Hu et al. (2012)"},
+        "eta_coulombic": {"value": 0.99, "unit": "-", "note": "Coulombic efficiency on charge; <1 due to Si SEI re-formation each cycle"},
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 degC)"},
+        "E_a": {"value": 26000.0, "unit": "J/mol", "note": "Arrhenius activation energy for all resistances; elevated by Si SEI cracking. Lundqvist et al. (2021) J. Electrochem. Soc. 168, 060522"},
+        "dOCV_dT": {"value": -0.00015, "unit": "V/K", "note": "Entropic coefficient; Si plateau (~0.4 V vs Li) makes it less negative than graphite/NMC. Geng et al. (2020) J. Electrochem. Soc. 167, 090504"},
+        "m_cell": {"value": 0.065, "unit": "kg", "note": "Cell mass (~3.5 Ah pouch)"},
+        "cp_cell": {"value": 1000.0, "unit": "J/(kg.K)", "note": "Lumped cell specific heat. Bernardi et al. (1985)"},
+        "hA_cell": {"value": 0.30, "unit": "W/K", "note": "Convective heat-transfer coefficient * surface area to ambient"},
+        "T_ambient": {"value": 298.15, "unit": "K", "note": "Ambient temperature"},
+        "swelling_coeff": {"value": 0.28, "unit": "-", "note": "Fractional electrode thickness change at full lithiation; Si swells up to ~280-300% (cell-level blend ~10-30%). McDowell et al. (2013)"},
+        "R_gas": {"value": 8.314, "unit": "J/(mol.K)", "note": "Universal gas constant"}
+    },
+    "ocv_charge_coefficients": {
+        "description": "OCV_lithiation(SOC) (charge branch) = sum a_i*SOC^i, i=0..5. Upper of the hysteresis envelope.",
+        "source": "Si/NMC lithiation OCV; NMC cathode dominates shape, Si anode plateau offsets it upward on charge. Obrovac & Christensen (2004); Plett (2015)",
+        "a0": 2.88, "a1": 3.30, "a2": -11.0, "a3": 22.5, "a4": -20.5, "a5": 7.0
+    },
+    "ocv_discharge_coefficients": {
+        "description": "OCV_delithiation(SOC) (discharge branch) = sum a_i*SOC^i, i=0..5. Lower of the hysteresis envelope.",
+        "source": "Si/NMC delithiation OCV; sits below charge branch by the Si hysteresis gap. Obrovac & Christensen (2004)",
+        "a0": 2.82, "a1": 3.10, "a2": -11.0, "a3": 22.5, "a4": -20.5, "a5": 7.0
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "current": {"min": -17.5, "max": 17.5, "unit": "A", "note": "Negative=charge, Positive=discharge; ~5C for 3.5Ah"},
+        "temperature": {"min": 253.15, "max": 333.15, "unit": "K", "note": "-20 to 60 degC"},
+        "dt": {"min": 0.01, "max": 10.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 36000.0, "unit": "s"}
+    }
+}

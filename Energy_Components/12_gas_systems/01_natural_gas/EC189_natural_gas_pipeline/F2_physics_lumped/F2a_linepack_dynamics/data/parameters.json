@@ -1,0 +1,33 @@
+{
+    "component_id": "EC189",
+    "component_name": "Natural Gas Pipeline",
+    "fidelity": "F2a — Physics-Lumped Isothermal Line-Pack Dynamics (ODE)",
+    "source": "Menon, E.S. (2005) Gas Pipeline Hydraulics, CRC Press (Weymouth/Panhandle/general flow eq., Ch. 2 & 4); Mohitpour, Golshan & Murray (2003) Pipeline Design & Construction, ASME Press (line-pack & transient mass balance)",
+    "unit": {
+        "name": "Onshore NG transmission line — 24-inch, 100 km, lumped single-volume",
+        "length": {"value": 100.0, "unit": "km", "note": "Pipeline length"},
+        "diameter": {"value": 0.6096, "unit": "m", "note": "24-inch nominal internal diameter"},
+        "roughness": {"value": 0.0000457, "unit": "m", "note": "Commercial steel absolute roughness 45.7 um (Menon 2005, Table 2.1)"},
+        "efficiency_factor": {"value": 0.95, "unit": "-", "note": "Pipeline transmission efficiency, 0.85-0.95 (Menon 2005)"},
+        "T_flow": {"value": 288.15, "unit": "K", "note": "Average isothermal gas temperature (15 C)"},
+        "T_base": {"value": 288.15, "unit": "K", "note": "Base/standard temperature"},
+        "P_base": {"value": 101.325, "unit": "kPa", "note": "Base/standard pressure (1 atm)"}
+    },
+    "gas": {
+        "name": "Natural Gas (typical pipeline quality)",
+        "specific_gravity": {"value": 0.6, "unit": "-", "note": "Relative to air; pure methane ~0.554, typical NG 0.58-0.65 (Menon 2005)"},
+        "Z_avg": {"value": 0.9, "unit": "-", "note": "Average compressibility factor at transmission conditions (Menon 2005)"},
+        "molar_mass": {"value": 0.01737, "unit": "kg/mol", "note": "G*M_air = 0.6*0.028966 kg/mol"},
+        "R_universal": {"value": 8.31446, "unit": "J/(mol.K)", "note": "Universal gas constant (CODATA 2018)"},
+        "viscosity": {"value": 1.1e-05, "unit": "Pa.s", "note": "Dynamic viscosity of NG ~11 uPa.s at 15 C (Mohitpour 2003)"}
+    },
+    "valid_ranges": {
+        "length_km": {"min": 1.0, "max": 2000.0, "unit": "km"},
+        "diameter_m": {"min": 0.1, "max": 1.5, "unit": "m"},
+        "P_in_bar": {"min": 5.0, "max": 150.0, "unit": "bar"},
+        "P_out_bar": {"min": 1.0, "max": 140.0, "unit": "bar"},
+        "T_K": {"min": 240.0, "max": 330.0, "unit": "K"},
+        "dt": {"min": 1.0, "max": 600.0, "unit": "s"},
+        "duration_s": {"min": 60.0, "max": 604800.0, "unit": "s"}
+    }
+}

@@ -1,0 +1,42 @@
+{
+    "component": "EC151 Dry Steam Geothermal Plant",
+    "fidelity": "F1b",
+    "description": "Part-load turbine + ambient derating + NCG penalty + resource decline for dry steam plants",
+    "unit": {
+        "name": "Generic Dry Steam Geothermal Plant (Geysers-type)",
+        "source": "DiPippo (2015) Chapter 7; Zarrouk & Moon (2014); Sutton (1976)",
+        "T_geo_design_degC":        {"value": 200.0, "unit": "degC"},
+        "T_reject_design_degC":     {"value": 30.0,  "unit": "degC"},
+        "m_dot_steam_design_kg_s":  {"value": 50.0,  "unit": "kg/s"},
+        "cp_steam":                 {"value": 2010.0, "unit": "J/(kg*K)",
+                                     "note": "Approx cp of steam at geothermal conditions"},
+        "eta_utilization":          {"value": 0.55, "unit": "dimensionless",
+                                     "note": "Higher than binary; direct steam cycle; 0.50-0.65 typical"},
+        "T_condenser_offset":       {"value": 5.0,  "unit": "degC"},
+        "P_rated_kw":               {"value": 10000.0, "unit": "kW"},
+        "decline_rate_per_yr":      {"value": 0.01, "unit": "1/yr",
+                                     "note": "Steam flow/pressure decline ~1%/yr with active reinjection; 2-3%/yr without (DiPippo 2015 p.238)"},
+        "ambient_derating_coeff":   {"value": 0.005, "unit": "1/degC",
+                                     "note": "Efficiency loss per degC condenser T rise"},
+        "cooling_mode":             {"value": "wet", "unit": "text",
+                                     "note": "wet = cooling tower (0.5 coupling), dry = air cooled (1.0 coupling)"},
+        "ncg_content_base_pct":     {"value": 1.0, "unit": "wt%",
+                                     "note": "Baseline NCG content; The Geysers ~2 wt%, typical 0.5-3 wt%"},
+        "ncg_penalty_per_pct":      {"value": 0.008, "unit": "1/wt%",
+                                     "note": "~0.5-1% output loss per wt% NCG above baseline (Sutton 1976)"},
+        "PLR_min":                  {"value": 0.3, "unit": "dimensionless"}
+    },
+    "part_load_curve": {
+        "PLR_points":  [0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+        "eta_ratio":   [0.78, 0.84, 0.89, 0.93, 0.96, 0.98, 0.99, 1.00],
+        "note": "Dry steam turbines maintain better part-load performance than ORC (DiPippo 2015 Fig 7.9)"
+    },
+    "valid_ranges": {
+        "T_geo_degC":            {"min": 150.0, "max": 280.0, "unit": "degC"},
+        "m_dot_steam_kg_s":      {"min": 5.0,   "max": 200.0, "unit": "kg/s"},
+        "T_reject_degC":         {"min": 5.0,   "max": 50.0,  "unit": "degC"},
+        "PLR":                   {"min": 0.3,   "max": 1.0},
+        "years_operation":       {"min": 0.0,   "max": 50.0,  "unit": "years"},
+        "ncg_content_pct":       {"min": 0.0,   "max": 10.0,  "unit": "wt%"}
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "component": "EC220 Triboelectric Nanogenerator (TENG)",
+    "fidelity": "F0a",
+    "description": "Empirical average-power vs contact-separation-frequency lookup for a PTFE-Al contact-separation TENG (50x50mm) into its optimal ~10 MOhm load. Energy per cycle E~0.5*Q*Voc is fixed by surface charge and gap; average power scales linearly with cycle frequency.",
+    "source": "Wang, Z.L. et al. (2012) Nano Lett.; Fan et al. (2012) Nano Energy; Wang et al. (2015) Mater. Today",
+    "sigma": {"value": 5e-6, "unit": "C/m^2", "note": "Surface charge density (reused from EC220 F1a)"},
+    "electrode_area": {"value": 0.0025, "unit": "m^2", "note": "Electrode area 50x50mm (reused from F1a)"},
+    "gap_max": {"value": 0.002, "unit": "m", "note": "Maximum separation gap (reused from F1a)"},
+    "R_load": {"value": 1e7, "unit": "ohm", "note": "Optimal ~10 MOhm load (reused from F1a)"},
+    "energy_per_cycle_J": {"value": 7.058956e-6, "unit": "J", "note": "Energy delivered per contact-separation cycle"},
+    "lookup": {
+        "note": "Breakpoints: contact-separation frequency (Hz) -> average output power (mW) at optimal load",
+        "frequency_Hz": {"value": [0.1, 0.5, 1.0, 3.0, 10.0, 30.0, 100.0], "unit": "Hz"},
+        "power_mW": {"value": [0.000706, 0.003529, 0.007059, 0.021177, 0.07059, 0.211769, 0.705896], "unit": "mW"}
+    },
+    "rated_point": {
+        "frequency": {"value": 3.0, "unit": "Hz"},
+        "R_load": {"value": 1e7, "unit": "ohm"},
+        "power_mW": {"value": 0.021177, "unit": "mW", "note": "Rated ~21 uW average at 3 Hz for a 25 cm^2 PTFE-Al TENG"}
+    },
+    "valid_ranges": {
+        "frequency": {"min": 0.1, "max": 100.0, "unit": "Hz"},
+        "R_load": {"min": 1e4, "max": 1e10, "unit": "ohm"}
+    }
+}

@@ -1,0 +1,30 @@
+{
+    "component_id": "EC210",
+    "component_name": "Electrodialysis (ED)",
+    "fidelity": "F2a — Ion-Transport Stack Model (Nernst-Planck + salt mass balance ODE)",
+    "source": "Strathmann (2004) Ion-Exchange Membrane Separation Processes, Elsevier; Strathmann (2010) Desalination 264:268-288; Ortiz et al. (2005) J. Membrane Sci. 252:65-75; Nikonenko et al. (2014) Adv. Colloid Interface Sci. 235:233-246",
+    "unit": {
+        "name": "Generic brackish-water electrodialysis stack — physics-lumped ion transport",
+        "N_cell_pairs": {"value": 200, "unit": "-", "note": "Number of cell pairs (CEM+AEM) in the stack"},
+        "A_membrane_cm2": {"value": 500.0, "unit": "cm2", "note": "Effective membrane area per cell pair"},
+        "h_cell_cm": {"value": 0.05, "unit": "cm", "note": "Spacer / flow-channel thickness (intermembrane gap), 0.5 mm"},
+        "t_transport_CEM": {"value": 0.97, "unit": "-", "note": "Counter-ion transport number in cation-exchange membrane"},
+        "t_transport_AEM": {"value": 0.96, "unit": "-", "note": "Counter-ion transport number in anion-exchange membrane"},
+        "t_transport_sol": {"value": 0.5, "unit": "-", "note": "Cation transport number in bulk NaCl solution"},
+        "D_salt_cm2_s": {"value": 1.5e-5, "unit": "cm2/s", "note": "NaCl diffusion coefficient in water at 25C (CRC Handbook)"},
+        "delta_bl_cm": {"value": 0.02, "unit": "cm", "note": "Diffusion boundary-layer thickness (concentration polarization)"},
+        "R_area_CEM_ohm_cm2": {"value": 2.5, "unit": "ohm.cm2", "note": "Areal resistance of cation-exchange membrane"},
+        "R_area_AEM_ohm_cm2": {"value": 2.0, "unit": "ohm.cm2", "note": "Areal resistance of anion-exchange membrane"},
+        "Lambda_eq_S_cm2_mol": {"value": 126.4, "unit": "S.cm2/mol", "note": "Equivalent conductivity of NaCl at infinite dilution (Na+ 50.1 + Cl- 76.3)"},
+        "lambda_factor": {"value": 0.85, "unit": "-", "note": "Empirical fraction of infinite-dilution conductivity at working concentration"},
+        "current_efficiency_max": {"value": 0.95, "unit": "-", "note": "Stack-level current utilization upper bound (back-diffusion, water transport, leakage)"},
+        "T_K": {"value": 298.15, "unit": "K", "note": "Operating temperature (25C)"},
+        "z_ion": {"value": 1, "unit": "-", "note": "Ion valence (Na+, Cl-)"}
+    },
+    "valid_ranges": {
+        "current_density_A_m2": {"min": 10.0, "max": 500.0, "unit": "A/m2", "note": "Below limiting current density"},
+        "feed_conc_mol_m3": {"min": 10.0, "max": 600.0, "unit": "mol/m3", "note": "Brackish 0.6-35 g/L NaCl"},
+        "flow_velocity_cm_s": {"min": 1.0, "max": 20.0, "unit": "cm/s", "note": "Linear velocity in diluate channel"},
+        "stack_length_cm": {"min": 10.0, "max": 200.0, "unit": "cm", "note": "Flow-path length"}
+    }
+}

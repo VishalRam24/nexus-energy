@@ -1,0 +1,70 @@
+{
+  "component": "EC144 Biomass Combustion CHP",
+  "fidelity": "F1b",
+  "description": "Feedstock-specific combustion efficiency with moisture-LHV coupling, part-load eta, and temperature flue loss",
+  "unit": {
+    "name": "Biomass CHP plant with steam cycle",
+    "source": "Obernberger & Thek (2008) Pellet Handbook; EN303-5:2012; Jenkins et al. (1998)",
+    "Q_rated_kw":          {"value": 5000.0, "unit": "kW_th"},
+    "eta_electrical_ref":  {"value": 0.22,   "unit": "-",  "description": "Electric efficiency at rated power, dry fuel"},
+    "eta_thermal_ref":     {"value": 0.55,   "unit": "-",  "description": "Heat recovery efficiency at rated power"},
+    "PLR_min":             {"value": 0.20,   "unit": "-"},
+    "a0":                  {"value": 0.65,   "unit": "-",  "description": "Part-load curve intercept"},
+    "a1":                  {"value": 0.45,   "unit": "-",  "description": "Part-load curve linear coeff"},
+    "a2":                  {"value": -0.15,  "unit": "-",  "description": "Part-load curve quadratic coeff"},
+    "excess_air_ratio":    {"value": 1.35,   "unit": "-",  "description": "Lambda (typical biomass combustion)"},
+    "stoich_afr":          {"value": 5.8,    "unit": "kg/kg", "description": "Stoichiometric air-fuel ratio for wood"},
+    "flue_gas_cp":         {"value": 1.05,   "unit": "kJ/(kg*K)"},
+    "T_flue_full_degC":    {"value": 180.0,  "unit": "degC"},
+    "T_ambient_degC":      {"value": 15.0,   "unit": "degC"},
+    "standby_loss_fraction":{"value": 0.015, "unit": "-"},
+    "cycling_loss_fraction":{"value": 0.020, "unit": "-"}
+  },
+  "feedstock_db": {
+    "wood_chips": {
+      "LHV_dry_MJ_kg": 18.5,
+      "ash_pct": 1.5,
+      "C_pct": 50.0,
+      "H_pct": 6.0,
+      "moisture_ref": 0.15,
+      "stoich_afr": 5.8
+    },
+    "wood_pellets": {
+      "LHV_dry_MJ_kg": 19.0,
+      "ash_pct": 0.5,
+      "C_pct": 51.0,
+      "H_pct": 6.1,
+      "moisture_ref": 0.08,
+      "stoich_afr": 5.9
+    },
+    "agricultural_straw": {
+      "LHV_dry_MJ_kg": 17.0,
+      "ash_pct": 7.0,
+      "C_pct": 44.0,
+      "H_pct": 5.5,
+      "moisture_ref": 0.15,
+      "stoich_afr": 5.4
+    },
+    "energy_grass": {
+      "LHV_dry_MJ_kg": 17.5,
+      "ash_pct": 5.0,
+      "C_pct": 46.0,
+      "H_pct": 5.8,
+      "moisture_ref": 0.15,
+      "stoich_afr": 5.5
+    },
+    "bark": {
+      "LHV_dry_MJ_kg": 19.5,
+      "ash_pct": 3.0,
+      "C_pct": 52.0,
+      "H_pct": 6.2,
+      "moisture_ref": 0.40,
+      "stoich_afr": 6.0
+    }
+  },
+  "valid_ranges": {
+    "PLR":              {"min": 0.20, "max": 1.0,  "unit": "-"},
+    "moisture_fraction":{"min": 0.0,  "max": 0.60, "unit": "wet-basis"},
+    "T_ambient_degC":   {"min": -10.0,"max": 35.0, "unit": "degC"}
+  }
+}

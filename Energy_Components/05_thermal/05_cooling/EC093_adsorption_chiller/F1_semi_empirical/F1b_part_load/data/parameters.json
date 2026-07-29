@@ -1,0 +1,30 @@
+{
+    "component": "EC093 Adsorption Chiller",
+    "fidelity": "F1b",
+    "description": "Silica-gel/water adsorption chiller. Extends F1a with part-load COP degradation due to incomplete adsorption/desorption at short half-cycle times and cycling losses. COP_pl = COP_full * PLF where PLF = 1 - C_d*(1-PLR).",
+    "unit": {
+        "name": "Generic 50 kW_th silica-gel/water adsorption chiller",
+        "source": "Saha, B.B. et al. (1995). Heat Recovery Systems & CHP 15, 581-590; Wang, R.Z., Oliveira, R.G. (2006). Prog. Energy Combust. Sci. 32, 424-458; Duong, X.Q. et al. (2018). Energy Conv. Mgmt. 158, 77-90; Boelman et al. (1995).",
+        "rated_cooling_capacity": {"value": 50.0,  "unit": "kW_th"},
+        "rated_cop_cooling":      {"value": 0.55,  "unit": "dimensionless"},
+        "carnot_fraction":        {"value": 0.20,  "unit": "dimensionless"},
+        "T_hot_min":     {"value": 55.0, "unit": "degC"},
+        "T_hot_max":     {"value": 95.0, "unit": "degC"},
+        "T_cool_min":    {"value": 22.0, "unit": "degC"},
+        "T_cool_max":    {"value": 40.0, "unit": "degC"},
+        "T_chilled_min": {"value": 6.0,  "unit": "degC"},
+        "T_chilled_max": {"value": 20.0, "unit": "degC"},
+        "auxiliary_power": {"value": 0.4, "unit": "kW"},
+        "C_d":     {"value": 0.35, "unit": "dimensionless", "note": "Adsorption chiller has higher C_d than vapor-compression (0.35 vs 0.20) because incomplete half-cycle severely penalizes COP — Duong et al. (2018) cycling loss data"},
+        "PLR_min": {"value": 0.30, "unit": "dimensionless", "note": "Minimum stable PLR; below 30% the half-cycle is too short for silica-gel to equilibrate — Wang & Oliveira (2006) sec.4"},
+        "cycling_loss_factor": {"value": 0.08, "unit": "dimensionless", "note": "Extra COP fraction lost per on/off event from thermal mass of sorbent beds — Boelman et al. (1995)"},
+        "half_cycle_time_design": {"value": 300.0, "unit": "s", "note": "Design half-cycle time for full adsorption equilibrium — Saha et al. (1995)"},
+        "tau_penalty_exponent":   {"value": 0.5,   "unit": "dimensionless", "note": "PLR-dependent half-cycle shortening: tau_actual/tau_design ≈ PLR^0.5; COP scales as 1-exp(-k*tau) — Duong et al. (2018) Fig.7"}
+    },
+    "valid_ranges": {
+        "T_hot":     {"min": 55.0, "max": 95.0, "unit": "degC"},
+        "T_cool":    {"min": 22.0, "max": 40.0, "unit": "degC"},
+        "T_chilled": {"min": 6.0,  "max": 20.0, "unit": "degC"},
+        "part_load_ratio": {"min": 0.0, "max": 1.0, "unit": "-"}
+    }
+}

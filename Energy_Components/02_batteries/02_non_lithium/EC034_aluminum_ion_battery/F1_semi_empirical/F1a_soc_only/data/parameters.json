@@ -1,0 +1,10 @@
+{
+  "default_parameters": {
+    "Q_nom": 1.0,
+    "R_int": 0.080,
+    "V_min": 1.5,
+    "V_max": 2.3,
+    "ocv_coeffs": [2.0, -0.2, 0.1, -0.05]
+  },
+  "description": "Aluminum-Ion SOC-only model. OCV ~2.0 V (Al/graphite cathode). R_int=80 mOhm, Q_nom=1.0 Ah. Polynomial OCV fit."
+}

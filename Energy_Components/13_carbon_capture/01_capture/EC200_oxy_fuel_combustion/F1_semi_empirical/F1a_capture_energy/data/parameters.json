@@ -1,0 +1,32 @@
+{
+    "component_id": "EC200",
+    "component_name": "Oxy-Fuel Combustion Capture",
+    "fidelity": "F1a — Capture & Energy Model (algebraic)",
+    "description": "Algebraic capture rate, O2 demand, ASU + compression energy penalty and net efficiency drop for oxy-fuel coal combustion CO2 capture.",
+    "source": "Buhre et al. (2005), Prog. Energy Combust. Sci. 31(4) 283-307; Toftegaard et al. (2010), Prog. Energy Combust. Sci. 36(5) 581-625.",
+    "unit": {
+        "name": "Pulverised-coal Oxy-Fuel Boiler with cryogenic ASU + CO2 compression",
+        "fuel_C": {"value": 0.72, "unit": "kg/kg", "note": "Carbon mass fraction, bituminous coal (daf)"},
+        "fuel_H": {"value": 0.05, "unit": "kg/kg", "note": "Hydrogen mass fraction"},
+        "fuel_S": {"value": 0.01, "unit": "kg/kg", "note": "Sulfur mass fraction"},
+        "fuel_O": {"value": 0.08, "unit": "kg/kg", "note": "Oxygen mass fraction (in fuel)"},
+        "fuel_LHV": {"value": 26.0, "unit": "MJ/kg", "note": "Lower heating value, bituminous coal"},
+        "asu_specific_energy": {"value": 220.0, "unit": "kWh/tO2", "note": "Cryogenic ASU at 95% O2 (Buhre 2005: 200-240)"},
+        "compression_specific_energy": {"value": 100.0, "unit": "kWh/tCO2", "note": "CO2 compression to ~110 bar pipeline"},
+        "o2_purity": {"value": 0.95, "unit": "mol/mol", "note": "ASU oxygen purity (design)"},
+        "excess_o2_ratio": {"value": 0.05, "unit": "-", "note": "Excess O2 above stoichiometric (lambda-1)"},
+        "capture_rate_design": {"value": 0.95, "unit": "-", "note": "CO2 capture fraction (near-complete, condensation)"},
+        "MW_C": {"value": 12.011, "unit": "g/mol"},
+        "MW_O2": {"value": 31.998, "unit": "g/mol"},
+        "MW_H": {"value": 1.008, "unit": "g/mol"},
+        "MW_S": {"value": 32.06, "unit": "g/mol"},
+        "MW_CO2": {"value": 44.01, "unit": "g/mol"}
+    },
+    "valid_ranges": {
+        "fuel_rate": {"min": 1.0, "max": 100.0, "unit": "kg/s"},
+        "load": {"min": 0.4, "max": 1.0, "unit": "-"},
+        "o2_purity": {"min": 0.90, "max": 0.995, "unit": "mol/mol"},
+        "co2_purity_dry": {"min": 0.90, "max": 0.99, "unit": "mol/mol"},
+        "base_efficiency": {"min": 0.30, "max": 0.45, "unit": "-"}
+    }
+}

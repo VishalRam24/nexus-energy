@@ -1,0 +1,30 @@
+{
+    "component": "EC101 Combined Cycle Gas Turbine (CCGT)",
+    "fidelity": "F1b",
+    "description": "GT + HRSG/ST part-load with ambient temperature/pressure correction",
+    "unit": {
+        "name": "Generic 571 MW CCGT (2x1 configuration, natural gas)",
+        "source": "Kehlhofer et al. (2009), Combined-Cycle Gas & Steam Turbine Power Plants, 3rd ed.",
+        "rated_power_mw": {"value": 571.0, "unit": "MW_e", "note": "Net rated output at ISO"},
+        "eta_gt_rated": {"value": 0.40, "unit": "-", "note": "GT LHV efficiency at ISO full load"},
+        "eta_st_rated": {"value": 0.36, "unit": "-", "note": "ST cycle efficiency (fraction of GT exhaust heat)"},
+        "eta_combined_rated": {"value": 0.62, "unit": "-", "note": "Combined net LHV efficiency at ISO"},
+        "T_iso_ref_k": {"value": 288.15, "unit": "K", "note": "ISO reference temperature (15 degC)"},
+        "P_iso_ref_kpa": {"value": 101.325, "unit": "kPa", "note": "ISO reference pressure"},
+        "gt_plr_a": {"value": 0.25, "unit": "-", "note": "GT part-load constant"},
+        "gt_plr_b": {"value": 0.85, "unit": "-", "note": "GT part-load linear"},
+        "gt_plr_c": {"value": -0.10, "unit": "-", "note": "GT part-load quadratic"},
+        "st_plr_a": {"value": 0.50, "unit": "-", "note": "ST part-load constant (HRSG benefits from higher T_exh at part load)"},
+        "st_plr_b": {"value": 0.50, "unit": "-", "note": "ST part-load linear"},
+        "LHV_gas_mj_kg": {"value": 50.0, "unit": "MJ/kg", "note": "Natural gas LHV"},
+        "PLR_min": {"value": 0.4, "unit": "-", "note": "Minimum combined PLR"},
+        "T_exhaust_gt_rated_k": {"value": 873.15, "unit": "K", "note": "GT exhaust at full load (~600 degC)"},
+        "T_exhaust_gt_partload_rise_k": {"value": 40.0, "unit": "K", "note": "GT exhaust rise at part load"},
+        "T_stack_k": {"value": 353.15, "unit": "K", "note": "HRSG stack temperature (~80 degC)"}
+    },
+    "valid_ranges": {
+        "PLR": {"min": 0.4, "max": 1.0, "unit": "-"},
+        "T_ambient_k": {"min": 243.15, "max": 323.15, "unit": "K"},
+        "P_ambient_kpa": {"min": 80.0, "max": 110.0, "unit": "kPa"}
+    }
+}

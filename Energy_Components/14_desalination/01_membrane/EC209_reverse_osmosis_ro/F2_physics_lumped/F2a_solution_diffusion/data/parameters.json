@@ -1,0 +1,30 @@
+{
+    "component": "EC209 Reverse Osmosis (RO)",
+    "fidelity": "F2a",
+    "description": "Solution-diffusion membrane transport model with concentration polarization",
+    "unit": {
+        "name": "DOW FILMTEC SW30HR-380 (generic SWRO)",
+        "source": "Dow Water & Process Solutions (2015), FILMTEC Reverse Osmosis Membranes Technical Manual; Geise et al. (2011), J. Membrane Science, 369, 130-138",
+        "A": {"value": 3.5, "unit": "LMH/bar", "note": "Water permeability coefficient"},
+        "B": {"value": 0.08, "unit": "LMH", "note": "Salt permeability coefficient (NaCl)"},
+        "membrane_area_m2": {"value": 37.0, "unit": "m2", "note": "Active membrane area per element"},
+        "N_elements": {"value": 7, "unit": "dimensionless", "note": "Number of elements per pressure vessel"},
+        "feed_spacer_thickness_mm": {"value": 0.86, "unit": "mm", "note": "Feed channel spacer thickness"},
+        "dh_mm": {"value": 0.96, "unit": "mm", "note": "Hydraulic diameter of feed channel"},
+        "L_element_m": {"value": 1.016, "unit": "m", "note": "Element length"},
+        "W_element_m": {"value": 1.34, "unit": "m", "note": "Effective membrane width (unrolled)"},
+        "eta_pump": {"value": 0.85, "unit": "dimensionless"},
+        "eta_ERD": {"value": 0.95, "unit": "dimensionless"},
+        "D_NaCl": {"value": 1.5e-9, "unit": "m2/s", "note": "Diffusion coefficient of NaCl in water at 25C"},
+        "rho_water": {"value": 1025.0, "unit": "kg/m3", "note": "Seawater density"},
+        "mu_water": {"value": 1.08e-3, "unit": "Pa*s", "note": "Dynamic viscosity at 25C"},
+        "pi_coeff": {"value": 0.7, "unit": "bar/(g/L)", "note": "Osmotic pressure coefficient for NaCl (van't Hoff simplified)"},
+        "dP_element_bar": {"value": 0.3, "unit": "bar", "note": "Pressure drop per element"}
+    },
+    "valid_ranges": {
+        "feed_concentration_gL": {"min": 1.0, "max": 45.0, "unit": "g/L"},
+        "feed_pressure_bar": {"min": 10.0, "max": 85.0, "unit": "bar"},
+        "feed_flow_m3h": {"min": 3.0, "max": 17.0, "unit": "m3/h"},
+        "temperature_degC": {"min": 10.0, "max": 40.0, "unit": "degC"}
+    }
+}

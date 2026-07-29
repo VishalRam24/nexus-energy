@@ -1,0 +1,24 @@
+{
+    "component": "EC118 Small Modular Reactor (SMR)",
+    "fidelity": "F1a",
+    "description": "Steady-state power map for an integral PWR-type SMR with extended load-following",
+    "unit": {
+        "name": "Generic 540 MWth / 180 MWe Integral PWR SMR (NuScale-class)",
+        "source": "IAEA SMR Booklet (2022); NuScale VOYGR design certification documents",
+        "P_thermal_mw": {"value": 540.0, "unit": "MW_th", "note": "Reactor module thermal power at full load"},
+        "P_electric_mw": {"value": 180.0, "unit": "MW_e", "note": "Net electrical output at full load"},
+        "eta_cycle": {"value": 0.34, "unit": "dimensionless", "note": "Steam Rankine cycle efficiency"},
+        "eta_gen": {"value": 0.99, "unit": "dimensionless", "note": "Turbogenerator electrical efficiency"},
+        "T_inlet_c": {"value": 258.0, "unit": "degC", "note": "Primary coolant cold-leg temperature"},
+        "T_outlet_c": {"value": 321.0, "unit": "degC", "note": "Primary coolant hot-leg temperature at full power"},
+        "P_pressure_bar": {"value": 127.0, "unit": "bar", "note": "Primary circuit pressure"},
+        "PLR_min": {"value": 0.2, "unit": "dimensionless", "note": "Minimum stable PLR (SMRs designed for deep load-following)"},
+        "cp_coolant_kjkgk": {"value": 5.4, "unit": "kJ/(kg·K)", "note": "Specific heat of pressurized water at ~290 degC, 127 bar"},
+        "m_dot_nominal_kgs": {"value": 1900.0, "unit": "kg/s", "note": "Primary coolant flow (natural circulation)"},
+        "PLR_linear_derate_below": {"value": 0.3, "unit": "dimensionless", "note": "Below this PLR, efficiency derated linearly"}
+    },
+    "valid_ranges": {
+        "part_load_ratio": {"min": 0.2, "max": 1.0, "unit": "dimensionless"},
+        "coolant_flow_kgs": {"min": 800.0, "max": 1900.0, "unit": "kg/s"}
+    }
+}

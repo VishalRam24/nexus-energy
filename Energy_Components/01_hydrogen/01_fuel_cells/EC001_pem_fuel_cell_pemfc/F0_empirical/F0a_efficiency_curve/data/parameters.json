@@ -1,0 +1,52 @@
+{
+  "component_id": "EC001",
+  "component_name": "PEM Fuel Cell (PEMFC)",
+  "fidelity": "F0a \u2014 empirical lookup",
+  "version": "1.0.0",
+  "source": "Amphlett et al. (1995), J. Electrochem. Soc., 142(1), 1-8 (F1a params reused)",
+  "metric": "electrical_efficiency_LHV",
+  "note": "PEMFC stack efficiency peaks at low/part load, drops at high load (concentration/ohmic losses). Peak ~58%, rated 50% @ 60% load.",
+  "lookup": {
+    "load_fraction": {
+      "value": [
+        0.0,
+        0.1,
+        0.2,
+        0.4,
+        0.6,
+        0.8,
+        1.0
+      ],
+      "unit": "-",
+      "note": "Breakpoints: fraction of rated power"
+    },
+    "efficiency": {
+      "value": [
+        0.0,
+        0.58,
+        0.57,
+        0.54,
+        0.5,
+        0.45,
+        0.4
+      ],
+      "unit": "-",
+      "note": "Empirical efficiency at each load (LHV basis)"
+    }
+  },
+  "rated": {
+    "load_fraction": {
+      "value": 0.6,
+      "unit": "-"
+    },
+    "efficiency": {
+      "value": 0.5,
+      "unit": "-",
+      "note": "Datasheet rated efficiency"
+    },
+    "P_rated": {
+      "value": 5000.0,
+      "unit": "W"
+    }
+  }
+}

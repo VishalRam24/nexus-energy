@@ -1,0 +1,24 @@
+{
+    "component": "EC215 Solar Still / Humidification-Dehumidification (HDH)",
+    "fidelity": "F1b",
+    "description": "HDH model with GOR vs top temperature, solar collector efficiency (Hottel-Whillier), psychrometric humidity ratio",
+    "unit": {
+        "name": "Medium-scale HDH unit with flat-plate solar collector",
+        "source": "Narayan et al. (2010) RSER 14 1840-1850; Hermosillo et al. (2012) Sol. Energy 86; Müller-Holst et al. (1998)",
+        "eta_solar_0": {"value": 0.78, "unit": "dimensionless", "note": "Collector optical efficiency (flat-plate: 0.70-0.85)"},
+        "a1": {"value": 3.5, "unit": "W/(m2*K)", "note": "First-order heat loss coefficient (Hottel-Whillier; flat-plate: 3-5 W/(m2*K))"},
+        "A_collector_m2": {"value": 20.0, "unit": "m2", "note": "Solar collector area"},
+        "T_top_ref": {"value": 70.0, "unit": "degC", "note": "Reference humidifier top temperature"},
+        "T_cond": {"value": 30.0, "unit": "degC", "note": "Condenser (dehumidifier) outlet temperature"},
+        "Lambda_opt": {"value": 2.0, "unit": "kg_air/kg_water", "note": "Optimal air-to-water mass flow ratio (Narayan 2010: 1.2-2.5)"},
+        "eta_HX": {"value": 0.80, "unit": "dimensionless", "note": "Combined HX effectiveness"},
+        "m_water_design_kg_h": {"value": 100.0, "unit": "kg/h", "note": "Design water circulation rate"},
+        "scale_resistance": {"value": 0.0001, "unit": "m2*K/W", "note": "Fouling resistance on collector/humidifier"}
+    },
+    "valid_ranges": {
+        "T_top_degC": {"min": 50.0, "max": 85.0, "unit": "degC"},
+        "G_Wm2": {"min": 100.0, "max": 1000.0, "unit": "W/m2"},
+        "T_amb_degC": {"min": 10.0, "max": 45.0, "unit": "degC"},
+        "Lambda": {"min": 0.5, "max": 5.0, "unit": "kg_air/kg_water"}
+    }
+}

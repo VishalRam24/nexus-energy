@@ -1,0 +1,65 @@
+{
+    "component_id": "EC125",
+    "component_name": "Adiabatic CAES (A-CAES)",
+    "fidelity": "F2a — Coupled Cavern + TES Energy-Balance ODEs (physics-lumped)",
+    "source": "ADELE project (RWE/GE/DLR/Zunft 2009-2013); Wolf & Budt (2014) Applied Energy 125:158 (LTA-CAES); Budt, Wolf, Span, Yan (2016) Applied Energy 170:250; Barbour et al. (2015) Renewable & Sustainable Energy Reviews 45:598",
+    "description": "0D lumped first-principles A-CAES. Charge: multi-stage compression heat captured into a sensible-heat TES (no heat rejected to atmosphere). Discharge: cavern air re-heated by stored TES heat (NO fuel combustion) then expanded. Two coupled ODEs: cavern air-mass/energy balance and TES energy balance, integrated with scipy.solve_ivp. RTE 0.65-0.75, strictly above diabatic CAES (~0.42-0.54).",
+    "unit": {
+        "name": "Generic A-CAES (ADELE-class) — Cavern + Sensible TES",
+
+        "_air_properties_comment": "Air thermodynamic properties at ~300-600 K, treated as ideal diatomic gas. cp, cv, R, gamma from Lemmon et al. (2000) J.Phys.Chem.Ref.Data 29:331 (NIST REFPROP air) and Cengel & Boles Thermodynamics 8th ed. Table A-2.",
+        "R_air": {"value": 287.0, "unit": "J/(kg.K)", "source": "Cengel & Boles Table A-2 (dry air gas constant)"},
+        "cp_air": {"value": 1005.0, "unit": "J/(kg.K)", "source": "NIST/Cengel air cp at 300 K", "note": "Used for compression-heat and re-heat energy balances"},
+        "cv_air": {"value": 718.0, "unit": "J/(kg.K)", "source": "cv = cp - R = 1005-287", "note": "Cavern internal-energy balance"},
+        "gamma_air": {"value": 1.40, "unit": "dimensionless", "source": "cp/cv for diatomic air"},
+
+        "_tes_medium_comment": "TES medium = packed concrete/rock sensible-heat store (ADELE design uses solid-media regenerator). cp_tes from Khare et al. (2013) Sol.En.Mat. and Laing et al. DLR concrete-TES; basalt/rock ~ 850, high-T concrete ~ 916 J/(kg.K).",
+        "cp_tes": {"value": 900.0, "unit": "J/(kg.K)", "source": "Laing et al. (2006) DLR solid-media concrete TES; basalt rock-bed", "note": "Sensible-heat TES specific heat"},
+        "m_tes": {"value": 1.8e7, "unit": "kg", "source": "Sized so Cm_tes=m_tes*cp_tes=1.62e10 J/K can re-heat the full cavern throughput (m_usable~9.3e6 kg x 335 kJ/kg / 0.9 ~ 3.5e12 J over dT=252 K)", "note": "~18000 t solid regenerator media (ADELE 350 MWh-class TES)"},
+        "T_tes_design": {"value": 550.0, "unit": "K", "note": "Design TES charge temperature ~277 C (multi-stage compression heat, ADELE)"},
+        "T_tes_ambient": {"value": 298.15, "unit": "K", "note": "Ambient reference for TES heat loss"},
+        "UA_tes": {"value": 90000.0, "unit": "W/K", "note": "TES insulation conductance; tau_tes = Cm_tes/UA_tes = 1.62e10/9e4 = 1.8e5 s ~ 50 h"},
+        "eta_tes": {"value": 0.90, "unit": "dimensionless", "note": "Sensible-heat TES charge/discharge effectiveness (regenerator)"},
+
+        "_cavern_comment": "Solid-rock cavern, isothermal-ish coupling to host rock via UA. Geometry from ADELE/Huntorf-class salt cavern.",
+        "cavern_volume": {"value": 310000.0, "unit": "m3", "source": "Huntorf/ADELE-class cavern", "note": "Single cavern"},
+        "p_max": {"value": 7.0e6, "unit": "Pa", "note": "70 bar"},
+        "p_min": {"value": 4.3e6, "unit": "Pa", "note": "43 bar"},
+        "T_rock": {"value": 308.15, "unit": "K", "note": "35 C host-rock temperature"},
+        "T_cavern_nominal": {"value": 313.15, "unit": "K", "note": "40 C nominal cavern air temp"},
+        "cavern_thermal_mass": {"value": 5.0e9, "unit": "J/K", "note": "Effective rock-wall thermal mass coupled to cavern air"},
+        "UA_cavern_rock": {"value": 50000.0, "unit": "W/K", "note": "Cavern-air to rock conductance; tau_cav = 5e9/5e4 = 1e5 s ~ 28 h"},
+
+        "_machinery_comment": "Turbomachinery isentropic + electrical efficiencies, ADELE/Budt-class.",
+        "eta_compressor": {"value": 0.80, "unit": "dimensionless", "note": "Compressor train isentropic efficiency"},
+        "eta_motor": {"value": 0.97, "unit": "dimensionless"},
+        "eta_expander": {"value": 0.86, "unit": "dimensionless", "note": "Expander train isentropic efficiency"},
+        "eta_generator": {"value": 0.97, "unit": "dimensionless"},
+        "specific_work": {"value": 310.0, "unit": "kJ/kg", "note": "Compressor specific work at design (multi-stage to 70 bar)"},
+        "specific_expansion_adiabatic": {"value": 335.0, "unit": "kJ/kg", "note": "Expander specific work at full TES re-heat; E_out=335*0.86*0.97=279.9, E_in=310/(0.80*0.97)=399.5, RTE=0.700"},
+
+        "T_ref_comp": {"value": 288.15, "unit": "K", "note": "ISO 15 C reference"},
+        "k_comp_T": {"value": 0.004, "unit": "1/K", "note": "Compressor specific-work sensitivity to intake T"},
+
+        "_diabatic_reference_comment": "Diabatic CAES (Huntorf/McIntosh) RTE for the >-than constraint. Huntorf 0.42, McIntosh 0.54 (Barbour 2015).",
+        "rte_diabatic_reference": {"value": 0.54, "unit": "dimensionless", "source": "McIntosh plant, Barbour et al. (2015)", "note": "A-CAES RTE must exceed this (no fuel penalty)"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "-"},
+        "T_amb_K": {"min": 253.15, "max": 313.15, "unit": "K"},
+        "T_tes_K": {"min": 298.15, "max": 600.0, "unit": "K"},
+        "T_cav_K": {"min": 288.15, "max": 333.15, "unit": "K"},
+        "m_dot_air_kg_s": {"min": 0.0, "max": 500.0, "unit": "kg/s"},
+        "dt": {"min": 1.0, "max": 600.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 86400.0, "unit": "s"},
+        "mode": {"values": ["charge", "discharge", "idle"]}
+    },
+    "physics_notes": {
+        "rte_a_caes_design": "0.700 at design (T_amb=288.15K, TES fully charged at 550K)",
+        "rte_physical_limit": "0.65-0.75 for A-CAES (Budt 2016); > diabatic CAES (0.42-0.54)",
+        "fuel_free": "fuel_power == 0 always (key A-CAES advantage vs diabatic CAES)",
+        "conservation": "Charge: E_to_air + Q_to_TES (less machine losses) = E_elec_in. Discharge: E_elec_out drawn from cavern exergy re-heated by TES.",
+        "tes_idle_decay_tau": "~56 h (UA_tes=5000 W/K, Cm_tes=1e9 J/K)",
+        "cavern_idle_decay_tau": "~28 h (UA_cavern=50000 W/K, Cm_cav=5e9 J/K)"
+    }
+}

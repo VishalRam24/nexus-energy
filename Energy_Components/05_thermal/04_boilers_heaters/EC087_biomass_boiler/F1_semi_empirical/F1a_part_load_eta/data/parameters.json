@@ -1,0 +1,73 @@
+{
+  "component_id": "EC087",
+  "component_name": "Biomass Boiler (Wood Pellet / Wood Chip)",
+  "fidelity": "F1a — Part-Load Efficiency",
+  "source": "EN 303-5:2012 'Heating boilers for solid fuels'; IEA Bioenergy Task 32 'Combustion of solid biomass'; Carvalho et al. (2013), Energy 58, 290-301.",
+  "default_parameters": {
+    "Q_rated": 50.0,
+    "eta_nom": 0.88,
+    "a0": 0.55,
+    "a1": 0.65,
+    "a2": -0.20,
+    "PLR_min": 0.30,
+    "LHV_fuel_MJ_kg": 17.5,
+    "moisture_content": 0.10,
+    "co2_factor_g_per_kwh_th": 18.0
+  },
+  "parameter_metadata": {
+    "Q_rated": {
+      "description": "Rated thermal output",
+      "unit": "kW",
+      "default": 50.0,
+      "notes": "50 kW small commercial wood pellet boiler"
+    },
+    "eta_nom": {
+      "description": "Nominal (full-load) thermal efficiency",
+      "unit": "-",
+      "default": 0.88,
+      "notes": "0.85-0.92 typical for modern automatic pellet boilers (EN 303-5 class 5)"
+    },
+    "a0": {
+      "description": "Constant term in part-load efficiency polynomial",
+      "unit": "-",
+      "default": 0.55,
+      "notes": "a0+a1+a2 must equal 1.0; convex curve with eta drop at low PLR"
+    },
+    "a1": {
+      "description": "Linear term",
+      "unit": "-",
+      "default": 0.65,
+      "notes": "Tuned to match EN 303-5 part-load measurements"
+    },
+    "a2": {
+      "description": "Quadratic term",
+      "unit": "-",
+      "default": -0.20,
+      "notes": "Negative -> efficiency rolls off at very high PLR (excess air losses)"
+    },
+    "PLR_min": {
+      "description": "Minimum stable part-load ratio",
+      "unit": "-",
+      "default": 0.30,
+      "notes": "Below ~0.30 PLR, biomass boilers cycle on/off and emissions rise"
+    },
+    "LHV_fuel_MJ_kg": {
+      "description": "Lower heating value of biomass fuel (dry basis)",
+      "unit": "MJ/kg",
+      "default": 17.5,
+      "notes": "Wood pellets ~17-18 MJ/kg; wood chips ~16-19 MJ/kg dry"
+    },
+    "moisture_content": {
+      "description": "Fuel moisture content (mass fraction, wet basis)",
+      "unit": "-",
+      "default": 0.10,
+      "notes": "Pellets 8-12%; chips 20-50%"
+    },
+    "co2_factor_g_per_kwh_th": {
+      "description": "Operational/upstream CO2 factor for biomass (excludes biogenic)",
+      "unit": "g/kWh_th",
+      "default": 18.0,
+      "notes": "Carbon-neutral biogenic CO2 excluded; processing+transport residuals"
+    }
+  }
+}

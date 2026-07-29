@@ -1,0 +1,46 @@
+{
+    "component": "EC012 Compressed Gas H2 Storage",
+    "fidelity": "F2a",
+    "description": "Lumped thermodynamic tank model. Open-system first-law energy balance ODE for gas temperature during fill/discharge, real-gas virial EOS for H2, lumped wall heat transfer to ambient. Tracks P(t), T(t), mass(t), SOC.",
+    "source": "Leachman et al. (2009) J. Phys. Chem. Ref. Data 38(3):721-748 (virial coeffs refit to NIST H2); Bird/Stewart/Lightfoot Transport Phenomena; Moran & Shapiro 'Fundamentals of Engineering Thermodynamics' (open-system first law); SAE J2601 / Zheng et al. (2012) Int. J. Hydrogen Energy 37(2):1048-1057 (fast-fill thermal rise)",
+    "tank": {
+        "type_IV": {
+            "volume": {"value": 0.125, "unit": "m3", "note": "125 L Type IV composite tank (shared with F1a/F1b)"},
+            "mass_empty": {"value": 30.0, "unit": "kg"},
+            "max_pressure": {"value": 700.0, "unit": "bar"},
+            "min_pressure": {"value": 20.0, "unit": "bar", "note": "minimum usable pressure"},
+            "wall_mass": {"value": 30.0, "unit": "kg", "note": "composite + liner mass participating in thermal storage"},
+            "cp_wall": {"value": 1100.0, "unit": "J/(kg·K)", "note": "effective specific heat of CFRP/HDPE composite wall, Zheng et al. (2012)"},
+            "UA_ambient": {"value": 5.0, "unit": "W/K", "note": "overall gas->wall->ambient conductance (lumped, shared with F1b)"},
+            "internal_area": {"value": 1.2, "unit": "m2", "note": "approximate internal wetted area of 125 L cylinder"}
+        }
+    },
+    "hydrogen": {
+        "molar_mass": {"value": 0.002016, "unit": "kg/mol"},
+        "LHV": {"value": 120.0, "unit": "MJ/kg", "note": "lower heating value"},
+        "gamma": {"value": 1.41, "unit": "dimensionless", "note": "heat capacity ratio cp/cv for H2 near 298 K"},
+        "cp": {"value": 14300.0, "unit": "J/(kg·K)", "note": "specific heat at constant pressure, near 298 K, NIST"},
+        "cv": {"value": 10180.0, "unit": "J/(kg·K)", "note": "cp - R_H2 = 14300 - 4124 ~ 10176; ideal-gas cv for diatomic H2"}
+    },
+    "inflow": {
+        "T_in": {"value": 233.15, "unit": "K", "note": "pre-cooled inlet H2 for fast fill (SAE J2601 -40 C class)"},
+        "P_supply": {"value": 875.0, "unit": "bar", "note": "station/booster supply pressure"}
+    },
+    "compressibility": {
+        "note": "Truncated pressure-series virial: Z = 1 + B(T)*P_MPa + C(T)*P_MPa^2 (P in MPa). Coefficients REFIT to NIST/Leachman (2009) H2 data: Z(300K,70MPa)=1.40, Z(240K,70MPa)=1.55, Z(300K,10MPa)=1.065. Preserved from EC012 F1b.",
+        "A1": 0.002081,
+        "A2": 409.5238,
+        "B1": -2.51e-6,
+        "B2": -0.952381,
+        "note_AB": "B(T) = A1 + A2/T^2  [MPa^-1];  C(T) = B1 + B2/T^2 [MPa^-2]"
+    },
+    "ambient": {
+        "T_amb_default": {"value": 298.15, "unit": "K", "note": "Default ambient temperature 25 C"}
+    },
+    "valid_ranges": {
+        "pressure": {"min": 1.0, "max": 900.0, "unit": "bar"},
+        "temperature": {"min": 200.0, "max": 373.0, "unit": "K"},
+        "T_ambient": {"min": 233.0, "max": 333.0, "unit": "K"},
+        "mass_flow": {"min": -0.1, "max": 0.1, "unit": "kg/s"}
+    }
+}

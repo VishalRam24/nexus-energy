@@ -1,0 +1,57 @@
+{
+    "component_id": "EC049",
+    "component_name": "Multi-Junction Concentrator PV (CPV)",
+    "fidelity": "F2a — Series Multi-Junction Single-Diode + Current Matching + Thermal ODE",
+    "source": "King et al. (2007) 'Advances in High-Efficiency III-V Multijunction Solar Cells', Adv. OptoElectronics 2007:29523; Kurtz et al. (2008); Cotal et al. (2009) Energy Environ. Sci. 2:174",
+    "unit": {
+        "name": "GaInP/GaInAs/Ge Triple-Junction CPV Cell (lattice-matched, King 2007)",
+        "n_junctions": {"value": 3, "unit": "-", "note": "Series-connected subcells top->bottom"},
+        "A_cell": {"value": 1.0e-4, "unit": "m2", "note": "Cell active area, 1 cm^2"},
+        "C_design": {"value": 500.0, "unit": "suns", "note": "Design geometric concentration ratio"},
+        "optical_efficiency": {"value": 0.85, "unit": "-", "note": "Fresnel lens + secondary optics transmission (Cotal 2009)"},
+        "T_ref": {"value": 298.15, "unit": "K", "note": "STC junction reference temperature (25 C)"},
+        "subcells": {
+            "value": [
+                {
+                    "name": "GaInP (top)",
+                    "Eg_eV": 1.86,
+                    "Jsc_1sun_ref": 14.0,
+                    "J0_ref": 2.0e-22,
+                    "n_diode": 1.05,
+                    "note": "Top junction, current-limiting at AM1.5d. Jsc in mA/cm^2, J0 in A/cm^2"
+                },
+                {
+                    "name": "GaInAs (middle)",
+                    "Eg_eV": 1.40,
+                    "Jsc_1sun_ref": 14.6,
+                    "J0_ref": 3.0e-16,
+                    "n_diode": 1.10,
+                    "note": "Middle junction"
+                },
+                {
+                    "name": "Ge (bottom)",
+                    "Eg_eV": 0.67,
+                    "Jsc_1sun_ref": 27.0,
+                    "J0_ref": 5.0e-5,
+                    "n_diode": 1.20,
+                    "note": "Bottom junction, current-rich (excess Ge current discarded)"
+                }
+            ],
+            "unit": "mixed",
+            "note": "Per-subcell single-diode parameters. Jsc_1sun_ref [mA/cm^2] at 1-sun AM1.5d; J0_ref [A/cm^2] reverse saturation at T_ref; n_diode ideality"
+        },
+        "Rs": {"value": 0.012, "unit": "ohm.cm2", "note": "Lumped series resistance (grid + tunnel junctions), dominant at high C"},
+        "beta_Jsc": {"value": 0.0004, "unit": "1/K", "note": "Photocurrent temperature coefficient (bandgap narrowing), +0.04%/K"},
+        "m_cell": {"value": 0.05, "unit": "kg", "note": "Lumped thermal mass: cell + receiver + DBC substrate"},
+        "cp_cell": {"value": 700.0, "unit": "J/(kg.K)", "note": "Effective specific heat (Ge/metal/ceramic stack)"},
+        "hA_cool": {"value": 0.18, "unit": "W/K", "note": "Active cooling conductance per cell (heat sink + liquid loop)"},
+        "T_coolant": {"value": 298.15, "unit": "K", "note": "Coolant / ambient sink temperature (25 C)"}
+    },
+    "valid_ranges": {
+        "DNI": {"min": 0.0, "max": 1100.0, "unit": "W/m2"},
+        "concentration": {"min": 1.0, "max": 1000.0, "unit": "suns"},
+        "T_amb": {"min": 243.15, "max": 323.15, "unit": "K"},
+        "dt": {"min": 0.1, "max": 5.0, "unit": "s"},
+        "duration_s": {"min": 1.0, "max": 600.0, "unit": "s"}
+    }
+}

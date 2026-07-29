@@ -1,0 +1,36 @@
+{
+    "component_id": "EC122",
+    "component_name": "Pumped Hydro Storage (PHS)",
+    "fidelity": "F2a -- Dynamic ODE Model with Waterway Inertia and Turbine/Pump",
+    "source": "Nicolet (2007) Hydroacoustic Modelling and Numerical Simulation of Unsteady Operation of Hydroelectric Systems, EPFL; Chaudhry (2014) Applied Hydraulic Transients, Springer",
+    "unit": {
+        "name": "Generic 300 MW Reversible Pump-Turbine PHS",
+        "rho_water": {"value": 998.0, "unit": "kg/m3", "note": "Water density"},
+        "g": {"value": 9.81, "unit": "m/s2", "note": "Gravitational acceleration"},
+        "H_rated": {"value": 300.0, "unit": "m", "note": "Rated net head"},
+        "Q_rated": {"value": 120.0, "unit": "m3/s", "note": "Rated volumetric flow"},
+        "L_penstock": {"value": 800.0, "unit": "m", "note": "Penstock length"},
+        "A_penstock": {"value": 12.566, "unit": "m2", "note": "Penstock cross-section area (D=4m)"},
+        "f_darcy": {"value": 0.015, "unit": "-", "note": "Darcy friction factor"},
+        "D_penstock": {"value": 4.0, "unit": "m", "note": "Penstock diameter"},
+        "J_rotor": {"value": 2.5e6, "unit": "kg.m2", "note": "Rotor moment of inertia"},
+        "omega_rated": {"value": 18.85, "unit": "rad/s", "note": "Rated angular speed (180 rpm)"},
+        "P_rated": {"value": 300e6, "unit": "W", "note": "Rated power output"},
+        "eta_turbine_max": {"value": 0.92, "unit": "-", "note": "Peak turbine efficiency"},
+        "eta_pump_max": {"value": 0.88, "unit": "-", "note": "Peak pump efficiency"},
+        "T_friction_coeff": {"value": 500.0, "unit": "N.m.s/rad", "note": "Mechanical friction coefficient"},
+        "V_upper": {"value": 5.0e6, "unit": "m3", "note": "Upper reservoir volume"},
+        "V_lower": {"value": 5.0e6, "unit": "m3", "note": "Lower reservoir volume"},
+        "A_upper": {"value": 50000.0, "unit": "m2", "note": "Upper reservoir surface area"},
+        "A_lower": {"value": 50000.0, "unit": "m2", "note": "Lower reservoir surface area"},
+        "H_upper_init": {"value": 100.0, "unit": "m", "note": "Initial upper reservoir level above datum"},
+        "H_lower_init": {"value": 10.0, "unit": "m", "note": "Initial lower reservoir level above datum"},
+        "a_wave": {"value": 1200.0, "unit": "m/s", "note": "Water hammer wave speed in penstock"}
+    },
+    "valid_ranges": {
+        "Q": {"min": -150.0, "max": 150.0, "unit": "m3/s"},
+        "omega": {"min": 0.0, "max": 25.0, "unit": "rad/s"},
+        "H_net": {"min": 0.0, "max": 500.0, "unit": "m"},
+        "duration_s": {"min": 1.0, "max": 86400.0, "unit": "s"}
+    }
+}

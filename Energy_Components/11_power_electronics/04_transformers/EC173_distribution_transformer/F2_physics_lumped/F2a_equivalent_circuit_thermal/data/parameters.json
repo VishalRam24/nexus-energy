@@ -1,0 +1,37 @@
+{
+    "component_id": "EC173",
+    "component_name": "Distribution Transformer",
+    "fidelity": "F2a — Equivalent-Circuit + Lumped Thermal ODE",
+    "source": "IEEE C57.91-2011 (Loading Guide for Mineral-Oil-Immersed Transformers); Fitzgerald, Kingsley & Umans (2003) Electric Machinery 6th ed.; IEC 60076-1:2011; IEC 60076-7:2018; Kulkarni & Khaparde (2004) Transformer Engineering",
+    "unit": {
+        "name": "Generic 250 kVA ONAN Distribution Transformer (11 kV / 0.4 kV)",
+        "source": "IEEE C57.91-2011; IEC 60076-1:2011; ABB Distribution Transformer Manual (2016)",
+        "S_rated_kVA": {"value": 250.0, "unit": "kVA", "note": "Rated apparent power"},
+        "V_hv": {"value": 11000.0, "unit": "V", "note": "HV (primary) winding rated line-to-line voltage"},
+        "V_lv": {"value": 400.0, "unit": "V", "note": "LV (secondary) winding rated line-to-line voltage"},
+        "P_no_load_W": {"value": 430.0, "unit": "W", "note": "No-load (core) loss P_0 at rated voltage — sets shunt core-loss branch R_c"},
+        "P_load_loss_W": {"value": 3250.0, "unit": "W", "note": "Load (copper) loss P_k at rated current and 75 degC — sets series winding R_eq"},
+        "u_k_pu": {"value": 0.04, "unit": "pu", "note": "Short-circuit (impedance) voltage 4% — sets series leakage reactance X_eq"},
+        "i_0_pu": {"value": 0.012, "unit": "pu", "note": "No-load (magnetizing) current as fraction of rated current — sets magnetizing reactance X_m"},
+        "T_ref_winding": {"value": 75.0, "unit": "degC", "note": "IEC/IEEE reference winding temperature for P_k"},
+        "alpha_Cu": {"value": 0.00393, "unit": "1/K", "note": "Copper resistance temperature coefficient"},
+        "n_B": {"value": 1.8, "unit": "dimensionless", "note": "Steinmetz core-loss voltage exponent (CRGO laminations)"},
+        "theta_oil_rise_rated_K": {"value": 55.0, "unit": "K", "note": "Rated top-oil temperature rise above ambient (ONAN)"},
+        "theta_hs_grad_rated_K": {"value": 23.0, "unit": "K", "note": "Rated hot-spot-to-top-oil gradient at rated current"},
+        "tau_oil_min": {"value": 180.0, "unit": "min", "note": "Top-oil thermal time constant (IEEE C57.91 Annex G typical ONAN)"},
+        "tau_winding_min": {"value": 5.0, "unit": "min", "note": "Winding (hot-spot) thermal time constant"},
+        "n_oil": {"value": 0.8, "unit": "dimensionless", "note": "Oil thermal exponent (IEEE C57.91 / IEC 60076-7, ONAN)"},
+        "m_oil_kg": {"value": 280.0, "unit": "kg", "note": "Mass of insulating mineral oil"},
+        "m_core_coil_kg": {"value": 650.0, "unit": "kg", "note": "Mass of core + windings (active part)"},
+        "cp_oil": {"value": 1860.0, "unit": "J/(kg.K)", "note": "Specific heat of transformer mineral oil"},
+        "cp_steel": {"value": 470.0, "unit": "J/(kg.K)", "note": "Specific heat of core + copper active part (effective)"}
+    },
+    "valid_ranges": {
+        "load_fraction": {"min": 0.0, "max": 2.0, "unit": "pu"},
+        "voltage_pu": {"min": 0.9, "max": 1.1, "unit": "pu"},
+        "power_factor": {"min": 0.5, "max": 1.0, "unit": "dimensionless"},
+        "ambient_temperature": {"min": -25.0, "max": 50.0, "unit": "degC"},
+        "dt_s": {"min": 1.0, "max": 600.0, "unit": "s"},
+        "duration_s": {"min": 60.0, "max": 172800.0, "unit": "s"}
+    }
+}

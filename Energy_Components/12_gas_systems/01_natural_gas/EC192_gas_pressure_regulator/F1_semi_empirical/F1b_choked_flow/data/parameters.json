@@ -1,0 +1,26 @@
+{
+    "component": "EC192 Gas Pressure Regulator",
+    "fidelity": "F1b",
+    "description": "ISA Cv flow sizing with correct choked-flow treatment: at choke, ΔP in the sqrt uses critical ΔP_choke, not actual ΔP",
+    "valve": {
+        "Cv_default": {"value": 200.0, "unit": "dimensionless"},
+        "Xt_default": {"value": 0.68, "unit": "dimensionless", "note": "Pressure differential ratio at choke"},
+        "Fk_default": {"value": 0.93, "unit": "dimensionless", "note": "Ratio of specific heats factor: Fk = gamma/1.4"},
+        "valve_travel_range": {"value": [0.1, 1.0], "unit": "dimensionless", "note": "Valve travel fraction"},
+        "Cv_PLR_coeffs": {"value": [0.0, 1.1, -0.1], "unit": "dimensionless",
+                          "note": "Cv_effective = Cv * (a0 + a1*travel + a2*travel^2)"}
+    },
+    "gas": {
+        "specific_gravity": {"value": 0.6, "unit": "dimensionless"},
+        "gamma": {"value": 1.31, "unit": "dimensionless"},
+        "R_specific": {"value": 518.3, "unit": "J/(kg.K)"},
+        "cp": {"value": 2190.0, "unit": "J/(kg.K)"},
+        "JT_coefficient": {"value": 4.5e-6, "unit": "K/Pa", "note": "Joule-Thomson coefficient"},
+        "T_inversion": {"value": 700.0, "unit": "K"}
+    },
+    "valid_ranges": {
+        "P_up": {"min": 1.0, "max": 200.0, "unit": "bar"},
+        "P_down": {"min": 0.5, "max": 100.0, "unit": "bar"},
+        "T_up": {"min": 240.0, "max": 330.0, "unit": "K"}
+    }
+}

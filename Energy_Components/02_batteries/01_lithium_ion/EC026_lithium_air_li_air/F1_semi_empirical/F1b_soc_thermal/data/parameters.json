@@ -1,0 +1,41 @@
+{
+    "component": "EC026 Lithium-Air Battery (Li-O2 / Li-Air)",
+    "fidelity": "F1b",
+    "description": "SOC-thermal voltage model: V = OCV(SOC) - I*R(T), with Arrhenius resistance and capacity correction",
+    "cell": {
+        "name": "Aprotic Li-O2 cell (Li metal / carbon air cathode)",
+        "source": "Laoire et al. (2010), J. Electrochem. Soc. 157(7), A821; Abraham & Jiang (1996), J. Electrochem. Soc. 143, 1; Viswanathan et al. (2011), J. Chem. Phys. 135, 214704",
+        "nominal_voltage": {"value": 2.9, "unit": "V"},
+        "capacity_ref": {"value": 1.0, "unit": "Ah", "note": "Practical capacity limited by pore clogging in air cathode"},
+        "voltage_max": {"value": 3.5, "unit": "V"},
+        "voltage_min": {"value": 2.0, "unit": "V"},
+        "R_ref": {"value": 0.150, "unit": "Ohm", "note": "Internal resistance at T_ref; very high due to Li2O2 insulating film"}
+    },
+    "ocv_coefficients": {
+        "description": "OCV(SOC) = a0 + a1*SOC + a2*SOC^2 + a3*SOC^3 + a4*SOC^4 + a5*SOC^5",
+        "source": "Fitted to aprotic Li-O2 OCV profile; theoretical OCV = 2.96 V (vs Li/Li+) for Li2O2 formation",
+        "a0": 2.15,
+        "a1": 1.80,
+        "a2": -3.0,
+        "a3": 4.5,
+        "a4": -3.2,
+        "a5": 0.8
+    },
+    "thermal": {
+        "T_ref": {"value": 298.15, "unit": "K", "note": "Reference temperature (25 degC)"},
+        "E_a": {"value": 35000, "unit": "J/mol",
+                "note": "High activation energy; Li-O2 ORR/OER kinetics are strongly thermally activated",
+                "source": "Viswanathan et al. (2011), J. Chem. Phys. 135, 214704; Laoire et al. (2010), J. Electrochem. Soc. 157, A821"},
+        "alpha_c": {"value": 0.006, "unit": "1/K", "note": "Capacity temperature coefficient; moderate since oxygen solubility increases with T",
+                    "source": "Read (2002), J. Electrochem. Soc. 149, A1190"},
+        "dOCV_dT": {"value": -0.00050, "unit": "V/K",
+                    "note": "Large negative entropic coefficient for Li-air; dOCV/dT ~ -0.50 mV/K. The O2 reduction Li + O2 + e- -> LiO2 -> Li2O2 reaction involves gas phase, giving large negative entropy (negative dOCV/dT). This is the most negative of all common battery chemistries.",
+                    "source": "Viswanathan et al. (2011), J. Chem. Phys. 135, 214704; Lu et al. (2013), Nat. Chem. 5, 527"},
+        "R_gas": {"value": 8.314, "unit": "J/(mol*K)", "note": "Universal gas constant"}
+    },
+    "valid_ranges": {
+        "soc": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "current": {"min": -2.0, "max": 2.0, "unit": "A", "note": "Negative=charge, Positive=discharge; Li-air limited to very low rates"},
+        "temperature": {"min": 258.15, "max": 333.15, "unit": "K", "note": "-15 to 60 degC"}
+    }
+}

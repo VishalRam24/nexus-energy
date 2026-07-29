@@ -1,0 +1,45 @@
+{
+    "component": "EC033 Iron-Air Battery",
+    "fidelity": "F1b",
+    "description": "SOC-thermal model for iron-air secondary batteries with Arrhenius R(T) and entropic heating",
+    "source": "Trocino et al. (2022) J. Power Sources; Manohar et al. (2012) J. Electrochem. Soc.; Form Energy (2022) techreport",
+
+    "cell": {
+        "name": "Iron-Air (Fe-Air) secondary battery",
+        "note": "Fe + 1.5 H2O <-> Fe(OH)2 + H2 at anode; O2 reduction at cathode. E^0 ~ 1.28 V",
+        "nominal_voltage":  {"value": 1.0,   "unit": "V",  "note": "Nominal discharge voltage (alkaline KOH). Manohar 2012"},
+        "capacity_ref":     {"value": 1.0,   "unit": "Ah", "note": "Normalized reference cell"},
+        "voltage_max":      {"value": 1.28,  "unit": "V",  "note": "OCV for Fe + O2 system in alkaline: ~1.28 V"},
+        "voltage_min":      {"value": 0.6,   "unit": "V",  "note": "Discharge cutoff"},
+        "R_ref":            {"value": 0.060, "unit": "Ohm","note": "Internal resistance at T_ref; higher than Zn-air due to Fe electrode kinetics"}
+    },
+
+    "ocv_coefficients": {
+        "description": "OCV(SOC) polynomial for Fe-air battery in alkaline electrolyte",
+        "source": "Manohar et al. (2012) J. Electrochem. Soc. 159(8), A1209-A1214; Form Energy 2022",
+        "a0": 0.60,
+        "a1": 2.10,
+        "a2": -3.50,
+        "a3": 4.00,
+        "a4": -2.50,
+        "a5": 0.58,
+        "note": "OCV ranges from 0.60 V (empty) to ~1.28 V (full). Flatter plateau than Li-ion due to two-phase reaction"
+    },
+
+    "thermal": {
+        "T_ref":   {"value": 298.15, "unit": "K"},
+        "E_a":     {"value": 35000,  "unit": "J/mol",
+                    "note": "Activation energy for Fe-air internal resistance. Higher than Zn-air due to Fe electrode sluggish kinetics. Trocino 2022"},
+        "alpha_c": {"value": 0.004,  "unit": "1/K",
+                    "note": "Capacity-temperature coefficient (similar to other alkaline systems)"},
+        "dOCV_dT": {"value": 0.0002, "unit": "V/K",
+                    "note": "Entropic coefficient for Fe-air. Positive: Fe electrode slightly exothermic on discharge (entropy increases). Trocino et al. 2022 reports mild endothermic effect -> use +0.0002 V/K"},
+        "R_gas":   {"value": 8.314,  "unit": "J/(mol*K)"}
+    },
+
+    "valid_ranges": {
+        "soc":         {"min": 0.0,    "max": 1.0,    "unit": "dimensionless"},
+        "current":     {"min": -3.0,   "max": 3.0,    "unit": "A", "note": "positive=discharge. Slow kinetics limit rate capability"},
+        "temperature": {"min": 253.15, "max": 333.15, "unit": "K"}
+    }
+}

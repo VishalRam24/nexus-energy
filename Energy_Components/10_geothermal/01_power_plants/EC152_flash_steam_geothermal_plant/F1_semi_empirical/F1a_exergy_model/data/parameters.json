@@ -1,0 +1,24 @@
+{
+    "component": "EC152 Flash Steam Geothermal Plant",
+    "fidelity": "F1a",
+    "description": "Exergy efficiency model with flash pressure optimization (single/double flash)",
+    "unit": {
+        "name": "Generic Single-Flash Geothermal Plant",
+        "source": "DiPippo, R. (2015). Geothermal Power Plants, 4th ed. Butterworth-Heinemann. Chapter 5-6.",
+        "T_geo_design": {"value": 240.0, "unit": "degC"},
+        "T_flash_design": {"value": 160.0, "unit": "degC", "note": "Flash separator temperature; optimized to ~0.63*T_geo for single flash"},
+        "T_reject_design": {"value": 50.0, "unit": "degC"},
+        "m_dot_brine_design": {"value": 100.0, "unit": "kg/s"},
+        "cp_brine": {"value": 4100.0, "unit": "J/kgK", "note": "Specific heat of geothermal brine"},
+        "eta_utilization": {"value": 0.45, "unit": "dimensionless", "note": "Utilization efficiency accounts for non-equilibrium flash, separator losses, turbine irreversibilities"},
+        "steam_quality_factor": {"value": 0.20, "unit": "dimensionless", "note": "Approx steam fraction from single flash at design point"},
+        "T_condenser_offset": {"value": 5.0, "unit": "degC", "note": "Condenser T above rejection T"},
+        "P_rated": {"value": 12000.0, "unit": "kW"}
+    },
+    "valid_ranges": {
+        "T_geothermal": {"min": 200.0, "max": 320.0, "unit": "degC"},
+        "T_rejection": {"min": 10.0, "max": 60.0, "unit": "degC"},
+        "flow_rate_kgs": {"min": 10.0, "max": 500.0, "unit": "kg/s"},
+        "T_flash": {"min": 120.0, "max": 200.0, "unit": "degC", "note": "Optional override; defaults to optimal 0.63*T_geo"}
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "component": "EC164 Three-Phase DC-AC Inverter",
+    "fidelity": "F1b",
+    "description": "Detailed IGBT/diode loss model: conduction + switching + reverse recovery per device, 6 devices total",
+    "unit": {
+        "name": "100 kW IGBT-Based Three-Phase Inverter",
+        "source": "Mohan, Undeland & Robbins (2003), Power Electronics, 3rd ed. Wiley; Semikron Application Manual",
+        "V_dc": {"value": 800.0, "unit": "V", "note": "DC bus voltage"},
+        "P_rated": {"value": 100000.0, "unit": "W", "note": "Rated output power"},
+        "V_ce0": {"value": 1.5, "unit": "V", "note": "IGBT collector-emitter threshold voltage"},
+        "r_ce": {"value": 0.002, "unit": "Ohm", "note": "IGBT on-state slope resistance"},
+        "E_on": {"value": 0.015, "unit": "J", "note": "IGBT turn-on energy (15 mJ at V_ref, I_ref)"},
+        "E_off": {"value": 0.010, "unit": "J", "note": "IGBT turn-off energy (10 mJ at V_ref, I_ref)"},
+        "V_f": {"value": 1.2, "unit": "V", "note": "Freewheeling diode forward voltage"},
+        "r_d": {"value": 0.001, "unit": "Ohm", "note": "Diode on-state slope resistance"},
+        "E_rr": {"value": 0.008, "unit": "J", "note": "Diode reverse recovery energy (8 mJ at V_ref, I_ref)"},
+        "f_sw": {"value": 10000.0, "unit": "Hz", "note": "10 kHz switching frequency"},
+        "V_ref": {"value": 600.0, "unit": "V", "note": "Reference voltage for switching energy data"},
+        "I_ref": {"value": 100.0, "unit": "A", "note": "Reference current for switching energy data"}
+    },
+    "valid_ranges": {
+        "p_load": {"min": 0.0, "max": 120000.0, "unit": "W"},
+        "modulation_index": {"min": 0.0, "max": 1.0, "unit": "dimensionless"},
+        "power_factor": {"min": 0.0, "max": 1.0, "unit": "dimensionless"}
+    }
+}

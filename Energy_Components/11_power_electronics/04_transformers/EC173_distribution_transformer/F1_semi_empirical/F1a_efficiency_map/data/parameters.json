@@ -1,0 +1,20 @@
+{
+    "component": "EC173 Distribution Transformer",
+    "fidelity": "F1a",
+    "description": "eta = P_out/(P_out + P_core + P_cu * load^2); P_core=0.2%, P_cu=1.0% of S_rated",
+    "unit": {
+        "name": "Generic 1MVA Distribution Transformer (Oil-Immersed)",
+        "source": "IEC 60076-1:2011; IEEE C57.12.00-2015",
+        "s_rated": {"value": 1000000.0, "unit": "VA", "note": "1 MVA rated"},
+        "v_primary": {"value": 11000.0, "unit": "V", "note": "11 kV primary"},
+        "v_secondary": {"value": 400.0, "unit": "V", "note": "400 V secondary"},
+        "p_core_frac": {"value": 0.002, "unit": "dimensionless", "note": "No-load (core) losses = 0.2% S_rated"},
+        "p_cu_frac": {"value": 0.010, "unit": "dimensionless", "note": "Full-load copper losses = 1.0% S_rated"},
+        "n_turns": {"value": 0.03636, "unit": "dimensionless", "note": "400/11000"},
+        "efficiency_class": {"value": "AoBo", "unit": "string", "note": "IEC 60076-20 Tier A0B0"}
+    },
+    "valid_ranges": {
+        "load_fraction": {"min": 0.0, "max": 1.5, "unit": "dimensionless", "note": "PLR = S_actual/S_rated"},
+        "power_factor": {"min": 0.7, "max": 1.0, "unit": "dimensionless"}
+    }
+}

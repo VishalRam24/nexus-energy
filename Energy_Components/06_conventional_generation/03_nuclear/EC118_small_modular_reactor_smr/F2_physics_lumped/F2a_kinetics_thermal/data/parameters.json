@@ -1,0 +1,45 @@
+{
+    "component_id": "EC118",
+    "component_name": "Small Modular Reactor (SMR)",
+    "fidelity": "F2a — Point Kinetics + Lumped Thermal with Doppler/Moderator Feedback and Load-Following",
+    "source": "Duderstadt & Hamilton (1976) Nuclear Reactor Analysis, Wiley; Stacey (2007) Nuclear Reactor Physics 2nd ed.; Keepin (1965) Physics of Nuclear Kinetics; IAEA (2022) Advances in SMR Technology Developments; NuScale VOYGR Design Certification Application (2020); Ingersoll & Carelli (2020) Handbook of Small Modular Nuclear Reactors",
+    "unit": {
+        "name": "Generic 540 MWth / 180 MWe Integral PWR SMR (NuScale VOYGR-class)",
+        "P_thermal_rated": {"value": 540e6, "unit": "W", "note": "Reactor module rated thermal power (540 MWth)"},
+        "P_elec_rated": {"value": 180e6, "unit": "W", "note": "Net electrical output at full load (180 MWe)"},
+        "eta_thermal": {"value": 0.333, "unit": "-", "note": "Net thermal-to-electrical (Rankine) efficiency"},
+
+        "Lambda": {"value": 2.0e-5, "unit": "s", "note": "Prompt neutron generation time (light-water thermal spectrum)"},
+        "beta": {
+            "value": [0.000215, 0.001424, 0.001274, 0.002568, 0.000748, 0.000273],
+            "unit": "-",
+            "note": "Delayed neutron fractions, 6 groups (U-235); total beta = 0.006502 (Keepin 1965)"
+        },
+        "lambda_precursor": {
+            "value": [0.0124, 0.0305, 0.111, 0.301, 1.14, 3.01],
+            "unit": "1/s",
+            "note": "Precursor decay constants, 6 groups (Keepin 1965)"
+        },
+
+        "alpha_f": {"value": -2.8e-5, "unit": "dk/k per K", "note": "Fuel/Doppler reactivity coefficient (negative; slightly stronger than large PWR due to softer SMR spectrum)"},
+        "alpha_m": {"value": -2.5e-4, "unit": "dk/k per K", "note": "Moderator-temperature reactivity coefficient (negative; large-magnitude MTC enables deep load-following)"},
+
+        "T_inlet": {"value": 531.15, "unit": "K", "note": "Primary coolant cold-leg / core inlet temperature (258 C)"},
+
+        "m_f_cp_f": {"value": 3.0e5, "unit": "J/K", "note": "Lumped fuel heat capacity m_f*cp_f (small core => low fuel thermal mass)"},
+        "m_m_cp_m": {"value": 2.43e9, "unit": "J/K", "note": "Lumped primary coolant heat capacity (450 MJ/K scaled; integral vessel inventory, governs thermal inertia ~8 min)"},
+        "hA_fg": {"value": 9.0e5, "unit": "W/K", "note": "Fuel-to-coolant heat-transfer conductance h*A"},
+        "m_dot_cp_c": {"value": 9.31e6, "unit": "W/K", "note": "Coolant mdot*cp (1900 kg/s * 5.4 kJ/kgK natural circulation; sets core dT ~63 K at full power: T_out-T_in)"},
+
+        "n0": {"value": 1.0, "unit": "-", "note": "Initial normalized neutron population (1.0 = rated)"},
+        "natural_circulation": {"value": true, "unit": "-", "note": "Coolant flow scales with sqrt(power) via buoyancy (NuScale has no primary pumps)"},
+        "nat_circ_exponent": {"value": 0.5, "unit": "-", "note": "mdot ~ P^0.5 for buoyancy-driven natural circulation (Boussinesq, Todreas & Kazimi 2012)"},
+        "nat_circ_min_frac": {"value": 0.25, "unit": "-", "note": "Floor on natural-circulation flow fraction at low power"}
+    },
+    "valid_ranges": {
+        "rho_ext": {"min": -0.01, "max": 0.005, "unit": "dk/k", "note": "External (control-rod) reactivity insertion"},
+        "power_fraction": {"min": 0.2, "max": 1.0, "unit": "-", "note": "SMR deep load-following range"},
+        "simulation_time": {"min": 0.01, "max": 20000.0, "unit": "s"},
+        "dt": {"min": 0.001, "max": 10.0, "unit": "s"}
+    }
+}

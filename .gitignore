@@ -1,0 +1,28 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environments
+.venv/
+venv/
+env/
+
+# Build / distribution
+build/
+dist/
+
+# NOTE: benchmarks/results/*.json is committed deliberately — it is the stored
+# evidence behind the numbers quoted in README.md and COMPARISON_SCORECARD.md.
+# Do not add it here.
+*.log
+
+# macOS
+.DS_Store
+
+# Editors
+.idea/
+.vscode/
