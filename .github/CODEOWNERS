@@ -1,0 +1,4 @@
+# Every change to this repository requires review from the owner.
+# Branch protection on `main` requires a code-owner approval, so nothing
+# from an outside pull request can merge without it.
+*       @VishalRam24
