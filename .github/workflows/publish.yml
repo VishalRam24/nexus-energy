@@ -1,0 +1,86 @@
+# Build and publish nexus-energy to PyPI.
+#
+# nexus-energy is pure Python, so there is a single wheel and no build matrix.
+# Publishing happens only when a tag is pushed, via PyPI Trusted Publishing —
+# PyPI verifies this workflow's OIDC identity, so there is no API token and no
+# repository secret. Pushes and pull requests only build and check.
+#
+# IMPORTANT: nexus-energy depends on nexus-opt, so publish nexus-opt first and
+# wait for it to appear on PyPI. Otherwise `pip install nexus-energy` resolves
+# the dependency and fails.
+
+name: Publish to PyPI
+
+on:
+  push:
+    branches: [main]
+    tags: ['*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          python-version: "3.12"
+
+      - name: Build sdist and wheel
+        run: uv build
+
+      - name: Check the metadata renders on PyPI
+        run: uvx twine check --strict dist/*
+
+      - name: Confirm the wheel imports and solves
+        run: |
+          uv venv /tmp/check
+          uv pip install --python /tmp/check/bin/python dist/*.whl
+          /tmp/check/bin/python - <<'EOF'
+          import nexus_energy as ne
+          sys = ne.EnergySystem("smoke")
+          elec = sys.add_bus("elec", carrier="electricity")
+          sys.add_generator("solar", bus=elec, capacity=500, marginal_cost=0)
+          sys.add_generator("gas", bus=elec, capacity=200, marginal_cost=50)
+          sys.add_load("demand", bus=elec, amount=300)
+          r = sys.optimise()
+          assert r.status == "optimal", r.status
+          assert abs(r.total_cost) < 1e-9, r.total_cost
+          print("smoke test OK:", r.status, r.total_cost)
+          EOF
+
+      - uses: actions/upload-artifact@v6
+        with:
+          name: dist
+          path: dist
+
+  release:
+    name: Publish to PyPI
+    needs: build
+    runs-on: ubuntu-latest
+    if: ${{ startsWith(github.ref, 'refs/tags/') }}
+    environment:
+      name: pypi
+      url: https://pypi.org/p/nexus-energy
+    permissions:
+      id-token: write
+      attestations: write
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v7
+        with:
+          name: dist
+          path: dist
+
+      - name: Generate artifact attestation
+        uses: actions/attest-build-provenance@v3
+        with:
+          subject-path: 'dist/*'
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
