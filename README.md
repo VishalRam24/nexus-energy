@@ -9,6 +9,7 @@ parity with PyPSA and GenX. Then ask the question they can't: *which of my
 inputs is wrong?*
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-14b8a6.svg)](LICENSE)
+[![PyPI](https://img.shields.io/pypi/v/nexus-energy.svg?color=14b8a6)](https://pypi.org/project/nexus-energy/)
 [![Python](https://img.shields.io/badge/python-3.9%2B-4a5573.svg)](pyproject.toml)
 [![Solver core](https://img.shields.io/badge/core-nexus--opt%20(Rust)-1c2337.svg)](https://github.com/VishalRam24/nexus-opt)
 
@@ -50,9 +51,6 @@ pip install nexus-energy
 
 This pulls in [`nexus-opt`](https://github.com/VishalRam24/nexus-opt), the Rust
 solver core, automatically. No separate step, no Rust toolchain. Python 3.9+.
-
-> **Not yet on PyPI.** The wheel matrix is built and verified but publication is
-> pending. Until then install from source — see [Development](#development).
 
 ## Sixty seconds
 
