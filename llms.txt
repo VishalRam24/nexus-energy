@@ -1,0 +1,66 @@
+# nexus-energy
+
+> Energy-system optimisation in Python that also answers backwards. Builds and
+> solves capacity expansion, economic dispatch, unit commitment and optimal
+> power flow at exact parity with PyPSA and GenX, and additionally
+> differentiates through the optimisation itself to recover the techno-economic
+> inputs behind an observed dispatch — "which of my inputs is wrong?" in a
+> handful of solves rather than a sampling campaign.
+
+```bash
+pip install nexus-energy
+```
+
+Pulls in `nexus-opt`, the Rust solver core, automatically. Python 3.9+, no Rust
+toolchain needed.
+
+```python
+import nexus_energy as ne
+
+sys = ne.EnergySystem("my_system")
+elec = sys.add_bus("elec", carrier="electricity")
+sys.add_generator("solar", bus=elec, capacity=500, marginal_cost=0)
+sys.add_generator("gas",   bus=elec, capacity=200, marginal_cost=50)
+sys.add_load("demand", bus=elec, amount=300)
+
+result = sys.optimise()
+print(result.status, result.total_cost)   # optimal 0.0
+print(result.generator_dispatch)          # {'solar': [300.], 'gas': [0.]}
+```
+
+Every code example in the guide has been executed against a clean install, and
+printed outputs are real. Parameter names that commonly trip people up:
+`committable` (not `unit_commitment`), `p_min` (not `min_stable_generation`),
+`ramp_up` / `ramp_down` (not `ramp_limit_*`), `efficiency_charge` /
+`efficiency_discharge` (not `charge_efficiency`), `self_discharge` (not
+`self_discharge_rate`), `cyclic` (not `cyclic_state_of_charge`).
+
+## Documentation
+
+- [User guide](https://raw.githubusercontent.com/VishalRam24/nexus-energy/main/WIKI.md): the complete guide in markdown — install, first model, storage, unit commitment, capacity expansion, networks, policy, PyPSA import, inverse calibration, MPC, solver tuning, decomposition, troubleshooting and a full API index.
+- [Rendered guide](https://vishalram24.github.io/nexus/docs/?p=energy): the same text on the web.
+- [Everything in one file](https://vishalram24.github.io/nexus/llms-full.txt): this guide plus the nexus-opt guide, concatenated.
+- [README](https://raw.githubusercontent.com/VishalRam24/nexus-energy/main/README.md): the short version.
+
+## Evidence
+
+- [Benchmark scorecard](https://raw.githubusercontent.com/VishalRam24/nexus-energy/main/COMPARISON_SCORECARD.md): every measured head-to-head with a verdict per row, including one open case where this library under-counts OPEX by ~4.3% versus GenX and reports it as a bug rather than a win.
+- [Feature matrix](https://raw.githubusercontent.com/VishalRam24/nexus-energy/main/FEATURE_MATRIX.md): parity table against PyPSA, GenX, Calliope, oemof, SpineOpt, Sienna, PowerModels and Tulipa.
+- [Differentiators](https://raw.githubusercontent.com/VishalRam24/nexus-energy/main/DIFFERENTIATORS.md): the techniques claimed as novel, with paper citations.
+- [Benchmarks directory](https://github.com/VishalRam24/nexus-energy/tree/main/benchmarks): the harness and stored results, so numbers can be re-run rather than taken on trust.
+
+## Scope limits
+
+Stated plainly rather than omitted — see section 24 of the user guide.
+
+- Not dynamic or EMT simulation: no transients, no swing equation. Time is snapshots and rolling horizons coupled by algebraic constraints.
+- No integer (UC-MILP) differentiability.
+- Calibration is LP/QP class; the required ridge term shifts economics by roughly 1–7 percentage points and is disclosed per result.
+- The speed headline is forward-only; the calibration solve uses a denser path.
+- Component fidelity levels F3–F6 are scaffolded, not implemented.
+
+## Related
+
+- [nexus-opt](https://github.com/VishalRam24/nexus-opt): the Rust solver core underneath — LP, MILP, QP, conic, nonlinear, black-box, multi-objective and stochastic programming behind one API.
+- [Project site](https://vishalram24.github.io/nexus/)
+- [PyPI](https://pypi.org/project/nexus-energy/)

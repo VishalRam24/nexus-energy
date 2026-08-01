@@ -15,6 +15,7 @@ inputs is wrong?*
 
 [Website](https://vishalram24.github.io/nexus/) ·
 [User guide](WIKI.md) ·
+[Docs site](https://vishalram24.github.io/nexus/docs/) ·
 [Benchmarks](COMPARISON_SCORECARD.md) ·
 [Solver core](https://github.com/VishalRam24/nexus-opt)
 
@@ -181,6 +182,18 @@ above are unaffected — none of them involve that case.
   gradients well defined, shifts economics by roughly 1–7 percentage points and
   is disclosed per result.
 - **The speed headline is forward-only** — the calibration solve uses a denser path.
+
+## Documentation
+
+[`WIKI.md`](WIKI.md) is the full user guide — install, first model, storage,
+unit commitment, capacity expansion, networks, policy, the PyPSA on-ramp,
+inverse calibration, MPC, solver tuning, troubleshooting and an API index.
+Every code block in it has been executed against a clean install.
+
+The same text is rendered at
+[vishalram24.github.io/nexus/docs](https://vishalram24.github.io/nexus/docs/)
+and published for agents as [`llms.txt`](llms.txt) /
+[`llms-full.txt`](https://vishalram24.github.io/nexus/llms-full.txt).
 
 ## Development
 
